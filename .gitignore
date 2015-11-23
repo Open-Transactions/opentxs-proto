@@ -1,28 +1,39 @@
-# Compiled Object files
-*.slo
-*.lo
-*.o
-*.obj
+# build noise
+build/*
 
-# Precompiled Headers
-*.gch
-*.pch
+# osx noise
+.DS_Store
+profile
 
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
+# emacs noise
+*~
 
-# Fortran module files
-*.mod
+# visual studio noise
+*.user
+*.sdf
+*ipch/
+*.userprefs
 
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
+*.pb.cc
+Bitcoin.cc
+Generics.cc
+Markets.cc
+Moneychanger.cc
 
-# Executables
-*.exe
-*.out
-*.app
+# KDE Dolphin (file manager) noise
+.directory
+
+# CLion IDE noise
+.idea
+
+# KDevelop noise
+.kdev4
+opentxs-proto.kdev4
+
+# Kate noise
+*.kate-swp
+
+# Patch noise
+*.rej
+*.orig
+

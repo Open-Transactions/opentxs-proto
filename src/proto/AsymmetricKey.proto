@@ -1,0 +1,16 @@
+syntax = "proto2";
+
+package opentxs.proto;
+option optimize_for = CODE_SIZE;
+
+import public "Enums.proto";
+
+message AsymmetricKey {
+    optional uint32 version = 1;
+    optional AsymmetricKeyType type = 2;
+    optional KeyMode mode = 3;
+    optional KeyRole role = 4;
+    optional bytes key = 5;
+    optional bytes chaincode = 6;
+    optional string path = 7;
+}

@@ -1,0 +1,14 @@
+syntax = "proto2";
+
+package opentxs.proto;
+option optimize_for = CODE_SIZE;
+
+import public "Enums.proto";
+
+message Signature {
+    optional uint32 version = 1;
+    optional string credentialID = 2;
+    optional SignatureRole role = 3;
+    optional HashType hashType = 4;
+    optional bytes signature = 5;
+}
