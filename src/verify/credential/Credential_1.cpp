@@ -147,7 +147,7 @@ bool Credential_1(
             role,
             CREDTYPE_LEGACY,
             KEYMODE_PUBLIC,
-            SOURCETYPE_SELF);
+            expectSourceSignature);
 
     if (!validPublicData) {
         std::cerr << "Verify serialized credential failed: invalid public data." << std::endl;
@@ -162,7 +162,7 @@ bool Credential_1(
             role,
             CREDTYPE_LEGACY,
             KEYMODE_PRIVATE,
-            SOURCETYPE_ERROR);
+            expectSourceSignature);
 
         if (!validPrivateData) {
             std::cerr << "Verify serialized credential failed: invalid private data." << std::endl;

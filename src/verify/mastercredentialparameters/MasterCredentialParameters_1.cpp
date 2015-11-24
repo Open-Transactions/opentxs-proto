@@ -45,7 +45,7 @@ namespace opentxs { namespace proto
 
 bool MasterCredentialParameters_1(
     const MasterCredentialParameters& serializedMasterParams,
-    const SourceType sourceType)
+    bool expectSourceSignature)
 {
     bool validSource = false;
     bool validProof = false;
@@ -53,29 +53,23 @@ bool MasterCredentialParameters_1(
     validSource = Verify(
         serializedMasterParams.source(),
         MasterParamsAllowedNymIDSource.at(serializedMasterParams.version()).first,
-        MasterParamsAllowedNymIDSource.at(serializedMasterParams.version()).second,
-        sourceType);
+        MasterParamsAllowedNymIDSource.at(serializedMasterParams.version()).second);
 
     if (!validSource) {
         std::cerr << "Verify serialized master parameters failed: invalid nym id source." << std::endl;
         return false;
     }
 
-    switch (sourceType) {
-        case SOURCETYPE_SELF :
-            if (serializedMasterParams.has_sourceproof()) {
-                std::cerr << "Verify serialized master parameters failed: self-signed credential contains source proof." << std::endl;
-                return false;
-            }
-            validProof = true;
-
-            break;
-        default :
-            std::cerr << "Verify serialized master parameters failed: incorrect or unknown source type ("
-            << sourceType << ")." << std::endl;
-
-            return false;
+    if (!serializedMasterParams.has_sourceproof()) {
+        std::cerr << "Verify serialized master parameters failed: missing source proof." << std::endl;
+        return false;
     }
+
+    validProof = Verify(
+        serializedMasterParams.sourceproof(),
+        MasterParamsAllowedSourceProof.at(serializedMasterParams.version()).first,
+        MasterParamsAllowedSourceProof.at(serializedMasterParams.version()).second,
+        expectSourceSignature);
 
     if (!validProof) {
         std::cerr << "Verify serialized master parameters failed: invalid nym id source proof." << std::endl;

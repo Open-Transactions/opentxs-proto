@@ -59,9 +59,8 @@ enum SourceType {
     option allow_alias = true;
 
     SOURCETYPE_ERROR = 0;
-    SOURCETYPE_SELF = 1;
-    SOURCETYPE_PUBKEY = 2;
-    SOURCETYPE_BIP47 = 3;
+    SOURCETYPE_PUBKEY = 1;
+    SOURCETYPE_BIP47 = 2;
 }
 
 enum SourceProofType {

@@ -47,7 +47,7 @@ bool Verify(
     const MasterCredentialParameters& serializedMasterParams,
     const uint32_t minVersion,
     const uint32_t maxVersion,
-    const SourceType sourceType)
+    bool expectSourceSignature)
 {
     if (!serializedMasterParams.has_version()) {
         std::cerr << "Verify serialized master parameters failed: missing version." << std::endl;
@@ -65,7 +65,7 @@ bool Verify(
     switch (version) {
         case 1 :
 
-            return MasterCredentialParameters_1(serializedMasterParams, sourceType);
+            return MasterCredentialParameters_1(serializedMasterParams, expectSourceSignature);
         default :
             std::cerr << "Verify serialized master parameters failed: unknown version ("
                   << serializedMasterParams.version() << ")." << std::endl;

@@ -79,7 +79,6 @@ namespace opentxs { namespace proto
 
     static const uint32_t MIN_PLAUSIBLE_IDENTIFIER = 20;
     static const uint32_t MIN_PLAUSIBLE_KEYSIZE = 16;
-    static const uint32_t MIN_PLAUSIBLE_SOURCE = 12;
     static const uint32_t MIN_PLAUSIBLE_SIGNATURE = 32;
 
     static const VersionMap CredentialAllowedKeyCredentials =
@@ -106,6 +105,14 @@ namespace opentxs { namespace proto
         {
             { 1, {1, 1}},
         };
+    static const VersionMap MasterParamsAllowedSourceProof =
+        {
+            { 1, {1, 1}},
+        };
+    static const VersionMap NymIDSourceAllowedAsymmetricKey =
+        {
+            { 1, {1, 1}},
+        };
     static const VersionMap CredentialIndexAllowedNymIDSource =
         {
             { 1, {1, 1}},
@@ -114,7 +121,6 @@ namespace opentxs { namespace proto
         {
             { 1, {1, 1}},
         };
-
 
     bool Verify(
         const Credential& serializedCred,
@@ -128,7 +134,7 @@ namespace opentxs { namespace proto
         const CredentialRole role,
         const CredentialType credType,
         const KeyMode mode,
-        const SourceType sourceType);
+        bool expectSourceSignature);
 
     bool Verify(
         const ChildCredentialParameters& serializedChildParams,
@@ -139,13 +145,18 @@ namespace opentxs { namespace proto
         const MasterCredentialParameters& serializedMasterParams,
         const uint32_t minVersion,
         const uint32_t maxVersion,
-        const SourceType sourceType);
+        bool expectSourceSignature);
 
     bool Verify(
         const NymIDSource& serializedNymIDSource,
         const uint32_t minVersion,
+        const uint32_t maxVersion);
+
+    bool Verify(
+        const SourceProof& serializedSourceProof,
+        const uint32_t minVersion,
         const uint32_t maxVersion,
-        const SourceType type = SOURCETYPE_ERROR);
+        bool expectSourceSignature);
 
     bool Verify(
         const AsymmetricKey& serializedAsymmetricKey,

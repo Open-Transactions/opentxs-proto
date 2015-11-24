@@ -46,8 +46,7 @@ namespace opentxs { namespace proto
 bool Verify(
     const NymIDSource& serializedNymIDSource,
     const uint32_t minVersion,
-    const uint32_t maxVersion,
-    const SourceType type)
+    const uint32_t maxVersion)
 {
     if (!serializedNymIDSource.has_version()) {
         std::cerr << "Verify serialized nym source failed: missing version." << std::endl;
@@ -64,7 +63,7 @@ bool Verify(
 
     switch (version) {
         case 1 :
-            return NymIDSource_1(serializedNymIDSource, type);
+            return NymIDSource_1(serializedNymIDSource);
         default :
             std::cerr << "Verify serialized nym source failed: unknown version ("
                   << serializedNymIDSource.version() << ")." << std::endl;

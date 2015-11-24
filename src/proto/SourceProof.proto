@@ -6,10 +6,7 @@ option optimize_for = LITE_RUNTIME;
 import public "Enums.proto";
 import public "Signature.proto";
 
-message sourceProof {
+message SourceProof {
     optional uint32 version = 1;
     optional SourceProofType type = 2;
-    oneof source {
-        bytes data = 3;
-    }
 }

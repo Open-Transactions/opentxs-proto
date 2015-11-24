@@ -36,18 +36,43 @@
  *
  ************************************************************/
 
-#ifndef OPENTXS_PROTO_MASTERCREDENTIALPARAMETERS_HPP
-#define OPENTXS_PROTO_MASTERCREDENTIALPARAMETERS_HPP
+#include "../../../include/verify/SourceProof.hpp"
 
-#include "opentxs-verify.hpp"
+#include <iostream>
 
 namespace opentxs { namespace proto
 {
-    bool MasterCredentialParameters_1(
-        const MasterCredentialParameters& serializedMasterParams,
-        bool expectSourceSignature);
+
+bool Verify(
+    const SourceProof& serializedSourceProof,
+    const uint32_t minVersion,
+    const uint32_t maxVersion,
+    bool ExpectSourceSignature)
+{
+    if (!serializedSourceProof.has_version()) {
+        std::cerr << "Verify serialized nym source failed: missing version." << std::endl;
+        return false;
+    }
+
+    uint32_t version = serializedSourceProof.version();
+
+    if ((version < minVersion) || (version > maxVersion)) {
+        std::cerr << "Verify serialized nym source failed: incorrect version ("
+              << serializedSourceProof.version() << ")." << std::endl;
+        return false;
+    }
+
+    switch (version) {
+        case 1 :
+            return SourceProof_1(serializedSourceProof, ExpectSourceSignature);
+        default :
+            std::cerr << "Verify serialized nym source failed: unknown version ("
+                  << serializedSourceProof.version() << ")." << std::endl;
+
+            return false;
+    }
+    return true;
+}
 
 } // namespace proto
 } // namespace opentxs
-
-#endif // OPENTXS_PROTO_MASTERCREDENTIALPARAMETERS_HPP

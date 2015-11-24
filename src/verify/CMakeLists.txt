@@ -13,6 +13,8 @@ set(cxx-sources
   mastercredentialparameters/MasterCredentialParameters_1.cpp
   nymidsource/NymIDSource.cpp
   nymidsource/NymIDSource_1.cpp
+  sourceproof/SourceProof.cpp
+  sourceproof/SourceProof_1.cpp
   signature/Signature.cpp
   signature/Signature_1.cpp
   credentialindex/CredentialIndex.cpp

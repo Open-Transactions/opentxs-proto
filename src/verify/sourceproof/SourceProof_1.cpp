@@ -36,18 +36,40 @@
  *
  ************************************************************/
 
-#ifndef OPENTXS_PROTO_MASTERCREDENTIALPARAMETERS_HPP
-#define OPENTXS_PROTO_MASTERCREDENTIALPARAMETERS_HPP
+#include "../../../include/verify/SourceProof.hpp"
 
-#include "opentxs-verify.hpp"
+#include <iostream>
 
 namespace opentxs { namespace proto
 {
-    bool MasterCredentialParameters_1(
-        const MasterCredentialParameters& serializedMasterParams,
-        bool expectSourceSignature);
+
+bool SourceProof_1(
+    const SourceProof& serializedSourceProof,
+    bool ExpectSourceSignature)
+{
+    if (!serializedSourceProof.has_type()) {
+        std::cerr << "Verify serialized source proof failed: missing type." << std::endl;
+        return false;
+    }
+
+    switch (serializedSourceProof.type()) {
+        case SOURCEPROOFTYPE_SELF_SIGNATURE :
+            ExpectSourceSignature = false;
+
+            break;
+        case SOURCEPROOFTYPE_SIGNATURE :
+            ExpectSourceSignature = true;
+
+            break;
+        default :
+            std::cerr << "Verify source proof failed: incorrect or unknown type ("
+                    << serializedSourceProof.type() << ")." << std::endl;
+
+            return false;
+    }
+
+    return true;
+}
 
 } // namespace proto
 } // namespace opentxs
-
-#endif // OPENTXS_PROTO_MASTERCREDENTIALPARAMETERS_HPP

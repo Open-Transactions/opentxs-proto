@@ -36,18 +36,18 @@
  *
  ************************************************************/
 
-#ifndef OPENTXS_PROTO_MASTERCREDENTIALPARAMETERS_HPP
-#define OPENTXS_PROTO_MASTERCREDENTIALPARAMETERS_HPP
+#ifndef OPENTXS_PROTO_SOURCEPROOF_HPP
+#define OPENTXS_PROTO_SOURCEPROOF_HPP
 
 #include "opentxs-verify.hpp"
 
 namespace opentxs { namespace proto
 {
-    bool MasterCredentialParameters_1(
-        const MasterCredentialParameters& serializedMasterParams,
-        bool expectSourceSignature);
+    bool SourceProof_1(
+        const SourceProof& serializedSourceProof,
+        bool ExpectSourceSignature);
 
 } // namespace proto
 } // namespace opentxs
 
-#endif // OPENTXS_PROTO_MASTERCREDENTIALPARAMETERS_HPP
+#endif // OPENTXS_PROTO_SOURCEPROOF_HPP

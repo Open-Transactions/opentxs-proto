@@ -50,7 +50,7 @@ bool Verify(
     const CredentialRole role,
     const CredentialType credType,
     const KeyMode mode,
-    const SourceType sourceType)
+    bool expectSourceSignature)
 {
     if (!serializedKeyCred.has_version()) {
         std::cerr << "Verify serialized key credential failed: missing version." << std::endl;
@@ -68,7 +68,7 @@ bool Verify(
     switch (version) {
         case 1 :
 
-            return KeyCredential_1(serializedKeyCred, role, credType, mode, sourceType);
+            return KeyCredential_1(serializedKeyCred, role, credType, mode, expectSourceSignature);
         default :
             std::cerr << "Verify serialized key credential failed: unknown version ("
                   << serializedKeyCred.version() << ")." << std::endl;

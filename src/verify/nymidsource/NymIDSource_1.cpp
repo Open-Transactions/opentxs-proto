@@ -44,30 +44,35 @@ namespace opentxs { namespace proto
 {
 
 bool NymIDSource_1(
-    const NymIDSource& serializedNymIDSource,
-    const SourceType type)
+    const NymIDSource& serializedNymIDSource)
 {
     if (!serializedNymIDSource.has_type()) {
         std::cerr << "Verify serialized nym source failed: missing type." << std::endl;
         return false;
     }
 
-    // type == SOURCETYPE_ERROR means the parent message does not require a specific type here
-    if ((type != SOURCETYPE_ERROR) && (serializedNymIDSource.type() != type)) {
-        std::cerr << "Verify serialized nym source failed: incorrect type ("
-                << serializedNymIDSource.type() << ")." << std::endl;
-        return false;
-    }
+    bool validSourcePubkey = false;
+    AsymmetricKey sourcePubkey;
 
     switch (serializedNymIDSource.type()) {
-        case SOURCETYPE_SELF :
-            if (!serializedNymIDSource.has_raw()) {
+        case SOURCETYPE_PUBKEY :
+            if (!serializedNymIDSource.has_key()) {
                 std::cerr << "Verify serialized nym source failed: missing source." << std::endl;
                 return false;
             }
 
-            if (MIN_PLAUSIBLE_SOURCE > serializedNymIDSource.raw().size()) {
-                std::cerr << "Verify serialized nym source failed: invalid source." << std::endl;
+            sourcePubkey = serializedNymIDSource.key();
+
+            validSourcePubkey = Verify(
+                sourcePubkey,
+                NymIDSourceAllowedAsymmetricKey.at(serializedNymIDSource.version()).first,
+                NymIDSourceAllowedAsymmetricKey.at(serializedNymIDSource.version()).second,
+                CREDTYPE_LEGACY,
+                KEYMODE_PUBLIC,
+                KEYROLE_SIGN);
+
+            if (!validSourcePubkey) {
+                std::cerr << "Verify nym source failed: invalid public key." << std::endl;
                 return false;
             }
 

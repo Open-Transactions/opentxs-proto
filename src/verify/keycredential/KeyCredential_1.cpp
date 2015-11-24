@@ -48,7 +48,7 @@ bool KeyCredential_1(
     const CredentialRole role,
     const CredentialType credType,
     const KeyMode mode,
-    const SourceType sourceType)
+    bool expectSourceSignature)
 {
     AsymmetricKey authKey;
     AsymmetricKey encryptKey;
@@ -85,7 +85,7 @@ bool KeyCredential_1(
             serializedKeyCred.masterdata(),
             KeyCredentialAllowedMasterParams.at(serializedKeyCred.version()).first,
             KeyCredentialAllowedChildParams.at(serializedKeyCred.version()).second,
-            sourceType);
+            expectSourceSignature);
 
         if (!validMasterData) {
             std::cerr << "Verify serialized key credential failed: invalid master data." << std::endl;
