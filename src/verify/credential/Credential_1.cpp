@@ -53,10 +53,11 @@ bool Credential_1(
     bool validPublicData = false;
     bool validPrivateData = false;
     bool expectMasterSignature = false;
-    int32_t expectedSigCount = 2;
+    bool expectSourceSignature = false;
+    int32_t expectedSigCount = 1;
 
     if (CREDROLE_CHILDKEY == role) {
-        expectedSigCount = 3;
+        expectedSigCount++;
         expectMasterSignature = true;
     }
 
@@ -104,6 +105,7 @@ bool Credential_1(
 
     if (KEYMODE_PRIVATE == serializedCred.mode()) {
         isPrivate = true;
+        expectedSigCount++;
     }
 
     if (!(isPrivate || isPublic)) {
@@ -198,7 +200,7 @@ bool Credential_1(
             }
         }
 
-        if (1 != selfPrivateCount) {
+        if ((1 != selfPrivateCount) && (isPrivate)) {
             std::cerr << "Verify serialized credential failed: incorrect number of private self-signatures ("
             << selfPrivateCount << " of 1 found)." << std::endl;
             return false;
