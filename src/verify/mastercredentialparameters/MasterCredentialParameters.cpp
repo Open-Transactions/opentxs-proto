@@ -44,10 +44,10 @@ namespace opentxs { namespace proto
 {
 
 bool Verify(
-    const MasterCredentialParameters serializedMasterParams,
+    const MasterCredentialParameters& serializedMasterParams,
     const uint32_t minVersion,
     const uint32_t maxVersion,
-    const proto::SourceType sourceType)
+    const SourceType sourceType)
 {
     if (!serializedMasterParams.has_version()) {
         std::cerr << "Verify serialized master parameters failed: missing version." << std::endl;

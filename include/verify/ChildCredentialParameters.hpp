@@ -44,7 +44,7 @@
 namespace opentxs { namespace proto
 {
     bool ChildCredentialParameters_1(
-        const ChildCredentialParameters serializedChildParams);
+        const ChildCredentialParameters& serializedChildParams);
 
 } // namespace proto
 } // namespace opentxs

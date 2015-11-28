@@ -44,8 +44,8 @@ namespace opentxs { namespace proto
 {
 
 bool Credential_1(
-    const Credential serializedCred,
-    const proto::CredentialRole role,
+    const Credential& serializedCred,
+    const CredentialRole role,
     const bool withSigs)
 {
     bool isPrivate = false;
@@ -140,8 +140,8 @@ bool Credential_1(
         return false;
     }
 
-    validPublicData = Verify
-        (serializedCred.publiccredential(),
+    validPublicData = Verify(
+            serializedCred.publiccredential(),
             CredentialAllowedKeyCredentials.at(serializedCred.version()).first,
             CredentialAllowedKeyCredentials.at(serializedCred.version()).second,
             role,

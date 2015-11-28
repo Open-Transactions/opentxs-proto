@@ -44,12 +44,12 @@ namespace opentxs { namespace proto
 {
 
 bool Verify(
-    const AsymmetricKey serializedAsymmetricKey,
+    const AsymmetricKey& serializedAsymmetricKey,
     const uint32_t minVersion,
     const uint32_t maxVersion,
-    const proto::CredentialType type,
-    const proto::KeyMode mode,
-    const proto::KeyRole role)
+    const CredentialType type,
+    const KeyMode mode,
+    const KeyRole role)
 {
     if (!serializedAsymmetricKey.has_version()) {
         std::cerr << "Verify serialized asymmetric key failed: missing version." << std::endl;

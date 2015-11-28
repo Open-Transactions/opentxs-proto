@@ -44,11 +44,11 @@ namespace opentxs { namespace proto
 {
 
 bool KeyCredential_1(
-    const KeyCredential serializedKeyCred,
-    const proto::CredentialRole role,
-    const proto::CredentialType credType,
-    const proto::KeyMode mode,
-    const proto::SourceType sourceType)
+    const KeyCredential& serializedKeyCred,
+    const CredentialRole role,
+    const CredentialType credType,
+    const KeyMode mode,
+    const SourceType sourceType)
 {
     AsymmetricKey authKey;
     AsymmetricKey encryptKey;

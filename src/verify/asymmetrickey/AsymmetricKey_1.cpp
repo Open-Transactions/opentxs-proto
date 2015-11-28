@@ -44,10 +44,10 @@ namespace opentxs { namespace proto
 {
 
 bool AsymmetricKey_1(
-    const AsymmetricKey serializedAsymmetricKey,
-    const proto::CredentialType type,
-    const proto::KeyMode mode,
-    const proto::KeyRole role)
+    const AsymmetricKey& serializedAsymmetricKey,
+    const CredentialType type,
+    const KeyMode mode,
+    const KeyRole role)
 {
     switch (type) {
         case CREDTYPE_LEGACY :

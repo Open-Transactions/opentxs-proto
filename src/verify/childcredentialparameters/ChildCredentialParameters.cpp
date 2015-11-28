@@ -44,7 +44,7 @@ namespace opentxs { namespace proto
 {
 
 bool Verify(
-    const ChildCredentialParameters serializedChildParams,
+    const ChildCredentialParameters& serializedChildParams,
     const uint32_t minVersion,
     const uint32_t maxVersion)
 {

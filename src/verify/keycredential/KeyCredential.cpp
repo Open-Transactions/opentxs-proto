@@ -44,13 +44,13 @@ namespace opentxs { namespace proto
 {
 
 bool Verify(
-    const KeyCredential serializedKeyCred,
+    const KeyCredential& serializedKeyCred,
     const uint32_t minVersion,
     const uint32_t maxVersion,
-    const proto::CredentialRole role,
-    const proto::CredentialType credType,
-    const proto::KeyMode mode,
-    const proto::SourceType sourceType)
+    const CredentialRole role,
+    const CredentialType credType,
+    const KeyMode mode,
+    const SourceType sourceType)
 {
     if (!serializedKeyCred.has_version()) {
         std::cerr << "Verify serialized key credential failed: missing version." << std::endl;

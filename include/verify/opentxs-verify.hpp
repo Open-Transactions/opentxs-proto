@@ -106,50 +106,50 @@ namespace opentxs { namespace proto
         };
 
     bool Verify(
-        const Credential serializedCred,
-        const proto::CredentialRole role,
+        const Credential& serializedCred,
+        const CredentialRole role,
         const bool withSigs = true);
 
     bool Verify(
-        KeyCredential serializedKeyCred,
+        const KeyCredential& serializedKeyCred,
         const uint32_t minVersion,
         const uint32_t maxVersion,
-        const proto::CredentialRole role,
-        const proto::CredentialType credType,
-        const proto::KeyMode mode,
-        const proto::SourceType sourceType);
+        const CredentialRole role,
+        const CredentialType credType,
+        const KeyMode mode,
+        const SourceType sourceType);
 
     bool Verify(
-        const ChildCredentialParameters serializedChildParams,
+        const ChildCredentialParameters& serializedChildParams,
         const uint32_t minVersion,
         const uint32_t maxVersion);
 
     bool Verify(
-        const MasterCredentialParameters serializedMasterParams,
+        const MasterCredentialParameters& serializedMasterParams,
         const uint32_t minVersion,
         const uint32_t maxVersion,
-        const proto::SourceType sourceType);
+        const SourceType sourceType);
 
     bool Verify(
-        const nymIDSource serializedNymIDSource,
+        const NymIDSource& serializedNymIDSource,
         const uint32_t minVersion,
         const uint32_t maxVersion,
-        const proto::SourceType type);
+        const SourceType type = SOURCETYPE_ERROR);
 
     bool Verify(
-        const AsymmetricKey serializedAsymmetricKey,
+        const AsymmetricKey& serializedAsymmetricKey,
         const uint32_t minVersion,
         const uint32_t maxVersion,
-        const proto::CredentialType type,
-        const proto::KeyMode mode,
-        const proto::KeyRole role);
+        const CredentialType type,
+        const KeyMode mode,
+        const KeyRole role);
 
     bool Verify(
-        const Signature serializedSignature,
+        const Signature& serializedSignature,
         const uint32_t minVersion,
         const uint32_t maxVersion,
-        const std::string selfID,
-        const std::string masterID,
+        const std::string& selfID,
+        const std::string& masterID,
         uint32_t& selfPublic,
         uint32_t& selfPrivate,
         uint32_t& masterPublic);

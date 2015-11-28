@@ -44,8 +44,8 @@ namespace opentxs { namespace proto
 {
 
 bool Verify(
-    const Credential serializedCred,
-    const proto::CredentialRole role,
+    const Credential& serializedCred,
+    const CredentialRole role,
     const bool withSigs)
 {
     if (!serializedCred.has_version()) {

@@ -44,9 +44,9 @@ namespace opentxs { namespace proto
 {
 
 bool Signature_1(
-    const Signature serializedSignature,
-    const std::string selfID,
-    const std::string masterID,
+    const Signature& serializedSignature,
+    const std::string& selfID,
+    const std::string& masterID,
     uint32_t& selfPublic,
     uint32_t& selfPrivate,
     uint32_t& masterPublic)

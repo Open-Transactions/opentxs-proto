@@ -44,8 +44,8 @@
 namespace opentxs { namespace proto
 {
     bool Credential_1(
-        const Credential serializedCred,
-        const proto::CredentialRole role,
+        const Credential& serializedCred,
+        const CredentialRole role,
         const bool withSigs = true);
 
 } // namespace proto

@@ -44,8 +44,8 @@ namespace opentxs { namespace proto
 {
 
 bool MasterCredentialParameters_1(
-    const MasterCredentialParameters serializedMasterParams,
-    const proto::SourceType sourceType)
+    const MasterCredentialParameters& serializedMasterParams,
+    const SourceType sourceType)
 {
     bool validSource = false;
     bool validProof = false;

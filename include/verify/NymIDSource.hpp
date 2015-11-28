@@ -44,8 +44,8 @@
 namespace opentxs { namespace proto
 {
     bool NymIDSource_1(
-        const nymIDSource serializedNymIDSource,
-        const proto::SourceType type);
+        const NymIDSource& serializedNymIDSource,
+        const SourceType type = SOURCETYPE_ERROR);
 
 } // namespace proto
 } // namespace opentxs

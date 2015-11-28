@@ -44,7 +44,7 @@ namespace opentxs { namespace proto
 {
 
 bool ChildCredentialParameters_1(
-    const ChildCredentialParameters serializedChildParams)
+    const ChildCredentialParameters& serializedChildParams)
 {
     if (!serializedChildParams.has_masterid()) {
         std::cerr << "Verify serialized child parameters failed: missing master identifier." << std::endl;

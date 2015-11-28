@@ -44,11 +44,11 @@ namespace opentxs { namespace proto
 {
 
 bool Verify(
-    const Signature serializedSignature,
+    const Signature& serializedSignature,
     const uint32_t minVersion,
     const uint32_t maxVersion,
-    const std::string selfID,
-    const std::string masterID,
+    const std::string& selfID,
+    const std::string& masterID,
     uint32_t& selfPublic,
     uint32_t& selfPrivate,
     uint32_t& masterPublic)
