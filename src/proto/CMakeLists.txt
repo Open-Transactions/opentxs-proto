@@ -13,6 +13,8 @@ PROTOBUF_GENERATE_CPP(
     NymIDSource.proto
     SourceProof.proto
     MasterCredentialParameters.proto
+    CredentialIndex.proto
+    CredentialSet.proto
 )
 
 include_directories(SYSTEM ${PROTOBUF_INCLUDE_DIR})

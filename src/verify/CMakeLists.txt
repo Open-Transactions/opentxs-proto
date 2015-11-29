@@ -15,6 +15,10 @@ set(cxx-sources
   nymidsource/NymIDSource_1.cpp
   signature/Signature.cpp
   signature/Signature_1.cpp
+  credentialindex/CredentialIndex.cpp
+  credentialindex/CredentialIndex_1.cpp
+  credentialset/CredentialSet.cpp
+  credentialset/CredentialSet_1.cpp
 )
 
 file(GLOB cxx-headers "${CMAKE_CURRENT_SOURCE_DIR}/../../include/verify/*.hpp")

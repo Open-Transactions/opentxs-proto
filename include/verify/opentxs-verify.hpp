@@ -55,9 +55,11 @@
 #ifdef OPENTXS_PROTO_INTERNAL_BUILD
 #include "Enums.pb.h"
 #include "Credential.pb.h"
+#include "CredentialIndex.pb.h"
 #else
 #include <opentxs-proto/Enums.pb.h>
 #include <opentxs-proto/Credential.pb.h>
+#include <opentxs-proto/CredentialIndex.pb.h>
 #endif
 
 #ifdef _WIN32
@@ -104,6 +106,15 @@ namespace opentxs { namespace proto
         {
             { 1, {1, 1}},
         };
+    static const VersionMap CredentialIndexAllowedNymIDSource =
+        {
+            { 1, {1, 1}},
+        };
+    static const VersionMap CredentialIndexAllowedCredentialSets =
+        {
+            { 1, {1, 1}},
+        };
+
 
     bool Verify(
         const Credential& serializedCred,
@@ -153,6 +164,16 @@ namespace opentxs { namespace proto
         uint32_t& selfPublic,
         uint32_t& selfPrivate,
         uint32_t& masterPublic);
+
+    bool Verify(
+        const CredentialIndex& serializedCredIndex);
+
+    bool Verify(
+        const CredentialSet& serializedCredSet,
+        const uint32_t minVersion,
+        const uint32_t maxVersion,
+        const std::string& nymID);
+
 
 } // namespace proto
 } // namespace opentxs

@@ -36,49 +36,42 @@
  *
  ************************************************************/
 
-#include "../../../include/verify/NymIDSource.hpp"
+#include "../../../include/verify/CredentialSet.hpp"
 
 #include <iostream>
 
 namespace opentxs { namespace proto
 {
 
-bool NymIDSource_1(
-    const NymIDSource& serializedNymIDSource,
-    const SourceType type)
+bool Verify(
+    const CredentialSet& serializedCredSet,
+    const uint32_t minVersion,
+    const uint32_t maxVersion,
+    const std::string& nymID)
 {
-    if (!serializedNymIDSource.has_type()) {
-        std::cerr << "Verify serialized nym source failed: missing type." << std::endl;
+    if (!serializedCredSet.has_version()) {
+        std::cerr << "Verify serialized credential set failed: missing version." << std::endl;
         return false;
     }
 
-    // type == SOURCETYPE_ERROR means the parent message does not require a specific type here
-    if ((type != SOURCETYPE_ERROR) && (serializedNymIDSource.type() != type)) {
-        std::cerr << "Verify serialized nym source failed: incorrect type ("
-                << serializedNymIDSource.type() << ")." << std::endl;
+    uint32_t version = serializedCredSet.version();
+
+    if ((version < minVersion) || (version > maxVersion)) {
+        std::cerr << "Verify serialized credential set failed: incorrect version ("
+              << serializedCredSet.version() << ")." << std::endl;
         return false;
     }
 
-    switch (serializedNymIDSource.type()) {
-        case SOURCETYPE_SELF :
-            if (!serializedNymIDSource.has_raw()) {
-                std::cerr << "Verify serialized nym source failed: missing source." << std::endl;
-                return false;
-            }
+    switch (version) {
+        case 1 :
 
-            if (MIN_PLAUSIBLE_SOURCE > serializedNymIDSource.raw().size()) {
-                std::cerr << "Verify serialized nym source failed: invalid source." << std::endl;
-                return false;
-            }
-
-            break;
+            return CredentialSet_1(serializedCredSet, nymID);
         default :
-            std::cerr << "Verify nym source failed: incorrect or unknown type ("
-                    << serializedNymIDSource.type() << ")." << std::endl;
+            std::cerr << "Verify serialized credential set failed: unknown version ("
+                  << serializedCredSet.version() << ")." << std::endl;
 
             return false;
     }
-
     return true;
 }
 
