@@ -83,3 +83,11 @@ enum HashType {
     HASHTYPE_SHA384 = 6;
     HASHTYPE_SHA512 = 7;
 }
+
+enum CredentialSetMode {
+    option allow_alias = true;
+
+    CREDSETMODE_ERROR = 0;
+    CREDSETMODE_INDEX = 1;
+    CREDSETMODE_FULL = 2;
+}
