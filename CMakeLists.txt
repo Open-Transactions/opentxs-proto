@@ -89,9 +89,10 @@ if(ANDROID)
   add_definitions(-D__STDC_LIMIT_MACROS)
 endif()
 
-message(STATUS "C++ Compiler ID: ${CMAKE_CXX_COMPILER_ID}")
-message(STATUS "C++ Flags:       ${CMAKE_CXX_FLAGS}")
-message(STATUS "C++ link flags:  ${CMAKE_CXX_LINK_FLAGS}")
+message(STATUS "C++ Compiler ID:  ${CMAKE_CXX_COMPILER_ID}")
+message(STATUS "C++ Flags:        ${CMAKE_CXX_FLAGS}")
+message(STATUS "C++ link flags:   ${CMAKE_CXX_LINK_FLAGS}")
+message(STATUS "Package version:  ${VERSION_STRING}")
 
 #-----------------------------------------------------------------------------
 # Third party libraries

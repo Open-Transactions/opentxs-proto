@@ -20,6 +20,7 @@ PROTOBUF_GENERATE_CPP(
 include_directories(SYSTEM ${PROTOBUF_INCLUDE_DIR})
 
 add_library(opentxs-proto
+  STATIC
   ${PROTO_SRC}
   ${PROTO_HEADER}
 )
@@ -31,3 +32,8 @@ if(NOT WIN32)
           EXPORT opentxs-protoTargets
           COMPONENT main)
 endif()
+
+set_target_properties(opentxs-proto
+  PROPERTIES
+  OUTPUT_NAME opentxs-proto-${VERSION_MAJOR}.${VERSION_MINOR}
+)
