@@ -39,7 +39,7 @@
 #ifndef OPENTXS_PROTO_SOURCEPROOF_HPP
 #define OPENTXS_PROTO_SOURCEPROOF_HPP
 
-#include "opentxs-verify.hpp"
+#include "VerifyCredentials.hpp"
 
 namespace opentxs { namespace proto
 {
