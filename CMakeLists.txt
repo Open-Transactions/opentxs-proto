@@ -92,6 +92,7 @@ endif()
 message(STATUS "C++ Compiler ID: ${CMAKE_CXX_COMPILER_ID}")
 message(STATUS "C++ Flags:       ${CMAKE_CXX_FLAGS}")
 message(STATUS "C++ link flags:  ${CMAKE_CXX_LINK_FLAGS}")
+message(STATUS "Package version:  ${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_BUGFIX}")
 
 #-----------------------------------------------------------------------------
 # Third party libraries
