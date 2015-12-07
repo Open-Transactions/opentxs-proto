@@ -36,7 +36,7 @@
  *
  ************************************************************/
 
-#include "../../../include/verify/MasterCredentialParameters.hpp"
+#include "opentxs-proto/verify/MasterCredentialParameters.hpp"
 
 #include <iostream>
 

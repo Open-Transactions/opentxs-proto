@@ -36,7 +36,7 @@
  *
  ************************************************************/
 
-#include "../../../include/verify/SourceProof.hpp"
+#include "opentxs-proto/verify/SourceProof.hpp"
 
 #include <iostream>
 

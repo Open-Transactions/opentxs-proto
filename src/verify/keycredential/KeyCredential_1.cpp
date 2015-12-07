@@ -36,7 +36,7 @@
  *
  ************************************************************/
 
-#include "../../../include/verify/KeyCredential.hpp"
+#include "opentxs-proto/verify/KeyCredential.hpp"
 
 #include <iostream>
 

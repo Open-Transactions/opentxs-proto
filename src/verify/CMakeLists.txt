@@ -1,5 +1,7 @@
 add_definitions(-DOPENTXS_PROTO_INTERNAL_BUILD)
 
+include_directories("${CMAKE_SOURCE_DIR}/include")
+
 set(cxx-sources
   asymmetrickey/AsymmetricKey.cpp
   asymmetrickey/AsymmetricKey_1.cpp
@@ -23,7 +25,7 @@ set(cxx-sources
   credentialset/CredentialSet_1.cpp
 )
 
-file(GLOB cxx-headers "${CMAKE_CURRENT_SOURCE_DIR}/../../include/verify/*.hpp")
+file(GLOB cxx-headers "${CMAKE_CURRENT_SOURCE_DIR}/../../include/opentxs-proto/verify/*.hpp")
 
 add_library(opentxs-verify
   ${cxx-headers}

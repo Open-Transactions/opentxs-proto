@@ -36,7 +36,7 @@
  *
  ************************************************************/
 
-#include "../../../include/verify/ChildCredentialParameters.hpp"
+#include "opentxs-proto/verify/ChildCredentialParameters.hpp"
 
 #include <iostream>
 

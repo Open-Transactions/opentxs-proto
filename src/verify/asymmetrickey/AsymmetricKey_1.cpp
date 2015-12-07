@@ -36,7 +36,7 @@
  *
  ************************************************************/
 
-#include "../../../include/verify/AsymmetricKey.hpp"
+#include "opentxs-proto/verify/AsymmetricKey.hpp"
 
 #include <iostream>
 

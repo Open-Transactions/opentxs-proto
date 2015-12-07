@@ -36,7 +36,7 @@
  *
  ************************************************************/
 
-#include "../../../include/verify/CredentialIndex.hpp"
+#include "opentxs-proto/verify/CredentialIndex.hpp"
 
 #include <iostream>
 

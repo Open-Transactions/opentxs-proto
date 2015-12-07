@@ -36,7 +36,7 @@
  *
  ************************************************************/
 
-#include "../../../include/verify/NymIDSource.hpp"
+#include "opentxs-proto/verify/NymIDSource.hpp"
 
 #include <iostream>
 

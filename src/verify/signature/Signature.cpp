@@ -36,7 +36,7 @@
  *
  ************************************************************/
 
-#include "../../../include/verify/Signature.hpp"
+#include "opentxs-proto/verify/Signature.hpp"
 
 #include <iostream>
 
