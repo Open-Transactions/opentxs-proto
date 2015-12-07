@@ -170,7 +170,7 @@ endif()
 configure_file("include/opentxs-proto/Version.hpp" "${CMAKE_CURRENT_BINARY_DIR}/include/opentxs-proto/Version.hpp" @ONLY)
 
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/include/opentxs-proto/Version.hpp
-        DESTINATION include/opentxs-proto/opentxs-proto/
+        DESTINATION include/opentxs-proto/
         COMPONENT dev)
 
 #-----------------------------------------------------------------------------
@@ -262,8 +262,8 @@ endif()
 #-----------------------------------------------------------------------------
 # Install
 
-install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/include/opentxs-proto
-        DESTINATION include/opentxs-proto
+install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/include/
+        DESTINATION include
         COMPONENT dev
         FILES_MATCHING PATTERN "VerifyCredentials.hpp")
 
