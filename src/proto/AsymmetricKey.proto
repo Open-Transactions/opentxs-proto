@@ -4,6 +4,7 @@ package opentxs.proto;
 option optimize_for = LITE_RUNTIME;
 
 import public "Enums.proto";
+import public "HDPath.proto";
 
 message AsymmetricKey {
     optional uint32 version = 1;
@@ -12,5 +13,5 @@ message AsymmetricKey {
     optional KeyRole role = 4;
     optional bytes key = 5;
     optional bytes chaincode = 6;
-    optional string path = 7;
+    optional HDPath path = 7;
 }

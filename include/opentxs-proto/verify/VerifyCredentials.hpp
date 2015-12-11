@@ -121,6 +121,10 @@ namespace opentxs { namespace proto
         {
             { 1, {1, 1}},
         };
+    static const VersionMap AsymmetricKeyAllowedHDPath =
+        {
+            { 1, {1, 1}},
+        };
 
     bool Verify(
         const Credential& serializedCred,
@@ -165,6 +169,11 @@ namespace opentxs { namespace proto
         const CredentialType type,
         const KeyMode mode,
         const KeyRole role);
+
+    bool Verify(
+        const HDPath& serializedHDPath,
+        const uint32_t minVersion,
+        const uint32_t maxVersion);
 
     bool Verify(
         const Signature& serializedSignature,

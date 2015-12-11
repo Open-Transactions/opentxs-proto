@@ -15,6 +15,7 @@ PROTOBUF_GENERATE_CPP(
     MasterCredentialParameters.proto
     CredentialIndex.proto
     CredentialSet.proto
+    HDPath.proto
 )
 
 include_directories(SYSTEM ${PROTOBUF_INCLUDE_DIR})

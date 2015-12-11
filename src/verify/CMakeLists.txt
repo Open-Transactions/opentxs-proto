@@ -23,6 +23,8 @@ set(cxx-sources
   credentialindex/CredentialIndex_1.cpp
   credentialset/CredentialSet.cpp
   credentialset/CredentialSet_1.cpp
+  hdpath/HDPath.cpp
+  hdpath/HDPath_1.cpp
 )
 
 file(GLOB cxx-headers "${CMAKE_CURRENT_SOURCE_DIR}/../../include/opentxs-proto/verify/*.hpp")
