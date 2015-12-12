@@ -25,6 +25,8 @@ set(cxx-sources
   credentialset/CredentialSet_1.cpp
   hdpath/HDPath.cpp
   hdpath/HDPath_1.cpp
+  paymentcode/PaymentCode.cpp
+  paymentcode/PaymentCode_1.cpp
 )
 
 file(GLOB cxx-headers "${CMAKE_CURRENT_SOURCE_DIR}/../../include/opentxs-proto/verify/*.hpp")

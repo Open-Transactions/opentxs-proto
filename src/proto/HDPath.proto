@@ -7,6 +7,6 @@ import public "Enums.proto";
 
 message HDPath {
     optional uint32 version = 1;
-    optional uint32 root = 2;
+    optional bytes root = 2;
     repeated uint32 child = 3;
 }

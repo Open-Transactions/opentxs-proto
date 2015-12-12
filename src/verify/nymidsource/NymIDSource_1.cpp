@@ -52,12 +52,17 @@ bool NymIDSource_1(
     }
 
     bool validSourcePubkey = false;
+    bool validPaymentCode = false;
     AsymmetricKey sourcePubkey;
 
     switch (serializedNymIDSource.type()) {
         case SOURCETYPE_PUBKEY :
             if (!serializedNymIDSource.has_key()) {
                 std::cerr << "Verify serialized nym source failed: missing source." << std::endl;
+                return false;
+            }
+            if (serializedNymIDSource.has_paymentcode()) {
+                std::cerr << "Verify serialized nym source failed: pubkey source includes payment code." << std::endl;
                 return false;
             }
 
@@ -73,6 +78,26 @@ bool NymIDSource_1(
 
             if (!validSourcePubkey) {
                 std::cerr << "Verify nym source failed: invalid public key." << std::endl;
+                return false;
+            }
+
+            break;
+        case SOURCETYPE_BIP47 :
+            if (!serializedNymIDSource.has_paymentcode()) {
+                std::cerr << "Verify serialized nym source failed: missing payment code." << std::endl;
+                return false;
+            }
+            if (serializedNymIDSource.has_key()) {
+                std::cerr << "Verify serialized nym source failed: bip47 source includes public key." << std::endl;
+                return false;
+            }
+            validPaymentCode = Verify(
+                serializedNymIDSource.paymentcode(),
+                NymIDSourceAllowedPaymentCode.at(serializedNymIDSource.version()).first,
+                NymIDSourceAllowedPaymentCode.at(serializedNymIDSource.version()).second);
+
+            if (!validPaymentCode) {
+                std::cerr << "Verify nym source failed: invalid payment code." << std::endl;
                 return false;
             }
 

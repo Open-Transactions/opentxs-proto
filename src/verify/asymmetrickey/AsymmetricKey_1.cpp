@@ -96,12 +96,12 @@ bool AsymmetricKey_1(
     switch (type) {
         case CREDTYPE_LEGACY :
             if (serializedAsymmetricKey.has_chaincode()) {
-                std::cerr << "Verify serialized asymmetric key failed: chain code present but not allowed." << std::endl;
+                std::cerr << "Verify serialized asymmetric key failed: chain code not allowed in legacy credentials." << std::endl;
                 return false;
             }
 
             if (serializedAsymmetricKey.has_path()) {
-                std::cerr << "Verify serialized asymmetric key failed: HD path present but not allowed." << std::endl;
+                std::cerr << "Verify serialized asymmetric key failed: HD path not allowed in legacy credentials." << std::endl;
                 return false;
             }
 
@@ -109,12 +109,12 @@ bool AsymmetricKey_1(
         case CREDTYPE_HD :
             if (KEYMODE_PUBLIC == mode) {
                 if (serializedAsymmetricKey.has_chaincode()) {
-                    std::cerr << "Verify serialized asymmetric key failed: chain code present but not allowed." << std::endl;
+                    std::cerr << "Verify serialized asymmetric key failed: chain code not allowed in public credentials." << std::endl;
                     return false;
                 }
 
                 if (serializedAsymmetricKey.has_path()) {
-                    std::cerr << "Verify serialized asymmetric key failed: HD path present but not allowed." << std::endl;
+                    std::cerr << "Verify serialized asymmetric key failed: HD path not allowed in public credentials." << std::endl;
                     return false;
                 }
             } else {

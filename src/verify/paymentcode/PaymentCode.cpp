@@ -36,23 +36,48 @@
  *
  ************************************************************/
 
-#ifndef OPENTXS_PROTO_SIGNATURE_HPP
-#define OPENTXS_PROTO_SIGNATURE_HPP
+#include "opentxs-proto/verify/PaymentCode.hpp"
 
-#include "VerifyCredentials.hpp"
+#include <iostream>
 
 namespace opentxs { namespace proto
 {
-    bool Signature_1(
-        const Signature& serializedSignature,
-        const std::string& selfID,
-        const std::string& masterID,
-        uint32_t& selfPublic,
-        uint32_t& selfPrivate,
-        uint32_t& masterPublic,
-        uint32_t& sourcePublic);
+
+bool Verify(
+        const PaymentCode& serializedPaymentCode,
+        const uint8_t minVersion,
+        const uint8_t maxVersion)
+{
+    if (!serializedPaymentCode.has_version()) {
+        std::cerr << "Verify serialized payment code failed: missing version." << std::endl;
+        return false;
+    }
+
+    uint32_t version = serializedPaymentCode.version();
+
+    if (version > 0xff) {
+        std::cerr << "Verify serialized payment code failed: invalid version ("
+        << serializedPaymentCode.version() << ")." << std::endl;
+        return false;
+    }
+
+    if ((version < minVersion) || (version > maxVersion)) {
+        std::cerr << "Verify serialized payment code failed: incorrect version ("
+              << serializedPaymentCode.version() << ")." << std::endl;
+        return false;
+    }
+
+    switch (version) {
+        case 1 :
+            return PaymentCode_1(serializedPaymentCode);
+        default :
+            std::cerr << "Verify serialized payment code failed: unknown version ("
+                  << serializedPaymentCode.version() << ")." << std::endl;
+
+            return false;
+    }
+    return true;
+}
 
 } // namespace proto
 } // namespace opentxs
-
-#endif // OPENTXS_PROTO_SIGNATURE_HPP

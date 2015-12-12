@@ -5,11 +5,13 @@ option optimize_for = LITE_RUNTIME;
 
 import public "Enums.proto";
 import public "AsymmetricKey.proto";
+import public "PaymentCode.proto";
 
 message NymIDSource {
     optional uint32 version = 1;
     optional SourceType type = 2;
     oneof source {
         AsymmetricKey key = 3;
+        PaymentCode paymentcode = 4;
     }
 }

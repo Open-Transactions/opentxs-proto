@@ -51,7 +51,8 @@ bool Verify(
     const std::string& masterID,
     uint32_t& selfPublic,
     uint32_t& selfPrivate,
-    uint32_t& masterPublic)
+    uint32_t& masterPublic,
+    uint32_t& sourcePublic)
 {
     if (!serializedSignature.has_version()) {
         std::cerr << "Verify serialized signature failed: missing version." << std::endl;
@@ -69,7 +70,14 @@ bool Verify(
     switch (version) {
         case 1 :
 
-            return Signature_1(serializedSignature, selfID, masterID, selfPublic, selfPrivate, masterPublic);
+            return Signature_1(
+                serializedSignature,
+                selfID,
+                masterID,
+                selfPublic,
+                selfPrivate,
+                masterPublic,
+                sourcePublic);
         default :
             std::cerr << "Verify serialized signature failed: unknown version ("
                   << serializedSignature.version() << ")." << std::endl;

@@ -49,7 +49,8 @@ bool Signature_1(
     const std::string& masterID,
     uint32_t& selfPublic,
     uint32_t& selfPrivate,
-    uint32_t& masterPublic)
+    uint32_t& masterPublic,
+    uint32_t& sourcePublic)
 {
     if (!serializedSignature.has_role()) {
         std::cerr << "Verify serialized signature failed: missing role." << std::endl;
@@ -107,6 +108,10 @@ bool Signature_1(
 
     if ((SIGROLE_PRIVCREDENTIAL == serializedSignature.role()) && (selfID == serializedSignature.credentialid())) {
         selfPrivate += 1;
+    }
+
+    if (SIGROLE_NYMIDSOURCE == serializedSignature.role()) {
+        sourcePublic += 1;
     }
 
     return true;

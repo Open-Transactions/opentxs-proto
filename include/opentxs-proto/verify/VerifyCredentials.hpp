@@ -113,6 +113,10 @@ namespace opentxs { namespace proto
         {
             { 1, {1, 1}},
         };
+    static const VersionMap NymIDSourceAllowedPaymentCode =
+        {
+            { 1, {1, 1}},
+        };
     static const VersionMap CredentialIndexAllowedNymIDSource =
         {
             { 1, {1, 1}},
@@ -183,7 +187,8 @@ namespace opentxs { namespace proto
         const std::string& masterID,
         uint32_t& selfPublic,
         uint32_t& selfPrivate,
-        uint32_t& masterPublic);
+        uint32_t& masterPublic,
+        uint32_t& sourcePublic);
 
     bool Verify(
         const CredentialIndex& serializedCredIndex);
@@ -194,8 +199,11 @@ namespace opentxs { namespace proto
         const uint32_t maxVersion,
         const std::string& nymID);
 
+    bool Verify(
+        const PaymentCode& serializedPaymentCode,
+        const uint8_t minVersion,
+        const uint8_t maxVersion);
 
 } // namespace proto
 } // namespace opentxs
-
 #endif // OPENTXS_PROTO_VERIFY_HPP

@@ -16,6 +16,7 @@ PROTOBUF_GENERATE_CPP(
     CredentialIndex.proto
     CredentialSet.proto
     HDPath.proto
+    PaymentCode.proto
 )
 
 include_directories(SYSTEM ${PROTOBUF_INCLUDE_DIR})

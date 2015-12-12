@@ -77,10 +77,16 @@ bool Credential_1(
         return false;
     }
 
-    if (CREDTYPE_LEGACY != serializedCred.type()) {
+    if ((CREDTYPE_LEGACY != serializedCred.type()) &&
+        (CREDTYPE_HD != serializedCred.type())) {
         std::cerr << "Verify serialized credential failed: invalid type ("
                 << serializedCred.type() << ")." << std::endl;
         return false;
+    }
+
+    if ((CREDROLE_MASTERKEY == role) && (CREDTYPE_HD == serializedCred.type())) {
+        expectedSigCount++;
+        expectSourceSignature = true;
     }
 
     if (!serializedCred.has_role()) {
@@ -145,7 +151,7 @@ bool Credential_1(
             CredentialAllowedKeyCredentials.at(serializedCred.version()).first,
             CredentialAllowedKeyCredentials.at(serializedCred.version()).second,
             role,
-            CREDTYPE_LEGACY,
+            serializedCred.type(),
             KEYMODE_PUBLIC,
             expectSourceSignature);
 
@@ -160,7 +166,7 @@ bool Credential_1(
             CredentialAllowedKeyCredentials.at(serializedCred.version()).first,
             CredentialAllowedKeyCredentials.at(serializedCred.version()).second,
             role,
-            CREDTYPE_LEGACY,
+            serializedCred.type(),
             KEYMODE_PRIVATE,
             expectSourceSignature);
 
@@ -182,6 +188,7 @@ bool Credential_1(
         uint32_t selfPublicCount = 0;
         uint32_t selfPrivateCount = 0;
         uint32_t masterPublicCount = 0;
+        uint32_t sourcePublicCount = 0;
 
         for (auto& it: serializedCred.signature()) {
             bool validSig = Verify(
@@ -192,7 +199,8 @@ bool Credential_1(
                 masterID,
                 selfPublicCount,
                 selfPrivateCount,
-                masterPublicCount);
+                masterPublicCount,
+                sourcePublicCount);
 
             if (!validSig) {
                 std::cerr << "Verify serialized credential failed: invalid signature." << std::endl;
@@ -214,7 +222,13 @@ bool Credential_1(
 
         if ((1 != masterPublicCount) && (expectMasterSignature)) {
             std::cerr << "Verify serialized credential failed: incorrect number of public master signatures ("
-            << selfPublicCount << " of 1 found)." << std::endl;
+            << masterPublicCount << " of 1 found)." << std::endl;
+            return false;
+        }
+
+        if ((1 != sourcePublicCount) && (expectSourceSignature)) {
+            std::cerr << "Verify serialized credential failed: incorrect number of public source signatures ("
+            << sourcePublicCount << " of 1 found)." << std::endl;
             return false;
         }
     }

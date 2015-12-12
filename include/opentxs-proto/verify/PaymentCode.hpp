@@ -36,23 +36,17 @@
  *
  ************************************************************/
 
-#ifndef OPENTXS_PROTO_SIGNATURE_HPP
-#define OPENTXS_PROTO_SIGNATURE_HPP
+#ifndef OPENTXS_PROTO_PAYMENTCODE_HPP
+#define OPENTXS_PROTO_PAYMENTCODE_HPP
 
 #include "VerifyCredentials.hpp"
 
 namespace opentxs { namespace proto
 {
-    bool Signature_1(
-        const Signature& serializedSignature,
-        const std::string& selfID,
-        const std::string& masterID,
-        uint32_t& selfPublic,
-        uint32_t& selfPrivate,
-        uint32_t& masterPublic,
-        uint32_t& sourcePublic);
+    bool PaymentCode_1(
+        const PaymentCode& serializedPaymentCode);
 
 } // namespace proto
 } // namespace opentxs
 
-#endif // OPENTXS_PROTO_SIGNATURE_HPP
+#endif // OPENTXS_PROTO_PAYMENTCODE_HPP
