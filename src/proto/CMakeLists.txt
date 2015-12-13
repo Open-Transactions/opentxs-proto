@@ -17,6 +17,10 @@ PROTOBUF_GENERATE_CPP(
     CredentialSet.proto
     HDPath.proto
     PaymentCode.proto
+    ContactEnums.proto
+    ContactData.proto
+    ContactSection.proto
+    ContactItem.proto
 )
 
 include_directories(SYSTEM ${PROTOBUF_INCLUDE_DIR})

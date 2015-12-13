@@ -1,0 +1,28 @@
+syntax = "proto2";
+
+package opentxs.proto;
+option optimize_for = LITE_RUNTIME;
+
+enum ContactSectionName {
+    option allow_alias = true;
+
+    CONTACTSECTION_ERROR = 0;
+    CONTACTSECTION_NAME = 1;
+}
+
+enum ContactItemType {
+    option allow_alias = true;
+
+    CITEMTYPE_ERROR = 0;
+    CITEMTYPE_PERSONAL = 1;
+    CITEMTYPE_BUSINESS = 2;
+    CITEMTYPE_NICKNAME = 3;
+}
+
+enum ContactItemAttribute {
+    option allow_alias = true;
+
+    CITEMATTR_ERROR = 0;
+    CITEMATTR_ACTIVE = 1;
+    CITEMATTR_PRIMARY = 2;
+}

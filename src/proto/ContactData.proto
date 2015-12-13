@@ -1,0 +1,11 @@
+syntax = "proto2";
+
+package opentxs.proto;
+option optimize_for = LITE_RUNTIME;
+
+import public "ContactSection.proto";
+
+message ContactData {
+    optional uint32 version = 1;
+    repeated ContactSection section = 2;
+}

@@ -27,6 +27,12 @@ set(cxx-sources
   hdpath/HDPath_1.cpp
   paymentcode/PaymentCode.cpp
   paymentcode/PaymentCode_1.cpp
+  contactdata/ContactData.cpp
+  contactdata/ContactData_1.cpp
+  contactsection/ContactSection.cpp
+  contactsection/ContactSection_1.cpp
+  contactitem/ContactItem.cpp
+  contactitem/ContactItem_1.cpp
 )
 
 file(GLOB cxx-headers "${CMAKE_CURRENT_SOURCE_DIR}/../../include/opentxs-proto/verify/*.hpp")
