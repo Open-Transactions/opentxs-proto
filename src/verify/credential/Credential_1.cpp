@@ -40,6 +40,8 @@
 
 #include <iostream>
 
+#include <opentxs-proto/verify/VerifyContacts.hpp>
+
 namespace opentxs { namespace proto
 {
 
@@ -50,11 +52,16 @@ bool Credential_1(
 {
     bool isPrivate = false;
     bool isPublic = false;
+    bool validChildData = false;
+    bool validMasterData = false;
     bool validPublicData = false;
     bool validPrivateData = false;
+    bool validContactData = false;
     bool expectMasterSignature = false;
     bool expectSourceSignature = false;
     int32_t expectedSigCount = 1;
+    bool keyCredential = ((CREDROLE_MASTERKEY == role) || (CREDROLE_CHILDKEY == role));
+    bool contactCredential = (CREDROLE_CONTACT == role);
 
     if (CREDROLE_CHILDKEY == role) {
         expectedSigCount++;
@@ -94,7 +101,7 @@ bool Credential_1(
         return false;
     }
 
-    if ((CREDROLE_MASTERKEY != role) && (CREDROLE_CHILDKEY != role)) {
+    if (!(keyCredential || contactCredential)) {
         std::cerr << "Verify serialized credential failed: invalid role ("
                 << serializedCred.role() << ")." << std::endl;
         return false;
@@ -114,7 +121,8 @@ bool Credential_1(
         expectedSigCount++;
     }
 
-    if (!(isPrivate || isPublic)) {
+    if ((keyCredential && (!(isPrivate || isPublic))) ||
+        (contactCredential && (KEYMODE_NULL == serializedCred.mode()))) {
         std::cerr << "Verify serialized credential failed: invalid mode ("
                 << serializedCred.mode() << ")." << std::endl;
         return false;
@@ -131,12 +139,52 @@ bool Credential_1(
         return false;
     }
 
+    if (CREDROLE_MASTERKEY != role) {
+        if (!serializedCred.has_childdata()) {
+            std::cerr << "Verify serialized credential failed: missing child data." << std::endl;
+            return false;
+        }
+
+        validChildData = Verify(
+            serializedCred.childdata(),
+            CredentialAllowedChildParams.at(serializedCred.version()).first,
+            CredentialAllowedChildParams.at(serializedCred.version()).second);
+
+        if (!validChildData) {
+            std::cerr << "Verify serialized credential failed: invalid child data." << std::endl;
+            return false;
+        }
+    }
+
+    if (CREDROLE_MASTERKEY == role) {
+        if (!serializedCred.has_masterdata()) {
+            std::cerr << "Verify serialized credential failed: missing master data." << std::endl;
+            return false;
+        }
+
+        validMasterData = Verify(
+            serializedCred.masterdata(),
+            CredentialAllowedMasterParams.at(serializedCred.version()).first,
+            CredentialAllowedChildParams.at(serializedCred.version()).second,
+            expectSourceSignature);
+
+        if (!validMasterData) {
+            std::cerr << "Verify serialized credential failed: invalid master data." << std::endl;
+            return false;
+        }
+    }
+
+    if ((CREDROLE_CHILDKEY == role) && (serializedCred.has_masterdata())) {
+        std::cerr << "Verify serialized credential failed: child credential contains master data." << std::endl;
+        return false;
+    }
+
     if (isPublic && serializedCred.has_privatecredential()) {
         std::cerr << "Verify serialized credential failed: public credential contains private data." << std::endl;
         return false;
     }
 
-    if (!serializedCred.has_publiccredential()) {
+    if (keyCredential && (!serializedCred.has_publiccredential())) {
         std::cerr << "Verify serialized credential failed: missing public data." << std::endl;
         return false;
     }
@@ -146,18 +194,45 @@ bool Credential_1(
         return false;
     }
 
-    validPublicData = Verify(
-            serializedCred.publiccredential(),
-            CredentialAllowedKeyCredentials.at(serializedCred.version()).first,
-            CredentialAllowedKeyCredentials.at(serializedCred.version()).second,
-            role,
-            serializedCred.type(),
-            KEYMODE_PUBLIC,
-            expectSourceSignature);
+    if (contactCredential) {
+        if (serializedCred.has_privatecredential()) {
+            std::cerr << "Verify serialized credential failed: contact credential contains private key data." << std::endl;
+            return false;
+        }
 
-    if (!validPublicData) {
-        std::cerr << "Verify serialized credential failed: invalid public data." << std::endl;
-        return false;
+        if (serializedCred.has_publiccredential()) {
+            std::cerr << "Verify serialized credential failed: contact credential contains public key data." << std::endl;
+            return false;
+        }
+
+        if (!serializedCred.has_contactdata()) {
+            std::cerr << "Verify serialized credential failed: missing contact data." << std::endl;
+            return false;
+        }
+
+        validContactData = Verify(
+                serializedCred.contactdata(),
+                CredentialAllowedContactData.at(serializedCred.version()).first,
+                CredentialAllowedContactData.at(serializedCred.version()).second);
+
+        if (!validContactData) {
+            std::cerr << "Verify serialized credential failed: invalid contact data." << std::endl;
+            return false;
+        }
+    }
+
+    if (keyCredential) {
+        validPublicData = Verify(
+                serializedCred.publiccredential(),
+                CredentialAllowedKeyCredentials.at(serializedCred.version()).first,
+                CredentialAllowedKeyCredentials.at(serializedCred.version()).second,
+                serializedCred.type(),
+                KEYMODE_PUBLIC);
+
+        if (!validPublicData) {
+            std::cerr << "Verify serialized credential failed: invalid public data." << std::endl;
+            return false;
+        }
     }
 
     if (isPrivate) {
@@ -165,10 +240,8 @@ bool Credential_1(
             serializedCred.privatecredential(),
             CredentialAllowedKeyCredentials.at(serializedCred.version()).first,
             CredentialAllowedKeyCredentials.at(serializedCred.version()).second,
-            role,
             serializedCred.type(),
-            KEYMODE_PRIVATE,
-            expectSourceSignature);
+            KEYMODE_PRIVATE);
 
         if (!validPrivateData) {
             std::cerr << "Verify serialized credential failed: invalid private data." << std::endl;
@@ -177,7 +250,7 @@ bool Credential_1(
     }
 
     if (withSigs) {
-        std::string masterID = serializedCred.publiccredential().childdata().masterid();
+        std::string masterID = serializedCred.childdata().masterid();
 
         if (expectedSigCount != serializedCred.signature_size()) {
             std::cerr << "Verify serialized credential failed: incorrect number of signature(s) ("

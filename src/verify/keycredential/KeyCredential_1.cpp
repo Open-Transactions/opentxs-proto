@@ -45,16 +45,12 @@ namespace opentxs { namespace proto
 
 bool KeyCredential_1(
     const KeyCredential& serializedKeyCred,
-    const CredentialRole role,
     const CredentialType credType,
-    const KeyMode mode,
-    bool expectSourceSignature)
+    const KeyMode mode)
 {
     AsymmetricKey authKey;
     AsymmetricKey encryptKey;
     AsymmetricKey signKey;
-    bool validChildData = false;
-    bool validMasterData = false;
     bool validAuthKey = false;
     bool validEncryptKey = false;
     bool validSignKey = false;
@@ -68,51 +64,6 @@ bool KeyCredential_1(
         std::cerr << "Verify serialized key credential failed: incorrect mode ("
                 << serializedKeyCred.mode() << ")." << std::endl;
         return false;
-    }
-
-    if ((KEYMODE_PUBLIC == mode) && (CREDROLE_MASTERKEY == role)) {
-        if (!serializedKeyCred.has_masterdata()) {
-            std::cerr << "Verify serialized key credential failed: missing master data." << std::endl;
-            return false;
-        }
-
-        if (serializedKeyCred.has_childdata()) {
-            std::cerr << "Verify serialized key credential failed: master credential contains child data." << std::endl;
-            return false;
-        }
-
-        validMasterData = Verify(
-            serializedKeyCred.masterdata(),
-            KeyCredentialAllowedMasterParams.at(serializedKeyCred.version()).first,
-            KeyCredentialAllowedChildParams.at(serializedKeyCred.version()).second,
-            expectSourceSignature);
-
-        if (!validMasterData) {
-            std::cerr << "Verify serialized key credential failed: invalid master data." << std::endl;
-            return false;
-        }
-    }
-
-    if ((KEYMODE_PUBLIC == mode) && (CREDROLE_CHILDKEY == role)) {
-        if (!serializedKeyCred.has_childdata()) {
-            std::cerr << "Verify serialized key credential failed: missing child data." << std::endl;
-            return false;
-        }
-
-        if (serializedKeyCred.has_masterdata()) {
-            std::cerr << "Verify serialized key credential failed: child credential contains master data." << std::endl;
-            return false;
-        }
-
-        validChildData = Verify(
-            serializedKeyCred.childdata(),
-            KeyCredentialAllowedChildParams.at(serializedKeyCred.version()).first,
-            KeyCredentialAllowedChildParams.at(serializedKeyCred.version()).second);
-
-        if (!validChildData) {
-            std::cerr << "Verify serialized key credential failed: invalid child data." << std::endl;
-            return false;
-        }
     }
 
     if (3 != serializedKeyCred.key_size()) {

@@ -164,65 +164,17 @@ namespace opentxs { namespace proto
 
     bool ValidContactSectionName(
         const uint32_t version,
-        const ContactSectionName name)
-    {
-        std::set<ContactSectionName> allowedNames = AllowedSectionNames.at(version);
-
-        return (std::find(allowedNames.begin(), allowedNames.end(), name) != allowedNames.end());
-    }
+        const ContactSectionName name);
     bool ValidContactItemType(
         const ContactSectionVersion version,
-        const ContactItemType itemType)
-    {
-        std::set<ContactItemType> allowedTypes = AllowedItemTypes.at(version);
-
-        return (std::find(allowedTypes.begin(), allowedTypes.end(), itemType) != allowedTypes.end());
-    }
+        const ContactItemType itemType);
     bool ValidContactItemAttribute(
         const uint32_t version,
-        const ContactItemAttribute attribute)
-    {
-        std::set<ContactItemAttribute> allowedAttributes = AllowedItemAttributes.at(version);
+        const ContactItemAttribute attribute);
 
-        return (std::find(allowedAttributes.begin(), allowedAttributes.end(), attribute) != allowedAttributes.end());
-    }
-
-    std::string TranslateSectionName(uint32_t enumValue, std::string lang = "en")
-    {
-        EnumLang langPair{enumValue, lang};
-
-        for (auto& it : ContactSectionNames) {
-            if (langPair == it.first) {
-                return it.second;
-            }
-        }
-
-        return "";
-    }
-    std::string TranslateItemType(uint32_t enumValue, std::string lang = "en")
-    {
-        EnumLang langPair{enumValue, lang};
-
-        for (auto& it : ContactItemTypes) {
-            if (langPair == it.first) {
-                return it.second;
-            }
-        }
-
-        return "";
-    }
-    std::string TranslateItemAttributes(uint32_t enumValue, std::string lang = "en")
-    {
-        EnumLang langPair{enumValue, lang};
-
-        for (auto& it : ContactItemAttributes) {
-            if (langPair == it.first) {
-                return it.second;
-            }
-        }
-
-        return "";
-    }
+    std::string TranslateSectionName(uint32_t enumValue, std::string lang = "en");
+    std::string TranslateItemType(uint32_t enumValue, std::string lang = "en");
+    std::string TranslateItemAttributes(uint32_t enumValue, std::string lang = "en");
 
 } // namespace proto
 } // namespace opentxs

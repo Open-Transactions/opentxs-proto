@@ -45,10 +45,8 @@ namespace opentxs { namespace proto
 {
     bool KeyCredential_1(
         const KeyCredential& serializedKeyCred,
-        const CredentialRole role,
         const CredentialType credType,
-        const KeyMode mode,
-        bool expectSourceSignature);
+        const KeyMode mode);
 
 } // namespace proto
 } // namespace opentxs

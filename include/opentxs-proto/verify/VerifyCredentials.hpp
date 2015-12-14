@@ -85,15 +85,19 @@ namespace opentxs { namespace proto
         {
             { 1, {1, 1}},
         };
+    static const VersionMap CredentialAllowedContactData =
+        {
+            { 1, {1, 1}},
+        };
     static const VersionMap CredentialAllowedSignatures =
         {
             { 1, {1, 1}},
         };
-    static const VersionMap KeyCredentialAllowedMasterParams =
+    static const VersionMap CredentialAllowedMasterParams =
         {
             { 1, {1, 1}},
         };
-    static const VersionMap KeyCredentialAllowedChildParams =
+    static const VersionMap CredentialAllowedChildParams =
         {
             { 1, {1, 1}},
         };
@@ -139,10 +143,8 @@ namespace opentxs { namespace proto
         const KeyCredential& serializedKeyCred,
         const uint32_t minVersion,
         const uint32_t maxVersion,
-        const CredentialRole role,
         const CredentialType credType,
-        const KeyMode mode,
-        bool expectSourceSignature);
+        const KeyMode mode);
 
     bool Verify(
         const ChildCredentialParameters& serializedChildParams,
