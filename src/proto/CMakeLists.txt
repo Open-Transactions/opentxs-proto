@@ -26,6 +26,8 @@ add_library(opentxs-proto
   ${PROTO_HEADER}
 )
 
+target_link_libraries(opentxs-proto PUBLIC ${PROTOBUF_LITE_LIBRARIES})
+
 if(NOT WIN32)
   include(GNUInstallDirs)
   install(TARGETS opentxs-proto

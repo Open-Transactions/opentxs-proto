@@ -29,7 +29,7 @@ endif()
 option(BUILD_VERBOSE       "Verbose build output." ON)
 option(USE_CCACHE          "Use ccache." OFF)
 
-option(BUILD_SHARED_LIBS   "Build shared libraries." OFF)
+option(BUILD_SHARED_LIBS   "Build shared libraries." ON)
 
 set(PACKAGE_CONTACT        ""                             CACHE <TYPE>  "Package Maintainer")
 set(PACKAGE_VENDOR         "Open Transactions Developers" CACHE <TYPE>  "Package Vendor")
@@ -100,7 +100,6 @@ message(STATUS "Package version:  ${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_BU
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 
 find_package(Protobuf REQUIRED)
-
 #-----------------------------------------------------------------------------
 # System libraries used for linking.
 
