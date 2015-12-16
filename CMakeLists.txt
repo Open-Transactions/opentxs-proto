@@ -264,7 +264,7 @@ endif()
 install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/include/
         DESTINATION include
         COMPONENT dev
-        FILES_MATCHING PATTERN "VerifyCredentials.hpp")
+        FILES_MATCHING PATTERN "Verify*.hpp")
 
 install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/src/proto/
         DESTINATION include/opentxs-proto

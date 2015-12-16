@@ -59,7 +59,7 @@
 #else
 #include <opentxs-proto/ContactEnums.pb.h>
 #include <opentxs-proto/ContactData.pb.h>
-#include <opentxs-proto/VerifyCredentials.hpp>
+#include <opentxs-proto/verify/VerifyCredentials.hpp>
 #endif
 
 #ifdef _WIN32
