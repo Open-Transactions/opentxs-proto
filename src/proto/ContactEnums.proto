@@ -8,6 +8,7 @@ enum ContactSectionName {
 
     CONTACTSECTION_ERROR = 0;
     CONTACTSECTION_NAME = 1;
+    CONTACTSECTION_MAIL = 2;
 }
 
 enum ContactItemType {
@@ -17,6 +18,8 @@ enum ContactItemType {
     CITEMTYPE_PERSONAL = 1;
     CITEMTYPE_BUSINESS = 2;
     CITEMTYPE_NICKNAME = 3;
+    CITEMTYPE_EMAIL = 4;
+    CITEMTYPE_BITMESSAGE = 5;
 }
 
 enum ContactItemAttribute {

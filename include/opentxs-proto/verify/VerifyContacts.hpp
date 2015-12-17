@@ -103,7 +103,8 @@ namespace opentxs { namespace proto
             {
                 1,
                 {
-                    CONTACTSECTION_NAME
+                    CONTACTSECTION_NAME,
+                    CONTACTSECTION_MAIL
                 }
             },
         };
@@ -117,6 +118,13 @@ namespace opentxs { namespace proto
                     CITEMTYPE_NICKNAME,
                 }
             },
+            {
+                {1, CONTACTSECTION_MAIL},
+                {
+                    CITEMTYPE_EMAIL,
+                    CITEMTYPE_BITMESSAGE
+                }
+            }
         };
     static const ItemAttributeMap AllowedItemAttributes =
         {
@@ -131,13 +139,16 @@ namespace opentxs { namespace proto
 
     static const EnumTranslation ContactSectionNames =
         {
-            {{CONTACTSECTION_NAME, "en"}, "Names"}
+            {{CONTACTSECTION_NAME, "en"}, "Names"},
+            {{CONTACTSECTION_MAIL, "en"}, "Mail"}
         };
     static const EnumTranslation ContactItemTypes =
         {
             {{CITEMTYPE_PERSONAL, "en"}, "Personal"},
             {{CITEMTYPE_BUSINESS, "en"}, "Business"},
-            {{CITEMTYPE_NICKNAME, "en"}, "Nickname"}
+            {{CITEMTYPE_NICKNAME, "en"}, "Nickname"},
+            {{CITEMTYPE_EMAIL, "en"}, "Email"},
+            {{CITEMTYPE_BITMESSAGE, "en"}, "Bitmessage"}
         };
     static const EnumTranslation ContactItemAttributes =
         {
