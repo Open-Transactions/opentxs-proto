@@ -60,13 +60,7 @@ bool Credential_1(
     bool expectMasterSignature = false;
     bool expectSourceSignature = false;
     int32_t expectedSigCount = 1;
-    bool keyCredential = ((CREDROLE_MASTERKEY == role) || (CREDROLE_CHILDKEY == role));
-    bool contactCredential = (CREDROLE_CONTACT == role);
-
-    if (CREDROLE_CHILDKEY == role) {
-        expectedSigCount++;
-        expectMasterSignature = true;
-    }
+    bool checkRole = (CREDROLE_ERROR != role);
 
     if (!serializedCred.has_id()) {
         std::cerr << "Verify serialized credential failed: missing identifier." << std::endl;
@@ -91,19 +85,37 @@ bool Credential_1(
         return false;
     }
 
-    if ((CREDROLE_MASTERKEY == role) && (CREDTYPE_HD == serializedCred.type())) {
-        expectedSigCount++;
-        expectSourceSignature = true;
-    }
-
     if (!serializedCred.has_role()) {
         std::cerr << "Verify serialized credential failed: missing role." << std::endl;
         return false;
     }
 
-    if (!(keyCredential || contactCredential)) {
+    CredentialRole actualRole = serializedCred.role();
+
+    if (checkRole && (role != actualRole)) {
+        std::cerr << "Verify serialized credential failed: incorrect role ("
+        << serializedCred.role() << ")." << std::endl;
+        return false;
+    }
+
+    bool masterCredential = (CREDROLE_MASTERKEY == actualRole);
+    bool childKeyCredential = (CREDROLE_CHILDKEY == actualRole);
+    bool keyCredential = (masterCredential || childKeyCredential);
+    bool contactCredential = (CREDROLE_CONTACT == actualRole);
+
+    if (childKeyCredential) {
+        expectedSigCount++;
+        expectMasterSignature = true;
+    }
+
+    if (masterCredential && (CREDTYPE_HD == serializedCred.type())) {
+        expectedSigCount++;
+        expectSourceSignature = true;
+    }
+
+    if (checkRole && !(keyCredential || contactCredential)) {
         std::cerr << "Verify serialized credential failed: invalid role ("
-                << serializedCred.role() << ")." << std::endl;
+                << role << ")." << std::endl;
         return false;
     }
 
@@ -139,7 +151,7 @@ bool Credential_1(
         return false;
     }
 
-    if (CREDROLE_MASTERKEY != role) {
+    if (!masterCredential) {
         if (!serializedCred.has_childdata()) {
             std::cerr << "Verify serialized credential failed: missing child data." << std::endl;
             return false;
@@ -156,7 +168,7 @@ bool Credential_1(
         }
     }
 
-    if (CREDROLE_MASTERKEY == role) {
+    if (masterCredential) {
         if (!serializedCred.has_masterdata()) {
             std::cerr << "Verify serialized credential failed: missing master data." << std::endl;
             return false;
@@ -174,7 +186,7 @@ bool Credential_1(
         }
     }
 
-    if ((CREDROLE_CHILDKEY == role) && (serializedCred.has_masterdata())) {
+    if (childKeyCredential && (serializedCred.has_masterdata())) {
         std::cerr << "Verify serialized credential failed: child credential contains master data." << std::endl;
         return false;
     }

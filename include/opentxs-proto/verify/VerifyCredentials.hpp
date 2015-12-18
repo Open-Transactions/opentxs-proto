@@ -136,7 +136,7 @@ namespace opentxs { namespace proto
 
     bool Verify(
         const Credential& serializedCred,
-        const CredentialRole role,
+        const CredentialRole role = CREDROLE_ERROR,
         const bool withSigs = true);
 
     bool Verify(
