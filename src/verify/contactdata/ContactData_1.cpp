@@ -46,6 +46,8 @@ namespace opentxs { namespace proto
 bool ContactData_1(
     const ContactData& contactData)
 {
+    std::map <ContactSectionName, uint32_t> sectionCount;
+
     for (auto& it: contactData.section()) {
         bool validSection = Verify(
             it,
@@ -56,6 +58,15 @@ bool ContactData_1(
         if (!validSection) {
             std::cerr << "Verify serialized contact data failed: invalid section." << std::endl;
             return false;
+        }
+
+        ContactSectionName name = it.name();
+
+        if (sectionCount.count(name) > 0 ) {
+            std::cerr << "Verify serialized contact data failed: duplicate section." << std::endl;
+            return false;
+        } else {
+            sectionCount.insert({name, 1});
         }
     }
 

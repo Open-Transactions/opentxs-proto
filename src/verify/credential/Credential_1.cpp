@@ -186,7 +186,7 @@ bool Credential_1(
         }
     }
 
-    if (childKeyCredential && (serializedCred.has_masterdata())) {
+    if ((!masterCredential) && (serializedCred.has_masterdata())) {
         std::cerr << "Verify serialized credential failed: child credential contains master data." << std::endl;
         return false;
     }
@@ -201,7 +201,7 @@ bool Credential_1(
         return false;
     }
 
-    if (isPrivate && (!serializedCred.has_privatecredential())) {
+    if (keyCredential && isPrivate && (!serializedCred.has_privatecredential())) {
         std::cerr << "Verify serialized credential failed: missing private data." << std::endl;
         return false;
     }
@@ -245,19 +245,19 @@ bool Credential_1(
             std::cerr << "Verify serialized credential failed: invalid public data." << std::endl;
             return false;
         }
-    }
 
-    if (isPrivate) {
-        validPrivateData = Verify(
-            serializedCred.privatecredential(),
-            CredentialAllowedKeyCredentials.at(serializedCred.version()).first,
-            CredentialAllowedKeyCredentials.at(serializedCred.version()).second,
-            serializedCred.type(),
-            KEYMODE_PRIVATE);
+        if (isPrivate) {
+            validPrivateData = Verify(
+                serializedCred.privatecredential(),
+                CredentialAllowedKeyCredentials.at(serializedCred.version()).first,
+                CredentialAllowedKeyCredentials.at(serializedCred.version()).second,
+                serializedCred.type(),
+                KEYMODE_PRIVATE);
 
-        if (!validPrivateData) {
-            std::cerr << "Verify serialized credential failed: invalid private data." << std::endl;
-            return false;
+            if (!validPrivateData) {
+                std::cerr << "Verify serialized credential failed: invalid private data." << std::endl;
+                return false;
+            }
         }
     }
 
@@ -293,16 +293,18 @@ bool Credential_1(
             }
         }
 
-        if ((1 != selfPrivateCount) && (isPrivate)) {
-            std::cerr << "Verify serialized credential failed: incorrect number of private self-signatures ("
-            << selfPrivateCount << " of 1 found)." << std::endl;
-            return false;
-        }
+        if (keyCredential) {
+            if ((1 != selfPrivateCount) && (isPrivate)) {
+                std::cerr << "Verify serialized credential failed: incorrect number of private self-signatures ("
+                << selfPrivateCount << " of 1 found)." << std::endl;
+                return false;
+            }
 
-        if (1 != selfPublicCount) {
-            std::cerr << "Verify serialized credential failed: incorrect number of public self-signatures ("
-            << selfPublicCount << " of 1 found)." << std::endl;
-            return false;
+            if (1 != selfPublicCount) {
+                std::cerr << "Verify serialized credential failed: incorrect number of public self-signatures ("
+                << selfPublicCount << " of 1 found)." << std::endl;
+                return false;
+            }
         }
 
         if ((1 != masterPublicCount) && (expectMasterSignature)) {
