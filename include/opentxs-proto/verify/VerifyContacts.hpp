@@ -104,7 +104,12 @@ namespace opentxs { namespace proto
                 1,
                 {
                     CONTACTSECTION_NAME,
-                    CONTACTSECTION_MAIL
+                    CONTACTSECTION_EMAIL,
+                    CONTACTSECTION_PHONE,
+                    CONTACTSECTION_BITMESSAGE,
+                    CONTACTSECTION_PROFILE,
+                    CONTACTSECTION_URL,
+                    CONTACTSECTION_ACCOMPLISHMENTS
                 }
             },
         };
@@ -119,10 +124,46 @@ namespace opentxs { namespace proto
                 }
             },
             {
-                {1, CONTACTSECTION_MAIL},
+                {1, CONTACTSECTION_EMAIL},
                 {
-                    CITEMTYPE_EMAIL,
-                    CITEMTYPE_BITMESSAGE
+                    CITEMTYPE_PERSONAL,
+                    CITEMTYPE_BUSINESS
+                }
+            },
+            {
+                {1, CONTACTSECTION_PHONE},
+                {
+                    CITEMTYPE_PERSONAL,
+                    CITEMTYPE_BUSINESS
+                }
+            },
+            {
+                {1, CONTACTSECTION_BITMESSAGE},
+                {
+                    CITEMTYPE_PERSONAL,
+                    CITEMTYPE_BUSINESS
+                }
+            },
+            {
+                {1, CONTACTSECTION_PROFILE},
+                {
+                    CITEMTYPE_FACEBOOK,
+                    CITEMTYPE_TWITTER,
+                    CITEMTYPE_GOOGLE
+                }
+            },
+            {
+                {1, CONTACTSECTION_URL},
+                {
+                    CITEMTYPE_PERSONAL,
+                    CITEMTYPE_BUSINESS
+                }
+            },
+            {
+                {1, CONTACTSECTION_ACCOMPLISHMENTS},
+                {
+                    CITEMTYPE_PERSONAL,
+                    CITEMTYPE_PROFESSIONAL
                 }
             }
         };
@@ -140,15 +181,22 @@ namespace opentxs { namespace proto
     static const EnumTranslation ContactSectionNames =
         {
             {{CONTACTSECTION_NAME, "en"}, "Names"},
-            {{CONTACTSECTION_MAIL, "en"}, "Mail"}
+            {{CONTACTSECTION_EMAIL, "en"}, "Email"},
+            {{CONTACTSECTION_PHONE, "en"}, "Phone"},
+            {{CONTACTSECTION_BITMESSAGE, "en"}, "Bitmessage"},
+            {{CONTACTSECTION_PROFILE, "en"}, "Profile"},
+            {{CONTACTSECTION_URL, "en"}, "URL"},
+            {{CONTACTSECTION_ACCOMPLISHMENTS, "en"}, "Accomplishments"}
         };
     static const EnumTranslation ContactItemTypes =
         {
             {{CITEMTYPE_PERSONAL, "en"}, "Personal"},
             {{CITEMTYPE_BUSINESS, "en"}, "Business"},
             {{CITEMTYPE_NICKNAME, "en"}, "Nickname"},
-            {{CITEMTYPE_EMAIL, "en"}, "Email"},
-            {{CITEMTYPE_BITMESSAGE, "en"}, "Bitmessage"}
+            {{CITEMTYPE_FACEBOOK, "en"}, "Facebook"},
+            {{CITEMTYPE_TWITTER, "en"}, "Twitter"},
+            {{CITEMTYPE_GOOGLE, "en"}, "Google"},
+            {{CITEMTYPE_PROFESSIONAL, "en"}, "Professional"}
         };
     static const EnumTranslation ContactItemAttributes =
         {
