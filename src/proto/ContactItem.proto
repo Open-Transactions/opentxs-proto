@@ -9,5 +9,7 @@ message ContactItem {
     optional uint32 version = 1;
     optional ContactItemType type = 2;
     optional string value = 3;
-    repeated ContactItemAttribute attribute = 4;
+    optional sint64 start = 4;
+    optional sint64 end = 5;
+    repeated ContactItemAttribute attribute = 6;
 }
