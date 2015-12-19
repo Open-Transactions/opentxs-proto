@@ -27,6 +27,7 @@ enum CredentialRole {
     CREDROLE_MASTERKEY = 1;
     CREDROLE_CHILDKEY = 2;
     CREDROLE_CONTACT = 3;
+    CREDROLE_VERIFY = 4;
 }
 
 enum AsymmetricKeyType {
