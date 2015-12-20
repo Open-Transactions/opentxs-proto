@@ -144,15 +144,23 @@ bool CredentialSet_1(
             }
 
             for (auto& it: serializedCredSet.activechildren()) {
-                if (!Verify(it, CREDROLE_CHILDKEY, true)) {
+                if (!Verify(it, CREDROLE_ERROR, true)) {
                     std::cerr << "Verify serialized credential set failed: invalid active child credential." << std::endl;
+                    return false;
+                }
+                if (CREDROLE_MASTERKEY == it.role()) {
+                    std::cerr << "Verify serialized credential set failed: unexpected master credential." << std::endl;
                     return false;
                 }
             }
 
             for (auto& it: serializedCredSet.revokedchildren()) {
-                if (!Verify(it, CREDROLE_CHILDKEY, true)) {
+                if (!Verify(it, CREDROLE_ERROR, true)) {
                     std::cerr << "Verify serialized credential set failed: invalid revoked child credential." << std::endl;
+                    return false;
+                }
+                if (CREDROLE_MASTERKEY == it.role()) {
+                    std::cerr << "Verify serialized credential set failed: unexpected master credential." << std::endl;
                     return false;
                 }
             }
