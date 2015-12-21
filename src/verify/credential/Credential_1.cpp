@@ -130,7 +130,10 @@ bool Credential_1(
 
     if (KEYMODE_PRIVATE == serializedCred.mode()) {
         isPrivate = true;
-        expectedSigCount++;
+        if (keyCredential) {
+            expectedSigCount++;
+            std::cerr << "now I expect " << expectedSigCount << " signatures." << std::endl;
+        }
     }
 
     if ((keyCredential && (!(isPrivate || isPublic))) ||
