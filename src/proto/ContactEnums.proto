@@ -14,6 +14,7 @@ enum ContactSectionName {
     CONTACTSECTION_PROFILE = 5;
     CONTACTSECTION_URL = 6;
     CONTACTSECTION_ACCOMPLISHMENTS = 7;
+    CONTACTSECTION_OPENTXS = 8;
 }
 
 enum ContactItemType {

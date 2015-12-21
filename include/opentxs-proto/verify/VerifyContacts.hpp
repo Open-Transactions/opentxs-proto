@@ -109,7 +109,8 @@ namespace opentxs { namespace proto
                     CONTACTSECTION_BITMESSAGE,
                     CONTACTSECTION_PROFILE,
                     CONTACTSECTION_URL,
-                    CONTACTSECTION_ACCOMPLISHMENTS
+                    CONTACTSECTION_ACCOMPLISHMENTS,
+                    CONTACTSECTION_OPENTXS
                 }
             },
         };
@@ -165,6 +166,13 @@ namespace opentxs { namespace proto
                     CITEMTYPE_PERSONAL,
                     CITEMTYPE_PROFESSIONAL
                 }
+            },
+            {
+                {1, CONTACTSECTION_OPENTXS},
+                {
+                    CITEMTYPE_PERSONAL,
+                    CITEMTYPE_BUSINESS
+                }
             }
         };
     static const ItemAttributeMap AllowedItemAttributes =
@@ -186,7 +194,8 @@ namespace opentxs { namespace proto
             {{CONTACTSECTION_BITMESSAGE, "en"}, "Bitmessage"},
             {{CONTACTSECTION_PROFILE, "en"}, "Profile"},
             {{CONTACTSECTION_URL, "en"}, "URL"},
-            {{CONTACTSECTION_ACCOMPLISHMENTS, "en"}, "Accomplishments"}
+            {{CONTACTSECTION_ACCOMPLISHMENTS, "en"}, "Accomplishments"},
+            {{CONTACTSECTION_OPENTXS, "en"}, "OT"}
         };
     static const EnumTranslation ContactItemTypes =
         {
