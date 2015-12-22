@@ -132,7 +132,6 @@ bool Credential_1(
         isPrivate = true;
         if (keyCredential) {
             expectedSigCount++;
-            std::cerr << "now I expect " << expectedSigCount << " signatures." << std::endl;
         }
     }
 
