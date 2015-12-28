@@ -102,6 +102,9 @@ bool Credential_1(
     bool childKeyCredential = (CREDROLE_CHILDKEY == actualRole);
     bool keyCredential = (masterCredential || childKeyCredential);
     bool contactCredential = (CREDROLE_CONTACT == actualRole);
+    bool verifyCredential = (CREDROLE_VERIFY == actualRole);
+    bool metadataContainer = (contactCredential || verifyCredential);
+    bool knownRole = (keyCredential || metadataContainer);
 
     if (childKeyCredential) {
         expectedSigCount++;
@@ -113,7 +116,7 @@ bool Credential_1(
         expectSourceSignature = true;
     }
 
-    if (checkRole && !(keyCredential || contactCredential)) {
+    if (checkRole && !knownRole) {
         std::cerr << "Verify serialized credential failed: invalid role ("
                 << role << ")." << std::endl;
         return false;
@@ -136,7 +139,7 @@ bool Credential_1(
     }
 
     if ((keyCredential && (!(isPrivate || isPublic))) ||
-        (contactCredential && (KEYMODE_NULL == serializedCred.mode()))) {
+        (metadataContainer && (KEYMODE_NULL == serializedCred.mode()))) {
         std::cerr << "Verify serialized credential failed: invalid mode ("
                 << serializedCred.mode() << ")." << std::endl;
         return false;
@@ -198,17 +201,29 @@ bool Credential_1(
         return false;
     }
 
-    if (keyCredential && (!serializedCred.has_publiccredential())) {
-        std::cerr << "Verify serialized credential failed: missing public data." << std::endl;
-        return false;
+    if (keyCredential) {
+        if (serializedCred.has_contactdata()) {
+            std::cerr << "Verify serialized credential failed: key credential contains contact data." << std::endl;
+            return false;
+        }
+
+        if (serializedCred.has_verification()) {
+            std::cerr << "Verify serialized credential failed: key credential contains verification data." << std::endl;
+            return false;
+        }
+
+        if (!serializedCred.has_publiccredential()) {
+            std::cerr << "Verify serialized credential failed: missing public data." << std::endl;
+            return false;
+        }
+
+        if (isPrivate && (!serializedCred.has_privatecredential())) {
+            std::cerr << "Verify serialized credential failed: missing private data." << std::endl;
+            return false;
+        }
     }
 
-    if (keyCredential && isPrivate && (!serializedCred.has_privatecredential())) {
-        std::cerr << "Verify serialized credential failed: missing private data." << std::endl;
-        return false;
-    }
-
-    if (contactCredential) {
+    if (metadataContainer) {
         if (serializedCred.has_privatecredential()) {
             std::cerr << "Verify serialized credential failed: contact credential contains private key data." << std::endl;
             return false;
@@ -219,18 +234,48 @@ bool Credential_1(
             return false;
         }
 
+    }
+
+    if (contactCredential) {
+        if (serializedCred.has_verification()) {
+            std::cerr << "Verify serialized credential failed: contract credential contains verification data." << std::endl;
+            return false;
+        }
+
         if (!serializedCred.has_contactdata()) {
             std::cerr << "Verify serialized credential failed: missing contact data." << std::endl;
             return false;
         }
 
         validContactData = Verify(
-                serializedCred.contactdata(),
-                CredentialAllowedContactData.at(serializedCred.version()).first,
-                CredentialAllowedContactData.at(serializedCred.version()).second);
+            serializedCred.contactdata(),
+            CredentialAllowedContactData.at(serializedCred.version()).first,
+            CredentialAllowedContactData.at(serializedCred.version()).second);
 
         if (!validContactData) {
             std::cerr << "Verify serialized credential failed: invalid contact data." << std::endl;
+            return false;
+        }
+    }
+
+    if (verifyCredential) {
+        if (serializedCred.has_contactdata()) {
+            std::cerr << "Verify serialized credential failed: verification credential contains contact data." << std::endl;
+            return false;
+        }
+
+        if (!serializedCred.has_verification()) {
+            std::cerr << "Verify serialized credential failed: missing verification data." << std::endl;
+            return false;
+        }
+
+        bool validVerificationSet = Verify(
+            serializedCred.verification(),
+            CredentialAllowedVerification.at(serializedCred.version()).first,
+            CredentialAllowedVerification.at(serializedCred.version()).second);
+
+        if (!validVerificationSet) {
+            std::cerr << "Verify serialized credential failed: invalid verification data." << std::endl;
             return false;
         }
     }

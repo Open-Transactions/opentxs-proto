@@ -89,6 +89,10 @@ namespace opentxs { namespace proto
         {
             { 1, {1, 1}},
         };
+    static const VersionMap CredentialAllowedVerification =
+        {
+            { 1, {1, 1}},
+        };
     static const VersionMap CredentialAllowedSignatures =
         {
             { 1, {1, 1}},
