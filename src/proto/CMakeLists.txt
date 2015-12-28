@@ -23,6 +23,8 @@ PROTOBUF_GENERATE_CPP(
     ContactItem.proto
     Verification.proto
     VerificationSet.proto
+    VerificationGroup.proto
+    VerificationIdentity.proto
 )
 
 include_directories(SYSTEM ${PROTOBUF_INCLUDE_DIR})

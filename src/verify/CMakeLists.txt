@@ -34,6 +34,14 @@ set(cxx-sources
   contactsection/ContactSection_1.cpp
   contactitem/ContactItem.cpp
   contactitem/ContactItem_1.cpp
+  verificationset/VerificationSet.cpp
+  verificationset/VerificationSet_1.cpp
+  verificationgroup/VerificationGroup.cpp
+  verificationgroup/VerificationGroup_1.cpp
+  verificationidentity/VerificationIdentity.cpp
+  verificationidentity/VerificationIdentity_1.cpp
+  verification/Verification.cpp
+  verification/Verification_1.cpp
 )
 
 file(GLOB cxx-headers "${CMAKE_CURRENT_SOURCE_DIR}/../../include/opentxs-proto/verify/*.hpp")

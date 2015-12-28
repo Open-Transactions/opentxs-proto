@@ -55,10 +55,12 @@
 #ifdef OPENTXS_PROTO_INTERNAL_BUILD
 #include "ContactEnums.pb.h"
 #include "ContactData.pb.h"
+#include "VerificationSet.pb.h"
 #include "VerifyCredentials.hpp"
 #else
 #include <opentxs-proto/ContactEnums.pb.h>
 #include <opentxs-proto/ContactData.pb.h>
+#include <opentxs-proto/VerificationSet.pb.h>
 #include <opentxs-proto/verify/VerifyCredentials.hpp>
 #endif
 
@@ -94,6 +96,22 @@ namespace opentxs { namespace proto
             { 1, {1, 1}},
         };
     static const VersionMap ContactSectionAllowedItem =
+        {
+            { 1, {1, 1}},
+        };
+    static const VersionMap VerificationSetAllowedGroup =
+        {
+            { 1, {1, 1}},
+        };
+    static const VersionMap VerificationGroupAllowedIdentity =
+        {
+            { 1, {1, 1}},
+        };
+    static const VersionMap VerificationIdentityAllowedVerification =
+        {
+            { 1, {1, 1}},
+        };
+    static const VersionMap VerificationAllowedSignature =
         {
             { 1, {1, 1}},
         };
@@ -227,6 +245,23 @@ namespace opentxs { namespace proto
     bool Verify(
         const ContactItem& contactItem,
         const ContactSectionVersion parentVersion,
+        const uint32_t minVersion = 0,
+        const uint32_t maxVersion = 0xffffffff);
+
+    bool Verify(
+        const VerificationSet& verificationSet,
+        const uint32_t minVersion = 0,
+        const uint32_t maxVersion = 0xffffffff);
+    bool Verify(
+        const VerificationGroup& verificationGroup,
+        const uint32_t minVersion = 0,
+        const uint32_t maxVersion = 0xffffffff);
+    bool Verify(
+        const VerificationIdentity& verificationIdentity,
+        const uint32_t minVersion = 0,
+        const uint32_t maxVersion = 0xffffffff);
+    bool Verify(
+        const Verification& verification,
         const uint32_t minVersion = 0,
         const uint32_t maxVersion = 0xffffffff);
 
