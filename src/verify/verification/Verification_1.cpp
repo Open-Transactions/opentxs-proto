@@ -98,7 +98,8 @@ bool Verification_1(const Verification& verification)
         dummy,
         dummy,
         dummy,
-        dummy);
+        dummy,
+        proto::SIGROLE_CLAIM);
 
     if (!validSignature) {
         std::cerr << "Verify serialized verification failed: invalid signature."

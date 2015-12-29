@@ -10,6 +10,7 @@ enum SignatureRole {
     SIGROLE_PUBCREDENTIAL = 1;
     SIGROLE_PRIVCREDENTIAL = 2;
     SIGROLE_NYMIDSOURCE = 3;
+    SIGROLE_CLAIM = 4;
 }
 
 enum CredentialType {

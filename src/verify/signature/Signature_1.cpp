@@ -50,16 +50,25 @@ bool Signature_1(
     uint32_t& selfPublic,
     uint32_t& selfPrivate,
     uint32_t& masterPublic,
-    uint32_t& sourcePublic)
+    uint32_t& sourcePublic,
+    const SignatureRole role)
 {
     if (!serializedSignature.has_role()) {
         std::cerr << "Verify serialized signature failed: missing role." << std::endl;
         return false;
     }
 
-    if (serializedSignature.role() > proto::SIGROLE_NYMIDSOURCE) {
+    if (serializedSignature.role() > proto::SIGROLE_CLAIM) {
         std::cerr << "Verify serialized signature failed: invalid role ("
-        << serializedSignature.credentialid() << ")." << std::endl;
+        << serializedSignature.role() << ")." << std::endl;
+        return false;
+    }
+
+    bool roleSpecified = (proto::SIGROLE_ERROR != role);
+
+    if (roleSpecified && (role != serializedSignature.role())) {
+        std::cerr << "Verify serialized signature failed: incorrect role ("
+        << serializedSignature.role() << ")." << std::endl;
         return false;
     }
 

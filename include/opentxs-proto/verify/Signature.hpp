@@ -50,7 +50,8 @@ namespace opentxs { namespace proto
         uint32_t& selfPublic,
         uint32_t& selfPrivate,
         uint32_t& masterPublic,
-        uint32_t& sourcePublic);
+        uint32_t& sourcePublic,
+        const SignatureRole role);
 
 } // namespace proto
 } // namespace opentxs
