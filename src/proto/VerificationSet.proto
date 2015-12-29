@@ -9,4 +9,5 @@ message VerificationSet {
     optional uint32 version = 1;
     optional VerificationGroup internal = 2;
     optional VerificationGroup external = 3;
+    repeated string repudiated = 4;
 }

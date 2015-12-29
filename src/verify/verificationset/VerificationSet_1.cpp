@@ -69,6 +69,14 @@ bool VerificationSet_1(
         }
     }
 
+    for (auto& it: verificationSet.repudiated()) {
+        if (MIN_PLAUSIBLE_IDENTIFIER < it.size()) {
+            std::cerr << "Verify serialized verification set failed: invalid repudiation."
+            << std::endl;
+            return false;
+        }
+    }
+
     return true;
 }
 
