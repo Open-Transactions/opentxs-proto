@@ -25,6 +25,10 @@ PROTOBUF_GENERATE_CPP(
     VerificationSet.proto
     VerificationGroup.proto
     VerificationIdentity.proto
+    StorageItemHash.proto
+    StorageCredentials.proto
+    StorageItems.proto
+    StorageRoot.proto
 )
 
 include_directories(SYSTEM ${PROTOBUF_INCLUDE_DIR})

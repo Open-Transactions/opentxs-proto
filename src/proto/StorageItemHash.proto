@@ -1,0 +1,10 @@
+syntax = "proto2";
+
+package opentxs.proto;
+option optimize_for = LITE_RUNTIME;
+
+message StorageItemHash {
+    optional uint32 version = 1;
+    optional string itemID = 2;
+    optional string hash = 3;
+}

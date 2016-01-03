@@ -42,6 +42,14 @@ set(cxx-sources
   verificationidentity/VerificationIdentity_1.cpp
   verification/Verification.cpp
   verification/Verification_1.cpp
+  storageroot/StorageRoot.cpp
+  storageroot/StorageRoot_1.cpp
+  storageitems/StorageItems.cpp
+  storageitems/StorageItems_1.cpp
+  storagecredentials/StorageCredentials.cpp
+  storagecredentials/StorageCredentials_1.cpp
+  storageitemhash/StorageItemHash.cpp
+  storageitemhash/StorageItemHash_1.cpp
 )
 
 file(GLOB cxx-headers "${CMAKE_CURRENT_SOURCE_DIR}/../../include/opentxs-proto/verify/*.hpp")
