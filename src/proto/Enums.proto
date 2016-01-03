@@ -4,8 +4,6 @@ package opentxs.proto;
 option optimize_for = LITE_RUNTIME;
 
 enum SignatureRole {
-    option allow_alias = true;
-
     SIGROLE_ERROR = 0;
     SIGROLE_PUBCREDENTIAL = 1;
     SIGROLE_PRIVCREDENTIAL = 2;
@@ -14,16 +12,12 @@ enum SignatureRole {
 }
 
 enum CredentialType {
-    option allow_alias = true;
-
     CREDTYPE_ERROR = 0;
     CREDTYPE_LEGACY = 1;
     CREDTYPE_HD = 2;
 }
 
 enum CredentialRole {
-    option allow_alias = true;
-
     CREDROLE_ERROR = 0;
     CREDROLE_MASTERKEY = 1;
     CREDROLE_CHILDKEY = 2;
@@ -32,8 +26,6 @@ enum CredentialRole {
 }
 
 enum AsymmetricKeyType {
-    option allow_alias = true;
-
     AKEYTYPE_ERROR = 0;
     AKEYTYPE_NULL = 1;
     AKEYTYPE_LEGACY = 2;
@@ -41,8 +33,6 @@ enum AsymmetricKeyType {
 }
 
 enum KeyMode {
-    option allow_alias = true;
-
     KEYMODE_ERROR = 0;
     KEYMODE_NULL = 1;
     KEYMODE_PUBLIC = 2;
@@ -50,8 +40,6 @@ enum KeyMode {
 }
 
 enum KeyRole {
-    option allow_alias = true;
-
     KEYROLE_ERROR = 0;
     KEYROLE_AUTH = 1;
     KEYROLE_ENCRYPT = 2;
@@ -59,24 +47,18 @@ enum KeyRole {
 }
 
 enum SourceType {
-    option allow_alias = true;
-
     SOURCETYPE_ERROR = 0;
     SOURCETYPE_PUBKEY = 1;
     SOURCETYPE_BIP47 = 2;
 }
 
 enum SourceProofType {
-    option allow_alias = true;
-
     SOURCEPROOFTYPE_ERROR = 0;
     SOURCEPROOFTYPE_SELF_SIGNATURE = 1;
     SOURCEPROOFTYPE_SIGNATURE = 2;
 }
 
 enum HashType {
-    option allow_alias = true;
-
     HASHTYPE_ERROR = 0;
     HASHTYPE_NONE = 1;
     HASHTYPE_BTC160 = 2;
@@ -88,8 +70,6 @@ enum HashType {
 }
 
 enum CredentialSetMode {
-    option allow_alias = true;
-
     CREDSETMODE_ERROR = 0;
     CREDSETMODE_INDEX = 1;
     CREDSETMODE_FULL = 2;

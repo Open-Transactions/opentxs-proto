@@ -4,8 +4,6 @@ package opentxs.proto;
 option optimize_for = LITE_RUNTIME;
 
 enum ContactSectionName {
-    option allow_alias = true;
-
     CONTACTSECTION_ERROR = 0;
     CONTACTSECTION_NAME = 1;
     CONTACTSECTION_EMAIL = 2;
@@ -18,8 +16,6 @@ enum ContactSectionName {
 }
 
 enum ContactItemType {
-    option allow_alias = true;
-
     CITEMTYPE_ERROR = 0;
     CITEMTYPE_PERSONAL = 1;
     CITEMTYPE_BUSINESS = 2;
@@ -31,8 +27,6 @@ enum ContactItemType {
 }
 
 enum ContactItemAttribute {
-    option allow_alias = true;
-
     CITEMATTR_ERROR = 0;
     CITEMATTR_ACTIVE = 1;
     CITEMATTR_PRIMARY = 2;
