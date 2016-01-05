@@ -36,25 +36,24 @@
  *
  ************************************************************/
 
-#include "opentxs-proto/verify/StorageItems.hpp"
+#include "opentxs-proto/verify/StorageNym.hpp"
 
 #include <iostream>
 
 namespace opentxs { namespace proto
 {
 
-bool StorageItems_1(
-    const StorageItems& items)
+bool StorageNym_1(
+    const StorageNym& nym)
 {
-    if (items.has_creds()) {
-        if (MIN_PLAUSIBLE_IDENTIFIER > items.creds().size()) {
-            std::cerr << "Verify serialized storage item index failed: invalid credentials." << std::endl;
-            return false;
-        }
-    }
-    if (items.has_nyms()) {
-        if (MIN_PLAUSIBLE_IDENTIFIER > items.nyms().size()) {
-            std::cerr << "Verify serialized storage item index failed: invalid nym list." << std::endl;
+    if (nym.has_credlist()) {
+        bool validCredlist = Verify(
+            nym.credlist(),
+            StorageNymAllowedHash.at(nym.version()).first,
+            StorageNymAllowedHash.at(nym.version()).second);
+
+        if (!validCredlist) {
+            std::cerr << "Verify serialized storage nym failed: invalid credential list." << std::endl;
             return false;
         }
     }

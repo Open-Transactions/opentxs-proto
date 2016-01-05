@@ -50,6 +50,10 @@ set(cxx-sources
   storagecredentials/StorageCredentials_1.cpp
   storageitemhash/StorageItemHash.cpp
   storageitemhash/StorageItemHash_1.cpp
+  storagenym/StorageNym.cpp
+  storagenym/StorageNym_1.cpp
+  storagenymlist/StorageNymList.cpp
+  storagenymlist/StorageNymList_1.cpp
 )
 
 file(GLOB cxx-headers "${CMAKE_CURRENT_SOURCE_DIR}/../../include/opentxs-proto/verify/*.hpp")

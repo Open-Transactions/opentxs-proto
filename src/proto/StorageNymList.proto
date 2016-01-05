@@ -3,8 +3,9 @@ syntax = "proto2";
 package opentxs.proto;
 option optimize_for = LITE_RUNTIME;
 
-message StorageItems {
+import public "StorageItemHash.proto";
+
+message StorageNymList {
     optional uint32 version = 1;
-    optional string creds = 2;
-    optional string nyms = 3;
+    repeated StorageItemHash nym = 2;
 }

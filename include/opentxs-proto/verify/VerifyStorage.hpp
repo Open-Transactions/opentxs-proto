@@ -55,11 +55,15 @@
 #ifdef OPENTXS_PROTO_INTERNAL_BUILD
 #include "StorageRoot.pb.h"
 #include "StorageItems.pb.h"
+#include "StorageNymList.pb.h"
+#include "StorageNym.pb.h"
 #include "StorageCredentials.pb.h"
 #include "VerifyCredentials.hpp"
 #else
 #include <opentxs-proto/StorageRoot.pb.h>
 #include <opentxs-proto/StorageItems.pb.h>
+#include <opentxs-proto/StorageNymList.pb.h>
+#include <opentxs-proto/StorageNym.pb.h>
 #include <opentxs-proto/StorageCredentials.pb.h>
 #include <opentxs-proto/verify/VerifyCredentials.hpp>
 #endif
@@ -80,6 +84,14 @@ namespace opentxs { namespace proto
         {
             { 1, {1, 1}},
         };
+    static const VersionMap StorageNymListAllowedHash =
+        {
+            { 1, {1, 1}},
+        };
+    static const VersionMap StorageNymAllowedHash =
+        {
+            { 1, {1, 1}},
+        };
 
     bool Verify(
         const StorageRoot& root,
@@ -91,6 +103,14 @@ namespace opentxs { namespace proto
         const uint32_t maxVersion = 0xffffffff);
     bool Verify(
         const StorageCredentials& creds,
+        const uint32_t minVersion = 0,
+        const uint32_t maxVersion = 0xffffffff);
+    bool Verify(
+        const StorageNymList& nymList,
+        const uint32_t minVersion = 0,
+        const uint32_t maxVersion = 0xffffffff);
+    bool Verify(
+        const StorageNym& nym,
         const uint32_t minVersion = 0,
         const uint32_t maxVersion = 0xffffffff);
     bool Verify(

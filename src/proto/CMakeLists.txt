@@ -29,6 +29,8 @@ PROTOBUF_GENERATE_CPP(
     StorageCredentials.proto
     StorageItems.proto
     StorageRoot.proto
+    StorageNym.proto
+    StorageNymList.proto
 )
 
 include_directories(SYSTEM ${PROTOBUF_INCLUDE_DIR})

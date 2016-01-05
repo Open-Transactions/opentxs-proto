@@ -36,29 +36,40 @@
  *
  ************************************************************/
 
-#include "opentxs-proto/verify/StorageItems.hpp"
+#include "opentxs-proto/verify/StorageNymList.hpp"
 
 #include <iostream>
 
 namespace opentxs { namespace proto
 {
 
-bool StorageItems_1(
-    const StorageItems& items)
+bool Verify(
+        const StorageNymList& nymList,
+        const uint32_t minVersion,
+        const uint32_t maxVersion)
 {
-    if (items.has_creds()) {
-        if (MIN_PLAUSIBLE_IDENTIFIER > items.creds().size()) {
-            std::cerr << "Verify serialized storage item index failed: invalid credentials." << std::endl;
-            return false;
-        }
-    }
-    if (items.has_nyms()) {
-        if (MIN_PLAUSIBLE_IDENTIFIER > items.nyms().size()) {
-            std::cerr << "Verify serialized storage item index failed: invalid nym list." << std::endl;
-            return false;
-        }
+    if (!nymList.has_version()) {
+        std::cerr << "Verify serialized storage nym list failed: missing version." << std::endl;
+        return false;
     }
 
+    uint32_t version = nymList.version();
+
+    if ((version < minVersion) || (version > maxVersion)) {
+        std::cerr << "Verify serialized storage nym list failed: incorrect version ("
+              << nymList.version() << ")." << std::endl;
+        return false;
+    }
+
+    switch (version) {
+        case 1 :
+            return StorageNymList_1(nymList);
+        default :
+            std::cerr << "Verify serialized storage nym list failed: unknown version ("
+                  << nymList.version() << ")." << std::endl;
+
+            return false;
+    }
     return true;
 }
 
