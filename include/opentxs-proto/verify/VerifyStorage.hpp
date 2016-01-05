@@ -55,10 +55,12 @@
 #ifdef OPENTXS_PROTO_INTERNAL_BUILD
 #include "StorageRoot.pb.h"
 #include "StorageItems.pb.h"
+#include "StorageCredentials.pb.h"
 #include "VerifyCredentials.hpp"
 #else
 #include <opentxs-proto/StorageRoot.pb.h>
 #include <opentxs-proto/StorageItems.pb.h>
+#include <opentxs-proto/StorageCredentials.pb.h>
 #include <opentxs-proto/verify/VerifyCredentials.hpp>
 #endif
 

@@ -3,9 +3,7 @@ syntax = "proto2";
 package opentxs.proto;
 option optimize_for = LITE_RUNTIME;
 
-import public "StorageCredentials.proto";
-
 message StorageItems {
     optional uint32 version = 1;
-    optional StorageCredentials creds = 2;
+    optional string creds = 2;
 }

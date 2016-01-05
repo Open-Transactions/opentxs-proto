@@ -46,16 +46,13 @@ namespace opentxs { namespace proto
 bool StorageItems_1(
     const StorageItems& items)
 {
-    if (items.has_creds()) {
-        bool valid = Verify(
-            items.creds(),
-            StorageItemsAllowedCredential.at(items.version()).first,
-            StorageItemsAllowedCredential.at(items.version()).second);
-
-        if (!valid) {
-            std::cerr << "Verify serialized credential items failed: invalid credentials." << std::endl;
-            return false;
-        }
+    if (!items.has_creds()) {
+        std::cerr << "Verify serialized storage item index failed: missing credentials." << std::endl;
+        return false;
+    }
+    if (MIN_PLAUSIBLE_IDENTIFIER > items.creds().size()) {
+        std::cerr << "Verify serialized storage item index failed: invalid credentials." << std::endl;
+        return false;
     }
 
     return true;
