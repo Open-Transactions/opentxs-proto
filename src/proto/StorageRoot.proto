@@ -6,4 +6,5 @@ option optimize_for = LITE_RUNTIME;
 message StorageRoot {
     optional uint32 version = 1;
     optional string items = 2;
+    optional bool altLocation = 3;
 }
