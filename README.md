@@ -13,7 +13,7 @@ http://opentransactions.org/
 #### Dependencies
 
 * C++11 compiler
-* Google Protobuf version 2 or later
+* Google Protobuf version 2.6 or later
 
 #### Building
 
