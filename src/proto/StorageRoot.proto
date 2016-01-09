@@ -7,4 +7,7 @@ message StorageRoot {
     optional uint32 version = 1;
     optional string items = 2;
     optional bool altLocation = 3;
+    optional sint64 lastgc = 4;
+    optional bool gc = 5;
+    optional string gcroot = 6;
 }
