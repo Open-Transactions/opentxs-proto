@@ -54,6 +54,8 @@ set(cxx-sources
   storagenym/StorageNym_1.cpp
   storagenymlist/StorageNymList.cpp
   storagenymlist/StorageNymList_1.cpp
+  claim/Claim.cpp
+  claim/Claim_1.cpp
 )
 
 file(GLOB cxx-headers "${CMAKE_CURRENT_SOURCE_DIR}/../../include/opentxs-proto/verify/*.hpp")

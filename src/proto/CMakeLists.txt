@@ -31,6 +31,7 @@ PROTOBUF_GENERATE_CPP(
     StorageRoot.proto
     StorageNym.proto
     StorageNymList.proto
+    Claim.proto
 )
 
 include_directories(SYSTEM ${PROTOBUF_INCLUDE_DIR})

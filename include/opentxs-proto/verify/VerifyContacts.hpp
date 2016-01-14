@@ -53,11 +53,13 @@
 #endif
 
 #ifdef OPENTXS_PROTO_INTERNAL_BUILD
+#include "Claim.pb.h"
 #include "ContactEnums.pb.h"
 #include "ContactData.pb.h"
 #include "VerificationSet.pb.h"
 #include "VerifyCredentials.hpp"
 #else
+#include <opentxs-proto/Claim.pb.h>
 #include <opentxs-proto/ContactEnums.pb.h>
 #include <opentxs-proto/ContactData.pb.h>
 #include <opentxs-proto/VerificationSet.pb.h>
@@ -262,6 +264,10 @@ namespace opentxs { namespace proto
         const uint32_t maxVersion = 0xffffffff);
     bool Verify(
         const Verification& verification,
+        const uint32_t minVersion = 0,
+        const uint32_t maxVersion = 0xffffffff);
+    bool Verify(
+        const Claim& claim,
         const uint32_t minVersion = 0,
         const uint32_t maxVersion = 0xffffffff);
 
