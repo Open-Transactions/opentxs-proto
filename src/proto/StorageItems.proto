@@ -7,4 +7,5 @@ message StorageItems {
     optional uint32 version = 1;
     optional string creds = 2;
     optional string nyms = 3;
+    optional string servers = 4;
 }

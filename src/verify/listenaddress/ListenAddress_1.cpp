@@ -11,7 +11,7 @@
  *       -- Cheques, Vouchers, Transfers, Inboxes.
  *       -- Basket Currencies, Markets, Payment Plans.
  *       -- Signed, XML, Ricardian-style Contracts.
- *       -- Scripted smart contracts.
+ *       -- Scripted smart addresss.
  *
  *  EMAIL:
  *  fellowtraveler@opentransactions.org
@@ -36,33 +36,34 @@
  *
  ************************************************************/
 
-#include "opentxs-proto/verify/StorageItems.hpp"
+#include "opentxs-proto/verify/ListenAddress.hpp"
 
 #include <iostream>
 
 namespace opentxs { namespace proto
 {
 
-bool StorageItems_1(
-    const StorageItems& items)
+bool ListenAddress_1(
+    const ListenAddress& address)
 {
-    if (items.has_creds()) {
-        if (MIN_PLAUSIBLE_IDENTIFIER > items.creds().size()) {
-            std::cerr << "Verify serialized storage item index failed: invalid credentials." << std::endl;
-            return false;
-        }
+    if (!address.has_type()) {
+        std::cerr << "Verify serialized listen address failed: missing type" << std::endl;
+        return false;
     }
-    if (items.has_nyms()) {
-        if (MIN_PLAUSIBLE_IDENTIFIER > items.nyms().size()) {
-            std::cerr << "Verify serialized storage item index failed: invalid nym list." << std::endl;
-            return false;
-        }
+
+    if ((ADDRESSTYPE_ERROR == address.type()) || (ADDRESSTYPE_IPV4 < address.type())) {
+        std::cerr << "Verify serialized listen address failed: invalid type" << std::endl;
+        return false;
     }
-    if (items.has_servers()) {
-        if (MIN_PLAUSIBLE_IDENTIFIER > items.servers().size()) {
-            std::cerr << "Verify serialized storage item index failed: invalid server list." << std::endl;
-            return false;
-        }
+
+    if (!address.has_host()) {
+        std::cerr << "Verify serialized listen address failed: missing host" << std::endl;
+        return false;
+    }
+
+    if (!address.has_port()) {
+        std::cerr << "Verify serialized listen address failed: missing port" << std::endl;
+        return false;
     }
 
     return true;

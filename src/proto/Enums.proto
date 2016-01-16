@@ -9,6 +9,7 @@ enum SignatureRole {
     SIGROLE_PRIVCREDENTIAL = 2;
     SIGROLE_NYMIDSOURCE = 3;
     SIGROLE_CLAIM = 4;
+    SIGROLE_SERVERCONTRACT = 5;
 }
 
 enum CredentialType {
@@ -73,4 +74,9 @@ enum CredentialSetMode {
     CREDSETMODE_ERROR = 0;
     CREDSETMODE_INDEX = 1;
     CREDSETMODE_FULL = 2;
+}
+
+enum AddressType {
+    ADDRESSTYPE_ERROR = 0;
+    ADDRESSTYPE_IPV4 = 1;
 }

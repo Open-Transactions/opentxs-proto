@@ -36,37 +36,17 @@
  *
  ************************************************************/
 
-#include "opentxs-proto/verify/StorageItems.hpp"
+#ifndef OPENTXS_PROTO_STORAGESERVERS_HPP
+#define OPENTXS_PROTO_STORAGESERVERS_HPP
 
-#include <iostream>
+#include "VerifyStorage.hpp"
 
 namespace opentxs { namespace proto
 {
-
-bool StorageItems_1(
-    const StorageItems& items)
-{
-    if (items.has_creds()) {
-        if (MIN_PLAUSIBLE_IDENTIFIER > items.creds().size()) {
-            std::cerr << "Verify serialized storage item index failed: invalid credentials." << std::endl;
-            return false;
-        }
-    }
-    if (items.has_nyms()) {
-        if (MIN_PLAUSIBLE_IDENTIFIER > items.nyms().size()) {
-            std::cerr << "Verify serialized storage item index failed: invalid nym list." << std::endl;
-            return false;
-        }
-    }
-    if (items.has_servers()) {
-        if (MIN_PLAUSIBLE_IDENTIFIER > items.servers().size()) {
-            std::cerr << "Verify serialized storage item index failed: invalid server list." << std::endl;
-            return false;
-        }
-    }
-
-    return true;
-}
+    bool StorageServers_1(
+        const StorageServers& servers);
 
 } // namespace proto
 } // namespace opentxs
+
+#endif // OPENTXS_PROTO_STORAGESERVERS_HPP

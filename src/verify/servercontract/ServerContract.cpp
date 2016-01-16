@@ -36,35 +36,40 @@
  *
  ************************************************************/
 
-#include "opentxs-proto/verify/StorageItems.hpp"
+#include "opentxs-proto/verify/ServerContract.hpp"
 
 #include <iostream>
 
 namespace opentxs { namespace proto
 {
 
-bool StorageItems_1(
-    const StorageItems& items)
+bool Verify(
+    const ServerContract& contract,
+    const uint32_t minVersion,
+    const uint32_t maxVersion)
 {
-    if (items.has_creds()) {
-        if (MIN_PLAUSIBLE_IDENTIFIER > items.creds().size()) {
-            std::cerr << "Verify serialized storage item index failed: invalid credentials." << std::endl;
-            return false;
-        }
-    }
-    if (items.has_nyms()) {
-        if (MIN_PLAUSIBLE_IDENTIFIER > items.nyms().size()) {
-            std::cerr << "Verify serialized storage item index failed: invalid nym list." << std::endl;
-            return false;
-        }
-    }
-    if (items.has_servers()) {
-        if (MIN_PLAUSIBLE_IDENTIFIER > items.servers().size()) {
-            std::cerr << "Verify serialized storage item index failed: invalid server list." << std::endl;
-            return false;
-        }
+    if (!contract.has_version()) {
+        std::cerr << "Verify serialized server contract failed: missing version." << std::endl;
+        return false;
     }
 
+    uint32_t version = contract.version();
+
+    if ((version < minVersion) || (version > maxVersion)) {
+        std::cerr << "Verify serialized server contract failed: incorrect version ("
+              << contract.version() << ")." << std::endl;
+        return false;
+    }
+
+    switch (version) {
+        case 1 :
+            return ServerContract_1(contract);
+        default :
+            std::cerr << "Verify serialized server contract failed: unknown version ("
+                  << contract.version() << ")." << std::endl;
+
+            return false;
+    }
     return true;
 }
 

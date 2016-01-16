@@ -56,6 +56,12 @@ set(cxx-sources
   storagenymlist/StorageNymList_1.cpp
   claim/Claim.cpp
   claim/Claim_1.cpp
+  storageservers/StorageServers.cpp
+  storageservers/StorageServers_1.cpp
+  servercontract/ServerContract.cpp
+  servercontract/ServerContract_1.cpp
+  listenaddress/ListenAddress.cpp
+  listenaddress/ListenAddress_1.cpp
 )
 
 file(GLOB cxx-headers "${CMAKE_CURRENT_SOURCE_DIR}/../../include/opentxs-proto/verify/*.hpp")

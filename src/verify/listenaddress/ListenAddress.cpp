@@ -11,7 +11,7 @@
  *       -- Cheques, Vouchers, Transfers, Inboxes.
  *       -- Basket Currencies, Markets, Payment Plans.
  *       -- Signed, XML, Ricardian-style Contracts.
- *       -- Scripted smart contracts.
+ *       -- Scripted smart addresss.
  *
  *  EMAIL:
  *  fellowtraveler@opentransactions.org
@@ -36,35 +36,40 @@
  *
  ************************************************************/
 
-#include "opentxs-proto/verify/StorageItems.hpp"
+#include "opentxs-proto/verify/ListenAddress.hpp"
 
 #include <iostream>
 
 namespace opentxs { namespace proto
 {
 
-bool StorageItems_1(
-    const StorageItems& items)
+bool Verify(
+    const ListenAddress& address,
+    const uint32_t minVersion,
+    const uint32_t maxVersion)
 {
-    if (items.has_creds()) {
-        if (MIN_PLAUSIBLE_IDENTIFIER > items.creds().size()) {
-            std::cerr << "Verify serialized storage item index failed: invalid credentials." << std::endl;
-            return false;
-        }
-    }
-    if (items.has_nyms()) {
-        if (MIN_PLAUSIBLE_IDENTIFIER > items.nyms().size()) {
-            std::cerr << "Verify serialized storage item index failed: invalid nym list." << std::endl;
-            return false;
-        }
-    }
-    if (items.has_servers()) {
-        if (MIN_PLAUSIBLE_IDENTIFIER > items.servers().size()) {
-            std::cerr << "Verify serialized storage item index failed: invalid server list." << std::endl;
-            return false;
-        }
+    if (!address.has_version()) {
+        std::cerr << "Verify serialized listen address failed: missing version." << std::endl;
+        return false;
     }
 
+    uint32_t version = address.version();
+
+    if ((version < minVersion) || (version > maxVersion)) {
+        std::cerr << "Verify serialized listen address failed: incorrect version ("
+              << address.version() << ")." << std::endl;
+        return false;
+    }
+
+    switch (version) {
+        case 1 :
+            return ListenAddress_1(address);
+        default :
+            std::cerr << "Verify serialized listen address failed: unknown version ("
+                  << address.version() << ")." << std::endl;
+
+            return false;
+    }
     return true;
 }
 

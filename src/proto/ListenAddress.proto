@@ -1,0 +1,13 @@
+syntax = "proto2";
+
+package opentxs.proto;
+option optimize_for = LITE_RUNTIME;
+
+import public "Enums.proto";
+
+message ListenAddress {
+    optional uint32 version = 1;
+    optional AddressType type = 2;
+    optional string host = 3;
+    optional string port = 4;
+}

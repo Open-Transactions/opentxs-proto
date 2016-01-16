@@ -1,0 +1,20 @@
+syntax = "proto2";
+
+package opentxs.proto;
+option optimize_for = LITE_RUNTIME;
+
+import public "CredentialIndex.proto";
+import public "Enums.proto";
+import public "ListenAddress.proto";
+import public "Signature.proto";
+
+message ServerContract {
+    optional uint32 version = 1;
+    optional string id = 2;
+    optional string nymid = 3;
+    optional CredentialIndex publicNym = 4;
+    repeated ListenAddress address = 5;
+    optional string terms = 6;
+    optional bytes transportKey = 7;
+    optional Signature signature = 8;
+}

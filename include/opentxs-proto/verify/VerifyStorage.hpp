@@ -57,6 +57,7 @@
 #include "StorageItems.pb.h"
 #include "StorageNymList.pb.h"
 #include "StorageNym.pb.h"
+#include "StorageServers.pb.h"
 #include "StorageCredentials.pb.h"
 #include "VerifyCredentials.hpp"
 #else
@@ -64,6 +65,7 @@
 #include <opentxs-proto/StorageItems.pb.h>
 #include <opentxs-proto/StorageNymList.pb.h>
 #include <opentxs-proto/StorageNym.pb.h>
+#include <opentxs-proto/StorageServers.pb.h>
 #include <opentxs-proto/StorageCredentials.pb.h>
 #include <opentxs-proto/verify/VerifyCredentials.hpp>
 #endif
@@ -92,6 +94,10 @@ namespace opentxs { namespace proto
         {
             { 1, {1, 1}},
         };
+    static const VersionMap StorageServersAllowedHash =
+        {
+            { 1, {1, 1}},
+        };
 
     bool Verify(
         const StorageRoot& root,
@@ -111,6 +117,10 @@ namespace opentxs { namespace proto
         const uint32_t maxVersion = 0xffffffff);
     bool Verify(
         const StorageNym& nym,
+        const uint32_t minVersion = 0,
+        const uint32_t maxVersion = 0xffffffff);
+    bool Verify(
+        const StorageServers& servers,
         const uint32_t minVersion = 0,
         const uint32_t maxVersion = 0xffffffff);
     bool Verify(

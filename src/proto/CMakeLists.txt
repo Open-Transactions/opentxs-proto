@@ -32,6 +32,9 @@ PROTOBUF_GENERATE_CPP(
     StorageNym.proto
     StorageNymList.proto
     Claim.proto
+    ServerContract.proto
+    ListenAddress.proto
+    StorageServers.proto
 )
 
 include_directories(SYSTEM ${PROTOBUF_INCLUDE_DIR})

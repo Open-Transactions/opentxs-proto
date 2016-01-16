@@ -36,35 +36,40 @@
  *
  ************************************************************/
 
-#include "opentxs-proto/verify/StorageItems.hpp"
+#include "opentxs-proto/verify/StorageServers.hpp"
 
 #include <iostream>
 
 namespace opentxs { namespace proto
 {
 
-bool StorageItems_1(
-    const StorageItems& items)
+bool Verify(
+        const StorageServers& servers,
+        const uint32_t minVersion,
+        const uint32_t maxVersion)
 {
-    if (items.has_creds()) {
-        if (MIN_PLAUSIBLE_IDENTIFIER > items.creds().size()) {
-            std::cerr << "Verify serialized storage item index failed: invalid credentials." << std::endl;
-            return false;
-        }
-    }
-    if (items.has_nyms()) {
-        if (MIN_PLAUSIBLE_IDENTIFIER > items.nyms().size()) {
-            std::cerr << "Verify serialized storage item index failed: invalid nym list." << std::endl;
-            return false;
-        }
-    }
-    if (items.has_servers()) {
-        if (MIN_PLAUSIBLE_IDENTIFIER > items.servers().size()) {
-            std::cerr << "Verify serialized storage item index failed: invalid server list." << std::endl;
-            return false;
-        }
+    if (!servers.has_version()) {
+        std::cerr << "Verify serialized storage servers failed: missing version." << std::endl;
+        return false;
     }
 
+    uint32_t version = servers.version();
+
+    if ((version < minVersion) || (version > maxVersion)) {
+        std::cerr << "Verify serialized storage servers failed: incorrect version ("
+              << servers.version() << ")." << std::endl;
+        return false;
+    }
+
+    switch (version) {
+        case 1 :
+            return StorageServers_1(servers);
+        default :
+            std::cerr << "Verify serialized storage servers failed: unknown version ("
+                  << servers.version() << ")." << std::endl;
+
+            return false;
+    }
     return true;
 }
 

@@ -56,10 +56,12 @@
 #include "Enums.pb.h"
 #include "Credential.pb.h"
 #include "CredentialIndex.pb.h"
+#include "ServerContract.pb.h"
 #else
 #include <opentxs-proto/Enums.pb.h>
 #include <opentxs-proto/Credential.pb.h>
 #include <opentxs-proto/CredentialIndex.pb.h>
+#include <opentxs-proto/ServerContract.pb.h>
 #endif
 
 #ifdef _WIN32
@@ -68,6 +70,7 @@
 #pragma GCC diagnostic pop
 #endif
 
+#include <limits>
 #include <map>
 #include <utility>
 
@@ -134,6 +137,18 @@ namespace opentxs { namespace proto
             { 1, {1, 1}},
         };
     static const VersionMap AsymmetricKeyAllowedHDPath =
+        {
+            { 1, {1, 1}},
+        };
+    static const VersionMap ServerContractAllowedCredentialIndex =
+        {
+            { 1, {1, 1}},
+        };
+    static const VersionMap ServerContractAllowedListenAddress =
+        {
+            { 1, {1, 1}},
+        };
+    static const VersionMap ServerContractAllowedSignatures =
         {
             { 1, {1, 1}},
         };
@@ -210,6 +225,15 @@ namespace opentxs { namespace proto
         const PaymentCode& serializedPaymentCode,
         const uint8_t minVersion,
         const uint8_t maxVersion);
+
+    bool Verify(
+        const ServerContract& contract,
+        const uint32_t minVersion = 0,
+        const uint32_t maxVersion = 0xFFFFFFFF);
+    bool Verify(
+        const ListenAddress& address,
+        const uint32_t minVersion = 0,
+        const uint32_t maxVersion = 0xFFFFFFFF);
 
 } // namespace proto
 } // namespace opentxs
