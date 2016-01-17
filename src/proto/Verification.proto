@@ -12,4 +12,5 @@ message Verification {
     optional sint64 start = 4;
     optional sint64 end = 5;
     optional Signature sig = 6;
+    optional bool retracted = 15;
 }
