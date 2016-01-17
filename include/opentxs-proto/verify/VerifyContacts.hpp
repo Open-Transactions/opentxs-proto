@@ -130,7 +130,8 @@ namespace opentxs { namespace proto
                     CONTACTSECTION_PROFILE,
                     CONTACTSECTION_URL,
                     CONTACTSECTION_ACCOMPLISHMENTS,
-                    CONTACTSECTION_OPENTXS
+                    CONTACTSECTION_OPENTXS,
+                    CONTACTSECTION_RELATIONSHIPS
                 }
             },
         };
@@ -193,6 +194,18 @@ namespace opentxs { namespace proto
                     CITEMTYPE_PERSONAL,
                     CITEMTYPE_BUSINESS
                 }
+            },
+            {
+                {1, CONTACTSECTION_RELATIONSHIPS},
+                {
+                    CITEMTYPE_PARENT,
+                    CITEMTYPE_CHILD,
+                    CITEMTYPE_SIBLING,
+                    CITEMTYPE_EMPLOYER,
+                    CITEMTYPE_EMPLOYEE,
+                    CITEMTYPE_MET,
+                    CITEMTYPE_ALIAS
+                }
             }
         };
     static const ItemAttributeMap AllowedItemAttributes =
@@ -215,7 +228,8 @@ namespace opentxs { namespace proto
             {{CONTACTSECTION_PROFILE, "en"}, "Profile"},
             {{CONTACTSECTION_URL, "en"}, "URL"},
             {{CONTACTSECTION_ACCOMPLISHMENTS, "en"}, "Accomplishments"},
-            {{CONTACTSECTION_OPENTXS, "en"}, "OT"}
+            {{CONTACTSECTION_OPENTXS, "en"}, "OT"},
+            {{CONTACTSECTION_RELATIONSHIPS, "en"}, "Relationships"}
         };
     static const EnumTranslation ContactItemTypes =
         {
@@ -225,7 +239,14 @@ namespace opentxs { namespace proto
             {{CITEMTYPE_FACEBOOK, "en"}, "Facebook"},
             {{CITEMTYPE_TWITTER, "en"}, "Twitter"},
             {{CITEMTYPE_GOOGLE, "en"}, "Google"},
-            {{CITEMTYPE_PROFESSIONAL, "en"}, "Professional"}
+            {{CITEMTYPE_PROFESSIONAL, "en"}, "Professional"},
+            {{CITEMTYPE_PARENT, "en"}, "Parent of"},
+            {{CITEMTYPE_CHILD, "en"}, "Child of"},
+            {{CITEMTYPE_SIBLING, "en"}, "Sibling of"},
+            {{CITEMTYPE_EMPLOYER, "en"}, "Employer of"},
+            {{CITEMTYPE_EMPLOYEE, "en"}, "Employee of"},
+            {{CITEMTYPE_MET, "en"}, "Have met"},
+            {{CITEMTYPE_ALIAS, "en"}, "Alias of"}
         };
     static const EnumTranslation ContactItemAttributes =
         {
