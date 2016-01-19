@@ -51,7 +51,7 @@ bool Verification_1(const Verification& verification)
         return false;
     }
 
-    if (MIN_PLAUSIBLE_IDENTIFIER < verification.claim().size()) {
+    if (MIN_PLAUSIBLE_IDENTIFIER > verification.claim().size()) {
         std::cerr << "Verify serialized verification failed: invalid claim."
         << std::endl;
         return false;

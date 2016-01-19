@@ -51,9 +51,9 @@ bool VerificationIdentity_1(const VerificationIdentity& verificationIdentity)
         return false;
     }
 
-    if (MIN_PLAUSIBLE_IDENTIFIER < verificationIdentity.nym().size()) {
-        std::cerr << "Verify serialized verification identity failed: invalid nym."
-        << std::endl;
+    if (MIN_PLAUSIBLE_IDENTIFIER > verificationIdentity.nym().size()) {
+        std::cerr << "Verify serialized verification identity failed: invalid nym ("
+        << verificationIdentity.nym() << ")." << std::endl;
         return false;
     }
 
