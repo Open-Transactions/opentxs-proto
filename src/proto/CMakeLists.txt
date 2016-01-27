@@ -4,37 +4,41 @@ endif()
 
 PROTOBUF_GENERATE_CPP(
     PROTO_SRC PROTO_HEADER
-    Enums.proto
-    Signature.proto
     AsymmetricKey.proto
-    Credential.proto
-    KeyCredential.proto
+    BasketParams.proto
     ChildCredentialParameters.proto
-    NymIDSource.proto
-    SourceProof.proto
-    MasterCredentialParameters.proto
+    Claim.proto
+    ContactData.proto
+    ContactEnums.proto
+    ContactItem.proto
+    ContactSection.proto
+    Credential.proto
     CredentialIndex.proto
     CredentialSet.proto
+    CurrencyParams.proto
+    Enums.proto
+    EquityParams.proto
     HDPath.proto
+    KeyCredential.proto
+    ListenAddress.proto
+    MasterCredentialParameters.proto
+    NymIDSource.proto
     PaymentCode.proto
-    ContactEnums.proto
-    ContactData.proto
-    ContactSection.proto
-    ContactItem.proto
-    Verification.proto
-    VerificationSet.proto
-    VerificationGroup.proto
-    VerificationIdentity.proto
-    StorageItemHash.proto
+    ServerContract.proto
+    Signature.proto
+    SourceProof.proto
     StorageCredentials.proto
+    StorageItemHash.proto
     StorageItems.proto
-    StorageRoot.proto
     StorageNym.proto
     StorageNymList.proto
-    Claim.proto
-    ServerContract.proto
-    ListenAddress.proto
+    StorageRoot.proto
     StorageServers.proto
+    UnitDefinition.proto
+    Verification.proto
+    VerificationGroup.proto
+    VerificationIdentity.proto
+    VerificationSet.proto
 )
 
 include_directories(SYSTEM ${PROTOBUF_INCLUDE_DIR})

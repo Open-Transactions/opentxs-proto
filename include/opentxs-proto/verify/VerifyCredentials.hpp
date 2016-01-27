@@ -57,11 +57,13 @@
 #include "Credential.pb.h"
 #include "CredentialIndex.pb.h"
 #include "ServerContract.pb.h"
+#include "UnitDefinition.pb.h"
 #else
 #include <opentxs-proto/Enums.pb.h>
 #include <opentxs-proto/Credential.pb.h>
 #include <opentxs-proto/CredentialIndex.pb.h>
 #include <opentxs-proto/ServerContract.pb.h>
+#include <opentxs-proto/UnitDefinition.pb.h>
 #endif
 
 #ifdef _WIN32

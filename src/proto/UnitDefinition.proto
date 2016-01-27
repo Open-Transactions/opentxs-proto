@@ -1,0 +1,26 @@
+syntax = "proto2";
+
+package opentxs.proto;
+option optimize_for = LITE_RUNTIME;
+
+import public "BasketParams.proto";
+import public "CredentialIndex.proto";
+import public "CurrencyParams.proto";
+import public "Enums.proto";
+import public "EquityParams.proto";
+import public "Signature.proto";
+
+message UnitDefinition {
+    optional uint32 version = 1;
+    optional string id = 2;
+    optional string nymid = 3;
+    optional CredentialIndex publicNym = 4;
+    optional string terms = 5;
+    optional UnitType type = 6;
+    optional string name = 7;
+    optional string symbol = 8;
+    optional BasketParams basket = 9;
+    optional CurrencyParams currency = 10;
+    optional EquityParams equityParams = 11;
+    optional Signature signature = 15;
+}

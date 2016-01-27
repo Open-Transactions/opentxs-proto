@@ -1,0 +1,13 @@
+syntax = "proto2";
+
+package opentxs.proto;
+option optimize_for = LITE_RUNTIME;
+
+message CurrencyParams
+{
+    optional uint32 version = 1;
+    optional string TLA = 2;
+    optional uint32 factor = 3;
+    optional uint32 power = 4;
+    optional string fraction = 5;
+}
