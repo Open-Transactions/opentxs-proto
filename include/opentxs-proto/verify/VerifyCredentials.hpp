@@ -52,19 +52,11 @@
 #endif
 #endif
 
-#ifdef OPENTXS_PROTO_INTERNAL_BUILD
-#include "Enums.pb.h"
-#include "Credential.pb.h"
-#include "CredentialIndex.pb.h"
-#include "ServerContract.pb.h"
-#include "UnitDefinition.pb.h"
-#else
-#include <opentxs-proto/Enums.pb.h>
-#include <opentxs-proto/Credential.pb.h>
-#include <opentxs-proto/CredentialIndex.pb.h>
-#include <opentxs-proto/ServerContract.pb.h>
-#include <opentxs-proto/UnitDefinition.pb.h>
-#endif
+#include "opentxs-proto/Enums.pb.h"
+#include "opentxs-proto/Credential.pb.h"
+#include "opentxs-proto/CredentialIndex.pb.h"
+#include "opentxs-proto/ServerContract.pb.h"
+#include "opentxs-proto/UnitDefinition.pb.h"
 
 #ifdef _WIN32
 #pragma warning(pop)

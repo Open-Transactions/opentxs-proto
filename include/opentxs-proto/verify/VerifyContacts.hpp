@@ -39,6 +39,8 @@
 #ifndef OPENTXS_PROTO_VERIFYCONTACTS_HPP
 #define OPENTXS_PROTO_VERIFYCONTACTS_HPP
 
+#include "opentxs-proto/Verify.hpp"
+
 #ifdef _WIN32
 #pragma warning(push)
 #pragma warning(disable : 4244)
@@ -52,19 +54,10 @@
 #endif
 #endif
 
-#ifdef OPENTXS_PROTO_INTERNAL_BUILD
-#include "Claim.pb.h"
-#include "ContactEnums.pb.h"
-#include "ContactData.pb.h"
-#include "VerificationSet.pb.h"
-#include "VerifyCredentials.hpp"
-#else
-#include <opentxs-proto/Claim.pb.h>
-#include <opentxs-proto/ContactEnums.pb.h>
-#include <opentxs-proto/ContactData.pb.h>
-#include <opentxs-proto/VerificationSet.pb.h>
-#include <opentxs-proto/verify/VerifyCredentials.hpp>
-#endif
+#include "opentxs-proto/Claim.pb.h"
+#include "opentxs-proto/ContactEnums.pb.h"
+#include "opentxs-proto/ContactData.pb.h"
+#include "opentxs-proto/VerificationSet.pb.h"
 
 #ifdef _WIN32
 #pragma warning(pop)

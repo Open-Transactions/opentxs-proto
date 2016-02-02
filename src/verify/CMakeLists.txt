@@ -1,5 +1,3 @@
-add_definitions(-DOPENTXS_PROTO_INTERNAL_BUILD)
-
 include_directories("${CMAKE_SOURCE_DIR}/include")
 
 set(cxx-sources

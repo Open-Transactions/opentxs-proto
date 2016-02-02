@@ -39,6 +39,8 @@
 #ifndef OPENTXS_PROTO_VERIFYSTORAGE_HPP
 #define OPENTXS_PROTO_VERIFYSTORAGE_HPP
 
+#include "opentxs-proto/Verify.hpp"
+
 #ifdef _WIN32
 #pragma warning(push)
 #pragma warning(disable : 4244)
@@ -52,23 +54,12 @@
 #endif
 #endif
 
-#ifdef OPENTXS_PROTO_INTERNAL_BUILD
-#include "StorageRoot.pb.h"
-#include "StorageItems.pb.h"
-#include "StorageNymList.pb.h"
-#include "StorageNym.pb.h"
-#include "StorageServers.pb.h"
-#include "StorageCredentials.pb.h"
-#include "VerifyCredentials.hpp"
-#else
-#include <opentxs-proto/StorageRoot.pb.h>
-#include <opentxs-proto/StorageItems.pb.h>
-#include <opentxs-proto/StorageNymList.pb.h>
-#include <opentxs-proto/StorageNym.pb.h>
-#include <opentxs-proto/StorageServers.pb.h>
-#include <opentxs-proto/StorageCredentials.pb.h>
-#include <opentxs-proto/verify/VerifyCredentials.hpp>
-#endif
+#include "opentxs-proto/StorageRoot.pb.h"
+#include "opentxs-proto/StorageItems.pb.h"
+#include "opentxs-proto/StorageNymList.pb.h"
+#include "opentxs-proto/StorageNym.pb.h"
+#include "opentxs-proto/StorageServers.pb.h"
+#include "opentxs-proto/StorageCredentials.pb.h"
 
 #ifdef _WIN32
 #pragma warning(pop)

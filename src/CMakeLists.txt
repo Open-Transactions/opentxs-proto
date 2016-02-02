@@ -1,4 +1,4 @@
-include_directories(${CMAKE_CURRENT_BINARY_DIR}/proto/)
+include_directories(${CMAKE_CURRENT_BINARY_DIR})
 
-add_subdirectory(proto)
+add_subdirectory(opentxs-proto)
 add_subdirectory(verify)

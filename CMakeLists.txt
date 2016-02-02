@@ -266,7 +266,7 @@ install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/include/
         COMPONENT dev
         FILES_MATCHING PATTERN "Verify*.hpp")
 
-install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/src/proto/
+install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/src/opentxs-proto/
         DESTINATION include/opentxs-proto
         COMPONENT dev
         FILES_MATCHING PATTERN "*.h")

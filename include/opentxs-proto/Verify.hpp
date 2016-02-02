@@ -36,15 +36,9 @@
  *
  ************************************************************/
 
-#ifndef OPENTXS_PROTO_LISTENADDRESS_HPP
-#define OPENTXS_PROTO_LISTENADDRESS_HPP
+#ifndef OPENTXS_PROTO_VERIFY
+#define OPENTXS_PROTO_VERIFY
 
-#include "opentxs-proto/Verify.hpp"
+#include "opentxs-proto/verify/VerifyCredentials.hpp"
 
-namespace opentxs { namespace proto
-{
-    bool ListenAddress_1(const ListenAddress& address);
-} // namespace proto
-} // namespace opentxs
-
-#endif // OPENTXS_PROTO_LISTENADDRESS_HPP
+#endif // OPENTXS_PROTO_VERIFY
