@@ -43,14 +43,14 @@
 namespace opentxs { namespace proto
 {
 
-bool MasterCredentialParameters_1(
+bool CheckProto_1(
     const MasterCredentialParameters& serializedMasterParams,
     bool expectSourceSignature)
 {
     bool validSource = false;
     bool validProof = false;
 
-    validSource = Verify(
+    validSource = Check<NymIDSource>(
         serializedMasterParams.source(),
         MasterParamsAllowedNymIDSource.at(serializedMasterParams.version()).first,
         MasterParamsAllowedNymIDSource.at(serializedMasterParams.version()).second);
@@ -65,7 +65,7 @@ bool MasterCredentialParameters_1(
         return false;
     }
 
-    validProof = Verify(
+    validProof = Check<SourceProof>(
         serializedMasterParams.sourceproof(),
         MasterParamsAllowedSourceProof.at(serializedMasterParams.version()).first,
         MasterParamsAllowedSourceProof.at(serializedMasterParams.version()).second,

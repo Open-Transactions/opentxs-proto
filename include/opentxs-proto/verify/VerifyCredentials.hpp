@@ -36,8 +36,8 @@
  *
  ************************************************************/
 
-#ifndef OPENTXS_PROTO_VERIFY_HPP
-#define OPENTXS_PROTO_VERIFY_HPP
+#ifndef OPENTXS_PROTO_VERIFYCREDENTIALS_HPP
+#define OPENTXS_PROTO_VERIFYCREDENTIALS_HPP
 
 #ifdef _WIN32
 #pragma warning(push)
@@ -51,33 +51,31 @@
 #pragma GCC diagnostic ignored "-Wuseless-cast"
 #endif
 #endif
-
 #include "opentxs-proto/Enums.pb.h"
 #include "opentxs-proto/Credential.pb.h"
 #include "opentxs-proto/CredentialIndex.pb.h"
-#include "opentxs-proto/ServerContract.pb.h"
-#include "opentxs-proto/UnitDefinition.pb.h"
-
 #ifdef _WIN32
 #pragma warning(pop)
 #else
 #pragma GCC diagnostic pop
 #endif
 
-#include <limits>
-#include <map>
-#include <utility>
+#include "opentxs-proto/Verify.hpp"
+#include "opentxs-proto/verify/AsymmetricKey.hpp"
+#include "opentxs-proto/verify/ChildCredentialParameters.hpp"
+#include "opentxs-proto/verify/Credential.hpp"
+#include "opentxs-proto/verify/CredentialIndex.hpp"
+#include "opentxs-proto/verify/CredentialSet.hpp"
+#include "opentxs-proto/verify/HDPath.hpp"
+#include "opentxs-proto/verify/KeyCredential.hpp"
+#include "opentxs-proto/verify/MasterCredentialParameters.hpp"
+#include "opentxs-proto/verify/NymIDSource.hpp"
+#include "opentxs-proto/verify/PaymentCode.hpp"
+#include "opentxs-proto/verify/Signature.hpp"
+#include "opentxs-proto/verify/SourceProof.hpp"
 
 namespace opentxs { namespace proto
 {
-    // This defined a map between the version of the parent object
-    // and the (minimum, maximum) acceptable versions of a child object.
-    typedef std::map<uint32_t, std::pair<uint32_t, uint32_t> > VersionMap;
-
-    static const uint32_t MIN_PLAUSIBLE_IDENTIFIER = 20;
-    static const uint32_t MIN_PLAUSIBLE_KEYSIZE = 16;
-    static const uint32_t MIN_PLAUSIBLE_SIGNATURE = 32;
-
     static const VersionMap CredentialAllowedKeyCredentials =
         {
             { 1, {1, 1}},
@@ -134,101 +132,6 @@ namespace opentxs { namespace proto
         {
             { 1, {1, 1}},
         };
-    static const VersionMap ServerContractAllowedCredentialIndex =
-        {
-            { 1, {1, 1}},
-        };
-    static const VersionMap ServerContractAllowedListenAddress =
-        {
-            { 1, {1, 1}},
-        };
-    static const VersionMap ServerContractAllowedSignatures =
-        {
-            { 1, {1, 1}},
-        };
-
-    bool Verify(
-        const Credential& serializedCred,
-        const CredentialRole role = CREDROLE_ERROR,
-        const bool withSigs = true);
-
-    bool Verify(
-        const KeyCredential& serializedKeyCred,
-        const uint32_t minVersion,
-        const uint32_t maxVersion,
-        const CredentialType credType,
-        const KeyMode mode);
-
-    bool Verify(
-        const ChildCredentialParameters& serializedChildParams,
-        const uint32_t minVersion,
-        const uint32_t maxVersion);
-
-    bool Verify(
-        const MasterCredentialParameters& serializedMasterParams,
-        const uint32_t minVersion,
-        const uint32_t maxVersion,
-        bool expectSourceSignature);
-
-    bool Verify(
-        const NymIDSource& serializedNymIDSource,
-        const uint32_t minVersion,
-        const uint32_t maxVersion);
-
-    bool Verify(
-        const SourceProof& serializedSourceProof,
-        const uint32_t minVersion,
-        const uint32_t maxVersion,
-        bool expectSourceSignature);
-
-    bool Verify(
-        const AsymmetricKey& serializedAsymmetricKey,
-        const uint32_t minVersion,
-        const uint32_t maxVersion,
-        const CredentialType type,
-        const KeyMode mode,
-        const KeyRole role);
-
-    bool Verify(
-        const HDPath& serializedHDPath,
-        const uint32_t minVersion,
-        const uint32_t maxVersion);
-
-    bool Verify(
-        const Signature& serializedSignature,
-        const uint32_t minVersion,
-        const uint32_t maxVersion,
-        const std::string& selfID,
-        const std::string& masterID,
-        uint32_t& selfPublic,
-        uint32_t& selfPrivate,
-        uint32_t& masterPublic,
-        uint32_t& sourcePublic,
-        const SignatureRole role = SIGROLE_ERROR);
-
-    bool Verify(
-        const CredentialIndex& serializedCredIndex);
-
-    bool Verify(
-        const CredentialSet& serializedCredSet,
-        const uint32_t minVersion,
-        const uint32_t maxVersion,
-        const std::string& nymID);
-
-    bool Verify(
-        const PaymentCode& serializedPaymentCode,
-        const uint8_t minVersion,
-        const uint8_t maxVersion);
-
-    bool Verify(
-        const ServerContract& contract,
-        const uint32_t minVersion = 0,
-        const uint32_t maxVersion = 0xFFFFFFFF);
-    bool Verify(
-        const ListenAddress& address,
-        const uint32_t minVersion = 0,
-        const uint32_t maxVersion = 0xFFFFFFFF);
-
 } // namespace proto
 } // namespace opentxs
-#endif // OPENTXS_PROTO_VERIFY_HPP
+#endif // OPENTXS_PROTO_VERIFYCREDENTIALS_HPP

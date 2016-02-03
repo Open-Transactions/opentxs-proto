@@ -43,7 +43,7 @@
 namespace opentxs { namespace proto
 {
 
-bool PaymentCode_1(
+bool CheckProto_1(
     const PaymentCode& serializedPaymentCode)
 {
     if (!serializedPaymentCode.has_key()) {

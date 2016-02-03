@@ -43,7 +43,7 @@
 namespace opentxs { namespace proto
 {
 
-bool StorageRoot_1(
+bool CheckProto_1(
     const StorageRoot& root)
 {
     if (!root.has_items()) {

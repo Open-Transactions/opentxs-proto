@@ -39,11 +39,11 @@
 #ifndef OPENTXS_PROTO_ASYMMETRICKEY_HPP
 #define OPENTXS_PROTO_ASYMMETRICKEY_HPP
 
-#include "opentxs-proto/Verify.hpp"
+#include "opentxs-proto/verify/VerifyCredentials.hpp"
 
 namespace opentxs { namespace proto
 {
-    bool AsymmetricKey_1(
+    bool CheckProto_1(
         const AsymmetricKey& serializedAsymmetricKey,
         const CredentialType type,
         const KeyMode mode,

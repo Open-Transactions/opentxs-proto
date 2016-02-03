@@ -39,13 +39,13 @@
 #ifndef OPENTXS_PROTO_CREDENTIAL_HPP
 #define OPENTXS_PROTO_CREDENTIAL_HPP
 
-#include "opentxs-proto/Verify.hpp"
+#include "opentxs-proto/verify/VerifyCredentials.hpp"
 
 namespace opentxs { namespace proto
 {
-    bool Credential_1(
+    bool CheckProto_1(
         const Credential& serializedCred,
-        const CredentialRole role,
+        const CredentialRole role = CREDROLE_ERROR,
         const bool withSigs = true);
 
 } // namespace proto

@@ -43,7 +43,7 @@
 namespace opentxs { namespace proto
 {
 
-bool ChildCredentialParameters_1(
+bool CheckProto_1(
     const ChildCredentialParameters& serializedChildParams)
 {
     if (!serializedChildParams.has_masterid()) {

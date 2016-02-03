@@ -40,10 +40,10 @@
 
 #include <iostream>
 
-namespace opentxs { namespace proto
+ namespace opentxs { namespace proto
 {
 
-bool ServerContract_1(
+bool CheckProto_1(
     const ServerContract& contract)
 {
     if (!contract.has_id()) {
@@ -69,7 +69,7 @@ bool ServerContract_1(
     }
 
     if (contract.has_publicnym()) {
-        if (!Verify(contract.publicnym())) {
+        if (!Check<CredentialIndex>(contract.publicnym(), 0, 0xFFFFFFFF)) {
                 std::cerr << "Verify serialized server contract failed: invalid public nym" << std::endl;
                 return false;
         }
@@ -81,7 +81,7 @@ bool ServerContract_1(
         return false;
     }
 
-    if (!Verify(
+    if (!Check<ListenAddress>(
         contract.address(0),
         ServerContractAllowedListenAddress.at(contract.version()).first,
         ServerContractAllowedListenAddress.at(contract.version()).second)) {
@@ -106,7 +106,7 @@ bool ServerContract_1(
 
     uint32_t notUsed;
 
-    if (!Verify(
+    if (!Check<Signature>(
         contract.signature(),
         ServerContractAllowedListenAddress.at(contract.version()).first,
         ServerContractAllowedListenAddress.at(contract.version()).second,

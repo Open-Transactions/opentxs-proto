@@ -39,11 +39,11 @@
 #ifndef OPENTXS_PROTO_KEYCREDENTIAL_HPP
 #define OPENTXS_PROTO_KEYCREDENTIAL_HPP
 
-#include "opentxs-proto/Verify.hpp"
+#include "opentxs-proto/verify/VerifyCredentials.hpp"
 
 namespace opentxs { namespace proto
 {
-    bool KeyCredential_1(
+    bool CheckProto_1(
         const KeyCredential& serializedKeyCred,
         const CredentialType credType,
         const KeyMode mode);

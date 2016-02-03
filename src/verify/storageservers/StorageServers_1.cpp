@@ -43,11 +43,11 @@
 namespace opentxs { namespace proto
 {
 
-bool StorageServers_1(
+bool CheckProto_1(
     const StorageServers& servers)
 {
     for (auto& hash: servers.server()) {
-        bool valid = Verify(
+        bool valid = Check<StorageItemHash>(
             hash,
             StorageServersAllowedHash.at(servers.version()).first,
             StorageServersAllowedHash.at(servers.version()).second);

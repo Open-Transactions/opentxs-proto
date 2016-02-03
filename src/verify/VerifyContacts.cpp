@@ -36,7 +36,7 @@
  *
  ************************************************************/
 
-#include <opentxs-proto/verify/VerifyContacts.hpp>
+#include "opentxs-proto/verify/VerifyContacts.hpp"
 
 namespace opentxs { namespace proto
 {

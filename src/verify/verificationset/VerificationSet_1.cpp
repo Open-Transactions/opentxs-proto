@@ -43,11 +43,11 @@
 namespace opentxs { namespace proto
 {
 
-bool VerificationSet_1(
+bool CheckProto_1(
     const VerificationSet& verificationSet)
 {
     if (verificationSet.has_internal()) {
-        bool validInternal = Verify(
+        bool validInternal = Check<VerificationGroup>(
             verificationSet.internal(),
             VerificationSetAllowedGroup.at(verificationSet.version()).first,
             VerificationSetAllowedGroup.at(verificationSet.version()).second);
@@ -58,7 +58,7 @@ bool VerificationSet_1(
         }
     }
     if (verificationSet.has_external()) {
-        bool validExternal = Verify(
+        bool validExternal = Check<VerificationGroup>(
             verificationSet.external(),
             VerificationSetAllowedGroup.at(verificationSet.version()).first,
             VerificationSetAllowedGroup.at(verificationSet.version()).second);

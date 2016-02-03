@@ -43,7 +43,7 @@
 namespace opentxs { namespace proto
 {
 
-bool StorageItemHash_1(
+bool CheckProto_1(
     const StorageItemHash& hash)
 {
     if (!hash.has_itemid()) {

@@ -39,11 +39,11 @@
 #ifndef OPENTXS_PROTO_HDPATH_HPP
 #define OPENTXS_PROTO_HDPATH_HPP
 
-#include "opentxs-proto/Verify.hpp"
+#include "opentxs-proto/verify/VerifyCredentials.hpp"
 
 namespace opentxs { namespace proto
 {
-    bool HDPath_1(
+    bool CheckProto_1(
         const HDPath& serializedHDPath);
 
 } // namespace proto

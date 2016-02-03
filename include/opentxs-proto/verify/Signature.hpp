@@ -39,11 +39,11 @@
 #ifndef OPENTXS_PROTO_SIGNATURE_HPP
 #define OPENTXS_PROTO_SIGNATURE_HPP
 
-#include "opentxs-proto/Verify.hpp"
+#include "opentxs-proto/verify/VerifyCredentials.hpp"
 
 namespace opentxs { namespace proto
 {
-    bool Signature_1(
+    bool CheckProto_1(
         const Signature& serializedSignature,
         const std::string& selfID,
         const std::string& masterID,
@@ -51,7 +51,7 @@ namespace opentxs { namespace proto
         uint32_t& selfPrivate,
         uint32_t& masterPublic,
         uint32_t& sourcePublic,
-        const SignatureRole role);
+        const SignatureRole role = SIGROLE_ERROR);
 
 } // namespace proto
 } // namespace opentxs

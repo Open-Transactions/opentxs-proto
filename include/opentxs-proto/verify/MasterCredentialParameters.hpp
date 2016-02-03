@@ -39,11 +39,11 @@
 #ifndef OPENTXS_PROTO_MASTERCREDENTIALPARAMETERS_HPP
 #define OPENTXS_PROTO_MASTERCREDENTIALPARAMETERS_HPP
 
-#include "opentxs-proto/Verify.hpp"
+#include "opentxs-proto/verify/VerifyCredentials.hpp"
 
 namespace opentxs { namespace proto
 {
-    bool MasterCredentialParameters_1(
+    bool CheckProto_1(
         const MasterCredentialParameters& serializedMasterParams,
         bool expectSourceSignature);
 

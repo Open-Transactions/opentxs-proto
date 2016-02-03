@@ -43,7 +43,7 @@
 namespace opentxs { namespace proto
 {
 
-bool KeyCredential_1(
+bool CheckProto_1(
     const KeyCredential& serializedKeyCred,
     const CredentialType credType,
     const KeyMode mode)
@@ -76,21 +76,21 @@ bool KeyCredential_1(
     encryptKey = serializedKeyCred.key(KEYROLE_ENCRYPT - 1);
     signKey = serializedKeyCred.key(KEYROLE_SIGN - 1);
 
-    validAuthKey = Verify(
+    validAuthKey = Check<AsymmetricKey>(
         authKey,
         KeyCredentialAllowedAsymmetricKey.at(serializedKeyCred.version()).first,
         KeyCredentialAllowedAsymmetricKey.at(serializedKeyCred.version()).second,
         credType,
         mode,
         KEYROLE_AUTH);
-    validEncryptKey = Verify(
+    validEncryptKey = Check<AsymmetricKey>(
         encryptKey,
         KeyCredentialAllowedAsymmetricKey.at(serializedKeyCred.version()).first,
         KeyCredentialAllowedAsymmetricKey.at(serializedKeyCred.version()).second,
         credType,
         mode,
         KEYROLE_ENCRYPT);
-    validSignKey = Verify(
+    validSignKey = Check<AsymmetricKey>(
         signKey,
         KeyCredentialAllowedAsymmetricKey.at(serializedKeyCred.version()).first,
         KeyCredentialAllowedAsymmetricKey.at(serializedKeyCred.version()).second,

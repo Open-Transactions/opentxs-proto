@@ -43,7 +43,7 @@
 namespace opentxs { namespace proto
 {
 
-bool CredentialIndex_1(
+bool CheckProto_1(
     const CredentialIndex& serializedCredIndex)
 {
     bool validSource = false;
@@ -64,7 +64,7 @@ bool CredentialIndex_1(
         return false;
     }
 
-    validSource = Verify(
+    validSource = Check<NymIDSource>(
         serializedCredIndex.source(),
         CredentialIndexAllowedNymIDSource.at(serializedCredIndex.version()).first,
         CredentialIndexAllowedNymIDSource.at(serializedCredIndex.version()).second);
@@ -75,7 +75,7 @@ bool CredentialIndex_1(
     }
 
     for (auto& it: serializedCredIndex.activecredentials()) {
-        if (!Verify(
+        if (!Check<CredentialSet>(
                 it,
                 CredentialIndexAllowedCredentialSets.at(serializedCredIndex.version()).first,
                 CredentialIndexAllowedCredentialSets.at(serializedCredIndex.version()).second,
@@ -86,7 +86,7 @@ bool CredentialIndex_1(
     }
 
     for (auto& it: serializedCredIndex.revokedcredentials()) {
-        if (!Verify(
+        if (!Check<CredentialSet>(
                 it,
                 CredentialIndexAllowedCredentialSets.at(serializedCredIndex.version()).first,
                 CredentialIndexAllowedCredentialSets.at(serializedCredIndex.version()).second,

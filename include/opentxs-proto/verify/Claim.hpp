@@ -39,11 +39,11 @@
 #ifndef OPENTXS_PROTO_CLAIM_HPP
 #define OPENTXS_PROTO_CLAIM_HPP
 
-#include "VerifyContacts.hpp"
+#include "opentxs-proto/verify/VerifyContacts.hpp"
 
 namespace opentxs { namespace proto
 {
-    bool Claim_1(
+    bool CheckProto_1(
         const Claim& claim);
 
 } // namespace proto

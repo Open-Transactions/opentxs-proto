@@ -39,11 +39,11 @@
 #ifndef OPENTXS_PROTO_CONTACTSECTION_HPP
 #define OPENTXS_PROTO_CONTACTSECTION_HPP
 
-#include "VerifyContacts.hpp"
+#include "opentxs-proto/verify/VerifyContacts.hpp"
 
 namespace opentxs { namespace proto
 {
-    bool ContactSection_1(
+    bool CheckProto_1(
         const ContactSection& contactSection,
         const uint32_t parentVersion = 0xffffffff);
 

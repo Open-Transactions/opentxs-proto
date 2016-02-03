@@ -43,7 +43,7 @@
 namespace opentxs { namespace proto
 {
 
-bool ListenAddress_1(
+bool CheckProto_1(
     const ListenAddress& address)
 {
     if (!address.has_type()) {

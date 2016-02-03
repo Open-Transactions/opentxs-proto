@@ -43,7 +43,7 @@
 namespace opentxs { namespace proto
 {
 
-bool StorageItems_1(
+bool CheckProto_1(
     const StorageItems& items)
 {
     if (items.has_creds()) {

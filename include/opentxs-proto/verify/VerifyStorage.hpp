@@ -39,8 +39,6 @@
 #ifndef OPENTXS_PROTO_VERIFYSTORAGE_HPP
 #define OPENTXS_PROTO_VERIFYSTORAGE_HPP
 
-#include "opentxs-proto/Verify.hpp"
-
 #ifdef _WIN32
 #pragma warning(push)
 #pragma warning(disable : 4244)
@@ -53,19 +51,26 @@
 #pragma GCC diagnostic ignored "-Wuseless-cast"
 #endif
 #endif
-
-#include "opentxs-proto/StorageRoot.pb.h"
-#include "opentxs-proto/StorageItems.pb.h"
-#include "opentxs-proto/StorageNymList.pb.h"
-#include "opentxs-proto/StorageNym.pb.h"
-#include "opentxs-proto/StorageServers.pb.h"
 #include "opentxs-proto/StorageCredentials.pb.h"
-
+#include "opentxs-proto/StorageItems.pb.h"
+#include "opentxs-proto/StorageNym.pb.h"
+#include "opentxs-proto/StorageNymList.pb.h"
+#include "opentxs-proto/StorageRoot.pb.h"
+#include "opentxs-proto/StorageServers.pb.h"
 #ifdef _WIN32
 #pragma warning(pop)
 #else
 #pragma GCC diagnostic pop
 #endif
+
+#include "opentxs-proto/Verify.hpp"
+#include "opentxs-proto/verify/StorageCredentials.hpp"
+#include "opentxs-proto/verify/StorageItemHash.hpp"
+#include "opentxs-proto/verify/StorageItems.hpp"
+#include "opentxs-proto/verify/StorageNym.hpp"
+#include "opentxs-proto/verify/StorageNymList.hpp"
+#include "opentxs-proto/verify/StorageRoot.hpp"
+#include "opentxs-proto/verify/StorageServers.hpp"
 
 namespace opentxs { namespace proto
 {
@@ -89,36 +94,6 @@ namespace opentxs { namespace proto
         {
             { 1, {1, 1}},
         };
-
-    bool Verify(
-        const StorageRoot& root,
-        const uint32_t minVersion = 0,
-        const uint32_t maxVersion = 0xffffffff);
-    bool Verify(
-        const StorageItems& items,
-        const uint32_t minVersion = 0,
-        const uint32_t maxVersion = 0xffffffff);
-    bool Verify(
-        const StorageCredentials& creds,
-        const uint32_t minVersion = 0,
-        const uint32_t maxVersion = 0xffffffff);
-    bool Verify(
-        const StorageNymList& nymList,
-        const uint32_t minVersion = 0,
-        const uint32_t maxVersion = 0xffffffff);
-    bool Verify(
-        const StorageNym& nym,
-        const uint32_t minVersion = 0,
-        const uint32_t maxVersion = 0xffffffff);
-    bool Verify(
-        const StorageServers& servers,
-        const uint32_t minVersion = 0,
-        const uint32_t maxVersion = 0xffffffff);
-    bool Verify(
-        const StorageItemHash& hash,
-        const uint32_t minVersion = 0,
-        const uint32_t maxVersion = 0xffffffff);
-
 } // namespace proto
 } // namespace opentxs
 #endif // OPENTXS_PROTO_VERIFYSTORAGE_HPP

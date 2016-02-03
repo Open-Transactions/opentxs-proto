@@ -43,7 +43,7 @@
 namespace opentxs { namespace proto
 {
 
-bool NymIDSource_1(
+bool CheckProto_1(
     const NymIDSource& serializedNymIDSource)
 {
     if (!serializedNymIDSource.has_type()) {
@@ -68,7 +68,7 @@ bool NymIDSource_1(
 
             sourcePubkey = serializedNymIDSource.key();
 
-            validSourcePubkey = Verify(
+            validSourcePubkey = Check<AsymmetricKey>(
                 sourcePubkey,
                 NymIDSourceAllowedAsymmetricKey.at(serializedNymIDSource.version()).first,
                 NymIDSourceAllowedAsymmetricKey.at(serializedNymIDSource.version()).second,
@@ -91,7 +91,7 @@ bool NymIDSource_1(
                 std::cerr << "Verify serialized nym source failed: bip47 source includes public key." << std::endl;
                 return false;
             }
-            validPaymentCode = Verify(
+            validPaymentCode = Check<PaymentCode>(
                 serializedNymIDSource.paymentcode(),
                 NymIDSourceAllowedPaymentCode.at(serializedNymIDSource.version()).first,
                 NymIDSourceAllowedPaymentCode.at(serializedNymIDSource.version()).second);

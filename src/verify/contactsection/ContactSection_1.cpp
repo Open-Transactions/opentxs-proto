@@ -40,10 +40,12 @@
 
 #include <iostream>
 
+#include "opentxs-proto/Contact.hpp"
+
 namespace opentxs { namespace proto
 {
 
-bool ContactSection_1(
+bool CheckProto_1(
     const ContactSection& contactSection,
     const uint32_t parentVersion)
 {
@@ -51,16 +53,18 @@ bool ContactSection_1(
         std::cerr << "Verify serialized contact section failed: missing name." << std::endl;
         return false;
     }
+
     if (!ValidContactSectionName(parentVersion, contactSection.name())) {
         std::cerr << "Verify serialized contact section failed: invalid name." << std::endl;
         return false;
     }
+
     for (auto& it: contactSection.item()) {
-        bool validItem = Verify(
+        bool validItem = Check<ContactItem>(
             it,
-            {contactSection.version(), contactSection.name()},
             ContactSectionAllowedItem.at(contactSection.version()).first,
-            ContactSectionAllowedItem.at(contactSection.version()).second);
+            ContactSectionAllowedItem.at(contactSection.version()).second,
+            ContactSectionVersion{contactSection.version(), contactSection.name()});
 
         if (!validItem) {
             std::cerr << "Verify serialized contact section failed: invalid item." << std::endl;

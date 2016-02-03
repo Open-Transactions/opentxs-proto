@@ -36,45 +36,48 @@
  *
  ************************************************************/
 
-#include "opentxs-proto/verify/KeyCredential.hpp"
+#ifndef OPENTXS_PROTO_VERIFYCONTRACTS_HPP
+#define OPENTXS_PROTO_VERIFYCONTRACTS_HPP
 
-#include <iostream>
+#ifdef _WIN32
+#pragma warning(push)
+#pragma warning(disable : 4244)
+#pragma warning(disable : 4267)
+#else
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wshadow"
+#ifndef __clang__
+// -Wuseless-cast does not exist in clang
+#pragma GCC diagnostic ignored "-Wuseless-cast"
+#endif
+#endif
+#include "opentxs-proto/ServerContract.pb.h"
+#include "opentxs-proto/UnitDefinition.pb.h"
+#ifdef _WIN32
+#pragma warning(pop)
+#else
+#pragma GCC diagnostic pop
+#endif
+
+#include "opentxs-proto/Verify.hpp"
+#include "opentxs-proto/verify/ListenAddress.hpp"
+#include "opentxs-proto/verify/VerifyCredentials.hpp"
+#include "opentxs-proto/verify/ServerContract.hpp"
 
 namespace opentxs { namespace proto
 {
-
-bool Verify(
-    const KeyCredential& serializedKeyCred,
-    const uint32_t minVersion,
-    const uint32_t maxVersion,
-    const CredentialType credType,
-    const KeyMode mode)
-{
-    if (!serializedKeyCred.has_version()) {
-        std::cerr << "Verify serialized key credential failed: missing version." << std::endl;
-        return false;
-    }
-
-    uint32_t version = serializedKeyCred.version();
-
-    if ((version < minVersion) || (version > maxVersion)) {
-        std::cerr << "Verify serialized key credential failed: incorrect version ("
-              << serializedKeyCred.version() << ")." << std::endl;
-        return false;
-    }
-
-    switch (version) {
-        case 1 :
-
-            return KeyCredential_1(serializedKeyCred, credType, mode);
-        default :
-            std::cerr << "Verify serialized key credential failed: unknown version ("
-                  << serializedKeyCred.version() << ")." << std::endl;
-
-            return false;
-    }
-    return true;
-}
-
+    static const VersionMap ServerContractAllowedCredentialIndex =
+        {
+            { 1, {1, 1}},
+        };
+    static const VersionMap ServerContractAllowedListenAddress =
+        {
+            { 1, {1, 1}},
+        };
+    static const VersionMap ServerContractAllowedSignatures =
+        {
+            { 1, {1, 1}},
+        };
 } // namespace proto
 } // namespace opentxs
+#endif // OPENTXS_PROTO_VERIFYCONTRACTS_HPP

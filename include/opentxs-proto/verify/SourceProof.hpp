@@ -39,11 +39,11 @@
 #ifndef OPENTXS_PROTO_SOURCEPROOF_HPP
 #define OPENTXS_PROTO_SOURCEPROOF_HPP
 
-#include "opentxs-proto/Verify.hpp"
+#include "opentxs-proto/verify/VerifyCredentials.hpp"
 
 namespace opentxs { namespace proto
 {
-    bool SourceProof_1(
+    bool CheckProto_1(
         const SourceProof& serializedSourceProof,
         bool ExpectSourceSignature);
 

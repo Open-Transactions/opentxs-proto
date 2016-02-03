@@ -43,11 +43,11 @@
 namespace opentxs { namespace proto
 {
 
-bool StorageCredentials_1(
+bool CheckProto_1(
     const StorageCredentials& creds)
 {
     for (auto& hash: creds.cred()) {
-        bool valid = Verify(
+        bool valid = Check<StorageItemHash>(
             hash,
             StorageCredentialAllowedHash.at(creds.version()).first,
             StorageCredentialAllowedHash.at(creds.version()).second);

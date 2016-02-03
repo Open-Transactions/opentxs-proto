@@ -43,7 +43,7 @@
 namespace opentxs { namespace proto
 {
 
-bool Claim_1(
+bool CheckProto_1(
     const Claim& claim)
 {
     if (!claim.has_nymid()) {

@@ -39,11 +39,11 @@
 #ifndef OPENTXS_PROTO_VERIFICATIONIDENTITY_HPP
 #define OPENTXS_PROTO_VERIFICATIONIDENTITY_HPP
 
-#include "VerifyContacts.hpp"
+#include "opentxs-proto/verify/VerifyContacts.hpp"
 
 namespace opentxs { namespace proto
 {
-    bool VerificationIdentity_1(const VerificationIdentity& verificationIdentity);
+    bool CheckProto_1(const VerificationIdentity& verificationIdentity);
 
 } // namespace proto
 } // namespace opentxs

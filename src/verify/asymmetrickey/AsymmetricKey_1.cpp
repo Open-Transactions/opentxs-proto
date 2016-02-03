@@ -43,7 +43,7 @@
 namespace opentxs { namespace proto
 {
 
-bool AsymmetricKey_1(
+bool CheckProto_1(
     const AsymmetricKey& serializedAsymmetricKey,
     const CredentialType type,
     const KeyMode mode,

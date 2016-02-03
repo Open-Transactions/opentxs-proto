@@ -39,11 +39,11 @@
 #ifndef OPENTXS_PROTO_SERVERCONTRACT_HPP
 #define OPENTXS_PROTO_SERVERCONTRACT_HPP
 
-#include "opentxs-proto/Verify.hpp"
+#include "opentxs-proto/verify/VerifyContracts.hpp"
 
 namespace opentxs { namespace proto
 {
-    bool ServerContract_1(const ServerContract& contract);
+    bool CheckProto_1(const ServerContract& contract);
 } // namespace proto
 } // namespace opentxs
 

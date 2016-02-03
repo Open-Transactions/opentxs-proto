@@ -39,11 +39,11 @@
 #ifndef OPENTXS_PROTO_CONTACTDATA_HPP
 #define OPENTXS_PROTO_CONTACTDATA_HPP
 
-#include "VerifyContacts.hpp"
+#include "opentxs-proto/verify/VerifyContacts.hpp"
 
 namespace opentxs { namespace proto
 {
-    bool ContactData_1(
+    bool CheckProto_1(
         const ContactData& contactData);
 
 } // namespace proto

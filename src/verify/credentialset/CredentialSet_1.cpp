@@ -43,7 +43,7 @@
 namespace opentxs { namespace proto
 {
 
-bool CredentialSet_1(
+bool CheckProto_1(
     const CredentialSet& serializedCredSet,
     const std::string& nymID)
 {
@@ -120,7 +120,7 @@ bool CredentialSet_1(
                 return false;
             }
 
-            if (!Verify(serializedCredSet.mastercredential(), CREDROLE_MASTERKEY, true)) {
+            if (!Check<Credential>(serializedCredSet.mastercredential(), 0, 0xFFFFFFFF, CREDROLE_MASTERKEY, true)) {
                 std::cerr << "Verify serialized credential set failed: invalid master credential." << std::endl;
                 return false;
             }
@@ -144,7 +144,7 @@ bool CredentialSet_1(
             }
 
             for (auto& it: serializedCredSet.activechildren()) {
-                if (!Verify(it, CREDROLE_ERROR, true)) {
+                if (!Check<Credential>(it, 0, 0xFFFFFFFF, CREDROLE_ERROR, true)) {
                     std::cerr << "Verify serialized credential set failed: invalid active child credential." << std::endl;
                     return false;
                 }
@@ -155,7 +155,7 @@ bool CredentialSet_1(
             }
 
             for (auto& it: serializedCredSet.revokedchildren()) {
-                if (!Verify(it, CREDROLE_ERROR, true)) {
+                if (!Check<Credential>(it, 0, 0xFFFFFFFF, CREDROLE_ERROR, true)) {
                     std::cerr << "Verify serialized credential set failed: invalid revoked child credential." << std::endl;
                     return false;
                 }

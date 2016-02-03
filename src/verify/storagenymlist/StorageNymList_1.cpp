@@ -43,11 +43,11 @@
 namespace opentxs { namespace proto
 {
 
-bool StorageNymList_1(
+bool CheckProto_1(
     const StorageNymList& nymList)
 {
     for (auto& nym: nymList.nym()) {
-        if (!Verify(
+        if (!Check<StorageItemHash>(
             nym,
             StorageNymListAllowedHash.at(nymList.version()).first,
             StorageNymListAllowedHash.at(nymList.version()).second)) {

@@ -36,14 +36,16 @@
  *
  ************************************************************/
 
+#include <iostream>
+
 #include "opentxs-proto/verify/Verification.hpp"
 
-#include <iostream>
+#include "opentxs-proto/verify/VerifyCredentials.hpp"
 
 namespace opentxs { namespace proto
 {
 
-bool Verification_1(const Verification& verification)
+bool CheckProto_1(const Verification& verification)
 {
     if (!verification.has_claim()) {
         std::cerr << "Verify serialized verification failed: missing claim."
@@ -89,7 +91,7 @@ bool Verification_1(const Verification& verification)
 
     uint32_t dummy;
 
-    bool validSignature = Verify(
+    bool validSignature = Check<Signature>(
         verification.sig(),
         VerificationAllowedSignature.at(verification.version()).first,
         VerificationAllowedSignature.at(verification.version()).second,

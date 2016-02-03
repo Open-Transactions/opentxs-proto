@@ -39,11 +39,11 @@
 #ifndef OPENTXS_PROTO_LISTENADDRESS_HPP
 #define OPENTXS_PROTO_LISTENADDRESS_HPP
 
-#include "opentxs-proto/Verify.hpp"
+#include "opentxs-proto/verify/VerifyContracts.hpp"
 
 namespace opentxs { namespace proto
 {
-    bool ListenAddress_1(const ListenAddress& address);
+    bool CheckProto_1(const ListenAddress& address);
 } // namespace proto
 } // namespace opentxs
 

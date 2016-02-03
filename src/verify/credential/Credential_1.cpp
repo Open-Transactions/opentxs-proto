@@ -40,12 +40,12 @@
 
 #include <iostream>
 
-#include <opentxs-proto/verify/VerifyContacts.hpp>
+#include "opentxs-proto/verify/VerifyContacts.hpp"
 
 namespace opentxs { namespace proto
 {
 
-bool Credential_1(
+bool CheckProto_1(
     const Credential& serializedCred,
     const CredentialRole role,
     const bool withSigs)
@@ -162,7 +162,7 @@ bool Credential_1(
             return false;
         }
 
-        validChildData = Verify(
+        validChildData = Check<ChildCredentialParameters>(
             serializedCred.childdata(),
             CredentialAllowedChildParams.at(serializedCred.version()).first,
             CredentialAllowedChildParams.at(serializedCred.version()).second);
@@ -179,7 +179,7 @@ bool Credential_1(
             return false;
         }
 
-        validMasterData = Verify(
+        validMasterData = Check<MasterCredentialParameters>(
             serializedCred.masterdata(),
             CredentialAllowedMasterParams.at(serializedCred.version()).first,
             CredentialAllowedChildParams.at(serializedCred.version()).second,
@@ -247,7 +247,7 @@ bool Credential_1(
             return false;
         }
 
-        validContactData = Verify(
+        validContactData = Check<ContactData>(
             serializedCred.contactdata(),
             CredentialAllowedContactData.at(serializedCred.version()).first,
             CredentialAllowedContactData.at(serializedCred.version()).second);
@@ -269,7 +269,7 @@ bool Credential_1(
             return false;
         }
 
-        bool validVerificationSet = Verify(
+        bool validVerificationSet = Check<VerificationSet>(
             serializedCred.verification(),
             CredentialAllowedVerification.at(serializedCred.version()).first,
             CredentialAllowedVerification.at(serializedCred.version()).second);
@@ -281,7 +281,7 @@ bool Credential_1(
     }
 
     if (keyCredential) {
-        validPublicData = Verify(
+        validPublicData = Check<KeyCredential>(
                 serializedCred.publiccredential(),
                 CredentialAllowedKeyCredentials.at(serializedCred.version()).first,
                 CredentialAllowedKeyCredentials.at(serializedCred.version()).second,
@@ -294,7 +294,7 @@ bool Credential_1(
         }
 
         if (isPrivate) {
-            validPrivateData = Verify(
+            validPrivateData = Check<KeyCredential>(
                 serializedCred.privatecredential(),
                 CredentialAllowedKeyCredentials.at(serializedCred.version()).first,
                 CredentialAllowedKeyCredentials.at(serializedCred.version()).second,
@@ -323,7 +323,7 @@ bool Credential_1(
         uint32_t sourcePublicCount = 0;
 
         for (auto& it: serializedCred.signature()) {
-            bool validSig = Verify(
+            bool validSig = Check<Signature>(
                 it,
                 CredentialAllowedSignatures.at(serializedCred.version()).first,
                 CredentialAllowedSignatures.at(serializedCred.version()).second,

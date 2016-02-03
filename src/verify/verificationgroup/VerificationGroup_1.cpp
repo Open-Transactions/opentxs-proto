@@ -43,11 +43,11 @@
 namespace opentxs { namespace proto
 {
 
-bool VerificationGroup_1(
+bool CheckProto_1(
     const VerificationGroup& verificationGroup)
 {
     for (auto& it : verificationGroup.identity()) {
-        bool validIdentity = Verify(
+        bool validIdentity = Check<VerificationIdentity>(
             it,
             VerificationGroupAllowedIdentity.at(verificationGroup.version()).first,
             VerificationGroupAllowedIdentity.at(verificationGroup.version()).second);

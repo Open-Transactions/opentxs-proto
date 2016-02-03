@@ -207,6 +207,7 @@ function(set_lib_property lib)
   endif()
 endfunction(set_lib_property)
 
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 add_subdirectory(src)
 
 if (NOT ANDROID)
@@ -264,7 +265,7 @@ endif()
 install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/include/
         DESTINATION include
         COMPONENT dev
-        FILES_MATCHING PATTERN "Verify*.hpp")
+        FILES_MATCHING PATTERN "*.hpp")
 
 install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/src/opentxs-proto/
         DESTINATION include/opentxs-proto

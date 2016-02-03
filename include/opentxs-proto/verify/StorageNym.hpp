@@ -39,11 +39,11 @@
 #ifndef OPENTXS_PROTO_STORAGENYM_HPP
 #define OPENTXS_PROTO_STORAGENYM_HPP
 
-#include "VerifyStorage.hpp"
+#include "opentxs-proto/verify/VerifyStorage.hpp"
 
 namespace opentxs { namespace proto
 {
-    bool StorageNym_1(
+    bool CheckProto_1(
         const StorageNym& creds);
 
 } // namespace proto

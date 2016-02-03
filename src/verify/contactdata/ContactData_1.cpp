@@ -43,13 +43,13 @@
 namespace opentxs { namespace proto
 {
 
-bool ContactData_1(
+bool CheckProto_1(
     const ContactData& contactData)
 {
     std::map <ContactSectionName, uint32_t> sectionCount;
 
     for (auto& it: contactData.section()) {
-        bool validSection = Verify(
+        bool validSection = Check<ContactSection>(
             it,
             ContactDataAllowedSection.at(contactData.version()).first,
             ContactDataAllowedSection.at(contactData.version()).second,

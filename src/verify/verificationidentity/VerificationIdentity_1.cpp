@@ -43,7 +43,7 @@
 namespace opentxs { namespace proto
 {
 
-bool VerificationIdentity_1(const VerificationIdentity& verificationIdentity)
+bool CheckProto_1(const VerificationIdentity& verificationIdentity)
 {
     if (!verificationIdentity.has_nym()) {
         std::cerr << "Verify serialized verification identity failed: missing nym."
@@ -58,7 +58,7 @@ bool VerificationIdentity_1(const VerificationIdentity& verificationIdentity)
     }
 
     for (auto& it : verificationIdentity.verification()) {
-        bool verification = Verify(
+        bool verification = Check<Verification>(
             it,
             VerificationIdentityAllowedVerification.at(verificationIdentity.version()).first,
             VerificationIdentityAllowedVerification.at(verificationIdentity.version()).second);

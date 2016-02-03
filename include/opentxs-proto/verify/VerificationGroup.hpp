@@ -39,11 +39,11 @@
 #ifndef OPENTXS_PROTO_VERIFICATIONGROUP_HPP
 #define OPENTXS_PROTO_VERIFICATIONGROUP_HPP
 
-#include "VerifyContacts.hpp"
+#include "opentxs-proto/verify/VerifyContacts.hpp"
 
 namespace opentxs { namespace proto
 {
-    bool VerificationGroup_1(const VerificationGroup& verificationGroup);
+    bool CheckProto_1(const VerificationGroup& verificationGroup);
 
 } // namespace proto
 } // namespace opentxs

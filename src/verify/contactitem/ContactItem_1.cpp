@@ -43,7 +43,7 @@
 namespace opentxs { namespace proto
 {
 
-bool ContactItem_1(
+bool CheckProto_1(
     const ContactItem& contactItem,
     const ContactSectionVersion parentVersion)
 {

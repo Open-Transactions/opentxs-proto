@@ -43,7 +43,7 @@
 namespace opentxs { namespace proto
 {
 
-bool HDPath_1(
+bool CheckProto_1(
     const HDPath& serializedHDPath)
 {
     if (!serializedHDPath.has_root()) {

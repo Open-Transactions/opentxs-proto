@@ -43,7 +43,7 @@
 namespace opentxs { namespace proto
 {
 
-bool Signature_1(
+bool CheckProto_1(
     const Signature& serializedSignature,
     const std::string& selfID,
     const std::string& masterID,

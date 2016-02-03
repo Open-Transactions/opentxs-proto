@@ -43,7 +43,7 @@
 
 namespace opentxs { namespace proto
 {
-    bool StorageServers_1(
+    bool CheckProto_1(
         const StorageServers& servers);
 
 } // namespace proto

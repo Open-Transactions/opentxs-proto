@@ -39,11 +39,11 @@
 #ifndef OPENTXS_PROTO_NYMIDSOURCE_HPP
 #define OPENTXS_PROTO_NYMIDSOURCE_HPP
 
-#include "opentxs-proto/Verify.hpp"
+#include "opentxs-proto/verify/VerifyCredentials.hpp"
 
 namespace opentxs { namespace proto
 {
-    bool NymIDSource_1(
+    bool CheckProto_1(
         const NymIDSource& serializedNymIDSource);
 
 } // namespace proto

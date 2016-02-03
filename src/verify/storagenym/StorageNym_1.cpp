@@ -43,11 +43,11 @@
 namespace opentxs { namespace proto
 {
 
-bool StorageNym_1(
+bool CheckProto_1(
     const StorageNym& nym)
 {
     if (nym.has_credlist()) {
-        bool validCredlist = Verify(
+        bool validCredlist = Check<StorageItemHash>(
             nym.credlist(),
             StorageNymAllowedHash.at(nym.version()).first,
             StorageNymAllowedHash.at(nym.version()).second);
