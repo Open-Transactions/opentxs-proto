@@ -8,4 +8,5 @@ message StorageItems {
     optional string creds = 2;
     optional string nyms = 3;
     optional string servers = 4;
+    optional string units = 5;
 }

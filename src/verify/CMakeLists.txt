@@ -27,6 +27,7 @@ set(cxx-sources
   storagenymlist/StorageNymList_1.cpp
   storageroot/StorageRoot_1.cpp
   storageservers/StorageServers_1.cpp
+  storageunits/StorageUnits_1.cpp
   verification/Verification_1.cpp
   verificationgroup/VerificationGroup_1.cpp
   verificationidentity/VerificationIdentity_1.cpp

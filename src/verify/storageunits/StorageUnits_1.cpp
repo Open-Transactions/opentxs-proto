@@ -36,7 +36,7 @@
  *
  ************************************************************/
 
-#include "opentxs-proto/verify/StorageItems.hpp"
+#include "opentxs-proto/verify/StorageUnits.hpp"
 
 #include <iostream>
 
@@ -44,29 +44,16 @@ namespace opentxs { namespace proto
 {
 
 bool CheckProto_1(
-    const StorageItems& items)
+    const StorageUnits& Units)
 {
-    if (items.has_creds()) {
-        if (MIN_PLAUSIBLE_IDENTIFIER > items.creds().size()) {
-            std::cerr << "Verify serialized storage item index failed: invalid credentials." << std::endl;
-            return false;
-        }
-    }
-    if (items.has_nyms()) {
-        if (MIN_PLAUSIBLE_IDENTIFIER > items.nyms().size()) {
-            std::cerr << "Verify serialized storage item index failed: invalid nym list." << std::endl;
-            return false;
-        }
-    }
-    if (items.has_servers()) {
-        if (MIN_PLAUSIBLE_IDENTIFIER > items.servers().size()) {
-            std::cerr << "Verify serialized storage item index failed: invalid server list." << std::endl;
-            return false;
-        }
-    }
-    if (items.has_units()) {
-        if (MIN_PLAUSIBLE_IDENTIFIER > items.units().size()) {
-            std::cerr << "Verify serialized storage item index failed: invalid unit list." << std::endl;
+    for (auto& hash: Units.unit()) {
+        bool valid = Check<StorageItemHash>(
+            hash,
+            StorageUnitsAllowedHash.at(Units.version()).first,
+            StorageUnitsAllowedHash.at(Units.version()).second);
+
+        if (!valid) {
+            std::cerr << "Verify serialized unit storage index failed: invalid hash." << std::endl;
             return false;
         }
     }

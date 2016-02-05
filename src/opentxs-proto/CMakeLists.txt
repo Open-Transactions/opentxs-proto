@@ -34,6 +34,7 @@ PROTOBUF_GENERATE_CPP(
     StorageNymList.proto
     StorageRoot.proto
     StorageServers.proto
+    StorageUnits.proto
     UnitDefinition.proto
     Verification.proto
     VerificationGroup.proto

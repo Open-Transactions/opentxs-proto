@@ -57,6 +57,7 @@
 #include "opentxs-proto/StorageNymList.pb.h"
 #include "opentxs-proto/StorageRoot.pb.h"
 #include "opentxs-proto/StorageServers.pb.h"
+#include "opentxs-proto/StorageUnits.pb.h"
 #ifdef _WIN32
 #pragma warning(pop)
 #else
@@ -71,6 +72,7 @@
 #include "opentxs-proto/verify/StorageNymList.hpp"
 #include "opentxs-proto/verify/StorageRoot.hpp"
 #include "opentxs-proto/verify/StorageServers.hpp"
+#include "opentxs-proto/verify/StorageUnits.hpp"
 
 namespace opentxs { namespace proto
 {
@@ -91,6 +93,10 @@ namespace opentxs { namespace proto
             { 1, {1, 1}},
         };
     static const VersionMap StorageServersAllowedHash =
+        {
+            { 1, {1, 1}},
+        };
+    static const VersionMap StorageUnitsAllowedHash =
         {
             { 1, {1, 1}},
         };
