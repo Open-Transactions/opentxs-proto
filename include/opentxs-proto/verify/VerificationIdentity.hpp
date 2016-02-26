@@ -39,11 +39,17 @@
 #ifndef OPENTXS_PROTO_VERIFICATIONIDENTITY_HPP
 #define OPENTXS_PROTO_VERIFICATIONIDENTITY_HPP
 
+#include <map>
+
 #include "opentxs-proto/verify/VerifyContacts.hpp"
 
 namespace opentxs { namespace proto
 {
-    bool CheckProto_1(const VerificationIdentity& verificationIdentity);
+    typedef std::map<std::string, uint64_t> VerificationNymMap;
+
+    bool CheckProto_1(
+        const VerificationIdentity& verificationIdentity,
+        VerificationNymMap& map);
 
 } // namespace proto
 } // namespace opentxs

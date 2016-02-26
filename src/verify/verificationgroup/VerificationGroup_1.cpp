@@ -36,9 +36,11 @@
  *
  ************************************************************/
 
+#include <iostream>
+
 #include "opentxs-proto/verify/VerificationGroup.hpp"
 
-#include <iostream>
+#include "opentxs-proto/verify/VerificationIdentity.hpp"
 
 namespace opentxs { namespace proto
 {
@@ -46,15 +48,30 @@ namespace opentxs { namespace proto
 bool CheckProto_1(
     const VerificationGroup& verificationGroup)
 {
+    VerificationNymMap nymMap;
+
     for (auto& it : verificationGroup.identity()) {
         bool validIdentity = Check(
             it,
             VerificationGroupAllowedIdentity.at(verificationGroup.version()).first,
-            VerificationGroupAllowedIdentity.at(verificationGroup.version()).second);
+            VerificationGroupAllowedIdentity.at(verificationGroup.version()).second,
+            nymMap);
 
         if (!validIdentity) {
-            std::cerr << "Verify serialized verification group failed: invalid identity: ("
-                      << it.nym() << ")." << std::endl;
+            std::cerr << "Verify serialized verification group failed:"
+                      << " invalid identity: (" << it.nym() << ")."
+                      << std::endl;
+
+            return false;
+        }
+    }
+
+    for (auto& nym : nymMap) {
+        if (nym.second > 1) {
+            std::cerr << "Verify serialized verification group failed:"
+                      << " duplicate identity: (" << nym.first << ")."
+                      << std::endl;
+
             return false;
         }
     }
