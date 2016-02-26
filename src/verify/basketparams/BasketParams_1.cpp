@@ -11,7 +11,7 @@
  *       -- Cheques, Vouchers, Transfers, Inboxes.
  *       -- Basket Currencies, Markets, Payment Plans.
  *       -- Signed, XML, Ricardian-style Contracts.
- *       -- Scripted smart contracts.
+ *       -- Scripted smart paramss.
  *
  *  EMAIL:
  *  fellowtraveler@opentransactions.org
@@ -36,24 +36,49 @@
  *
  ************************************************************/
 
-#include "opentxs-proto/verify/StorageCredentials.hpp"
-
 #include <iostream>
+
+#include "opentxs-proto/verify/BasketParams.hpp"
+
+#include "opentxs-proto/verify/BasketItem.hpp"
 
 namespace opentxs { namespace proto
 {
 
 bool CheckProto_1(
-    const StorageCredentials& creds)
+    const BasketParams& params)
 {
-    for (auto& hash: creds.cred()) {
-        bool valid = Check(
-            hash,
-            StorageCredentialAllowedHash.at(creds.version()).first,
-            StorageCredentialAllowedHash.at(creds.version()).second);
+    if (!params.has_weight()) {
+        std::cerr << __FUNCTION__
+                  << ": Verify basket params failed: missing weight."
+                  << std::endl;
 
-        if (!valid) {
-            std::cerr << "Verify serialized credential storage index failed: invalid hash." << std::endl;
+        return false;
+    }
+    BasketItemMap itemMap;
+
+    for (auto& item : params.item()) {
+        bool validItem = Check(
+            item,
+            BasketParamsAllowedBasketItem.at(params.version()).first,
+            BasketParamsAllowedBasketItem.at(params.version()).second,
+            itemMap);
+
+        if (!validItem) {
+            std::cerr << __FUNCTION__
+                      << ": Verify basket params failed: invalid basket"
+                      << " item." << std::endl;
+
+            return false;
+        }
+    }
+
+    for (auto& subcurrency : itemMap) {
+        if (subcurrency.second > 1) {
+            std::cerr << __FUNCTION__
+                      << ": Verify basket params failed: duplicate basket"
+                      << " item." << std::endl;
+
             return false;
         }
     }

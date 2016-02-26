@@ -76,21 +76,21 @@ bool CheckProto_1(
     encryptKey = serializedKeyCred.key(KEYROLE_ENCRYPT - 1);
     signKey = serializedKeyCred.key(KEYROLE_SIGN - 1);
 
-    validAuthKey = Check<AsymmetricKey>(
+    validAuthKey = Check(
         authKey,
         KeyCredentialAllowedAsymmetricKey.at(serializedKeyCred.version()).first,
         KeyCredentialAllowedAsymmetricKey.at(serializedKeyCred.version()).second,
         credType,
         mode,
         KEYROLE_AUTH);
-    validEncryptKey = Check<AsymmetricKey>(
+    validEncryptKey = Check(
         encryptKey,
         KeyCredentialAllowedAsymmetricKey.at(serializedKeyCred.version()).first,
         KeyCredentialAllowedAsymmetricKey.at(serializedKeyCred.version()).second,
         credType,
         mode,
         KEYROLE_ENCRYPT);
-    validSignKey = Check<AsymmetricKey>(
+    validSignKey = Check(
         signKey,
         KeyCredentialAllowedAsymmetricKey.at(serializedKeyCred.version()).first,
         KeyCredentialAllowedAsymmetricKey.at(serializedKeyCred.version()).second,

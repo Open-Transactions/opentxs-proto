@@ -60,9 +60,11 @@
 #endif
 
 #include "opentxs-proto/Verify.hpp"
+#include "opentxs-proto/verify/CurrencyParams.hpp"
 #include "opentxs-proto/verify/ListenAddress.hpp"
-#include "opentxs-proto/verify/VerifyCredentials.hpp"
 #include "opentxs-proto/verify/ServerContract.hpp"
+#include "opentxs-proto/verify/UnitDefinition.hpp"
+#include "opentxs-proto/verify/VerifyCredentials.hpp"
 
 namespace opentxs { namespace proto
 {
@@ -74,7 +76,27 @@ namespace opentxs { namespace proto
         {
             { 1, {1, 1}},
         };
-    static const VersionMap ServerContractAllowedSignatures =
+    static const VersionMap ServerContractAllowedSignature =
+        {
+            { 1, {1, 1}},
+        };
+    static const VersionMap UnitDefinitionAllowedPublicNym =
+        {
+            { 1, {1, 1}},
+        };
+    static const VersionMap UnitDefinitionAllowedCurrencyParams =
+        {
+            { 1, {1, 1}},
+        };
+    static const VersionMap UnitDefinitionAllowedBasketParams =
+        {
+            { 1, {1, 1}},
+        };
+    static const VersionMap UnitDefinitionAllowedSignature =
+        {
+            { 1, {1, 1}},
+        };
+    static const VersionMap BasketParamsAllowedBasketItem =
         {
             { 1, {1, 1}},
         };

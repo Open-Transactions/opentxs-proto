@@ -68,7 +68,7 @@ bool CheckProto_1(
 
             sourcePubkey = serializedNymIDSource.key();
 
-            validSourcePubkey = Check<AsymmetricKey>(
+            validSourcePubkey = Check(
                 sourcePubkey,
                 NymIDSourceAllowedAsymmetricKey.at(serializedNymIDSource.version()).first,
                 NymIDSourceAllowedAsymmetricKey.at(serializedNymIDSource.version()).second,
@@ -91,7 +91,7 @@ bool CheckProto_1(
                 std::cerr << "Verify serialized nym source failed: bip47 source includes public key." << std::endl;
                 return false;
             }
-            validPaymentCode = Check<PaymentCode>(
+            validPaymentCode = Check(
                 serializedNymIDSource.paymentcode(),
                 NymIDSourceAllowedPaymentCode.at(serializedNymIDSource.version()).first,
                 NymIDSourceAllowedPaymentCode.at(serializedNymIDSource.version()).second);

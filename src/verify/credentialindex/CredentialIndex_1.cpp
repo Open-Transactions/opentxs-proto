@@ -64,7 +64,7 @@ bool CheckProto_1(
         return false;
     }
 
-    validSource = Check<NymIDSource>(
+    validSource = Check(
         serializedCredIndex.source(),
         CredentialIndexAllowedNymIDSource.at(serializedCredIndex.version()).first,
         CredentialIndexAllowedNymIDSource.at(serializedCredIndex.version()).second);
@@ -75,7 +75,7 @@ bool CheckProto_1(
     }
 
     for (auto& it: serializedCredIndex.activecredentials()) {
-        if (!Check<CredentialSet>(
+        if (!Check(
                 it,
                 CredentialIndexAllowedCredentialSets.at(serializedCredIndex.version()).first,
                 CredentialIndexAllowedCredentialSets.at(serializedCredIndex.version()).second,
@@ -86,7 +86,7 @@ bool CheckProto_1(
     }
 
     for (auto& it: serializedCredIndex.revokedcredentials()) {
-        if (!Check<CredentialSet>(
+        if (!Check(
                 it,
                 CredentialIndexAllowedCredentialSets.at(serializedCredIndex.version()).first,
                 CredentialIndexAllowedCredentialSets.at(serializedCredIndex.version()).second,

@@ -47,7 +47,7 @@ bool CheckProto_1(
     const VerificationSet& verificationSet)
 {
     if (verificationSet.has_internal()) {
-        bool validInternal = Check<VerificationGroup>(
+        bool validInternal = Check(
             verificationSet.internal(),
             VerificationSetAllowedGroup.at(verificationSet.version()).first,
             VerificationSetAllowedGroup.at(verificationSet.version()).second);
@@ -58,7 +58,7 @@ bool CheckProto_1(
         }
     }
     if (verificationSet.has_external()) {
-        bool validExternal = Check<VerificationGroup>(
+        bool validExternal = Check(
             verificationSet.external(),
             VerificationSetAllowedGroup.at(verificationSet.version()).first,
             VerificationSetAllowedGroup.at(verificationSet.version()).second);

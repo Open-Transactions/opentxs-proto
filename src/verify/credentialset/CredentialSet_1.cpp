@@ -120,7 +120,7 @@ bool CheckProto_1(
                 return false;
             }
 
-            if (!Check<Credential>(serializedCredSet.mastercredential(), 0, 0xFFFFFFFF, CREDROLE_MASTERKEY, true)) {
+            if (!Check(serializedCredSet.mastercredential(), 0, 0xFFFFFFFF, CREDROLE_MASTERKEY, true)) {
                 std::cerr << "Verify serialized credential set failed: invalid master credential." << std::endl;
                 return false;
             }
@@ -144,7 +144,7 @@ bool CheckProto_1(
             }
 
             for (auto& it: serializedCredSet.activechildren()) {
-                if (!Check<Credential>(it, 0, 0xFFFFFFFF, CREDROLE_ERROR, true)) {
+                if (!Check(it, 0, 0xFFFFFFFF, CREDROLE_ERROR, true)) {
                     std::cerr << "Verify serialized credential set failed: invalid active child credential." << std::endl;
                     return false;
                 }
@@ -155,7 +155,7 @@ bool CheckProto_1(
             }
 
             for (auto& it: serializedCredSet.revokedchildren()) {
-                if (!Check<Credential>(it, 0, 0xFFFFFFFF, CREDROLE_ERROR, true)) {
+                if (!Check(it, 0, 0xFFFFFFFF, CREDROLE_ERROR, true)) {
                     std::cerr << "Verify serialized credential set failed: invalid revoked child credential." << std::endl;
                     return false;
                 }

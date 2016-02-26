@@ -60,7 +60,7 @@ bool CheckProto_1(
     }
 
     for (auto& it: contactSection.item()) {
-        bool validItem = Check<ContactItem>(
+        bool validItem = Check(
             it,
             ContactSectionAllowedItem.at(contactSection.version()).first,
             ContactSectionAllowedItem.at(contactSection.version()).second,

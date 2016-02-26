@@ -10,6 +10,7 @@ enum SignatureRole {
     SIGROLE_NYMIDSOURCE = 3;
     SIGROLE_CLAIM = 4;
     SIGROLE_SERVERCONTRACT = 5;
+    SIGROLE_UNITDEFINITION = 6;
 }
 
 enum CredentialType {
@@ -84,5 +85,6 @@ enum AddressType {
 enum UnitType {
     UNITTYPE_ERROR = 0;
     UNITTYPE_CURRENCY = 1;
-    UNITTYPE_EQUITY = 2;
+    UNITTYPE_SECURITY = 2;
+    UNITTYPE_BASKET = 3;
 }

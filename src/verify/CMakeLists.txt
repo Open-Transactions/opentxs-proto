@@ -3,11 +3,14 @@ include_directories("${CMAKE_SOURCE_DIR}/include")
 set(cxx-sources
   VerifyContacts.cpp
   asymmetrickey/AsymmetricKey_1.cpp
+  basketitem/BasketItem_1.cpp
+  basketparams/BasketParams_1.cpp
   childcredentialparameters/ChildCredentialParameters_1.cpp
   claim/Claim_1.cpp
   contactdata/ContactData_1.cpp
   contactitem/ContactItem_1.cpp
   contactsection/ContactSection_1.cpp
+  currencyparams/CurrencyParams_1.cpp
   credential/Credential_1.cpp
   credentialindex/CredentialIndex_1.cpp
   credentialset/CredentialSet_1.cpp
@@ -28,6 +31,7 @@ set(cxx-sources
   storageroot/StorageRoot_1.cpp
   storageservers/StorageServers_1.cpp
   storageunits/StorageUnits_1.cpp
+  unitdefinition/UnitDefinition_1.cpp
   verification/Verification_1.cpp
   verificationgroup/VerificationGroup_1.cpp
   verificationidentity/VerificationIdentity_1.cpp

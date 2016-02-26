@@ -3,12 +3,10 @@ syntax = "proto2";
 package opentxs.proto;
 option optimize_for = LITE_RUNTIME;
 
-import public "BasketItem.proto";
-import public "Signature.proto";
-
-message BasketParams
+message BasketItem
 {
     optional uint32 version = 1;
     optional uint64 weight = 2;
-    repeated BasketItem item = 3;
+    optional string unit = 3;
+    optional string account = 4;
 }

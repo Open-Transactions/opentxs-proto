@@ -50,7 +50,7 @@ bool CheckProto_1(
     bool validSource = false;
     bool validProof = false;
 
-    validSource = Check<NymIDSource>(
+    validSource = Check(
         serializedMasterParams.source(),
         MasterParamsAllowedNymIDSource.at(serializedMasterParams.version()).first,
         MasterParamsAllowedNymIDSource.at(serializedMasterParams.version()).second);
@@ -65,7 +65,7 @@ bool CheckProto_1(
         return false;
     }
 
-    validProof = Check<SourceProof>(
+    validProof = Check(
         serializedMasterParams.sourceproof(),
         MasterParamsAllowedSourceProof.at(serializedMasterParams.version()).first,
         MasterParamsAllowedSourceProof.at(serializedMasterParams.version()).second,

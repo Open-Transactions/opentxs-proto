@@ -47,7 +47,7 @@ bool CheckProto_1(
     const VerificationGroup& verificationGroup)
 {
     for (auto& it : verificationGroup.identity()) {
-        bool validIdentity = Check<VerificationIdentity>(
+        bool validIdentity = Check(
             it,
             VerificationGroupAllowedIdentity.at(verificationGroup.version()).first,
             VerificationGroupAllowedIdentity.at(verificationGroup.version()).second);

@@ -36,30 +36,21 @@
  *
  ************************************************************/
 
-#include "opentxs-proto/verify/StorageCredentials.hpp"
+#ifndef OPENTXS_PROTO_BASKETITEM_HPP
+#define OPENTXS_PROTO_BASKETITEM_HPP
 
-#include <iostream>
+#include <map>
+
+#include "opentxs-proto/verify/VerifyContracts.hpp"
 
 namespace opentxs { namespace proto
 {
+    typedef std::map<std::string, uint64_t> BasketItemMap;
 
-bool CheckProto_1(
-    const StorageCredentials& creds)
-{
-    for (auto& hash: creds.cred()) {
-        bool valid = Check(
-            hash,
-            StorageCredentialAllowedHash.at(creds.version()).first,
-            StorageCredentialAllowedHash.at(creds.version()).second);
-
-        if (!valid) {
-            std::cerr << "Verify serialized credential storage index failed: invalid hash." << std::endl;
-            return false;
-        }
-    }
-
-    return true;
-}
-
+    bool CheckProto_1(
+        const BasketItem& item,
+        BasketItemMap& map);
 } // namespace proto
 } // namespace opentxs
+
+#endif // OPENTXS_PROTO_BASKETITEM_HPP

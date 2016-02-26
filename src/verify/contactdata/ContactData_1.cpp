@@ -49,7 +49,7 @@ bool CheckProto_1(
     std::map <ContactSectionName, uint32_t> sectionCount;
 
     for (auto& it: contactData.section()) {
-        bool validSection = Check<ContactSection>(
+        bool validSection = Check(
             it,
             ContactDataAllowedSection.at(contactData.version()).first,
             ContactDataAllowedSection.at(contactData.version()).second,

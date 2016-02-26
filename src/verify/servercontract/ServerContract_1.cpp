@@ -69,7 +69,7 @@ bool CheckProto_1(
     }
 
     if (contract.has_publicnym()) {
-        if (!Check<CredentialIndex>(contract.publicnym(), 0, 0xFFFFFFFF)) {
+        if (!Check(contract.publicnym(), 0, 0xFFFFFFFF)) {
                 std::cerr << "Verify serialized server contract failed: invalid public nym" << std::endl;
                 return false;
         }
@@ -81,7 +81,7 @@ bool CheckProto_1(
         return false;
     }
 
-    if (!Check<ListenAddress>(
+    if (!Check(
         contract.address(0),
         ServerContractAllowedListenAddress.at(contract.version()).first,
         ServerContractAllowedListenAddress.at(contract.version()).second)) {
@@ -104,20 +104,13 @@ bool CheckProto_1(
         return false;
     }
 
-    uint32_t notUsed;
-
-    if (!Check<Signature>(
+    if (!Check(
         contract.signature(),
-        ServerContractAllowedListenAddress.at(contract.version()).first,
-        ServerContractAllowedListenAddress.at(contract.version()).second,
-        "",
-        "",
-        notUsed,
-        notUsed,
-        notUsed,
-        notUsed,
+        ServerContractAllowedSignature.at(contract.version()).first,
+        ServerContractAllowedSignature.at(contract.version()).second,
         SIGROLE_SERVERCONTRACT)) {
-            std::cerr << "Verify serialized server contract failed: invalid signature" << std::endl;
+            std::cerr << "Verify serialized server contract failed: invalid"
+                      << " signature" << std::endl;
             return false;
     }
 

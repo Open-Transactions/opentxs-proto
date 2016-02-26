@@ -47,7 +47,7 @@ bool CheckProto_1(
     const StorageNym& nym)
 {
     if (nym.has_credlist()) {
-        bool validCredlist = Check<StorageItemHash>(
+        bool validCredlist = Check(
             nym.credlist(),
             StorageNymAllowedHash.at(nym.version()).first,
             StorageNymAllowedHash.at(nym.version()).second);

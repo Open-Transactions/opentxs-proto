@@ -11,7 +11,7 @@
  *       -- Cheques, Vouchers, Transfers, Inboxes.
  *       -- Basket Currencies, Markets, Payment Plans.
  *       -- Signed, XML, Ricardian-style Contracts.
- *       -- Scripted smart contracts.
+ *       -- Scripted smart items.
  *
  *  EMAIL:
  *  fellowtraveler@opentransactions.org
@@ -36,26 +36,57 @@
  *
  ************************************************************/
 
-#include "opentxs-proto/verify/StorageCredentials.hpp"
-
 #include <iostream>
 
-namespace opentxs { namespace proto
+#include "opentxs-proto/verify/BasketItem.hpp"
+
+ namespace opentxs { namespace proto
 {
 
 bool CheckProto_1(
-    const StorageCredentials& creds)
+    const BasketItem& item,
+    BasketItemMap& map)
 {
-    for (auto& hash: creds.cred()) {
-        bool valid = Check(
-            hash,
-            StorageCredentialAllowedHash.at(creds.version()).first,
-            StorageCredentialAllowedHash.at(creds.version()).second);
+    if (!item.has_weight()) {
+        std::cerr << __FUNCTION__
+                  << ": Verify basket item failed: missing weight."
+                  << std::endl;
 
-        if (!valid) {
-            std::cerr << "Verify serialized credential storage index failed: invalid hash." << std::endl;
-            return false;
-        }
+        return false;
+    }
+
+    if (!item.has_unit()) {
+        std::cerr << __FUNCTION__
+                  << ": Verify basket item failed: missing unit."
+                  << std::endl;
+
+        return false;
+    }
+
+    if (MIN_PLAUSIBLE_IDENTIFIER > item.unit().size()) {
+        std::cerr << __FUNCTION__
+                  << ": Verify basket item failed: invalid unit ("
+                  << item.unit() << ")." << std::endl;
+
+        return false;
+    }
+
+    map[item.unit()] += 1;
+
+    if (!item.has_account()) {
+        std::cerr << __FUNCTION__
+                  << ": Verify basket item failed: missing account."
+                  << std::endl;
+
+        return false;
+    }
+
+    if (MIN_PLAUSIBLE_IDENTIFIER > item.account().size()) {
+        std::cerr << __FUNCTION__
+                  << ": Verify basket item failed: invalid account ("
+                  << item.account() << ")." << std::endl;
+
+        return false;
     }
 
     return true;

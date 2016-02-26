@@ -11,7 +11,7 @@
  *       -- Cheques, Vouchers, Transfers, Inboxes.
  *       -- Basket Currencies, Markets, Payment Plans.
  *       -- Signed, XML, Ricardian-style Contracts.
- *       -- Scripted smart contracts.
+ *       -- Scripted smart paramss.
  *
  *  EMAIL:
  *  fellowtraveler@opentransactions.org
@@ -36,37 +36,62 @@
  *
  ************************************************************/
 
-#include "opentxs-proto/verify/VerificationIdentity.hpp"
+#include "opentxs-proto/verify/CurrencyParams.hpp"
 
 #include <iostream>
 
-namespace opentxs { namespace proto
+ namespace opentxs { namespace proto
 {
 
-bool CheckProto_1(const VerificationIdentity& verificationIdentity)
+bool CheckProto_1(
+    const CurrencyParams& params)
 {
-    if (!verificationIdentity.has_nym()) {
-        std::cerr << "Verify serialized verification identity failed: missing nym."
-        << std::endl;
+    if (!params.has_tla()) {
+        std::cerr << __FUNCTION__
+                  << ": Verify currency params failed: missing TLA."
+                  << std::endl;
+
         return false;
     }
 
-    if (MIN_PLAUSIBLE_IDENTIFIER > verificationIdentity.nym().size()) {
-        std::cerr << "Verify serialized verification identity failed: invalid nym ("
-        << verificationIdentity.nym() << ")." << std::endl;
+    if (3 != params.tla().size()) {
+        std::cerr << __FUNCTION__
+                  << ": Verify currency params failed: invalid TLA ("
+                  << params.tla() << ")." << std::endl;
+
         return false;
     }
 
-    for (auto& it : verificationIdentity.verification()) {
-        bool verification = Check(
-            it,
-            VerificationIdentityAllowedVerification.at(verificationIdentity.version()).first,
-            VerificationIdentityAllowedVerification.at(verificationIdentity.version()).second);
+    if (!params.has_fraction()) {
+        std::cerr << __FUNCTION__
+                  << ": Verify currency params failed: missing fraction."
+                  << std::endl;
 
-        if (!verification) {
-            std::cerr << "Verify serialized verification identity failed: invalid verification." << std::endl;
-            return false;
-        }
+        return false;
+    }
+
+    if (1 > params.fraction().size()) {
+        std::cerr << __FUNCTION__
+                  << ": Verify currency params failed: invalid fraction ("
+                  << params.fraction() << ")." << std::endl;
+
+        return false;
+    }
+
+    if (!params.has_factor()) {
+        std::cerr << __FUNCTION__
+                  << ": Verify currency params failed: missing factor."
+                  << std::endl;
+
+        return false;
+    }
+
+    if (!params.has_power()) {
+        std::cerr << __FUNCTION__
+                  << ": Verify currency params failed: missing power."
+                  << std::endl;
+
+        return false;
     }
 
     return true;
