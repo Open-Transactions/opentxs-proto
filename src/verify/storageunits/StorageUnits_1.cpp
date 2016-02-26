@@ -47,7 +47,7 @@ bool CheckProto_1(
     const StorageUnits& Units)
 {
     for (auto& hash: Units.unit()) {
-        bool valid = Check<StorageItemHash>(
+        bool valid = Check(
             hash,
             StorageUnitsAllowedHash.at(Units.version()).first,
             StorageUnitsAllowedHash.at(Units.version()).second);

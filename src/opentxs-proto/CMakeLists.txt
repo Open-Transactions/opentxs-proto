@@ -6,6 +6,7 @@ PROTOBUF_GENERATE_CPP(
     PROTO_SRC PROTO_HEADER
     AsymmetricKey.proto
     BasketParams.proto
+    BasketItem.proto
     ChildCredentialParameters.proto
     Claim.proto
     ContactData.proto

@@ -58,7 +58,7 @@ bool CheckProto_1(
         return false;
     }
 
-    if (serializedSignature.role() > proto::SIGROLE_SERVERCONTRACT) {
+    if (serializedSignature.role() > proto::SIGROLE_UNITDEFINITION) {
         std::cerr << "Verify serialized signature failed: invalid role ("
         << serializedSignature.role() << ")." << std::endl;
         return false;
@@ -124,6 +124,23 @@ bool CheckProto_1(
     }
 
     return true;
+}
+
+bool CheckProto_1(
+    const Signature& serializedSignature,
+    const SignatureRole role)
+{
+    uint32_t unused = 0;
+
+    return CheckProto_1(
+        serializedSignature,
+        "",
+        "",
+        unused,
+        unused,
+        unused,
+        unused,
+        role);
 }
 
 } // namespace proto

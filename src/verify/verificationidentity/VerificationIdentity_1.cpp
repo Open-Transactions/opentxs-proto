@@ -58,7 +58,7 @@ bool CheckProto_1(const VerificationIdentity& verificationIdentity)
     }
 
     for (auto& it : verificationIdentity.verification()) {
-        bool verification = Check<Verification>(
+        bool verification = Check(
             it,
             VerificationIdentityAllowedVerification.at(verificationIdentity.version()).first,
             VerificationIdentityAllowedVerification.at(verificationIdentity.version()).second);

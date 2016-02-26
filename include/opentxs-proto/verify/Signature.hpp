@@ -53,6 +53,10 @@ namespace opentxs { namespace proto
         uint32_t& sourcePublic,
         const SignatureRole role = SIGROLE_ERROR);
 
+    bool CheckProto_1(
+        const Signature& serializedSignature,
+        const SignatureRole role = SIGROLE_ERROR);
+
 } // namespace proto
 } // namespace opentxs
 

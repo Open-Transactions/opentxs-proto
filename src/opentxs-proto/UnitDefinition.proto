@@ -15,12 +15,13 @@ message UnitDefinition {
     optional string id = 2;
     optional string nymid = 3;
     optional CredentialIndex publicNym = 4;
-    optional string terms = 5;
-    optional UnitType type = 6;
+    optional string shortName = 5;
+    optional string terms = 6;
     optional string name = 7;
     optional string symbol = 8;
-    optional BasketParams basket = 9;
+    optional UnitType type = 9;
     optional CurrencyParams currency = 10;
-    optional EquityParams equityParams = 11;
+    optional EquityParams security = 11;
+    optional BasketParams basket = 12;
     optional Signature signature = 15;
 }

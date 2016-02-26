@@ -47,7 +47,7 @@ bool CheckProto_1(
     const StorageCredentials& creds)
 {
     for (auto& hash: creds.cred()) {
-        bool valid = Check<StorageItemHash>(
+        bool valid = Check(
             hash,
             StorageCredentialAllowedHash.at(creds.version()).first,
             StorageCredentialAllowedHash.at(creds.version()).second);

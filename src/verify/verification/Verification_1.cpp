@@ -89,18 +89,10 @@ bool CheckProto_1(const Verification& verification)
         return false;
     }
 
-    uint32_t dummy;
-
-    bool validSignature = Check<Signature>(
+    bool validSignature = Check(
         verification.sig(),
         VerificationAllowedSignature.at(verification.version()).first,
         VerificationAllowedSignature.at(verification.version()).second,
-        "",
-        "",
-        dummy,
-        dummy,
-        dummy,
-        dummy,
         proto::SIGROLE_CLAIM);
 
     if (!validSignature) {

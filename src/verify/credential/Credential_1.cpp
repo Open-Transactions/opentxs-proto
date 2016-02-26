@@ -162,7 +162,7 @@ bool CheckProto_1(
             return false;
         }
 
-        validChildData = Check<ChildCredentialParameters>(
+        validChildData = Check(
             serializedCred.childdata(),
             CredentialAllowedChildParams.at(serializedCred.version()).first,
             CredentialAllowedChildParams.at(serializedCred.version()).second);
@@ -179,7 +179,7 @@ bool CheckProto_1(
             return false;
         }
 
-        validMasterData = Check<MasterCredentialParameters>(
+        validMasterData = Check(
             serializedCred.masterdata(),
             CredentialAllowedMasterParams.at(serializedCred.version()).first,
             CredentialAllowedChildParams.at(serializedCred.version()).second,
@@ -247,7 +247,7 @@ bool CheckProto_1(
             return false;
         }
 
-        validContactData = Check<ContactData>(
+        validContactData = Check(
             serializedCred.contactdata(),
             CredentialAllowedContactData.at(serializedCred.version()).first,
             CredentialAllowedContactData.at(serializedCred.version()).second);
@@ -269,7 +269,7 @@ bool CheckProto_1(
             return false;
         }
 
-        bool validVerificationSet = Check<VerificationSet>(
+        bool validVerificationSet = Check(
             serializedCred.verification(),
             CredentialAllowedVerification.at(serializedCred.version()).first,
             CredentialAllowedVerification.at(serializedCred.version()).second);
@@ -281,7 +281,7 @@ bool CheckProto_1(
     }
 
     if (keyCredential) {
-        validPublicData = Check<KeyCredential>(
+        validPublicData = Check(
                 serializedCred.publiccredential(),
                 CredentialAllowedKeyCredentials.at(serializedCred.version()).first,
                 CredentialAllowedKeyCredentials.at(serializedCred.version()).second,
@@ -294,7 +294,7 @@ bool CheckProto_1(
         }
 
         if (isPrivate) {
-            validPrivateData = Check<KeyCredential>(
+            validPrivateData = Check(
                 serializedCred.privatecredential(),
                 CredentialAllowedKeyCredentials.at(serializedCred.version()).first,
                 CredentialAllowedKeyCredentials.at(serializedCred.version()).second,
@@ -323,7 +323,7 @@ bool CheckProto_1(
         uint32_t sourcePublicCount = 0;
 
         for (auto& it: serializedCred.signature()) {
-            bool validSig = Check<Signature>(
+            bool validSig = Check(
                 it,
                 CredentialAllowedSignatures.at(serializedCred.version()).first,
                 CredentialAllowedSignatures.at(serializedCred.version()).second,
