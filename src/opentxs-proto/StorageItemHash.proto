@@ -7,4 +7,5 @@ message StorageItemHash {
     optional uint32 version = 1;
     optional string itemID = 2;
     optional string hash = 3;
+    optional string alias = 4;
 }
