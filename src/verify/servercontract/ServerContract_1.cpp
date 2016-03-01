@@ -62,6 +62,17 @@ bool CheckProto_1(
         return false;
     }
 
+    if (!contract.has_name()) {
+        std::cerr << "Verify serialized server contract failed: missing name." << std::endl;
+        return false;
+    }
+
+    if (1 > contract.name().size()) {
+        std::cerr << "Verify serialized server contract failed: invalid name ("
+        << contract.name() << ")." << std::endl;
+        return false;
+    }
+
     if (MIN_PLAUSIBLE_IDENTIFIER > contract.nymid().size()) {
         std::cerr << "Verify serialized server contract failed: invalid nym identifier ("
         << contract.nymid() << ")." << std::endl;

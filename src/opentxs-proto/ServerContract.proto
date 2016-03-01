@@ -12,9 +12,10 @@ message ServerContract {
     optional uint32 version = 1;
     optional string id = 2;
     optional string nymid = 3;
-    optional CredentialIndex publicNym = 4;
-    repeated ListenAddress address = 5;
-    optional string terms = 6;
-    optional bytes transportKey = 7;
-    optional Signature signature = 8;
+    optional string name = 4;
+    optional CredentialIndex publicNym = 5;
+    repeated ListenAddress address = 6;
+    optional string terms = 7;
+    optional bytes transportKey = 8;
+    optional Signature signature = 9;
 }
