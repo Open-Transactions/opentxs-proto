@@ -90,7 +90,8 @@ namespace opentxs { namespace proto
                 CONTACTSECTION_URL,
                 CONTACTSECTION_ACCOMPLISHMENTS,
                 CONTACTSECTION_OPENTXS,
-                CONTACTSECTION_RELATIONSHIPS
+                CONTACTSECTION_RELATIONSHIPS,
+                CONTACTSECTION_FINGERPRINTS
             }
         },
     };
@@ -165,6 +166,14 @@ namespace opentxs { namespace proto
                 CITEMTYPE_MET,
                 CITEMTYPE_ALIAS
             }
+        },
+        {
+            {1, CONTACTSECTION_FINGERPRINTS},
+            {
+                CITEMTYPE_PGP,
+                CITEMTYPE_OTR,
+                CITEMTYPE_SSL
+            }
         }
     };
     static const ItemAttributeMap AllowedItemAttributes =
@@ -188,7 +197,8 @@ namespace opentxs { namespace proto
         {{CONTACTSECTION_URL, "en"}, "URL"},
         {{CONTACTSECTION_ACCOMPLISHMENTS, "en"}, "Accomplishments"},
         {{CONTACTSECTION_OPENTXS, "en"}, "OT"},
-        {{CONTACTSECTION_RELATIONSHIPS, "en"}, "Relationships"}
+        {{CONTACTSECTION_RELATIONSHIPS, "en"}, "Relationships"},
+        {{CONTACTSECTION_FINGERPRINTS, "en"}, "Fingerprints"}
     };
     static const EnumTranslation ContactItemTypes =
     {
@@ -205,7 +215,10 @@ namespace opentxs { namespace proto
         {{CITEMTYPE_EMPLOYER, "en"}, "Employer of"},
         {{CITEMTYPE_EMPLOYEE, "en"}, "Employee of"},
         {{CITEMTYPE_MET, "en"}, "Have met"},
-        {{CITEMTYPE_ALIAS, "en"}, "Alias of"}
+        {{CITEMTYPE_ALIAS, "en"}, "Alias of"},
+        {{CITEMTYPE_PGP, "en"}, "PGP key"},
+        {{CITEMTYPE_OTR, "en"}, "OTR key"},
+        {{CITEMTYPE_SSL, "en"}, "SSL certificate"}
     };
     static const EnumTranslation ContactItemAttributes =
     {

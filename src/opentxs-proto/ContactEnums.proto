@@ -14,6 +14,7 @@ enum ContactSectionName {
     CONTACTSECTION_ACCOMPLISHMENTS = 7;
     CONTACTSECTION_OPENTXS = 8;
     CONTACTSECTION_RELATIONSHIPS = 9;
+    CONTACTSECTION_FINGERPRINTS = 10;
 }
 
 enum ContactItemType {
@@ -32,6 +33,9 @@ enum ContactItemType {
     CITEMTYPE_EMPLOYEE = 12;
     CITEMTYPE_MET = 13;
     CITEMTYPE_ALIAS = 14;
+    CITEMTYPE_PGP = 15;
+    CITEMTYPE_OTR = 16;
+    CITEMTYPE_SSL = 17;
 }
 
 enum ContactItemAttribute {
