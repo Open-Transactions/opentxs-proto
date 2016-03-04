@@ -77,6 +77,9 @@ namespace opentxs { namespace proto
     typedef std::pair<uint32_t, std::string> EnumLang;
     typedef std::map<EnumLang, std::string> EnumTranslation;
 
+    // A map for storing relationship reciprocities
+    typedef std::map<ContactItemType, ContactItemType> RelationshipReciprocity;
+
     static const ContactSectionMap AllowedSectionNames =
     {
         {
@@ -224,6 +227,16 @@ namespace opentxs { namespace proto
     {
         {{CITEMATTR_ACTIVE, "en"}, "Active"},
         {{CITEMATTR_PRIMARY, "en"}, "Primary"}
+    };
+    static const RelationshipReciprocity RelationshipMap =
+    {
+        {CITEMTYPE_PARENT, CITEMTYPE_CHILD},
+        {CITEMTYPE_CHILD, CITEMTYPE_PARENT},
+        {CITEMTYPE_SIBLING, CITEMTYPE_SIBLING},
+        {CITEMTYPE_EMPLOYER, CITEMTYPE_EMPLOYEE},
+        {CITEMTYPE_EMPLOYEE, CITEMTYPE_EMPLOYER},
+        {CITEMTYPE_MET, CITEMTYPE_MET},
+        {CITEMTYPE_ALIAS, CITEMTYPE_ALIAS}
     };
 } // namespace proto
 } // namespace opentxs

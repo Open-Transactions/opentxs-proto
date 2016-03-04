@@ -112,9 +112,16 @@ namespace opentxs { namespace proto
         const uint32_t version,
         const ContactItemAttribute attribute);
 
-    std::string TranslateSectionName(uint32_t enumValue, std::string lang = "en");
-    std::string TranslateItemType(uint32_t enumValue, std::string lang = "en");
-    std::string TranslateItemAttributes(uint32_t enumValue, std::string lang = "en");
+    std::string TranslateSectionName(
+        const uint32_t enumValue,
+        const std::string& lang = "en");
+    std::string TranslateItemType(
+        const uint32_t enumValue,
+        const std::string& lang = "en");
+    std::string TranslateItemAttributes(
+        const uint32_t enumValue,
+        const std::string& lang = "en");
+    uint32_t ReciprocalRelationship(const uint32_t relationship);
 
 } // namespace proto
 } // namespace opentxs

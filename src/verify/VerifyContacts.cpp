@@ -65,7 +65,9 @@ bool ValidContactItemAttribute(
     return (std::find(allowedAttributes.begin(), allowedAttributes.end(), attribute) != allowedAttributes.end());
 }
 
-std::string TranslateSectionName(uint32_t enumValue, std::string lang)
+std::string TranslateSectionName(
+    const uint32_t enumValue,
+    const std::string& lang)
 {
     EnumLang langPair{enumValue, lang};
 
@@ -77,7 +79,9 @@ std::string TranslateSectionName(uint32_t enumValue, std::string lang)
 
     return "";
 }
-std::string TranslateItemType(uint32_t enumValue, std::string lang)
+std::string TranslateItemType(
+    const uint32_t enumValue,
+    const std::string& lang)
 {
     EnumLang langPair{enumValue, lang};
 
@@ -89,7 +93,9 @@ std::string TranslateItemType(uint32_t enumValue, std::string lang)
 
     return "";
 }
-std::string TranslateItemAttributes(uint32_t enumValue, std::string lang)
+std::string TranslateItemAttributes(
+    const uint32_t enumValue,
+    const std::string& lang)
 {
     EnumLang langPair{enumValue, lang};
 
@@ -100,6 +106,19 @@ std::string TranslateItemAttributes(uint32_t enumValue, std::string lang)
     }
 
     return "";
+}
+
+uint32_t ReciprocalRelationship(const uint32_t relationship)
+{
+    auto input = static_cast<ContactItemType>(relationship);
+
+    bool found = (RelationshipMap.find(input) != RelationshipMap.end());
+
+    if (found) {
+        return RelationshipMap.at(input);
+    }
+
+    return CITEMTYPE_ERROR;
 }
 
 } // namespace proto
