@@ -127,6 +127,18 @@ bool CheckProto_1(
                     << serializedAsymmetricKey.chaincode() << ")." << std::endl;
                     return false;
                 }
+                if (!serializedAsymmetricKey.has_path()) {
+                    std::cerr << "Verify serialized asymmetric key failed: Missing path." << std::endl;
+                    return false;
+                }
+                bool validPath = Check(
+                    serializedAsymmetricKey.path(),
+                    AsymmetricKeyAllowedHDPath.at(serializedAsymmetricKey.version()).first,
+                    AsymmetricKeyAllowedHDPath.at(serializedAsymmetricKey.version()).second);
+                if (!validPath) {
+                    std::cerr << "Verify serialized asymmetric key failed: Invalid path." << std::endl;
+                    return false;
+                }
             }
 
             break;
