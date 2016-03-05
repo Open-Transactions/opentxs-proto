@@ -20,6 +20,7 @@ set(cxx-sources
   mastercredentialparameters/MasterCredentialParameters_1.cpp
   nymidsource/NymIDSource_1.cpp
   paymentcode/PaymentCode_1.cpp
+  seed/Seed_1.cpp
   servercontract/ServerContract_1.cpp
   signature/Signature_1.cpp
   sourceproof/SourceProof_1.cpp

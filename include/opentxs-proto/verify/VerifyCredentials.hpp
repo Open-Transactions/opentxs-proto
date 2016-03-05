@@ -54,6 +54,7 @@
 #include "opentxs-proto/Enums.pb.h"
 #include "opentxs-proto/Credential.pb.h"
 #include "opentxs-proto/CredentialIndex.pb.h"
+#include "opentxs-proto/Seed.pb.h"
 #ifdef _WIN32
 #pragma warning(pop)
 #else
@@ -71,6 +72,7 @@
 #include "opentxs-proto/verify/MasterCredentialParameters.hpp"
 #include "opentxs-proto/verify/NymIDSource.hpp"
 #include "opentxs-proto/verify/PaymentCode.hpp"
+#include "opentxs-proto/verify/Seed.hpp"
 #include "opentxs-proto/verify/Signature.hpp"
 #include "opentxs-proto/verify/SourceProof.hpp"
 

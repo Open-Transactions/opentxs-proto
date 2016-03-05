@@ -25,6 +25,7 @@ PROTOBUF_GENERATE_CPP(
     MasterCredentialParameters.proto
     NymIDSource.proto
     PaymentCode.proto
+    Seed.proto
     ServerContract.proto
     Signature.proto
     SourceProof.proto
