@@ -30,6 +30,7 @@ set(cxx-sources
   storagenym/StorageNym_1.cpp
   storagenymlist/StorageNymList_1.cpp
   storageroot/StorageRoot_1.cpp
+  storageseeds/StorageSeeds_1.cpp
   storageservers/StorageServers_1.cpp
   storageunits/StorageUnits_1.cpp
   unitdefinition/UnitDefinition_1.cpp
