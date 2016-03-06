@@ -7,4 +7,5 @@ message Seed {
     optional uint32 version = 1;
     optional string words = 2;
     optional string passphrase = 3;
+    optional string fingerprint = 4;
 }

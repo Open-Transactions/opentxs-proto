@@ -49,9 +49,16 @@ namespace opentxs { namespace proto
         std::cerr << "Verify serialized seed failed: missing words." << std::endl;
         return false;
     }
-
     if (MIN_PLAUSIBLE_IDENTIFIER > seed.words().size()) {
         std::cerr << "Verify serialized seed failed: invalid words." << std::endl;
+        return false;
+    }
+    if (!seed.has_fingerprint()) {
+        std::cerr << "Verify serialized seed failed: missing fingerprint." << std::endl;
+        return false;
+    }
+    if (MIN_PLAUSIBLE_IDENTIFIER > seed.fingerprint().size()) {
+        std::cerr << "Verify serialized seed failed: invalid fingerprint." << std::endl;
         return false;
     }
 
