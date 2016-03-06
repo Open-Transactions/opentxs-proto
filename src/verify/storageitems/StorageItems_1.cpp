@@ -70,6 +70,12 @@ bool CheckProto_1(
             return false;
         }
     }
+    if (items.has_seeds()) {
+        if (MIN_PLAUSIBLE_IDENTIFIER > items.seeds().size()) {
+            std::cerr << "Verify serialized storage item index failed: invalid seed list." << std::endl;
+            return false;
+        }
+    }
 
     return true;
 }

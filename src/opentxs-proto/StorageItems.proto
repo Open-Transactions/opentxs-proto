@@ -9,4 +9,5 @@ message StorageItems {
     optional string nyms = 3;
     optional string servers = 4;
     optional string units = 5;
+    optional string seeds = 6;
 }
