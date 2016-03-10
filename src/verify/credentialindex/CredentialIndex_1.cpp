@@ -96,6 +96,19 @@ bool CheckProto_1(
         }
     }
 
+    if (!serializedCredIndex.has_revision()) {
+        std::cerr << "Verify serialized credential index failed: missing revision." << std::endl;
+        return false;
+    }
+
+    if (1 > serializedCredIndex.revision()) {
+        std::cerr << "Verify serialized credential index failed: invalid"
+                  << " revision (" << serializedCredIndex.revision() << ")."
+                  << std::endl;
+        return false;
+    }
+
+
     return true;
 }
 
