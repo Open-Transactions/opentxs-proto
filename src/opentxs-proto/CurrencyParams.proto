@@ -7,7 +7,6 @@ message CurrencyParams
 {
     optional uint32 version = 1;
     optional string TLA = 2;
-    optional uint32 factor = 3;
-    optional uint32 power = 4;
-    optional string fraction = 5;
+    optional uint32 power = 3;
+    optional string fraction = 4;
 }

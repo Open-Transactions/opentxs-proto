@@ -78,14 +78,6 @@ bool CheckProto_1(
         return false;
     }
 
-    if (!params.has_factor()) {
-        std::cerr << __FUNCTION__
-                  << ": Verify currency params failed: missing factor."
-                  << std::endl;
-
-        return false;
-    }
-
     if (!params.has_power()) {
         std::cerr << __FUNCTION__
                   << ": Verify currency params failed: missing power."
