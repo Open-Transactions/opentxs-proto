@@ -76,15 +76,3 @@ enum CredentialSetMode {
     CREDSETMODE_INDEX = 1;
     CREDSETMODE_FULL = 2;
 }
-
-enum AddressType {
-    ADDRESSTYPE_ERROR = 0;
-    ADDRESSTYPE_IPV4 = 1;
-}
-
-enum UnitType {
-    UNITTYPE_ERROR = 0;
-    UNITTYPE_CURRENCY = 1;
-    UNITTYPE_SECURITY = 2;
-    UNITTYPE_BASKET = 3;
-}

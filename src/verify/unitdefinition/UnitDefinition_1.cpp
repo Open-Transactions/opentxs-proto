@@ -36,11 +36,13 @@
  *
  ************************************************************/
 
+#include "opentxs-proto/verify/UnitDefinition.hpp"
+
 #include <iostream>
 
 #include "opentxs-proto/verify/BasketParams.hpp"
 #include "opentxs-proto/verify/CurrencyParams.hpp"
-#include "opentxs-proto/verify/UnitDefinition.hpp"
+#include "opentxs-proto/verify/EquityParams.hpp"
 
 
  namespace opentxs { namespace proto
@@ -208,6 +210,19 @@ bool CheckProto_1(
                 std::cerr << __FUNCTION__
                 << ": Verify unit definition failed: missing"
                 << " security params." << std::endl;
+
+                return false;
+            }
+
+            goodParams = Check(
+                contract.security(),
+                UnitDefinitionAllowedSecurityParams.at(contract.version()).first,
+                UnitDefinitionAllowedSecurityParams.at(contract.version()).second);
+
+            if (!goodParams) {
+                std::cerr << __FUNCTION__
+                        << ": Verify unit definition failed: invalid security"
+                        << " params." << std::endl;
 
                 return false;
             }

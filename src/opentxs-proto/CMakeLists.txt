@@ -13,6 +13,7 @@ PROTOBUF_GENERATE_CPP(
     ContactEnums.proto
     ContactItem.proto
     ContactSection.proto
+    ContractEnums.proto
     Credential.proto
     CredentialIndex.proto
     CredentialSet.proto

@@ -3,9 +3,11 @@ syntax = "proto2";
 package opentxs.proto;
 option optimize_for = LITE_RUNTIME;
 
+import public "ContractEnums.proto";
+
 message EquityParams
 {
     optional uint32 version = 1;
-    optional string type = 2;
+    optional EquityType type = 2;
     optional string issueDate = 3;
 }

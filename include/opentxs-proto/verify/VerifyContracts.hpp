@@ -92,6 +92,10 @@ namespace opentxs { namespace proto
         {
             { 1, {1, 1}},
         };
+    static const VersionMap UnitDefinitionAllowedSecurityParams =
+        {
+            { 1, {1, 1}},
+        };
     static const VersionMap UnitDefinitionAllowedSignature =
         {
             { 1, {1, 1}},

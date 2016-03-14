@@ -4,9 +4,9 @@ package opentxs.proto;
 option optimize_for = LITE_RUNTIME;
 
 import public "BasketParams.proto";
+import public "ContractEnums.proto";
 import public "CredentialIndex.proto";
 import public "CurrencyParams.proto";
-import public "Enums.proto";
 import public "EquityParams.proto";
 import public "Signature.proto";
 

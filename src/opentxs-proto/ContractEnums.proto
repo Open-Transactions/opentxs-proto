@@ -1,0 +1,28 @@
+syntax = "proto2";
+
+package opentxs.proto;
+option optimize_for = LITE_RUNTIME;
+
+enum AddressType {
+    ADDRESSTYPE_ERROR = 0;
+    ADDRESSTYPE_IPV4 = 1;
+}
+
+enum UnitType {
+    UNITTYPE_ERROR = 0;
+    UNITTYPE_CURRENCY = 1;
+    UNITTYPE_SECURITY = 2;
+    UNITTYPE_BASKET = 3;
+}
+
+enum ConsensusType {
+    CONSENSUSTYPE_ERROR = 0;
+    CONSENSUSTYPE_SERVER = 1;
+    CONSENSUSTYPE_CLIENT = 2;
+    CONSENSUSTYPE_PEER = 3;
+}
+
+enum EquityType {
+    EQUITYTYPE_ERROR = 0;
+    EQUITYTYPE_SHARES = 1;
+}
