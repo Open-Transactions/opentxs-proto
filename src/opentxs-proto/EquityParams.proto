@@ -9,5 +9,4 @@ message EquityParams
 {
     optional uint32 version = 1;
     optional EquityType type = 2;
-    optional string issueDate = 3;
 }
