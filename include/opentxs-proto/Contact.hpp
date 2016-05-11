@@ -86,13 +86,10 @@ namespace opentxs { namespace proto
             1,
             {
                 CONTACTSECTION_NAME,
-                CONTACTSECTION_EMAIL,
-                CONTACTSECTION_PHONE,
-                CONTACTSECTION_BITMESSAGE,
+                CONTACTSECTION_MESSAGING,
                 CONTACTSECTION_PROFILE,
                 CONTACTSECTION_URL,
                 CONTACTSECTION_ACCOMPLISHMENTS,
-                CONTACTSECTION_OPENTXS,
                 CONTACTSECTION_RELATIONSHIPS,
                 CONTACTSECTION_FINGERPRINTS
             }
@@ -105,28 +102,16 @@ namespace opentxs { namespace proto
             {
                 CITEMTYPE_PERSONAL,
                 CITEMTYPE_BUSINESS,
-                CITEMTYPE_NICKNAME,
+                CITEMTYPE_NICKNAME
             }
         },
         {
-            {1, CONTACTSECTION_EMAIL},
+            {1, CONTACTSECTION_MESSAGING},
             {
-                CITEMTYPE_PERSONAL,
-                CITEMTYPE_BUSINESS
-            }
-        },
-        {
-            {1, CONTACTSECTION_PHONE},
-            {
-                CITEMTYPE_PERSONAL,
-                CITEMTYPE_BUSINESS
-            }
-        },
-        {
-            {1, CONTACTSECTION_BITMESSAGE},
-            {
-                CITEMTYPE_PERSONAL,
-                CITEMTYPE_BUSINESS
+                CITEMTYPE_EMAIL,
+                CITEMTYPE_PHONE,
+                CITEMTYPE_BITMESSAGE,
+                CITEMTYPE_OPENTXS
             }
         },
         {
@@ -149,13 +134,6 @@ namespace opentxs { namespace proto
             {
                 CITEMTYPE_PERSONAL,
                 CITEMTYPE_PROFESSIONAL
-            }
-        },
-        {
-            {1, CONTACTSECTION_OPENTXS},
-            {
-                CITEMTYPE_PERSONAL,
-                CITEMTYPE_BUSINESS
             }
         },
         {
@@ -193,13 +171,10 @@ namespace opentxs { namespace proto
     static const EnumTranslation ContactSectionNames =
     {
         {{CONTACTSECTION_NAME, "en"}, "Names"},
-        {{CONTACTSECTION_EMAIL, "en"}, "Email"},
-        {{CONTACTSECTION_PHONE, "en"}, "Phone"},
-        {{CONTACTSECTION_BITMESSAGE, "en"}, "Bitmessage"},
+        {{CONTACTSECTION_MESSAGING, "en"}, "Messaging"},
         {{CONTACTSECTION_PROFILE, "en"}, "Profile"},
         {{CONTACTSECTION_URL, "en"}, "URL"},
         {{CONTACTSECTION_ACCOMPLISHMENTS, "en"}, "Accomplishments"},
-        {{CONTACTSECTION_OPENTXS, "en"}, "OT"},
         {{CONTACTSECTION_RELATIONSHIPS, "en"}, "Relationships"},
         {{CONTACTSECTION_FINGERPRINTS, "en"}, "Fingerprints"}
     };
@@ -208,6 +183,10 @@ namespace opentxs { namespace proto
         {{CITEMTYPE_PERSONAL, "en"}, "Personal"},
         {{CITEMTYPE_BUSINESS, "en"}, "Business"},
         {{CITEMTYPE_NICKNAME, "en"}, "Nickname"},
+        {{CITEMTYPE_EMAIL, "en"}, "Email"},
+        {{CITEMTYPE_PHONE, "en"}, "Phone"},
+        {{CITEMTYPE_BITMESSAGE, "en"}, "Bitmessage"},
+        {{CITEMTYPE_OPENTXS, "en"}, "OT"},
         {{CITEMTYPE_FACEBOOK, "en"}, "Facebook"},
         {{CITEMTYPE_TWITTER, "en"}, "Twitter"},
         {{CITEMTYPE_GOOGLE, "en"}, "Google"},
