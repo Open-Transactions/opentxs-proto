@@ -69,6 +69,10 @@ namespace opentxs { namespace proto
     typedef bool ClaimType;
     static const ClaimType CLAIMS_INDEXED = true;
     static const ClaimType CLAIMS_NORMAL = false;
+
+    typedef bool VerificationType;
+    static const VerificationType VERIFICATIONS_INDEXED = true;
+    static const VerificationType VERIFICATIONS_NORMAL = false;
 }
 }
 

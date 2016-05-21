@@ -49,7 +49,8 @@ namespace opentxs { namespace proto
 
     bool CheckProto_1(
         const VerificationIdentity& verificationIdentity,
-        VerificationNymMap& map);
+        VerificationNymMap& map,
+        const VerificationType indexed);
 
 } // namespace proto
 } // namespace opentxs

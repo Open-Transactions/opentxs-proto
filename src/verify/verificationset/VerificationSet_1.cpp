@@ -44,13 +44,15 @@ namespace opentxs { namespace proto
 {
 
 bool CheckProto_1(
-    const VerificationSet& verificationSet)
+    const VerificationSet& verificationSet,
+    const VerificationType indexed)
 {
     if (verificationSet.has_internal()) {
         bool validInternal = Check(
             verificationSet.internal(),
             VerificationSetAllowedGroup.at(verificationSet.version()).first,
-            VerificationSetAllowedGroup.at(verificationSet.version()).second);
+            VerificationSetAllowedGroup.at(verificationSet.version()).second,
+            indexed);
 
         if (!validInternal) {
             std::cerr << "Verify serialized verification set failed: invalid internal group." << std::endl;
@@ -61,7 +63,8 @@ bool CheckProto_1(
         bool validExternal = Check(
             verificationSet.external(),
             VerificationSetAllowedGroup.at(verificationSet.version()).first,
-            VerificationSetAllowedGroup.at(verificationSet.version()).second);
+            VerificationSetAllowedGroup.at(verificationSet.version()).second,
+            indexed);
 
         if (!validExternal) {
             std::cerr << "Verify serialized verification set failed: invalid external group." << std::endl;

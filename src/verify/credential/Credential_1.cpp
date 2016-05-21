@@ -273,7 +273,8 @@ bool CheckProto_1(
         bool validVerificationSet = Check(
             serializedCred.verification(),
             CredentialAllowedVerification.at(serializedCred.version()).first,
-            CredentialAllowedVerification.at(serializedCred.version()).second);
+            CredentialAllowedVerification.at(serializedCred.version()).second,
+            VERIFICATIONS_NORMAL);
 
         if (!validVerificationSet) {
             std::cerr << "Verify serialized credential failed: invalid verification data." << std::endl;

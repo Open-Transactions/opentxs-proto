@@ -7,10 +7,11 @@ import public "Signature.proto";
 
 message Verification {
     optional uint32 version = 1;
-    optional string claim = 2;
-    optional bool valid = 3;
-    optional sint64 start = 4;
-    optional sint64 end = 5;
-    optional Signature sig = 6;
+    optional string id = 2;
+    optional string claim = 3;
+    optional bool valid = 4;
+    optional sint64 start = 5;
+    optional sint64 end = 6;
+    optional Signature sig = 7;
     optional bool retracted = 15;
 }

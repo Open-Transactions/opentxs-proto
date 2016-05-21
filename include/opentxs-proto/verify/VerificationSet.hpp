@@ -43,7 +43,9 @@
 
 namespace opentxs { namespace proto
 {
-    bool CheckProto_1(const VerificationSet& verificationSet);
+    bool CheckProto_1(
+        const VerificationSet& verificationSet,
+        const VerificationType indexed);
 
 } // namespace proto
 } // namespace opentxs

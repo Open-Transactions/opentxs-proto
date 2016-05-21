@@ -46,7 +46,8 @@ namespace opentxs { namespace proto
 {
 
 bool CheckProto_1(
-    const VerificationGroup& verificationGroup)
+    const VerificationGroup& verificationGroup,
+    const VerificationType indexed)
 {
     VerificationNymMap nymMap;
 
@@ -55,7 +56,8 @@ bool CheckProto_1(
             it,
             VerificationGroupAllowedIdentity.at(verificationGroup.version()).first,
             VerificationGroupAllowedIdentity.at(verificationGroup.version()).second,
-            nymMap);
+            nymMap,
+            indexed);
 
         if (!validIdentity) {
             std::cerr << "Verify serialized verification group failed:"

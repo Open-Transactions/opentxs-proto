@@ -45,8 +45,30 @@
 namespace opentxs { namespace proto
 {
 
-bool CheckProto_1(const Verification& verification)
+bool CheckProto_1(
+    const Verification& verification,
+    const VerificationType indexed)
 {
+    if (indexed) {
+        if (!verification.has_id()) {
+            std::cerr << "Verify serialized verification failed: missing ID."
+                      << std::endl;
+            return false;
+        }
+
+        if (MIN_PLAUSIBLE_IDENTIFIER > verification.id().size()) {
+            std::cerr << "Verify serialized verification failed: invalid ID."
+                      << std::endl;
+            return false;
+        }
+    } else {
+        if (verification.has_id()) {
+            std::cerr << "Verify serialized verification failed: ID field not "
+                      << "empty." << std::endl;
+            return false;
+        }
+    }
+
     if (!verification.has_claim()) {
         std::cerr << "Verify serialized verification failed: missing claim."
         << std::endl;
