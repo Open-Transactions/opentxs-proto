@@ -44,7 +44,8 @@ namespace opentxs { namespace proto
 {
 
 bool CheckProto_1(
-    const ContactData& contactData)
+    const ContactData& contactData,
+    const ClaimType indexed)
 {
     std::map <ContactSectionName, uint32_t> sectionCount;
 
@@ -53,6 +54,7 @@ bool CheckProto_1(
             it,
             ContactDataAllowedSection.at(contactData.version()).first,
             ContactDataAllowedSection.at(contactData.version()).second,
+            indexed,
             contactData.version());
 
         if (!validSection) {

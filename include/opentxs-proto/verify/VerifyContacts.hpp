@@ -64,6 +64,14 @@
 #pragma GCC diagnostic pop
 #endif
 
+namespace opentxs { namespace proto
+{
+    typedef bool ClaimType;
+    static const ClaimType CLAIMS_INDEXED = true;
+    static const ClaimType CLAIMS_NORMAL = false;
+}
+}
+
 #include "opentxs-proto/Contact.hpp"
 #include "opentxs-proto/Verify.hpp"
 #include "opentxs-proto/verify/Claim.hpp"

@@ -45,6 +45,7 @@ namespace opentxs { namespace proto
 {
     bool CheckProto_1(
         const ContactItem& contactItem,
+        const ClaimType indexed,
         const ContactSectionVersion parentVersion);
 
 } // namespace proto

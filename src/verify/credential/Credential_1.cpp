@@ -250,7 +250,8 @@ bool CheckProto_1(
         validContactData = Check(
             serializedCred.contactdata(),
             CredentialAllowedContactData.at(serializedCred.version()).first,
-            CredentialAllowedContactData.at(serializedCred.version()).second);
+            CredentialAllowedContactData.at(serializedCred.version()).second,
+            CLAIMS_NORMAL);
 
         if (!validContactData) {
             std::cerr << "Verify serialized credential failed: invalid contact data." << std::endl;

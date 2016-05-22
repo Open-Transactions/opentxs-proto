@@ -44,7 +44,8 @@
 namespace opentxs { namespace proto
 {
     bool CheckProto_1(
-        const ContactData& contactData);
+        const ContactData& contactData,
+        const ClaimType indexed);
 
 } // namespace proto
 } // namespace opentxs

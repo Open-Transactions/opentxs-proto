@@ -45,8 +45,28 @@ namespace opentxs { namespace proto
 
 bool CheckProto_1(
     const ContactItem& contactItem,
+    const ClaimType indexed,
     const ContactSectionVersion parentVersion)
 {
+    if (indexed) {
+        if (!contactItem.has_id()) {
+            std::cerr << "Verify serialized contact item failed: missing id."
+                      << std::endl;
+            return false;
+        }
+        if (MIN_PLAUSIBLE_IDENTIFIER < contactItem.id().size()) {
+            std::cerr << "Verify serialized contact item failed: invalid id."
+                      << std::endl;
+            return false;
+        }
+    } else {
+        if (contactItem.has_id()) {
+            std::cerr << "Verify serialized contact item failed: id not blank."
+                      << std::endl;
+            return false;
+        }
+    }
+
     if (!contactItem.has_type()) {
         std::cerr << "Verify serialized contact item failed: missing type." << std::endl;
         return false;

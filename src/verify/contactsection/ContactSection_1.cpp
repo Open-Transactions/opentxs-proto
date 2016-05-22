@@ -47,6 +47,7 @@ namespace opentxs { namespace proto
 
 bool CheckProto_1(
     const ContactSection& contactSection,
+    const ClaimType indexed,
     const uint32_t parentVersion)
 {
     if (!contactSection.has_name()) {
@@ -64,6 +65,7 @@ bool CheckProto_1(
             it,
             ContactSectionAllowedItem.at(contactSection.version()).first,
             ContactSectionAllowedItem.at(contactSection.version()).second,
+            indexed,
             ContactSectionVersion{contactSection.version(), contactSection.name()});
 
         if (!validItem) {
