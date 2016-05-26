@@ -76,6 +76,11 @@ bool CheckProto_1(
         return false;
     }
 
+    if (65535 < address.port()) {
+        std::cerr << "Verify serialized listen address failed: invalid port" << std::endl;
+        return false;
+    }
+
     return true;
 }
 

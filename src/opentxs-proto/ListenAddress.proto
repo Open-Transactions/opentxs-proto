@@ -10,5 +10,5 @@ message ListenAddress {
     optional AddressType type = 2;
     optional ProtocolVersion protocol = 3;
     optional string host = 4;
-    optional string port = 5;
+    optional uint32 port = 5;
 }
