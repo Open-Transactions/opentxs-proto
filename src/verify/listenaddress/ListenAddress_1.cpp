@@ -51,8 +51,18 @@ bool CheckProto_1(
         return false;
     }
 
-    if ((ADDRESSTYPE_ERROR == address.type()) || (ADDRESSTYPE_IPV4 < address.type())) {
+    if ((ADDRESSTYPE_ERROR == address.type()) || (ADDRESSTYPE_ONION < address.type())) {
         std::cerr << "Verify serialized listen address failed: invalid type" << std::endl;
+        return false;
+    }
+
+    if (!address.has_protocol()) {
+        std::cerr << "Verify serialized listen address failed: missing protocol" << std::endl;
+        return false;
+    }
+
+    if ((PROTOCOLVERSION_ERROR == address.protocol()) || (PROTOCOLVERSION_NOTIFY < address.protocol())) {
+        std::cerr << "Verify serialized listen address failed: invalid protocol" << std::endl;
         return false;
     }
 

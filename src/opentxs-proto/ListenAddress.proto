@@ -8,6 +8,7 @@ import public "ContractEnums.proto";
 message ListenAddress {
     optional uint32 version = 1;
     optional AddressType type = 2;
-    optional string host = 3;
-    optional string port = 4;
+    optional ProtocolVersion protocol = 3;
+    optional string host = 4;
+    optional string port = 5;
 }

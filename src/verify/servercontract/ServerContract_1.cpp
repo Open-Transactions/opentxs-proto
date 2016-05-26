@@ -86,9 +86,9 @@ bool CheckProto_1(
         }
     }
 
-    if (1 !=contract.address().size()) {
-        std::cerr << "Verify serialized server contract failed: wrong number of addresses ("
-        << contract.address().size() << ") of 1 found." << std::endl;
+    if (0 == contract.address().size()) {
+        std::cerr << "Verify serialized server contract failed: no listen "
+                  << "addresses found." << std::endl;
         return false;
     }
 
