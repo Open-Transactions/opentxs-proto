@@ -103,7 +103,9 @@ namespace opentxs { namespace proto
             {
                 CITEMTYPE_PERSONAL,
                 CITEMTYPE_BUSINESS,
-                CITEMTYPE_NICKNAME
+                CITEMTYPE_NICKNAME,
+                CITEMTYPE_SERVICE,
+                CITEMTYPE_ORGANIZATION
             }
         },
         {

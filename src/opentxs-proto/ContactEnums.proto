@@ -39,6 +39,8 @@ enum ContactItemType {
     CITEMTYPE_OTR = 20;
     CITEMTYPE_SSL = 21;
     CITEMTYPE_BITCOIN = 22;
+    CITEMTYPE_SERVICE = 23;
+    CITEMTYPE_ORGANIZATION = 24;
 }
 
 enum ContactItemAttribute {
