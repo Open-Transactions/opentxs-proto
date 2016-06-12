@@ -39,7 +39,7 @@
 #ifndef OPENTXS_PROTO_LISTENADDRESS_HPP
 #define OPENTXS_PROTO_LISTENADDRESS_HPP
 
-#include "opentxs-proto/verify/VerifyContracts.hpp"
+#include "VerifyContracts.hpp"
 
 namespace opentxs { namespace proto
 {

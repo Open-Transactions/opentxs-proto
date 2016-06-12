@@ -39,7 +39,7 @@
 #ifndef OPENTXS_PROTO_CHILDCREDENTIALPARAMETERS_HPP
 #define OPENTXS_PROTO_CHILDCREDENTIALPARAMETERS_HPP
 
-#include "opentxs-proto/verify/VerifyCredentials.hpp"
+#include "VerifyCredentials.hpp"
 
 namespace opentxs { namespace proto
 {

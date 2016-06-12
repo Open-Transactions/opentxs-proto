@@ -51,6 +51,7 @@
 #pragma GCC diagnostic ignored "-Wuseless-cast"
 #endif
 #endif
+// IWYU pragma: begin_exports
 #include "opentxs-proto/StorageCredentials.pb.h"
 #include "opentxs-proto/StorageItems.pb.h"
 #include "opentxs-proto/StorageNym.pb.h"
@@ -59,12 +60,14 @@
 #include "opentxs-proto/StorageSeeds.pb.h"
 #include "opentxs-proto/StorageServers.pb.h"
 #include "opentxs-proto/StorageUnits.pb.h"
+// IWYU pragma: end_exports
 #ifdef _WIN32
 #pragma warning(pop)
 #else
 #pragma GCC diagnostic pop
 #endif
 
+// IWYU pragma: begin_exports
 #include "opentxs-proto/Verify.hpp"
 #include "opentxs-proto/verify/StorageCredentials.hpp"
 #include "opentxs-proto/verify/StorageItemHash.hpp"
@@ -75,6 +78,7 @@
 #include "opentxs-proto/verify/StorageSeeds.hpp"
 #include "opentxs-proto/verify/StorageServers.hpp"
 #include "opentxs-proto/verify/StorageUnits.hpp"
+// IWYU pragma: end_exports
 
 namespace opentxs { namespace proto
 {

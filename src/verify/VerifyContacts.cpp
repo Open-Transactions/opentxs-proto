@@ -41,7 +41,7 @@
 namespace opentxs { namespace proto
 {
 bool ValidContactSectionName(
-    const uint32_t version,
+    const std::uint32_t version,
     const ContactSectionName name)
 {
     std::set<ContactSectionName> allowedNames = AllowedSectionNames.at(version);
@@ -57,7 +57,7 @@ bool ValidContactItemType(
     return (std::find(allowedTypes.begin(), allowedTypes.end(), itemType) != allowedTypes.end());
 }
 bool ValidContactItemAttribute(
-    const uint32_t version,
+    const std::uint32_t version,
     const ContactItemAttribute attribute)
 {
     std::set<ContactItemAttribute> allowedAttributes = AllowedItemAttributes.at(version);
@@ -66,7 +66,7 @@ bool ValidContactItemAttribute(
 }
 
 std::string TranslateSectionName(
-    const uint32_t enumValue,
+    const std::uint32_t enumValue,
     const std::string& lang)
 {
     EnumLang langPair{enumValue, lang};
@@ -80,7 +80,7 @@ std::string TranslateSectionName(
     return "";
 }
 std::string TranslateItemType(
-    const uint32_t enumValue,
+    const std::uint32_t enumValue,
     const std::string& lang)
 {
     EnumLang langPair{enumValue, lang};
@@ -94,7 +94,7 @@ std::string TranslateItemType(
     return "";
 }
 std::string TranslateItemAttributes(
-    const uint32_t enumValue,
+    const std::uint32_t enumValue,
     const std::string& lang)
 {
     EnumLang langPair{enumValue, lang};
@@ -108,7 +108,7 @@ std::string TranslateItemAttributes(
     return "";
 }
 
-uint32_t ReciprocalRelationship(const uint32_t relationship)
+std::uint32_t ReciprocalRelationship(const std::uint32_t relationship)
 {
     auto input = static_cast<ContactItemType>(relationship);
 

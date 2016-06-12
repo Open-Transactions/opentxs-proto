@@ -51,20 +51,24 @@
 #pragma GCC diagnostic ignored "-Wuseless-cast"
 #endif
 #endif
+// IWYU pragma: begin_exports
 #include "opentxs-proto/ServerContract.pb.h"
 #include "opentxs-proto/UnitDefinition.pb.h"
+// IWYU pragma: end_exports
 #ifdef _WIN32
 #pragma warning(pop)
 #else
 #pragma GCC diagnostic pop
 #endif
 
+// IWYU pragma: begin_exports
 #include "opentxs-proto/Verify.hpp"
 #include "opentxs-proto/verify/CurrencyParams.hpp"
 #include "opentxs-proto/verify/ListenAddress.hpp"
 #include "opentxs-proto/verify/ServerContract.hpp"
 #include "opentxs-proto/verify/UnitDefinition.hpp"
 #include "opentxs-proto/verify/VerifyCredentials.hpp"
+// IWYU pragma: end_exports
 
 namespace opentxs { namespace proto
 {

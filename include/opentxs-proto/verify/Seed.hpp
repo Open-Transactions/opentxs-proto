@@ -39,7 +39,7 @@
 #ifndef OPENTXS_PROTO_SEED_HPP
 #define OPENTXS_PROTO_SEED_HPP
 
-#include "opentxs-proto/verify/VerifyCredentials.hpp"
+#include "VerifyCredentials.hpp"
 
 namespace opentxs { namespace proto
 {

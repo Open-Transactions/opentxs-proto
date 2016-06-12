@@ -40,6 +40,8 @@
 #define OPENTXS_PROTO_VERIFYCONTACTS_HPP
 
 #include <algorithm>
+#include <cstdint>
+#include <string>
 #include <utility>
 
 #ifdef _WIN32
@@ -54,10 +56,12 @@
 #pragma GCC diagnostic ignored "-Wuseless-cast"
 #endif
 #endif
+// IWYU pragma: begin_exports
 #include "opentxs-proto/Claim.pb.h"
 #include "opentxs-proto/ContactData.pb.h"
 #include "opentxs-proto/ContactEnums.pb.h"
 #include "opentxs-proto/VerificationSet.pb.h"
+// IWYU pragma: end_exports
 #ifdef _WIN32
 #pragma warning(pop)
 #else
@@ -76,6 +80,7 @@ namespace opentxs { namespace proto
 }
 }
 
+// IWYU pragma: begin_exports
 #include "opentxs-proto/Contact.hpp"
 #include "opentxs-proto/Verify.hpp"
 #include "opentxs-proto/verify/Claim.hpp"
@@ -86,6 +91,7 @@ namespace opentxs { namespace proto
 #include "opentxs-proto/verify/VerificationGroup.hpp"
 #include "opentxs-proto/verify/VerificationIdentity.hpp"
 #include "opentxs-proto/verify/VerificationSet.hpp"
+// IWYU pragma: end_exports
 
 namespace opentxs { namespace proto
 {
@@ -115,25 +121,25 @@ namespace opentxs { namespace proto
         };
 
     bool ValidContactSectionName(
-        const uint32_t version,
+        const std::uint32_t version,
         const ContactSectionName name);
     bool ValidContactItemType(
         const ContactSectionVersion version,
         const ContactItemType itemType);
     bool ValidContactItemAttribute(
-        const uint32_t version,
+        const std::uint32_t version,
         const ContactItemAttribute attribute);
 
     std::string TranslateSectionName(
-        const uint32_t enumValue,
+        const std::uint32_t enumValue,
         const std::string& lang = "en");
     std::string TranslateItemType(
-        const uint32_t enumValue,
+        const std::uint32_t enumValue,
         const std::string& lang = "en");
     std::string TranslateItemAttributes(
-        const uint32_t enumValue,
+        const std::uint32_t enumValue,
         const std::string& lang = "en");
-    uint32_t ReciprocalRelationship(const uint32_t relationship);
+    std::uint32_t ReciprocalRelationship(const std::uint32_t relationship);
 
 } // namespace proto
 } // namespace opentxs

@@ -39,7 +39,7 @@
 #ifndef OPENTXS_PROTO_STORAGENYM_HPP
 #define OPENTXS_PROTO_STORAGENYM_HPP
 
-#include "opentxs-proto/verify/VerifyStorage.hpp"
+#include "VerifyStorage.hpp"
 
 namespace opentxs { namespace proto
 {

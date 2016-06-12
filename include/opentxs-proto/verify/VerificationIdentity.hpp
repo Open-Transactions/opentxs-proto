@@ -41,7 +41,7 @@
 
 #include <map>
 
-#include "opentxs-proto/verify/VerifyContacts.hpp"
+#include "VerifyContacts.hpp"
 
 namespace opentxs { namespace proto
 {

@@ -39,7 +39,7 @@
 #ifndef OPENTXS_PROTO_CONTACTSECTION_HPP
 #define OPENTXS_PROTO_CONTACTSECTION_HPP
 
-#include "opentxs-proto/verify/VerifyContacts.hpp"
+#include "VerifyContacts.hpp"
 
 namespace opentxs { namespace proto
 {

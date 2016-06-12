@@ -41,7 +41,7 @@
 
 #include <map>
 
-#include "opentxs-proto/verify/VerifyContracts.hpp"
+#include "VerifyContracts.hpp"
 
 namespace opentxs { namespace proto
 {

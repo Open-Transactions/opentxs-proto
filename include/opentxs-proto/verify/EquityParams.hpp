@@ -39,7 +39,7 @@
 #ifndef OPENTXS_PROTO_EQUITYPARAMS_HPP
 #define OPENTXS_PROTO_EQUITYPARAMS_HPP
 
-#include "opentxs-proto/verify/VerifyContracts.hpp"
+#include "VerifyContracts.hpp"
 
 namespace opentxs { namespace proto
 {

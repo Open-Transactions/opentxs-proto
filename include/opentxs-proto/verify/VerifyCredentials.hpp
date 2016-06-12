@@ -51,16 +51,19 @@
 #pragma GCC diagnostic ignored "-Wuseless-cast"
 #endif
 #endif
+// IWYU pragma: begin_exports
 #include "opentxs-proto/Enums.pb.h"
 #include "opentxs-proto/Credential.pb.h"
 #include "opentxs-proto/CredentialIndex.pb.h"
 #include "opentxs-proto/Seed.pb.h"
+// IWYU pragma: end_exports
 #ifdef _WIN32
 #pragma warning(pop)
 #else
 #pragma GCC diagnostic pop
 #endif
 
+// IWYU pragma: begin_exports
 #include "opentxs-proto/Verify.hpp"
 #include "opentxs-proto/verify/AsymmetricKey.hpp"
 #include "opentxs-proto/verify/ChildCredentialParameters.hpp"
@@ -75,6 +78,7 @@
 #include "opentxs-proto/verify/Seed.hpp"
 #include "opentxs-proto/verify/Signature.hpp"
 #include "opentxs-proto/verify/SourceProof.hpp"
+// IWYU pragma: end_exports
 
 namespace opentxs { namespace proto
 {
