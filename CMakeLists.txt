@@ -30,6 +30,7 @@ option(BUILD_VERBOSE       "Verbose build output." ON)
 option(USE_CCACHE          "Use ccache." OFF)
 
 option(BUILD_SHARED_LIBS   "Build shared libraries." ON)
+option(JAVASCRIPT          "Build with Javascript binding" ON)
 option(PYTHON              "Build with Python binding" ON)
 
 set(PACKAGE_CONTACT        ""                             CACHE <TYPE>  "Package Maintainer")
