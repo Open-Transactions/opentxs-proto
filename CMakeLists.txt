@@ -30,12 +30,20 @@ option(BUILD_VERBOSE       "Verbose build output." ON)
 option(USE_CCACHE          "Use ccache." OFF)
 
 option(BUILD_SHARED_LIBS   "Build shared libraries." ON)
+option(PYTHON              "Build with Python binding" ON)
 
 set(PACKAGE_CONTACT        ""                             CACHE <TYPE>  "Package Maintainer")
 set(PACKAGE_VENDOR         "Open Transactions Developers" CACHE <TYPE>  "Package Vendor")
 
 if(BUILD_VERBOSE)
   set(CMAKE_VERBOSE_MAKEFILE true)
+endif()
+
+#-----------------------------------------------------------------------------
+# Python
+
+if (PYTHON)
+  cmake_minimum_required(VERSION 3.4 FATAL_ERROR)
 endif()
 
 #-----------------------------------------------------------------------------
