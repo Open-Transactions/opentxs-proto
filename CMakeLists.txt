@@ -30,6 +30,7 @@ option(BUILD_VERBOSE       "Verbose build output." ON)
 option(USE_CCACHE          "Use ccache." OFF)
 
 option(BUILD_SHARED_LIBS   "Build shared libraries." ON)
+option(JAVA                "Build with Java binding" OFF)
 option(JAVASCRIPT          "Build with Javascript binding" ON)
 option(PYTHON              "Build with Python binding" ON)
 
@@ -102,6 +103,11 @@ message(STATUS "C++ Compiler ID: ${CMAKE_CXX_COMPILER_ID}")
 message(STATUS "C++ Flags:       ${CMAKE_CXX_FLAGS}")
 message(STATUS "C++ link flags:  ${CMAKE_CXX_LINK_FLAGS}")
 message(STATUS "Package version:  ${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_BUGFIX}")
+
+message(STATUS "Bindings ------------------------------------")
+message(STATUS "Java binding:           ${JAVA}")
+message(STATUS "Javascript binding:     ${JAVASCRIPT}")
+message(STATUS "Python binding:         ${PYTHON}")
 
 #-----------------------------------------------------------------------------
 # Third party libraries

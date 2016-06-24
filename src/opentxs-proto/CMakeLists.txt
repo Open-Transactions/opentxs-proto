@@ -113,3 +113,22 @@ if (JAVASCRIPT)
 
     install(DIRECTORY ${WRAPPER_DIR} DESTINATION share/opentxs-proto )
 endif()
+
+if (JAVA)
+    include(ExternalProject)
+
+    set(WRAPPER_TYPE java)
+    set(WRAPPER_DIR ${CMAKE_CURRENT_BINARY_DIR}/${WRAPPER_TYPE})
+
+    ExternalProject_Add(
+        proto-${WRAPPER_TYPE}
+        EXCLUDE_FROM_ALL 0
+        DOWNLOAD_COMMAND mkdir -p ${WRAPPER_DIR}
+        CONFIGURE_COMMAND true
+        BINARY_DIR ${CMAKE_CURRENT_BINARY_DIR}
+        BUILD_COMMAND protoc --proto_path=${CMAKE_CURRENT_SOURCE_DIR} --${WRAPPER_TYPE}_out=${WRAPPER_DIR} ${PROTO_SOURCES}
+        BUILD_ALWAYS 1
+        INSTALL_COMMAND true)
+
+    install(DIRECTORY ${WRAPPER_DIR} DESTINATION share/opentxs-proto )
+endif()
