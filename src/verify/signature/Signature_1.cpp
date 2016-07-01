@@ -58,7 +58,7 @@ bool CheckProto_1(
         return false;
     }
 
-    if (serializedSignature.role() > proto::SIGROLE_UNITDEFINITION) {
+    if (serializedSignature.role() > proto::SIGROLE_PEERREPLY) {
         std::cerr << "Verify serialized signature failed: invalid role ("
         << serializedSignature.role() << ")." << std::endl;
         return false;

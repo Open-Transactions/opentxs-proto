@@ -11,6 +11,8 @@ enum SignatureRole {
     SIGROLE_CLAIM = 4;
     SIGROLE_SERVERCONTRACT = 5;
     SIGROLE_UNITDEFINITION = 6;
+    SIGROLE_PEERREQUEST = 7;
+    SIGROLE_PEERREPLY = 8;
 }
 
 enum CredentialType {

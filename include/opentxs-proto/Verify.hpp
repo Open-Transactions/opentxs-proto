@@ -49,6 +49,7 @@ namespace opentxs { namespace proto
     typedef std::map<uint32_t, std::pair<uint32_t, uint32_t> > VersionMap;
 
     static const uint32_t MIN_PLAUSIBLE_IDENTIFIER = 20;
+    static const uint32_t MAX_PLAUSIBLE_IDENTIFIER = 80;
     static const uint32_t MIN_PLAUSIBLE_KEYSIZE = 16;
     static const uint32_t MIN_PLAUSIBLE_SIGNATURE = 32;
 

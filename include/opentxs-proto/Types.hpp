@@ -53,6 +53,8 @@
 #endif
 // IWYU pragma: begin_exports
 #include <opentxs-proto/AsymmetricKey.pb.h>
+#include <opentxs-proto/Bailment.pb.h>
+#include <opentxs-proto/BailmentReply.pb.h>
 #include <opentxs-proto/BasketItem.pb.h>
 #include <opentxs-proto/BasketParams.pb.h>
 #include <opentxs-proto/ChildCredentialParameters.pb.h>
@@ -73,7 +75,12 @@
 #include <opentxs-proto/ListenAddress.pb.h>
 #include <opentxs-proto/MasterCredentialParameters.pb.h>
 #include <opentxs-proto/NymIDSource.pb.h>
+#include <opentxs-proto/OutBailment.pb.h>
+#include <opentxs-proto/OutBailmentReply.pb.h>
 #include <opentxs-proto/PaymentCode.pb.h>
+#include <opentxs-proto/PeerObject.pb.h>
+#include <opentxs-proto/PeerReply.pb.h>
+#include <opentxs-proto/PeerRequest.pb.h>
 #include <opentxs-proto/Seed.pb.h>
 #include <opentxs-proto/ServerContract.pb.h>
 #include <opentxs-proto/Signature.pb.h>

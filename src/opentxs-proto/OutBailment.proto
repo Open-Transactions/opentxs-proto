@@ -1,0 +1,10 @@
+syntax = "proto2";
+
+package opentxs.proto;
+option optimize_for = LITE_RUNTIME;
+
+message OutBailment {
+    optional uint32 version = 1;
+    optional string unitID = 2;
+    optional string instructions = 3;
+}

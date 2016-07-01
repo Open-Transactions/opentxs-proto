@@ -3,6 +3,8 @@ include_directories("${CMAKE_SOURCE_DIR}/include")
 set(cxx-sources
   VerifyContacts.cpp
   asymmetrickey/AsymmetricKey_1.cpp
+  bailment/Bailment_1.cpp
+  bailmentreply/BailmentReply_1.cpp
   basketitem/BasketItem_1.cpp
   basketparams/BasketParams_1.cpp
   childcredentialparameters/ChildCredentialParameters_1.cpp
@@ -20,7 +22,12 @@ set(cxx-sources
   listenaddress/ListenAddress_1.cpp
   mastercredentialparameters/MasterCredentialParameters_1.cpp
   nymidsource/NymIDSource_1.cpp
+  outbailment/OutBailment_1.cpp
+  outbailmentreply/OutBailmentReply_1.cpp
   paymentcode/PaymentCode_1.cpp
+  peerobject/PeerObject_1.cpp
+  peerreply/PeerReply_1.cpp
+  peerrequest/PeerRequest_1.cpp
   seed/Seed_1.cpp
   servercontract/ServerContract_1.cpp
   signature/Signature_1.cpp

@@ -1,0 +1,17 @@
+syntax = "proto2";
+
+package opentxs.proto;
+option optimize_for = LITE_RUNTIME;
+
+enum PeerObjectType {
+    PEEROBJECT_ERROR = 0;
+    PEEROBJECT_MESSAGE = 1;
+    PEEROBJECT_REQUEST = 2;
+    PEEROBJECT_RESPONSE = 3;
+}
+
+enum PeerRequestType {
+    PEERREQUEST_ERROR = 0;
+    PEERREQUEST_BAILMENT = 1;
+    PEERREQUEST_OUTBAILMENT = 2;
+}

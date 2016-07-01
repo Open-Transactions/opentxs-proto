@@ -1,0 +1,20 @@
+syntax = "proto2";
+
+package opentxs.proto;
+option optimize_for = LITE_RUNTIME;
+
+import public "BailmentReply.proto";
+import public "OutBailmentReply.proto";
+import public "PeerEnums.proto";
+import public "Signature.proto";
+
+message PeerReply {
+    optional uint32 version = 1;
+    optional PeerRequestType type = 2;
+    optional string cookie = 3;
+    optional Signature signature = 4;
+    oneof request {
+        BailmentReply bailment = 5;
+        OutBailmentReply outbailment = 6;
+    }
+}

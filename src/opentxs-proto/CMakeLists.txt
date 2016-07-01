@@ -4,6 +4,8 @@ endif()
 
 set(PROTO_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/AsymmetricKey.proto
+    ${CMAKE_CURRENT_SOURCE_DIR}/Bailment.proto
+    ${CMAKE_CURRENT_SOURCE_DIR}/BailmentReply.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/BasketParams.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/BasketItem.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/ChildCredentialParameters.proto
@@ -24,7 +26,13 @@ set(PROTO_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/ListenAddress.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/MasterCredentialParameters.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/NymIDSource.proto
+    ${CMAKE_CURRENT_SOURCE_DIR}/OutBailment.proto
+    ${CMAKE_CURRENT_SOURCE_DIR}/OutBailmentReply.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/PaymentCode.proto
+    ${CMAKE_CURRENT_SOURCE_DIR}/PeerEnums.proto
+    ${CMAKE_CURRENT_SOURCE_DIR}/PeerObject.proto
+    ${CMAKE_CURRENT_SOURCE_DIR}/PeerReply.proto
+    ${CMAKE_CURRENT_SOURCE_DIR}/PeerRequest.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/Seed.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/ServerContract.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/Signature.proto
