@@ -31,8 +31,8 @@ option(USE_CCACHE          "Use ccache." OFF)
 
 option(BUILD_SHARED_LIBS   "Build shared libraries." ON)
 option(JAVA                "Build with Java binding" OFF)
-option(JAVASCRIPT          "Build with Javascript binding" ON)
-option(PYTHON              "Build with Python binding" ON)
+option(JAVASCRIPT          "Build with Javascript binding" OFF)
+option(PYTHON              "Build with Python binding" OFF)
 
 set(PACKAGE_CONTACT        ""                             CACHE <TYPE>  "Package Maintainer")
 set(PACKAGE_VENDOR         "Open Transactions Developers" CACHE <TYPE>  "Package Vendor")
