@@ -46,6 +46,18 @@ namespace opentxs { namespace proto
 bool CheckProto_1(
     const PeerReply& peerReply)
 {
+    if (!peerReply.has_id()) {
+        std::cerr << "Verify peer reply failed: missing identifier."
+                  << std::endl;
+        return false;
+    }
+
+    if (MIN_PLAUSIBLE_IDENTIFIER > peerReply.id().size()) {
+        std::cerr << "Verify peer reply failed: invalid identifier ("
+                  << peerReply.id() << ")." << std::endl;
+        return false;
+    }
+
     if (!peerReply.has_type()) {
         std::cerr << "Verify peer reply failed: missing type." << std::endl;
 

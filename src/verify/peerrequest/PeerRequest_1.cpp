@@ -46,6 +46,18 @@ namespace opentxs { namespace proto
 bool CheckProto_1(
     const PeerRequest& peerRequest)
 {
+    if (!peerRequest.has_id()) {
+        std::cerr << "Verify peer request failed: missing identifier."
+                  << std::endl;
+        return false;
+    }
+
+    if (MIN_PLAUSIBLE_IDENTIFIER > peerRequest.id().size()) {
+        std::cerr << "Verify peer request failed: invalid identifier ("
+                << peerRequest.id() << ")." << std::endl;
+        return false;
+    }
+
     if (!peerRequest.has_type()) {
         std::cerr << "Verify peer request failed: missing type." << std::endl;
 
