@@ -64,6 +64,24 @@ bool CheckProto_1(
         return false;
     }
 
+    if (!bailment.has_serverid()) {
+        std::cerr << "Verify bailment failed: missing server id."
+                  << std::endl;
+        return false;
+    }
+
+    if (MIN_PLAUSIBLE_IDENTIFIER > bailment.serverid().size()) {
+        std::cerr << "Verify bailment failed: invalid server id ("
+                << bailment.serverid() << ")." << std::endl;
+        return false;
+    }
+
+    if (MAX_PLAUSIBLE_IDENTIFIER < bailment.serverid().size()) {
+        std::cerr << "Verify bailment failed: invalid server id ("
+                << bailment.serverid() << ")." << std::endl;
+        return false;
+    }
+
     return true;
 }
 

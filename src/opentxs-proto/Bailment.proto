@@ -6,4 +6,5 @@ option optimize_for = LITE_RUNTIME;
 message Bailment {
     optional uint32 version = 1;
     optional string unitID = 2;
+    optional string serverID = 3;
 }

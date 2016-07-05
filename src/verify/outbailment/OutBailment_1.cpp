@@ -64,6 +64,24 @@ bool CheckProto_1(
         return false;
     }
 
+    if (!outBailment.has_serverid()) {
+        std::cerr << "Verify outbailment failed: missing server id."
+                  << std::endl;
+        return false;
+    }
+
+    if (MIN_PLAUSIBLE_IDENTIFIER > outBailment.serverid().size()) {
+        std::cerr << "Verify outbailment failed: invalid server id ("
+                << outBailment.serverid() << ")." << std::endl;
+        return false;
+    }
+
+    if (MAX_PLAUSIBLE_IDENTIFIER < outBailment.serverid().size()) {
+        std::cerr << "Verify outbailment failed: invalid server id ("
+                << outBailment.serverid() << ")." << std::endl;
+        return false;
+    }
+
     if (!outBailment.has_instructions()) {
         std::cerr << "Verify outbailment failed: missing instructions."
                   << std::endl;
