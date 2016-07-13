@@ -58,6 +58,30 @@ bool CheckProto_1(
         return false;
     }
 
+    if (!peerRequest.has_initiator()) {
+        std::cerr << "Verify peer reply failed: missing initiator."
+                  << std::endl;
+        return false;
+    }
+
+    if (MIN_PLAUSIBLE_IDENTIFIER > peerRequest.initiator().size()) {
+        std::cerr << "Verify peer reply failed: invalid initiator ("
+                  << peerRequest.initiator() << ")." << std::endl;
+        return false;
+    }
+
+    if (!peerRequest.has_recipient()) {
+        std::cerr << "Verify peer reply failed: missing recipient."
+                  << std::endl;
+        return false;
+    }
+
+    if (MIN_PLAUSIBLE_IDENTIFIER > peerRequest.recipient().size()) {
+        std::cerr << "Verify peer reply failed: invalid recipient ("
+                  << peerRequest.recipient() << ")." << std::endl;
+        return false;
+    }
+
     if (!peerRequest.has_type()) {
         std::cerr << "Verify peer request failed: missing type." << std::endl;
 

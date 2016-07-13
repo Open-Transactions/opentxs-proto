@@ -58,6 +58,30 @@ bool CheckProto_1(
         return false;
     }
 
+    if (!peerReply.has_initiator()) {
+        std::cerr << "Verify peer reply failed: missing initiator."
+                  << std::endl;
+        return false;
+    }
+
+    if (MIN_PLAUSIBLE_IDENTIFIER > peerReply.initiator().size()) {
+        std::cerr << "Verify peer reply failed: invalid initiator ("
+                  << peerReply.initiator() << ")." << std::endl;
+        return false;
+    }
+
+    if (!peerReply.has_recipient()) {
+        std::cerr << "Verify peer reply failed: missing recipient."
+                  << std::endl;
+        return false;
+    }
+
+    if (MIN_PLAUSIBLE_IDENTIFIER > peerReply.recipient().size()) {
+        std::cerr << "Verify peer reply failed: invalid recipient ("
+                  << peerReply.recipient() << ")." << std::endl;
+        return false;
+    }
+
     if (!peerReply.has_type()) {
         std::cerr << "Verify peer reply failed: missing type." << std::endl;
 
@@ -82,7 +106,7 @@ bool CheckProto_1(
         peerReply.signature(),
         PeerReplyAllowedSignature.at(peerReply.version()).first,
         PeerReplyAllowedSignature.at(peerReply.version()).second,
-        SIGROLE_PEERREQUEST);
+        SIGROLE_PEERREPLY);
 
     if (!validSig) {
         std::cerr << "Verify peer reply failed: invalid signature."

@@ -11,11 +11,13 @@ import public "Signature.proto";
 message PeerReply {
     optional uint32 version = 1;
     optional string id = 2;
-    optional PeerRequestType type = 3;
-    optional string cookie = 4;
-    optional Signature signature = 5;
+    optional string initiator = 3;
+    optional string recipient = 4;
+    optional PeerRequestType type = 5;
+    optional string cookie = 6;
+    optional Signature signature = 7;
     oneof request {
-        BailmentReply bailment = 6;
-        OutBailmentReply outbailment = 7;
+        BailmentReply bailment = 8;
+        OutBailmentReply outbailment = 9;
     }
 }
