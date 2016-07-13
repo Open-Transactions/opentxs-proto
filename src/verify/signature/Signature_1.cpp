@@ -68,7 +68,8 @@ bool CheckProto_1(
 
     if (roleSpecified && (role != serializedSignature.role())) {
         std::cerr << "Verify serialized signature failed: incorrect role ("
-        << serializedSignature.role() << ")." << std::endl;
+                  << serializedSignature.role() << "). Specified: (" << role
+                  << ")" <<  std::endl;
         return false;
     }
 
