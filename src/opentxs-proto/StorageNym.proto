@@ -15,4 +15,6 @@ message StorageNym {
     optional StorageItemHash IncomingPeerReply = 7;
     optional StorageItemHash FinishedPeerRequest = 8;
     optional StorageItemHash FinishedPeerReply = 9;
+    optional StorageItemHash ProcessedPeerRequest = 10;
+    optional StorageItemHash ProcessedPeerReply = 11;
 }

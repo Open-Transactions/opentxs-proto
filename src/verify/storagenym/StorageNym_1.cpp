@@ -137,6 +137,32 @@ bool CheckProto_1(
         }
     }
 
+    if (nym.has_processedpeerrequest()) {
+        bool valid = Check(
+            nym.processedpeerrequest(),
+            StorageNymAllowedHash.at(nym.version()).first,
+            StorageNymAllowedHash.at(nym.version()).second);
+
+        if (!valid) {
+            std::cerr << "Verify serialized storage nym failed: invalid "
+                      << "processedpeerrequest." << std::endl;
+            return false;
+        }
+    }
+
+    if (nym.has_processedpeerreply()) {
+        bool valid = Check(
+            nym.processedpeerreply(),
+            StorageNymAllowedHash.at(nym.version()).first,
+            StorageNymAllowedHash.at(nym.version()).second);
+
+        if (!valid) {
+            std::cerr << "Verify serialized storage nym failed: invalid "
+                      << "processedpeerreply." << std::endl;
+            return false;
+        }
+    }
+
     return true;
 }
 
