@@ -54,10 +54,23 @@ bool CheckProto_1(
         return false;
     }
 
-    if ((AKEYTYPE_LEGACY != serializedAsymmetricKey.type()) && (AKEYTYPE_SECP256K1 != serializedAsymmetricKey.type())) {
-        std::cerr << "Verify serialized asymmetric key failed: incorrect key type ("
-        << serializedAsymmetricKey.type() << ")." << std::endl;
-        return false;
+    switch (serializedAsymmetricKey.type()) {
+        case (AKEYTYPE_LEGACY) : {
+            break;
+        }
+        case (AKEYTYPE_SECP256K1) : {
+            break;
+        }
+        case (AKEYTYPE_ED25519) : {
+            break;
+        }
+        default : {
+            std::cerr << "Verify serialized asymmetric key failed: incorrect "
+                      << "key type (" << serializedAsymmetricKey.type() << ")."
+                      << std::endl;
+
+            return false;
+        }
     }
 
     if (!serializedAsymmetricKey.has_mode()) {
