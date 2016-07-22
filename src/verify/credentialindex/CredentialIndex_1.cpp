@@ -76,10 +76,24 @@ bool CheckProto_1(
         case (CREDINDEX_PRIVATE) : {
             mode = CREDSETMODE_FULL;
 
+            if (1 > serializedCredIndex.index()) {
+                std::cerr << "Verify serialized credential index failed: "
+                          << "missing index." << std::endl;
+
+                return false;
+            }
+
             break;
         }
         case (CREDINDEX_PUBLIC) : {
             mode = CREDSETMODE_INDEX;
+
+            if (serializedCredIndex.has_index()) {
+                std::cerr << "Verify serialized credential index failed: "
+                          << "index present in public mode." << std::endl;
+
+                return false;
+            }
 
             break;
         }

@@ -101,6 +101,13 @@ bool CheckProto_1(
 
     switch (serializedCredSet.mode()) {
         case CREDSETMODE_INDEX :
+            if (0 < serializedCredSet.index()) {
+                std::cerr << "Verify serialized credential set failed: index "
+                          << "in public mode." << std::endl;
+
+                return false;
+            }
+
             if (serializedCredSet.has_mastercredential()) {
                 std::cerr << "Verify serialized credential set failed: full "
                           << "master credential included in index mode."
@@ -148,6 +155,13 @@ bool CheckProto_1(
             }
             break;
         case CREDSETMODE_FULL :
+            if (1 > serializedCredSet.index()) {
+                std::cerr << "Verify serialized credential set failed: missing "
+                          << "index." << std::endl;
+
+                return false;
+            }
+
             if (!serializedCredSet.has_mastercredential()) {
                 std::cerr << "Verify serialized credential set failed: missing "
                           << "master credential." << std::endl;
