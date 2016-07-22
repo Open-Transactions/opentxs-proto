@@ -45,129 +45,194 @@ namespace opentxs { namespace proto
 
 bool CheckProto_1(
     const CredentialSet& serializedCredSet,
-    const std::string& nymID)
+    const std::string& nymID,
+    const CredentialSetMode& mode)
 {
     if (!serializedCredSet.has_nymid()) {
-        std::cerr << "Verify serialized credential set failed: missing nym identifier." << std::endl;
+        std::cerr << "Verify serialized credential set failed: missing nym "
+                  << "identifier." << std::endl;
+
         return false;
     }
 
     if (nymID != serializedCredSet.nymid()) {
-        std::cerr << "Verify serialized credential set failed: wrong nym identifier." << std::endl;
+        std::cerr << "Verify serialized credential set failed: wrong nym "
+                  << "identifier." << std::endl;
+
         return false;
     }
 
     if (MIN_PLAUSIBLE_IDENTIFIER > serializedCredSet.nymid().size()) {
-        std::cerr << "Verify serialized credential set failed: invalid nym identifier ("
-                << serializedCredSet.nymid() << ")." << std::endl;
+        std::cerr << "Verify serialized credential set failed: invalid nym "
+                  << "identifier (" << serializedCredSet.nymid() << ")."
+                  << std::endl;
+
         return false;
     }
 
     if (!serializedCredSet.has_masterid()) {
-        std::cerr << "Verify serialized credential set failed: missing master credential identifier." << std::endl;
+        std::cerr << "Verify serialized credential set failed: missing master "
+                  << "credential identifier." << std::endl;
+
         return false;
     }
 
     if (MIN_PLAUSIBLE_IDENTIFIER > serializedCredSet.masterid().size()) {
-        std::cerr << "Verify serialized credential set failed: invalid master credential identifier ("
-        << serializedCredSet.masterid() << ")." << std::endl;
+        std::cerr << "Verify serialized credential set failed: invalid master "
+                  << "credential identifier (" << serializedCredSet.masterid()
+                  << ")." << std::endl;
+
         return false;
     }
 
     if (!serializedCredSet.has_mode()) {
-        std::cerr << "Verify serialized credential set failed: missing mode." << std::endl;
+        std::cerr << "Verify serialized credential set failed: missing mode."
+                  << std::endl;
+
+        return false;
+    }
+
+    if (serializedCredSet.mode() != mode) {
+        std::cerr << "Verify serialized credential set failed: incorrect mode."
+                  << std::endl;
+
         return false;
     }
 
     switch (serializedCredSet.mode()) {
         case CREDSETMODE_INDEX :
             if (serializedCredSet.has_mastercredential()) {
-                std::cerr << "Verify serialized credential set failed: full master credential included in index mode." << std::endl;
+                std::cerr << "Verify serialized credential set failed: full "
+                          << "master credential included in index mode."
+                          << std::endl;
+
                 return false;
             }
 
             if (0 < serializedCredSet.activechildren_size()) {
-                std::cerr << "Verify serialized credential set failed: full active credentials included in index mode ("
-                << serializedCredSet.activechildren_size() << ")." << std::endl;
+                std::cerr << "Verify serialized credential set failed: full "
+                          << "active credentials included in index mode ("
+                          << serializedCredSet.activechildren_size() << ")."
+                          << std::endl;
+
                 return false;
             }
 
             if (0 < serializedCredSet.revokedchildren_size()) {
-                std::cerr << "Verify serialized credential set failed: full revoked credentials included in index mode ("
-                << serializedCredSet.revokedchildren_size() << ")." << std::endl;
+                std::cerr << "Verify serialized credential set failed: full "
+                          << "revoked credentials included in index mode ("
+                          << serializedCredSet.revokedchildren_size() << ")."
+                          << std::endl;
+
                 return false;
             }
 
             for (auto& it: serializedCredSet.activechildids()) {
                 if (MIN_PLAUSIBLE_IDENTIFIER > it.size()) {
-                    std::cerr << "Verify serialized credential set failed: invalid active child credential identifier ("
-                    << it.size() << ")." << std::endl;
+                    std::cerr << "Verify serialized credential set failed: "
+                              << "invalid active child credential identifier ("
+                              << it.size() << ")." << std::endl;
+
                     return false;
                 }
             }
 
             for (auto& it: serializedCredSet.revokedchildids()) {
                 if (MIN_PLAUSIBLE_IDENTIFIER > it.size()) {
-                    std::cerr << "Verify serialized credential set failed: invalid revoked child credential identifier ("
-                    << it.size() << ")." << std::endl;
+                    std::cerr << "Verify serialized credential set failed: "
+                              << "invalid revoked child credential identifier ("
+                              << it.size() << ")." << std::endl;
+
                     return false;
                 }
             }
             break;
         case CREDSETMODE_FULL :
             if (!serializedCredSet.has_mastercredential()) {
-                std::cerr << "Verify serialized credential set failed: missing master credential." << std::endl;
+                std::cerr << "Verify serialized credential set failed: missing "
+                          << "master credential." << std::endl;
+
                 return false;
             }
 
-            if (!Check(serializedCredSet.mastercredential(), 0, 0xFFFFFFFF, CREDROLE_MASTERKEY, true)) {
-                std::cerr << "Verify serialized credential set failed: invalid master credential." << std::endl;
-                return false;
+            if (!Check(
+                serializedCredSet.mastercredential(),
+                0,
+                0xFFFFFFFF,
+                CREDROLE_MASTERKEY,
+                true)) {
+                    std::cerr << "Verify serialized credential set failed: "
+                              << "invalid master credential." << std::endl;
+
+                    return false;
             }
 
-            if (serializedCredSet.mastercredential().id() != serializedCredSet.masterid()) {
-                std::cerr << "Verify serialized credential set failed: wrong master credential ("
-                << serializedCredSet.mastercredential().id() << ")." << std::endl;
-                return false;
+            if (serializedCredSet.mastercredential().id() !=
+                serializedCredSet.masterid()) {
+                    std::cerr << "Verify serialized credential set failed: "
+                              << "wrong master credential ("
+                              << serializedCredSet.mastercredential().id()
+                              << ")." << std::endl;
+
+                    return false;
             }
 
             if (0 < serializedCredSet.activechildids_size()) {
-                std::cerr << "Verify serialized credential set failed: active credential IDs included in full mode ("
-                << serializedCredSet.activechildids_size() << ")." << std::endl;
+                std::cerr << "Verify serialized credential set failed: active "
+                          << " credential IDs included in full mode ("
+                          << serializedCredSet.activechildids_size() << ")."
+                          << std::endl;
+
                 return false;
             }
 
             if (0 < serializedCredSet.revokedchildids_size()) {
-                std::cerr << "Verify serialized credential set failed: revoked credential IDs included in full mode ("
-                << serializedCredSet.revokedchildids_size() << ")." << std::endl;
+                std::cerr << "Verify serialized credential set failed: revoked "
+                          << "credential IDs included in full mode ("
+                          << serializedCredSet.revokedchildids_size() << ")."
+                          << std::endl;
+
                 return false;
             }
 
             for (auto& it: serializedCredSet.activechildren()) {
                 if (!Check(it, 0, 0xFFFFFFFF, CREDROLE_ERROR, true)) {
-                    std::cerr << "Verify serialized credential set failed: invalid active child credential." << std::endl;
+                    std::cerr << "Verify serialized credential set failed: "
+                              << "invalid active child credential."
+                              << std::endl;
+
                     return false;
                 }
+
                 if (CREDROLE_MASTERKEY == it.role()) {
-                    std::cerr << "Verify serialized credential set failed: unexpected master credential." << std::endl;
+                    std::cerr << "Verify serialized credential set failed: "
+                              << "unexpected master credential." << std::endl;
+
                     return false;
                 }
             }
 
             for (auto& it: serializedCredSet.revokedchildren()) {
                 if (!Check(it, 0, 0xFFFFFFFF, CREDROLE_ERROR, true)) {
-                    std::cerr << "Verify serialized credential set failed: invalid revoked child credential." << std::endl;
+                    std::cerr << "Verify serialized credential set failed: "
+                              << "invalid revoked child credential."
+                              << std::endl;
+
                     return false;
                 }
+
                 if (CREDROLE_MASTERKEY == it.role()) {
-                    std::cerr << "Verify serialized credential set failed: unexpected master credential." << std::endl;
+                    std::cerr << "Verify serialized credential set failed: "
+                              << "unexpected master credential." << std::endl;
+
                     return false;
                 }
             }
             break;
         default :
-            std::cerr << "Verify serialized credential set failed: unknown mode ("
-                  << serializedCredSet.mode() << ")." << std::endl;
+            std::cerr << "Verify serialized credential set failed: unknown "
+                      << "mode (" << serializedCredSet.mode() << ")."
+                      << std::endl;
 
             return false;
     }

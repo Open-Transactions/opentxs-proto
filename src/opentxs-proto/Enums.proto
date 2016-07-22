@@ -75,6 +75,11 @@ enum HashType {
     HASHTYPE_BLAKE2B = 8;
 }
 
+enum CredentialIndexMode {
+    CREDINDEX_ERROR = 0;
+    CREDINDEX_PRIVATE = 1;
+    CREDINDEX_PUBLIC = 2;
+}
 enum CredentialSetMode {
     CREDSETMODE_ERROR = 0;
     CREDSETMODE_INDEX = 1;
