@@ -46,6 +46,7 @@ namespace opentxs { namespace proto
 bool CheckProto_1(
     const CredentialSet& serializedCredSet,
     const std::string& nymID,
+    const KeyMode& key,
     const CredentialSetMode& mode)
 {
     if (!serializedCredSet.has_nymid()) {
@@ -92,20 +93,33 @@ bool CheckProto_1(
         return false;
     }
 
-    if (serializedCredSet.mode() != mode) {
-        std::cerr << "Verify serialized credential set failed: incorrect mode."
-                  << std::endl;
+    const bool checkMode = (CREDSETMODE_ERROR !=  mode);
 
-        return false;
+    if (checkMode) {
+        if (serializedCredSet.mode() != mode) {
+            std::cerr << "Verify serialized credential set failed: incorrect "
+                    << "mode (" << serializedCredSet.mode() << ")" << std::endl;
+
+            return false;
+        }
     }
 
     switch (serializedCredSet.mode()) {
         case CREDSETMODE_INDEX :
-            if (0 < serializedCredSet.index()) {
-                std::cerr << "Verify serialized credential set failed: index "
-                          << "in public mode." << std::endl;
+            if (KEYMODE_PRIVATE == key) {
+                if (1 > serializedCredSet.index()) {
+                    std::cerr << "Verify serialized credential set failed: "
+                              << "missing index." << std::endl;
 
-                return false;
+                    return false;
+                }
+            } else {
+                if (0 < serializedCredSet.index()) {
+                    std::cerr << "Verify serialized credential set failed: "
+                              << "index present in public mode." << std::endl;
+
+                    return false;
+                }
             }
 
             if (serializedCredSet.has_mastercredential()) {
@@ -155,11 +169,18 @@ bool CheckProto_1(
             }
             break;
         case CREDSETMODE_FULL :
-            if (1 > serializedCredSet.index()) {
-                std::cerr << "Verify serialized credential set failed: missing "
-                          << "index." << std::endl;
-
+            if (KEYMODE_PRIVATE == key) {
+                std::cerr << "Verify serialized credential set failed: "
+                          << "private credentials serialized in public form."
+                          << std::endl;
                 return false;
+            } else {
+                if (0 < serializedCredSet.index()) {
+                    std::cerr << "Verify serialized credential set failed: "
+                              << "index present in public mode." << std::endl;
+
+                    return false;
+                }
             }
 
             if (!serializedCredSet.has_mastercredential()) {
@@ -171,8 +192,11 @@ bool CheckProto_1(
 
             if (!Check(
                 serializedCredSet.mastercredential(),
-                0,
-                0xFFFFFFFF,
+                CredentialSetAllowedCredentials.at(
+                    serializedCredSet.version()).first,
+                CredentialSetAllowedCredentials.at(
+                    serializedCredSet.version()).second,
+                key,
                 CREDROLE_MASTERKEY,
                 true)) {
                     std::cerr << "Verify serialized credential set failed: "
@@ -210,7 +234,15 @@ bool CheckProto_1(
             }
 
             for (auto& it: serializedCredSet.activechildren()) {
-                if (!Check(it, 0, 0xFFFFFFFF, CREDROLE_ERROR, true)) {
+                if (!Check(
+                        it,
+                        CredentialSetAllowedCredentials.at(
+                            serializedCredSet.version()).first,
+                        CredentialSetAllowedCredentials.at(
+                            serializedCredSet.version()).second,
+                        key,
+                        CREDROLE_ERROR,
+                        true)) {
                     std::cerr << "Verify serialized credential set failed: "
                               << "invalid active child credential."
                               << std::endl;
@@ -227,7 +259,15 @@ bool CheckProto_1(
             }
 
             for (auto& it: serializedCredSet.revokedchildren()) {
-                if (!Check(it, 0, 0xFFFFFFFF, CREDROLE_ERROR, true)) {
+                if (!Check(
+                        it,
+                        CredentialSetAllowedCredentials.at(
+                            serializedCredSet.version()).first,
+                        CredentialSetAllowedCredentials.at(
+                            serializedCredSet.version()).second,
+                        key,
+                        CREDROLE_ERROR,
+                        true)) {
                     std::cerr << "Verify serialized credential set failed: "
                               << "invalid revoked child credential."
                               << std::endl;
@@ -253,6 +293,5 @@ bool CheckProto_1(
 
     return true;
 }
-
 } // namespace proto
 } // namespace opentxs

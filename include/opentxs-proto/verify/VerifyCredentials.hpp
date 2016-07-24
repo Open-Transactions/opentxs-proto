@@ -134,6 +134,10 @@ namespace opentxs { namespace proto
         {
             { 1, {1, 1}},
         };
+    static const VersionMap CredentialSetAllowedCredentials =
+        {
+            { 1, {1, 1}},
+        };
     static const VersionMap AsymmetricKeyAllowedHDPath =
         {
             { 1, {1, 1}},

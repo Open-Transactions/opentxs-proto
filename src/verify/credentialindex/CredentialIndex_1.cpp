@@ -70,12 +70,10 @@ bool CheckProto_1(
         return false;
     }
 
-    CredentialSetMode mode = CREDSETMODE_ERROR;
+    const auto actualMode = serializedCredIndex.mode();
 
-    switch (serializedCredIndex.mode()) {
+    switch (actualMode) {
         case (CREDINDEX_PRIVATE) : {
-            mode = CREDSETMODE_FULL;
-
             if (1 > serializedCredIndex.index()) {
                 std::cerr << "Verify serialized credential index failed: "
                           << "missing index." << std::endl;
@@ -86,8 +84,6 @@ bool CheckProto_1(
             break;
         }
         case (CREDINDEX_PUBLIC) : {
-            mode = CREDSETMODE_INDEX;
-
             if (serializedCredIndex.has_index()) {
                 std::cerr << "Verify serialized credential index failed: "
                           << "index present in public mode." << std::endl;
@@ -99,8 +95,7 @@ bool CheckProto_1(
         }
         default : {
             std::cerr << "Verify serialized credential index failed: invalid "
-                      << "mode: (" << serializedCredIndex.mode() << ")"
-                      << std::endl;
+                      << "mode: (" << actualMode << ")" << std::endl;
 
             return false;
         }
@@ -149,7 +144,8 @@ bool CheckProto_1(
                 CredentialIndexAllowedCredentialSets.at(
                     serializedCredIndex.version()).second,
                 serializedCredIndex.nymid(),
-                mode)) {
+                (CREDINDEX_PRIVATE == actualMode)
+                    ? KEYMODE_PRIVATE : KEYMODE_PUBLIC)) {
                     std::cerr << "Verify serialized credential index failed: "
                               << "invalid credential set." << std::endl;
 
@@ -165,7 +161,8 @@ bool CheckProto_1(
                 CredentialIndexAllowedCredentialSets.at(
                     serializedCredIndex.version()).second,
                 serializedCredIndex.nymid(),
-                mode)) {
+                (CREDINDEX_PRIVATE == actualMode)
+                    ? KEYMODE_PRIVATE : KEYMODE_PUBLIC)) {
                     std::cerr << "Verify serialized credential index failed: "
                               << "invalid credential set." << std::endl;
 
