@@ -60,7 +60,7 @@ bool CheckProto_1(
     bool validContactData = false;
     bool expectMasterSignature = false;
     bool expectSourceSignature = false;
-    int32_t expectedSigCount = 1;
+    int32_t expectedSigCount = 1; // public self-signature
     bool checkRole = (CREDROLE_ERROR != role);
 
     if (!serializedCred.has_id()) {
@@ -117,13 +117,8 @@ bool CheckProto_1(
     bool knownRole = (keyCredential || metadataContainer);
 
     if (childKeyCredential) {
-        expectedSigCount++;
+        expectedSigCount++; // master signature
         expectMasterSignature = true;
-    }
-
-    if (masterCredential && (CREDTYPE_HD == serializedCred.type())) {
-        expectedSigCount++;
-        expectSourceSignature = true;
     }
 
     if (checkRole && !knownRole) {
@@ -182,7 +177,7 @@ bool CheckProto_1(
             isPrivate = true;
 
             if (keyCredential) {
-                expectedSigCount++;
+                expectedSigCount++; // private self-signature
             }
 
             break;
@@ -249,6 +244,9 @@ bool CheckProto_1(
                       << "data." << std::endl;
 
             return false;
+        }
+        if (expectSourceSignature) {
+            expectedSigCount++; // source signature
         }
     }
 

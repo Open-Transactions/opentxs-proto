@@ -45,7 +45,7 @@ namespace opentxs { namespace proto
 {
     bool CheckProto_1(
         const MasterCredentialParameters& serializedMasterParams,
-        bool expectSourceSignature);
+        bool& expectSourceSignature);
 
 } // namespace proto
 } // namespace opentxs

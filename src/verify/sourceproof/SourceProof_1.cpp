@@ -45,7 +45,7 @@ namespace opentxs { namespace proto
 
 bool CheckProto_1(
     const SourceProof& serializedSourceProof,
-    bool ExpectSourceSignature)
+    bool& ExpectSourceSignature)
 {
     if (!serializedSourceProof.has_type()) {
         std::cerr << "Verify serialized source proof failed: missing type." << std::endl;
