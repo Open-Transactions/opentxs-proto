@@ -72,35 +72,6 @@ bool CheckProto_1(
 
     const auto actualMode = serializedCredIndex.mode();
 
-    switch (actualMode) {
-        case (CREDINDEX_PRIVATE) : {
-            if (1 > serializedCredIndex.index()) {
-                std::cerr << "Verify serialized credential index failed: "
-                          << "missing index." << std::endl;
-
-                return false;
-            }
-
-            break;
-        }
-        case (CREDINDEX_PUBLIC) : {
-            if (serializedCredIndex.has_index()) {
-                std::cerr << "Verify serialized credential index failed: "
-                          << "index present in public mode." << std::endl;
-
-                return false;
-            }
-
-            break;
-        }
-        default : {
-            std::cerr << "Verify serialized credential index failed: invalid "
-                      << "mode: (" << actualMode << ")" << std::endl;
-
-            return false;
-        }
-    }
-
     if (!serializedCredIndex.has_revision()) {
         std::cerr << "Verify serialized credential index failed: missing "
                   << "revision." << std::endl;
@@ -136,6 +107,8 @@ bool CheckProto_1(
         return false;
     }
 
+    bool haveHD = false;
+
     for (auto& it: serializedCredIndex.activecredentials()) {
         if (!Check(
                 it,
@@ -145,7 +118,8 @@ bool CheckProto_1(
                     serializedCredIndex.version()).second,
                 serializedCredIndex.nymid(),
                 (CREDINDEX_PRIVATE == actualMode)
-                    ? KEYMODE_PRIVATE : KEYMODE_PUBLIC)) {
+                    ? KEYMODE_PRIVATE : KEYMODE_PUBLIC,
+                haveHD)) {
                     std::cerr << "Verify serialized credential index failed: "
                               << "invalid credential set." << std::endl;
 
@@ -162,11 +136,43 @@ bool CheckProto_1(
                     serializedCredIndex.version()).second,
                 serializedCredIndex.nymid(),
                 (CREDINDEX_PRIVATE == actualMode)
-                    ? KEYMODE_PRIVATE : KEYMODE_PUBLIC)) {
+                    ? KEYMODE_PRIVATE : KEYMODE_PUBLIC,
+                haveHD)) {
                     std::cerr << "Verify serialized credential index failed: "
                               << "invalid credential set." << std::endl;
 
                     return false;
+        }
+    }
+
+    switch (actualMode) {
+        case (CREDINDEX_PRIVATE) : {
+            if (haveHD) {
+                if (1 > serializedCredIndex.index()) {
+                    std::cerr << "Verify serialized credential index failed: "
+                            << "missing index." << std::endl;
+
+                    return false;
+                }
+            }
+
+            break;
+        }
+        case (CREDINDEX_PUBLIC) : {
+            if (serializedCredIndex.has_index()) {
+                std::cerr << "Verify serialized credential index failed: "
+                          << "index present in public mode." << std::endl;
+
+                return false;
+            }
+
+            break;
+        }
+        default : {
+            std::cerr << "Verify serialized credential index failed: invalid "
+                      << "mode: (" << actualMode << ")" << std::endl;
+
+            return false;
         }
     }
 

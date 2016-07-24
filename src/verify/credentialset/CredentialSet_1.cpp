@@ -47,6 +47,7 @@ bool CheckProto_1(
     const CredentialSet& serializedCredSet,
     const std::string& nymID,
     const KeyMode& key,
+    bool& haveHD,
     const CredentialSetMode& mode)
 {
     if (!serializedCredSet.has_nymid()) {
@@ -169,20 +170,6 @@ bool CheckProto_1(
             }
             break;
         case CREDSETMODE_FULL :
-            if (KEYMODE_PRIVATE == key) {
-                std::cerr << "Verify serialized credential set failed: "
-                          << "private credentials serialized in public form."
-                          << std::endl;
-                return false;
-            } else {
-                if (0 < serializedCredSet.index()) {
-                    std::cerr << "Verify serialized credential set failed: "
-                              << "index present in public mode." << std::endl;
-
-                    return false;
-                }
-            }
-
             if (!serializedCredSet.has_mastercredential()) {
                 std::cerr << "Verify serialized credential set failed: missing "
                           << "master credential." << std::endl;
@@ -203,6 +190,10 @@ bool CheckProto_1(
                               << "invalid master credential." << std::endl;
 
                     return false;
+            }
+
+            if (CREDTYPE_HD == serializedCredSet.mastercredential().type()) {
+                haveHD = true;
             }
 
             if (serializedCredSet.mastercredential().id() !=
@@ -250,6 +241,10 @@ bool CheckProto_1(
                     return false;
                 }
 
+                if (CREDTYPE_HD == it.type()) {
+                    haveHD = true;
+                }
+
                 if (CREDROLE_MASTERKEY == it.role()) {
                     std::cerr << "Verify serialized credential set failed: "
                               << "unexpected master credential." << std::endl;
@@ -275,6 +270,10 @@ bool CheckProto_1(
                     return false;
                 }
 
+                if (CREDTYPE_HD == it.type()) {
+                    haveHD = true;
+                }
+
                 if (CREDROLE_MASTERKEY == it.role()) {
                     std::cerr << "Verify serialized credential set failed: "
                               << "unexpected master credential." << std::endl;
@@ -282,6 +281,23 @@ bool CheckProto_1(
                     return false;
                 }
             }
+
+            if (KEYMODE_PRIVATE == key) {
+                std::cerr << "Verify serialized credential set failed: "
+                          << "private credentials serialized in public form."
+                          << std::endl;
+                return false;
+            } else {
+                if (haveHD) {
+                    if (0 < serializedCredSet.index()) {
+                        std::cerr << "Verify serialized credential set failed: "
+                                << "index present in public mode." << std::endl;
+
+                        return false;
+                    }
+                }
+            }
+
             break;
         default :
             std::cerr << "Verify serialized credential set failed: unknown "

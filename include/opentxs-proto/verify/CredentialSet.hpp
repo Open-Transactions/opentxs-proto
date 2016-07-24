@@ -47,6 +47,7 @@ namespace opentxs { namespace proto
     const CredentialSet& serializedCredSet,
     const std::string& nymID,
     const KeyMode& key,
+    bool& haveHD,
     const CredentialSetMode& mode = CREDSETMODE_ERROR);
 
 } // namespace proto
