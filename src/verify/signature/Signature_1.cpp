@@ -92,7 +92,7 @@ bool CheckProto_1(
         return false;
     }
 
-    if (serializedSignature.hashtype() > proto::HASHTYPE_BLAKE2B) {
+    if (serializedSignature.hashtype() > proto::HASHTYPE_BLAKE2B512) {
         std::cerr << "Verify serialized signature failed: invalid hash type ("
                   << serializedSignature.hashtype() << ")." << std::endl;
         return false;
