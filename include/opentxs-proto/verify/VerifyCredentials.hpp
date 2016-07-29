@@ -67,6 +67,7 @@
 #include "opentxs-proto/Verify.hpp"
 #include "opentxs-proto/verify/AsymmetricKey.hpp"
 #include "opentxs-proto/verify/ChildCredentialParameters.hpp"
+#include "opentxs-proto/verify/Ciphertext.hpp"
 #include "opentxs-proto/verify/Credential.hpp"
 #include "opentxs-proto/verify/CredentialIndex.hpp"
 #include "opentxs-proto/verify/CredentialSet.hpp"
@@ -78,6 +79,7 @@
 #include "opentxs-proto/verify/Seed.hpp"
 #include "opentxs-proto/verify/Signature.hpp"
 #include "opentxs-proto/verify/SourceProof.hpp"
+#include "opentxs-proto/verify/SymmetricKey.hpp"
 // IWYU pragma: end_exports
 
 namespace opentxs { namespace proto
@@ -139,6 +141,18 @@ namespace opentxs { namespace proto
             { 1, {1, 1}},
         };
     static const VersionMap AsymmetricKeyAllowedHDPath =
+        {
+            { 1, {1, 1}},
+        };
+    static const VersionMap SeedAllowedCiphertext =
+        {
+            { 1, {1, 1}},
+        };
+    static const VersionMap CiphertextAllowedSymmetricKey =
+        {
+            { 1, {1, 1}},
+        };
+    static const VersionMap SymmetricKeyAllowedCiphertext =
         {
             { 1, {1, 1}},
         };

@@ -37,6 +37,18 @@ enum AsymmetricKeyType {
     AKEYTYPE_ED25519 = 4;
 }
 
+enum SymmetricKeyType {
+    SKEYTYPE_ERROR = 0;
+    SKEYTYPE_RAW = 1;
+    SKEYTYPE_ECDH = 2;
+    SKEYTYPE_ARGON2 = 3;
+}
+
+enum SymmetricMode {
+    SMODE_ERROR = 0;
+    SMODE_CHACHA20POLY1305 = 1;
+}
+
 enum KeyMode {
     KEYMODE_ERROR = 0;
     KEYMODE_NULL = 1;

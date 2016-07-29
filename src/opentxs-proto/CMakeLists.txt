@@ -9,6 +9,7 @@ set(PROTO_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/BasketParams.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/BasketItem.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/ChildCredentialParameters.proto
+    ${CMAKE_CURRENT_SOURCE_DIR}/Ciphertext.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/Claim.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/ContactData.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/ContactEnums.proto
@@ -46,6 +47,7 @@ set(PROTO_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/StorageSeeds.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/StorageServers.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/StorageUnits.proto
+    ${CMAKE_CURRENT_SOURCE_DIR}/SymmetricKey.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/UnitDefinition.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/Verification.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/VerificationGroup.proto

@@ -8,6 +8,7 @@ set(cxx-sources
   basketitem/BasketItem_1.cpp
   basketparams/BasketParams_1.cpp
   childcredentialparameters/ChildCredentialParameters_1.cpp
+  ciphertext/Ciphertext_1.cpp
   claim/Claim_1.cpp
   contactdata/ContactData_1.cpp
   contactitem/ContactItem_1.cpp
@@ -41,6 +42,7 @@ set(cxx-sources
   storageseeds/StorageSeeds_1.cpp
   storageservers/StorageServers_1.cpp
   storageunits/StorageUnits_1.cpp
+  symmetrickey/SymmetricKey_1.cpp
   unitdefinition/UnitDefinition_1.cpp
   verification/Verification_1.cpp
   verificationgroup/VerificationGroup_1.cpp

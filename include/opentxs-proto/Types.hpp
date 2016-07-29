@@ -58,6 +58,7 @@
 #include <opentxs-proto/BasketItem.pb.h>
 #include <opentxs-proto/BasketParams.pb.h>
 #include <opentxs-proto/ChildCredentialParameters.pb.h>
+#include <opentxs-proto/Ciphertext.pb.h>
 #include <opentxs-proto/Claim.pb.h>
 #include <opentxs-proto/ContactData.pb.h>
 #include <opentxs-proto/ContactEnums.pb.h>
@@ -94,6 +95,7 @@
 #include <opentxs-proto/StorageSeeds.pb.h>
 #include <opentxs-proto/StorageServers.pb.h>
 #include <opentxs-proto/StorageUnits.pb.h>
+#include <opentxs-proto/SymmetricKey.pb.h>
 #include <opentxs-proto/UnitDefinition.pb.h>
 #include <opentxs-proto/Verification.pb.h>
 #include <opentxs-proto/VerificationGroup.pb.h>
