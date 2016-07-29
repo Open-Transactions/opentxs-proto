@@ -46,19 +46,57 @@ namespace opentxs { namespace proto
     bool CheckProto_1(const Seed& seed)
 {
     if (!seed.has_words()) {
-        std::cerr << "Verify serialized seed failed: missing words." << std::endl;
+        std::cerr << "Verify serialized seed failed: missing words."
+                  << std::endl;
+
         return false;
     }
-    if (MIN_PLAUSIBLE_IDENTIFIER > seed.words().size()) {
-        std::cerr << "Verify serialized seed failed: invalid words." << std::endl;
+
+    const bool validWords = Check(
+        seed.words(),
+        SeedAllowedCiphertext.at(seed.version()).first,
+        SeedAllowedCiphertext.at(seed.version()).second,
+        false);
+
+    if (!validWords) {
+        std::cerr << "Verify serialized seed failed: invalid words."
+                  <<  std::endl;
+
         return false;
     }
+
+    if (seed.has_passphrase()) {
+        const bool validWords = Check(
+            seed.passphrase(),
+            SeedAllowedCiphertext.at(seed.version()).first,
+            SeedAllowedCiphertext.at(seed.version()).second,
+            false);
+
+        if (!validWords) {
+            std::cerr << "Verify serialized seed failed: invalid passphrase."
+                      <<  std::endl;
+
+            return false;
+        }
+
+        if (seed.passphrase().has_key()) {
+            std::cerr << "Verify serialized seed failed: passphrase not "
+                      << "allowed to have embedded symmetric key."
+                      <<  std::endl;
+        }
+    }
+
     if (!seed.has_fingerprint()) {
-        std::cerr << "Verify serialized seed failed: missing fingerprint." << std::endl;
+        std::cerr << "Verify serialized seed failed: missing fingerprint."
+                  << std::endl;
+
         return false;
     }
+
     if (MIN_PLAUSIBLE_IDENTIFIER > seed.fingerprint().size()) {
-        std::cerr << "Verify serialized seed failed: invalid fingerprint." << std::endl;
+        std::cerr << "Verify serialized seed failed: invalid fingerprint."
+                  << std::endl;
+
         return false;
     }
 
