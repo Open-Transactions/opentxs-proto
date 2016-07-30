@@ -70,6 +70,7 @@
 #include <opentxs-proto/CredentialSet.pb.h>
 #include <opentxs-proto/CurrencyParams.pb.h>
 #include <opentxs-proto/Enums.pb.h>
+#include <opentxs-proto/Envelope.pb.h>
 #include <opentxs-proto/EquityParams.pb.h>
 #include <opentxs-proto/HDPath.pb.h>
 #include <opentxs-proto/KeyCredential.pb.h>

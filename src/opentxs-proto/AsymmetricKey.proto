@@ -3,6 +3,7 @@ syntax = "proto2";
 package opentxs.proto;
 option optimize_for = LITE_RUNTIME;
 
+import public "Ciphertext.proto";
 import public "Enums.proto";
 import public "HDPath.proto";
 
@@ -12,6 +13,7 @@ message AsymmetricKey {
     optional KeyMode mode = 3;
     optional KeyRole role = 4;
     optional bytes key = 5;
-    optional bytes chaincode = 6;
-    optional HDPath path = 7;
+    optional Ciphertext encryptedKey = 6;
+    optional Ciphertext chaincode = 7;
+    optional HDPath path = 8;
 }

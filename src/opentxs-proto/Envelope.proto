@@ -1,0 +1,16 @@
+syntax = "proto2";
+
+package opentxs.proto;
+option optimize_for = LITE_RUNTIME;
+
+import "AsymmetricKey.proto";
+import "Ciphertext.proto";
+import "SymmetricKey.proto";
+
+message Envelope {
+    optional uint32 version = 1;
+    repeated AsymmetricKey dhkey = 2;
+    optional bytes rsakey = 3;
+    repeated SymmetricKey sessionkey = 4;
+    optional Ciphertext ciphertext = 5;
+}

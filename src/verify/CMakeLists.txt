@@ -18,6 +18,7 @@ set(cxx-sources
   credentialindex/CredentialIndex_1.cpp
   credentialset/CredentialSet_1.cpp
   equityparams/EquityParams_1.cpp
+  envelope/Envelope_1.cpp
   hdpath/HDPath_1.cpp
   keycredential/KeyCredential_1.cpp
   listenaddress/ListenAddress_1.cpp

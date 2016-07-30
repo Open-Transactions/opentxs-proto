@@ -55,6 +55,7 @@
 #include "opentxs-proto/Enums.pb.h"
 #include "opentxs-proto/Credential.pb.h"
 #include "opentxs-proto/CredentialIndex.pb.h"
+#include "opentxs-proto/Envelope.pb.h"
 #include "opentxs-proto/Seed.pb.h"
 // IWYU pragma: end_exports
 #ifdef _WIN32
@@ -71,6 +72,7 @@
 #include "opentxs-proto/verify/Credential.hpp"
 #include "opentxs-proto/verify/CredentialIndex.hpp"
 #include "opentxs-proto/verify/CredentialSet.hpp"
+#include "opentxs-proto/verify/Envelope.hpp"
 #include "opentxs-proto/verify/HDPath.hpp"
 #include "opentxs-proto/verify/KeyCredential.hpp"
 #include "opentxs-proto/verify/MasterCredentialParameters.hpp"
@@ -144,6 +146,10 @@ namespace opentxs { namespace proto
         {
             { 1, {1, 1}},
         };
+    static const VersionMap AsymmetricKeyAllowedCiphertext =
+        {
+            { 1, {1, 1}},
+        };
     static const VersionMap SeedAllowedCiphertext =
         {
             { 1, {1, 1}},
@@ -153,6 +159,14 @@ namespace opentxs { namespace proto
             { 1, {1, 1}},
         };
     static const VersionMap SymmetricKeyAllowedCiphertext =
+        {
+            { 1, {1, 1}},
+        };
+    static const VersionMap EnvelopeAllowedAsymmetricKey =
+        {
+            { 1, {1, 1}},
+        };
+    static const VersionMap EnvelopeAllowedCiphertext =
         {
             { 1, {1, 1}},
         };
