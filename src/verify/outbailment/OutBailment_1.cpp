@@ -82,6 +82,12 @@ bool CheckProto_1(
         return false;
     }
 
+    if (!outBailment.has_amount()) {
+        std::cerr << "Verify outbailment failed: missing amount."
+                  << std::endl;
+        return false;
+    }
+
     if (!outBailment.has_instructions()) {
         std::cerr << "Verify outbailment failed: missing instructions."
                   << std::endl;
