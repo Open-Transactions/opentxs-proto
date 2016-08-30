@@ -32,7 +32,9 @@ option(USE_CCACHE          "Use ccache." OFF)
 option(BUILD_SHARED_LIBS   "Build shared libraries." ON)
 option(JAVA                "Build with Java binding" OFF)
 option(JAVASCRIPT          "Build with Javascript binding" OFF)
-option(PYTHON              "Build with Python binding" OFF)
+option(PYTHON3             "Build with Python3 binding" OFF)
+option(PYTHON2             "Build with Python2 binding" OFF)
+option(PYTHON              "Build with default Python binding" OFF)
 
 set(PACKAGE_CONTACT        ""                             CACHE <TYPE>  "Package Maintainer")
 set(PACKAGE_VENDOR         "Open Transactions Developers" CACHE <TYPE>  "Package Vendor")
@@ -107,7 +109,9 @@ message(STATUS "Package version:  ${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_BU
 message(STATUS "Bindings ------------------------------------")
 message(STATUS "Java binding:           ${JAVA}")
 message(STATUS "Javascript binding:     ${JAVASCRIPT}")
-message(STATUS "Python binding:         ${PYTHON}")
+message(STATUS "Python3 binding:        ${PYTHON3}")
+message(STATUS "Python2 binding:        ${PYTHON2}")
+message(STATUS "Default Python binding: ${PYTHON}")
 
 #-----------------------------------------------------------------------------
 # Third party libraries
@@ -115,6 +119,22 @@ message(STATUS "Python binding:         ${PYTHON}")
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 
 find_package(Protobuf REQUIRED)
+
+if(PYTHON)
+  find_package(PythonInterp)
+  find_package(PythonLibs)
+elseif(PYTHON3)
+  find_package(PythonInterp 3 REQUIRED)
+  find_package(PythonLibs 3 REQUIRED)
+elseif(PYTHON2)
+  find_package(PythonInterp 2.7 REQUIRED)
+  find_package(PythonLibs 2.7 REQUIRED)
+endif(PYTHON)
+
+message(STATUS "PYTHON_LIBRARIES = ${PYTHON_LIBRARIES}")
+message(STATUS "PYTHON_EXECUTABLE = ${PYTHON_EXECUTABLE}")
+message(STATUS "PYTHON_INCLUDE_DIRS = ${PYTHON_INCLUDE_DIRS}")
+
 #-----------------------------------------------------------------------------
 # System libraries used for linking.
 

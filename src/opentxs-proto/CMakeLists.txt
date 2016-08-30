@@ -79,12 +79,16 @@ if(NOT WIN32)
           COMPONENT main)
 endif()
 
-if (PYTHON)
+if (PYTHON OR PYTHON2 OR PYTHON3)
     # why doesn't this work?  For some reason it doesn't actually generate .py files'
     #protobuf_generate_python(
         #PROTO_PYTHON
         #${PROTO_SOURCES}
     #)
+
+    include_directories(
+      ${PYTHON_INCLUDE_PATH}
+    )
 
     include(ExternalProject)
 
@@ -101,7 +105,7 @@ if (PYTHON)
         BINARY_DIR ${CMAKE_CURRENT_BINARY_DIR}
         BUILD_COMMAND protoc --proto_path=${CMAKE_CURRENT_SOURCE_DIR} --${WRAPPER_TYPE}_out=${WRAPPER_DIR} ${PROTO_SOURCES}
         BUILD_ALWAYS 1
-        INSTALL_COMMAND python ${CMAKE_CURRENT_BINARY_DIR}/setup.py install -f --prefix=${STAGING_DIR})
+        INSTALL_COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_BINARY_DIR}/setup.py install -f --prefix=${STAGING_DIR})
 
     install(DIRECTORY ${STAGING_DIR}/ DESTINATION ${CMAKE_INSTALL_PREFIX} )
 endif()
