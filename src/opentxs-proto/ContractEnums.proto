@@ -8,6 +8,7 @@ enum AddressType {
     ADDRESSTYPE_IPV4 = 1;
     ADDRESSTYPE_IPV6 = 2;
     ADDRESSTYPE_ONION = 3;
+    ADDRESSTYPE_EEP = 4;
 }
 
 enum ProtocolVersion {

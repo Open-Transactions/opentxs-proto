@@ -51,7 +51,7 @@ bool CheckProto_1(
         return false;
     }
 
-    if ((ADDRESSTYPE_ERROR == address.type()) || (ADDRESSTYPE_ONION < address.type())) {
+    if ((ADDRESSTYPE_ERROR == address.type()) || (ADDRESSTYPE_EEP < address.type())) {
         std::cerr << "Verify serialized listen address failed: invalid type" << std::endl;
         return false;
     }
