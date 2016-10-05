@@ -36,6 +36,7 @@
  *
  ************************************************************/
 
+#include "opentxs-proto/verify/CredentialIndex.hpp"
 #include "opentxs-proto/verify/PeerObject.hpp"
 
 #include <iostream>
@@ -93,13 +94,32 @@ bool CheckProto_1(
                 return false;
             }
 
-            bool validrequest = Check(
+            const bool validrequest = Check(
                 peerObject.otrequest(),
                 PeerObjectAllowedRequest.at(peerObject.version()).first,
                 PeerObjectAllowedRequest.at(peerObject.version()).second);
 
             if (!validrequest) {
                 std::cerr << "Verify peer object failed: invalid otrequest."
+                          << std::endl;
+
+                return false;
+            }
+
+            if (!peerObject.has_nym()) {
+                std::cerr << "Verify peer object failed: missing nym."
+                          << std::endl;
+
+                return false;
+            }
+
+            const bool validnym = Check(
+                peerObject.nym(),
+                PeerObjectAllowedNym.at(peerObject.version()).first,
+                PeerObjectAllowedNym.at(peerObject.version()).second);
+
+            if (!validnym) {
+                std::cerr << "Verify peer object failed: invalid nym."
                           << std::endl;
 
                 return false;

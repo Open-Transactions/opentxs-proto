@@ -3,6 +3,7 @@ syntax = "proto2";
 package opentxs.proto;
 option optimize_for = LITE_RUNTIME;
 
+import public "CredentialIndex.proto";
 import public "PeerEnums.proto";
 import public "PeerReply.proto";
 import public "PeerRequest.proto";
@@ -13,4 +14,5 @@ message PeerObject {
     optional string otmessage = 3;
     optional PeerRequest otrequest = 4;
     optional PeerReply otreply = 5;
+    optional CredentialIndex nym = 6;
 }

@@ -82,6 +82,10 @@ namespace opentxs { namespace proto
         {
             { 1, {1, 1}},
         };
+    static const VersionMap PeerObjectAllowedNym =
+        {
+            { 1, {1, 1}},
+        };
     static const VersionMap PeerReplyAllowedSignature =
         {
             { 1, {1, 1}},
