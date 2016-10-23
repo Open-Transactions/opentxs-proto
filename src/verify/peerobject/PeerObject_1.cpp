@@ -149,7 +149,7 @@ bool CheckProto_1(
                 return false;
             }
 
-            bool validrequest = Check(
+            const bool validrequest = Check(
                 peerObject.otrequest(),
                 PeerObjectAllowedRequest.at(peerObject.version()).first,
                 PeerObjectAllowedRequest.at(peerObject.version()).second);
@@ -168,7 +168,7 @@ bool CheckProto_1(
                 return false;
             }
 
-            bool validreply = Check(
+            const bool validreply = Check(
                 peerObject.otreply(),
                 PeerObjectAllowedReply.at(peerObject.version()).first,
                 PeerObjectAllowedReply.at(peerObject.version()).second);
@@ -176,6 +176,48 @@ bool CheckProto_1(
             if (!validreply) {
                 std::cerr << "Verify peer object failed: invalid otreply."
                           << std::endl;
+
+                return false;
+            }
+
+            const bool matchingID =
+                (peerObject.otrequest().id() == peerObject.otreply().cookie());
+
+            if (!matchingID) {
+                std::cerr << "Verify peer object failed: reply cookie does not "
+                          << "match request id." << std::endl;
+
+                return false;
+            }
+
+            const bool matchingtype =
+                (peerObject.otrequest().type() == peerObject.otreply().type());
+
+            if (!matchingtype) {
+                std::cerr << "Verify peer object failed: reply type does not "
+                          << "match request type." << std::endl;
+
+                return false;
+            }
+
+            const bool matchingInitiator =
+                (peerObject.otrequest().initiator() ==
+                 peerObject.otreply().initiator());
+
+            if (!matchingInitiator) {
+                std::cerr << "Verify peer object failed: reply initiator does "
+                          << "not match request initiator." << std::endl;
+
+                return false;
+            }
+
+            const bool matchingRecipient =
+                (peerObject.otrequest().recipient() ==
+                 peerObject.otreply().recipient());
+
+            if (!matchingRecipient) {
+                std::cerr << "Verify peer object failed: reply recipient does "
+                          << "not match request recipient." << std::endl;
 
                 return false;
             }
@@ -194,6 +236,5 @@ bool CheckProto_1(
 
     return true;
 }
-
 } // namespace proto
 } // namespace opentxs
