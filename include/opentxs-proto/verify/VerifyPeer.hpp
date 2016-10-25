@@ -64,11 +64,13 @@
 #include "opentxs-proto/Verify.hpp"
 #include "opentxs-proto/verify/Bailment.hpp"
 #include "opentxs-proto/verify/BailmentReply.hpp"
+#include "opentxs-proto/verify/NoticeAcknowledgement.hpp"
 #include "opentxs-proto/verify/OutBailment.hpp"
 #include "opentxs-proto/verify/OutBailmentReply.hpp"
 #include "opentxs-proto/verify/PeerObject.hpp"
 #include "opentxs-proto/verify/PeerReply.hpp"
 #include "opentxs-proto/verify/PeerRequest.hpp"
+#include "opentxs-proto/verify/PendingBailment.hpp"
 #include "opentxs-proto/verify/Signature.hpp"
 // IWYU pragma: end_exports
 
@@ -94,6 +96,10 @@ namespace opentxs { namespace proto
         {
             { 1, {1, 1}},
         };
+    static const VersionMap PeerReplyAllowedNotice =
+        {
+            { 1, {1, 1}},
+        };
     static const VersionMap PeerReplyAllowedOutBailment =
         {
             { 1, {1, 1}},
@@ -107,6 +113,10 @@ namespace opentxs { namespace proto
             { 1, {1, 1}},
         };
     static const VersionMap PeerRequestAllowedOutBailment =
+        {
+            { 1, {1, 1}},
+        };
+    static const VersionMap PeerRequestAllowedPendingBailment =
         {
             { 1, {1, 1}},
         };

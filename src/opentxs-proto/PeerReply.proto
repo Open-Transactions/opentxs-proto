@@ -5,6 +5,7 @@ option optimize_for = LITE_RUNTIME;
 
 import public "BailmentReply.proto";
 import public "OutBailmentReply.proto";
+import public "NoticeAcknowledgement.proto";
 import public "PeerEnums.proto";
 import public "Signature.proto";
 
@@ -16,8 +17,9 @@ message PeerReply {
     optional PeerRequestType type = 5;
     optional string cookie = 6;
     optional Signature signature = 7;
-    oneof request {
+    oneof reply {
         BailmentReply bailment = 8;
         OutBailmentReply outbailment = 9;
+        NoticeAcknowledgement notice = 10;
     }
 }

@@ -89,7 +89,7 @@ bool CheckProto_1(
     }
 
     if ((peerRequest.type() < PEERREQUEST_BAILMENT) ||
-        (peerRequest.type() > PEERREQUEST_OUTBAILMENT)) {
+        (peerRequest.type() > PEERREQUEST_PENDINGBAILMENT)) {
             std::cerr << "Verify peer request failed: invalid type."
                       << std::endl;
 
@@ -160,11 +160,34 @@ bool CheckProto_1(
 
             break;
         }
+        case PEERREQUEST_PENDINGBAILMENT : {
+            if (!peerRequest.has_pendingbailment()) {
+                std::cerr << "Verify peer request failed: missing "
+                          << "pendingbailment." << std::endl;
+
+                return false;
+            }
+
+            bool validoutbailment = Check(
+                peerRequest.pendingbailment(),
+                PeerRequestAllowedPendingBailment.at(
+                    peerRequest.version()).first,
+                PeerRequestAllowedPendingBailment.at(
+                    peerRequest.version()).second);
+
+            if (!validoutbailment) {
+                std::cerr << "Verify peer request failed: invalid "
+                          << "pendingbailment." << std::endl;
+
+                return false;
+            }
+
+            break;
+        }
         default : {}
     }
 
     return true;
 }
-
 } // namespace proto
 } // namespace opentxs

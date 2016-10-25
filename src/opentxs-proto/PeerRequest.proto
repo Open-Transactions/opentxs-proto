@@ -6,6 +6,7 @@ option optimize_for = LITE_RUNTIME;
 import public "Bailment.proto";
 import public "OutBailment.proto";
 import public "PeerEnums.proto";
+import public "PendingBailment.proto";
 import public "Signature.proto";
 
 message PeerRequest {
@@ -19,5 +20,6 @@ message PeerRequest {
     oneof request {
         Bailment bailment = 8;
         OutBailment outbailment = 9;
+        PendingBailment pendingbailment = 10;
     }
 }

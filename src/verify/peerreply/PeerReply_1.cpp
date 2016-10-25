@@ -89,7 +89,7 @@ bool CheckProto_1(
     }
 
     if ((peerReply.type() < PEERREQUEST_BAILMENT) ||
-        (peerReply.type() > PEERREQUEST_OUTBAILMENT)) {
+        (peerReply.type() > PEERREQUEST_PENDINGBAILMENT)) {
             std::cerr << "Verify peer reply failed: invalid type."
                       << std::endl;
 
@@ -153,6 +153,28 @@ bool CheckProto_1(
 
             if (!validoutbailment) {
                 std::cerr << "Verify peer reply failed: invalid outbailment."
+                          << std::endl;
+
+                return false;
+            }
+
+            break;
+        }
+        case PEERREQUEST_PENDINGBAILMENT : {
+            if (!peerReply.has_notice()) {
+                std::cerr << "Verify peer reply failed: missing notice."
+                          << std::endl;
+
+                return false;
+            }
+
+            bool validnotice = Check(
+                peerReply.notice(),
+                PeerReplyAllowedNotice.at(peerReply.version()).first,
+                PeerReplyAllowedNotice.at(peerReply.version()).second);
+
+            if (!validnotice) {
+                std::cerr << "Verify peer reply failed: invalid notice."
                           << std::endl;
 
                 return false;

@@ -24,12 +24,14 @@ set(cxx-sources
   listenaddress/ListenAddress_1.cpp
   mastercredentialparameters/MasterCredentialParameters_1.cpp
   nymidsource/NymIDSource_1.cpp
+  noticeacknowledgement/NoticeAcknowledgement_1.cpp
   outbailment/OutBailment_1.cpp
   outbailmentreply/OutBailmentReply_1.cpp
   paymentcode/PaymentCode_1.cpp
   peerobject/PeerObject_1.cpp
   peerreply/PeerReply_1.cpp
   peerrequest/PeerRequest_1.cpp
+  pendingbailment/PendingBailment_1.cpp
   seed/Seed_1.cpp
   servercontract/ServerContract_1.cpp
   signature/Signature_1.cpp

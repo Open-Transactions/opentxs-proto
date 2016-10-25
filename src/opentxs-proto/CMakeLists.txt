@@ -27,6 +27,7 @@ set(PROTO_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/KeyCredential.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/ListenAddress.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/MasterCredentialParameters.proto
+    ${CMAKE_CURRENT_SOURCE_DIR}/NoticeAcknowledgement.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/NymIDSource.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/OutBailment.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/OutBailmentReply.proto
@@ -35,6 +36,7 @@ set(PROTO_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/PeerObject.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/PeerReply.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/PeerRequest.proto
+    ${CMAKE_CURRENT_SOURCE_DIR}/PendingBailment.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/Seed.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/ServerContract.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/Signature.proto
