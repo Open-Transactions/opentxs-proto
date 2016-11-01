@@ -55,22 +55,9 @@ set(cxx-sources
 
 file(GLOB cxx-headers "${CMAKE_CURRENT_SOURCE_DIR}/../../include/opentxs-proto/verify/*.hpp")
 
-add_library(opentxs-verify
+add_library(opentxs-verify OBJECT
   ${cxx-headers}
   ${cxx-sources}
 )
 
-target_link_libraries(opentxs-verify
-  PRIVATE
-  opentxs-proto
-)
-
 add_dependencies(opentxs-verify opentxs-proto)
-
-if(NOT WIN32)
-  include(GNUInstallDirs)
-  install(TARGETS opentxs-verify
-          DESTINATION ${CMAKE_INSTALL_LIBDIR}
-          EXPORT opentxs-verifyTargets
-          COMPONENT main)
-endif()

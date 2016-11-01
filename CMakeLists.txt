@@ -253,9 +253,7 @@ include(CMakePackageConfigHelpers)
 set(CMAKE_CONFIG_DEST "share/cmake/Modules")
 set(OPENTXS_PROTO_INCLUDE_DIRS "${CMAKE_INSTALL_PREFIX}/include")
 
-export(TARGETS opentxs-proto FILE "${CMAKE_BINARY_DIR}/opentxs-protoTargets.cmake")
-
-export(TARGETS opentxs-verify FILE "${CMAKE_BINARY_DIR}/opentxs-verifyTargets.cmake")
+export(TARGETS opentxs-protobuf FILE "${CMAKE_BINARY_DIR}/opentxs-protoTargets.cmake")
 
 configure_package_config_file(
        "cmake/opentxs-protoConfig.cmake.in"
@@ -268,18 +266,14 @@ write_basic_package_version_file(
   VERSION ${VERSION_STRING}
   COMPATIBILITY AnyNewerVersion)
 
-install(EXPORT opentxs-protoTargets
-        DESTINATION ${CMAKE_CONFIG_DEST} FILE "opentxs-protoTargets.cmake")
-
-#install(EXPORT opentxs-verifyTargets
-#        DESTINATION ${CMAKE_CONFIG_DEST} FILE "opentxs-verifyTargets.cmake")
+install(EXPORT opentxs-protobufTargets
+        DESTINATION ${CMAKE_CONFIG_DEST} FILE "opentxs-proto.cmake")
 
 install(FILES
         "${CMAKE_CURRENT_BINARY_DIR}/opentxs-protoConfig.cmake"
         "${CMAKE_CURRENT_BINARY_DIR}/opentxs-protoConfigVersion.cmake"
         DESTINATION ${CMAKE_CONFIG_DEST}
         COMPONENT dev)
-
 
 #-----------------------------------------------------------------------------
 # Produce a pkg-config file

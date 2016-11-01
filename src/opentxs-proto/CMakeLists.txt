@@ -64,22 +64,14 @@ PROTOBUF_GENERATE_CPP(
     ${PROTO_SOURCES}
 )
 
+set(MODULE_NAME opentxs-proto)
+
 include_directories(SYSTEM ${PROTOBUF_INCLUDE_DIR})
 
-add_library(opentxs-proto
+add_library(${MODULE_NAME} OBJECT
   ${PROTO_SRC}
   ${PROTO_HEADER}
 )
-
-target_link_libraries(opentxs-proto PUBLIC ${PROTOBUF_LITE_LIBRARIES})
-
-if(NOT WIN32)
-  include(GNUInstallDirs)
-  install(TARGETS opentxs-proto
-          DESTINATION ${CMAKE_INSTALL_LIBDIR}
-          EXPORT opentxs-protoTargets
-          COMPONENT main)
-endif()
 
 if (PYTHON OR PYTHON2 OR PYTHON3)
     # why doesn't this work?  For some reason it doesn't actually generate .py files'
@@ -128,7 +120,7 @@ if (JAVASCRIPT)
         BUILD_ALWAYS 1
         INSTALL_COMMAND true)
 
-    install(DIRECTORY ${WRAPPER_DIR} DESTINATION share/opentxs-proto )
+    install(DIRECTORY ${WRAPPER_DIR} DESTINATION share/${MODULE_NAME} )
 endif()
 
 if (JAVA)
@@ -147,5 +139,5 @@ if (JAVA)
         BUILD_ALWAYS 1
         INSTALL_COMMAND true)
 
-    install(DIRECTORY ${WRAPPER_DIR} DESTINATION share/opentxs-proto )
+    install(DIRECTORY ${WRAPPER_DIR} DESTINATION share/${MODULE_NAME} )
 endif()
