@@ -64,6 +64,8 @@
 #include "opentxs-proto/Verify.hpp"
 #include "opentxs-proto/verify/Bailment.hpp"
 #include "opentxs-proto/verify/BailmentReply.hpp"
+#include "opentxs-proto/verify/ConnectionInfo.hpp"
+#include "opentxs-proto/verify/ConnectionInfoReply.hpp"
 #include "opentxs-proto/verify/NoticeAcknowledgement.hpp"
 #include "opentxs-proto/verify/OutBailment.hpp"
 #include "opentxs-proto/verify/OutBailmentReply.hpp"
@@ -104,6 +106,10 @@ namespace opentxs { namespace proto
         {
             { 1, {1, 1}},
         };
+    static const VersionMap PeerReplyAllowedConnectionInfo =
+        {
+            { 1, {1, 1}},
+        };
     static const VersionMap PeerRequestAllowedSignature =
         {
             { 1, {1, 1}},
@@ -117,6 +123,10 @@ namespace opentxs { namespace proto
             { 1, {1, 1}},
         };
     static const VersionMap PeerRequestAllowedPendingBailment =
+        {
+            { 1, {1, 1}},
+        };
+    static const VersionMap PeerRequestAllowedConnectionInfo =
         {
             { 1, {1, 1}},
         };

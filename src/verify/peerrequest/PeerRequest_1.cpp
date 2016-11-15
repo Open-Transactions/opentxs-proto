@@ -89,7 +89,7 @@ bool CheckProto_1(
     }
 
     if ((peerRequest.type() < PEERREQUEST_BAILMENT) ||
-        (peerRequest.type() > PEERREQUEST_PENDINGBAILMENT)) {
+        (peerRequest.type() > PEERREQUEST_CONNECTIONINFO)) {
             std::cerr << "Verify peer request failed: invalid type."
                       << std::endl;
 
@@ -178,6 +178,30 @@ bool CheckProto_1(
             if (!validoutbailment) {
                 std::cerr << "Verify peer request failed: invalid "
                           << "pendingbailment." << std::endl;
+
+                return false;
+            }
+
+            break;
+        }
+        case PEERREQUEST_CONNECTIONINFO : {
+            if (!peerRequest.has_connectioninfo()) {
+                std::cerr << "Verify peer request failed: missing "
+                          << "connectioninfo." << std::endl;
+
+                return false;
+            }
+
+            bool validconnectioninfo = Check(
+                peerRequest.connectioninfo(),
+                PeerRequestAllowedConnectionInfo.at(
+                    peerRequest.version()).first,
+                PeerRequestAllowedConnectionInfo.at(
+                    peerRequest.version()).second);
+
+            if (!validconnectioninfo) {
+                std::cerr << "Verify peer request failed: invalid "
+                          << "connectioninfo." << std::endl;
 
                 return false;
             }

@@ -11,6 +11,8 @@ set(PROTO_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/ChildCredentialParameters.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/Ciphertext.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/Claim.proto
+    ${CMAKE_CURRENT_SOURCE_DIR}/ConnectionInfo.proto
+    ${CMAKE_CURRENT_SOURCE_DIR}/ConnectionInfoReply.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/ContactData.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/ContactEnums.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/ContactItem.proto

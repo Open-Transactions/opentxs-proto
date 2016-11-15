@@ -1,0 +1,11 @@
+syntax = "proto2";
+
+package opentxs.proto;
+option optimize_for = LITE_RUNTIME;
+
+import public "PeerEnums.proto";
+
+message ConnectionInfo {
+    optional uint32 version = 1;
+    optional ConnectionInfoType type = 2;
+}

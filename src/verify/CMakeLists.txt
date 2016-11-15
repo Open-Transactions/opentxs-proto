@@ -10,6 +10,8 @@ set(cxx-sources
   childcredentialparameters/ChildCredentialParameters_1.cpp
   ciphertext/Ciphertext_1.cpp
   claim/Claim_1.cpp
+  connectioninfo/ConnectionInfo_1.cpp
+  connectioninforeply/ConnectionInfoReply_1.cpp
   contactdata/ContactData_1.cpp
   contactitem/ContactItem_1.cpp
   contactsection/ContactSection_1.cpp

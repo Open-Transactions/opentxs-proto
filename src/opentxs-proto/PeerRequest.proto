@@ -4,6 +4,7 @@ package opentxs.proto;
 option optimize_for = LITE_RUNTIME;
 
 import public "Bailment.proto";
+import public "ConnectionInfo.proto";
 import public "OutBailment.proto";
 import public "PeerEnums.proto";
 import public "PendingBailment.proto";
@@ -21,5 +22,6 @@ message PeerRequest {
         Bailment bailment = 8;
         OutBailment outbailment = 9;
         PendingBailment pendingbailment = 10;
+        ConnectionInfo connectioninfo = 11;
     }
 }

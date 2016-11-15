@@ -89,7 +89,7 @@ bool CheckProto_1(
     }
 
     if ((peerReply.type() < PEERREQUEST_BAILMENT) ||
-        (peerReply.type() > PEERREQUEST_PENDINGBAILMENT)) {
+        (peerReply.type() > PEERREQUEST_CONNECTIONINFO)) {
             std::cerr << "Verify peer reply failed: invalid type."
                       << std::endl;
 
@@ -175,6 +175,28 @@ bool CheckProto_1(
 
             if (!validnotice) {
                 std::cerr << "Verify peer reply failed: invalid notice."
+                          << std::endl;
+
+                return false;
+            }
+
+            break;
+        }
+        case PEERREQUEST_CONNECTIONINFO : {
+            if (!peerReply.has_connectioninfo()) {
+                std::cerr << "Verify peer reply failed: missing connectioninfo."
+                          << std::endl;
+
+                return false;
+            }
+
+            bool validconnectioninfo = Check(
+                peerReply.connectioninfo(),
+                PeerReplyAllowedConnectionInfo.at(peerReply.version()).first,
+                PeerReplyAllowedConnectionInfo.at(peerReply.version()).second);
+
+            if (!validconnectioninfo) {
+                std::cerr << "Verify peer reply failed: invalid connectioninfo."
                           << std::endl;
 
                 return false;

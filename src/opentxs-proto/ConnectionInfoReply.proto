@@ -1,0 +1,13 @@
+syntax = "proto2";
+
+package opentxs.proto;
+option optimize_for = LITE_RUNTIME;
+
+message ConnectionInfoReply {
+    optional uint32 version = 1;
+    optional bool success = 2;
+    optional string url = 3;
+    optional string login = 4;
+    optional string password = 5;
+    optional bytes key = 6;
+}
