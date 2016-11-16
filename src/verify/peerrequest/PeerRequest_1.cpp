@@ -89,7 +89,7 @@ bool CheckProto_1(
     }
 
     if ((peerRequest.type() < PEERREQUEST_BAILMENT) ||
-        (peerRequest.type() > PEERREQUEST_CONNECTIONINFO)) {
+        (peerRequest.type() > PEERREQUEST_STORESECRET)) {
             std::cerr << "Verify peer request failed: invalid type."
                       << std::endl;
 
@@ -202,6 +202,30 @@ bool CheckProto_1(
             if (!validconnectioninfo) {
                 std::cerr << "Verify peer request failed: invalid "
                           << "connectioninfo." << std::endl;
+
+                return false;
+            }
+
+            break;
+        }
+        case PEERREQUEST_STORESECRET : {
+            if (!peerRequest.has_storesecret()) {
+                std::cerr << "Verify peer request failed: missing "
+                          << "storesecret." << std::endl;
+
+                return false;
+            }
+
+            bool validstoresecret = Check(
+                peerRequest.storesecret(),
+                PeerRequestAllowedStoreSecret.at(
+                    peerRequest.version()).first,
+                PeerRequestAllowedStoreSecret.at(
+                    peerRequest.version()).second);
+
+            if (!validstoresecret) {
+                std::cerr << "Verify peer request failed: invalid "
+                          << "storesecret." << std::endl;
 
                 return false;
             }

@@ -52,6 +52,7 @@ set(PROTO_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/StorageSeeds.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/StorageServers.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/StorageUnits.proto
+    ${CMAKE_CURRENT_SOURCE_DIR}/StoreSecret.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/SymmetricKey.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/UnitDefinition.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/Verification.proto

@@ -47,6 +47,7 @@ set(cxx-sources
   storageseeds/StorageSeeds_1.cpp
   storageservers/StorageServers_1.cpp
   storageunits/StorageUnits_1.cpp
+  storesecret/StoreSecret_1.cpp
   symmetrickey/SymmetricKey_1.cpp
   unitdefinition/UnitDefinition_1.cpp
   verification/Verification_1.cpp

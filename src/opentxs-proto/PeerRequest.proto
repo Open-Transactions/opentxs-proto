@@ -9,6 +9,7 @@ import public "OutBailment.proto";
 import public "PeerEnums.proto";
 import public "PendingBailment.proto";
 import public "Signature.proto";
+import public "StoreSecret.proto";
 
 message PeerRequest {
     optional uint32 version = 1;
@@ -23,5 +24,6 @@ message PeerRequest {
         OutBailment outbailment = 9;
         PendingBailment pendingbailment = 10;
         ConnectionInfo connectioninfo = 11;
+        StoreSecret storesecret = 12;
     }
 }

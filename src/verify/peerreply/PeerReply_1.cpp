@@ -160,7 +160,8 @@ bool CheckProto_1(
 
             break;
         }
-        case PEERREQUEST_PENDINGBAILMENT : {
+        case PEERREQUEST_PENDINGBAILMENT :
+        case PEERREQUEST_STORESECRET : {
             if (!peerReply.has_notice()) {
                 std::cerr << "Verify peer reply failed: missing notice."
                           << std::endl;

@@ -74,6 +74,7 @@
 #include "opentxs-proto/verify/PeerRequest.hpp"
 #include "opentxs-proto/verify/PendingBailment.hpp"
 #include "opentxs-proto/verify/Signature.hpp"
+#include "opentxs-proto/verify/StoreSecret.hpp"
 // IWYU pragma: end_exports
 
 namespace opentxs { namespace proto
@@ -127,6 +128,10 @@ namespace opentxs { namespace proto
             { 1, {1, 1}},
         };
     static const VersionMap PeerRequestAllowedConnectionInfo =
+        {
+            { 1, {1, 1}},
+        };
+    static const VersionMap PeerRequestAllowedStoreSecret =
         {
             { 1, {1, 1}},
         };
