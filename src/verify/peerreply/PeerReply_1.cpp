@@ -89,7 +89,7 @@ bool CheckProto_1(
     }
 
     if ((peerReply.type() < PEERREQUEST_BAILMENT) ||
-        (peerReply.type() > PEERREQUEST_CONNECTIONINFO)) {
+        (peerReply.type() > PEERREQUEST_STORESECRET)) {
             std::cerr << "Verify peer reply failed: invalid type."
                       << std::endl;
 
