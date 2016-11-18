@@ -18,10 +18,11 @@ message PeerReply {
     optional PeerRequestType type = 5;
     optional string cookie = 6;
     optional Signature signature = 7;
+    optional string server = 8;
     oneof reply {
-        BailmentReply bailment = 8;
-        OutBailmentReply outbailment = 9;
-        NoticeAcknowledgement notice = 10;
-        ConnectionInfoReply connectioninfo = 11;
+        BailmentReply bailment = 9;
+        OutBailmentReply outbailment = 10;
+        NoticeAcknowledgement notice = 11;
+        ConnectionInfoReply connectioninfo = 12;
     }
 }
