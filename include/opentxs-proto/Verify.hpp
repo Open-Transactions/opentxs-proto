@@ -70,7 +70,7 @@ namespace opentxs { namespace proto
 
         if ((version < minVersion) || (version > maxVersion)) {
             std::cerr << "Verify protobuf failed: incorrect version ("
-            << serialized.version() << ")." << std::endl;
+                      << serialized.version() << ")." << std::endl;
 
             return false;
         }
@@ -79,6 +79,9 @@ namespace opentxs { namespace proto
             case 1 :
 
                 return CheckProto_1(serialized, params...);
+            case 2 :
+
+                return CheckProto_2(serialized, params...);
             default :
                 std::cerr << "Verify protobuf failed: unknown version ("
                 << serialized.version() << ")." << std::endl;

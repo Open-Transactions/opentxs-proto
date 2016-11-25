@@ -47,9 +47,8 @@ namespace opentxs { namespace proto
 {
     typedef std::map<std::string, uint64_t> BasketItemMap;
 
-    bool CheckProto_1(
-        const BasketItem& item,
-        BasketItemMap& map);
+    bool CheckProto_1(const BasketItem& item, BasketItemMap& map);
+    bool CheckProto_2(const BasketItem&, BasketItemMap&);
 } // namespace proto
 } // namespace opentxs
 

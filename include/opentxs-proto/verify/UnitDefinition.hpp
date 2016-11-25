@@ -46,6 +46,7 @@ namespace opentxs { namespace proto
     bool CheckProto_1(
         const UnitDefinition& contract,
         const bool checkSig = true);
+    bool CheckProto_2(const UnitDefinition&, const bool checkSig = true);
 } // namespace proto
 } // namespace opentxs
 

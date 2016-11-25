@@ -44,12 +44,17 @@
 namespace opentxs { namespace proto
 {
     bool CheckProto_1(
-    const CredentialSet& serializedCredSet,
-    const std::string& nymID,
-    const KeyMode& key,
-    bool& haveHD,
-    const CredentialSetMode& mode = CREDSETMODE_ERROR);
-
+        const CredentialSet& serializedCredSet,
+        const std::string& nymID,
+        const KeyMode& key,
+        bool& haveHD,
+        const CredentialSetMode& mode = CREDSETMODE_ERROR);
+    bool CheckProto_2(
+        const CredentialSet&,
+        const std::string&,
+        const KeyMode&,
+        bool&,
+        const CredentialSetMode& mode = CREDSETMODE_ERROR);
 } // namespace proto
 } // namespace opentxs
 

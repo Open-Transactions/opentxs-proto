@@ -43,9 +43,8 @@
 
 namespace opentxs { namespace proto
 {
-    bool CheckProto_1(
-        const StorageRoot& root);
-
+    bool CheckProto_1(const StorageRoot& root);
+    bool CheckProto_2(const StorageRoot&);
 } // namespace proto
 } // namespace opentxs
 

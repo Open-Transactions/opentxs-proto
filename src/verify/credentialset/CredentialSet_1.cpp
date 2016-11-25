@@ -309,5 +309,14 @@ bool CheckProto_1(
 
     return true;
 }
+bool CheckProto_2(
+    const CredentialSet&,
+    const std::string&,
+    const KeyMode&,
+    bool&,
+    const CredentialSetMode&)
+{
+    return false;
+}
 } // namespace proto
 } // namespace opentxs

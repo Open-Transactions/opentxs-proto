@@ -153,6 +153,7 @@ namespace opentxs { namespace proto
     static const VersionMap SeedAllowedCiphertext =
         {
             { 1, {1, 1}},
+            { 2, {1, 1}},
         };
     static const VersionMap CiphertextAllowedSymmetricKey =
         {

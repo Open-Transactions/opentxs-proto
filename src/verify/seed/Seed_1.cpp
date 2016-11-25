@@ -100,6 +100,13 @@ namespace opentxs { namespace proto
         return false;
     }
 
+    if (seed.has_index()) {
+        std::cerr << "Verify serialized seed failed: index not allowed in this "
+                  << "version." << std::endl;
+
+        return false;
+    }
+
     return true;
 }
 

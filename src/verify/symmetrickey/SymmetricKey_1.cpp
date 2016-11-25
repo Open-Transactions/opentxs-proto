@@ -109,6 +109,6 @@ namespace opentxs { namespace proto
 
     return true;
 }
-
+bool CheckProto_2(const SymmetricKey&) { return false; }
 } // namespace proto
 } // namespace opentxs

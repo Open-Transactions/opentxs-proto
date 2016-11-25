@@ -83,6 +83,6 @@ bool CheckProto_1(
 
     return true;
 }
-
+bool CheckProto_2(const ListenAddress&) { return false; }
 } // namespace proto
 } // namespace opentxs

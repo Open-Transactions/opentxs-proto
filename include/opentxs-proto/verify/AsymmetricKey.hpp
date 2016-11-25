@@ -48,7 +48,11 @@ namespace opentxs { namespace proto
         const CredentialType type,
         const KeyMode mode,
         const KeyRole role);
-
+    bool CheckProto_2(
+        const AsymmetricKey&,
+        const CredentialType,
+        const KeyMode,
+        const KeyRole);
 } // namespace proto
 } // namespace opentxs
 

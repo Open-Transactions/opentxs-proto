@@ -36,54 +36,79 @@
  *
  ************************************************************/
 
-#include "opentxs-proto/verify/Bailment.hpp"
+#include "opentxs-proto/verify/Seed.hpp"
 
 #include <iostream>
 
 namespace opentxs { namespace proto
 {
 
-bool CheckProto_1(
-    const Bailment& bailment)
+    bool CheckProto_2(const Seed& seed)
 {
-    if (!bailment.has_unitid()) {
-        std::cerr << "Verify bailment failed: missing unit id."
+    if (!seed.has_words()) {
+        std::cerr << "Verify serialized seed failed: missing words."
                   << std::endl;
+
         return false;
     }
 
-    if (MIN_PLAUSIBLE_IDENTIFIER > bailment.unitid().size()) {
-        std::cerr << "Verify bailment failed: invalid unit id ("
-                << bailment.unitid() << ")." << std::endl;
+    const bool validWords = Check(
+        seed.words(),
+        SeedAllowedCiphertext.at(seed.version()).first,
+        SeedAllowedCiphertext.at(seed.version()).second,
+        false);
+
+    if (!validWords) {
+        std::cerr << "Verify serialized seed failed: invalid words."
+                  <<  std::endl;
+
         return false;
     }
 
-    if (MAX_PLAUSIBLE_IDENTIFIER < bailment.unitid().size()) {
-        std::cerr << "Verify bailment failed: invalid unit id ("
-                << bailment.unitid() << ")." << std::endl;
-        return false;
+    if (seed.has_passphrase()) {
+        const bool validWords = Check(
+            seed.passphrase(),
+            SeedAllowedCiphertext.at(seed.version()).first,
+            SeedAllowedCiphertext.at(seed.version()).second,
+            false);
+
+        if (!validWords) {
+            std::cerr << "Verify serialized seed failed: invalid passphrase."
+                      <<  std::endl;
+
+            return false;
+        }
+
+        if (seed.passphrase().has_key()) {
+            std::cerr << "Verify serialized seed failed: passphrase not "
+                      << "allowed to have embedded symmetric key."
+                      <<  std::endl;
+        }
     }
 
-    if (!bailment.has_serverid()) {
-        std::cerr << "Verify bailment failed: missing server id."
+    if (!seed.has_fingerprint()) {
+        std::cerr << "Verify serialized seed failed: missing fingerprint."
                   << std::endl;
+
         return false;
     }
 
-    if (MIN_PLAUSIBLE_IDENTIFIER > bailment.serverid().size()) {
-        std::cerr << "Verify bailment failed: invalid server id ("
-                << bailment.serverid() << ")." << std::endl;
+    if (MIN_PLAUSIBLE_IDENTIFIER > seed.fingerprint().size()) {
+        std::cerr << "Verify serialized seed failed: invalid fingerprint."
+                  << std::endl;
+
         return false;
     }
 
-    if (MAX_PLAUSIBLE_IDENTIFIER < bailment.serverid().size()) {
-        std::cerr << "Verify bailment failed: invalid server id ("
-                << bailment.serverid() << ")." << std::endl;
+    if (!seed.has_index()) {
+        std::cerr << "Verify serialized seed failed: missing index."
+                  << std::endl;
+
         return false;
     }
 
     return true;
 }
-bool CheckProto_2(const Bailment& bailment) { return false; }
+
 } // namespace proto
 } // namespace opentxs

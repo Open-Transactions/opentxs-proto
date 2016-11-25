@@ -44,7 +44,7 @@
 namespace opentxs { namespace proto
 {
     bool CheckProto_1(const SymmetricKey& key);
-
+    bool CheckProto_2(const SymmetricKey&);
 } // namespace proto
 } // namespace opentxs
 

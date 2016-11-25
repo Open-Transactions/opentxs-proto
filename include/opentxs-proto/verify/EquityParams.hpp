@@ -44,6 +44,7 @@
 namespace opentxs { namespace proto
 {
     bool CheckProto_1(const EquityParams& params);
+    bool CheckProto_2(const EquityParams&);
 } // namespace proto
 } // namespace opentxs
 

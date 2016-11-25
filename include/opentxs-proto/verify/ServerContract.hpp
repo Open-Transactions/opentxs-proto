@@ -44,6 +44,7 @@
 namespace opentxs { namespace proto
 {
     bool CheckProto_1(const ServerContract& contract);
+    bool CheckProto_2(const ServerContract&);
 } // namespace proto
 } // namespace opentxs
 

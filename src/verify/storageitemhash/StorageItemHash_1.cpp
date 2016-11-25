@@ -65,6 +65,6 @@ bool CheckProto_1(
 
     return true;
 }
-
+bool CheckProto_2(const StorageItemHash&) { return false; }
 } // namespace proto
 } // namespace opentxs

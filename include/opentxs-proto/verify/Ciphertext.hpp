@@ -44,7 +44,7 @@
 namespace opentxs { namespace proto
 {
     bool CheckProto_1(const Ciphertext& data, const bool nested);
-
+    bool CheckProto_2(const Ciphertext&, const bool);
 } // namespace proto
 } // namespace opentxs
 

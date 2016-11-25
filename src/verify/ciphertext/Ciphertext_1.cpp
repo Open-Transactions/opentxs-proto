@@ -122,6 +122,6 @@ namespace opentxs { namespace proto
 
     return true;
 }
-
+bool CheckProto_2(const Ciphertext&, const bool) { return false; }
 } // namespace proto
 } // namespace opentxs
