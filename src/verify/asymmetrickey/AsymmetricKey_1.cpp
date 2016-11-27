@@ -271,6 +271,13 @@ bool CheckProto_1(
 
     return true;
 }
-
+bool CheckProto_2(
+    const AsymmetricKey&,
+    const CredentialType,
+    const KeyMode,
+    const KeyRole)
+{
+    return false;
+}
 } // namespace proto
 } // namespace opentxs

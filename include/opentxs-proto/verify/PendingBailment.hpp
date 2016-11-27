@@ -43,9 +43,8 @@
 
 namespace opentxs { namespace proto
 {
-    bool CheckProto_1(
-        const PendingBailment& pending);
-
+    bool CheckProto_1(const PendingBailment& pending);
+    bool CheckProto_2(const PendingBailment&);
 } // namespace proto
 } // namespace opentxs
 

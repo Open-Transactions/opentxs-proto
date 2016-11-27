@@ -35,6 +35,7 @@ set(cxx-sources
   peerrequest/PeerRequest_1.cpp
   pendingbailment/PendingBailment_1.cpp
   seed/Seed_1.cpp
+  seed/Seed_2.cpp
   servercontract/ServerContract_1.cpp
   signature/Signature_1.cpp
   sourceproof/SourceProof_1.cpp

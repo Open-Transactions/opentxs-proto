@@ -143,6 +143,23 @@ bool CheckProto_1(
         unused,
         role);
 }
-
+bool CheckProto_2(
+    const Signature&,
+    const std::string&,
+    const std::string&,
+    uint32_t&,
+    uint32_t&,
+    uint32_t&,
+    uint32_t&,
+    const SignatureRole)
+{
+    return false;
+}
+bool CheckProto_2(
+    const Signature&,
+    const SignatureRole)
+{
+    return false;
+}
 } // namespace proto
 } // namespace opentxs

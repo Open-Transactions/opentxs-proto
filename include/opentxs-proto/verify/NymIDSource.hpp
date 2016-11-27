@@ -43,9 +43,8 @@
 
 namespace opentxs { namespace proto
 {
-    bool CheckProto_1(
-        const NymIDSource& serializedNymIDSource);
-
+    bool CheckProto_1(const NymIDSource& serializedNymIDSource);
+    bool CheckProto_2(const NymIDSource&);
 } // namespace proto
 } // namespace opentxs
 

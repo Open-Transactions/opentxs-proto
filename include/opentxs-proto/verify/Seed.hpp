@@ -44,7 +44,7 @@
 namespace opentxs { namespace proto
 {
     bool CheckProto_1(const Seed& seed);
-
+    bool CheckProto_2(const Seed& seed);
 } // namespace proto
 } // namespace opentxs
 

@@ -88,6 +88,12 @@ bool CheckProto_1(
 
     return true;
 }
-
+bool CheckProto_2(
+    const ContactItem&,
+    const ClaimType,
+    const ContactSectionVersion)
+{
+    return false;
+}
 } // namespace proto
 } // namespace opentxs

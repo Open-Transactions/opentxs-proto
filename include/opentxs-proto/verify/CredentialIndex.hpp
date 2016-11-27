@@ -43,9 +43,8 @@
 
 namespace opentxs { namespace proto
 {
-    bool CheckProto_1(
-        const CredentialIndex& serializedCredIndex);
-
+    bool CheckProto_1(const CredentialIndex& serializedCredIndex);
+    bool CheckProto_2(const CredentialIndex&);
 } // namespace proto
 } // namespace opentxs
 

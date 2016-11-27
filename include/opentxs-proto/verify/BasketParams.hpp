@@ -44,6 +44,7 @@
 namespace opentxs { namespace proto
 {
     bool CheckProto_1(const BasketParams& params);
+    bool CheckProto_2(const BasketParams&);
 } // namespace proto
 } // namespace opentxs
 

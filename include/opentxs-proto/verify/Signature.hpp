@@ -52,11 +52,21 @@ namespace opentxs { namespace proto
         uint32_t& masterPublic,
         uint32_t& sourcePublic,
         const SignatureRole role = SIGROLE_ERROR);
-
     bool CheckProto_1(
         const Signature& serializedSignature,
         const SignatureRole role = SIGROLE_ERROR);
-
+    bool CheckProto_2(
+        const Signature&,
+        const std::string&,
+        const std::string&,
+        uint32_t&,
+        uint32_t&,
+        uint32_t&,
+        uint32_t&,
+        const SignatureRole role = SIGROLE_ERROR);
+    bool CheckProto_2(
+        const Signature&,
+        const SignatureRole role = SIGROLE_ERROR);
 } // namespace proto
 } // namespace opentxs
 

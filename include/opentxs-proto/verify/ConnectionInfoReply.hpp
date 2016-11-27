@@ -43,8 +43,8 @@
 
 namespace opentxs { namespace proto
 {
-    bool CheckProto_1(
-        const ConnectionInfoReply& connectionInfoReply);
+    bool CheckProto_1(const ConnectionInfoReply& connectionInfoReply);
+    bool CheckProto_2(const ConnectionInfoReply&);
 } // namespace proto
 } // namespace opentxs
 

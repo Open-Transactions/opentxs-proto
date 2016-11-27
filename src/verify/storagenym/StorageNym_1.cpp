@@ -165,6 +165,6 @@ bool CheckProto_1(
 
     return true;
 }
-
+bool CheckProto_2(const StorageNym&) { return false; }
 } // namespace proto
 } // namespace opentxs

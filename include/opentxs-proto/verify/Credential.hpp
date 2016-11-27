@@ -48,7 +48,11 @@ namespace opentxs { namespace proto
         const KeyMode& mode = KEYMODE_ERROR,
         const CredentialRole role = CREDROLE_ERROR,
         const bool withSigs = true);
-
+    bool CheckProto_2(
+        const Credential&,
+        const KeyMode& mode = KEYMODE_ERROR,
+        const CredentialRole role = CREDROLE_ERROR,
+        const bool withSigs = true);
 } // namespace proto
 } // namespace opentxs
 

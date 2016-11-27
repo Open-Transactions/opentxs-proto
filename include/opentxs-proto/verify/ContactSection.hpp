@@ -47,7 +47,10 @@ namespace opentxs { namespace proto
         const ContactSection& contactSection,
         const ClaimType indexed,
         const uint32_t parentVersion = 0xffffffff);
-
+    bool CheckProto_2(
+        const ContactSection&,
+        const ClaimType,
+        const uint32_t parentVersion = 0xffffffff);
 } // namespace proto
 } // namespace opentxs
 
