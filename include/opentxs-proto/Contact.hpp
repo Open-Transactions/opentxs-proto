@@ -382,14 +382,14 @@ namespace opentxs { namespace proto
 
     static const EnumTranslation ContactSectionNames =
     {
-        {{CONTACTSECTION_SCOPE, "en"}, "Names"},
-        {{CONTACTSECTION_IDENTIFIER, "en"}, "Messaging"},
-        {{CONTACTSECTION_ADDRESS, "en"}, "Profile"},
-        {{CONTACTSECTION_COMMUNICATION, "en"}, "URL"},
-        {{CONTACTSECTION_PROFILE, "en"}, "Accomplishments"},
+        {{CONTACTSECTION_SCOPE, "en"}, "Scope"},
+        {{CONTACTSECTION_IDENTIFIER, "en"}, "Identifier"},
+        {{CONTACTSECTION_ADDRESS, "en"}, "Address"},
+        {{CONTACTSECTION_COMMUNICATION, "en"}, "Communication"},
+        {{CONTACTSECTION_PROFILE, "en"}, "Profile"},
         {{CONTACTSECTION_RELATIONSHIP, "en"}, "Relationships"},
-        {{CONTACTSECTION_DESCRIPTOR, "en"}, "Fingerprints"},
-        {{CONTACTSECTION_EVENT, "en"}, "Contracts"},
+        {{CONTACTSECTION_DESCRIPTOR, "en"}, "Descriptor"},
+        {{CONTACTSECTION_EVENT, "en"}, "Event"},
         {{CONTACTSECTION_CONTRACT, "en"}, "Contracts"}
     };
     static const EnumTranslation ContactItemTypes =
@@ -398,6 +398,7 @@ namespace opentxs { namespace proto
         {{CITEMTYPE_ORGANIZATION, "en"}, "Organization"},
         {{CITEMTYPE_BUSINESS, "en"}, "Business"},
         {{CITEMTYPE_GOVERNMENT, "en"}, "Government"},
+        {{CITEMTYPE_SERVER, "en"}, "Server"},
         {{CITEMTYPE_PREFIX, "en"}, "Prefix title"},
         {{CITEMTYPE_FORENAME, "en"}, "Forename"},
         {{CITEMTYPE_MIDDLENAME, "en"}, "Middle name"},
@@ -418,6 +419,7 @@ namespace opentxs { namespace proto
         {{CITEMTYPE_BIRTHPLACE, "en"}, "Birthplace"},
         {{CITEMTYPE_HOME, "en"}, "Hometown"},
         {{CITEMTYPE_WEBSITE, "en"}, "Website"},
+        {{CITEMTYPE_OPENTXS, "en"}, "Open-Transactions"},
         {{CITEMTYPE_PHONE, "en"}, "Phone"},
         {{CITEMTYPE_EMAIL, "en"}, "Email"},
         {{CITEMTYPE_SKYPE, "en"}, "Skype"},
