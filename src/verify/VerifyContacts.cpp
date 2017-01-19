@@ -121,5 +121,25 @@ std::uint32_t ReciprocalRelationship(const std::uint32_t relationship)
     return CITEMTYPE_ERROR;
 }
 
+bool CheckCombination(
+    const ContactSectionName section,
+    const ContactItemType type,
+    const std::uint32_t version)
+{
+    const ContactSectionVersion key{version, section};
+    const auto it = AllowedItemTypes.find(key);
+    const bool keyExists = AllowedItemTypes.end() != it;
+
+    if (keyExists) {
+        for (const auto& allowedType : it->second) {
+            if (type == allowedType) {
+
+                return true;
+            }
+        }
+    }
+
+    return false;
+}
 } // namespace proto
 } // namespace opentxs

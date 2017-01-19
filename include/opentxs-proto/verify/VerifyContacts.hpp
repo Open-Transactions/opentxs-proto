@@ -140,6 +140,10 @@ namespace opentxs { namespace proto
         const std::uint32_t enumValue,
         const std::string& lang = "en");
     std::uint32_t ReciprocalRelationship(const std::uint32_t relationship);
+    bool CheckCombination(
+        const ContactSectionName section,
+        const ContactItemType type,
+        const std::uint32_t version = 1);
 
 } // namespace proto
 } // namespace opentxs
