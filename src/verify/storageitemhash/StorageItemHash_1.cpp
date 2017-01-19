@@ -43,28 +43,96 @@
 namespace opentxs { namespace proto
 {
 
-bool CheckProto_1(
-    const StorageItemHash& hash)
+bool CheckProto_1(const StorageItemHash& hash)
 {
     if (!hash.has_itemid()) {
-        std::cerr << "Verify serialized storage item hash failed: missing identifier." << std::endl;
+        std::cerr << "Verify serialized storage item hash failed: missing "
+                  << "identifier." << std::endl;
+
         return false;
     }
+
     if (MIN_PLAUSIBLE_IDENTIFIER > hash.itemid().size()) {
-        std::cerr << "Verify serialized storage item hash failed: invalid identifier." << std::endl;
+        std::cerr << "Verify serialized storage item hash failed: invalid "
+                  << "identifier." << std::endl;
+
         return false;
     }
+
     if (!hash.has_hash()) {
-        std::cerr << "Verify serialized storage item hash failed: missing hash." << std::endl;
+        std::cerr << "Verify serialized storage item hash failed: missing hash."
+                  << std::endl;
+
         return false;
     }
+
     if (MIN_PLAUSIBLE_IDENTIFIER > hash.hash().size()) {
-        std::cerr << "Verify serialized storage item hash failed: invalid hash." << std::endl;
+        std::cerr << "Verify serialized storage item hash failed: invalid hash."
+                  << std::endl;
+
+        return false;
+    }
+
+
+    if (hash.has_type() && (STORAGEHASH_ERROR != hash.type())) {
+        std::cerr << "Version 1 StorageItemHash must not contain type."
+                  << std::endl;
+
         return false;
     }
 
     return true;
 }
-bool CheckProto_2(const StorageItemHash&) { return false; }
+
+bool CheckProto_2(const StorageItemHash& hash)
+{
+    if (!hash.has_itemid()) {
+        std::cerr << "Verify serialized storage item hash failed: missing "
+                  << "identifier." << std::endl;
+
+        return false;
+    }
+
+    if (MIN_PLAUSIBLE_IDENTIFIER > hash.itemid().size()) {
+        std::cerr << "Verify serialized storage item hash failed: invalid "
+                  << "identifier." << std::endl;
+
+        return false;
+    }
+
+    if (!hash.has_hash()) {
+        std::cerr << "Verify serialized storage item hash failed: missing hash."
+                  << std::endl;
+
+        return false;
+    }
+
+    if (MIN_PLAUSIBLE_IDENTIFIER > hash.hash().size()) {
+        std::cerr << "Verify serialized storage item hash failed: invalid hash."
+                  << std::endl;
+
+        return false;
+    }
+
+    if (!hash.has_type()) {
+        std::cerr << "Verify serialized storage item hash failed: missing type."
+                  << std::endl;
+
+        return false;
+    }
+
+    switch (hash.type()) {
+        case STORAGEHASH_PROTO :
+        case STORAGEHASH_RAW : { break; }
+        default : {
+            std::cerr << "Verify serialized storage item hash failed: invalid "
+                      << "type." << std::endl;
+
+            return false;
+        }
+    }
+
+    return true;
+}
 } // namespace proto
 } // namespace opentxs

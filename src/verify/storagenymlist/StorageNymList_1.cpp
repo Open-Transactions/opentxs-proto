@@ -51,7 +51,8 @@ bool CheckProto_1(
             nym,
             StorageNymListAllowedHash.at(nymList.version()).first,
             StorageNymListAllowedHash.at(nymList.version()).second)) {
-                std::cerr << "Verify serialized nym index failed: invalid nym." << std::endl;
+                std::cerr << "Verify serialized nym index failed: invalid nym."
+                          << std::endl;
 
                 return false;
         }
@@ -59,6 +60,10 @@ bool CheckProto_1(
 
     return true;
 }
-bool CheckProto_2(const StorageNymList&) { return false; }
+bool CheckProto_2(
+    const StorageNymList& nymList)
+{
+    return CheckProto_1(nymList);
+}
 } // namespace proto
 } // namespace opentxs

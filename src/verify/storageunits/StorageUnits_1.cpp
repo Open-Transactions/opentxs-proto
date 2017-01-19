@@ -43,8 +43,7 @@
 namespace opentxs { namespace proto
 {
 
-bool CheckProto_1(
-    const StorageUnits& Units)
+bool CheckProto_1(const StorageUnits& Units)
 {
     for (auto& hash: Units.unit()) {
         bool valid = Check(
@@ -53,13 +52,18 @@ bool CheckProto_1(
             StorageUnitsAllowedHash.at(Units.version()).second);
 
         if (!valid) {
-            std::cerr << "Verify serialized unit storage index failed: invalid hash." << std::endl;
+            std::cerr << "Verify serialized unit storage index failed: invalid "
+                      << "hash." << std::endl;
+
             return false;
         }
     }
 
     return true;
 }
-bool CheckProto_2(const StorageUnits&) { return false; }
+bool CheckProto_2(const StorageUnits& units)
+{
+    return CheckProto_1(units);
+}
 } // namespace proto
 } // namespace opentxs

@@ -60,6 +60,10 @@ bool CheckProto_1(
 
     return true;
 }
-bool CheckProto_2(const StorageCredentials&) { return false; }
+bool CheckProto_2(
+    const StorageCredentials& creds)
+{
+    return CheckProto_1(creds);
+}
 } // namespace proto
 } // namespace opentxs

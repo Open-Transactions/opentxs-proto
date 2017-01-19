@@ -82,33 +82,35 @@
 
 namespace opentxs { namespace proto
 {
-    static const VersionMap StorageItemsAllowedCredential =
-        {
-            { 1, {1, 1}},
-        };
     static const VersionMap StorageCredentialAllowedHash =
         {
             { 1, {1, 1}},
+            { 2, {1, 2}},
         };
     static const VersionMap StorageNymListAllowedHash =
         {
             { 1, {1, 1}},
+            { 2, {1, 2}},
         };
     static const VersionMap StorageNymAllowedHash =
         {
             { 1, {1, 1}},
+            { 2, {1, 2}},
         };
     static const VersionMap StorageServersAllowedHash =
         {
             { 1, {1, 1}},
+            { 2, {1, 2}},
         };
     static const VersionMap StorageUnitsAllowedHash =
         {
             { 1, {1, 1}},
+            { 2, {1, 2}},
         };
     static const VersionMap StorageSeedsAllowedHash =
         {
             { 1, {1, 1}},
+            { 2, {1, 2}},
         };
 } // namespace proto
 } // namespace opentxs

@@ -93,6 +93,7 @@
 #include <opentxs-proto/Signature.pb.h>
 #include <opentxs-proto/SourceProof.pb.h>
 #include <opentxs-proto/StorageCredentials.pb.h>
+#include <opentxs-proto/StorageEnums.pb.h>
 #include <opentxs-proto/StorageItemHash.pb.h>
 #include <opentxs-proto/StorageItems.pb.h>
 #include <opentxs-proto/StorageNym.pb.h>

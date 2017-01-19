@@ -43,8 +43,7 @@
 namespace opentxs { namespace proto
 {
 
-bool CheckProto_1(
-    const StorageNym& nym)
+bool CheckProto_1(const StorageNym& nym)
 {
     if (nym.has_credlist()) {
         bool valid = Check(
@@ -165,6 +164,9 @@ bool CheckProto_1(
 
     return true;
 }
-bool CheckProto_2(const StorageNym&) { return false; }
+bool CheckProto_2(const StorageNym& nym)
+{
+    return CheckProto_1(nym);
+}
 } // namespace proto
 } // namespace opentxs

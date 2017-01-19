@@ -44,6 +44,7 @@ set(PROTO_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/Signature.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/SourceProof.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/StorageCredentials.proto
+    ${CMAKE_CURRENT_SOURCE_DIR}/StorageEnums.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/StorageItemHash.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/StorageItems.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/StorageNym.proto

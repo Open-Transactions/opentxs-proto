@@ -43,17 +43,18 @@
 namespace opentxs { namespace proto
 {
 
-bool CheckProto_1(
-    const StorageSeeds& seed)
+bool CheckProto_1(const StorageSeeds& seed)
 {
     if (!seed.has_defaultseed()) {
         std::cerr << "Verify serialized seed storage index failed: missing"
                   << " default seed." << std::endl;
+
         return false;
     }
     if (MIN_PLAUSIBLE_IDENTIFIER > seed.defaultseed().size()) {
         std::cerr << "Verify serialized seed storage index failed: invalid"
                   << " default seed." << std::endl;
+
         return false;
     }
 
@@ -66,12 +67,16 @@ bool CheckProto_1(
         if (!valid) {
             std::cerr << "Verify serialized seed storage index failed: invalid"
                       << " hash." << std::endl;
+
             return false;
         }
     }
 
     return true;
 }
-bool CheckProto_2(const StorageSeeds&) { return false; }
+bool CheckProto_2(const StorageSeeds& seed)
+{
+    return CheckProto_1(seed);
+}
 } // namespace proto
 } // namespace opentxs

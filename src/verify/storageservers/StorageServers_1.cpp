@@ -53,13 +53,18 @@ bool CheckProto_1(
             StorageServersAllowedHash.at(servers.version()).second);
 
         if (!valid) {
-            std::cerr << "Verify serialized server storage index failed: invalid hash." << std::endl;
+            std::cerr << "Verify serialized server storage index failed: "
+                      << "invalid hash." << std::endl;
+
             return false;
         }
     }
 
     return true;
 }
-bool CheckProto_2(const StorageServers&) { return false; }
+bool CheckProto_2(const StorageServers& servers)
+{
+    return CheckProto_1(servers);
+}
 } // namespace proto
 } // namespace opentxs
