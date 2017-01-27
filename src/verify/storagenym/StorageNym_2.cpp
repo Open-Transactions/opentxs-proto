@@ -43,7 +43,7 @@
 namespace opentxs { namespace proto
 {
 
-bool CheckProto_1(const StorageNym& nym)
+bool CheckProto_2(const StorageNym& nym)
 {
     if (nym.has_credlist()) {
         bool valid = Check(
@@ -163,24 +163,42 @@ bool CheckProto_1(const StorageNym& nym)
     }
 
     if (nym.has_mailinbox()) {
-        std::cerr << "Verify serialized storage nym failed: version 1 must not "
-                  << "contain mailinbox." << std::endl;
+        bool valid = Check(
+            nym.mailinbox(),
+            StorageNymAllowedHash.at(nym.version()).first,
+            StorageNymAllowedHash.at(nym.version()).second);
 
-        return false;
+        if (!valid) {
+            std::cerr << "Verify serialized storage nym failed: invalid "
+                      << "mailinbox." << std::endl;
+            return false;
+        }
     }
 
     if (nym.has_mailoutbox()) {
-        std::cerr << "Verify serialized storage nym failed: version 1 must not "
-                  << "contain mailoutbox." << std::endl;
+        bool valid = Check(
+            nym.mailoutbox(),
+            StorageNymAllowedHash.at(nym.version()).first,
+            StorageNymAllowedHash.at(nym.version()).second);
 
-        return false;
+        if (!valid) {
+            std::cerr << "Verify serialized storage nym failed: invalid "
+                      << "mailoutbox." << std::endl;
+            return false;
+        }
     }
 
     if (nym.has_threads()) {
-        std::cerr << "Verify serialized storage nym failed: version 1 must not "
-                  << "contain threads." << std::endl;
+        bool valid = Check(
+            nym.threads(),
+            StorageNymAllowedHash.at(nym.version()).first,
+            StorageNymAllowedHash.at(nym.version()).second);
 
-        return false;
+        if (!valid) {
+            std::cerr << "Verify serialized storage nym failed: invalid "
+                      << "threads." << std::endl;
+            return false;
+        }
     }
 
     return true;

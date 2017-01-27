@@ -101,6 +101,8 @@
 #include <opentxs-proto/StorageRoot.pb.h>
 #include <opentxs-proto/StorageSeeds.pb.h>
 #include <opentxs-proto/StorageServers.pb.h>
+#include <opentxs-proto/StorageThread.pb.h>
+#include <opentxs-proto/StorageThreadItem.pb.h>
 #include <opentxs-proto/StorageUnits.pb.h>
 #include <opentxs-proto/StoreSecret.pb.h>
 #include <opentxs-proto/SymmetricKey.pb.h>

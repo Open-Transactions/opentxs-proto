@@ -59,6 +59,7 @@
 #include "opentxs-proto/StorageRoot.pb.h"
 #include "opentxs-proto/StorageSeeds.pb.h"
 #include "opentxs-proto/StorageServers.pb.h"
+#include "opentxs-proto/StorageThread.pb.h"
 #include "opentxs-proto/StorageUnits.pb.h"
 // IWYU pragma: end_exports
 #ifdef _WIN32
@@ -77,6 +78,8 @@
 #include "opentxs-proto/verify/StorageRoot.hpp"
 #include "opentxs-proto/verify/StorageSeeds.hpp"
 #include "opentxs-proto/verify/StorageServers.hpp"
+#include "opentxs-proto/verify/StorageThread.hpp"
+#include "opentxs-proto/verify/StorageThreadItem.hpp"
 #include "opentxs-proto/verify/StorageUnits.hpp"
 // IWYU pragma: end_exports
 
@@ -101,6 +104,10 @@ namespace opentxs { namespace proto
         {
             { 1, {1, 1}},
             { 2, {1, 2}},
+        };
+    static const VersionMap StorageThreadAllowedItem =
+        {
+            { 1, {1, 1}},
         };
     static const VersionMap StorageUnitsAllowedHash =
         {
