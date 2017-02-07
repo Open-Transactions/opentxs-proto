@@ -36,24 +36,52 @@
  *
  ************************************************************/
 
-#include "opentxs-proto/Types.hpp"
+#ifndef OPENTXS_PROTO_VERIFY
+#define OPENTXS_PROTO_VERIFY
 
 #include <iostream>
 
 namespace opentxs { namespace proto
 {
+    template<typename T, typename ...Args>
+    bool Check(
+        const T& serialized,
+        const uint32_t minVersion,
+        const uint32_t maxVersion,
+        Args&&... params)
+    {
+        if (!serialized.has_version()) {
+            std::cerr << "Verify protobuf failed: missing version."
+                      << std::endl;
 
-bool CheckProto_1(
-    const BailmentReply& bailmentReply)
-{
-    if (!bailmentReply.has_instructions()) {
-        std::cerr << "Verify bailment reply failed: instructions."
-                  << std::endl;
-        return false;
+            return false;
+        }
+
+        uint32_t version = serialized.version();
+
+        if ((version < minVersion) || (version > maxVersion)) {
+            std::cerr << "Verify protobuf failed: incorrect version ("
+                      << serialized.version() << ")." << std::endl;
+
+            return false;
+        }
+
+        switch (version) {
+            case 1 :
+
+                return CheckProto_1(serialized, params...);
+            case 2 :
+
+                return CheckProto_2(serialized, params...);
+            default :
+                std::cerr << "Verify protobuf failed: unknown version ("
+                << serialized.version() << ")." << std::endl;
+
+                return false;
+        }
+
+        return true;
     }
-
-    return true;
-}
-bool CheckProto_2(const BailmentReply&) { return false; }
 } // namespace proto
 } // namespace opentxs
+#endif // OPENTXS_PROTO_VERIFY

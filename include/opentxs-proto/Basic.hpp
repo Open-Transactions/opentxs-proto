@@ -36,61 +36,27 @@
  *
  ************************************************************/
 
-#ifndef OPENTXS_PROTO_VERIFY
-#define OPENTXS_PROTO_VERIFY
+#ifndef OPENTXS_PROTO_BASIC_HPP
+#define OPENTXS_PROTO_BASIC_HPP
 
-#include <iostream>
+#include <cstdint>
 #include <map>
+#include <tuple>
 
 namespace opentxs { namespace proto
 {
     // This defined a map between the version of the parent object
     // and the (minimum, maximum) acceptable versions of a child object.
-    typedef std::map<uint32_t, std::pair<uint32_t, uint32_t> > VersionMap;
+    typedef std::map<
+        std::uint32_t,
+        std::pair<std::uint32_t, std::uint32_t>>
+            VersionMap;
 
-    static const uint32_t MIN_PLAUSIBLE_IDENTIFIER = 20;
-    static const uint32_t MAX_PLAUSIBLE_IDENTIFIER = 80;
-    static const uint32_t MIN_PLAUSIBLE_KEYSIZE = 16;
-    static const uint32_t MIN_PLAUSIBLE_SIGNATURE = 32;
-
-    template<typename T, typename ...Args>
-    bool Check(
-        const T& serialized,
-        const uint32_t minVersion,
-        const uint32_t maxVersion,
-        Args&&... params)
-    {
-        if (!serialized.has_version()) {
-            std::cerr << "Verify protobuf failed: missing version." << std::endl;
-
-            return false;
-        }
-
-        uint32_t version = serialized.version();
-
-        if ((version < minVersion) || (version > maxVersion)) {
-            std::cerr << "Verify protobuf failed: incorrect version ("
-                      << serialized.version() << ")." << std::endl;
-
-            return false;
-        }
-
-        switch (version) {
-            case 1 :
-
-                return CheckProto_1(serialized, params...);
-            case 2 :
-
-                return CheckProto_2(serialized, params...);
-            default :
-                std::cerr << "Verify protobuf failed: unknown version ("
-                << serialized.version() << ")." << std::endl;
-
-                return false;
-        }
-
-        return true;
-    }
+    static const std::uint32_t MIN_PLAUSIBLE_IDENTIFIER = 20;
+    static const std::uint32_t MAX_PLAUSIBLE_IDENTIFIER = 80;
+    static const std::uint32_t MIN_PLAUSIBLE_KEYSIZE = 16;
+    static const std::uint32_t MIN_PLAUSIBLE_SIGNATURE = 32;
 } // namespace proto
 } // namespace opentxs
-#endif // OPENTXS_PROTO_VERIFY
+
+#endif // OPENTXS_PROTO_BASIC_HPP

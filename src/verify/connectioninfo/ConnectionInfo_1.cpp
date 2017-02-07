@@ -36,7 +36,7 @@
  *
  ************************************************************/
 
-#include "opentxs-proto/verify/ConnectionInfo.hpp"
+#include "opentxs-proto/Types.hpp"
 
 #include <iostream>
 

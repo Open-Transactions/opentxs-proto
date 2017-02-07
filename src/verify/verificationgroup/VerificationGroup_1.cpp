@@ -36,11 +36,10 @@
  *
  ************************************************************/
 
+#include "opentxs-proto/Types.hpp"
+#include "opentxs-proto/Check.hpp"
+
 #include <iostream>
-
-#include "opentxs-proto/verify/VerificationGroup.hpp"
-
-#include "opentxs-proto/verify/VerificationIdentity.hpp"
 
 namespace opentxs { namespace proto
 {

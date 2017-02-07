@@ -36,11 +36,10 @@
  *
  ************************************************************/
 
-#include "opentxs-proto/verify/ContactSection.hpp"
+#include "opentxs-proto/Types.hpp"
+#include "opentxs-proto/Check.hpp"
 
 #include <iostream>
-
-#include "opentxs-proto/Contact.hpp"
 
 namespace opentxs { namespace proto
 {

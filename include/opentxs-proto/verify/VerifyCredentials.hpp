@@ -39,53 +39,27 @@
 #ifndef OPENTXS_PROTO_VERIFYCREDENTIALS_HPP
 #define OPENTXS_PROTO_VERIFYCREDENTIALS_HPP
 
-#ifdef _WIN32
-#pragma warning(push)
-#pragma warning(disable : 4244)
-#pragma warning(disable : 4267)
-#else
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wshadow"
-#ifndef __clang__
-// -Wuseless-cast does not exist in clang
-#pragma GCC diagnostic ignored "-Wuseless-cast"
-#endif
-#endif
-// IWYU pragma: begin_exports
-#include "opentxs-proto/Enums.pb.h"
-#include "opentxs-proto/Credential.pb.h"
-#include "opentxs-proto/CredentialIndex.pb.h"
-#include "opentxs-proto/Envelope.pb.h"
-#include "opentxs-proto/Seed.pb.h"
-// IWYU pragma: end_exports
-#ifdef _WIN32
-#pragma warning(pop)
-#else
-#pragma GCC diagnostic pop
-#endif
-
-// IWYU pragma: begin_exports
-#include "opentxs-proto/Verify.hpp"
-#include "opentxs-proto/verify/AsymmetricKey.hpp"
-#include "opentxs-proto/verify/ChildCredentialParameters.hpp"
-#include "opentxs-proto/verify/Ciphertext.hpp"
-#include "opentxs-proto/verify/Credential.hpp"
-#include "opentxs-proto/verify/CredentialIndex.hpp"
-#include "opentxs-proto/verify/CredentialSet.hpp"
-#include "opentxs-proto/verify/Envelope.hpp"
-#include "opentxs-proto/verify/HDPath.hpp"
-#include "opentxs-proto/verify/KeyCredential.hpp"
-#include "opentxs-proto/verify/MasterCredentialParameters.hpp"
-#include "opentxs-proto/verify/NymIDSource.hpp"
-#include "opentxs-proto/verify/PaymentCode.hpp"
-#include "opentxs-proto/verify/Seed.hpp"
-#include "opentxs-proto/verify/Signature.hpp"
-#include "opentxs-proto/verify/SourceProof.hpp"
-#include "opentxs-proto/verify/SymmetricKey.hpp"
-// IWYU pragma: end_exports
+#include "opentxs-proto/Basic.hpp"
 
 namespace opentxs { namespace proto
 {
+    class AsymmetricKey;
+    class ChildCredentialParameters;
+    class Ciphertext;
+    class Credential;
+    class CredentialIndex;
+    class CredentialSet;
+    class Envelope;
+    class HDPath;
+    class KeyCredential;
+    class MasterCredentialParameters;
+    class NymIDSource;
+    class PaymentCode;
+    class Seed;
+    class Signature;
+    class SourceProof;
+    class SymmetricKey;
+
     static const VersionMap CredentialAllowedKeyCredentials =
         {
             { 1, {1, 1}},

@@ -36,7 +36,7 @@
  *
  ************************************************************/
 
-#include "opentxs-proto/verify/StorageItemHash.hpp"
+#include "opentxs-proto/Types.hpp"
 
 #include <iostream>
 
