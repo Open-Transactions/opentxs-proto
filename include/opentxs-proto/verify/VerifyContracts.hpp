@@ -39,39 +39,18 @@
 #ifndef OPENTXS_PROTO_VERIFYCONTRACTS_HPP
 #define OPENTXS_PROTO_VERIFYCONTRACTS_HPP
 
-#ifdef _WIN32
-#pragma warning(push)
-#pragma warning(disable : 4244)
-#pragma warning(disable : 4267)
-#else
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wshadow"
-#ifndef __clang__
-// -Wuseless-cast does not exist in clang
-#pragma GCC diagnostic ignored "-Wuseless-cast"
-#endif
-#endif
-// IWYU pragma: begin_exports
-#include "opentxs-proto/ServerContract.pb.h"
-#include "opentxs-proto/UnitDefinition.pb.h"
-// IWYU pragma: end_exports
-#ifdef _WIN32
-#pragma warning(pop)
-#else
-#pragma GCC diagnostic pop
-#endif
-
-// IWYU pragma: begin_exports
-#include "opentxs-proto/Verify.hpp"
-#include "opentxs-proto/verify/CurrencyParams.hpp"
-#include "opentxs-proto/verify/ListenAddress.hpp"
-#include "opentxs-proto/verify/ServerContract.hpp"
-#include "opentxs-proto/verify/UnitDefinition.hpp"
-#include "opentxs-proto/verify/VerifyCredentials.hpp"
-// IWYU pragma: end_exports
+#include "opentxs-proto/Basic.hpp"
 
 namespace opentxs { namespace proto
 {
+    class BasketItem;
+    class BasketParams;
+    class CurrencyParams;
+    class ListenAddress;
+    class ServerContract;
+    class UnitDefinition;
+    class VerifyCredentials;
+
     static const VersionMap ServerContractAllowedCredentialIndex =
         {
             { 1, {1, 1}},

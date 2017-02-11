@@ -43,10 +43,13 @@ set(cxx-sources
   storageitems/StorageItems_1.cpp
   storageitemhash/StorageItemHash_1.cpp
   storagenym/StorageNym_1.cpp
+  storagenym/StorageNym_2.cpp
   storagenymlist/StorageNymList_1.cpp
   storageroot/StorageRoot_1.cpp
   storageseeds/StorageSeeds_1.cpp
   storageservers/StorageServers_1.cpp
+  storagethread/StorageThread_1.cpp
+  storagethreaditem/StorageThreadItem_1.cpp
   storageunits/StorageUnits_1.cpp
   storesecret/StoreSecret_1.cpp
   symmetrickey/SymmetricKey_1.cpp

@@ -36,7 +36,7 @@
  *
  ************************************************************/
 
-#include "opentxs-proto/verify/StoreSecret.hpp"
+#include "opentxs-proto/Types.hpp"
 
 #include <iostream>
 

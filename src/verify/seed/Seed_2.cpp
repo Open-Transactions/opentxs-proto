@@ -36,7 +36,8 @@
  *
  ************************************************************/
 
-#include "opentxs-proto/verify/Seed.hpp"
+#include "opentxs-proto/Types.hpp"
+#include "opentxs-proto/Check.hpp"
 
 #include <iostream>
 

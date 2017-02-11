@@ -36,7 +36,8 @@
  *
  ************************************************************/
 
-#include "opentxs-proto/verify/StorageCredentials.hpp"
+#include "opentxs-proto/Types.hpp"
+#include "opentxs-proto/Check.hpp"
 
 #include <iostream>
 
@@ -60,6 +61,10 @@ bool CheckProto_1(
 
     return true;
 }
-bool CheckProto_2(const StorageCredentials&) { return false; }
+bool CheckProto_2(
+    const StorageCredentials& creds)
+{
+    return CheckProto_1(creds);
+}
 } // namespace proto
 } // namespace opentxs

@@ -36,7 +36,7 @@
  *
  ************************************************************/
 
-#include "opentxs-proto/verify/StorageItems.hpp"
+#include "opentxs-proto/Types.hpp"
 
 #include <iostream>
 
@@ -48,31 +48,45 @@ bool CheckProto_1(
 {
     if (items.has_creds()) {
         if (MIN_PLAUSIBLE_IDENTIFIER > items.creds().size()) {
-            std::cerr << "Verify serialized storage item index failed: invalid credentials." << std::endl;
+            std::cerr << "Verify serialized storage item index failed: invalid "
+                      << "credentials." << std::endl;
+
             return false;
         }
     }
+
     if (items.has_nyms()) {
         if (MIN_PLAUSIBLE_IDENTIFIER > items.nyms().size()) {
-            std::cerr << "Verify serialized storage item index failed: invalid nym list." << std::endl;
+            std::cerr << "Verify serialized storage item index failed: invalid "
+                      << "nym list." << std::endl;
+
             return false;
         }
     }
+
     if (items.has_servers()) {
         if (MIN_PLAUSIBLE_IDENTIFIER > items.servers().size()) {
-            std::cerr << "Verify serialized storage item index failed: invalid server list." << std::endl;
+            std::cerr << "Verify serialized storage item index failed: invalid "
+                      << "server list." << std::endl;
+
             return false;
         }
     }
+
     if (items.has_units()) {
         if (MIN_PLAUSIBLE_IDENTIFIER > items.units().size()) {
-            std::cerr << "Verify serialized storage item index failed: invalid unit list." << std::endl;
+            std::cerr << "Verify serialized storage item index failed: invalid "
+                      << "unit list." << std::endl;
+
             return false;
         }
     }
+
     if (items.has_seeds()) {
         if (MIN_PLAUSIBLE_IDENTIFIER > items.seeds().size()) {
-            std::cerr << "Verify serialized storage item index failed: invalid seed list." << std::endl;
+            std::cerr << "Verify serialized storage item index failed: invalid "
+                      << "seed list." << std::endl;
+
             return false;
         }
     }

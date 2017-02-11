@@ -36,7 +36,7 @@
  *
  ************************************************************/
 
-#include "opentxs-proto/verify/OutBailment.hpp"
+#include "opentxs-proto/Types.hpp"
 
 #include <iostream>
 

@@ -44,30 +44,6 @@
 #include <string>
 #include <utility>
 
-#ifdef _WIN32
-#pragma warning(push)
-#pragma warning(disable : 4244)
-#pragma warning(disable : 4267)
-#else
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wshadow"
-#ifndef __clang__
-// -Wuseless-cast does not exist in clang
-#pragma GCC diagnostic ignored "-Wuseless-cast"
-#endif
-#endif
-// IWYU pragma: begin_exports
-#include "opentxs-proto/Claim.pb.h"
-#include "opentxs-proto/ContactData.pb.h"
-#include "opentxs-proto/ContactEnums.pb.h"
-#include "opentxs-proto/VerificationSet.pb.h"
-// IWYU pragma: end_exports
-#ifdef _WIN32
-#pragma warning(pop)
-#else
-#pragma GCC diagnostic pop
-#endif
-
 namespace opentxs { namespace proto
 {
     typedef bool ClaimType;
@@ -80,21 +56,20 @@ namespace opentxs { namespace proto
 }
 }
 
-// IWYU pragma: begin_exports
+#include "opentxs-proto/Basic.hpp"
 #include "opentxs-proto/Contact.hpp"
-#include "opentxs-proto/Verify.hpp"
-#include "opentxs-proto/verify/Claim.hpp"
-#include "opentxs-proto/verify/ContactData.hpp"
-#include "opentxs-proto/verify/ContactItem.hpp"
-#include "opentxs-proto/verify/ContactSection.hpp"
-#include "opentxs-proto/verify/Verification.hpp"
-#include "opentxs-proto/verify/VerificationGroup.hpp"
-#include "opentxs-proto/verify/VerificationIdentity.hpp"
-#include "opentxs-proto/verify/VerificationSet.hpp"
-// IWYU pragma: end_exports
 
 namespace opentxs { namespace proto
 {
+    class Claim;
+    class ContactData;
+    class ContactItem;
+    class ContactSection;
+    class Verification;
+    class VerificationGroup;
+    class VerificationIdentity;
+    class VerificationSet;
+
     static const VersionMap ContactDataAllowedSection =
         {
             { 1, {1, 1}},

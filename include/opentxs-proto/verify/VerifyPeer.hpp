@@ -39,46 +39,24 @@
 #ifndef OPENTXS_PROTO_VERIFYPEER_HPP
 #define OPENTXS_PROTO_VERIFYPEER_HPP
 
-#ifdef _WIN32
-#pragma warning(push)
-#pragma warning(disable : 4244)
-#pragma warning(disable : 4267)
-#else
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wshadow"
-#ifndef __clang__
-// -Wuseless-cast does not exist in clang
-#pragma GCC diagnostic ignored "-Wuseless-cast"
-#endif
-#endif
-// IWYU pragma: begin_exports
-#include "opentxs-proto/PeerObject.pb.h"
-// IWYU pragma: end_exports
-#ifdef _WIN32
-#pragma warning(pop)
-#else
-#pragma GCC diagnostic pop
-#endif
-
-// IWYU pragma: begin_exports
-#include "opentxs-proto/Verify.hpp"
-#include "opentxs-proto/verify/Bailment.hpp"
-#include "opentxs-proto/verify/BailmentReply.hpp"
-#include "opentxs-proto/verify/ConnectionInfo.hpp"
-#include "opentxs-proto/verify/ConnectionInfoReply.hpp"
-#include "opentxs-proto/verify/NoticeAcknowledgement.hpp"
-#include "opentxs-proto/verify/OutBailment.hpp"
-#include "opentxs-proto/verify/OutBailmentReply.hpp"
-#include "opentxs-proto/verify/PeerObject.hpp"
-#include "opentxs-proto/verify/PeerReply.hpp"
-#include "opentxs-proto/verify/PeerRequest.hpp"
-#include "opentxs-proto/verify/PendingBailment.hpp"
-#include "opentxs-proto/verify/Signature.hpp"
-#include "opentxs-proto/verify/StoreSecret.hpp"
-// IWYU pragma: end_exports
+#include "opentxs-proto/Basic.hpp"
 
 namespace opentxs { namespace proto
 {
+    class Bailment;
+    class BailmentReply;
+    class ConnectionInfo;
+    class ConnectionInfoReply;
+    class NoticeAcknowledgement;
+    class OutBailment;
+    class OutBailmentReply;
+    class PeerObject;
+    class PeerReply;
+    class PeerRequest;
+    class PendingBailment;
+    class Signature;
+    class StoreSecret;
+
     static const VersionMap PeerObjectAllowedReply =
         {
             { 1, {1, 1}},

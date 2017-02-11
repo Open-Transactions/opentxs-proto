@@ -36,24 +36,16 @@
  *
  ************************************************************/
 
-#include "opentxs-proto/Types.hpp"
+#ifndef OPENTXS_PROTO_STORAGETHREADITEM_HPP
+#define OPENTXS_PROTO_STORAGETHREADITEM_HPP
 
-#include <iostream>
+#include "VerifyStorage.hpp"
 
 namespace opentxs { namespace proto
 {
-
-bool CheckProto_1(
-    const BailmentReply& bailmentReply)
-{
-    if (!bailmentReply.has_instructions()) {
-        std::cerr << "Verify bailment reply failed: instructions."
-                  << std::endl;
-        return false;
-    }
-
-    return true;
-}
-bool CheckProto_2(const BailmentReply&) { return false; }
+    bool CheckProto_1(const StorageThreadItem& item);
+    bool CheckProto_2(const StorageThreadItem&);
 } // namespace proto
 } // namespace opentxs
+
+#endif // OPENTXS_PROTO_STORAGETHREADITEM_HPP

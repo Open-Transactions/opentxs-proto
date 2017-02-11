@@ -36,14 +36,10 @@
  *
  ************************************************************/
 
-#include "opentxs-proto/verify/UnitDefinition.hpp"
+#include "opentxs-proto/Types.hpp"
+#include "opentxs-proto/Check.hpp"
 
 #include <iostream>
-
-#include "opentxs-proto/verify/BasketParams.hpp"
-#include "opentxs-proto/verify/CurrencyParams.hpp"
-#include "opentxs-proto/verify/EquityParams.hpp"
-
 
  namespace opentxs { namespace proto
 {

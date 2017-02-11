@@ -36,7 +36,7 @@
  *
  ************************************************************/
 
-#include "opentxs-proto/verify/PendingBailment.hpp"
+#include "opentxs-proto/Types.hpp"
 
 #include <iostream>
 

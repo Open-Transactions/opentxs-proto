@@ -44,72 +44,64 @@
 namespace opentxs { namespace proto
 {
 
-    bool CheckProto_1(const SymmetricKey& key)
+bool CheckProto_1(const StorageThread& thread)
 {
-    const bool validKey = Check(
-        key.key(),
-        SymmetricKeyAllowedCiphertext.at(key.version()).first,
-        SymmetricKeyAllowedCiphertext.at(key.version()).second,
-        true);
-
-    if (!validKey) {
-        std::cerr << "Verify serialized symmetric key failed: invalid "
-                    << "encrypted key." <<  std::endl;
+    if (!thread.has_id()) {
+        std::cerr << "Verify serialized storage thread failed: missing "
+                  << "identifier." << std::endl;
 
         return false;
     }
 
-    if (!key.has_size()) {
-        std::cerr << "Verify serialized symmetric key failed: missing size."
-                  << std::endl;
+    if (MIN_PLAUSIBLE_IDENTIFIER > thread.id().size()) {
+        std::cerr << "Verify serialized storage thread failed: invalid "
+                  << "identifier." << std::endl;
 
         return false;
     }
 
-    if (!key.has_type()) {
-        std::cerr << "Verify serialized symmetric key failed: missing type."
-                  << std::endl;
-
-        return false;
-    }
-
-    switch (key.type()) {
-        case (SKEYTYPE_RAW) :
-        case (SKEYTYPE_ECDH) : { break; }
-        case (SKEYTYPE_ARGON2) : {
-            if (!key.has_salt()) {
-                std::cerr << "Verify serialized symmetric key failed: missing "
-                          << " salt." << std::endl;
-
-                return false;
-            }
-
-            if (1 > key.operations()) {
-                std::cerr << "Verify serialized symmetric key failed: missing "
-                          << " operations." << std::endl;
-
-                return false;
-            }
-
-            if (1 > key.difficulty()) {
-                std::cerr << "Verify serialized symmetric key failed: missing "
-                          << " difficulty." << std::endl;
-
-                return false;
-            }
-
-            break;
-        }
-        default : {
-            std::cerr << "Verify serialized symmetric key failed: invalid type ("
-                      << key.type() << ")" << std::endl;
+    for (auto& nym: thread.participant()) {
+        if (MIN_PLAUSIBLE_IDENTIFIER > nym.size()) {
+            std::cerr << "Verify serialized storage thread failed: invalid "
+                      << "participant." << std::endl;
 
             return false;
         }
     }
 
+    switch (thread.participant_size()) {
+        case 0 : {
+                std::cerr << "Verify serialized storage thread failed: no "
+                          << "participants." << std::endl;
+
+                return false;
+        } break;
+        case 1 : {
+            if (thread.id() != thread.participant(0)) {
+                std::cerr << "Verify serialized storage thread failed: "
+                          << "incorrect id." << std::endl;
+
+                return false;
+            }
+        } break;
+        default : {}
+    }
+
+    for (auto& item: thread.item()) {
+        if (!Check(
+            item,
+            StorageThreadAllowedItem.at(thread.version()).first,
+            StorageThreadAllowedItem.at(thread.version()).second)) {
+                std::cerr << "Verify serialized storage thread failed: invalid "
+                          << "item." << std::endl;
+
+                return false;
+        }
+    }
+
     return true;
 }
-bool CheckProto_2(const SymmetricKey&) { return false; }
+
+bool CheckProto_2(const StorageThread& nymList) { return false; }
 } // namespace proto
 } // namespace opentxs

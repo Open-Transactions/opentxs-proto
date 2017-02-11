@@ -44,6 +44,7 @@ set(PROTO_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/Signature.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/SourceProof.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/StorageCredentials.proto
+    ${CMAKE_CURRENT_SOURCE_DIR}/StorageEnums.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/StorageItemHash.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/StorageItems.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/StorageNym.proto
@@ -51,6 +52,8 @@ set(PROTO_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/StorageRoot.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/StorageSeeds.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/StorageServers.proto
+    ${CMAKE_CURRENT_SOURCE_DIR}/StorageThread.proto
+    ${CMAKE_CURRENT_SOURCE_DIR}/StorageThreadItem.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/StorageUnits.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/StoreSecret.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/SymmetricKey.proto

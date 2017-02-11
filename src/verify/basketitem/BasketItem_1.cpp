@@ -36,9 +36,9 @@
  *
  ************************************************************/
 
-#include <iostream>
+#include "opentxs-proto/Types.hpp"
 
-#include "opentxs-proto/verify/BasketItem.hpp"
+#include <iostream>
 
  namespace opentxs { namespace proto
 {

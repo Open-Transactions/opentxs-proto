@@ -36,11 +36,10 @@
  *
  ************************************************************/
 
-#include "opentxs-proto/verify/Credential.hpp"
+#include "opentxs-proto/Types.hpp"
+#include "opentxs-proto/Check.hpp"
 
 #include <iostream>
-
-#include "opentxs-proto/verify/VerifyContacts.hpp"
 
 namespace opentxs { namespace proto
 {

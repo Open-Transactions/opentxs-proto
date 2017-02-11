@@ -17,4 +17,7 @@ message StorageNym {
     optional StorageItemHash FinishedPeerReply = 9;
     optional StorageItemHash ProcessedPeerRequest = 10;
     optional StorageItemHash ProcessedPeerReply = 11;
+    optional StorageItemHash MailInbox = 12;
+    optional StorageItemHash MailOutbox = 13;
+    optional StorageItemHash Threads = 14;
 }

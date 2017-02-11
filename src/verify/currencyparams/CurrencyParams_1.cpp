@@ -36,7 +36,7 @@
  *
  ************************************************************/
 
-#include "opentxs-proto/verify/CurrencyParams.hpp"
+#include "opentxs-proto/Types.hpp"
 
 #include <iostream>
 
