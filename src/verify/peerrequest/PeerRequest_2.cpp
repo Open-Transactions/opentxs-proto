@@ -44,7 +44,7 @@
 namespace opentxs { namespace proto
 {
 
-bool CheckProto_1(
+bool CheckProto_2(
     const PeerRequest& peerRequest)
 {
     if (!peerRequest.has_id()) {
@@ -234,6 +234,18 @@ bool CheckProto_1(
             break;
         }
         default : {}
+    }
+
+    if (!peerRequest.has_server()) {
+        std::cerr << "Verify peer reply failed: missing server."
+                  << std::endl;
+        return false;
+    }
+
+    if (MIN_PLAUSIBLE_IDENTIFIER > peerRequest.server().size()) {
+        std::cerr << "Verify peer reply failed: invalid server ("
+                  << peerRequest.server() << ")." << std::endl;
+        return false;
     }
 
     return true;

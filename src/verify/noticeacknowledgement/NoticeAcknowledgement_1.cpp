@@ -54,6 +54,10 @@ bool CheckProto_1(
 
     return true;
 }
-bool CheckProto_2(const NoticeAcknowledgement&) { return false; }
+
+bool CheckProto_2(const NoticeAcknowledgement& notice) {
+
+    return CheckProto_1(notice);
+}
 } // namespace proto
 } // namespace opentxs

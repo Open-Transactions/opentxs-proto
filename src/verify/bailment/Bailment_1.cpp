@@ -43,8 +43,7 @@
 namespace opentxs { namespace proto
 {
 
-bool CheckProto_1(
-    const Bailment& bailment)
+bool CheckProto_1(const Bailment& bailment)
 {
     if (!bailment.has_unitid()) {
         std::cerr << "Verify bailment failed: missing unit id."
@@ -84,6 +83,6 @@ bool CheckProto_1(
 
     return true;
 }
-bool CheckProto_2(const Bailment& bailment) { return false; }
+bool CheckProto_2(const Bailment& bailment) { return CheckProto_1(bailment); }
 } // namespace proto
 } // namespace opentxs

@@ -60,58 +60,72 @@ namespace opentxs { namespace proto
     static const VersionMap PeerObjectAllowedReply =
         {
             { 1, {1, 1}},
+            { 2, {2, 2}},
         };
     static const VersionMap PeerObjectAllowedRequest =
         {
-            { 1, {1, 1}},
+            { 1, {1, 2}},
+            { 2, {2, 2}},
         };
     static const VersionMap PeerObjectAllowedNym =
         {
             { 1, {1, 1}},
+            { 2, {1, 1}},
         };
     static const VersionMap PeerReplyAllowedSignature =
         {
             { 1, {1, 1}},
+            { 2, {1, 1}},
         };
     static const VersionMap PeerReplyAllowedBailment =
         {
             { 1, {1, 1}},
+            { 2, {2, 2}},
         };
     static const VersionMap PeerReplyAllowedNotice =
         {
             { 1, {1, 1}},
+            { 2, {2, 2}},
         };
     static const VersionMap PeerReplyAllowedOutBailment =
         {
             { 1, {1, 1}},
+            { 2, {2, 2}},
         };
     static const VersionMap PeerReplyAllowedConnectionInfo =
         {
             { 1, {1, 1}},
+            { 2, {2, 2}},
         };
     static const VersionMap PeerRequestAllowedSignature =
         {
             { 1, {1, 1}},
+            { 2, {1, 1}},
         };
     static const VersionMap PeerRequestAllowedBailment =
         {
             { 1, {1, 1}},
+            { 2, {2, 2}},
         };
     static const VersionMap PeerRequestAllowedOutBailment =
         {
             { 1, {1, 1}},
+            { 2, {2, 2}},
         };
     static const VersionMap PeerRequestAllowedPendingBailment =
         {
             { 1, {1, 1}},
+            { 2, {2, 2}},
         };
     static const VersionMap PeerRequestAllowedConnectionInfo =
         {
             { 1, {1, 1}},
+            { 2, {2, 2}},
         };
     static const VersionMap PeerRequestAllowedStoreSecret =
         {
             { 1, {1, 1}},
+            { 2, {2, 2}},
         };
 } // namespace proto
 } // namespace opentxs
