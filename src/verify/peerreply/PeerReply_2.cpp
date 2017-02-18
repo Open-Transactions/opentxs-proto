@@ -44,7 +44,7 @@
 namespace opentxs { namespace proto
 {
 
-bool CheckProto_1(
+bool CheckProto_2(
     const PeerReply& peerReply)
 {
     if (!peerReply.has_id()) {
@@ -113,6 +113,18 @@ bool CheckProto_1(
         std::cerr << "Verify peer reply failed: invalid signature."
                   << std::endl;
 
+        return false;
+    }
+
+    if (!peerReply.has_server()) {
+        std::cerr << "Verify peer reply failed: missing server."
+                  << std::endl;
+        return false;
+    }
+
+    if (MIN_PLAUSIBLE_IDENTIFIER > peerReply.server().size()) {
+        std::cerr << "Verify peer reply failed: invalid server ("
+                  << peerReply.server() << ")." << std::endl;
         return false;
     }
 

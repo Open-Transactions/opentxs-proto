@@ -26,4 +26,5 @@ message PeerRequest {
         ConnectionInfo connectioninfo = 11;
         StoreSecret storesecret = 12;
     }
+    optional string server = 13;
 }

@@ -236,6 +236,6 @@ bool CheckProto_1(
 
     return true;
 }
-bool CheckProto_2(const PeerObject&) { return false; }
+bool CheckProto_2(const PeerObject& object) { return CheckProto_1(object); }
 } // namespace proto
 } // namespace opentxs

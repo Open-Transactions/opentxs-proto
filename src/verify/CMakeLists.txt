@@ -32,7 +32,9 @@ set(cxx-sources
   paymentcode/PaymentCode_1.cpp
   peerobject/PeerObject_1.cpp
   peerreply/PeerReply_1.cpp
+  peerreply/PeerReply_2.cpp
   peerrequest/PeerRequest_1.cpp
+  peerrequest/PeerRequest_2.cpp
   pendingbailment/PendingBailment_1.cpp
   seed/Seed_1.cpp
   seed/Seed_2.cpp

@@ -42,8 +42,7 @@
 
 namespace opentxs { namespace proto
 {
-bool CheckProto_1(
-    const ConnectionInfo& ConnectionInfo)
+bool CheckProto_1(const ConnectionInfo& ConnectionInfo)
 {
     if (!ConnectionInfo.has_type()) {
         std::cerr << "Verify ConnectionInfo failed: missing type."
@@ -62,6 +61,6 @@ bool CheckProto_1(
 
     return true;
 }
-bool CheckProto_2(const ConnectionInfo&) { return false; }
+bool CheckProto_2(const ConnectionInfo& info) { return CheckProto_1(info); }
 } // namespace proto
 } // namespace opentxs
