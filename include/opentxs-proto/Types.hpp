@@ -60,12 +60,15 @@
 #include <opentxs-proto/ChildCredentialParameters.pb.h>
 #include <opentxs-proto/Ciphertext.pb.h>
 #include <opentxs-proto/Claim.pb.h>
+#include <opentxs-proto/ClientContext.pb.h>
 #include <opentxs-proto/ConnectionInfo.pb.h>
 #include <opentxs-proto/ConnectionInfoReply.pb.h>
+#include <opentxs-proto/ConsensusEnums.pb.h>
 #include <opentxs-proto/ContactData.pb.h>
 #include <opentxs-proto/ContactEnums.pb.h>
 #include <opentxs-proto/ContactItem.pb.h>
 #include <opentxs-proto/ContactSection.pb.h>
+#include <opentxs-proto/Context.pb.h>
 #include <opentxs-proto/ContractEnums.pb.h>
 #include <opentxs-proto/Credential.pb.h>
 #include <opentxs-proto/CredentialIndex.pb.h>
@@ -89,6 +92,7 @@
 #include <opentxs-proto/PeerRequest.pb.h>
 #include <opentxs-proto/PendingBailment.pb.h>
 #include <opentxs-proto/Seed.pb.h>
+#include <opentxs-proto/ServerContext.pb.h>
 #include <opentxs-proto/ServerContract.pb.h>
 #include <opentxs-proto/Signature.pb.h>
 #include <opentxs-proto/SourceProof.pb.h>
@@ -119,11 +123,13 @@
 #include <opentxs-proto/verify/ChildCredentialParameters.hpp>
 #include <opentxs-proto/verify/Ciphertext.hpp>
 #include <opentxs-proto/verify/Claim.hpp>
+#include <opentxs-proto/verify/ClientContext.hpp>
 #include <opentxs-proto/verify/ConnectionInfo.hpp>
 #include <opentxs-proto/verify/ConnectionInfoReply.hpp>
 #include <opentxs-proto/verify/ContactData.hpp>
 #include <opentxs-proto/verify/ContactItem.hpp>
 #include <opentxs-proto/verify/ContactSection.hpp>
+#include <opentxs-proto/verify/Context.hpp>
 #include <opentxs-proto/verify/Credential.hpp>
 #include <opentxs-proto/verify/CredentialIndex.hpp>
 #include <opentxs-proto/verify/CredentialSet.hpp>
@@ -144,6 +150,7 @@
 #include <opentxs-proto/verify/PeerRequest.hpp>
 #include <opentxs-proto/verify/PendingBailment.hpp>
 #include <opentxs-proto/verify/Seed.hpp>
+#include <opentxs-proto/verify/ServerContext.hpp>
 #include <opentxs-proto/verify/ServerContract.hpp>
 #include <opentxs-proto/verify/Signature.hpp>
 #include <opentxs-proto/verify/Signature.hpp>

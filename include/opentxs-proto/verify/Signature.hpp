@@ -47,24 +47,60 @@ namespace opentxs { namespace proto
         const Signature& serializedSignature,
         const std::string& selfID,
         const std::string& masterID,
-        uint32_t& selfPublic,
-        uint32_t& selfPrivate,
-        uint32_t& masterPublic,
-        uint32_t& sourcePublic,
+        std::uint32_t& selfPublic,
+        std::uint32_t& selfPrivate,
+        std::uint32_t& masterPublic,
+        std::uint32_t& sourcePublic,
         const SignatureRole role = SIGROLE_ERROR);
     bool CheckProto_1(
         const Signature& serializedSignature,
         const SignatureRole role = SIGROLE_ERROR);
     bool CheckProto_2(
+        const Signature& serializedSignature,
+        const std::string& selfID,
+        const std::string& masterID,
+        std::uint32_t& selfPublic,
+        std::uint32_t& selfPrivate,
+        std::uint32_t& masterPublic,
+        std::uint32_t& sourcePublic,
+        const SignatureRole role = SIGROLE_ERROR);
+    bool CheckProto_2(
+        const Signature& serializedSignature,
+        const SignatureRole role = SIGROLE_ERROR);
+    bool CheckProto_3(
         const Signature&,
         const std::string&,
         const std::string&,
-        uint32_t&,
-        uint32_t&,
-        uint32_t&,
-        uint32_t&,
+        std::uint32_t&,
+        std::uint32_t&,
+        std::uint32_t&,
+        std::uint32_t&,
         const SignatureRole role = SIGROLE_ERROR);
-    bool CheckProto_2(
+    bool CheckProto_3(
+        const Signature&,
+        const SignatureRole role = SIGROLE_ERROR);
+    bool CheckProto_4(
+        const Signature&,
+        const std::string&,
+        const std::string&,
+        std::uint32_t&,
+        std::uint32_t&,
+        std::uint32_t&,
+        std::uint32_t&,
+        const SignatureRole role = SIGROLE_ERROR);
+    bool CheckProto_4(
+        const Signature&,
+        const SignatureRole role = SIGROLE_ERROR);
+    bool CheckProto_5(
+        const Signature&,
+        const std::string&,
+        const std::string&,
+        std::uint32_t&,
+        std::uint32_t&,
+        std::uint32_t&,
+        std::uint32_t&,
+        const SignatureRole role = SIGROLE_ERROR);
+    bool CheckProto_5(
         const Signature&,
         const SignatureRole role = SIGROLE_ERROR);
 } // namespace proto

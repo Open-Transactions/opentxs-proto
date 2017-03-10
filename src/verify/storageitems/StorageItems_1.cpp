@@ -94,5 +94,8 @@ bool CheckProto_1(
     return true;
 }
 bool CheckProto_2(const StorageItems&) { return false; }
+bool CheckProto_3(const StorageItems&) { return false; }
+bool CheckProto_4(const StorageItems&) { return false; }
+bool CheckProto_5(const StorageItems&) { return false; }
 } // namespace proto
 } // namespace opentxs

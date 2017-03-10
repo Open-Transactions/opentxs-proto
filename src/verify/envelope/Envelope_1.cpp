@@ -87,5 +87,8 @@ namespace opentxs { namespace proto
     return true;
 }
 bool CheckProto_2(const Envelope&) { return false; }
+bool CheckProto_3(const Envelope&) { return false; }
+bool CheckProto_4(const Envelope&) { return false; }
+bool CheckProto_5(const Envelope&) { return false; }
 } // namespace proto
 } // namespace opentxs

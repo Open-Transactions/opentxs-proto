@@ -180,5 +180,8 @@ bool CheckProto_1(
     return true;
 }
 bool CheckProto_2(const CredentialIndex&) { return false; }
+bool CheckProto_3(const CredentialIndex&) { return false; }
+bool CheckProto_4(const CredentialIndex&) { return false; }
+bool CheckProto_5(const CredentialIndex&) { return false; }
 } // namespace proto
 } // namespace opentxs

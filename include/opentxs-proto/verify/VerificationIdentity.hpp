@@ -55,6 +55,18 @@ namespace opentxs { namespace proto
         const VerificationIdentity&,
         VerificationNymMap&,
         const VerificationType);
+    bool CheckProto_3(
+        const VerificationIdentity&,
+        VerificationNymMap&,
+        const VerificationType);
+    bool CheckProto_4(
+        const VerificationIdentity&,
+        VerificationNymMap&,
+        const VerificationType);
+    bool CheckProto_5(
+        const VerificationIdentity&,
+        VerificationNymMap&,
+        const VerificationType);
 } // namespace proto
 } // namespace opentxs
 

@@ -1,0 +1,27 @@
+syntax = "proto2";
+
+package opentxs.proto;
+option optimize_for = LITE_RUNTIME;
+
+import public "ClientContext.proto";
+import public "ConsensusEnums.proto";
+import public "ServerContext.proto";
+import public "Signature.proto";
+
+message Context {
+    optional uint32 version = 1;
+    optional ConsensusType type = 2;
+    optional string localnym = 3;
+    optional string remotenym = 4;
+    optional string localnymboxhash = 5;
+    optional string remotenymboxhash = 6;
+    optional uint64 requestnumber = 7;
+    repeated uint64 acknowledgedrequestnumber = 8;
+    repeated uint64 availabletransactionnumber = 9;
+    repeated uint64 issuedtransactionnumber = 10;
+    oneof typedata {
+        ServerContext servercontext = 11;
+        ClientContext clientcontext = 12;
+    }
+    optional Signature signature = 15;
+}

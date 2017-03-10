@@ -45,6 +45,9 @@ namespace opentxs { namespace proto
 {
     bool CheckProto_1(const ListenAddress& address);
     bool CheckProto_2(const ListenAddress&);
+    bool CheckProto_3(const ListenAddress&);
+    bool CheckProto_4(const ListenAddress&);
+    bool CheckProto_5(const ListenAddress&);
 } // namespace proto
 } // namespace opentxs
 

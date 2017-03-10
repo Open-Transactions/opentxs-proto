@@ -84,5 +84,8 @@ bool CheckProto_1(const Bailment& bailment)
     return true;
 }
 bool CheckProto_2(const Bailment& bailment) { return CheckProto_1(bailment); }
+bool CheckProto_3(const Bailment&) { return false; }
+bool CheckProto_4(const Bailment&) { return false; }
+bool CheckProto_5(const Bailment&) { return false; }
 } // namespace proto
 } // namespace opentxs

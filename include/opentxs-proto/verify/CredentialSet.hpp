@@ -55,6 +55,24 @@ namespace opentxs { namespace proto
         const KeyMode&,
         bool&,
         const CredentialSetMode& mode = CREDSETMODE_ERROR);
+    bool CheckProto_3(
+        const CredentialSet&,
+        const std::string&,
+        const KeyMode&,
+        bool&,
+        const CredentialSetMode& mode = CREDSETMODE_ERROR);
+    bool CheckProto_4(
+        const CredentialSet&,
+        const std::string&,
+        const KeyMode&,
+        bool&,
+        const CredentialSetMode& mode = CREDSETMODE_ERROR);
+    bool CheckProto_5(
+        const CredentialSet&,
+        const std::string&,
+        const KeyMode&,
+        bool&,
+        const CredentialSetMode& mode = CREDSETMODE_ERROR);
 } // namespace proto
 } // namespace opentxs
 

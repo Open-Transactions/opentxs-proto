@@ -51,6 +51,18 @@ namespace opentxs { namespace proto
         const ContactItem&,
         const ClaimType,
         const ContactSectionVersion);
+    bool CheckProto_3(
+        const ContactItem&,
+        const ClaimType,
+        const ContactSectionVersion);
+    bool CheckProto_4(
+        const ContactItem&,
+        const ClaimType,
+        const ContactSectionVersion);
+    bool CheckProto_5(
+        const ContactItem&,
+        const ClaimType,
+        const ContactSectionVersion);
 } // namespace proto
 } // namespace opentxs
 

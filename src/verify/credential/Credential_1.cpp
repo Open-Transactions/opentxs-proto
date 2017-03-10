@@ -484,5 +484,29 @@ bool CheckProto_2(
 {
     return false;
 }
+bool CheckProto_3(
+    const Credential&,
+    const KeyMode&,
+    const CredentialRole,
+    const bool)
+{
+    return false;
+}
+bool CheckProto_4(
+    const Credential&,
+    const KeyMode&,
+    const CredentialRole,
+    const bool)
+{
+    return false;
+}
+bool CheckProto_5(
+    const Credential&,
+    const KeyMode&,
+    const CredentialRole,
+    const bool)
+{
+    return false;
+}
 } // namespace proto
 } // namespace opentxs

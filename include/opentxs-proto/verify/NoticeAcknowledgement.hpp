@@ -45,6 +45,9 @@ namespace opentxs { namespace proto
 {
     bool CheckProto_1(const NoticeAcknowledgement& acknowledgement);
     bool CheckProto_2(const NoticeAcknowledgement&);
+    bool CheckProto_3(const NoticeAcknowledgement&);
+    bool CheckProto_4(const NoticeAcknowledgement&);
+    bool CheckProto_5(const NoticeAcknowledgement&);
 } // namespace proto
 } // namespace opentxs
 

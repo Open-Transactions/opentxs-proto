@@ -67,5 +67,8 @@ bool CheckProto_2(const StorageServers& servers)
 {
     return CheckProto_1(servers);
 }
+bool CheckProto_3(const StorageServers& servers) { return false; }
+bool CheckProto_4(const StorageServers& servers) { return false; }
+bool CheckProto_5(const StorageServers& servers) { return false; }
 } // namespace proto
 } // namespace opentxs

@@ -45,6 +45,9 @@ namespace opentxs { namespace proto
 {
     bool CheckProto_1(const Claim& claim);
     bool CheckProto_2(const Claim&);
+    bool CheckProto_3(const Claim&);
+    bool CheckProto_4(const Claim&);
+    bool CheckProto_5(const Claim&);
 } // namespace proto
 } // namespace opentxs
 

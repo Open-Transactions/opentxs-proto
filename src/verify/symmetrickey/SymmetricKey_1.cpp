@@ -111,5 +111,8 @@ namespace opentxs { namespace proto
     return true;
 }
 bool CheckProto_2(const SymmetricKey&) { return false; }
+bool CheckProto_3(const SymmetricKey&) { return false; }
+bool CheckProto_4(const SymmetricKey&) { return false; }
+bool CheckProto_5(const SymmetricKey&) { return false; }
 } // namespace proto
 } // namespace opentxs

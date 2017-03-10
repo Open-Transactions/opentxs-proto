@@ -63,5 +63,8 @@ bool CheckProto_1(
     return true;
 }
 bool CheckProto_2(const StoreSecret& secret) { CheckProto_1(secret); }
+bool CheckProto_3(const StoreSecret&) { return false; }
+bool CheckProto_4(const StoreSecret&) { return false; }
+bool CheckProto_5(const StoreSecret&) { return false; }
 } // namespace proto
 } // namespace opentxs

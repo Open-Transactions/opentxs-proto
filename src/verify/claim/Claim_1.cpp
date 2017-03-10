@@ -78,5 +78,8 @@ bool CheckProto_1(
     return true;
 }
 bool CheckProto_2(const Claim&) { return false; }
+bool CheckProto_3(const Claim&) { return false; }
+bool CheckProto_4(const Claim&) { return false; }
+bool CheckProto_5(const Claim&) { return false; }
 } // namespace proto
 } // namespace opentxs

@@ -59,5 +59,9 @@ bool CheckProto_2(const NoticeAcknowledgement& notice) {
 
     return CheckProto_1(notice);
 }
+
+bool CheckProto_3(const NoticeAcknowledgement&) { return false; }
+bool CheckProto_4(const NoticeAcknowledgement&) { return false; }
+bool CheckProto_5(const NoticeAcknowledgement&) { return false; }
 } // namespace proto
 } // namespace opentxs

@@ -82,5 +82,8 @@ bool CheckProto_1(const StorageThreadItem& item)
 }
 
 bool CheckProto_2(const StorageThreadItem&) { return false; }
+bool CheckProto_3(const StorageThreadItem&) { return false; }
+bool CheckProto_4(const StorageThreadItem&) { return false; }
+bool CheckProto_5(const StorageThreadItem&) { return false; }
 } // namespace proto
 } // namespace opentxs

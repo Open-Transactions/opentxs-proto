@@ -202,6 +202,20 @@ bool CheckProto_2(const StorageNym& nym)
         }
     }
 
+    if (nym.has_contexts()) {
+        std::cerr << "Verify serialized storage nym failed: version 2 must not "
+                  << "contain contexts." << std::endl;
+
+        return false;
+    }
+
+    if (nym.has_accounts()) {
+        std::cerr << "Verify serialized storage nym failed: version 2 must not "
+                  << "contain accounts." << std::endl;
+
+        return false;
+    }
+
     return true;
 }
 } // namespace proto

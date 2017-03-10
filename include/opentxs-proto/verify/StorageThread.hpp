@@ -45,6 +45,9 @@ namespace opentxs { namespace proto
 {
     bool CheckProto_1(const StorageThread& thread);
     bool CheckProto_2(const StorageThread&);
+    bool CheckProto_3(const StorageThread&);
+    bool CheckProto_4(const StorageThread&);
+    bool CheckProto_5(const StorageThread&);
 } // namespace proto
 } // namespace opentxs
 

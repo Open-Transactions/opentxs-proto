@@ -58,5 +58,8 @@ bool CheckProto_1(
     return true;
 }
 bool CheckProto_2(const HDPath&) { return false; }
+bool CheckProto_3(const HDPath&) { return false; }
+bool CheckProto_4(const HDPath&) { return false; }
+bool CheckProto_5(const HDPath&) { return false; }
 } // namespace proto
 } // namespace opentxs

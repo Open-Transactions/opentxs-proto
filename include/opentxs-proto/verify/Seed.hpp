@@ -45,6 +45,9 @@ namespace opentxs { namespace proto
 {
     bool CheckProto_1(const Seed& seed);
     bool CheckProto_2(const Seed& seed);
+    bool CheckProto_3(const Seed&);
+    bool CheckProto_4(const Seed&);
+    bool CheckProto_5(const Seed&);
 } // namespace proto
 } // namespace opentxs
 

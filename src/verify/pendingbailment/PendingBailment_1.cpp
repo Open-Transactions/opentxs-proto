@@ -107,5 +107,8 @@ bool CheckProto_2(const PendingBailment& pending)
 {
     return CheckProto_1(pending);
 }
+bool CheckProto_3(const PendingBailment&) { return false; }
+bool CheckProto_4(const PendingBailment&) { return false; }
+bool CheckProto_5(const PendingBailment&) { return false; }
 } // namespace proto
 } // namespace opentxs

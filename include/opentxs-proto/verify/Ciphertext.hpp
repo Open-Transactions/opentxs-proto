@@ -45,6 +45,9 @@ namespace opentxs { namespace proto
 {
     bool CheckProto_1(const Ciphertext& data, const bool nested);
     bool CheckProto_2(const Ciphertext&, const bool);
+    bool CheckProto_3(const Ciphertext&, const bool);
+    bool CheckProto_4(const Ciphertext&, const bool);
+    bool CheckProto_5(const Ciphertext&, const bool);
 } // namespace proto
 } // namespace opentxs
 

@@ -95,5 +95,26 @@ bool CheckProto_2(
 {
     return false;
 }
+bool CheckProto_3(
+    const ContactItem&,
+    const ClaimType,
+    const ContactSectionVersion)
+{
+    return false;
+}
+bool CheckProto_4(
+    const ContactItem&,
+    const ClaimType,
+    const ContactSectionVersion)
+{
+    return false;
+}
+bool CheckProto_5(
+    const ContactItem&,
+    const ClaimType,
+    const ContactSectionVersion)
+{
+    return false;
+}
 } // namespace proto
 } // namespace opentxs

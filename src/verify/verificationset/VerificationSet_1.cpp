@@ -89,5 +89,23 @@ bool CheckProto_2(
 {
     return false;
 }
+bool CheckProto_3(
+    const VerificationSet&,
+    const VerificationType)
+{
+    return false;
+}
+bool CheckProto_4(
+    const VerificationSet&,
+    const VerificationType)
+{
+    return false;
+}
+bool CheckProto_5(
+    const VerificationSet&,
+    const VerificationType)
+{
+    return false;
+}
 } // namespace proto
 } // namespace opentxs

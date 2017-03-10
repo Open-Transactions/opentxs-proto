@@ -55,5 +55,8 @@ bool CheckProto_1(
     return true;
 }
 bool CheckProto_2(const BailmentReply&) { return false; }
+bool CheckProto_3(const BailmentReply&) { return false; }
+bool CheckProto_4(const BailmentReply&) { return false; }
+bool CheckProto_5(const BailmentReply&) { return false; }
 } // namespace proto
 } // namespace opentxs
