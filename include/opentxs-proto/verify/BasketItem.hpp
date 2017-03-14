@@ -49,6 +49,9 @@ namespace opentxs { namespace proto
 
     bool CheckProto_1(const BasketItem& item, BasketItemMap& map);
     bool CheckProto_2(const BasketItem&, BasketItemMap&);
+    bool CheckProto_3(const BasketItem&, BasketItemMap&);
+    bool CheckProto_4(const BasketItem&, BasketItemMap&);
+    bool CheckProto_5(const BasketItem&, BasketItemMap&);
 } // namespace proto
 } // namespace opentxs
 

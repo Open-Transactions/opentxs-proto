@@ -44,7 +44,7 @@
 namespace opentxs { namespace proto
 {
 
-    bool CheckProto_2(const Seed& seed)
+bool CheckProto_2(const Seed& seed)
 {
     if (!seed.has_words()) {
         std::cerr << "Verify serialized seed failed: missing words."
@@ -110,6 +110,8 @@ namespace opentxs { namespace proto
 
     return true;
 }
-
+bool CheckProto_3(const Seed&) { return false; }
+bool CheckProto_4(const Seed&) { return false; }
+bool CheckProto_5(const Seed&) { return false; }
 } // namespace proto
 } // namespace opentxs

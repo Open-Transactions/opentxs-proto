@@ -319,5 +319,32 @@ bool CheckProto_2(
 {
     return false;
 }
+bool CheckProto_3(
+    const CredentialSet&,
+    const std::string&,
+    const KeyMode&,
+    bool&,
+    const CredentialSetMode&)
+{
+    return false;
+}
+bool CheckProto_4(
+    const CredentialSet&,
+    const std::string&,
+    const KeyMode&,
+    bool&,
+    const CredentialSetMode&)
+{
+    return false;
+}
+bool CheckProto_5(
+    const CredentialSet&,
+    const std::string&,
+    const KeyMode&,
+    bool&,
+    const CredentialSetMode&)
+{
+    return false;
+}
 } // namespace proto
 } // namespace opentxs

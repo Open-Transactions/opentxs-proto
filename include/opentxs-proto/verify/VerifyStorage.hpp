@@ -69,6 +69,7 @@ namespace opentxs { namespace proto
         {
             { 1, {1, 1}},
             { 2, {1, 2}},
+            { 3, {2, 3}},
         };
     static const VersionMap StorageServersAllowedHash =
         {

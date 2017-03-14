@@ -96,6 +96,14 @@ bool CheckProto_1(
 
     return true;
 }
-bool CheckProto_2(const OutBailment& outbailment) { CheckProto_1(outbailment); }
+
+bool CheckProto_2(const OutBailment& outbailment) {
+
+    return CheckProto_1(outbailment);
+}
+
+bool CheckProto_3(const OutBailment&) { return false; }
+bool CheckProto_4(const OutBailment&) { return false; }
+bool CheckProto_5(const OutBailment&) { return false; }
 } // namespace proto
 } // namespace opentxs

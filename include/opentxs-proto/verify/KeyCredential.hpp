@@ -51,6 +51,18 @@ namespace opentxs { namespace proto
         const KeyCredential&,
         const CredentialType,
         const KeyMode);
+    bool CheckProto_3(
+        const KeyCredential&,
+        const CredentialType,
+        const KeyMode);
+    bool CheckProto_4(
+        const KeyCredential&,
+        const CredentialType,
+        const KeyMode);
+    bool CheckProto_5(
+        const KeyCredential&,
+        const CredentialType,
+        const KeyMode);
 } // namespace proto
 } // namespace opentxs
 

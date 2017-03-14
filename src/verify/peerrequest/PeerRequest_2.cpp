@@ -43,9 +43,7 @@
 
 namespace opentxs { namespace proto
 {
-
-bool CheckProto_2(
-    const PeerRequest& peerRequest)
+bool CheckProto_2(const PeerRequest& peerRequest)
 {
     if (!peerRequest.has_id()) {
         std::cerr << "Verify peer request failed: missing identifier."
@@ -250,5 +248,8 @@ bool CheckProto_2(
 
     return true;
 }
+bool CheckProto_3(const PeerRequest&) { return false; }
+bool CheckProto_4(const PeerRequest&) { return false; }
+bool CheckProto_5(const PeerRequest&) { return false; }
 } // namespace proto
 } // namespace opentxs

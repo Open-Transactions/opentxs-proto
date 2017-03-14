@@ -44,7 +44,10 @@
 namespace opentxs { namespace proto
 {
     bool CheckProto_1(const StorageItemHash& hash);
-    bool CheckProto_2(const StorageItemHash&);
+    bool CheckProto_2(const StorageItemHash& hash);
+    bool CheckProto_3(const StorageItemHash& hash);
+    bool CheckProto_4(const StorageItemHash&);
+    bool CheckProto_5(const StorageItemHash&);
 } // namespace proto
 } // namespace opentxs
 

@@ -45,6 +45,9 @@ namespace opentxs { namespace proto
 {
     bool CheckProto_1(const HDPath& serializedHDPath);
     bool CheckProto_2(const HDPath&);
+    bool CheckProto_3(const HDPath&);
+    bool CheckProto_4(const HDPath&);
+    bool CheckProto_5(const HDPath&);
 } // namespace proto
 } // namespace opentxs
 

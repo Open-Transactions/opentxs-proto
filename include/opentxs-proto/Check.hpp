@@ -73,6 +73,15 @@ namespace opentxs { namespace proto
             case 2 :
 
                 return CheckProto_2(serialized, params...);
+            case 3 :
+
+                return CheckProto_3(serialized, params...);
+            case 4 :
+
+                return CheckProto_4(serialized, params...);
+            case 5 :
+
+                return CheckProto_5(serialized, params...);
             default :
                 std::cerr << "Verify protobuf failed: unknown version ("
                 << serialized.version() << ")." << std::endl;

@@ -45,6 +45,9 @@ namespace opentxs { namespace proto
 {
     bool CheckProto_1(const PaymentCode& serializedPaymentCode);
     bool CheckProto_2(const PaymentCode&);
+    bool CheckProto_3(const PaymentCode&);
+    bool CheckProto_4(const PaymentCode&);
+    bool CheckProto_5(const PaymentCode&);
 } // namespace proto
 } // namespace opentxs
 

@@ -24,13 +24,6 @@ enum UnitType {
     UNITTYPE_BASKET = 3;
 }
 
-enum ConsensusType {
-    CONSENSUSTYPE_ERROR = 0;
-    CONSENSUSTYPE_SERVER = 1;
-    CONSENSUSTYPE_CLIENT = 2;
-    CONSENSUSTYPE_PEER = 3;
-}
-
 enum EquityType {
     EQUITYTYPE_ERROR = 0;
     EQUITYTYPE_SHARES = 1;

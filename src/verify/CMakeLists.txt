@@ -10,11 +10,13 @@ set(cxx-sources
   childcredentialparameters/ChildCredentialParameters_1.cpp
   ciphertext/Ciphertext_1.cpp
   claim/Claim_1.cpp
+  clientcontext/ClientContext_1.cpp
   connectioninfo/ConnectionInfo_1.cpp
   connectioninforeply/ConnectionInfoReply_1.cpp
   contactdata/ContactData_1.cpp
   contactitem/ContactItem_1.cpp
   contactsection/ContactSection_1.cpp
+  context/Context_1.cpp
   currencyparams/CurrencyParams_1.cpp
   credential/Credential_1.cpp
   credentialindex/CredentialIndex_1.cpp
@@ -38,14 +40,18 @@ set(cxx-sources
   pendingbailment/PendingBailment_1.cpp
   seed/Seed_1.cpp
   seed/Seed_2.cpp
+  servercontext/ServerContext_1.cpp
   servercontract/ServerContract_1.cpp
   signature/Signature_1.cpp
+  signature/Signature_2.cpp
   sourceproof/SourceProof_1.cpp
   storagecredentials/StorageCredentials_1.cpp
   storageitems/StorageItems_1.cpp
   storageitemhash/StorageItemHash_1.cpp
+  storageitemhash/StorageItemHash_2.cpp
   storagenym/StorageNym_1.cpp
   storagenym/StorageNym_2.cpp
+  storagenym/StorageNym_3.cpp
   storagenymlist/StorageNymList_1.cpp
   storageroot/StorageRoot_1.cpp
   storageseeds/StorageSeeds_1.cpp

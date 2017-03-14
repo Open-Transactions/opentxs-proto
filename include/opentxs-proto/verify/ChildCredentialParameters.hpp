@@ -45,6 +45,9 @@ namespace opentxs { namespace proto
 {
     bool CheckProto_1(const ChildCredentialParameters& serializedChildParams);
     bool CheckProto_2(const ChildCredentialParameters&);
+    bool CheckProto_3(const ChildCredentialParameters&);
+    bool CheckProto_4(const ChildCredentialParameters&);
+    bool CheckProto_5(const ChildCredentialParameters&);
 } // namespace proto
 } // namespace opentxs
 

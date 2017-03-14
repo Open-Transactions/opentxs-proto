@@ -79,5 +79,8 @@ bool CheckProto_2(const StorageSeeds& seed)
 {
     return CheckProto_1(seed);
 }
+bool CheckProto_3(const StorageSeeds&) { return false; }
+bool CheckProto_4(const StorageSeeds&) { return false; }
+bool CheckProto_5(const StorageSeeds&) { return false; }
 } // namespace proto
 } // namespace opentxs

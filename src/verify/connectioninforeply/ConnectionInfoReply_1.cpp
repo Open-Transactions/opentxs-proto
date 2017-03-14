@@ -58,5 +58,8 @@ bool CheckProto_2(const ConnectionInfoReply& info) {
 
     return CheckProto_1(info);
 }
+bool CheckProto_3(const ConnectionInfoReply& info) { return false; }
+bool CheckProto_4(const ConnectionInfoReply& info) { return false; }
+bool CheckProto_5(const ConnectionInfoReply& info) { return false; }
 } // namespace proto
 } // namespace opentxs

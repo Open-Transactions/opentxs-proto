@@ -44,83 +44,109 @@ namespace opentxs { namespace proto
 {
 
 bool CheckProto_1(
-    const Signature& serializedSignature,
+    const Signature& sig,
     const std::string& selfID,
     const std::string& masterID,
-    uint32_t& selfPublic,
-    uint32_t& selfPrivate,
-    uint32_t& masterPublic,
-    uint32_t& sourcePublic,
+    std::uint32_t& selfPublic,
+    std::uint32_t& selfPrivate,
+    std::uint32_t& masterPublic,
+    std::uint32_t& sourcePublic,
     const SignatureRole role)
 {
-    if (!serializedSignature.has_role()) {
-        std::cerr << "Verify serialized signature failed: missing role." << std::endl;
+    if (!sig.has_role()) {
+        std::cerr << "Verify serialized signature failed: missing role."
+                  << std::endl;
+
         return false;
     }
 
-    if (serializedSignature.role() > proto::SIGROLE_PEERREPLY) {
-        std::cerr << "Verify serialized signature failed: invalid role ("
-        << serializedSignature.role() << ")." << std::endl;
-        return false;
+    switch (sig.role()) {
+        case SIGROLE_PUBCREDENTIAL :
+        case SIGROLE_PRIVCREDENTIAL :
+        case SIGROLE_NYMIDSOURCE :
+        case SIGROLE_CLAIM :
+        case SIGROLE_SERVERCONTRACT :
+        case SIGROLE_UNITDEFINITION :
+        case SIGROLE_PEERREQUEST :
+        case SIGROLE_PEERREPLY : { break; }
+        default : {
+            std::cerr << "Verify serialized signature failed: invalid role ("
+                    << sig.role() << ")." << std::endl;
+
+            return false;
+        }
     }
 
-    bool roleSpecified = (proto::SIGROLE_ERROR != role);
-
-    if (roleSpecified && (role != serializedSignature.role())) {
+    if ((SIGROLE_ERROR != role) && (role != sig.role())) {
         std::cerr << "Verify serialized signature failed: incorrect role ("
-                  << serializedSignature.role() << "). Specified: (" << role
+                  << sig.role() << "). Specified: (" << role
                   << ")" <<  std::endl;
+
         return false;
     }
 
-    if (proto::SIGROLE_NYMIDSOURCE != serializedSignature.role()) {
+    if (proto::SIGROLE_NYMIDSOURCE != sig.role()) {
 
-        if (!serializedSignature.has_credentialid()) {
-            std::cerr << "Verify serialized signature failed: missing credential identifier." << std::endl;
+        if (!sig.has_credentialid()) {
+            std::cerr << "Verify serialized signature failed: missing "
+                      << "credential identifier." << std::endl;
+
             return false;
         }
 
-        if (MIN_PLAUSIBLE_IDENTIFIER > serializedSignature.credentialid().size()) {
-            std::cerr << "Verify serialized signature failed: invalid credential identifier ("
-                << serializedSignature.credentialid() << ")." << std::endl;
+        if (MIN_PLAUSIBLE_IDENTIFIER > sig.credentialid().size()) {
+            std::cerr << "Verify serialized signature failed: invalid "
+                      << "identifier (" << sig.credentialid() << ")."
+                      << std::endl;
+
             return false;
         }
     }
 
-    if (!serializedSignature.has_hashtype()) {
-        std::cerr << "Verify serialized signature failed: missing hashtype." << std::endl;
+    if (!sig.has_hashtype()) {
+        std::cerr << "Verify serialized signature failed: missing hashtype."
+                  << std::endl;
+
         return false;
     }
 
-    if (serializedSignature.hashtype() > proto::HASHTYPE_BLAKE2B512) {
+    if (sig.hashtype() > proto::HASHTYPE_BLAKE2B512) {
         std::cerr << "Verify serialized signature failed: invalid hash type ("
-                  << serializedSignature.hashtype() << ")." << std::endl;
+                  << sig.hashtype() << ")." << std::endl;
+
         return false;
     }
 
-    if (!serializedSignature.has_signature()) {
-        std::cerr << "Verify serialized signature failed: missing signature." << std::endl;
+    if (!sig.has_signature()) {
+        std::cerr << "Verify serialized signature failed: missing signature."
+                  << std::endl;
+
         return false;
     }
 
-    if (MIN_PLAUSIBLE_SIGNATURE > serializedSignature.signature().size()) {
-        std::cerr << "Verify serialized signature failed: invalid signature." << std::endl;
+    if (MIN_PLAUSIBLE_SIGNATURE > sig.signature().size()) {
+        std::cerr << "Verify serialized signature failed: invalid signature."
+                  << std::endl;
+
         return false;
     }
 
-    if ((SIGROLE_PUBCREDENTIAL == serializedSignature.role()) && (selfID == serializedSignature.credentialid())) {
-        selfPublic += 1;
+    if ((SIGROLE_PUBCREDENTIAL == sig.role()) &&
+        (selfID == sig.credentialid())) {
+            selfPublic += 1;
     }
 
-    if ((SIGROLE_PUBCREDENTIAL == serializedSignature.role()) && (masterID == serializedSignature.credentialid())) {
-        masterPublic += 1;
+    if ((SIGROLE_PUBCREDENTIAL == sig.role()) &&
+        (masterID == sig.credentialid())) {
+            masterPublic += 1;
     }
 
-    if ((SIGROLE_PRIVCREDENTIAL == serializedSignature.role()) && (selfID == serializedSignature.credentialid())) {
-        selfPrivate += 1;
+    if ((SIGROLE_PRIVCREDENTIAL == sig.role()) &&
+        (selfID == sig.credentialid())) {
+            selfPrivate += 1;
     }
 
-    if (SIGROLE_NYMIDSOURCE == serializedSignature.role()) {
+    if (SIGROLE_NYMIDSOURCE == sig.role()) {
         sourcePublic += 1;
     }
 
@@ -128,13 +154,13 @@ bool CheckProto_1(
 }
 
 bool CheckProto_1(
-    const Signature& serializedSignature,
+    const Signature& sig,
     const SignatureRole role)
 {
-    uint32_t unused = 0;
+    std::uint32_t unused = 0;
 
     return CheckProto_1(
-        serializedSignature,
+        sig,
         "",
         "",
         unused,
@@ -142,24 +168,6 @@ bool CheckProto_1(
         unused,
         unused,
         role);
-}
-bool CheckProto_2(
-    const Signature&,
-    const std::string&,
-    const std::string&,
-    uint32_t&,
-    uint32_t&,
-    uint32_t&,
-    uint32_t&,
-    const SignatureRole)
-{
-    return false;
-}
-bool CheckProto_2(
-    const Signature&,
-    const SignatureRole)
-{
-    return false;
 }
 } // namespace proto
 } // namespace opentxs

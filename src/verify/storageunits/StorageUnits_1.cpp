@@ -66,5 +66,8 @@ bool CheckProto_2(const StorageUnits& units)
 {
     return CheckProto_1(units);
 }
+bool CheckProto_3(const StorageUnits& units) { return false; }
+bool CheckProto_4(const StorageUnits& units) { return false; }
+bool CheckProto_5(const StorageUnits& units) { return false; }
 } // namespace proto
 } // namespace opentxs

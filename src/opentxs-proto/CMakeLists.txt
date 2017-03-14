@@ -11,12 +11,15 @@ set(PROTO_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/ChildCredentialParameters.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/Ciphertext.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/Claim.proto
+    ${CMAKE_CURRENT_SOURCE_DIR}/ClientContext.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/ConnectionInfo.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/ConnectionInfoReply.proto
+    ${CMAKE_CURRENT_SOURCE_DIR}/ConsensusEnums.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/ContactData.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/ContactEnums.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/ContactItem.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/ContactSection.proto
+    ${CMAKE_CURRENT_SOURCE_DIR}/Context.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/ContractEnums.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/Credential.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/CredentialIndex.proto
@@ -40,6 +43,7 @@ set(PROTO_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/PeerRequest.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/PendingBailment.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/Seed.proto
+    ${CMAKE_CURRENT_SOURCE_DIR}/ServerContext.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/ServerContract.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/Signature.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/SourceProof.proto

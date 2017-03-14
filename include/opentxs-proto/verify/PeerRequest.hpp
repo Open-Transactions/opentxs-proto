@@ -45,6 +45,9 @@ namespace opentxs { namespace proto
 {
     bool CheckProto_1(const PeerRequest& peerRequest);
     bool CheckProto_2(const PeerRequest& peerRequest);
+    bool CheckProto_3(const PeerRequest&);
+    bool CheckProto_4(const PeerRequest&);
+    bool CheckProto_5(const PeerRequest&);
 } // namespace proto
 } // namespace opentxs
 

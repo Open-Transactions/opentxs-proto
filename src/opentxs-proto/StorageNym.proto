@@ -20,4 +20,6 @@ message StorageNym {
     optional StorageItemHash MailInbox = 12;
     optional StorageItemHash MailOutbox = 13;
     optional StorageItemHash Threads = 14;
+    optional StorageItemHash Contexts = 15;
+    optional StorageItemHash Accounts = 16;
 }
