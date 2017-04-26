@@ -54,6 +54,7 @@ set(cxx-sources
   storagenym/StorageNym_3.cpp
   storagenymlist/StorageNymList_1.cpp
   storageroot/StorageRoot_1.cpp
+  storageroot/StorageRoot_2.cpp
   storageseeds/StorageSeeds_1.cpp
   storageservers/StorageServers_1.cpp
   storagethread/StorageThread_1.cpp

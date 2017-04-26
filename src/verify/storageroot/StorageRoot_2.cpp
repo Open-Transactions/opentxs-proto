@@ -43,7 +43,7 @@
 namespace opentxs { namespace proto
 {
 
-bool CheckProto_1(const StorageRoot& root)
+bool CheckProto_2(const StorageRoot& root)
 {
     if (!root.has_items()) {
         std::cerr << "Verify serialized storage root failed: missing hash."
@@ -66,14 +66,18 @@ bool CheckProto_1(const StorageRoot& root)
         return false;
     }
 
-    if (root.has_sequence()) {
-        std::cerr << "Verify serialized storage root failed: sequence present "
-                  << "in version 1." << std::endl;
+    if (!root.has_sequence()) {
+        std::cerr << "Verify serialized storage root failed: missing sequence."
+                  << std::endl;
 
         return false;
     }
 
     return true;
 }
+
+bool CheckProto_3(const StorageRoot&) { return false; }
+bool CheckProto_4(const StorageRoot&) { return false; }
+bool CheckProto_5(const StorageRoot&) { return false; }
 } // namespace proto
 } // namespace opentxs
