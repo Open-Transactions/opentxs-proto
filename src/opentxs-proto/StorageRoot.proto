@@ -10,4 +10,5 @@ message StorageRoot {
     optional sint64 lastgc = 4;
     optional bool gc = 5;
     optional string gcroot = 6;
+    optional int64 sequence = 7;
 }
