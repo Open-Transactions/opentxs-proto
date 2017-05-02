@@ -66,6 +66,7 @@ set(cxx-sources
   verification/Verification_1.cpp
   verificationgroup/VerificationGroup_1.cpp
   verificationidentity/VerificationIdentity_1.cpp
+  verificationoffer/VerificationOffer_1.cpp
   verificationset/VerificationSet_1.cpp
 )
 

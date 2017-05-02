@@ -114,6 +114,7 @@
 #include <opentxs-proto/Verification.pb.h>
 #include <opentxs-proto/VerificationGroup.pb.h>
 #include <opentxs-proto/VerificationIdentity.pb.h>
+#include <opentxs-proto/VerificationOffer.pb.h>
 #include <opentxs-proto/VerificationSet.pb.h>
 #include <opentxs-proto/verify/AsymmetricKey.hpp>
 #include <opentxs-proto/verify/Bailment.hpp>
@@ -172,6 +173,7 @@
 #include <opentxs-proto/verify/Verification.hpp>
 #include <opentxs-proto/verify/VerificationGroup.hpp>
 #include <opentxs-proto/verify/VerificationIdentity.hpp>
+#include <opentxs-proto/verify/VerificationOffer.hpp>
 #include <opentxs-proto/verify/VerificationSet.hpp>
 #include <opentxs-proto/verify/VerifyCredentials.hpp>
 // IWYU pragma: end_exports

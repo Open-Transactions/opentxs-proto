@@ -65,6 +65,7 @@ set(PROTO_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/Verification.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/VerificationGroup.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/VerificationIdentity.proto
+    ${CMAKE_CURRENT_SOURCE_DIR}/VerificationOffer.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/VerificationSet.proto
 )
 

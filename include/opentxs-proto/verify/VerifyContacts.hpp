@@ -68,6 +68,7 @@ namespace opentxs { namespace proto
     class Verification;
     class VerificationGroup;
     class VerificationIdentity;
+    class VerificationOffer;
     class VerificationSet;
 
     static const VersionMap ContactDataAllowedSection =
@@ -91,6 +92,14 @@ namespace opentxs { namespace proto
             { 1, {1, 1}},
         };
     static const VersionMap VerificationAllowedSignature =
+        {
+            { 1, {1, 1}},
+        };
+    static const VersionMap VerificationOfferAllowedClaim =
+        {
+            { 1, {1, 1}},
+        };
+    static const VersionMap VerificationOfferAllowedVerification =
         {
             { 1, {1, 1}},
         };
