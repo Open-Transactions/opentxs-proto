@@ -10,6 +10,7 @@ import public "PeerEnums.proto";
 import public "PendingBailment.proto";
 import public "Signature.proto";
 import public "StoreSecret.proto";
+import public "VerificationOffer.proto";
 
 message PeerRequest {
     optional uint32 version = 1;
@@ -25,6 +26,7 @@ message PeerRequest {
         PendingBailment pendingbailment = 10;
         ConnectionInfo connectioninfo = 11;
         StoreSecret storesecret = 12;
+        VerificationOffer verificationoffer = 14;
     }
     optional string server = 13;
 }

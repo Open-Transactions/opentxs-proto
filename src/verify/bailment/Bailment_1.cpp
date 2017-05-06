@@ -43,48 +43,51 @@
 namespace opentxs { namespace proto
 {
 
-bool CheckProto_1(const Bailment& bailment)
+bool CheckProto_1(const Bailment& request)
 {
-    if (!bailment.has_unitid()) {
+    if (!request.has_unitid()) {
         std::cerr << "Verify bailment failed: missing unit id."
                   << std::endl;
         return false;
     }
 
-    if (MIN_PLAUSIBLE_IDENTIFIER > bailment.unitid().size()) {
+    if (MIN_PLAUSIBLE_IDENTIFIER > request.unitid().size()) {
         std::cerr << "Verify bailment failed: invalid unit id ("
-                << bailment.unitid() << ")." << std::endl;
+                << request.unitid() << ")." << std::endl;
         return false;
     }
 
-    if (MAX_PLAUSIBLE_IDENTIFIER < bailment.unitid().size()) {
+    if (MAX_PLAUSIBLE_IDENTIFIER < request.unitid().size()) {
         std::cerr << "Verify bailment failed: invalid unit id ("
-                << bailment.unitid() << ")." << std::endl;
+                << request.unitid() << ")." << std::endl;
         return false;
     }
 
-    if (!bailment.has_serverid()) {
+    if (!request.has_serverid()) {
         std::cerr << "Verify bailment failed: missing server id."
                   << std::endl;
         return false;
     }
 
-    if (MIN_PLAUSIBLE_IDENTIFIER > bailment.serverid().size()) {
+    if (MIN_PLAUSIBLE_IDENTIFIER > request.serverid().size()) {
         std::cerr << "Verify bailment failed: invalid server id ("
-                << bailment.serverid() << ")." << std::endl;
+                << request.serverid() << ")." << std::endl;
         return false;
     }
 
-    if (MAX_PLAUSIBLE_IDENTIFIER < bailment.serverid().size()) {
+    if (MAX_PLAUSIBLE_IDENTIFIER < request.serverid().size()) {
         std::cerr << "Verify bailment failed: invalid server id ("
-                << bailment.serverid() << ")." << std::endl;
+                << request.serverid() << ")." << std::endl;
         return false;
     }
 
     return true;
 }
-bool CheckProto_2(const Bailment& bailment) { return CheckProto_1(bailment); }
-bool CheckProto_3(const Bailment&) { return false; }
+
+bool CheckProto_2(const Bailment& request) { return CheckProto_1(request); }
+
+bool CheckProto_3(const Bailment& request) { return CheckProto_1(request); }
+
 bool CheckProto_4(const Bailment&) { return false; }
 bool CheckProto_5(const Bailment&) { return false; }
 } // namespace proto

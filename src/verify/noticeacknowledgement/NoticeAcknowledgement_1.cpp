@@ -43,10 +43,9 @@
 namespace opentxs { namespace proto
 {
 
-bool CheckProto_1(
-    const NoticeAcknowledgement& acknowledgement)
+bool CheckProto_1(const NoticeAcknowledgement& reply)
 {
-    if (!acknowledgement.has_ack()) {
+    if (!reply.has_ack()) {
         std::cerr << "Verify bailment reply failed: missing ack/nack."
                   << std::endl;
         return false;
@@ -55,12 +54,16 @@ bool CheckProto_1(
     return true;
 }
 
-bool CheckProto_2(const NoticeAcknowledgement& notice) {
+bool CheckProto_2(const NoticeAcknowledgement& reply) {
 
-    return CheckProto_1(notice);
+    return CheckProto_1(reply);
 }
 
-bool CheckProto_3(const NoticeAcknowledgement&) { return false; }
+bool CheckProto_3(const NoticeAcknowledgement& reply) {
+
+    return CheckProto_1(reply);
+}
+
 bool CheckProto_4(const NoticeAcknowledgement&) { return false; }
 bool CheckProto_5(const NoticeAcknowledgement&) { return false; }
 } // namespace proto

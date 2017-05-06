@@ -42,28 +42,31 @@
 
 namespace opentxs { namespace proto
 {
-bool CheckProto_1(
-    const StoreSecret& secret)
+bool CheckProto_1(const StoreSecret& request)
 {
-    if (!secret.has_type()) {
+    if (!request.has_type()) {
         std::cerr << "Verify StoreSecret failed: missing type."
                   << std::endl;
 
         return false;
     }
 
-    if ((SECRETTYPE_BIP39 > secret.type()) ||
-        (SECRETTYPE_BIP39 < secret.type())) {
+    if ((SECRETTYPE_BIP39 > request.type()) ||
+        (SECRETTYPE_BIP39 < request.type()))
+    {
         std::cerr << "Verify StoreSecret failed: invalid type ("
-                  << secret.type() << ")." << std::endl;
+                  << request.type() << ")." << std::endl;
 
         return false;
     }
 
     return true;
 }
-bool CheckProto_2(const StoreSecret& secret) { return CheckProto_1(secret); }
-bool CheckProto_3(const StoreSecret&) { return false; }
+
+bool CheckProto_2(const StoreSecret& request) { return CheckProto_1(request); }
+
+bool CheckProto_3(const StoreSecret& request) { return CheckProto_1(request); }
+
 bool CheckProto_4(const StoreSecret&) { return false; }
 bool CheckProto_5(const StoreSecret&) { return false; }
 } // namespace proto

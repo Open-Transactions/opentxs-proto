@@ -61,61 +61,73 @@ namespace opentxs { namespace proto
         {
             { 1, {1, 1}},
             { 2, {2, 2}},
+            { 3, {3, 3}},
         };
     static const VersionMap PeerObjectAllowedRequest =
         {
             { 1, {1, 2}},
             { 2, {2, 2}},
+            { 3, {3, 3}},
         };
     static const VersionMap PeerObjectAllowedNym =
         {
             { 1, {1, 1}},
             { 2, {1, 1}},
+            { 3, {1, 1}},
         };
     static const VersionMap PeerReplyAllowedSignature =
         {
             { 1, {1, 1}},
             { 2, {1, 1}},
+            { 3, {1, 1}},
         };
     static const VersionMap PeerReplyAllowedBailment =
         {
             { 1, {1, 1}},
             { 2, {2, 2}},
+            { 3, {3, 3}},
         };
     static const VersionMap PeerReplyAllowedNotice =
         {
             { 1, {1, 1}},
             { 2, {2, 2}},
+            { 3, {3, 3}},
         };
     static const VersionMap PeerReplyAllowedOutBailment =
         {
             { 1, {1, 1}},
             { 2, {2, 2}},
+            { 3, {3, 3}},
         };
     static const VersionMap PeerReplyAllowedConnectionInfo =
         {
             { 1, {1, 1}},
             { 2, {2, 2}},
+            { 3, {3, 3}},
         };
     static const VersionMap PeerRequestAllowedSignature =
         {
             { 1, {1, 1}},
             { 2, {1, 1}},
+            { 3, {1, 1}},
         };
     static const VersionMap PeerRequestAllowedBailment =
         {
             { 1, {1, 1}},
             { 2, {2, 2}},
+            { 3, {3, 3}},
         };
     static const VersionMap PeerRequestAllowedOutBailment =
         {
             { 1, {1, 1}},
             { 2, {2, 2}},
+            { 3, {3, 3}},
         };
     static const VersionMap PeerRequestAllowedPendingBailment =
         {
             { 1, {1, 1}},
             { 2, {2, 2}},
+            { 3, {3, 3}},
         };
     static const VersionMap PeerRequestAllowedConnectionInfo =
         {
@@ -126,6 +138,13 @@ namespace opentxs { namespace proto
         {
             { 1, {1, 1}},
             { 2, {2, 2}},
+            { 3, {3, 3}},
+        };
+    static const VersionMap PeerRequestAllowedVerificationOffer =
+        {
+            { 1, {0, 0}},
+            { 2, {0, 0}},
+            { 3, {3, 3}},
         };
 } // namespace proto
 } // namespace opentxs

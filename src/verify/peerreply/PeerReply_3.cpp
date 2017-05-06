@@ -43,7 +43,7 @@
 
 namespace opentxs { namespace proto
 {
-bool CheckProto_2(const PeerReply& peerReply)
+bool CheckProto_3(const PeerReply& peerReply)
 {
     if (!peerReply.has_id()) {
         std::cerr << "Verify peer reply failed: missing identifier."
@@ -88,7 +88,7 @@ bool CheckProto_2(const PeerReply& peerReply)
     }
 
     if ((peerReply.type() < PEERREQUEST_BAILMENT) ||
-        (peerReply.type() > PEERREQUEST_STORESECRET)) {
+        (peerReply.type() > PEERREQUEST_VERIFICATIONOFFER)) {
             std::cerr << "Verify peer reply failed: invalid type."
                       << std::endl;
 
@@ -146,9 +146,7 @@ bool CheckProto_2(const PeerReply& peerReply)
 
                 return false;
             }
-
-            break;
-        }
+        } break;
         case PEERREQUEST_OUTBAILMENT : {
             if (!peerReply.has_outbailment()) {
                 std::cerr << "Verify peer reply failed: missing outbailment."
@@ -168,11 +166,10 @@ bool CheckProto_2(const PeerReply& peerReply)
 
                 return false;
             }
-
-            break;
-        }
+        } break;
         case PEERREQUEST_PENDINGBAILMENT :
-        case PEERREQUEST_STORESECRET : {
+        case PEERREQUEST_STORESECRET :
+        case PEERREQUEST_VERIFICATIONOFFER : {
             if (!peerReply.has_notice()) {
                 std::cerr << "Verify peer reply failed: missing notice."
                           << std::endl;
@@ -191,9 +188,7 @@ bool CheckProto_2(const PeerReply& peerReply)
 
                 return false;
             }
-
-            break;
-        }
+        } break;
         case PEERREQUEST_CONNECTIONINFO : {
             if (!peerReply.has_connectioninfo()) {
                 std::cerr << "Verify peer reply failed: missing connectioninfo."
@@ -213,13 +208,13 @@ bool CheckProto_2(const PeerReply& peerReply)
 
                 return false;
             }
-
-            break;
-        }
+        } break;
         default : {}
     }
 
     return true;
 }
+bool CheckProto_4(const PeerReply&) { return false; }
+bool CheckProto_5(const PeerReply&) { return false; }
 } // namespace proto
 } // namespace opentxs

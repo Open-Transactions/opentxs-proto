@@ -42,9 +42,9 @@
 
 namespace opentxs { namespace proto
 {
-bool CheckProto_1(const ConnectionInfoReply& connectionInfoReply)
+bool CheckProto_1(const ConnectionInfoReply& reply)
 {
-    if (!connectionInfoReply.has_success()) {
+    if (!reply.has_success()) {
         std::cerr << "Verify ConnectionInfo reply failed: missing success."
                   << std::endl;
 
@@ -54,12 +54,17 @@ bool CheckProto_1(const ConnectionInfoReply& connectionInfoReply)
     return true;
 }
 
-bool CheckProto_2(const ConnectionInfoReply& info) {
+bool CheckProto_2(const ConnectionInfoReply& reply) {
 
-    return CheckProto_1(info);
+    return CheckProto_1(reply);
 }
-bool CheckProto_3(const ConnectionInfoReply& info) { return false; }
-bool CheckProto_4(const ConnectionInfoReply& info) { return false; }
-bool CheckProto_5(const ConnectionInfoReply& info) { return false; }
+
+bool CheckProto_3(const ConnectionInfoReply& reply) {
+
+    return CheckProto_1(reply);
+}
+
+bool CheckProto_4(const ConnectionInfoReply&) { return false; }
+bool CheckProto_5(const ConnectionInfoReply&) { return false; }
 } // namespace proto
 } // namespace opentxs

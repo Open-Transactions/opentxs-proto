@@ -43,66 +43,75 @@
 namespace opentxs { namespace proto
 {
 
-bool CheckProto_1(
-    const OutBailment& outBailment)
+bool CheckProto_1(const OutBailment& request)
 {
-    if (!outBailment.has_unitid()) {
-        std::cerr << "Verify outbailment failed: missing unit id."
-                  << std::endl;
+    if (!request.has_unitid()) {
+        std::cerr << "Verify outbailment failed: missing unit id." << std::endl;
+
         return false;
     }
 
-    if (MIN_PLAUSIBLE_IDENTIFIER > outBailment.unitid().size()) {
+    if (MIN_PLAUSIBLE_IDENTIFIER > request.unitid().size()) {
         std::cerr << "Verify outbailment failed: invalid unit id ("
-                << outBailment.unitid() << ")." << std::endl;
+                  << request.unitid() << ")." << std::endl;
+
         return false;
     }
 
-    if (MAX_PLAUSIBLE_IDENTIFIER < outBailment.unitid().size()) {
+    if (MAX_PLAUSIBLE_IDENTIFIER < request.unitid().size()) {
         std::cerr << "Verify outbailment failed: invalid unit id ("
-                << outBailment.unitid() << ")." << std::endl;
+                  << request.unitid() << ")." << std::endl;
+
         return false;
     }
 
-    if (!outBailment.has_serverid()) {
+    if (!request.has_serverid()) {
         std::cerr << "Verify outbailment failed: missing server id."
                   << std::endl;
+
         return false;
     }
 
-    if (MIN_PLAUSIBLE_IDENTIFIER > outBailment.serverid().size()) {
+    if (MIN_PLAUSIBLE_IDENTIFIER > request.serverid().size()) {
         std::cerr << "Verify outbailment failed: invalid server id ("
-                << outBailment.serverid() << ")." << std::endl;
+                  << request.serverid() << ")." << std::endl;
+
         return false;
     }
 
-    if (MAX_PLAUSIBLE_IDENTIFIER < outBailment.serverid().size()) {
+    if (MAX_PLAUSIBLE_IDENTIFIER < request.serverid().size()) {
         std::cerr << "Verify outbailment failed: invalid server id ("
-                << outBailment.serverid() << ")." << std::endl;
+                  << request.serverid() << ")." << std::endl;
+
         return false;
     }
 
-    if (!outBailment.has_amount()) {
-        std::cerr << "Verify outbailment failed: missing amount."
-                  << std::endl;
+    if (!request.has_amount()) {
+        std::cerr << "Verify outbailment failed: missing amount." << std::endl;
+
         return false;
     }
 
-    if (!outBailment.has_instructions()) {
+    if (!request.has_instructions()) {
         std::cerr << "Verify outbailment failed: missing instructions."
                   << std::endl;
+
         return false;
     }
 
     return true;
 }
 
-bool CheckProto_2(const OutBailment& outbailment) {
+bool CheckProto_2(const OutBailment& request) {
 
-    return CheckProto_1(outbailment);
+    return CheckProto_1(request);
 }
 
-bool CheckProto_3(const OutBailment&) { return false; }
+bool CheckProto_3(const OutBailment& request) {
+
+    return CheckProto_1(request);
+}
+
 bool CheckProto_4(const OutBailment&) { return false; }
 bool CheckProto_5(const OutBailment&) { return false; }
 } // namespace proto
