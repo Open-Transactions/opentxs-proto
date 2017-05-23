@@ -35,8 +35,10 @@ set(cxx-sources
   peerobject/PeerObject_1.cpp
   peerreply/PeerReply_1.cpp
   peerreply/PeerReply_2.cpp
+  peerreply/PeerReply_3.cpp
   peerrequest/PeerRequest_1.cpp
   peerrequest/PeerRequest_2.cpp
+  peerrequest/PeerRequest_3.cpp
   pendingbailment/PendingBailment_1.cpp
   seed/Seed_1.cpp
   seed/Seed_2.cpp
@@ -66,6 +68,7 @@ set(cxx-sources
   verification/Verification_1.cpp
   verificationgroup/VerificationGroup_1.cpp
   verificationidentity/VerificationIdentity_1.cpp
+  verificationoffer/VerificationOffer_1.cpp
   verificationset/VerificationSet_1.cpp
 )
 

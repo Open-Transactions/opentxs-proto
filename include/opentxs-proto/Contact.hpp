@@ -96,7 +96,22 @@ namespace opentxs { namespace proto
                 CONTACTSECTION_CONTRACT
             }
         },
+        {
+            2,
+            {
+                CONTACTSECTION_SCOPE,
+                CONTACTSECTION_IDENTIFIER,
+                CONTACTSECTION_ADDRESS,
+                CONTACTSECTION_COMMUNICATION,
+                CONTACTSECTION_PROFILE,
+                CONTACTSECTION_RELATIONSHIP,
+                CONTACTSECTION_DESCRIPTOR,
+                CONTACTSECTION_EVENT,
+                CONTACTSECTION_CONTRACT
+            }
+        },
     };
+
     static const ContactItemMap AllowedItemTypes =
     {
         {
@@ -110,7 +125,78 @@ namespace opentxs { namespace proto
             }
         },
         {
+            {2, CONTACTSECTION_SCOPE},
+            {
+                CITEMTYPE_INDIVIDUAL,
+                CITEMTYPE_ORGANIZATION,
+                CITEMTYPE_BUSINESS,
+                CITEMTYPE_GOVERNMENT,
+                CITEMTYPE_SERVER
+            }
+        },
+        {
             {1, CONTACTSECTION_IDENTIFIER},
+            {
+                CITEMTYPE_PREFIX,
+                CITEMTYPE_FORENAME,
+                CITEMTYPE_MIDDLENAME,
+                CITEMTYPE_SURNAME,
+                CITEMTYPE_PEDIGREE,
+                CITEMTYPE_SUFFIX,
+                CITEMTYPE_NICKNAME,
+                CITEMTYPE_COMMONNAME,
+                CITEMTYPE_PASSPORT,
+                CITEMTYPE_NATIONAL,
+                CITEMTYPE_PROVINCIAL,
+                CITEMTYPE_MILITARY,
+                CITEMTYPE_PGP,
+                CITEMTYPE_OTR,
+                CITEMTYPE_SSL,
+                CITEMTYPE_SKYPE,
+                CITEMTYPE_QQ,
+                CITEMTYPE_VK,
+                CITEMTYPE_ONENAME,
+                CITEMTYPE_TWITTER,
+                CITEMTYPE_MEDIUM,
+                CITEMTYPE_TUMBLR,
+                CITEMTYPE_YAHOO,
+                CITEMTYPE_MYSPACE,
+                CITEMTYPE_MEETUP,
+                CITEMTYPE_REDDIT,
+                CITEMTYPE_HACKERNEWS,
+                CITEMTYPE_WIKIPEDIA,
+                CITEMTYPE_ANGELLIST,
+                CITEMTYPE_GITHUB,
+                CITEMTYPE_BITBUCKET,
+                CITEMTYPE_YOUTUBE,
+                CITEMTYPE_VIMEO,
+                CITEMTYPE_TWITCH,
+                CITEMTYPE_SNAPCHAT,
+                CITEMTYPE_VINE,
+                CITEMTYPE_INSTAGRAM,
+                CITEMTYPE_PINTREST,
+                CITEMTYPE_IMGUR,
+                CITEMTYPE_FLICKR,
+                CITEMTYPE_DRIBBLE,
+                CITEMTYPE_BEHANCE,
+                CITEMTYPE_DEVIANTART,
+                CITEMTYPE_SPOTIFY,
+                CITEMTYPE_ITUNES,
+                CITEMTYPE_SOUNDCLOUD,
+                CITEMTYPE_ASKFM,
+                CITEMTYPE_EBAY,
+                CITEMTYPE_ETSY,
+                CITEMTYPE_OPENBAZAAR,
+                CITEMTYPE_XBOXLIVE,
+                CITEMTYPE_PLAYSTATION,
+                CITEMTYPE_SECONDLIFE,
+                CITEMTYPE_WARCRAFT,
+                CITEMTYPE_EMPLOYEE,
+
+            }
+        },
+        {
+            {2, CONTACTSECTION_IDENTIFIER},
             {
                 CITEMTYPE_PREFIX,
                 CITEMTYPE_FORENAME,
@@ -202,7 +288,94 @@ namespace opentxs { namespace proto
             }
         },
         {
+            {2, CONTACTSECTION_ADDRESS},
+            {
+                CITEMTYPE_PHYSICAL,
+                CITEMTYPE_OFFICIAL,
+                CITEMTYPE_BIRTHPLACE,
+                CITEMTYPE_HOME,
+                CITEMTYPE_WEBSITE,
+                CITEMTYPE_OPENTXS,
+                CITEMTYPE_BTC,
+                CITEMTYPE_ETH,
+                CITEMTYPE_XRP,
+                CITEMTYPE_LTC,
+                CITEMTYPE_DAO,
+                CITEMTYPE_XEM,
+                CITEMTYPE_DASH,
+                CITEMTYPE_MAID,
+                CITEMTYPE_LSK,
+                CITEMTYPE_DOGE,
+                CITEMTYPE_DGD,
+                CITEMTYPE_XMR,
+                CITEMTYPE_WAVES,
+                CITEMTYPE_NXT,
+                CITEMTYPE_SC,
+                CITEMTYPE_STEEM,
+                CITEMTYPE_AMP,
+                CITEMTYPE_XLM,
+                CITEMTYPE_FCT,
+                CITEMTYPE_BTS,
+                CITEMTYPE_TNBTC,
+                CITEMTYPE_TNXRP,
+                CITEMTYPE_TNLTC,
+                CITEMTYPE_TNXEM,
+                CITEMTYPE_TNDASH,
+                CITEMTYPE_TNMAID,
+                CITEMTYPE_TNLSK,
+                CITEMTYPE_TNDOGE,
+                CITEMTYPE_TNXMR,
+                CITEMTYPE_TNWAVES,
+                CITEMTYPE_TNNXT,
+                CITEMTYPE_TNSC,
+                CITEMTYPE_TNSTEEM
+            }
+        },
+        {
             {1, CONTACTSECTION_COMMUNICATION},
+            {
+                CITEMTYPE_OPENTXS,
+                CITEMTYPE_PHONE,
+                CITEMTYPE_EMAIL,
+                CITEMTYPE_SKYPE,
+                CITEMTYPE_WIRE,
+                CITEMTYPE_QQ,
+                CITEMTYPE_BITMESSAGE,
+                CITEMTYPE_WHATSAPP,
+                CITEMTYPE_TELEGRAM,
+                CITEMTYPE_KIK,
+                CITEMTYPE_BBM,
+                CITEMTYPE_WECHAT,
+                CITEMTYPE_KAKAOTALK,
+                CITEMTYPE_FACEBOOK,
+                CITEMTYPE_GOGGLE,
+                CITEMTYPE_LINKEDIN,
+                CITEMTYPE_VK,
+                CITEMTYPE_TWITTER,
+                CITEMTYPE_SNAPCHAT,
+                CITEMTYPE_VINE,
+                CITEMTYPE_INSTAGRAM,
+                CITEMTYPE_PINTREST,
+                CITEMTYPE_IMGUR,
+                CITEMTYPE_FLICKR,
+                CITEMTYPE_DRIBBLE,
+                CITEMTYPE_BEHANCE,
+                CITEMTYPE_DEVIANTART,
+                CITEMTYPE_SPOTIFY,
+                CITEMTYPE_ITUNES,
+                CITEMTYPE_SOUNDCLOUD,
+                CITEMTYPE_ASKFM,
+                CITEMTYPE_EBAY,
+                CITEMTYPE_ETSY,
+                CITEMTYPE_OPENBAZAAR,
+                CITEMTYPE_XBOXLIVE,
+                CITEMTYPE_PLAYSTATION,
+                CITEMTYPE_SECONDLIFE,
+                CITEMTYPE_WARCRAFT
+            }
+        },
+        {
+            {2, CONTACTSECTION_COMMUNICATION},
             {
                 CITEMTYPE_OPENTXS,
                 CITEMTYPE_PHONE,
@@ -272,6 +445,33 @@ namespace opentxs { namespace proto
             }
         },
         {
+            {2, CONTACTSECTION_PROFILE},
+            {
+                CITEMTYPE_FACEBOOK,
+                CITEMTYPE_GOGGLE,
+                CITEMTYPE_LINKEDIN,
+                CITEMTYPE_VK,
+                CITEMTYPE_ABOUTME,
+                CITEMTYPE_ONENAME,
+                CITEMTYPE_TWITTER,
+                CITEMTYPE_MEDIUM,
+                CITEMTYPE_TUMBLR,
+                CITEMTYPE_YAHOO,
+                CITEMTYPE_MYSPACE,
+                CITEMTYPE_MEETUP,
+                CITEMTYPE_REDDIT,
+                CITEMTYPE_HACKERNEWS,
+                CITEMTYPE_WIKIPEDIA,
+                CITEMTYPE_ANGELLIST,
+                CITEMTYPE_GITHUB,
+                CITEMTYPE_BITBUCKET,
+                CITEMTYPE_YOUTUBE,
+                CITEMTYPE_VIMEO,
+                CITEMTYPE_TWITCH,
+                CITEMTYPE_SNAPCHAT
+            }
+        },
+        {
             {1, CONTACTSECTION_RELATIONSHIP},
             {
                 CITEMTYPE_ORGANIZATION,
@@ -288,6 +488,29 @@ namespace opentxs { namespace proto
                 CITEMTYPE_EMPLOYER,
                 CITEMTYPE_EMPLOYEE,
                 CITEMTYPE_CITIZEN
+            }
+        },
+        {
+            {2, CONTACTSECTION_RELATIONSHIP},
+            {
+                CITEMTYPE_ORGANIZATION,
+                CITEMTYPE_GOVERNMENT,
+                CITEMTYPE_ALIAS,
+                CITEMTYPE_ACQUAINTANCE,
+                CITEMTYPE_FRIEND,
+                CITEMTYPE_SPOUSE,
+                CITEMTYPE_SIBLING,
+                CITEMTYPE_MEMBER,
+                CITEMTYPE_COLLEGUE,
+                CITEMTYPE_PARENT,
+                CITEMTYPE_CHILD,
+                CITEMTYPE_EMPLOYER,
+                CITEMTYPE_EMPLOYEE,
+                CITEMTYPE_CITIZEN,
+                CITEMTYPE_MET,
+                CITEMTYPE_FAN,
+                CITEMTYPE_SUPERVISOR,
+                CITEMTYPE_SUBORDINATE
             }
         },
         {
@@ -309,12 +532,46 @@ namespace opentxs { namespace proto
                 CITEMTYPE_AWARD,
                 CITEMTYPE_LIKES,
                 CITEMTYPE_SEXUAL,
-                CITEMTYPE_POLIGICAL,
+                CITEMTYPE_POLITICAL,
                 CITEMTYPE_RELIGIOUS
             }
         },
         {
+            {2, CONTACTSECTION_DESCRIPTOR},
+            {
+                CITEMTYPE_PHOTO,
+                CITEMTYPE_GENDER,
+                CITEMTYPE_HEIGHT,
+                CITEMTYPE_WEIGHT,
+                CITEMTYPE_HAIR,
+                CITEMTYPE_EYE,
+                CITEMTYPE_SKIN,
+                CITEMTYPE_ETHNICITY,
+                CITEMTYPE_LANGUAGE,
+                CITEMTYPE_DEGREE,
+                CITEMTYPE_CERTIFICATION,
+                CITEMTYPE_TITLE,
+                CITEMTYPE_SKILL,
+                CITEMTYPE_AWARD,
+                CITEMTYPE_LIKES,
+                CITEMTYPE_SEXUAL,
+                CITEMTYPE_POLITICAL,
+                CITEMTYPE_RELIGIOUS,
+                CITEMTYPE_PHILOSOPHY
+            }
+        },
+        {
             {1, CONTACTSECTION_EVENT},
+            {
+                CITEMTYPE_BIRTH,
+                CITEMTYPE_SECONDARYGRADUATION,
+                CITEMTYPE_UNIVERSITYGRADUTATION,
+                CITEMTYPE_WEDDING,
+                CITEMTYPE_ACCOMPLISHMENT
+            }
+        },
+        {
+            {2, CONTACTSECTION_EVENT},
             {
                 CITEMTYPE_BIRTH,
                 CITEMTYPE_SECONDARYGRADUATION,
@@ -367,12 +624,78 @@ namespace opentxs { namespace proto
                 CITEMTYPE_PHP,
                 CITEMTYPE_SEK
             }
+        },
+        {
+            {2, CONTACTSECTION_CONTRACT},
+            {
+                CITEMTYPE_BTC,
+                CITEMTYPE_ETH,
+                CITEMTYPE_XRP,
+                CITEMTYPE_LTC,
+                CITEMTYPE_DAO,
+                CITEMTYPE_XEM,
+                CITEMTYPE_DASH,
+                CITEMTYPE_MAID,
+                CITEMTYPE_LSK,
+                CITEMTYPE_DOGE,
+                CITEMTYPE_DGD,
+                CITEMTYPE_XMR,
+                CITEMTYPE_WAVES,
+                CITEMTYPE_NXT,
+                CITEMTYPE_SC,
+                CITEMTYPE_STEEM,
+                CITEMTYPE_AMP,
+                CITEMTYPE_XLM,
+                CITEMTYPE_FCT,
+                CITEMTYPE_BTS,
+                CITEMTYPE_USD,
+                CITEMTYPE_EUR,
+                CITEMTYPE_GBP,
+                CITEMTYPE_INR,
+                CITEMTYPE_AUD,
+                CITEMTYPE_CAD,
+                CITEMTYPE_SGD,
+                CITEMTYPE_CHF,
+                CITEMTYPE_MYR,
+                CITEMTYPE_JPY,
+                CITEMTYPE_CNY,
+                CITEMTYPE_NZD,
+                CITEMTYPE_THB,
+                CITEMTYPE_HUF,
+                CITEMTYPE_AED,
+                CITEMTYPE_HKD,
+                CITEMTYPE_MXN,
+                CITEMTYPE_ZAR,
+                CITEMTYPE_PHP,
+                CITEMTYPE_SEK,
+                CITEMTYPE_TNBTC,
+                CITEMTYPE_TNXRP,
+                CITEMTYPE_TNLTC,
+                CITEMTYPE_TNXEM,
+                CITEMTYPE_TNDASH,
+                CITEMTYPE_TNMAID,
+                CITEMTYPE_TNLSK,
+                CITEMTYPE_TNDOGE,
+                CITEMTYPE_TNXMR,
+                CITEMTYPE_TNWAVES,
+                CITEMTYPE_TNNXT,
+                CITEMTYPE_TNSC,
+                CITEMTYPE_TNSTEEM
+            }
         }
     };
+
     static const ItemAttributeMap AllowedItemAttributes =
     {
         {
             1,
+            {
+                CITEMATTR_ACTIVE,
+                CITEMATTR_PRIMARY
+            }
+        },
+        {
+            2,
             {
                 CITEMATTR_ACTIVE,
                 CITEMATTR_PRIMARY
@@ -392,6 +715,7 @@ namespace opentxs { namespace proto
         {{CONTACTSECTION_EVENT, "en"}, "Event"},
         {{CONTACTSECTION_CONTRACT, "en"}, "Contracts"}
     };
+
     static const EnumTranslation ContactItemTypes =
     {
         {{CITEMTYPE_INDIVIDUAL, "en"}, "Individual"},
@@ -473,18 +797,18 @@ namespace opentxs { namespace proto
         {{CITEMTYPE_PLAYSTATION, "en"}, "Playstation Network"},
         {{CITEMTYPE_SECONDLIFE, "en"}, "Second Life"},
         {{CITEMTYPE_WARCRAFT, "en"}, "Warcraft Social"},
-        {{CITEMTYPE_ALIAS, "en"}, "Alias of"},
-        {{CITEMTYPE_ACQUAINTANCE, "en"}, "Acquaintance of"},
-        {{CITEMTYPE_FRIEND, "en"}, "Friend of"},
-        {{CITEMTYPE_SPOUSE, "en"}, "Spouse of"},
-        {{CITEMTYPE_SIBLING, "en"}, "Sibling of"},
-        {{CITEMTYPE_MEMBER, "en"}, "Member of"},
-        {{CITEMTYPE_COLLEGUE, "en"}, "Collegue of"},
-        {{CITEMTYPE_PARENT, "en"}, "Parent of"},
-        {{CITEMTYPE_CHILD, "en"}, "Child of"},
-        {{CITEMTYPE_EMPLOYER, "en"}, "Employer of"},
-        {{CITEMTYPE_EMPLOYEE, "en"}, "Employee of"},
-        {{CITEMTYPE_CITIZEN, "en"}, "Citizen of"},
+        {{CITEMTYPE_ALIAS, "en"}, "alias of"},
+        {{CITEMTYPE_ACQUAINTANCE, "en"}, "acquaintance of"},
+        {{CITEMTYPE_FRIEND, "en"}, "friend of"},
+        {{CITEMTYPE_SPOUSE, "en"}, "spouse of"},
+        {{CITEMTYPE_SIBLING, "en"}, "sibling of"},
+        {{CITEMTYPE_MEMBER, "en"}, "member of"},
+        {{CITEMTYPE_COLLEGUE, "en"}, "collegue of"},
+        {{CITEMTYPE_PARENT, "en"}, "parent of"},
+        {{CITEMTYPE_CHILD, "en"}, "child of"},
+        {{CITEMTYPE_EMPLOYER, "en"}, "employer of"},
+        {{CITEMTYPE_EMPLOYEE, "en"}, "employee of"},
+        {{CITEMTYPE_CITIZEN, "en"}, "citizen of"},
         {{CITEMTYPE_PHOTO, "en"}, "Photo"},
         {{CITEMTYPE_GENDER, "en"}, "Gender"},
         {{CITEMTYPE_HEIGHT, "en"}, "Height"},
@@ -501,7 +825,7 @@ namespace opentxs { namespace proto
         {{CITEMTYPE_AWARD, "en"}, "Award"},
         {{CITEMTYPE_LIKES, "en"}, "Like"},
         {{CITEMTYPE_SEXUAL, "en"}, "Sexual preference"},
-        {{CITEMTYPE_POLIGICAL, "en"}, "Political view"},
+        {{CITEMTYPE_POLITICAL, "en"}, "Political view"},
         {{CITEMTYPE_RELIGIOUS, "en"}, "Religious affiliation"},
         {{CITEMTYPE_BIRTH, "en"}, "Birth date"},
         {{CITEMTYPE_SECONDARYGRADUATION, "en"}, "Secondary school graduation"},
@@ -548,12 +872,32 @@ namespace opentxs { namespace proto
         {{CITEMTYPE_ZAR, "en"}, "South African Rand"},
         {{CITEMTYPE_PHP, "en"}, "Philippine Peso"},
         {{CITEMTYPE_SEK, "en"}, "Swedish Krona"},
+        {{CITEMTYPE_TNBTC, "en"}, "Testnet Bitcoin"},
+        {{CITEMTYPE_TNXRP, "en"}, "Testnet Ripple"},
+        {{CITEMTYPE_TNLTC, "en"}, "Testnet Litecoin"},
+        {{CITEMTYPE_TNXEM, "en"}, "Testnet NEM"},
+        {{CITEMTYPE_TNDASH, "en"}, "Testnet Dash"},
+        {{CITEMTYPE_TNMAID, "en"}, "Testnet MaidSafeCoin"},
+        {{CITEMTYPE_TNLSK, "en"}, "Testnet Lisk"},
+        {{CITEMTYPE_TNDOGE, "en"}, "Testnet Dogecoin"},
+        {{CITEMTYPE_TNXMR, "en"}, "Testnet Monero"},
+        {{CITEMTYPE_TNWAVES, "en"}, "Testnet Waves"},
+        {{CITEMTYPE_TNNXT, "en"}, "Testnet Nxt"},
+        {{CITEMTYPE_TNSC, "en"}, "Testnet Siacoin"},
+        {{CITEMTYPE_TNSTEEM, "en"}, "Testnet Steem"},
+        {{CITEMTYPE_PHILOSOPHY, "en"}, "Philosophy"},
+        {{CITEMTYPE_MET, "en"}, "has met"},
+        {{CITEMTYPE_FAN, "en"}, "fan of"},
+        {{CITEMTYPE_SUPERVISOR, "en"}, "supervisor of"},
+        {{CITEMTYPE_SUBORDINATE, "en"}, "subordinate of"}
     };
+
     static const EnumTranslation ContactItemAttributes =
     {
         {{CITEMATTR_ACTIVE, "en"}, "Active"},
         {{CITEMATTR_PRIMARY, "en"}, "Primary"}
     };
+
     static const RelationshipReciprocity RelationshipMap =
     {
         {CITEMTYPE_ORGANIZATION, CITEMTYPE_MEMBER},
@@ -569,7 +913,10 @@ namespace opentxs { namespace proto
         {CITEMTYPE_CHILD, CITEMTYPE_PARENT},
         {CITEMTYPE_EMPLOYER, CITEMTYPE_EMPLOYEE},
         {CITEMTYPE_EMPLOYEE, CITEMTYPE_EMPLOYER},
-        {CITEMTYPE_CITIZEN, CITEMTYPE_GOVERNMENT}
+        {CITEMTYPE_CITIZEN, CITEMTYPE_GOVERNMENT},
+        {CITEMTYPE_SUPERVISOR, CITEMTYPE_SUBORDINATE},
+        {CITEMTYPE_SUBORDINATE, CITEMTYPE_SUPERVISOR},
+        {CITEMTYPE_MET, CITEMTYPE_MET}
     };
 } // namespace proto
 } // namespace opentxs

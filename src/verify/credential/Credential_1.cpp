@@ -476,14 +476,16 @@ bool CheckProto_1(
 
     return true;
 }
+
 bool CheckProto_2(
-    const Credential&,
-    const KeyMode&,
-    const CredentialRole,
-    const bool)
+    const Credential& serializedCred,
+    const KeyMode& mode,
+    const CredentialRole role,
+    const bool withSigs)
 {
-    return false;
+    return CheckProto_1(serializedCred, mode, role, withSigs);
 }
+
 bool CheckProto_3(
     const Credential&,
     const KeyMode&,

@@ -50,12 +50,16 @@ bool CheckProto_1(
     const uint32_t parentVersion)
 {
     if (!contactSection.has_name()) {
-        std::cerr << "Verify serialized contact section failed: missing name." << std::endl;
+        std::cerr << "Verify serialized contact section failed: "
+                  << "missing name." << std::endl;
+
         return false;
     }
 
     if (!ValidContactSectionName(parentVersion, contactSection.name())) {
-        std::cerr << "Verify serialized contact section failed: invalid name." << std::endl;
+        std::cerr << "Verify serialized contact section failed: "
+                  << "invalid name." << std::endl;
+
         return false;
     }
 
@@ -65,23 +69,28 @@ bool CheckProto_1(
             ContactSectionAllowedItem.at(contactSection.version()).first,
             ContactSectionAllowedItem.at(contactSection.version()).second,
             indexed,
-            ContactSectionVersion{contactSection.version(), contactSection.name()});
+            ContactSectionVersion{
+                contactSection.version(), contactSection.name()});
 
         if (!validItem) {
-            std::cerr << "Verify serialized contact section failed: invalid item." << std::endl;
+            std::cerr << "Verify serialized contact section failed: "
+                      << "invalid item." << std::endl;
+
             return false;
         }
     }
 
     return true;
 }
+
 bool CheckProto_2(
-    const ContactSection&,
-    const ClaimType,
-    const uint32_t)
+    const ContactSection& contactSection,
+    const ClaimType indexed,
+    const uint32_t parentVersion)
 {
-    return false;
+    return CheckProto_1(contactSection, indexed, parentVersion);
 }
+
 bool CheckProto_3(
     const ContactSection&,
     const ClaimType,
@@ -89,6 +98,7 @@ bool CheckProto_3(
 {
     return false;
 }
+
 bool CheckProto_4(
     const ContactSection&,
     const ClaimType,
@@ -96,6 +106,7 @@ bool CheckProto_4(
 {
     return false;
 }
+
 bool CheckProto_5(
     const ContactSection&,
     const ClaimType,

@@ -43,7 +43,7 @@
 
 namespace opentxs { namespace proto
 {
-bool CheckProto_2(const PeerRequest& peerRequest)
+bool CheckProto_3(const PeerRequest& peerRequest)
 {
     if (!peerRequest.has_id()) {
         std::cerr << "Verify peer request failed: missing identifier."
@@ -88,7 +88,7 @@ bool CheckProto_2(const PeerRequest& peerRequest)
     }
 
     if ((peerRequest.type() < PEERREQUEST_BAILMENT) ||
-        (peerRequest.type() > PEERREQUEST_STORESECRET)) {
+        (peerRequest.type() > PEERREQUEST_VERIFICATIONOFFER)) {
             std::cerr << "Verify peer request failed: invalid type."
                       << std::endl;
 
@@ -101,7 +101,7 @@ bool CheckProto_2(const PeerRequest& peerRequest)
         return false;
     }
 
-    bool validSig = Check(
+    const bool validSig = Check(
         peerRequest.signature(),
         PeerRequestAllowedSignature.at(peerRequest.version()).first,
         PeerRequestAllowedSignature.at(peerRequest.version()).second,
@@ -123,7 +123,7 @@ bool CheckProto_2(const PeerRequest& peerRequest)
                 return false;
             }
 
-            bool validbailment = Check(
+            const bool validbailment = Check(
                 peerRequest.bailment(),
                 PeerRequestAllowedBailment.at(peerRequest.version()).first,
                 PeerRequestAllowedBailment.at(peerRequest.version()).second);
@@ -134,9 +134,7 @@ bool CheckProto_2(const PeerRequest& peerRequest)
 
                 return false;
             }
-
-            break;
-        }
+        } break;
         case PEERREQUEST_OUTBAILMENT : {
             if (!peerRequest.has_outbailment()) {
                 std::cerr << "Verify peer request failed: missing outbailment."
@@ -145,7 +143,7 @@ bool CheckProto_2(const PeerRequest& peerRequest)
                 return false;
             }
 
-            bool validoutbailment = Check(
+            const bool validoutbailment = Check(
                 peerRequest.outbailment(),
                 PeerRequestAllowedOutBailment.at(peerRequest.version()).first,
                 PeerRequestAllowedOutBailment.at(peerRequest.version()).second);
@@ -156,9 +154,7 @@ bool CheckProto_2(const PeerRequest& peerRequest)
 
                 return false;
             }
-
-            break;
-        }
+        } break;
         case PEERREQUEST_PENDINGBAILMENT : {
             if (!peerRequest.has_pendingbailment()) {
                 std::cerr << "Verify peer request failed: missing "
@@ -167,7 +163,7 @@ bool CheckProto_2(const PeerRequest& peerRequest)
                 return false;
             }
 
-            bool validoutbailment = Check(
+            const bool validoutbailment = Check(
                 peerRequest.pendingbailment(),
                 PeerRequestAllowedPendingBailment.at(
                     peerRequest.version()).first,
@@ -180,9 +176,7 @@ bool CheckProto_2(const PeerRequest& peerRequest)
 
                 return false;
             }
-
-            break;
-        }
+        } break;
         case PEERREQUEST_CONNECTIONINFO : {
             if (!peerRequest.has_connectioninfo()) {
                 std::cerr << "Verify peer request failed: missing "
@@ -191,7 +185,7 @@ bool CheckProto_2(const PeerRequest& peerRequest)
                 return false;
             }
 
-            bool validconnectioninfo = Check(
+            const bool validconnectioninfo = Check(
                 peerRequest.connectioninfo(),
                 PeerRequestAllowedConnectionInfo.at(
                     peerRequest.version()).first,
@@ -204,9 +198,7 @@ bool CheckProto_2(const PeerRequest& peerRequest)
 
                 return false;
             }
-
-            break;
-        }
+        } break;
         case PEERREQUEST_STORESECRET : {
             if (!peerRequest.has_storesecret()) {
                 std::cerr << "Verify peer request failed: missing "
@@ -215,12 +207,10 @@ bool CheckProto_2(const PeerRequest& peerRequest)
                 return false;
             }
 
-            bool validstoresecret = Check(
+            const bool validstoresecret = Check(
                 peerRequest.storesecret(),
-                PeerRequestAllowedStoreSecret.at(
-                    peerRequest.version()).first,
-                PeerRequestAllowedStoreSecret.at(
-                    peerRequest.version()).second);
+                PeerRequestAllowedStoreSecret.at(peerRequest.version()).first,
+                PeerRequestAllowedStoreSecret.at(peerRequest.version()).second);
 
             if (!validstoresecret) {
                 std::cerr << "Verify peer request failed: invalid "
@@ -228,9 +218,29 @@ bool CheckProto_2(const PeerRequest& peerRequest)
 
                 return false;
             }
+        } break;
+        case PEERREQUEST_VERIFICATIONOFFER : {
+            if (!peerRequest.has_verificationoffer()) {
+                std::cerr << "Verify peer request failed: missing "
+                          << "verificationoffer." << std::endl;
 
-            break;
-        }
+                return false;
+            }
+
+            const bool validverificationoffer = Check(
+                peerRequest.verificationoffer(),
+                PeerRequestAllowedVerificationOffer.at(
+                    peerRequest.version()).first,
+                PeerRequestAllowedVerificationOffer.at(
+                    peerRequest.version()).second);
+
+            if (!validverificationoffer) {
+                std::cerr << "Verify peer request failed: invalid "
+                          << "verificationoffer." << std::endl;
+
+                return false;
+            }
+        } break;
         default : {}
     }
 
@@ -248,5 +258,8 @@ bool CheckProto_2(const PeerRequest& peerRequest)
 
     return true;
 }
+
+bool CheckProto_4(const PeerRequest&) { return false; }
+bool CheckProto_5(const PeerRequest&) { return false; }
 } // namespace proto
 } // namespace opentxs

@@ -43,10 +43,9 @@
 namespace opentxs { namespace proto
 {
 
-bool CheckProto_1(
-    const BailmentReply& bailmentReply)
+bool CheckProto_1(const BailmentReply& reply)
 {
-    if (!bailmentReply.has_instructions()) {
+    if (!reply.has_instructions()) {
         std::cerr << "Verify bailment reply failed: instructions."
                   << std::endl;
         return false;
@@ -54,8 +53,8 @@ bool CheckProto_1(
 
     return true;
 }
-bool CheckProto_2(const BailmentReply&) { return false; }
-bool CheckProto_3(const BailmentReply&) { return false; }
+bool CheckProto_2(const BailmentReply& reply) { return CheckProto_1(reply); }
+bool CheckProto_3(const BailmentReply& reply) { return CheckProto_1(reply); }
 bool CheckProto_4(const BailmentReply&) { return false; }
 bool CheckProto_5(const BailmentReply&) { return false; }
 } // namespace proto

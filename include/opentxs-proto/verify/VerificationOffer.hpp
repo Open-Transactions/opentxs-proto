@@ -36,38 +36,19 @@
  *
  ************************************************************/
 
-#include "opentxs-proto/Types.hpp"
+#ifndef OPENTXS_PROTO_VERIFICATIONOFFER_HPP
+#define OPENTXS_PROTO_VERIFICATIONOFFER_HPP
 
-#include <iostream>
+#include "VerifyContacts.hpp"
 
 namespace opentxs { namespace proto
 {
-bool CheckProto_1(const StoreSecret& request)
-{
-    if (!request.has_type()) {
-        std::cerr << "Verify StoreSecret failed: missing type."
-                  << std::endl;
-
-        return false;
-    }
-
-    if ((SECRETTYPE_BIP39 > request.type()) ||
-        (SECRETTYPE_BIP39 < request.type()))
-    {
-        std::cerr << "Verify StoreSecret failed: invalid type ("
-                  << request.type() << ")." << std::endl;
-
-        return false;
-    }
-
-    return true;
-}
-
-bool CheckProto_2(const StoreSecret& request) { return CheckProto_1(request); }
-
-bool CheckProto_3(const StoreSecret& request) { return CheckProto_1(request); }
-
-bool CheckProto_4(const StoreSecret&) { return false; }
-bool CheckProto_5(const StoreSecret&) { return false; }
+    bool CheckProto_1(const VerificationOffer& offer);
+    bool CheckProto_2(const VerificationOffer&);
+    bool CheckProto_3(const VerificationOffer&);
+    bool CheckProto_4(const VerificationOffer&);
+    bool CheckProto_5(const VerificationOffer&);
 } // namespace proto
 } // namespace opentxs
+
+#endif // OPENTXS_PROTO_VERIFICATIONOFFER_HPP

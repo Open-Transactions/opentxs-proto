@@ -49,7 +49,7 @@ namespace opentxs { namespace proto
         const CredentialRole role = CREDROLE_ERROR,
         const bool withSigs = true);
     bool CheckProto_2(
-        const Credential&,
+        const Credential& serializedCred,
         const KeyMode& mode = KEYMODE_ERROR,
         const CredentialRole role = CREDROLE_ERROR,
         const bool withSigs = true);

@@ -44,8 +44,7 @@
 namespace opentxs { namespace proto
 {
 
-bool CheckProto_1(
-    const CredentialIndex& serializedCredIndex)
+bool CheckProto_1(const CredentialIndex& serializedCredIndex)
 {
     bool validSource = false;
 
@@ -179,7 +178,12 @@ bool CheckProto_1(
 
     return true;
 }
-bool CheckProto_2(const CredentialIndex&) { return false; }
+
+bool CheckProto_2(const CredentialIndex& serializedCredIndex)
+{
+    return CheckProto_1(serializedCredIndex);
+}
+
 bool CheckProto_3(const CredentialIndex&) { return false; }
 bool CheckProto_4(const CredentialIndex&) { return false; }
 bool CheckProto_5(const CredentialIndex&) { return false; }

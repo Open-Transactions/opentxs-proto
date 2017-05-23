@@ -52,49 +52,68 @@ bool CheckProto_1(
         if (!contactItem.has_id()) {
             std::cerr << "Verify serialized contact item failed: missing id."
                       << std::endl;
+
             return false;
         }
+
         if (MIN_PLAUSIBLE_IDENTIFIER < contactItem.id().size()) {
             std::cerr << "Verify serialized contact item failed: invalid id."
                       << std::endl;
+
             return false;
         }
     } else {
         if (contactItem.has_id()) {
             std::cerr << "Verify serialized contact item failed: id not blank."
                       << std::endl;
+
             return false;
         }
     }
 
     if (!contactItem.has_type()) {
-        std::cerr << "Verify serialized contact item failed: missing type." << std::endl;
+        std::cerr << "Verify serialized contact item failed: missing type."
+                  << std::endl;
+
         return false;
     }
+
     if (!ValidContactItemType(parentVersion, contactItem.type())) {
-        std::cerr << "Verify serialized contact item failed: invalid type." << std::endl;
+        std::cerr << "Verify serialized contact item failed: invalid type."
+                  << std::endl;
+
         return false;
     }
+
     if (!contactItem.has_value()) {
-        std::cerr << "Verify serialized contact item failed: missing value." << std::endl;
+        std::cerr << "Verify serialized contact item failed: missing value."
+                  << std::endl;
+
         return false;
     }
+
     for (auto& it: contactItem.attribute()) {
-        if (!ValidContactItemAttribute(contactItem.version(), static_cast<ContactItemAttribute>(it))) {
-            std::cerr << "Verify serialized contact item failed: invalid attribute." << std::endl;
+        if (!ValidContactItemAttribute(
+            contactItem.version(),
+            static_cast<ContactItemAttribute>(it))) {
+            std::cerr << "Verify serialized contact item failed: "
+                      << "invalid attribute." << std::endl;
+
             return false;
         }
     }
 
     return true;
 }
+
 bool CheckProto_2(
-    const ContactItem&,
-    const ClaimType,
-    const ContactSectionVersion)
+    const ContactItem& contactItem,
+    const ClaimType indexed,
+    const ContactSectionVersion parentVersion)
 {
-    return false;
+    return CheckProto_1(contactItem, indexed, parentVersion);
 }
+
 bool CheckProto_3(
     const ContactItem&,
     const ClaimType,

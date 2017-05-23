@@ -59,14 +59,18 @@ bool CheckProto_1(
             contactData.version());
 
         if (!validSection) {
-            std::cerr << "Verify serialized contact data failed: invalid section." << std::endl;
+            std::cerr << "Verify serialized contact data failed: "
+                      << "invalid section." << std::endl;
+
             return false;
         }
 
         ContactSectionName name = it.name();
 
         if (sectionCount.count(name) > 0 ) {
-            std::cerr << "Verify serialized contact data failed: duplicate section." << std::endl;
+            std::cerr << "Verify serialized contact data failed: "
+                      << "duplicate section." << std::endl;
+
             return false;
         } else {
             sectionCount.insert({name, 1});
@@ -75,7 +79,14 @@ bool CheckProto_1(
 
     return true;
 }
-bool CheckProto_2(const ContactData&, const ClaimType) { return false; }
+
+bool CheckProto_2(
+    const ContactData& contactData,
+    const ClaimType indexed)
+{
+    return CheckProto_1(contactData, indexed);
+}
+
 bool CheckProto_3(const ContactData&, const ClaimType) { return false; }
 bool CheckProto_4(const ContactData&, const ClaimType) { return false; }
 bool CheckProto_5(const ContactData&, const ClaimType) { return false; }

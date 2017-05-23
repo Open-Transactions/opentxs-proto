@@ -63,26 +63,32 @@ namespace opentxs { namespace proto
     static const VersionMap CredentialAllowedKeyCredentials =
         {
             { 1, {1, 1}},
+            { 2, {1, 1}},
         };
     static const VersionMap CredentialAllowedContactData =
         {
             { 1, {1, 1}},
+            { 2, {2, 2}},
         };
     static const VersionMap CredentialAllowedVerification =
         {
             { 1, {1, 1}},
+            { 2, {1, 1}},
         };
     static const VersionMap CredentialAllowedSignatures =
         {
             { 1, {1, 1}},
+            { 2, {1, 1}},
         };
     static const VersionMap CredentialAllowedMasterParams =
         {
             { 1, {1, 1}},
+            { 2, {1, 1}},
         };
     static const VersionMap CredentialAllowedChildParams =
         {
             { 1, {1, 1}},
+            { 2, {1, 1}},
         };
     static const VersionMap KeyCredentialAllowedAsymmetricKey =
         {
@@ -107,14 +113,17 @@ namespace opentxs { namespace proto
     static const VersionMap CredentialIndexAllowedNymIDSource =
         {
             { 1, {1, 1}},
+            { 2, {1, 1}},
         };
     static const VersionMap CredentialIndexAllowedCredentialSets =
         {
             { 1, {1, 1}},
+            { 2, {1, 2}},
         };
     static const VersionMap CredentialSetAllowedCredentials =
         {
             { 1, {1, 1}},
+            { 2, {1, 2}},
         };
     static const VersionMap AsymmetricKeyAllowedHDPath =
         {

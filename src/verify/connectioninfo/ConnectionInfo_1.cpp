@@ -42,27 +42,61 @@
 
 namespace opentxs { namespace proto
 {
-bool CheckProto_1(const ConnectionInfo& ConnectionInfo)
+bool CheckProto_1(const ConnectionInfo& request)
 {
-    if (!ConnectionInfo.has_type()) {
+    if (!request.has_type()) {
         std::cerr << "Verify ConnectionInfo failed: missing type."
                   << std::endl;
 
         return false;
     }
 
-    if ((CONNECTIONINFO_BITCOIN > ConnectionInfo.type()) ||
-        (CONNECTIONINFO_BITMESSAGERPC < ConnectionInfo.type())) {
+    if ((CONNECTIONINFO_BITCOIN > request.type()) ||
+        (CONNECTIONINFO_BITMESSAGERPC < request.type()))
+    {
         std::cerr << "Verify ConnectionInfo failed: invalid type ("
-                << ConnectionInfo.type() << ")." << std::endl;
+                << request.type() << ")." << std::endl;
+
+        return false;
+    }
+
+    if (request.has_nym()) {
+        std::cerr << "Verify ConnectionInfo failed: for field present in "
+                  << "version " << request.version() << " request."
+                  << std::endl;
 
         return false;
     }
 
     return true;
 }
-bool CheckProto_2(const ConnectionInfo& info) { return CheckProto_1(info); }
-bool CheckProto_3(const ConnectionInfo&) { return false; }
+
+bool CheckProto_2(const ConnectionInfo& request)
+{
+    return CheckProto_1(request);
+}
+
+bool CheckProto_3(const ConnectionInfo& request)
+{
+    if (!request.has_type()) {
+        std::cerr << "Verify ConnectionInfo failed: missing type."
+                  << std::endl;
+
+        return false;
+    }
+
+    if ((CONNECTIONINFO_BITCOIN > request.type()) ||
+        (CONNECTIONINFO_CJDNS < request.type()))
+    {
+        std::cerr << "Verify ConnectionInfo failed: invalid type ("
+                << request.type() << ")." << std::endl;
+
+        return false;
+    }
+
+    return true;
+}
+
 bool CheckProto_4(const ConnectionInfo&) { return false; }
 bool CheckProto_5(const ConnectionInfo&) { return false; }
 } // namespace proto

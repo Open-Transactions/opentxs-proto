@@ -310,15 +310,17 @@ bool CheckProto_1(
 
     return true;
 }
+
 bool CheckProto_2(
-    const CredentialSet&,
-    const std::string&,
-    const KeyMode&,
-    bool&,
-    const CredentialSetMode&)
+    const CredentialSet& serializedCredSet,
+    const std::string& nymID,
+    const KeyMode& key,
+    bool& haveHD,
+    const CredentialSetMode& mode)
 {
-    return false;
+    return CheckProto_1(serializedCredSet, nymID, key, haveHD, mode);
 }
+
 bool CheckProto_3(
     const CredentialSet&,
     const std::string&,
