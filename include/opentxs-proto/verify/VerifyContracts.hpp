@@ -53,7 +53,7 @@ namespace opentxs { namespace proto
 
     static const VersionMap ServerContractAllowedCredentialIndex =
         {
-            { 1, {1, 1}},
+            { 1, {1, 2}},
         };
     static const VersionMap ServerContractAllowedListenAddress =
         {
@@ -65,7 +65,7 @@ namespace opentxs { namespace proto
         };
     static const VersionMap UnitDefinitionAllowedPublicNym =
         {
-            { 1, {1, 1}},
+            { 1, {1, 2}},
         };
     static const VersionMap UnitDefinitionAllowedCurrencyParams =
         {

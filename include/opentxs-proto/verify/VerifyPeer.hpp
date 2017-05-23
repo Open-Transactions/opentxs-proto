@@ -71,9 +71,9 @@ namespace opentxs { namespace proto
         };
     static const VersionMap PeerObjectAllowedNym =
         {
-            { 1, {1, 1}},
-            { 2, {1, 1}},
-            { 3, {1, 1}},
+            { 1, {1, 2}},
+            { 2, {1, 2}},
+            { 3, {1, 2}},
         };
     static const VersionMap PeerReplyAllowedSignature =
         {
