@@ -74,10 +74,12 @@ namespace opentxs { namespace proto
     static const VersionMap ContactDataAllowedSection =
         {
             { 1, {1, 1}},
+            { 2, {1, 2}},
         };
     static const VersionMap ContactSectionAllowedItem =
         {
             { 1, {1, 1}},
+            { 2, {1, 2}},
         };
     static const VersionMap VerificationSetAllowedGroup =
         {

@@ -48,8 +48,8 @@ namespace opentxs { namespace proto
         const ClaimType indexed,
         const uint32_t parentVersion = 0xffffffff);
     bool CheckProto_2(
-        const ContactSection&,
-        const ClaimType,
+        const ContactSection& contactSection,
+        const ClaimType indexed,
         const uint32_t parentVersion = 0xffffffff);
     bool CheckProto_3(
         const ContactSection&,

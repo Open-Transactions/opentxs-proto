@@ -50,10 +50,10 @@ namespace opentxs { namespace proto
         bool& haveHD,
         const CredentialSetMode& mode = CREDSETMODE_ERROR);
     bool CheckProto_2(
-        const CredentialSet&,
-        const std::string&,
-        const KeyMode&,
-        bool&,
+        const CredentialSet& serializedCredSet,
+        const std::string& nymID,
+        const KeyMode& key,
+        bool& haveHD,
         const CredentialSetMode& mode = CREDSETMODE_ERROR);
     bool CheckProto_3(
         const CredentialSet&,
