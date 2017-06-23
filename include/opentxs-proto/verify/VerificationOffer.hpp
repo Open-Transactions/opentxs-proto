@@ -41,14 +41,16 @@
 
 #include "VerifyContacts.hpp"
 
-namespace opentxs { namespace proto
+namespace opentxs
 {
-    bool CheckProto_1(const VerificationOffer& offer);
-    bool CheckProto_2(const VerificationOffer&);
-    bool CheckProto_3(const VerificationOffer&);
-    bool CheckProto_4(const VerificationOffer&);
-    bool CheckProto_5(const VerificationOffer&);
-} // namespace proto
-} // namespace opentxs
+namespace proto
+{
+bool CheckProto_1(const VerificationOffer& request, const bool silent);
+bool CheckProto_2(const VerificationOffer& request, const bool silent);
+bool CheckProto_3(const VerificationOffer& request, const bool silent);
+bool CheckProto_4(const VerificationOffer&, const bool);
+bool CheckProto_5(const VerificationOffer&, const bool);
+}  // namespace proto
+}  // namespace opentxs
 
-#endif // OPENTXS_PROTO_VERIFICATIONOFFER_HPP
+#endif  // OPENTXS_PROTO_VERIFICATIONOFFER_HPP

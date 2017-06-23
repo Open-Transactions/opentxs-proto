@@ -37,60 +37,42 @@
  ************************************************************/
 
 #include "opentxs-proto/Types.hpp"
+#include "opentxs-proto/Check.hpp"
 
 #include <iostream>
 
- namespace opentxs { namespace proto
+namespace opentxs
+{
+namespace proto
 {
 
-bool CheckProto_1(
-    const CurrencyParams& params)
+bool CheckProto_1(const CurrencyParams& params, const bool silent)
 {
     if (!params.has_tla()) {
-        std::cerr << __FUNCTION__
-                  << ": Verify currency params failed: missing TLA."
-                  << std::endl;
-
-        return false;
+        FAIL("currency params", "missing TLA")
     }
 
     if (3 != params.tla().size()) {
-        std::cerr << __FUNCTION__
-                  << ": Verify currency params failed: invalid TLA ("
-                  << params.tla() << ")." << std::endl;
-
-        return false;
+        FAIL2("currency params", "invalid TLA", params.tla())
     }
 
     if (!params.has_fraction()) {
-        std::cerr << __FUNCTION__
-                  << ": Verify currency params failed: missing fraction."
-                  << std::endl;
-
-        return false;
+        FAIL("currency params", "missing fraction")
     }
 
     if (1 > params.fraction().size()) {
-        std::cerr << __FUNCTION__
-                  << ": Verify currency params failed: invalid fraction ("
-                  << params.fraction() << ")." << std::endl;
-
-        return false;
+        FAIL2("currency params", "invalid fraction", params.fraction())
     }
 
     if (!params.has_power()) {
-        std::cerr << __FUNCTION__
-                  << ": Verify currency params failed: missing power."
-                  << std::endl;
-
-        return false;
+        FAIL("currency params", "missing power")
     }
 
     return true;
 }
-bool CheckProto_2(const CurrencyParams&) { return false; }
-bool CheckProto_3(const CurrencyParams&) { return false; }
-bool CheckProto_4(const CurrencyParams&) { return false; }
-bool CheckProto_5(const CurrencyParams&) { return false; }
-} // namespace proto
-} // namespace opentxs
+bool CheckProto_2(const CurrencyParams&, const bool) { return false; }
+bool CheckProto_3(const CurrencyParams&, const bool) { return false; }
+bool CheckProto_4(const CurrencyParams&, const bool) { return false; }
+bool CheckProto_5(const CurrencyParams&, const bool) { return false; }
+}  // namespace proto
+}  // namespace opentxs

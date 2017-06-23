@@ -38,16 +38,15 @@
 
 #include "opentxs-proto/Types.hpp"
 
-namespace opentxs { namespace proto
+namespace opentxs
 {
-bool CheckProto_1(const ClientContext& context)
+namespace proto
 {
-    return true;
-}
+bool CheckProto_1(const ClientContext&, const bool) { return true; }
 
-bool CheckProto_2(const ClientContext&) { return false; }
-bool CheckProto_3(const ClientContext&) { return false; }
-bool CheckProto_4(const ClientContext&) { return false; }
-bool CheckProto_5(const ClientContext&) { return false; }
-} // namespace proto
-} // namespace opentxs
+bool CheckProto_2(const ClientContext&, const bool) { return false; }
+bool CheckProto_3(const ClientContext&, const bool) { return false; }
+bool CheckProto_4(const ClientContext&, const bool) { return false; }
+bool CheckProto_5(const ClientContext&, const bool) { return false; }
+}  // namespace proto
+}  // namespace opentxs

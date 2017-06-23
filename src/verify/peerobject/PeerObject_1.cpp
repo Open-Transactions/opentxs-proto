@@ -41,163 +41,114 @@
 
 #include <iostream>
 
-namespace opentxs { namespace proto
+namespace opentxs
+{
+namespace proto
 {
 
-bool CheckProto_1(
-    const PeerObject& peerObject)
+bool CheckProto_1(const PeerObject& peerObject, const bool silent)
 {
     if (!peerObject.has_type()) {
-        std::cerr << "Verify peer object failed: missing type." << std::endl;
-
-        return false;
+        FAIL("peer object", "missing type")
     }
 
     if ((peerObject.type() < PEEROBJECT_MESSAGE) ||
         (peerObject.type() > PEEROBJECT_RESPONSE)) {
-            std::cerr << "Verify peer object failed: invalid type."
-                      << std::endl;
-
-            return false;
+        FAIL("peer object", "invalid type")
     }
 
     switch (peerObject.type()) {
-        case PEEROBJECT_MESSAGE : {
+        case PEEROBJECT_MESSAGE: {
             if (!peerObject.has_otmessage()) {
-                std::cerr << "Verify peer object failed: missing otmessage."
-                          << std::endl;
-
-                return false;
+                FAIL("peer object", "missing otmessage")
             }
 
             if (peerObject.has_otrequest()) {
-                std::cerr << "Verify peer object failed: otrequest not empty."
-                          << std::endl;
-
-                return false;
+                FAIL("peer object", "otrequest not empty")
             }
 
             if (peerObject.has_otreply()) {
-                std::cerr << "Verify peer object failed: otreply not empty."
-                          << std::endl;
-
-                return false;
+                FAIL("peer object", "otreply not empty")
             }
-
-            break;
-        }
-        case PEEROBJECT_REQUEST : {
+        } break;
+        case PEEROBJECT_REQUEST: {
             if (!peerObject.has_otrequest()) {
-                std::cerr << "Verify peer object failed: missing otrequest."
-                          << std::endl;
-
-                return false;
+                FAIL("peer object", "missing otrequest")
             }
 
             const bool validrequest = Check(
                 peerObject.otrequest(),
                 PeerObjectAllowedRequest.at(peerObject.version()).first,
-                PeerObjectAllowedRequest.at(peerObject.version()).second);
+                PeerObjectAllowedRequest.at(peerObject.version()).second,
+                silent);
 
             if (!validrequest) {
-                std::cerr << "Verify peer object failed: invalid otrequest."
-                          << std::endl;
-
-                return false;
+                FAIL("peer object", "invalid otrequest")
             }
 
             if (!peerObject.has_nym()) {
-                std::cerr << "Verify peer object failed: missing nym."
-                          << std::endl;
-
-                return false;
+                FAIL("peer object", " missing nym")
             }
 
             const bool validnym = Check(
                 peerObject.nym(),
                 PeerObjectAllowedNym.at(peerObject.version()).first,
-                PeerObjectAllowedNym.at(peerObject.version()).second);
+                PeerObjectAllowedNym.at(peerObject.version()).second,
+                silent);
 
             if (!validnym) {
-                std::cerr << "Verify peer object failed: invalid nym."
-                          << std::endl;
-
-                return false;
+                FAIL("peer object", "invalid nym")
             }
 
             if (peerObject.has_otmessage()) {
-                std::cerr << "Verify peer object failed: otmessage not empty."
-                          << std::endl;
-
-                return false;
+                FAIL("peer object", "otmessage not empty")
             }
 
             if (peerObject.has_otreply()) {
-                std::cerr << "Verify peer object failed: otreply not empty."
-                          << std::endl;
-
-                return false;
+                FAIL("peer object", "otreply not empty")
             }
-
-            break;
-        }
-        case PEEROBJECT_RESPONSE : {
+        } break;
+        case PEEROBJECT_RESPONSE: {
             if (!peerObject.has_otrequest()) {
-                std::cerr << "Verify peer object failed: missing otrequest."
-                          << std::endl;
-
-                return false;
+                FAIL("peer object", "missing otrequest")
             }
 
             const bool validrequest = Check(
                 peerObject.otrequest(),
                 PeerObjectAllowedRequest.at(peerObject.version()).first,
-                PeerObjectAllowedRequest.at(peerObject.version()).second);
+                PeerObjectAllowedRequest.at(peerObject.version()).second,
+                silent);
 
             if (!validrequest) {
-                std::cerr << "Verify peer object failed: invalid otrequest."
-                          << std::endl;
-
-                return false;
+                FAIL("peer object", "invalid otrequest")
             }
 
             if (!peerObject.has_otreply()) {
-                std::cerr << "Verify peer object failed: missing otreply."
-                          << std::endl;
-
-                return false;
+                FAIL("peer object", "missing otreply")
             }
 
             const bool validreply = Check(
                 peerObject.otreply(),
                 PeerObjectAllowedReply.at(peerObject.version()).first,
-                PeerObjectAllowedReply.at(peerObject.version()).second);
+                PeerObjectAllowedReply.at(peerObject.version()).second,
+                silent);
 
             if (!validreply) {
-                std::cerr << "Verify peer object failed: invalid otreply."
-                          << std::endl;
-
-                return false;
+                FAIL("peer object", "invalid otreply")
             }
 
             const bool matchingID =
                 (peerObject.otrequest().id() == peerObject.otreply().cookie());
 
             if (!matchingID) {
-                std::cerr << "Verify peer object failed: reply cookie does not "
-                          << "match request id." << std::endl;
-
-                return false;
+                FAIL("peer object", "reply cookie does not match request id")
             }
 
             const bool matchingtype =
                 (peerObject.otrequest().type() == peerObject.otreply().type());
 
             if (!matchingtype) {
-                std::cerr << "Verify peer object failed: reply type does not "
-                          << "match request type." << std::endl;
-
-                return false;
+                FAIL("peer object", "eply type does not match request type")
             }
 
             const bool matchingInitiator =
@@ -205,10 +156,9 @@ bool CheckProto_1(
                  peerObject.otreply().initiator());
 
             if (!matchingInitiator) {
-                std::cerr << "Verify peer object failed: reply initiator does "
-                          << "not match request initiator." << std::endl;
-
-                return false;
+                FAIL(
+                    "peer object",
+                    "reply initiator does not match request initiator")
             }
 
             const bool matchingRecipient =
@@ -216,29 +166,30 @@ bool CheckProto_1(
                  peerObject.otreply().recipient());
 
             if (!matchingRecipient) {
-                std::cerr << "Verify peer object failed: reply recipient does "
-                          << "not match request recipient." << std::endl;
-
-                return false;
+                FAIL(
+                    "peer object",
+                    "reply recipient does not match request recipient")
             }
 
             if (peerObject.has_otmessage()) {
-                std::cerr << "Verify peer object failed: otmessage not empty."
-                          << std::endl;
-
-                return false;
+                FAIL("peer object", "otmessage not empty")
             }
-
-            break;
+        } break;
+        default: {
         }
-        default : {}
     }
 
     return true;
 }
-bool CheckProto_2(const PeerObject& object) { return CheckProto_1(object); }
-bool CheckProto_3(const PeerObject& object) { return CheckProto_1(object); }
-bool CheckProto_4(const PeerObject&) { return false; }
-bool CheckProto_5(const PeerObject&) { return false; }
-} // namespace proto
-} // namespace opentxs
+bool CheckProto_2(const PeerObject& object, const bool silent)
+{
+    return CheckProto_1(object, silent);
+}
+bool CheckProto_3(const PeerObject& object, const bool silent)
+{
+    return CheckProto_1(object, silent);
+}
+bool CheckProto_4(const PeerObject&, const bool) { return false; }
+bool CheckProto_5(const PeerObject&, const bool) { return false; }
+}  // namespace proto
+}  // namespace opentxs

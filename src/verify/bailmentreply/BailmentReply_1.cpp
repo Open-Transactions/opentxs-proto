@@ -37,25 +37,32 @@
  ************************************************************/
 
 #include "opentxs-proto/Types.hpp"
+#include "opentxs-proto/Check.hpp"
 
 #include <iostream>
 
-namespace opentxs { namespace proto
+namespace opentxs
+{
+namespace proto
 {
 
-bool CheckProto_1(const BailmentReply& reply)
+bool CheckProto_1(const BailmentReply& reply, const bool silent)
 {
     if (!reply.has_instructions()) {
-        std::cerr << "Verify bailment reply failed: instructions."
-                  << std::endl;
-        return false;
+        FAIL("bailment reply", "missing instructions")
     }
 
     return true;
 }
-bool CheckProto_2(const BailmentReply& reply) { return CheckProto_1(reply); }
-bool CheckProto_3(const BailmentReply& reply) { return CheckProto_1(reply); }
-bool CheckProto_4(const BailmentReply&) { return false; }
-bool CheckProto_5(const BailmentReply&) { return false; }
-} // namespace proto
-} // namespace opentxs
+bool CheckProto_2(const BailmentReply& reply, const bool silent)
+{
+    return CheckProto_1(reply, silent);
+}
+bool CheckProto_3(const BailmentReply& reply, const bool silent)
+{
+    return CheckProto_1(reply, silent);
+}
+bool CheckProto_4(const BailmentReply&, const bool) { return false; }
+bool CheckProto_5(const BailmentReply&, const bool) { return false; }
+}  // namespace proto
+}  // namespace opentxs

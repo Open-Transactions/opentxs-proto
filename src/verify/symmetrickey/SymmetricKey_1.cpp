@@ -41,78 +41,62 @@
 
 #include <iostream>
 
-namespace opentxs { namespace proto
+namespace opentxs
+{
+namespace proto
 {
 
-    bool CheckProto_1(const SymmetricKey& key)
+bool CheckProto_1(const SymmetricKey& key, const bool silent)
 {
     const bool validKey = Check(
         key.key(),
         SymmetricKeyAllowedCiphertext.at(key.version()).first,
         SymmetricKeyAllowedCiphertext.at(key.version()).second,
+        silent,
         true);
 
     if (!validKey) {
-        std::cerr << "Verify serialized symmetric key failed: invalid "
-                    << "encrypted key." <<  std::endl;
-
-        return false;
+        FAIL("symmetric key", "invalid encrypted key")
     }
 
     if (!key.has_size()) {
-        std::cerr << "Verify serialized symmetric key failed: missing size."
-                  << std::endl;
-
-        return false;
+        FAIL("symmetric key", "missing size")
     }
 
     if (!key.has_type()) {
-        std::cerr << "Verify serialized symmetric key failed: missing type."
-                  << std::endl;
-
-        return false;
+        FAIL("symmetric key", "missing type")
     }
 
     switch (key.type()) {
-        case (SKEYTYPE_RAW) :
-        case (SKEYTYPE_ECDH) : { break; }
-        case (SKEYTYPE_ARGON2) : {
+        case (SKEYTYPE_RAW):
+        case (SKEYTYPE_ECDH): {
+            break;
+        }
+        case (SKEYTYPE_ARGON2): {
             if (!key.has_salt()) {
-                std::cerr << "Verify serialized symmetric key failed: missing "
-                          << " salt." << std::endl;
-
-                return false;
+                FAIL("symmetric key", "missing salt")
             }
 
             if (1 > key.operations()) {
-                std::cerr << "Verify serialized symmetric key failed: missing "
-                          << " operations." << std::endl;
-
-                return false;
+                FAIL("symmetric key", "missing operations")
             }
 
             if (1 > key.difficulty()) {
-                std::cerr << "Verify serialized symmetric key failed: missing "
-                          << " difficulty." << std::endl;
-
-                return false;
+                FAIL("symmetric key", "missing difficulty")
             }
 
             break;
         }
-        default : {
-            std::cerr << "Verify serialized symmetric key failed: invalid type ("
-                      << key.type() << ")" << std::endl;
-
-            return false;
+        default: {
+            FAIL2("symmetric key", "invalid type", key.type())
         }
     }
 
     return true;
 }
-bool CheckProto_2(const SymmetricKey&) { return false; }
-bool CheckProto_3(const SymmetricKey&) { return false; }
-bool CheckProto_4(const SymmetricKey&) { return false; }
-bool CheckProto_5(const SymmetricKey&) { return false; }
-} // namespace proto
-} // namespace opentxs
+bool CheckProto_2(const SymmetricKey&, const bool) { return false; }
+bool CheckProto_3(const SymmetricKey&, const bool) { return false; }
+bool CheckProto_4(const SymmetricKey&, const bool) { return false; }
+bool CheckProto_5(const SymmetricKey&, const bool) { return false; }
+}  // namespace proto
+}  // namespace opentxs

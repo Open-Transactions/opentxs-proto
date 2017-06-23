@@ -41,69 +41,81 @@
 
 #include "VerifyCredentials.hpp"
 
-namespace opentxs { namespace proto
+namespace opentxs
 {
-    bool CheckProto_1(
-        const Signature& serializedSignature,
-        const std::string& selfID,
-        const std::string& masterID,
-        std::uint32_t& selfPublic,
-        std::uint32_t& selfPrivate,
-        std::uint32_t& masterPublic,
-        std::uint32_t& sourcePublic,
-        const SignatureRole role = SIGROLE_ERROR);
-    bool CheckProto_1(
-        const Signature& serializedSignature,
-        const SignatureRole role = SIGROLE_ERROR);
-    bool CheckProto_2(
-        const Signature& serializedSignature,
-        const std::string& selfID,
-        const std::string& masterID,
-        std::uint32_t& selfPublic,
-        std::uint32_t& selfPrivate,
-        std::uint32_t& masterPublic,
-        std::uint32_t& sourcePublic,
-        const SignatureRole role = SIGROLE_ERROR);
-    bool CheckProto_2(
-        const Signature& serializedSignature,
-        const SignatureRole role = SIGROLE_ERROR);
-    bool CheckProto_3(
-        const Signature&,
-        const std::string&,
-        const std::string&,
-        std::uint32_t&,
-        std::uint32_t&,
-        std::uint32_t&,
-        std::uint32_t&,
-        const SignatureRole role = SIGROLE_ERROR);
-    bool CheckProto_3(
-        const Signature&,
-        const SignatureRole role = SIGROLE_ERROR);
-    bool CheckProto_4(
-        const Signature&,
-        const std::string&,
-        const std::string&,
-        std::uint32_t&,
-        std::uint32_t&,
-        std::uint32_t&,
-        std::uint32_t&,
-        const SignatureRole role = SIGROLE_ERROR);
-    bool CheckProto_4(
-        const Signature&,
-        const SignatureRole role = SIGROLE_ERROR);
-    bool CheckProto_5(
-        const Signature&,
-        const std::string&,
-        const std::string&,
-        std::uint32_t&,
-        std::uint32_t&,
-        std::uint32_t&,
-        std::uint32_t&,
-        const SignatureRole role = SIGROLE_ERROR);
-    bool CheckProto_5(
-        const Signature&,
-        const SignatureRole role = SIGROLE_ERROR);
-} // namespace proto
-} // namespace opentxs
+namespace proto
+{
+bool CheckProto_1(
+    const Signature& signature,
+    const bool silent,
+    const std::string& selfID,
+    const std::string& masterID,
+    std::uint32_t& selfPublic,
+    std::uint32_t& selfPrivate,
+    std::uint32_t& masterPublic,
+    std::uint32_t& sourcePublic,
+    const SignatureRole role = SIGROLE_ERROR);
+bool CheckProto_1(
+    const Signature& signature,
+    const bool silent,
+    const SignatureRole role = SIGROLE_ERROR);
+bool CheckProto_2(
+    const Signature& signature,
+    const bool silent,
+    const std::string& selfID,
+    const std::string& masterID,
+    std::uint32_t& selfPublic,
+    std::uint32_t& selfPrivate,
+    std::uint32_t& masterPublic,
+    std::uint32_t& sourcePublic,
+    const SignatureRole role = SIGROLE_ERROR);
+bool CheckProto_2(
+    const Signature& signature,
+    const bool silent,
+    const SignatureRole role = SIGROLE_ERROR);
+bool CheckProto_3(
+    const Signature&,
+    const bool,
+    const std::string&,
+    const std::string&,
+    std::uint32_t&,
+    std::uint32_t&,
+    std::uint32_t&,
+    std::uint32_t&,
+    const SignatureRole role = SIGROLE_ERROR);
+bool CheckProto_3(
+    const Signature&,
+    const bool,
+    const SignatureRole role = SIGROLE_ERROR);
+bool CheckProto_4(
+    const Signature&,
+    const bool,
+    const std::string&,
+    const std::string&,
+    std::uint32_t&,
+    std::uint32_t&,
+    std::uint32_t&,
+    std::uint32_t&,
+    const SignatureRole role = SIGROLE_ERROR);
+bool CheckProto_4(
+    const Signature&,
+    const bool,
+    const SignatureRole role = SIGROLE_ERROR);
+bool CheckProto_5(
+    const Signature&,
+    const bool,
+    const std::string&,
+    const std::string&,
+    std::uint32_t&,
+    std::uint32_t&,
+    std::uint32_t&,
+    std::uint32_t&,
+    const SignatureRole role = SIGROLE_ERROR);
+bool CheckProto_5(
+    const Signature&,
+    const bool,
+    const SignatureRole role = SIGROLE_ERROR);
+}  // namespace proto
+}  // namespace opentxs
 
-#endif // OPENTXS_PROTO_SIGNATURE_HPP
+#endif  // OPENTXS_PROTO_SIGNATURE_HPP

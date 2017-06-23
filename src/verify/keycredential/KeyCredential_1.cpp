@@ -41,11 +41,14 @@
 
 #include <iostream>
 
-namespace opentxs { namespace proto
+namespace opentxs
+{
+namespace proto
 {
 
 bool CheckProto_1(
-    const KeyCredential& serializedKeyCred,
+    const KeyCredential& keyCredential,
+    const bool silent,
     const CredentialType credType,
     const KeyMode mode)
 {
@@ -56,68 +59,69 @@ bool CheckProto_1(
     bool validEncryptKey = false;
     bool validSignKey = false;
 
-    if (!serializedKeyCred.has_mode()) {
-        std::cerr << "Verify serialized key credential failed: missing mode." << std::endl;
-        return false;
+    if (!keyCredential.has_mode()) {
+        FAIL("key credential", "missing mode")
     }
 
-    if (serializedKeyCred.mode() != mode) {
-        std::cerr << "Verify serialized key credential failed: incorrect mode ("
-                << serializedKeyCred.mode() << ")." << std::endl;
-        return false;
+    if (keyCredential.mode() != mode) {
+        FAIL2("key credential", "incorrect mode", keyCredential.mode())
     }
 
-    if (3 != serializedKeyCred.key_size()) {
-        std::cerr << "Verify serialized key credential failed: missing keys ("
-        << serializedKeyCred.key_size() << " of 3 found)." << std::endl;
-        return false;
+    if (3 != keyCredential.key_size()) {
+        FAIL3(
+            "key credential",
+            "wrong number of keys",
+            keyCredential.key_size(),
+            " required: ",
+            "3")
     }
 
-    authKey = serializedKeyCred.key(KEYROLE_AUTH - 1);
-    encryptKey = serializedKeyCred.key(KEYROLE_ENCRYPT - 1);
-    signKey = serializedKeyCred.key(KEYROLE_SIGN - 1);
+    authKey = keyCredential.key(KEYROLE_AUTH - 1);
+    encryptKey = keyCredential.key(KEYROLE_ENCRYPT - 1);
+    signKey = keyCredential.key(KEYROLE_SIGN - 1);
 
     validAuthKey = Check(
         authKey,
-        KeyCredentialAllowedAsymmetricKey.at(serializedKeyCred.version()).first,
-        KeyCredentialAllowedAsymmetricKey.at(serializedKeyCred.version()).second,
+        KeyCredentialAllowedAsymmetricKey.at(keyCredential.version()).first,
+        KeyCredentialAllowedAsymmetricKey.at(keyCredential.version()).second,
+        silent,
         credType,
         mode,
         KEYROLE_AUTH);
     validEncryptKey = Check(
         encryptKey,
-        KeyCredentialAllowedAsymmetricKey.at(serializedKeyCred.version()).first,
-        KeyCredentialAllowedAsymmetricKey.at(serializedKeyCred.version()).second,
+        KeyCredentialAllowedAsymmetricKey.at(keyCredential.version()).first,
+        KeyCredentialAllowedAsymmetricKey.at(keyCredential.version()).second,
+        silent,
         credType,
         mode,
         KEYROLE_ENCRYPT);
     validSignKey = Check(
         signKey,
-        KeyCredentialAllowedAsymmetricKey.at(serializedKeyCred.version()).first,
-        KeyCredentialAllowedAsymmetricKey.at(serializedKeyCred.version()).second,
+        KeyCredentialAllowedAsymmetricKey.at(keyCredential.version()).first,
+        KeyCredentialAllowedAsymmetricKey.at(keyCredential.version()).second,
+        silent,
         credType,
         mode,
         KEYROLE_SIGN);
 
     if (!validAuthKey) {
-        std::cerr << "Verify serialized key credential failed: invalid auth key." << std::endl;
-        return false;
+        FAIL("key credential", "invalid auth key")
     }
 
     if (!validEncryptKey) {
-        std::cerr << "Verify serialized key credential failed: invalid encrypt key." << std::endl;
-        return false;
+        FAIL("key credential", "invalid encrypt key")
     }
 
     if (!validSignKey) {
-        std::cerr << "Verify serialized key credential failed: invalid sign key." << std::endl;
-        return false;
+        FAIL("key credential", "invalid sign key")
     }
 
     return true;
 }
 bool CheckProto_2(
     const KeyCredential&,
+    const bool,
     const CredentialType,
     const KeyMode)
 {
@@ -125,6 +129,7 @@ bool CheckProto_2(
 }
 bool CheckProto_3(
     const KeyCredential&,
+    const bool,
     const CredentialType,
     const KeyMode)
 {
@@ -132,6 +137,7 @@ bool CheckProto_3(
 }
 bool CheckProto_4(
     const KeyCredential&,
+    const bool,
     const CredentialType,
     const KeyMode)
 {
@@ -139,10 +145,11 @@ bool CheckProto_4(
 }
 bool CheckProto_5(
     const KeyCredential&,
+    const bool,
     const CredentialType,
     const KeyMode)
 {
     return false;
 }
-} // namespace proto
-} // namespace opentxs
+}  // namespace proto
+}  // namespace opentxs

@@ -41,239 +41,168 @@
 
 #include <iostream>
 
-namespace opentxs { namespace proto
+namespace opentxs
+{
+namespace proto
 {
 
 bool CheckProto_1(
-    const AsymmetricKey& serializedAsymmetricKey,
+    const AsymmetricKey& key,
+    const bool silent,
     const CredentialType type,
     const KeyMode mode,
     const KeyRole role)
 {
-    if (!serializedAsymmetricKey.has_type()) {
-        std::cerr << "Verify serialized asymmetric key failed: missing key "
-                  << "type." << std::endl;
-
-        return false;
+    if (!key.has_type()) {
+        FAIL("asymmetric key", "missing key type")
     }
 
-    switch (serializedAsymmetricKey.type()) {
-        case (AKEYTYPE_LEGACY) : {
+    switch (key.type()) {
+        case (AKEYTYPE_LEGACY): {
             break;
         }
-        case (AKEYTYPE_SECP256K1) : {
+        case (AKEYTYPE_SECP256K1): {
             break;
         }
-        case (AKEYTYPE_ED25519) : {
+        case (AKEYTYPE_ED25519): {
             break;
         }
-        default : {
-            std::cerr << "Verify serialized asymmetric key failed: incorrect "
-                      << "key type (" << serializedAsymmetricKey.type() << ")."
-                      << std::endl;
-
-            return false;
+        default: {
+            FAIL2("asymmetric key", "incorrect key type", key.type())
         }
     }
 
-    if (!serializedAsymmetricKey.has_mode()) {
-        std::cerr << "Verify serialized asymmetric key failed: missing key "
-                  << "mode." << std::endl;
-
-        return false;
+    if (!key.has_mode()) {
+        FAIL("asymmetric key", "missing key mode")
     }
 
-    if (serializedAsymmetricKey.mode() != mode) {
-        std::cerr << "Verify serialized asymmetric key failed: incorrect key "
-                  << "mode (" << serializedAsymmetricKey.mode() << ")."
-                  << std::endl;
-
-        return false;
+    if (key.mode() != mode) {
+        FAIL2("asymmetric key", "incorrect key mode", key.mode())
     }
 
-    if (!serializedAsymmetricKey.has_role()) {
-        std::cerr << "Verify serialized asymmetric key failed: missing key "
-                  << "role." << std::endl;
-
-        return false;
+    if (!key.has_role()) {
+        FAIL("asymmetric key", "missing key role")
     }
 
-    if (serializedAsymmetricKey.role() != role) {
-        std::cerr << "Verify serialized asymmetric key failed: incorrect key "
-                  << "role (" << serializedAsymmetricKey.role() << ")."
-                  << std::endl;
-
-        return false;
+    if (key.role() != role) {
+        FAIL2("asymmetric key", "incorrect key role", key.role())
     }
 
     if (KEYMODE_PUBLIC == mode) {
-        if (!serializedAsymmetricKey.has_key()) {
-            std::cerr << "Verify serialized asymmetric key failed: missing key."
-                    << std::endl;
-
-            return false;
+        if (!key.has_key()) {
+            FAIL("asymmetric key", "missing key")
         }
 
-        if (MIN_PLAUSIBLE_KEYSIZE > serializedAsymmetricKey.key().size()) {
-            std::cerr << "Verify serialized asymmetric key failed: invalid key ("
-                    << serializedAsymmetricKey.key() << ")." << std::endl;
-
-            return false;
+        if (MIN_PLAUSIBLE_KEYSIZE > key.key().size()) {
+            FAIL2("asymmetric key", "invalid key", key.key())
         }
-        if (serializedAsymmetricKey.has_encryptedkey()) {
-            std::cerr << "Verify serialized asymmetric key failed: encrypted "
-                      << "data present in public key." << std::endl;
-
-            return false;
+        if (key.has_encryptedkey()) {
+            FAIL("asymmetric key", "encrypted data present in public key")
         }
     } else {
-        if (AKEYTYPE_LEGACY == serializedAsymmetricKey.type()) {
-            if (!serializedAsymmetricKey.has_key()) {
-                std::cerr << "Verify serialized asymmetric key failed: "
-                          << "missing key." << std::endl;
-
-                return false;
+        if (AKEYTYPE_LEGACY == key.type()) {
+            if (!key.has_key()) {
+                FAIL("asymmetric key", "missing key")
             }
 
-            if (MIN_PLAUSIBLE_KEYSIZE > serializedAsymmetricKey.key().size()) {
-                std::cerr << "Verify serialized asymmetric key failed: invalid "
-                          << "key (" << serializedAsymmetricKey.key() << ")."
-                          << std::endl;
-
-                return false;
+            if (MIN_PLAUSIBLE_KEYSIZE > key.key().size()) {
+                FAIL2("asymmetric key", "invalid key", key.key())
             }
 
-            if (serializedAsymmetricKey.has_encryptedkey()) {
-                std::cerr << "Verify serialized asymmetric key failed: "
-                          << "encrypted data present in legacy key."
-                          << std::endl;
-
-                return false;
+            if (key.has_encryptedkey()) {
+                FAIL("asymmetric key", "encrypted data present in legacy key")
             }
         } else {
-            if (!serializedAsymmetricKey.has_encryptedkey()) {
-                std::cerr << "Verify serialized asymmetric key failed: missing "
-                        << "encrypted key." << std::endl;
-
-                return false;
+            if (!key.has_encryptedkey()) {
+                FAIL("asymmetric key", "missing encrypted key")
             }
 
             const bool validEncryptedKey = Check(
-                serializedAsymmetricKey.encryptedkey(),
-                AsymmetricKeyAllowedCiphertext.at(
-                    serializedAsymmetricKey.version()).first,
-                AsymmetricKeyAllowedCiphertext.at(
-                    serializedAsymmetricKey.version()).second,
+                key.encryptedkey(),
+                AsymmetricKeyAllowedCiphertext.at(key.version()).first,
+                AsymmetricKeyAllowedCiphertext.at(key.version()).second,
+                silent,
                 false);
 
             if (!validEncryptedKey) {
-                std::cerr << "Verify serialized asymmetric key failed: "
-                            << "invalid encrypted key." <<  std::endl;
-
-                return false;
+                FAIL("asymmetric key", "invalid encrypted key")
             }
 
-            if (serializedAsymmetricKey.has_key()) {
-                std::cerr << "Verify serialized asymmetric key failed: plaintext "
-                        << "data found in private key." << std::endl;
-
-                return false;
+            if (key.has_key()) {
+                FAIL("asymmetric key", "plaintext data found in private key")
             }
         }
     }
 
     switch (type) {
-        case CREDTYPE_LEGACY :
-            if (serializedAsymmetricKey.has_chaincode()) {
-                std::cerr << "Verify serialized asymmetric key failed: chain "
-                          << "code not allowed in legacy credentials."
-                          << std::endl;
-
-                return false;
+        case CREDTYPE_LEGACY:
+            if (key.has_chaincode()) {
+                FAIL(
+                    "asymmetric key",
+                    "chain code not allowed in legacy credentials")
             }
 
-            if (serializedAsymmetricKey.has_path()) {
-                std::cerr << "Verify serialized asymmetric key failed: HD path "
-                          << "not allowed in legacy credentials." << std::endl;
-
-                return false;
+            if (key.has_path()) {
+                FAIL(
+                    "asymmetric key",
+                    "HD path not allowed in legacy credentials")
             }
 
             break;
-        case CREDTYPE_HD :
+        case CREDTYPE_HD:
             if (KEYMODE_PUBLIC == mode) {
-                if (serializedAsymmetricKey.has_chaincode()) {
-                    std::cerr << "Verify serialized asymmetric key failed: "
-                              << "chain code not allowed in public credentials."
-                              << std::endl;
-
-                    return false;
+                if (key.has_chaincode()) {
+                    FAIL(
+                        "asymmetric key",
+                        "chain code not allowed in public credentials")
                 }
 
-                if (serializedAsymmetricKey.has_path()) {
-                    std::cerr << "Verify serialized asymmetric key failed: HD "
-                              << "path not allowed in public credentials."
-                              << std::endl;
-
-                    return false;
+                if (key.has_path()) {
+                    FAIL(
+                        "asymmetric key",
+                        "HD path not allowed in public credentials")
                 }
             } else {
-                if (!serializedAsymmetricKey.has_chaincode()) {
-                    std::cerr << "Verify serialized asymmetric key failed: "
-                              << "Missing chain code." << std::endl;
-
-                    return false;
+                if (!key.has_chaincode()) {
+                    FAIL("asymmetric key", "missing chain code")
                 }
 
                 const bool validChainCode = Check(
-                    serializedAsymmetricKey.chaincode(),
-                    AsymmetricKeyAllowedCiphertext.at(
-                        serializedAsymmetricKey.version()).first,
-                    AsymmetricKeyAllowedCiphertext.at(
-                        serializedAsymmetricKey.version()).second,
+                    key.chaincode(),
+                    AsymmetricKeyAllowedCiphertext.at(key.version()).first,
+                    AsymmetricKeyAllowedCiphertext.at(key.version()).second,
+                    silent,
                     false);
 
                 if (!validChainCode) {
-                    std::cerr << "Verify serialized asymmetric key failed: "
-                              << "invalid chain code." <<  std::endl;
-
-                    return false;
+                    FAIL("asymmetric key", "invalid chain code")
                 }
 
-                if (!serializedAsymmetricKey.has_path()) {
-                    std::cerr << "Verify serialized asymmetric key failed: "
-                              << "Missing path." << std::endl;
-
-                    return false;
+                if (!key.has_path()) {
+                    FAIL("asymmetric key", "missing HD path")
                 }
 
                 bool validPath = Check(
-                    serializedAsymmetricKey.path(),
-                    AsymmetricKeyAllowedHDPath.at(
-                        serializedAsymmetricKey.version()).first,
-                    AsymmetricKeyAllowedHDPath.at(
-                        serializedAsymmetricKey.version()).second);
+                    key.path(),
+                    AsymmetricKeyAllowedHDPath.at(key.version()).first,
+                    AsymmetricKeyAllowedHDPath.at(key.version()).second,
+                    silent);
 
                 if (!validPath) {
-                    std::cerr << "Verify serialized asymmetric key failed: "
-                              << "Invalid path." << std::endl;
-
-                    return false;
+                    FAIL("asymmetric key", "invalid HD path")
                 }
             }
 
             break;
-        default :
-            std::cerr << "Verify asymmetric key failed: incorrect or unknown "
-                      << "credential type (" << type << ")." << std::endl;
-
-            return false;
+        default:
+            FAIL2("asymmetric key", "incorrect or unknown type", type)
     }
 
     return true;
 }
 bool CheckProto_2(
     const AsymmetricKey&,
+    const bool,
     const CredentialType,
     const KeyMode,
     const KeyRole)
@@ -282,6 +211,7 @@ bool CheckProto_2(
 }
 bool CheckProto_3(
     const AsymmetricKey&,
+    const bool,
     const CredentialType,
     const KeyMode,
     const KeyRole)
@@ -290,6 +220,7 @@ bool CheckProto_3(
 }
 bool CheckProto_4(
     const AsymmetricKey&,
+    const bool,
     const CredentialType,
     const KeyMode,
     const KeyRole)
@@ -298,11 +229,12 @@ bool CheckProto_4(
 }
 bool CheckProto_5(
     const AsymmetricKey&,
+    const bool,
     const CredentialType,
     const KeyMode,
     const KeyRole)
 {
     return false;
 }
-} // namespace proto
-} // namespace opentxs
+}  // namespace proto
+}  // namespace opentxs

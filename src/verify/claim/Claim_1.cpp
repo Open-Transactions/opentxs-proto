@@ -37,49 +37,50 @@
  ************************************************************/
 
 #include "opentxs-proto/Types.hpp"
+#include "opentxs-proto/Check.hpp"
 
 #include <iostream>
 
-namespace opentxs { namespace proto
+namespace opentxs
+{
+namespace proto
 {
 
-bool CheckProto_1(
-    const Claim& claim)
+bool CheckProto_1(const Claim& claim, const bool silent)
 {
     if (!claim.has_nymid()) {
-        std::cerr << "Verify serialized claim failed: missing nym id." << std::endl;
-        return false;
+        FAIL("claim", "missing nym id")
     }
+
     if (!claim.has_section()) {
-        std::cerr << "Verify serialized claim failed: missing section." << std::endl;
-        return false;
+        FAIL("claim", "missing section")
     }
+
     if (!claim.has_type()) {
-        std::cerr << "Verify serialized claim failed: missing type." << std::endl;
-        return false;
+        FAIL("claim", "missing type")
     }
+
     if (!claim.has_start()) {
-        std::cerr << "Verify serialized claim failed: missing start." << std::endl;
-        return false;
+        FAIL("claim", "missing start")
     }
+
     if (!claim.has_end()) {
-        std::cerr << "Verify serialized claim failed: missing end." << std::endl;
-        return false;
+        FAIL("claim", "missing end")
     }
+
     if (!claim.has_value()) {
-        std::cerr << "Verify serialized claim failed: missing value." << std::endl;
-        return false;
+        FAIL("claim", "missing value")
     }
+
     if (claim.start() > claim.end()) {
-        std::cerr << "Verify serialized claim failed: invalid interval." << std::endl;
-        return false;
+        FAIL("claim", "invalid interval")
     }
 
     return true;
 }
-bool CheckProto_2(const Claim&) { return false; }
-bool CheckProto_3(const Claim&) { return false; }
-bool CheckProto_4(const Claim&) { return false; }
-bool CheckProto_5(const Claim&) { return false; }
-} // namespace proto
-} // namespace opentxs
+bool CheckProto_2(const Claim&, const bool) { return false; }
+bool CheckProto_3(const Claim&, const bool) { return false; }
+bool CheckProto_4(const Claim&, const bool) { return false; }
+bool CheckProto_5(const Claim&, const bool) { return false; }
+}  // namespace proto
+}  // namespace opentxs

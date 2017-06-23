@@ -40,12 +40,16 @@
 #include "opentxs-proto/Check.hpp"
 
 #include <iostream>
+#include <sstream>
 
-namespace opentxs { namespace proto
+namespace opentxs
+{
+namespace proto
 {
 
 bool CheckProto_1(
-    const Credential& serializedCred,
+    const Credential& credential,
+    const bool silent,
     const KeyMode& mode,
     const CredentialRole role,
     const bool withSigs)
@@ -59,52 +63,40 @@ bool CheckProto_1(
     bool validContactData = false;
     bool expectMasterSignature = false;
     bool expectSourceSignature = false;
-    int32_t expectedSigCount = 1; // public self-signature
+    int32_t expectedSigCount = 1;  // public self-signature
     bool checkRole = (CREDROLE_ERROR != role);
 
-    if (!serializedCred.has_id()) {
-        std::cerr << "Verify serialized credential failed: missing identifier."
-                  << std::endl;
+    if (!credential.has_id()) {
+        FAIL("credential", "missing identifier")
+    }
+
+    if (MIN_PLAUSIBLE_IDENTIFIER > credential.id().size()) {
+        FAIL2("credential", "invalid identifier", credential.id())
+    }
+
+    if (!credential.has_type()) {
+        FAIL("credential", "missing type")
+    }
+
+    switch (credential.type()) {
+        case CREDTYPE_LEGACY:
+        case CREDTYPE_HD:
+            break;
+        default: {
+            FAIL2("credential", "invalid type", credential.type())
+        }
+    }
+
+    if (!credential.has_role()) {
+        FAIL("credential", "missing role")
 
         return false;
     }
 
-    if (MIN_PLAUSIBLE_IDENTIFIER > serializedCred.id().size()) {
-        std::cerr << "Verify serialized credential failed: invalid identifier ("
-                  << serializedCred.id() << ")." << std::endl;
-
-        return false;
-    }
-
-    if (!serializedCred.has_type()) {
-        std::cerr << "Verify serialized credential failed: missing type."
-                  << std::endl;
-
-        return false;
-    }
-
-    if ((CREDTYPE_LEGACY != serializedCred.type()) &&
-        (CREDTYPE_HD != serializedCred.type())) {
-            std::cerr << "Verify serialized credential failed: invalid type ("
-                      << serializedCred.type() << ")." << std::endl;
-
-        return false;
-    }
-
-    if (!serializedCred.has_role()) {
-        std::cerr << "Verify serialized credential failed: missing role."
-                  << std::endl;
-
-        return false;
-    }
-
-    CredentialRole actualRole = serializedCred.role();
+    CredentialRole actualRole = credential.role();
 
     if (checkRole && (role != actualRole)) {
-        std::cerr << "Verify serialized credential failed: incorrect role ("
-                  << serializedCred.role() << ")." << std::endl;
-
-        return false;
+        FAIL2("credential", "incorrect role", credential.role())
     }
 
     bool masterCredential = (CREDROLE_MASTERKEY == actualRole);
@@ -116,302 +108,236 @@ bool CheckProto_1(
     bool knownRole = (keyCredential || metadataContainer);
 
     if (childKeyCredential) {
-        expectedSigCount++; // master signature
+        expectedSigCount++;  // master signature
         expectMasterSignature = true;
     }
 
     if (checkRole && !knownRole) {
-        std::cerr << "Verify serialized credential failed: invalid role ("
-                << role << ")." << std::endl;
+        if (false == silent) {
+            FAIL2("credential", "invalid role", role)
+        }
+
         return false;
     }
 
-    if (!serializedCred.has_mode()) {
-        std::cerr << "Verify serialized credential failed: missing mode."
-                  << std::endl;
-
-        return false;
+    if (!credential.has_mode()) {
+        FAIL("credential", "missing mode")
     }
 
     KeyMode requiredMode = KEYMODE_ERROR;
 
     switch (actualRole) {
-        case (CREDROLE_MASTERKEY) :
-        case (CREDROLE_CHILDKEY) : {
+        case (CREDROLE_MASTERKEY):
+        case (CREDROLE_CHILDKEY): {
             requiredMode = mode;
             break;
         }
-        case (CREDROLE_CONTACT) :
-        case (CREDROLE_VERIFY) : {
+        case (CREDROLE_CONTACT):
+        case (CREDROLE_VERIFY): {
             requiredMode = KEYMODE_NULL;
             break;
         }
         default: {
-            std::cerr << "Verify serialized credential failed: incorrect role ("
-                    << serializedCred.role() << ")." << std::endl;
-
-            return false;
+            FAIL2("credential", "incorrect role", credential.role())
         }
     }
 
-    const auto actualMode = serializedCred.mode();
+    const auto actualMode = credential.mode();
 
     if (KEYMODE_ERROR != requiredMode) {
         if (actualMode != requiredMode) {
-            std::cerr << "Verify serialized credential failed: incorrect mode ("
-                    << actualMode << "). required mode: (" << requiredMode
-                    << ")" << std::endl;
-
-            return false;
+            FAIL3(
+                "credential",
+                "incorrect mode",
+                actualMode,
+                ". Required mode: ",
+                requiredMode)
         }
     }
 
     switch (actualMode) {
-        case (KEYMODE_PUBLIC) : {
+        case (KEYMODE_PUBLIC): {
             isPublic = true;
 
             break;
         }
-        case (KEYMODE_PRIVATE) : {
+        case (KEYMODE_PRIVATE): {
             isPrivate = true;
 
             if (keyCredential) {
-                expectedSigCount++; // private self-signature
+                expectedSigCount++;  // private self-signature
             }
 
             break;
         }
-        case (KEYMODE_NULL) : { break; }
-        default : {
-            std::cerr << "Verify serialized credential failed: invalid mode ("
-                    << actualMode << ")." << std::endl;
-
-            return false;
+        case (KEYMODE_NULL): {
+            break;
+        }
+        default: {
+            FAIL2("credential", "invalid mode", actualMode)
         }
     }
 
-    if (!serializedCred.has_nymid()) {
-        std::cerr << "Verify serialized credential failed: missing NymID."
-                  << std::endl;
-
-        return false;
+    if (!credential.has_nymid()) {
+        FAIL("credential", "missing nym id")
     }
 
-    if (MIN_PLAUSIBLE_IDENTIFIER > serializedCred.nymid().size()) {
-        std::cerr << "Verify serialized credential failed: invalid NymID ("
-                << serializedCred.nymid() << ")." << std::endl;
-        return false;
+    if (MIN_PLAUSIBLE_IDENTIFIER > credential.nymid().size()) {
+        FAIL2("credential", "invalid nym id", credential.nymid())
     }
 
     if (!masterCredential) {
-        if (!serializedCred.has_childdata()) {
-            std::cerr << "Verify serialized credential failed: missing child "
-                      << "data." << std::endl;
-
-            return false;
+        if (!credential.has_childdata()) {
+            FAIL("credential", "missing child data")
         }
 
         validChildData = Check(
-            serializedCred.childdata(),
-            CredentialAllowedChildParams.at(serializedCred.version()).first,
-            CredentialAllowedChildParams.at(serializedCred.version()).second);
+            credential.childdata(),
+            CredentialAllowedChildParams.at(credential.version()).first,
+            CredentialAllowedChildParams.at(credential.version()).second,
+            silent);
 
         if (!validChildData) {
-            std::cerr << "Verify serialized credential failed: invalid child "
-                      << "data." << std::endl;
-
-            return false;
+            FAIL("credential", "invalid child data")
         }
     }
 
     if (masterCredential) {
-        if (!serializedCred.has_masterdata()) {
-            std::cerr << "Verify serialized credential failed: missing master "
-                      << "data." << std::endl;
-
-            return false;
+        if (!credential.has_masterdata()) {
+            FAIL("credential", "missing master data")
         }
 
         validMasterData = Check(
-            serializedCred.masterdata(),
-            CredentialAllowedMasterParams.at(serializedCred.version()).first,
-            CredentialAllowedChildParams.at(serializedCred.version()).second,
+            credential.masterdata(),
+            CredentialAllowedMasterParams.at(credential.version()).first,
+            CredentialAllowedChildParams.at(credential.version()).second,
+            silent,
             expectSourceSignature);
 
         if (!validMasterData) {
-            std::cerr << "Verify serialized credential failed: invalid master "
-                      << "data." << std::endl;
-
-            return false;
+            FAIL("credential", "invalid master data")
         }
+
         if (expectSourceSignature) {
-            expectedSigCount++; // source signature
+            expectedSigCount++;  // source signature
         }
     }
 
-    if ((!masterCredential) && (serializedCred.has_masterdata())) {
-        std::cerr << "Verify serialized credential failed: child credential "
-                  << "contains master data." << std::endl;
-
-        return false;
+    if ((!masterCredential) && (credential.has_masterdata())) {
+        FAIL("credential", "child credential contains master data")
     }
 
-    if (isPublic && serializedCred.has_privatecredential()) {
-        std::cerr << "Verify serialized credential failed: public credential "
-                  << "contains private data." << std::endl;
-
-        return false;
+    if (isPublic && credential.has_privatecredential()) {
+        FAIL("credential", " public credential contains private data")
     }
 
     if (keyCredential) {
-        if (serializedCred.has_contactdata()) {
-            std::cerr << "Verify serialized credential failed: key credential "
-                      << "contains contact data." << std::endl;
-
-            return false;
+        if (credential.has_contactdata()) {
+            FAIL("credential", "key credential contains contact data")
         }
 
-        if (serializedCred.has_verification()) {
-            std::cerr << "Verify serialized credential failed: key credential "
-                      << "contains verification data." << std::endl;
-
-            return false;
+        if (credential.has_verification()) {
+            FAIL("credential", "key credential contains verification data")
         }
 
-        if (!serializedCred.has_publiccredential()) {
-            std::cerr << "Verify serialized credential failed: missing public "
-                      << "data." << std::endl;
-
-            return false;
+        if (!credential.has_publiccredential()) {
+            FAIL("credential", "missing public data")
         }
 
-        if (isPrivate && (!serializedCred.has_privatecredential())) {
-            std::cerr << "Verify serialized credential failed: missing private "
-                      << "data." << std::endl;
-
-            return false;
+        if (isPrivate && (!credential.has_privatecredential())) {
+            FAIL("credential", "missing private data")
         }
     }
 
     if (metadataContainer) {
-        if (serializedCred.has_privatecredential()) {
-            std::cerr << "Verify serialized credential failed: contact "
-                      << "credential contains private key data." << std::endl;
-
-            return false;
+        if (credential.has_privatecredential()) {
+            FAIL("credential", "metadata credential contains private key data")
         }
 
-        if (serializedCred.has_publiccredential()) {
-            std::cerr << "Verify serialized credential failed: contact "
-                      << "credential contains public key data." << std::endl;
-
-            return false;
+        if (credential.has_publiccredential()) {
+            FAIL("credential", "metadata credential contains public key data")
         }
-
     }
 
     if (contactCredential) {
-        if (serializedCred.has_verification()) {
-            std::cerr << "Verify serialized credential failed: contract "
-                      << "credential contains verification data." << std::endl;
-
-            return false;
+        if (credential.has_verification()) {
+            FAIL("credential", "contact credential contains verification data")
         }
 
-        if (!serializedCred.has_contactdata()) {
-            std::cerr << "Verify serialized credential failed: missing contact "
-                      << "data." << std::endl;
-
-            return false;
+        if (!credential.has_contactdata()) {
+            FAIL("credential", "missing contact data")
         }
 
         validContactData = Check(
-            serializedCred.contactdata(),
-            CredentialAllowedContactData.at(serializedCred.version()).first,
-            CredentialAllowedContactData.at(serializedCred.version()).second,
+            credential.contactdata(),
+            CredentialAllowedContactData.at(credential.version()).first,
+            CredentialAllowedContactData.at(credential.version()).second,
+            silent,
             CLAIMS_NORMAL);
 
         if (!validContactData) {
-            std::cerr << "Verify serialized credential failed: invalid contact "
-                      << "data." << std::endl;
-
-            return false;
+            FAIL("credential", "invalid contact data")
         }
     }
 
     if (verifyCredential) {
-        if (serializedCred.has_contactdata()) {
-            std::cerr << "Verify serialized credential failed: verification "
-                      << "credential contains contact data." << std::endl;
-
-            return false;
+        if (credential.has_contactdata()) {
+            FAIL("credential", "verification credential contains contact data")
         }
 
-        if (!serializedCred.has_verification()) {
-            std::cerr << "Verify serialized credential failed: missing "
-                      << "verification data." << std::endl;
-
-            return false;
+        if (!credential.has_verification()) {
+            FAIL("credential", "missing verification data")
         }
 
         bool validVerificationSet = Check(
-            serializedCred.verification(),
-            CredentialAllowedVerification.at(serializedCred.version()).first,
-            CredentialAllowedVerification.at(serializedCred.version()).second,
+            credential.verification(),
+            CredentialAllowedVerification.at(credential.version()).first,
+            CredentialAllowedVerification.at(credential.version()).second,
+            silent,
             VERIFICATIONS_NORMAL);
 
         if (!validVerificationSet) {
-            std::cerr << "Verify serialized credential failed: invalid "
-                      << "verification data." << std::endl;
-
-            return false;
+            FAIL("credential", "invalid verification data")
         }
     }
 
     if (keyCredential) {
         validPublicData = Check(
-            serializedCred.publiccredential(),
-            CredentialAllowedKeyCredentials.at(serializedCred.version()).first,
-            CredentialAllowedKeyCredentials.at(serializedCred.version()).second,
-            serializedCred.type(),
+            credential.publiccredential(),
+            CredentialAllowedKeyCredentials.at(credential.version()).first,
+            CredentialAllowedKeyCredentials.at(credential.version()).second,
+            silent,
+            credential.type(),
             KEYMODE_PUBLIC);
 
         if (!validPublicData) {
-            std::cerr << "Verify serialized credential failed: invalid public "
-                      << "data." << std::endl;
-
-            return false;
+            FAIL("credential", "invalid public data")
         }
 
         if (isPrivate) {
             validPrivateData = Check(
-                serializedCred.privatecredential(),
-                CredentialAllowedKeyCredentials.at(
-                    serializedCred.version()).first,
-                CredentialAllowedKeyCredentials.at(
-                    serializedCred.version()).second,
-                serializedCred.type(),
+                credential.privatecredential(),
+                CredentialAllowedKeyCredentials.at(credential.version()).first,
+                CredentialAllowedKeyCredentials.at(credential.version()).second,
+                silent,
+                credential.type(),
                 KEYMODE_PRIVATE);
 
             if (!validPrivateData) {
-                std::cerr << "Verify serialized credential failed: invalid "
-                          << "private data." << std::endl;
-
-                return false;
+                FAIL("credential", "invalid private data")
             }
         }
     }
 
     if (withSigs) {
-        std::string masterID = serializedCred.childdata().masterid();
+        std::string masterID = credential.childdata().masterid();
 
-        if (expectedSigCount != serializedCred.signature_size()) {
-            std::cerr << "Verify serialized credential failed: incorrect "
-                      << "number of signature(s) ("
-                      << serializedCred.signature_size() << " of "
-                      << expectedSigCount << " found)." << std::endl;
+        if (expectedSigCount != credential.signature_size()) {
+            std::stringstream ss;
+            ss << credential.signature_size() << " of " << expectedSigCount
+               << " found";
 
-            return false;
+            FAIL2("credential", "incorrect number of signatures", ss.str())
         }
 
         uint32_t selfPublicCount = 0;
@@ -419,12 +345,13 @@ bool CheckProto_1(
         uint32_t masterPublicCount = 0;
         uint32_t sourcePublicCount = 0;
 
-        for (auto& it: serializedCred.signature()) {
+        for (auto& it : credential.signature()) {
             bool validSig = Check(
                 it,
-                CredentialAllowedSignatures.at(serializedCred.version()).first,
-                CredentialAllowedSignatures.at(serializedCred.version()).second,
-                serializedCred.id(),
+                CredentialAllowedSignatures.at(credential.version()).first,
+                CredentialAllowedSignatures.at(credential.version()).second,
+                silent,
+                credential.id(),
                 masterID,
                 selfPublicCount,
                 selfPrivateCount,
@@ -432,45 +359,50 @@ bool CheckProto_1(
                 sourcePublicCount);
 
             if (!validSig) {
-                std::cerr << "Verify serialized credential failed: invalid "
-                          << "signature." << std::endl;
-
-                return false;
+                FAIL("credential", "invalid signature")
             }
         }
 
         if (keyCredential) {
             if ((1 != selfPrivateCount) && (isPrivate)) {
-                std::cerr << "Verify serialized credential failed: incorrect "
-                          << "number of private self-signatures ("
-                          << selfPrivateCount << " of 1 found)." << std::endl;
+                std::stringstream ss;
+                ss << selfPrivateCount << " of 1 found";
 
-                return false;
+                FAIL2(
+                    "credential",
+                    "incorrect number of private self-signatures",
+                    ss.str())
             }
 
             if (1 != selfPublicCount) {
-                std::cerr << "Verify serialized credential failed: incorrect "
-                          << "number of public self-signatures ("
-                          << selfPublicCount << " of 1 found)." << std::endl;
+                std::stringstream ss;
+                ss << selfPublicCount << " of 1 found";
 
-                return false;
+                FAIL2(
+                    "credential",
+                    "incorrect number of public self-signatures",
+                    ss.str())
             }
         }
 
         if ((1 != masterPublicCount) && (expectMasterSignature)) {
-            std::cerr << "Verify serialized credential failed: incorrect "
-                      << "number of public master signatures ("
-                      << masterPublicCount << " of 1 found)." << std::endl;
+            std::stringstream ss;
+            ss << masterPublicCount << " of 1 found";
 
-            return false;
+            FAIL2(
+                "credential",
+                "incorrect number of public master signatures",
+                ss.str())
         }
 
         if ((1 != sourcePublicCount) && (expectSourceSignature)) {
-            std::cerr << "Verify serialized credential failed: incorrect "
-                      << "number of public source signatures ("
-                      << sourcePublicCount << " of 1 found)." << std::endl;
+            std::stringstream ss;
+            ss << sourcePublicCount << " of 1 found";
 
-            return false;
+            FAIL2(
+                "credential",
+                "incorrect number of public source signatures",
+                ss.str())
         }
     }
 
@@ -478,16 +410,18 @@ bool CheckProto_1(
 }
 
 bool CheckProto_2(
-    const Credential& serializedCred,
+    const Credential& credential,
+    const bool silent,
     const KeyMode& mode,
     const CredentialRole role,
     const bool withSigs)
 {
-    return CheckProto_1(serializedCred, mode, role, withSigs);
+    return CheckProto_1(credential, silent, mode, role, withSigs);
 }
 
 bool CheckProto_3(
     const Credential&,
+    const bool,
     const KeyMode&,
     const CredentialRole,
     const bool)
@@ -496,6 +430,7 @@ bool CheckProto_3(
 }
 bool CheckProto_4(
     const Credential&,
+    const bool,
     const KeyMode&,
     const CredentialRole,
     const bool)
@@ -504,11 +439,12 @@ bool CheckProto_4(
 }
 bool CheckProto_5(
     const Credential&,
+    const bool,
     const KeyMode&,
     const CredentialRole,
     const bool)
 {
     return false;
 }
-} // namespace proto
-} // namespace opentxs
+}  // namespace proto
+}  // namespace opentxs

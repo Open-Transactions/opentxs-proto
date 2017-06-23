@@ -41,80 +41,73 @@
 
 #include <iostream>
 
-namespace opentxs { namespace proto
+namespace opentxs
+{
+namespace proto
 {
 
-bool CheckProto_1(
-    const NymIDSource& serializedNymIDSource)
+bool CheckProto_1(const NymIDSource& source, const bool silent)
 {
-    if (!serializedNymIDSource.has_type()) {
-        std::cerr << "Verify serialized nym source failed: missing type." << std::endl;
-        return false;
+    if (!source.has_type()) {
+        FAIL("nym id source", "missing type")
     }
 
-    bool validSourcePubkey = false;
-    bool validPaymentCode = false;
-    AsymmetricKey sourcePubkey;
+    bool validSourcePubkey{false};
+    bool validPaymentCode{false};
 
-    switch (serializedNymIDSource.type()) {
-        case SOURCETYPE_PUBKEY :
-            if (!serializedNymIDSource.has_key()) {
-                std::cerr << "Verify serialized nym source failed: missing source." << std::endl;
-                return false;
-            }
-            if (serializedNymIDSource.has_paymentcode()) {
-                std::cerr << "Verify serialized nym source failed: pubkey source includes payment code." << std::endl;
-                return false;
+    switch (source.type()) {
+        case SOURCETYPE_PUBKEY:
+            if (!source.has_key()) {
+                FAIL("nym id source", "missing key")
             }
 
-            sourcePubkey = serializedNymIDSource.key();
+            if (source.has_paymentcode()) {
+                FAIL("nym id source", "pubkey source includes payment code")
+            }
 
             validSourcePubkey = Check(
-                sourcePubkey,
-                NymIDSourceAllowedAsymmetricKey.at(serializedNymIDSource.version()).first,
-                NymIDSourceAllowedAsymmetricKey.at(serializedNymIDSource.version()).second,
+                source.key(),
+                NymIDSourceAllowedAsymmetricKey.at(source.version()).first,
+                NymIDSourceAllowedAsymmetricKey.at(source.version()).second,
+                silent,
                 CREDTYPE_LEGACY,
                 KEYMODE_PUBLIC,
                 KEYROLE_SIGN);
 
             if (!validSourcePubkey) {
-                std::cerr << "Verify nym source failed: invalid public key." << std::endl;
-                return false;
+                FAIL("nym id source", "invalid public key")
             }
 
             break;
-        case SOURCETYPE_BIP47 :
-            if (!serializedNymIDSource.has_paymentcode()) {
-                std::cerr << "Verify serialized nym source failed: missing payment code." << std::endl;
-                return false;
+        case SOURCETYPE_BIP47:
+            if (!source.has_paymentcode()) {
+                FAIL("nym id source", "missing payment code")
             }
-            if (serializedNymIDSource.has_key()) {
-                std::cerr << "Verify serialized nym source failed: bip47 source includes public key." << std::endl;
-                return false;
+
+            if (source.has_key()) {
+                FAIL("nym id source", "bip47 source includes public key")
             }
+
             validPaymentCode = Check(
-                serializedNymIDSource.paymentcode(),
-                NymIDSourceAllowedPaymentCode.at(serializedNymIDSource.version()).first,
-                NymIDSourceAllowedPaymentCode.at(serializedNymIDSource.version()).second);
+                source.paymentcode(),
+                NymIDSourceAllowedPaymentCode.at(source.version()).first,
+                NymIDSourceAllowedPaymentCode.at(source.version()).second,
+                silent);
 
             if (!validPaymentCode) {
-                std::cerr << "Verify nym source failed: invalid payment code." << std::endl;
-                return false;
+                FAIL("nym id source", "invalid payment code")
             }
 
             break;
-        default :
-            std::cerr << "Verify nym source failed: incorrect or unknown type ("
-                    << serializedNymIDSource.type() << ")." << std::endl;
-
-            return false;
+        default:
+            FAIL2("nym id source", "incorrect or unknown type", source.type())
     }
 
     return true;
 }
-bool CheckProto_2(const NymIDSource&) { return false; }
-bool CheckProto_3(const NymIDSource&) { return false; }
-bool CheckProto_4(const NymIDSource&) { return false; }
-bool CheckProto_5(const NymIDSource&) { return false; }
-} // namespace proto
-} // namespace opentxs
+bool CheckProto_2(const NymIDSource&, const bool) { return false; }
+bool CheckProto_3(const NymIDSource&, const bool) { return false; }
+bool CheckProto_4(const NymIDSource&, const bool) { return false; }
+bool CheckProto_5(const NymIDSource&, const bool) { return false; }
+}  // namespace proto
+}  // namespace opentxs

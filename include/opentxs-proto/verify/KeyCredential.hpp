@@ -41,29 +41,36 @@
 
 #include "opentxs-proto/verify/VerifyCredentials.hpp"
 
-namespace opentxs { namespace proto
+namespace opentxs
 {
-    bool CheckProto_1(
-        const KeyCredential& serializedKeyCred,
-        const CredentialType credType,
-        const KeyMode mode);
-    bool CheckProto_2(
-        const KeyCredential&,
-        const CredentialType,
-        const KeyMode);
-    bool CheckProto_3(
-        const KeyCredential&,
-        const CredentialType,
-        const KeyMode);
-    bool CheckProto_4(
-        const KeyCredential&,
-        const CredentialType,
-        const KeyMode);
-    bool CheckProto_5(
-        const KeyCredential&,
-        const CredentialType,
-        const KeyMode);
-} // namespace proto
-} // namespace opentxs
+namespace proto
+{
+bool CheckProto_1(
+    const KeyCredential& keyCredential,
+    const bool silent,
+    const CredentialType credType,
+    const KeyMode mode);
+bool CheckProto_2(
+    const KeyCredential&,
+    const bool,
+    const CredentialType,
+    const KeyMode);
+bool CheckProto_3(
+    const KeyCredential&,
+    const bool,
+    const CredentialType,
+    const KeyMode);
+bool CheckProto_4(
+    const KeyCredential&,
+    const bool,
+    const CredentialType,
+    const KeyMode);
+bool CheckProto_5(
+    const KeyCredential&,
+    const bool,
+    const CredentialType,
+    const KeyMode);
+}  // namespace proto
+}  // namespace opentxs
 
-#endif // OPENTXS_PROTO_KEYCREDENTIAL_HPP
+#endif  // OPENTXS_PROTO_KEYCREDENTIAL_HPP

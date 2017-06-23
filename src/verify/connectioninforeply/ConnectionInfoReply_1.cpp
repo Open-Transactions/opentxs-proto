@@ -37,34 +37,36 @@
  ************************************************************/
 
 #include "opentxs-proto/Types.hpp"
+#include "opentxs-proto/Check.hpp"
 
 #include <iostream>
 
-namespace opentxs { namespace proto
+namespace opentxs
 {
-bool CheckProto_1(const ConnectionInfoReply& reply)
+namespace proto
+{
+bool CheckProto_1(const ConnectionInfoReply& reply, const bool silent)
 {
     if (!reply.has_success()) {
-        std::cerr << "Verify ConnectionInfo reply failed: missing success."
-                  << std::endl;
-
-        return false;
+        FAIL("ConnectionInfo reply", "missing success")
     }
 
     return true;
 }
 
-bool CheckProto_2(const ConnectionInfoReply& reply) {
+bool CheckProto_2(const ConnectionInfoReply& reply, const bool silent)
+{
 
-    return CheckProto_1(reply);
+    return CheckProto_1(reply, silent);
 }
 
-bool CheckProto_3(const ConnectionInfoReply& reply) {
+bool CheckProto_3(const ConnectionInfoReply& reply, const bool silent)
+{
 
-    return CheckProto_1(reply);
+    return CheckProto_1(reply, silent);
 }
 
-bool CheckProto_4(const ConnectionInfoReply&) { return false; }
-bool CheckProto_5(const ConnectionInfoReply&) { return false; }
-} // namespace proto
-} // namespace opentxs
+bool CheckProto_4(const ConnectionInfoReply&, const bool) { return false; }
+bool CheckProto_5(const ConnectionInfoReply&, const bool) { return false; }
+}  // namespace proto
+}  // namespace opentxs

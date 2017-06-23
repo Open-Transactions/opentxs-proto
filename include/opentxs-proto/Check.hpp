@@ -39,58 +39,97 @@
 #ifndef OPENTXS_PROTO_VERIFY
 #define OPENTXS_PROTO_VERIFY
 
+#include <cstdint>
 #include <iostream>
 
-namespace opentxs { namespace proto
-{
-    template<typename T, typename ...Args>
-    bool Check(
-        const T& serialized,
-        const uint32_t minVersion,
-        const uint32_t maxVersion,
-        Args&&... params)
-    {
-        if (!serialized.has_version()) {
-            std::cerr << "Verify protobuf failed: missing version."
-                      << std::endl;
-
-            return false;
-        }
-
-        uint32_t version = serialized.version();
-
-        if ((version < minVersion) || (version > maxVersion)) {
-            std::cerr << "Verify protobuf failed: incorrect version ("
-                      << serialized.version() << ")." << std::endl;
-
-            return false;
-        }
-
-        switch (version) {
-            case 1 :
-
-                return CheckProto_1(serialized, params...);
-            case 2 :
-
-                return CheckProto_2(serialized, params...);
-            case 3 :
-
-                return CheckProto_3(serialized, params...);
-            case 4 :
-
-                return CheckProto_4(serialized, params...);
-            case 5 :
-
-                return CheckProto_5(serialized, params...);
-            default :
-                std::cerr << "Verify protobuf failed: unknown version ("
-                << serialized.version() << ")." << std::endl;
-
-                return false;
-        }
-
-        return true;
+#define FAIL(a, b)                                                             \
+    {                                                                          \
+        if (false == silent) {                                                 \
+            std::cerr << "Verify serialized " << a << " failed: " << b         \
+                      << std::endl;                                            \
+        }                                                                      \
+                                                                               \
+        return false;                                                          \
     }
-} // namespace proto
-} // namespace opentxs
-#endif // OPENTXS_PROTO_VERIFY
+
+#define FAIL2(a, b, c)                                                         \
+    {                                                                          \
+        if (false == silent) {                                                 \
+            std::cerr << "Verify serialized " << a << " failed: " << b << "("  \
+                      << c << ")." << std::endl;                               \
+        }                                                                      \
+                                                                               \
+        return false;                                                          \
+    }
+
+#define FAIL3(a, b, c, d, e)                                                   \
+    {                                                                          \
+        if (false == silent) {                                                 \
+            std::cerr << "Verify serialized " << a << " failed: " << b << "("  \
+                      << c << ")" << d << "(" << e << ")" << std::endl;        \
+        }                                                                      \
+                                                                               \
+        return false;                                                          \
+    }
+
+namespace opentxs
+{
+namespace proto
+{
+template <typename T, typename... Args>
+bool Check(
+    const T& serialized,
+    const std::uint32_t minVersion,
+    const std::uint32_t maxVersion,
+    const bool silent,
+    Args&&... params)
+{
+    if (!serialized.has_version()) {
+        FAIL("protobuf", "missing version.")
+    }
+
+    const std::uint32_t version = serialized.version();
+
+    if ((version < minVersion) || (version > maxVersion)) {
+        FAIL2("protobuf", "incorrect version", serialized.version())
+    }
+
+    switch (version) {
+        case 1: {
+            return CheckProto_1(serialized, silent, params...);
+        }
+        case 2: {
+            return CheckProto_2(serialized, silent, params...);
+        }
+        case 3: {
+            return CheckProto_3(serialized, silent, params...);
+        }
+        case 4: {
+            return CheckProto_4(serialized, silent, params...);
+        }
+        case 5: {
+            return CheckProto_5(serialized, silent, params...);
+        }
+        default: {
+            FAIL2("protobuf", "unknown version", serialized.version())
+        }
+    }
+
+    return true;
+}
+
+template <typename T, typename... Args>
+bool Validate(const T& serialized, const bool silent, Args&&... params)
+{
+
+    if (!serialized.has_version()) {
+        FAIL("protobuf", "missing version")
+    }
+
+    const std::uint32_t version = serialized.version();
+
+    return Check<T>(serialized, version, version, silent, params...);
+}
+}  // namespace proto
+}  // namespace opentxs
+#endif  // OPENTXS_PROTO_VERIFY

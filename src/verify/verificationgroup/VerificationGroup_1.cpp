@@ -41,11 +41,14 @@
 
 #include <iostream>
 
-namespace opentxs { namespace proto
+namespace opentxs
+{
+namespace proto
 {
 
 bool CheckProto_1(
     const VerificationGroup& verificationGroup,
+    const bool silent,
     const VerificationType indexed)
 {
     VerificationNymMap nymMap;
@@ -53,55 +56,42 @@ bool CheckProto_1(
     for (auto& it : verificationGroup.identity()) {
         bool validIdentity = Check(
             it,
-            VerificationGroupAllowedIdentity.at(verificationGroup.version()).first,
-            VerificationGroupAllowedIdentity.at(verificationGroup.version()).second,
+            VerificationGroupAllowedIdentity.at(verificationGroup.version())
+                .first,
+            VerificationGroupAllowedIdentity.at(verificationGroup.version())
+                .second,
+            silent,
             nymMap,
             indexed);
 
         if (!validIdentity) {
-            std::cerr << "Verify serialized verification group failed:"
-                      << " invalid identity: (" << it.nym() << ")."
-                      << std::endl;
-
-            return false;
+            FAIL2("verification group", "invalid identity", it.nym())
         }
     }
 
     for (auto& nym : nymMap) {
         if (nym.second > 1) {
-            std::cerr << "Verify serialized verification group failed:"
-                      << " duplicate identity: (" << nym.first << ")."
-                      << std::endl;
-
-            return false;
+            FAIL2("verification group", "duplicate identity", nym.first)
         }
     }
 
     return true;
 }
-bool CheckProto_2(
-    const VerificationGroup&,
-    const VerificationType)
+bool CheckProto_2(const VerificationGroup&, const bool, const VerificationType)
 {
     return false;
 }
-bool CheckProto_3(
-    const VerificationGroup&,
-    const VerificationType)
+bool CheckProto_3(const VerificationGroup&, const bool, const VerificationType)
 {
     return false;
 }
-bool CheckProto_4(
-    const VerificationGroup&,
-    const VerificationType)
+bool CheckProto_4(const VerificationGroup&, const bool, const VerificationType)
 {
     return false;
 }
-bool CheckProto_5(
-    const VerificationGroup&,
-    const VerificationType)
+bool CheckProto_5(const VerificationGroup&, const bool, const VerificationType)
 {
     return false;
 }
-} // namespace proto
-} // namespace opentxs
+}  // namespace proto
+}  // namespace opentxs

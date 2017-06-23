@@ -41,70 +41,56 @@
 
 #include <iostream>
 
-namespace opentxs { namespace proto
+namespace opentxs
+{
+namespace proto
 {
 
-bool CheckProto_1(const StorageThread& thread)
+bool CheckProto_1(const StorageThread& thread, const bool silent)
 {
     if (!thread.has_id()) {
-        std::cerr << "Verify serialized storage thread failed: missing "
-                  << "identifier." << std::endl;
-
-        return false;
+        FAIL("storage thread", "missing id")
     }
 
     if (MIN_PLAUSIBLE_IDENTIFIER > thread.id().size()) {
-        std::cerr << "Verify serialized storage thread failed: invalid "
-                  << "identifier." << std::endl;
-
-        return false;
+        FAIL("storage thread", "invalid id")
     }
 
-    for (auto& nym: thread.participant()) {
+    for (auto& nym : thread.participant()) {
         if (MIN_PLAUSIBLE_IDENTIFIER > nym.size()) {
-            std::cerr << "Verify serialized storage thread failed: invalid "
-                      << "participant." << std::endl;
-
-            return false;
+            FAIL("storage thread", "invalid participant")
         }
     }
 
     switch (thread.participant_size()) {
-        case 0 : {
-                std::cerr << "Verify serialized storage thread failed: no "
-                          << "participants." << std::endl;
-
-                return false;
+        case 0: {
+            FAIL("storage thread", "no patricipants")
         } break;
-        case 1 : {
+        case 1: {
             if (thread.id() != thread.participant(0)) {
-                std::cerr << "Verify serialized storage thread failed: "
-                          << "incorrect id." << std::endl;
-
-                return false;
+                FAIL("storage thread", "incorrect id")
             }
         } break;
-        default : {}
+        default: {
+        }
     }
 
-    for (auto& item: thread.item()) {
+    for (auto& item : thread.item()) {
         if (!Check(
-            item,
-            StorageThreadAllowedItem.at(thread.version()).first,
-            StorageThreadAllowedItem.at(thread.version()).second)) {
-                std::cerr << "Verify serialized storage thread failed: invalid "
-                          << "item." << std::endl;
-
-                return false;
+                item,
+                StorageThreadAllowedItem.at(thread.version()).first,
+                StorageThreadAllowedItem.at(thread.version()).second,
+                silent)) {
+            FAIL("storage thread", "invalid item")
         }
     }
 
     return true;
 }
 
-bool CheckProto_2(const StorageThread& nymList) { return false; }
-bool CheckProto_3(const StorageThread& nymList) { return false; }
-bool CheckProto_4(const StorageThread& nymList) { return false; }
-bool CheckProto_5(const StorageThread& nymList) { return false; }
-} // namespace proto
-} // namespace opentxs
+bool CheckProto_2(const StorageThread&, const bool) { return false; }
+bool CheckProto_3(const StorageThread&, const bool) { return false; }
+bool CheckProto_4(const StorageThread&, const bool) { return false; }
+bool CheckProto_5(const StorageThread&, const bool) { return false; }
+}  // namespace proto
+}  // namespace opentxs

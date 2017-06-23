@@ -41,34 +41,33 @@
 
 #include <iostream>
 
-namespace opentxs { namespace proto
+namespace opentxs
+{
+namespace proto
 {
 
-bool CheckProto_1(
-    const StorageServers& servers)
+bool CheckProto_1(const StorageServers& servers, const bool silent)
 {
-    for (auto& hash: servers.server()) {
+    for (auto& hash : servers.server()) {
         bool valid = Check(
             hash,
             StorageServersAllowedHash.at(servers.version()).first,
-            StorageServersAllowedHash.at(servers.version()).second);
+            StorageServersAllowedHash.at(servers.version()).second,
+            silent);
 
         if (!valid) {
-            std::cerr << "Verify serialized server storage index failed: "
-                      << "invalid hash." << std::endl;
-
-            return false;
+            FAIL("server storage index", "invalid hash")
         }
     }
 
     return true;
 }
-bool CheckProto_2(const StorageServers& servers)
+bool CheckProto_2(const StorageServers& servers, const bool silent)
 {
-    return CheckProto_1(servers);
+    return CheckProto_1(servers, silent);
 }
-bool CheckProto_3(const StorageServers& servers) { return false; }
-bool CheckProto_4(const StorageServers& servers) { return false; }
-bool CheckProto_5(const StorageServers& servers) { return false; }
-} // namespace proto
-} // namespace opentxs
+bool CheckProto_3(const StorageServers&, const bool) { return false; }
+bool CheckProto_4(const StorageServers&, const bool) { return false; }
+bool CheckProto_5(const StorageServers&, const bool) { return false; }
+}  // namespace proto
+}  // namespace opentxs

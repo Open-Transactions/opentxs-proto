@@ -37,34 +37,31 @@
  ************************************************************/
 
 #include "opentxs-proto/Types.hpp"
+#include "opentxs-proto/Check.hpp"
 
 #include <iostream>
 
-namespace opentxs { namespace proto
+namespace opentxs
 {
-bool CheckProto_1(const ServerContext& context)
+namespace proto
+{
+bool CheckProto_1(const ServerContext& context, const bool silent)
 {
     if (!context.has_serverid()) {
-        std::cerr << "Verify server context failed: missing server id."
-                  << std::endl;
-
-        return false;
+        FAIL("server context", "missing server id")
     }
 
     if ((MIN_PLAUSIBLE_IDENTIFIER > context.serverid().size()) ||
         (MAX_PLAUSIBLE_IDENTIFIER < context.serverid().size())) {
-            std::cerr << "Verify server context failed: invalid server id."
-                    << std::endl;
-
-            return false;
+        FAIL("server context", "invalid server id")
     }
 
     return true;
 }
 
-bool CheckProto_2(const ServerContext&) { return false; }
-bool CheckProto_3(const ServerContext&) { return false; }
-bool CheckProto_4(const ServerContext&) { return false; }
-bool CheckProto_5(const ServerContext&) { return false; }
-} // namespace proto
-} // namespace opentxs
+bool CheckProto_2(const ServerContext&, const bool) { return false; }
+bool CheckProto_3(const ServerContext&, const bool) { return false; }
+bool CheckProto_4(const ServerContext&, const bool) { return false; }
+bool CheckProto_5(const ServerContext&, const bool) { return false; }
+}  // namespace proto
+}  // namespace opentxs

@@ -37,55 +37,52 @@
  ************************************************************/
 
 #include "opentxs-proto/Types.hpp"
+#include "opentxs-proto/Check.hpp"
 
 #include <iostream>
 
-namespace opentxs { namespace proto
+namespace opentxs
+{
+namespace proto
 {
 
-bool CheckProto_1(
-    const ListenAddress& address)
+bool CheckProto_1(const ListenAddress& address, const bool silent)
 {
     if (!address.has_type()) {
-        std::cerr << "Verify serialized listen address failed: missing type" << std::endl;
-        return false;
+        FAIL("listen address", "missing type")
     }
 
-    if ((ADDRESSTYPE_ERROR == address.type()) || (ADDRESSTYPE_EEP < address.type())) {
-        std::cerr << "Verify serialized listen address failed: invalid type" << std::endl;
-        return false;
+    if ((ADDRESSTYPE_ERROR == address.type()) ||
+        (ADDRESSTYPE_EEP < address.type())) {
+        FAIL("listen address", "invalid type")
     }
 
     if (!address.has_protocol()) {
-        std::cerr << "Verify serialized listen address failed: missing protocol" << std::endl;
-        return false;
+        FAIL("listen address", "missing protocol")
     }
 
-    if ((PROTOCOLVERSION_ERROR == address.protocol()) || (PROTOCOLVERSION_NOTIFY < address.protocol())) {
-        std::cerr << "Verify serialized listen address failed: invalid protocol" << std::endl;
-        return false;
+    if ((PROTOCOLVERSION_ERROR == address.protocol()) ||
+        (PROTOCOLVERSION_NOTIFY < address.protocol())) {
+        FAIL("listen address", "invalid protocol")
     }
 
     if (!address.has_host()) {
-        std::cerr << "Verify serialized listen address failed: missing host" << std::endl;
-        return false;
+        FAIL("listen address", "missing host")
     }
 
     if (!address.has_port()) {
-        std::cerr << "Verify serialized listen address failed: missing port" << std::endl;
-        return false;
+        FAIL("listen address", "missing port")
     }
 
-    if (65535 < address.port()) {
-        std::cerr << "Verify serialized listen address failed: invalid port" << std::endl;
-        return false;
+    if (MAX_VALID_PORT < address.port()) {
+        FAIL("listen address", "invalid port")
     }
 
     return true;
 }
-bool CheckProto_2(const ListenAddress&) { return false; }
-bool CheckProto_3(const ListenAddress&) { return false; }
-bool CheckProto_4(const ListenAddress&) { return false; }
-bool CheckProto_5(const ListenAddress&) { return false; }
-} // namespace proto
-} // namespace opentxs
+bool CheckProto_2(const ListenAddress&, const bool) { return false; }
+bool CheckProto_3(const ListenAddress&, const bool) { return false; }
+bool CheckProto_4(const ListenAddress&, const bool) { return false; }
+bool CheckProto_5(const ListenAddress&, const bool) { return false; }
+}  // namespace proto
+}  // namespace opentxs

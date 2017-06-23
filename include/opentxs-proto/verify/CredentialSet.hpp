@@ -41,39 +41,46 @@
 
 #include "VerifyCredentials.hpp"
 
-namespace opentxs { namespace proto
+namespace opentxs
 {
-    bool CheckProto_1(
-        const CredentialSet& serializedCredSet,
-        const std::string& nymID,
-        const KeyMode& key,
-        bool& haveHD,
-        const CredentialSetMode& mode = CREDSETMODE_ERROR);
-    bool CheckProto_2(
-        const CredentialSet& serializedCredSet,
-        const std::string& nymID,
-        const KeyMode& key,
-        bool& haveHD,
-        const CredentialSetMode& mode = CREDSETMODE_ERROR);
-    bool CheckProto_3(
-        const CredentialSet&,
-        const std::string&,
-        const KeyMode&,
-        bool&,
-        const CredentialSetMode& mode = CREDSETMODE_ERROR);
-    bool CheckProto_4(
-        const CredentialSet&,
-        const std::string&,
-        const KeyMode&,
-        bool&,
-        const CredentialSetMode& mode = CREDSETMODE_ERROR);
-    bool CheckProto_5(
-        const CredentialSet&,
-        const std::string&,
-        const KeyMode&,
-        bool&,
-        const CredentialSetMode& mode = CREDSETMODE_ERROR);
-} // namespace proto
-} // namespace opentxs
+namespace proto
+{
+bool CheckProto_1(
+    const CredentialSet& credSet,
+    const bool silent,
+    const std::string& nymID,
+    const KeyMode& key,
+    bool& haveHD,
+    const CredentialSetMode& mode = CREDSETMODE_ERROR);
+bool CheckProto_2(
+    const CredentialSet& credSet,
+    const bool silent,
+    const std::string& nymID,
+    const KeyMode& key,
+    bool& haveHD,
+    const CredentialSetMode& mode = CREDSETMODE_ERROR);
+bool CheckProto_3(
+    const CredentialSet&,
+    const bool,
+    const std::string&,
+    const KeyMode&,
+    bool&,
+    const CredentialSetMode& mode = CREDSETMODE_ERROR);
+bool CheckProto_4(
+    const CredentialSet&,
+    const bool,
+    const std::string&,
+    const KeyMode&,
+    bool&,
+    const CredentialSetMode& mode = CREDSETMODE_ERROR);
+bool CheckProto_5(
+    const CredentialSet&,
+    const bool,
+    const std::string&,
+    const KeyMode&,
+    bool&,
+    const CredentialSetMode& mode = CREDSETMODE_ERROR);
+}  // namespace proto
+}  // namespace opentxs
 
-#endif // OPENTXS_PROTO_CREDENTIALSET_HPP
+#endif  // OPENTXS_PROTO_CREDENTIALSET_HPP

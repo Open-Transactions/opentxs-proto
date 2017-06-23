@@ -37,63 +37,56 @@
  ************************************************************/
 
 #include "opentxs-proto/Types.hpp"
+#include "opentxs-proto/Check.hpp"
 
 #include <iostream>
 
- namespace opentxs { namespace proto
+namespace opentxs
+{
+namespace proto
 {
 
-bool CheckProto_1(
-    const BasketItem& item,
-    BasketItemMap& map)
+bool CheckProto_1(const BasketItem& item, const bool silent, BasketItemMap& map)
 {
     if (!item.has_weight()) {
-        std::cerr << __FUNCTION__
-                  << ": Verify basket item failed: missing weight."
-                  << std::endl;
-
-        return false;
+        FAIL("basket item", "missing weight")
     }
 
     if (!item.has_unit()) {
-        std::cerr << __FUNCTION__
-                  << ": Verify basket item failed: missing unit."
-                  << std::endl;
-
-        return false;
+        FAIL("basket item", "missing unit")
     }
 
     if (MIN_PLAUSIBLE_IDENTIFIER > item.unit().size()) {
-        std::cerr << __FUNCTION__
-                  << ": Verify basket item failed: invalid unit ("
-                  << item.unit() << ")." << std::endl;
-
-        return false;
+        FAIL2("basket item", "invalid unit", item.unit())
     }
 
     map[item.unit()] += 1;
 
     if (!item.has_account()) {
-        std::cerr << __FUNCTION__
-                  << ": Verify basket item failed: missing account."
-                  << std::endl;
-
-        return false;
+        FAIL("basket item", "missing account")
     }
 
     if (MIN_PLAUSIBLE_IDENTIFIER > item.account().size()) {
-        std::cerr << __FUNCTION__
-                  << ": Verify basket item failed: invalid account ("
-                  << item.account() << ")." << std::endl;
-
-        return false;
+        FAIL2("basket item", "invalid account", item.account())
     }
 
     return true;
 }
-bool CheckProto_2(const BasketItem&, BasketItemMap&) { return false; }
-bool CheckProto_3(const BasketItem&, BasketItemMap&) { return false; }
-bool CheckProto_4(const BasketItem&, BasketItemMap&) { return false; }
-bool CheckProto_5(const BasketItem&, BasketItemMap&) { return false; }
-} // namespace proto
-} // namespace opentxs
+bool CheckProto_2(const BasketItem&, const bool, BasketItemMap&)
+{
+    return false;
+}
+bool CheckProto_3(const BasketItem&, const bool, BasketItemMap&)
+{
+    return false;
+}
+bool CheckProto_4(const BasketItem&, const bool, BasketItemMap&)
+{
+    return false;
+}
+bool CheckProto_5(const BasketItem&, const bool, BasketItemMap&)
+{
+    return false;
+}
+}  // namespace proto
+}  // namespace opentxs

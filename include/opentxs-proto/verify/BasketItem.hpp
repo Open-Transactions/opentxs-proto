@@ -43,16 +43,21 @@
 
 #include "VerifyContracts.hpp"
 
-namespace opentxs { namespace proto
+namespace opentxs
 {
-    typedef std::map<std::string, uint64_t> BasketItemMap;
+namespace proto
+{
+typedef std::map<std::string, uint64_t> BasketItemMap;
 
-    bool CheckProto_1(const BasketItem& item, BasketItemMap& map);
-    bool CheckProto_2(const BasketItem&, BasketItemMap&);
-    bool CheckProto_3(const BasketItem&, BasketItemMap&);
-    bool CheckProto_4(const BasketItem&, BasketItemMap&);
-    bool CheckProto_5(const BasketItem&, BasketItemMap&);
-} // namespace proto
-} // namespace opentxs
+bool CheckProto_1(
+    const BasketItem& item,
+    const bool silent,
+    BasketItemMap& map);
+bool CheckProto_2(const BasketItem&, const bool, BasketItemMap&);
+bool CheckProto_3(const BasketItem&, const bool, BasketItemMap&);
+bool CheckProto_4(const BasketItem&, const bool, BasketItemMap&);
+bool CheckProto_5(const BasketItem&, const bool, BasketItemMap&);
+}  // namespace proto
+}  // namespace opentxs
 
-#endif // OPENTXS_PROTO_BASKETITEM_HPP
+#endif  // OPENTXS_PROTO_BASKETITEM_HPP

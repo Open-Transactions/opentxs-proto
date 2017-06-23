@@ -41,14 +41,16 @@
 
 #include "VerifyCredentials.hpp"
 
-namespace opentxs { namespace proto
+namespace opentxs
 {
-    bool CheckProto_1(const Envelope& data);
-    bool CheckProto_2(const Envelope&);
-    bool CheckProto_3(const Envelope&);
-    bool CheckProto_4(const Envelope&);
-    bool CheckProto_5(const Envelope&);
-} // namespace proto
-} // namespace opentxs
+namespace proto
+{
+bool CheckProto_1(const Envelope& data, const bool silent);
+bool CheckProto_2(const Envelope&, const bool);
+bool CheckProto_3(const Envelope&, const bool);
+bool CheckProto_4(const Envelope&, const bool);
+bool CheckProto_5(const Envelope&, const bool);
+}  // namespace proto
+}  // namespace opentxs
 
-#endif // OPENTXS_PROTO_ENVELOPE_HPP
+#endif  // OPENTXS_PROTO_ENVELOPE_HPP

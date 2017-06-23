@@ -41,14 +41,16 @@
 
 #include "VerifyPeer.hpp"
 
-namespace opentxs { namespace proto
+namespace opentxs
 {
-    bool CheckProto_1(const ConnectionInfo& connectionInfo);
-    bool CheckProto_2(const ConnectionInfo&);
-    bool CheckProto_3(const ConnectionInfo&);
-    bool CheckProto_4(const ConnectionInfo&);
-    bool CheckProto_5(const ConnectionInfo&);
-} // namespace proto
-} // namespace opentxs
+namespace proto
+{
+bool CheckProto_1(const ConnectionInfo& request, const bool silent);
+bool CheckProto_2(const ConnectionInfo& request, const bool silent);
+bool CheckProto_3(const ConnectionInfo& request, const bool silent);
+bool CheckProto_4(const ConnectionInfo&, const bool);
+bool CheckProto_5(const ConnectionInfo&, const bool);
+}  // namespace proto
+}  // namespace opentxs
 
-#endif // OPENTXS_PROTO_CONNECTIONINFO_HPP
+#endif  // OPENTXS_PROTO_CONNECTIONINFO_HPP

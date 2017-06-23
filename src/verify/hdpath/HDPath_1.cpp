@@ -37,29 +37,30 @@
  ************************************************************/
 
 #include "opentxs-proto/Types.hpp"
+#include "opentxs-proto/Check.hpp"
 
 #include <iostream>
 
-namespace opentxs { namespace proto
+namespace opentxs
+{
+namespace proto
 {
 
-bool CheckProto_1(
-    const HDPath& serializedHDPath)
+bool CheckProto_1(const HDPath& path, const bool silent)
 {
-    if (!serializedHDPath.has_root()) {
-        std::cerr << "Verify serialized HD path failed: missing fingerprint." << std::endl;
-        return false;
+    if (!path.has_root()) {
+        FAIL("HD path", "missing fingerprint")
     }
-    if (1 > serializedHDPath.child_size()) {
-        std::cerr << "Verify serialized HD path failed: missing child index." << std::endl;
-        return false;
+
+    if (1 > path.child_size()) {
+        FAIL("HD path", "missing child index")
     }
 
     return true;
 }
-bool CheckProto_2(const HDPath&) { return false; }
-bool CheckProto_3(const HDPath&) { return false; }
-bool CheckProto_4(const HDPath&) { return false; }
-bool CheckProto_5(const HDPath&) { return false; }
-} // namespace proto
-} // namespace opentxs
+bool CheckProto_2(const HDPath&, const bool) { return false; }
+bool CheckProto_3(const HDPath&, const bool) { return false; }
+bool CheckProto_4(const HDPath&, const bool) { return false; }
+bool CheckProto_5(const HDPath&, const bool) { return false; }
+}  // namespace proto
+}  // namespace opentxs

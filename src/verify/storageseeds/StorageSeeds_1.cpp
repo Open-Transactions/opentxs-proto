@@ -41,46 +41,41 @@
 
 #include <iostream>
 
-namespace opentxs { namespace proto
+namespace opentxs
+{
+namespace proto
 {
 
-bool CheckProto_1(const StorageSeeds& seed)
+bool CheckProto_1(const StorageSeeds& seed, const bool silent)
 {
     if (!seed.has_defaultseed()) {
-        std::cerr << "Verify serialized seed storage index failed: missing"
-                  << " default seed." << std::endl;
-
-        return false;
+        FAIL("seed storage index", "missing default seed")
     }
+
     if (MIN_PLAUSIBLE_IDENTIFIER > seed.defaultseed().size()) {
-        std::cerr << "Verify serialized seed storage index failed: invalid"
-                  << " default seed." << std::endl;
-
-        return false;
+        FAIL("seed storage index", "invalid default seed")
     }
 
-    for (auto& hash: seed.seed()) {
+    for (auto& hash : seed.seed()) {
         bool valid = Check(
             hash,
             StorageSeedsAllowedHash.at(seed.version()).first,
-            StorageSeedsAllowedHash.at(seed.version()).second);
+            StorageSeedsAllowedHash.at(seed.version()).second,
+            silent);
 
         if (!valid) {
-            std::cerr << "Verify serialized seed storage index failed: invalid"
-                      << " hash." << std::endl;
-
-            return false;
+            FAIL("seed storage index", "invalid has")
         }
     }
 
     return true;
 }
-bool CheckProto_2(const StorageSeeds& seed)
+bool CheckProto_2(const StorageSeeds& seed, const bool silent)
 {
-    return CheckProto_1(seed);
+    return CheckProto_1(seed, silent);
 }
-bool CheckProto_3(const StorageSeeds&) { return false; }
-bool CheckProto_4(const StorageSeeds&) { return false; }
-bool CheckProto_5(const StorageSeeds&) { return false; }
-} // namespace proto
-} // namespace opentxs
+bool CheckProto_3(const StorageSeeds&, const bool) { return false; }
+bool CheckProto_4(const StorageSeeds&, const bool) { return false; }
+bool CheckProto_5(const StorageSeeds&, const bool) { return false; }
+}  // namespace proto
+}  // namespace opentxs

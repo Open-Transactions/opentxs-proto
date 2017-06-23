@@ -41,91 +41,69 @@
 
 #include <iostream>
 
-namespace opentxs { namespace proto
+namespace opentxs
+{
+namespace proto
 {
 
-    bool CheckProto_1(const Ciphertext& data , const bool nested)
+bool CheckProto_1(const Ciphertext& data, const bool silent, const bool nested)
 {
     if (!data.has_mode()) {
-        std::cerr << "Verify serialized ciphertext failed: missing mode."
-                  << std::endl;
-
-        return false;
+        FAIL("ciphertext", "missing mode")
     }
 
     switch (data.mode()) {
-        case (SMODE_CHACHA20POLY1305) : { break; }
-        default : {
-            std::cerr << "Verify serialized ciphertext failed: invalid mode ("
-                      << data.mode() << ")" << std::endl;
-
-            return false;
+        case (SMODE_CHACHA20POLY1305): {
+            break;
+        }
+        default: {
+            FAIL2("ciphertext", "invalid mode", data.mode())
         }
     }
 
     if (nested) {
         if (data.has_key()) {
-            std::cerr << "Verify serialized ciphertext failed: key present in "
-                      << "nested ciphertext." <<  std::endl;
-
-            return false;
+            FAIL("ciphertext", "key present in nested ciphertext")
         }
     } else {
         if (data.has_key()) {
             const bool validKey = Check(
                 data.key(),
                 CiphertextAllowedSymmetricKey.at(data.version()).first,
-                CiphertextAllowedSymmetricKey.at(data.version()).second);
+                CiphertextAllowedSymmetricKey.at(data.version()).second,
+                silent);
 
             if (!validKey) {
-                std::cerr << "Verify serialized ciphertext failed: invalid "
-                          << "key." <<  std::endl;
-
-                return false;
+                FAIL("ciphertext", "invalid key")
             }
         }
     }
 
     if (!data.has_iv()) {
-        std::cerr << "Verify serialized ciphertext failed: missing iv."
-                  << std::endl;
-
-        return false;
+        FAIL("ciphertext", "missing iv")
     }
 
     if (1 > data.iv().size()) {
-        std::cerr << "Verify serialized ciphertext failed: invalid iv."
-                  << std::endl;
-
-        return false;
+        FAIL("ciphertext", "invalid iv")
     }
 
     if (!data.has_tag()) {
-        std::cerr << "Verify serialized ciphertext failed: missing tag."
-                  << std::endl;
-
-        return false;
+        FAIL("ciphertext", "missing tag")
     }
 
     if (1 > data.tag().size()) {
-        std::cerr << "Verify serialized ciphertext failed: invalid tag."
-                  << std::endl;
-
-        return false;
+        FAIL("ciphertext", "invalid tag")
     }
 
     if (!data.has_data()) {
-        std::cerr << "Verify serialized ciphertext failed: missing data."
-                  << std::endl;
-
-        return false;
+        FAIL("ciphertext", "missing data")
     }
 
     return true;
 }
-bool CheckProto_2(const Ciphertext&, const bool) { return false; }
-bool CheckProto_3(const Ciphertext&, const bool) { return false; }
-bool CheckProto_4(const Ciphertext&, const bool) { return false; }
-bool CheckProto_5(const Ciphertext&, const bool) { return false; }
-} // namespace proto
-} // namespace opentxs
+bool CheckProto_2(const Ciphertext&, const bool, const bool) { return false; }
+bool CheckProto_3(const Ciphertext&, const bool, const bool) { return false; }
+bool CheckProto_4(const Ciphertext&, const bool, const bool) { return false; }
+bool CheckProto_5(const Ciphertext&, const bool, const bool) { return false; }
+}  // namespace proto
+}  // namespace opentxs

@@ -37,40 +37,35 @@
  ************************************************************/
 
 #include "opentxs-proto/Types.hpp"
+#include "opentxs-proto/Check.hpp"
 
 #include <iostream>
 
-namespace opentxs { namespace proto
+namespace opentxs
+{
+namespace proto
 {
 
-bool CheckProto_1(
-    const EquityParams& params)
+bool CheckProto_1(const EquityParams& params, const bool silent)
 {
     if (!params.has_type()) {
-        std::cerr << __FUNCTION__
-                  << ": Verify equity params failed: missing type."
-                  << std::endl;
-
-        return false;
+        FAIL("equity params", "")
     }
 
     switch (params.type()) {
-        case EQUITYTYPE_SHARES :
-
+        case EQUITYTYPE_SHARES: {
             break;
-        default :
-            std::cerr << __FUNCTION__
-                    << ": Verify equity params failed: invalid type."
-                    << std::endl;
-
-            return false;
+        }
+        default: {
+            FAIL("equity params", "invalid type")
+        }
     }
 
     return true;
 }
-bool CheckProto_2(const EquityParams&) { return false; }
-bool CheckProto_3(const EquityParams&) { return false; }
-bool CheckProto_4(const EquityParams&) { return false; }
-bool CheckProto_5(const EquityParams&) { return false; }
-} // namespace proto
-} // namespace opentxs
+bool CheckProto_2(const EquityParams&, const bool) { return false; }
+bool CheckProto_3(const EquityParams&, const bool) { return false; }
+bool CheckProto_4(const EquityParams&, const bool) { return false; }
+bool CheckProto_5(const EquityParams&, const bool) { return false; }
+}  // namespace proto
+}  // namespace opentxs

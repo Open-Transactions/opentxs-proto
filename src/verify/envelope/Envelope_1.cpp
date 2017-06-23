@@ -41,23 +41,23 @@
 
 #include <iostream>
 
-namespace opentxs { namespace proto
+namespace opentxs
+{
+namespace proto
 {
 
-    bool CheckProto_1(const Envelope& data)
+bool CheckProto_1(const Envelope& data, const bool silent)
 {
     for (const auto& dhKey : data.dhkey()) {
         if (!Check(
                 dhKey,
                 EnvelopeAllowedAsymmetricKey.at(data.version()).first,
                 EnvelopeAllowedAsymmetricKey.at(data.version()).second,
+                silent,
                 CREDTYPE_LEGACY,
                 KEYMODE_PUBLIC,
                 KEYROLE_ENCRYPT)) {
-                    std::cerr << "Verify serialized envelope failed: invalid "
-                              << "dhkey." << std::endl;
-
-                    return false;
+            FAIL("envelope", "invalid dhkey")
         }
     }
 
@@ -65,11 +65,9 @@ namespace opentxs { namespace proto
         if (!Check(
                 sessionKey,
                 EnvelopeAllowedCiphertext.at(data.version()).first,
-                EnvelopeAllowedCiphertext.at(data.version()).second)) {
-                    std::cerr << "Verify serialized envelope failed: invalid "
-                              << "session key." << std::endl;
-
-                    return false;
+                EnvelopeAllowedCiphertext.at(data.version()).second,
+                silent)) {
+            FAIL("envelope", "invalid session key")
         }
     }
 
@@ -77,18 +75,16 @@ namespace opentxs { namespace proto
             data.ciphertext(),
             EnvelopeAllowedCiphertext.at(data.version()).first,
             EnvelopeAllowedCiphertext.at(data.version()).second,
+            silent,
             false)) {
-                std::cerr << "Verify serialized envelope failed: invalid "
-                          << "ciphertext." << std::endl;
-
-                return false;
+        FAIL("envelope", "invalid ciphertext")
     }
 
     return true;
 }
-bool CheckProto_2(const Envelope&) { return false; }
-bool CheckProto_3(const Envelope&) { return false; }
-bool CheckProto_4(const Envelope&) { return false; }
-bool CheckProto_5(const Envelope&) { return false; }
-} // namespace proto
-} // namespace opentxs
+bool CheckProto_2(const Envelope&, const bool) { return false; }
+bool CheckProto_3(const Envelope&, const bool) { return false; }
+bool CheckProto_4(const Envelope&, const bool) { return false; }
+bool CheckProto_5(const Envelope&, const bool) { return false; }
+}  // namespace proto
+}  // namespace opentxs

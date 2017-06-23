@@ -37,37 +37,39 @@
  ************************************************************/
 
 #include "opentxs-proto/Types.hpp"
+#include "opentxs-proto/Check.hpp"
 
 #include <iostream>
 
-namespace opentxs { namespace proto
+namespace opentxs
 {
-bool CheckProto_1(const StoreSecret& request)
+namespace proto
+{
+bool CheckProto_1(const StoreSecret& request, const bool silent)
 {
     if (!request.has_type()) {
-        std::cerr << "Verify StoreSecret failed: missing type."
-                  << std::endl;
-
-        return false;
+        FAIL("StoreSecret", "missing type")
     }
 
     if ((SECRETTYPE_BIP39 > request.type()) ||
-        (SECRETTYPE_BIP39 < request.type()))
-    {
-        std::cerr << "Verify StoreSecret failed: invalid type ("
-                  << request.type() << ")." << std::endl;
-
-        return false;
+        (SECRETTYPE_BIP39 < request.type())) {
+        FAIL2("StoreSecret", "invalid type", request.type())
     }
 
     return true;
 }
 
-bool CheckProto_2(const StoreSecret& request) { return CheckProto_1(request); }
+bool CheckProto_2(const StoreSecret& request, const bool silent)
+{
+    return CheckProto_1(request, silent);
+}
 
-bool CheckProto_3(const StoreSecret& request) { return CheckProto_1(request); }
+bool CheckProto_3(const StoreSecret& request, const bool silent)
+{
+    return CheckProto_1(request, silent);
+}
 
-bool CheckProto_4(const StoreSecret&) { return false; }
-bool CheckProto_5(const StoreSecret&) { return false; }
-} // namespace proto
-} // namespace opentxs
+bool CheckProto_4(const StoreSecret&, const bool) { return false; }
+bool CheckProto_5(const StoreSecret&, const bool) { return false; }
+}  // namespace proto
+}  // namespace opentxs

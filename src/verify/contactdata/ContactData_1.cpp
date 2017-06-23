@@ -41,37 +41,35 @@
 
 #include <iostream>
 
-namespace opentxs { namespace proto
+namespace opentxs
+{
+namespace proto
 {
 
 bool CheckProto_1(
     const ContactData& contactData,
+    const bool silent,
     const ClaimType indexed)
 {
-    std::map <ContactSectionName, uint32_t> sectionCount;
+    std::map<ContactSectionName, uint32_t> sectionCount;
 
-    for (auto& it: contactData.section()) {
+    for (auto& it : contactData.section()) {
         bool validSection = Check(
             it,
             ContactDataAllowedSection.at(contactData.version()).first,
             ContactDataAllowedSection.at(contactData.version()).second,
+            silent,
             indexed,
             contactData.version());
 
         if (!validSection) {
-            std::cerr << "Verify serialized contact data failed: "
-                      << "invalid section." << std::endl;
-
-            return false;
+            FAIL("contact data", "invalid section")
         }
 
         ContactSectionName name = it.name();
 
-        if (sectionCount.count(name) > 0 ) {
-            std::cerr << "Verify serialized contact data failed: "
-                      << "duplicate section." << std::endl;
-
-            return false;
+        if (sectionCount.count(name) > 0) {
+            FAIL("contact data", "duplicate section")
         } else {
             sectionCount.insert({name, 1});
         }
@@ -82,13 +80,23 @@ bool CheckProto_1(
 
 bool CheckProto_2(
     const ContactData& contactData,
+    const bool silent,
     const ClaimType indexed)
 {
-    return CheckProto_1(contactData, indexed);
+    return CheckProto_1(contactData, silent, indexed);
 }
 
-bool CheckProto_3(const ContactData&, const ClaimType) { return false; }
-bool CheckProto_4(const ContactData&, const ClaimType) { return false; }
-bool CheckProto_5(const ContactData&, const ClaimType) { return false; }
-} // namespace proto
-} // namespace opentxs
+bool CheckProto_3(const ContactData&, const bool, const ClaimType)
+{
+    return false;
+}
+bool CheckProto_4(const ContactData&, const bool, const ClaimType)
+{
+    return false;
+}
+bool CheckProto_5(const ContactData&, const bool, const ClaimType)
+{
+    return false;
+}
+}  // namespace proto
+}  // namespace opentxs

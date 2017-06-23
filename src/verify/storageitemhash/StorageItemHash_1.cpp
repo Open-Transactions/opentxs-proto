@@ -37,50 +37,37 @@
  ************************************************************/
 
 #include "opentxs-proto/Types.hpp"
+#include "opentxs-proto/Check.hpp"
 
 #include <iostream>
 
-namespace opentxs { namespace proto
+namespace opentxs
 {
-bool CheckProto_1(const StorageItemHash& hash)
+namespace proto
+{
+bool CheckProto_1(const StorageItemHash& hash, const bool silent)
 {
     if (!hash.has_itemid()) {
-        std::cerr << "Verify serialized storage item hash failed: missing "
-                  << "identifier." << std::endl;
-
-        return false;
+        FAIL("storage item hash", "missing id")
     }
 
     if (MIN_PLAUSIBLE_IDENTIFIER > hash.itemid().size()) {
-        std::cerr << "Verify serialized storage item hash failed: invalid "
-                  << "identifier." << std::endl;
-
-        return false;
+        FAIL("storage item hash", "invalid id")
     }
 
     if (!hash.has_hash()) {
-        std::cerr << "Verify serialized storage item hash failed: missing hash."
-                  << std::endl;
-
-        return false;
+        FAIL("storage item hash", "missing hash")
     }
 
     if (MIN_PLAUSIBLE_IDENTIFIER > hash.hash().size()) {
-        std::cerr << "Verify serialized storage item hash failed: invalid hash."
-                  << std::endl;
-
-        return false;
+        FAIL("storage item hash", "invalid has")
     }
 
-
     if (hash.has_type() && (STORAGEHASH_ERROR != hash.type())) {
-        std::cerr << "Version 1 StorageItemHash must not contain type."
-                  << std::endl;
-
-        return false;
+        FAIL("storage item hash", "unexpected type field present")
     }
 
     return true;
 }
-} // namespace proto
-} // namespace opentxs
+}  // namespace proto
+}  // namespace opentxs

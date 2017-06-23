@@ -37,91 +37,67 @@
  ************************************************************/
 
 #include "opentxs-proto/Types.hpp"
+#include "opentxs-proto/Check.hpp"
 
 #include <iostream>
 
-namespace opentxs { namespace proto
+namespace opentxs
+{
+namespace proto
 {
 
-bool CheckProto_1(const PendingBailment& request)
+bool CheckProto_1(const PendingBailment& request, const bool silent)
 {
     if (!request.has_unitid()) {
-        std::cerr << "Verify pending bailment failed: missing unit id."
-                  << std::endl;
-
-        return false;
+        FAIL("pending bailment", "missing unit id")
     }
 
     if (MIN_PLAUSIBLE_IDENTIFIER > request.unitid().size()) {
-        std::cerr << "Verify pending bailment failed: invalid unit id ("
-                  << request.unitid() << ")." << std::endl;
-
-        return false;
+        FAIL2("pending bailment", "invalid unit id", request.unitid())
     }
 
     if (MAX_PLAUSIBLE_IDENTIFIER < request.unitid().size()) {
-        std::cerr << "Verify pending bailment failed: invalid unit id ("
-                  << request.unitid() << ")." << std::endl;
-
-        return false;
+        FAIL2("pending bailment", "invalid unit id", request.unitid())
     }
 
     if (!request.has_serverid()) {
-        std::cerr << "Verify pending bailment failed: missing server id."
-                  << std::endl;
-
-        return false;
+        FAIL("pending bailment", "missing server id")
     }
 
     if (MIN_PLAUSIBLE_IDENTIFIER > request.serverid().size()) {
-        std::cerr << "Verify pending bailment failed: invalid server id ("
-                  << request.serverid() << ")." << std::endl;
-
-        return false;
+        FAIL2("pending bailment", "invalid server id", request.serverid())
     }
 
     if (MAX_PLAUSIBLE_IDENTIFIER < request.serverid().size()) {
-        std::cerr << "Verify pending bailment failed: invalid server id ("
-                  << request.serverid() << ")." << std::endl;
-
-        return false;
+        FAIL2("pending bailment", "invalid server id", request.serverid())
     }
 
     if (!request.has_txid()) {
-        std::cerr << "Verify pending bailment failed: missing txid."
-                  << std::endl;
-
-        return false;
+        FAIL("pending bailment", "missing txid")
     }
 
     if (MIN_PLAUSIBLE_IDENTIFIER > request.txid().size()) {
-        std::cerr << "Verify pending bailment failed: invalid txid ("
-                  << request.txid() << ")." << std::endl;
-
-        return false;
+        FAIL2("pending bailment", "invalid txid", request.txid())
     }
 
     if (MAX_PLAUSIBLE_IDENTIFIER < request.txid().size()) {
-        std::cerr << "Verify pending bailment failed: invalid txid ("
-                  << request.txid() << ")." << std::endl;
-
-        return false;
+        FAIL2("pending bailment", "invalid txid", request.txid())
     }
 
     return true;
 }
 
-bool CheckProto_2(const PendingBailment& request)
+bool CheckProto_2(const PendingBailment& request, const bool silent)
 {
-    return CheckProto_1(request);
+    return CheckProto_1(request, silent);
 }
 
-bool CheckProto_3(const PendingBailment& request)
+bool CheckProto_3(const PendingBailment& request, const bool silent)
 {
-    return CheckProto_1(request);
+    return CheckProto_1(request, silent);
 }
 
-bool CheckProto_4(const PendingBailment&) { return false; }
-bool CheckProto_5(const PendingBailment&) { return false; }
-} // namespace proto
-} // namespace opentxs
+bool CheckProto_4(const PendingBailment&, const bool) { return false; }
+bool CheckProto_5(const PendingBailment&, const bool) { return false; }
+}  // namespace proto
+}  // namespace opentxs

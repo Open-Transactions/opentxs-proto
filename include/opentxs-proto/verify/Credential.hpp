@@ -41,34 +41,41 @@
 
 #include "VerifyCredentials.hpp"
 
-namespace opentxs { namespace proto
+namespace opentxs
 {
-    bool CheckProto_1(
-        const Credential& serializedCred,
-        const KeyMode& mode = KEYMODE_ERROR,
-        const CredentialRole role = CREDROLE_ERROR,
-        const bool withSigs = true);
-    bool CheckProto_2(
-        const Credential& serializedCred,
-        const KeyMode& mode = KEYMODE_ERROR,
-        const CredentialRole role = CREDROLE_ERROR,
-        const bool withSigs = true);
-    bool CheckProto_3(
-        const Credential&,
-        const KeyMode& mode = KEYMODE_ERROR,
-        const CredentialRole role = CREDROLE_ERROR,
-        const bool withSigs = true);
-    bool CheckProto_4(
-        const Credential&,
-        const KeyMode& mode = KEYMODE_ERROR,
-        const CredentialRole role = CREDROLE_ERROR,
-        const bool withSigs = true);
-    bool CheckProto_5(
-        const Credential&,
-        const KeyMode& mode = KEYMODE_ERROR,
-        const CredentialRole role = CREDROLE_ERROR,
-        const bool withSigs = true);
-} // namespace proto
-} // namespace opentxs
+namespace proto
+{
+bool CheckProto_1(
+    const Credential& serializedCred,
+    const bool silent,
+    const KeyMode& mode = KEYMODE_ERROR,
+    const CredentialRole role = CREDROLE_ERROR,
+    const bool withSigs = true);
+bool CheckProto_2(
+    const Credential& serializedCred,
+    const bool silent,
+    const KeyMode& mode = KEYMODE_ERROR,
+    const CredentialRole role = CREDROLE_ERROR,
+    const bool withSigs = true);
+bool CheckProto_3(
+    const Credential&,
+    const bool,
+    const KeyMode& mode = KEYMODE_ERROR,
+    const CredentialRole role = CREDROLE_ERROR,
+    const bool withSigs = true);
+bool CheckProto_4(
+    const Credential&,
+    const bool,
+    const KeyMode& mode = KEYMODE_ERROR,
+    const CredentialRole role = CREDROLE_ERROR,
+    const bool withSigs = true);
+bool CheckProto_5(
+    const Credential&,
+    const bool,
+    const KeyMode& mode = KEYMODE_ERROR,
+    const CredentialRole role = CREDROLE_ERROR,
+    const bool withSigs = true);
+}  // namespace proto
+}  // namespace opentxs
 
-#endif // OPENTXS_PROTO_CREDENTIAL_HPP
+#endif  // OPENTXS_PROTO_CREDENTIAL_HPP

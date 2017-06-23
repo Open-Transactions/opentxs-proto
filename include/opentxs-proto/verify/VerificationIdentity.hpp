@@ -39,35 +39,42 @@
 #ifndef OPENTXS_PROTO_VERIFICATIONIDENTITY_HPP
 #define OPENTXS_PROTO_VERIFICATIONIDENTITY_HPP
 
-#include <map>
-
 #include "VerifyContacts.hpp"
 
-namespace opentxs { namespace proto
+#include <map>
+
+namespace opentxs
 {
-    typedef std::map<std::string, uint64_t> VerificationNymMap;
+namespace proto
+{
+typedef std::map<std::string, uint64_t> VerificationNymMap;
 
-    bool CheckProto_1(
-        const VerificationIdentity& verificationIdentity,
-        VerificationNymMap& map,
-        const VerificationType indexed);
-    bool CheckProto_2(
-        const VerificationIdentity&,
-        VerificationNymMap&,
-        const VerificationType);
-    bool CheckProto_3(
-        const VerificationIdentity&,
-        VerificationNymMap&,
-        const VerificationType);
-    bool CheckProto_4(
-        const VerificationIdentity&,
-        VerificationNymMap&,
-        const VerificationType);
-    bool CheckProto_5(
-        const VerificationIdentity&,
-        VerificationNymMap&,
-        const VerificationType);
-} // namespace proto
-} // namespace opentxs
+bool CheckProto_1(
+    const VerificationIdentity& verificationIdentity,
+    const bool silent,
+    VerificationNymMap& map,
+    const VerificationType indexed);
+bool CheckProto_2(
+    const VerificationIdentity&,
+    const bool,
+    VerificationNymMap&,
+    const VerificationType);
+bool CheckProto_3(
+    const VerificationIdentity&,
+    const bool,
+    VerificationNymMap&,
+    const VerificationType);
+bool CheckProto_4(
+    const VerificationIdentity&,
+    const bool,
+    VerificationNymMap&,
+    const VerificationType);
+bool CheckProto_5(
+    const VerificationIdentity&,
+    const bool,
+    VerificationNymMap&,
+    const VerificationType);
+}  // namespace proto
+}  // namespace opentxs
 
-#endif // OPENTXS_PROTO_VERIFICATIONIDENTITY_HPP
+#endif  // OPENTXS_PROTO_VERIFICATIONIDENTITY_HPP

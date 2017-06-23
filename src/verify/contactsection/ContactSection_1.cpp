@@ -41,42 +41,37 @@
 
 #include <iostream>
 
-namespace opentxs { namespace proto
+namespace opentxs
+{
+namespace proto
 {
 
 bool CheckProto_1(
     const ContactSection& contactSection,
+    const bool silent,
     const ClaimType indexed,
     const uint32_t parentVersion)
 {
     if (!contactSection.has_name()) {
-        std::cerr << "Verify serialized contact section failed: "
-                  << "missing name." << std::endl;
-
-        return false;
+        FAIL("contact section", "missing name")
     }
 
     if (!ValidContactSectionName(parentVersion, contactSection.name())) {
-        std::cerr << "Verify serialized contact section failed: "
-                  << "invalid name." << std::endl;
-
-        return false;
+        FAIL2("contact section", "invalid name", contactSection.name())
     }
 
-    for (auto& it: contactSection.item()) {
+    for (auto& it : contactSection.item()) {
         bool validItem = Check(
             it,
             ContactSectionAllowedItem.at(contactSection.version()).first,
             ContactSectionAllowedItem.at(contactSection.version()).second,
+            silent,
             indexed,
-            ContactSectionVersion{
-                contactSection.version(), contactSection.name()});
+            ContactSectionVersion{contactSection.version(),
+                                  contactSection.name()});
 
         if (!validItem) {
-            std::cerr << "Verify serialized contact section failed: "
-                      << "invalid item." << std::endl;
-
-            return false;
+            FAIL("contact section", "invalid item")
         }
     }
 
@@ -85,14 +80,16 @@ bool CheckProto_1(
 
 bool CheckProto_2(
     const ContactSection& contactSection,
+    const bool silent,
     const ClaimType indexed,
     const uint32_t parentVersion)
 {
-    return CheckProto_1(contactSection, indexed, parentVersion);
+    return CheckProto_1(contactSection, silent, indexed, parentVersion);
 }
 
 bool CheckProto_3(
     const ContactSection&,
+    const bool,
     const ClaimType,
     const uint32_t)
 {
@@ -101,6 +98,7 @@ bool CheckProto_3(
 
 bool CheckProto_4(
     const ContactSection&,
+    const bool,
     const ClaimType,
     const uint32_t)
 {
@@ -109,10 +107,11 @@ bool CheckProto_4(
 
 bool CheckProto_5(
     const ContactSection&,
+    const bool,
     const ClaimType,
     const uint32_t)
 {
     return false;
 }
-} // namespace proto
-} // namespace opentxs
+}  // namespace proto
+}  // namespace opentxs

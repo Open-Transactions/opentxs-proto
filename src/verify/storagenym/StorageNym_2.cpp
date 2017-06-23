@@ -41,21 +41,22 @@
 
 #include <iostream>
 
-namespace opentxs { namespace proto
+namespace opentxs
+{
+namespace proto
 {
 
-bool CheckProto_2(const StorageNym& nym)
+bool CheckProto_2(const StorageNym& nym, const bool silent)
 {
     if (nym.has_credlist()) {
         bool valid = Check(
             nym.credlist(),
             StorageNymAllowedHash.at(nym.version()).first,
-            StorageNymAllowedHash.at(nym.version()).second);
+            StorageNymAllowedHash.at(nym.version()).second,
+            silent);
 
         if (!valid) {
-            std::cerr << "Verify serialized storage nym failed: invalid "
-                      << "credential list." << std::endl;
-            return false;
+            FAIL("storage nym", "invalid credential list")
         }
     }
 
@@ -63,12 +64,11 @@ bool CheckProto_2(const StorageNym& nym)
         bool valid = Check(
             nym.sentpeerrequests(),
             StorageNymAllowedHash.at(nym.version()).first,
-            StorageNymAllowedHash.at(nym.version()).second);
+            StorageNymAllowedHash.at(nym.version()).second,
+            silent);
 
         if (!valid) {
-            std::cerr << "Verify serialized storage nym failed: invalid "
-                      << "sentpeerrequests." << std::endl;
-            return false;
+            FAIL("storage nym", "invalid sentpeerrequests")
         }
     }
 
@@ -76,12 +76,11 @@ bool CheckProto_2(const StorageNym& nym)
         bool valid = Check(
             nym.incomingpeerrequests(),
             StorageNymAllowedHash.at(nym.version()).first,
-            StorageNymAllowedHash.at(nym.version()).second);
+            StorageNymAllowedHash.at(nym.version()).second,
+            silent);
 
         if (!valid) {
-            std::cerr << "Verify serialized storage nym failed: invalid "
-                      << "incomingpeerrequests." << std::endl;
-            return false;
+            FAIL("storage nym", "invalid incomingpeerrequests")
         }
     }
 
@@ -89,12 +88,11 @@ bool CheckProto_2(const StorageNym& nym)
         bool valid = Check(
             nym.sentpeerreply(),
             StorageNymAllowedHash.at(nym.version()).first,
-            StorageNymAllowedHash.at(nym.version()).second);
+            StorageNymAllowedHash.at(nym.version()).second,
+            silent);
 
         if (!valid) {
-            std::cerr << "Verify serialized storage nym failed: invalid "
-                      << "sentpeerreply." << std::endl;
-            return false;
+            FAIL("storage nym", "invalid sentpeerreply")
         }
     }
 
@@ -102,12 +100,11 @@ bool CheckProto_2(const StorageNym& nym)
         bool valid = Check(
             nym.incomingpeerreply(),
             StorageNymAllowedHash.at(nym.version()).first,
-            StorageNymAllowedHash.at(nym.version()).second);
+            StorageNymAllowedHash.at(nym.version()).second,
+            silent);
 
         if (!valid) {
-            std::cerr << "Verify serialized storage nym failed: invalid "
-                      << "incomingpeerreply." << std::endl;
-            return false;
+            FAIL("storage nym", "invalid incomingpeerreply")
         }
     }
 
@@ -115,12 +112,11 @@ bool CheckProto_2(const StorageNym& nym)
         bool valid = Check(
             nym.finishedpeerrequest(),
             StorageNymAllowedHash.at(nym.version()).first,
-            StorageNymAllowedHash.at(nym.version()).second);
+            StorageNymAllowedHash.at(nym.version()).second,
+            silent);
 
         if (!valid) {
-            std::cerr << "Verify serialized storage nym failed: invalid "
-                      << "finishedpeerrequest." << std::endl;
-            return false;
+            FAIL("storage nym", "invalid finishedpeerrequest")
         }
     }
 
@@ -128,12 +124,11 @@ bool CheckProto_2(const StorageNym& nym)
         bool valid = Check(
             nym.finishedpeerreply(),
             StorageNymAllowedHash.at(nym.version()).first,
-            StorageNymAllowedHash.at(nym.version()).second);
+            StorageNymAllowedHash.at(nym.version()).second,
+            silent);
 
         if (!valid) {
-            std::cerr << "Verify serialized storage nym failed: invalid "
-                      << "finishedpeerreply." << std::endl;
-            return false;
+            FAIL("storage nym", "invalid finishedpeerreply")
         }
     }
 
@@ -141,12 +136,11 @@ bool CheckProto_2(const StorageNym& nym)
         bool valid = Check(
             nym.processedpeerrequest(),
             StorageNymAllowedHash.at(nym.version()).first,
-            StorageNymAllowedHash.at(nym.version()).second);
+            StorageNymAllowedHash.at(nym.version()).second,
+            silent);
 
         if (!valid) {
-            std::cerr << "Verify serialized storage nym failed: invalid "
-                      << "processedpeerrequest." << std::endl;
-            return false;
+            FAIL("storage nym", "invalid processedpeerrequest")
         }
     }
 
@@ -154,12 +148,11 @@ bool CheckProto_2(const StorageNym& nym)
         bool valid = Check(
             nym.processedpeerreply(),
             StorageNymAllowedHash.at(nym.version()).first,
-            StorageNymAllowedHash.at(nym.version()).second);
+            StorageNymAllowedHash.at(nym.version()).second,
+            silent);
 
         if (!valid) {
-            std::cerr << "Verify serialized storage nym failed: invalid "
-                      << "processedpeerreply." << std::endl;
-            return false;
+            FAIL("storage nym", "invalid processedpeerreply")
         }
     }
 
@@ -167,12 +160,11 @@ bool CheckProto_2(const StorageNym& nym)
         bool valid = Check(
             nym.mailinbox(),
             StorageNymAllowedHash.at(nym.version()).first,
-            StorageNymAllowedHash.at(nym.version()).second);
+            StorageNymAllowedHash.at(nym.version()).second,
+            silent);
 
         if (!valid) {
-            std::cerr << "Verify serialized storage nym failed: invalid "
-                      << "mailinbox." << std::endl;
-            return false;
+            FAIL("storage nym", "invalid mailinbox")
         }
     }
 
@@ -180,12 +172,11 @@ bool CheckProto_2(const StorageNym& nym)
         bool valid = Check(
             nym.mailoutbox(),
             StorageNymAllowedHash.at(nym.version()).first,
-            StorageNymAllowedHash.at(nym.version()).second);
+            StorageNymAllowedHash.at(nym.version()).second,
+            silent);
 
         if (!valid) {
-            std::cerr << "Verify serialized storage nym failed: invalid "
-                      << "mailoutbox." << std::endl;
-            return false;
+            FAIL("storage nym", "invalid mailoutbox")
         }
     }
 
@@ -193,30 +184,23 @@ bool CheckProto_2(const StorageNym& nym)
         bool valid = Check(
             nym.threads(),
             StorageNymAllowedHash.at(nym.version()).first,
-            StorageNymAllowedHash.at(nym.version()).second);
+            StorageNymAllowedHash.at(nym.version()).second,
+            silent);
 
         if (!valid) {
-            std::cerr << "Verify serialized storage nym failed: invalid "
-                      << "threads." << std::endl;
-            return false;
+            FAIL("storage nym", "invalid threads")
         }
     }
 
     if (nym.has_contexts()) {
-        std::cerr << "Verify serialized storage nym failed: version 2 must not "
-                  << "contain contexts." << std::endl;
-
-        return false;
+        FAIL("storage nym", "unexpected contexts field present")
     }
 
     if (nym.has_accounts()) {
-        std::cerr << "Verify serialized storage nym failed: version 2 must not "
-                  << "contain accounts." << std::endl;
-
-        return false;
+        FAIL("storage nym", "unexpected accounts field present")
     }
 
     return true;
 }
-} // namespace proto
-} // namespace opentxs
+}  // namespace proto
+}  // namespace opentxs

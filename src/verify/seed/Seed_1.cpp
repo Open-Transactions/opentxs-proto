@@ -41,29 +41,26 @@
 
 #include <iostream>
 
-namespace opentxs { namespace proto
+namespace opentxs
+{
+namespace proto
 {
 
-    bool CheckProto_1(const Seed& seed)
+bool CheckProto_1(const Seed& seed, const bool silent)
 {
     if (!seed.has_words()) {
-        std::cerr << "Verify serialized seed failed: missing words."
-                  << std::endl;
-
-        return false;
+        FAIL("seed", "missing words")
     }
 
     const bool validWords = Check(
         seed.words(),
         SeedAllowedCiphertext.at(seed.version()).first,
         SeedAllowedCiphertext.at(seed.version()).second,
+        silent,
         false);
 
     if (!validWords) {
-        std::cerr << "Verify serialized seed failed: invalid words."
-                  <<  std::endl;
-
-        return false;
+        FAIL("seed", "invalid words")
     }
 
     if (seed.has_passphrase()) {
@@ -71,45 +68,33 @@ namespace opentxs { namespace proto
             seed.passphrase(),
             SeedAllowedCiphertext.at(seed.version()).first,
             SeedAllowedCiphertext.at(seed.version()).second,
+            silent,
             false);
 
         if (!validWords) {
-            std::cerr << "Verify serialized seed failed: invalid passphrase."
-                      <<  std::endl;
-
-            return false;
+            FAIL("seed", "invalid passphrase")
         }
 
         if (seed.passphrase().has_key()) {
-            std::cerr << "Verify serialized seed failed: passphrase not "
-                      << "allowed to have embedded symmetric key."
-                      <<  std::endl;
+            FAIL(
+                "seed", "passphrase not allowed to have embedded symmetric key")
         }
     }
 
     if (!seed.has_fingerprint()) {
-        std::cerr << "Verify serialized seed failed: missing fingerprint."
-                  << std::endl;
-
-        return false;
+        FAIL("seed", "missing fingerprint")
     }
 
     if (MIN_PLAUSIBLE_IDENTIFIER > seed.fingerprint().size()) {
-        std::cerr << "Verify serialized seed failed: invalid fingerprint."
-                  << std::endl;
-
-        return false;
+        FAIL("seed", "invalid fingerprint")
     }
 
     if (seed.has_index()) {
-        std::cerr << "Verify serialized seed failed: index not allowed in this "
-                  << "version." << std::endl;
-
-        return false;
+        FAIL("seed", "index not allowed in this version")
     }
 
     return true;
 }
 
-} // namespace proto
-} // namespace opentxs
+}  // namespace proto
+}  // namespace opentxs

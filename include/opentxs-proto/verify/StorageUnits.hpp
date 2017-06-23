@@ -41,14 +41,16 @@
 
 #include "VerifyStorage.hpp"
 
-namespace opentxs { namespace proto
+namespace opentxs
 {
-    bool CheckProto_1(const StorageUnits& units);
-    bool CheckProto_2(const StorageUnits&);
-    bool CheckProto_3(const StorageUnits&);
-    bool CheckProto_4(const StorageUnits&);
-    bool CheckProto_5(const StorageUnits&);
-} // namespace proto
-} // namespace opentxs
+namespace proto
+{
+bool CheckProto_1(const StorageUnits& units, const bool silent);
+bool CheckProto_2(const StorageUnits&, const bool);
+bool CheckProto_3(const StorageUnits&, const bool);
+bool CheckProto_4(const StorageUnits&, const bool);
+bool CheckProto_5(const StorageUnits&, const bool);
+}  // namespace proto
+}  // namespace opentxs
 
-#endif // OPENTXS_PROTO_STORAGEUNITS_HPP
+#endif  // OPENTXS_PROTO_STORAGEUNITS_HPP

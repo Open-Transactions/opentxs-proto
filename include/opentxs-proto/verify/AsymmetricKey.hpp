@@ -39,55 +39,43 @@
 #ifndef OPENTXS_PROTO_ASYMMETRICKEY_HPP
 #define OPENTXS_PROTO_ASYMMETRICKEY_HPP
 
-#ifdef _WIN32
-#pragma warning(push)
-#pragma warning(disable : 4244)
-#pragma warning(disable : 4267)
-#else
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wshadow"
-#ifndef __clang__
-// -Wuseless-cast does not exist in clang
-#pragma GCC diagnostic ignored "-Wuseless-cast"
-#endif
-#endif
-#include "opentxs-proto/Enums.pb.h"
-#ifdef _WIN32
-#pragma warning(pop)
-#else
-#pragma GCC diagnostic pop
-#endif
-
 #include "VerifyCredentials.hpp"
 
-namespace opentxs { namespace proto
+namespace opentxs
 {
-    bool CheckProto_1(
-        const AsymmetricKey& serializedAsymmetricKey,
-        const CredentialType type,
-        const KeyMode mode,
-        const KeyRole role);
-    bool CheckProto_2(
-        const AsymmetricKey&,
-        const CredentialType,
-        const KeyMode,
-        const KeyRole);
-    bool CheckProto_3(
-        const AsymmetricKey&,
-        const CredentialType,
-        const KeyMode,
-        const KeyRole);
-    bool CheckProto_4(
-        const AsymmetricKey&,
-        const CredentialType,
-        const KeyMode,
-        const KeyRole);
-    bool CheckProto_5(
-        const AsymmetricKey&,
-        const CredentialType,
-        const KeyMode,
-        const KeyRole);
-} // namespace proto
-} // namespace opentxs
+namespace proto
+{
+bool CheckProto_1(
+    const AsymmetricKey& key,
+    const bool silent,
+    const CredentialType type,
+    const KeyMode mode,
+    const KeyRole role);
+bool CheckProto_2(
+    const AsymmetricKey&,
+    const bool,
+    const CredentialType,
+    const KeyMode,
+    const KeyRole);
+bool CheckProto_3(
+    const AsymmetricKey&,
+    const bool,
+    const CredentialType,
+    const KeyMode,
+    const KeyRole);
+bool CheckProto_4(
+    const AsymmetricKey&,
+    const bool,
+    const CredentialType,
+    const KeyMode,
+    const KeyRole);
+bool CheckProto_5(
+    const AsymmetricKey&,
+    const bool,
+    const CredentialType,
+    const KeyMode,
+    const KeyRole);
+}  // namespace proto
+}  // namespace opentxs
 
-#endif // OPENTXS_PROTO_ASYMMETRICKEY_HPP
+#endif  // OPENTXS_PROTO_ASYMMETRICKEY_HPP

@@ -41,180 +41,134 @@
 
 #include <iostream>
 
-namespace opentxs { namespace proto
+namespace opentxs
 {
-bool CheckProto_3(const PeerReply& peerReply)
+namespace proto
 {
-    if (!peerReply.has_id()) {
-        std::cerr << "Verify peer reply failed: missing identifier."
-                  << std::endl;
-        return false;
+bool CheckProto_3(const PeerReply& reply, const bool silent)
+{
+    if (!reply.has_id()) {
+        FAIL("peer reply", "missing id")
     }
 
-    if (MIN_PLAUSIBLE_IDENTIFIER > peerReply.id().size()) {
-        std::cerr << "Verify peer reply failed: invalid identifier ("
-                  << peerReply.id() << ")." << std::endl;
-        return false;
+    if (MIN_PLAUSIBLE_IDENTIFIER > reply.id().size()) {
+        FAIL("peer reply", "invalid id")
     }
 
-    if (!peerReply.has_initiator()) {
-        std::cerr << "Verify peer reply failed: missing initiator."
-                  << std::endl;
-        return false;
+    if (!reply.has_initiator()) {
+        FAIL("peer reply", "missing initiator")
     }
 
-    if (MIN_PLAUSIBLE_IDENTIFIER > peerReply.initiator().size()) {
-        std::cerr << "Verify peer reply failed: invalid initiator ("
-                  << peerReply.initiator() << ")." << std::endl;
-        return false;
+    if (MIN_PLAUSIBLE_IDENTIFIER > reply.initiator().size()) {
+        FAIL2("peer reply", "invalid initiator", reply.initiator())
     }
 
-    if (!peerReply.has_recipient()) {
-        std::cerr << "Verify peer reply failed: missing recipient."
-                  << std::endl;
-        return false;
+    if (!reply.has_recipient()) {
+        FAIL("peer reply", "missing recipient")
     }
 
-    if (MIN_PLAUSIBLE_IDENTIFIER > peerReply.recipient().size()) {
-        std::cerr << "Verify peer reply failed: invalid recipient ("
-                  << peerReply.recipient() << ")." << std::endl;
-        return false;
+    if (MIN_PLAUSIBLE_IDENTIFIER > reply.recipient().size()) {
+        FAIL2("peer reply", "invalid recipient", reply.recipient())
     }
 
-    if (!peerReply.has_type()) {
-        std::cerr << "Verify peer reply failed: missing type." << std::endl;
-
-        return false;
+    if (!reply.has_type()) {
+        FAIL("peer reply", "missing type")
     }
 
-    if ((peerReply.type() < PEERREQUEST_BAILMENT) ||
-        (peerReply.type() > PEERREQUEST_VERIFICATIONOFFER)) {
-            std::cerr << "Verify peer reply failed: invalid type."
-                      << std::endl;
-
-            return false;
-    }
-
-    if (!peerReply.has_cookie()) {
-        std::cerr << "Verify peer reply failed: missing cookie." << std::endl;
-
-        return false;
+    if (!reply.has_cookie()) {
+        FAIL("peer reply", "missing cookie")
     }
 
     bool validSig = Check(
-        peerReply.signature(),
-        PeerReplyAllowedSignature.at(peerReply.version()).first,
-        PeerReplyAllowedSignature.at(peerReply.version()).second,
+        reply.signature(),
+        PeerReplyAllowedSignature.at(reply.version()).first,
+        PeerReplyAllowedSignature.at(reply.version()).second,
+        silent,
         SIGROLE_PEERREPLY);
 
     if (!validSig) {
-        std::cerr << "Verify peer reply failed: invalid signature."
-                  << std::endl;
-
-        return false;
+        FAIL("peer reply", "invalid signature")
     }
 
-    if (!peerReply.has_server()) {
-        std::cerr << "Verify peer reply failed: missing server."
-                  << std::endl;
-        return false;
+    if (!reply.has_server()) {
+        FAIL("peer reply", "missing server")
     }
 
-    if (MIN_PLAUSIBLE_IDENTIFIER > peerReply.server().size()) {
-        std::cerr << "Verify peer reply failed: invalid server ("
-                  << peerReply.server() << ")." << std::endl;
-        return false;
+    if (MIN_PLAUSIBLE_IDENTIFIER > reply.server().size()) {
+        FAIL2("peer reply", "invalid server", reply.server())
     }
 
-    switch (peerReply.type()) {
-        case PEERREQUEST_BAILMENT : {
-            if (!peerReply.has_bailment()) {
-                std::cerr << "Verify peer reply failed: missing bailment."
-                          << std::endl;
-
-                return false;
+    switch (reply.type()) {
+        case PEERREQUEST_BAILMENT: {
+            if (!reply.has_bailment()) {
+                FAIL("peer reply", "missing bailment")
             }
 
             bool validbailment = Check(
-                peerReply.bailment(),
-                PeerReplyAllowedBailment.at(peerReply.version()).first,
-                PeerReplyAllowedBailment.at(peerReply.version()).second);
+                reply.bailment(),
+                PeerReplyAllowedBailment.at(reply.version()).first,
+                PeerReplyAllowedBailment.at(reply.version()).second,
+                silent);
 
             if (!validbailment) {
-                std::cerr << "Verify peer reply failed: invalid bailment."
-                          << std::endl;
-
-                return false;
+                FAIL("peer reply", "invalid bailment")
             }
         } break;
-        case PEERREQUEST_OUTBAILMENT : {
-            if (!peerReply.has_outbailment()) {
-                std::cerr << "Verify peer reply failed: missing outbailment."
-                          << std::endl;
-
-                return false;
+        case PEERREQUEST_OUTBAILMENT: {
+            if (!reply.has_outbailment()) {
+                FAIL("peer reply", "missing outbailment")
             }
 
             bool validoutbailment = Check(
-                peerReply.outbailment(),
-                PeerReplyAllowedOutBailment.at(peerReply.version()).first,
-                PeerReplyAllowedOutBailment.at(peerReply.version()).second);
+                reply.outbailment(),
+                PeerReplyAllowedOutBailment.at(reply.version()).first,
+                PeerReplyAllowedOutBailment.at(reply.version()).second,
+                silent);
 
             if (!validoutbailment) {
-                std::cerr << "Verify peer reply failed: invalid outbailment."
-                          << std::endl;
-
-                return false;
+                FAIL("peer reply", "invalid outbailment")
             }
         } break;
-        case PEERREQUEST_PENDINGBAILMENT :
-        case PEERREQUEST_STORESECRET :
-        case PEERREQUEST_VERIFICATIONOFFER : {
-            if (!peerReply.has_notice()) {
-                std::cerr << "Verify peer reply failed: missing notice."
-                          << std::endl;
-
-                return false;
+        case PEERREQUEST_PENDINGBAILMENT:
+        case PEERREQUEST_STORESECRET:
+        case PEERREQUEST_VERIFICATIONOFFER: {
+            if (!reply.has_notice()) {
+                FAIL("peer reply", "missing notice")
             }
 
             bool validnotice = Check(
-                peerReply.notice(),
-                PeerReplyAllowedNotice.at(peerReply.version()).first,
-                PeerReplyAllowedNotice.at(peerReply.version()).second);
+                reply.notice(),
+                PeerReplyAllowedNotice.at(reply.version()).first,
+                PeerReplyAllowedNotice.at(reply.version()).second,
+                silent);
 
             if (!validnotice) {
-                std::cerr << "Verify peer reply failed: invalid notice."
-                          << std::endl;
-
-                return false;
+                FAIL("peer reply", "invalid notice")
             }
         } break;
-        case PEERREQUEST_CONNECTIONINFO : {
-            if (!peerReply.has_connectioninfo()) {
-                std::cerr << "Verify peer reply failed: missing connectioninfo."
-                          << std::endl;
-
-                return false;
+        case PEERREQUEST_CONNECTIONINFO: {
+            if (!reply.has_connectioninfo()) {
+                FAIL("peer reply", "missing connectioninfo")
             }
 
             bool validconnectioninfo = Check(
-                peerReply.connectioninfo(),
-                PeerReplyAllowedConnectionInfo.at(peerReply.version()).first,
-                PeerReplyAllowedConnectionInfo.at(peerReply.version()).second);
+                reply.connectioninfo(),
+                PeerReplyAllowedConnectionInfo.at(reply.version()).first,
+                PeerReplyAllowedConnectionInfo.at(reply.version()).second,
+                silent);
 
             if (!validconnectioninfo) {
-                std::cerr << "Verify peer reply failed: invalid connectioninfo."
-                          << std::endl;
-
-                return false;
+                FAIL("peer reply", "invalid connectioninfo")
             }
         } break;
-        default : {}
+        default: {
+            FAIL("peer reply", "invalid type")
+        }
     }
 
     return true;
 }
-bool CheckProto_4(const PeerReply&) { return false; }
-bool CheckProto_5(const PeerReply&) { return false; }
-} // namespace proto
-} // namespace opentxs
+bool CheckProto_4(const PeerReply&, const bool) { return false; }
+bool CheckProto_5(const PeerReply&, const bool) { return false; }
+}  // namespace proto
+}  // namespace opentxs
