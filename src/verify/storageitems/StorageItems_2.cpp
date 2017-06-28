@@ -46,42 +46,49 @@ namespace opentxs
 namespace proto
 {
 
-bool CheckProto_1(const StorageThread& thread, const bool silent)
+bool CheckProto_2(const StorageItems& items, const bool silent)
 {
-    if (!thread.has_id()) {
-        FAIL("storage thread", "missing id")
-    }
-
-    if (MIN_PLAUSIBLE_IDENTIFIER > thread.id().size()) {
-        FAIL("storage thread", "invalid id")
-    }
-
-    for (auto& nym : thread.participant()) {
-        if (MIN_PLAUSIBLE_IDENTIFIER > nym.size()) {
-            FAIL("storage thread", "invalid participant")
+    if (items.has_creds()) {
+        if (MIN_PLAUSIBLE_IDENTIFIER > items.creds().size()) {
+            FAIL("storage item index", "invalid credentials")
         }
     }
 
-    if (0 == thread.participant_size()) {
-        FAIL("storage thread", "no patricipants")
+    if (items.has_nyms()) {
+        if (MIN_PLAUSIBLE_IDENTIFIER > items.nyms().size()) {
+            FAIL("storage item index", "invalid nym list")
+        }
     }
 
-    for (auto& item : thread.item()) {
-        if (!Check(
-                item,
-                StorageThreadAllowedItem.at(thread.version()).first,
-                StorageThreadAllowedItem.at(thread.version()).second,
-                silent)) {
-            FAIL("storage thread", "invalid item")
+    if (items.has_servers()) {
+        if (MIN_PLAUSIBLE_IDENTIFIER > items.servers().size()) {
+            FAIL("storage item index", "invalid server list")
+        }
+    }
+
+    if (items.has_units()) {
+        if (MIN_PLAUSIBLE_IDENTIFIER > items.units().size()) {
+            FAIL("storage item index", "invalid unit list")
+        }
+    }
+
+    if (items.has_seeds()) {
+        if (MIN_PLAUSIBLE_IDENTIFIER > items.seeds().size()) {
+            FAIL("storage item index", "invalid seed list")
+        }
+    }
+
+    if (items.has_contacts()) {
+        if (MIN_PLAUSIBLE_IDENTIFIER > items.contacts().size()) {
+            FAIL("storage item index", "invalid contact list")
         }
     }
 
     return true;
 }
 
-bool CheckProto_2(const StorageThread&, const bool) { return false; }
-bool CheckProto_3(const StorageThread&, const bool) { return false; }
-bool CheckProto_4(const StorageThread&, const bool) { return false; }
-bool CheckProto_5(const StorageThread&, const bool) { return false; }
+bool CheckProto_3(const StorageItems&, const bool) { return false; }
+bool CheckProto_4(const StorageItems&, const bool) { return false; }
+bool CheckProto_5(const StorageItems&, const bool) { return false; }
 }  // namespace proto
 }  // namespace opentxs

@@ -47,7 +47,7 @@ namespace proto
 {
 bool CheckProto_1(const CredentialIndex& index, const bool silent);
 bool CheckProto_2(const CredentialIndex& index, const bool silent);
-bool CheckProto_3(const CredentialIndex&, const bool);
+bool CheckProto_3(const CredentialIndex& index, const bool silent);
 bool CheckProto_4(const CredentialIndex&, const bool);
 bool CheckProto_5(const CredentialIndex&, const bool);
 }  // namespace proto

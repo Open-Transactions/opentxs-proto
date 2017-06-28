@@ -41,52 +41,45 @@
 
 #include "opentxs-proto/Basic.hpp"
 
-namespace opentxs { namespace proto
+namespace opentxs
 {
-    class BasketItem;
-    class BasketParams;
-    class CurrencyParams;
-    class ListenAddress;
-    class ServerContract;
-    class UnitDefinition;
-    class VerifyCredentials;
+namespace proto
+{
+class BasketItem;
+class BasketParams;
+class CurrencyParams;
+class ListenAddress;
+class ServerContract;
+class UnitDefinition;
+class VerifyCredentials;
 
-    static const VersionMap ServerContractAllowedCredentialIndex =
-        {
-            { 1, {1, 2}},
-        };
-    static const VersionMap ServerContractAllowedListenAddress =
-        {
-            { 1, {1, 1}},
-        };
-    static const VersionMap ServerContractAllowedSignature =
-        {
-            { 1, {1, 1}},
-        };
-    static const VersionMap UnitDefinitionAllowedPublicNym =
-        {
-            { 1, {1, 2}},
-        };
-    static const VersionMap UnitDefinitionAllowedCurrencyParams =
-        {
-            { 1, {1, 1}},
-        };
-    static const VersionMap UnitDefinitionAllowedBasketParams =
-        {
-            { 1, {1, 1}},
-        };
-    static const VersionMap UnitDefinitionAllowedSecurityParams =
-        {
-            { 1, {1, 1}},
-        };
-    static const VersionMap UnitDefinitionAllowedSignature =
-        {
-            { 1, {1, 1}},
-        };
-    static const VersionMap BasketParamsAllowedBasketItem =
-        {
-            { 1, {1, 1}},
-        };
-} // namespace proto
-} // namespace opentxs
-#endif // OPENTXS_PROTO_VERIFYCONTRACTS_HPP
+static const VersionMap ServerContractAllowedCredentialIndex = {
+    {1, {1, 3}},
+};
+static const VersionMap ServerContractAllowedListenAddress = {
+    {1, {1, 1}},
+};
+static const VersionMap ServerContractAllowedSignature = {
+    {1, {1, 1}},
+};
+static const VersionMap UnitDefinitionAllowedCredentialIndex = {
+    {1, {1, 3}},
+};
+static const VersionMap UnitDefinitionAllowedCurrencyParams = {
+    {1, {1, 1}},
+};
+static const VersionMap UnitDefinitionAllowedBasketParams = {
+    {1, {1, 1}},
+};
+static const VersionMap UnitDefinitionAllowedSecurityParams = {
+    {1, {1, 1}},
+};
+static const VersionMap UnitDefinitionAllowedSignature = {
+    {1, {1, 1}},
+};
+static const VersionMap BasketParamsAllowedBasketItem = {
+    {1, {1, 1}},
+};
+}  // namespace proto
+}  // namespace opentxs
+#endif  // OPENTXS_PROTO_VERIFYCONTRACTS_HPP

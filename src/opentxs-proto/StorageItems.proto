@@ -10,4 +10,5 @@ message StorageItems {
     optional string servers = 4;
     optional string units = 5;
     optional string seeds = 6;
+    optional string contacts = 7;
 }

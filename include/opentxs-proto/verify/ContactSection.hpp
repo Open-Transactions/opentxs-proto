@@ -56,9 +56,9 @@ bool CheckProto_2(
     const ClaimType indexed,
     const uint32_t parentVersion = 0xffffffff);
 bool CheckProto_3(
-    const ContactSection&,
-    const bool,
-    const ClaimType,
+    const ContactSection& contactSection,
+    const bool silent,
+    const ClaimType indexed,
     const uint32_t parentVersion = 0xffffffff);
 bool CheckProto_4(
     const ContactSection&,

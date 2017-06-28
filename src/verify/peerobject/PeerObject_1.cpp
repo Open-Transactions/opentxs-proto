@@ -92,8 +92,9 @@ bool CheckProto_1(const PeerObject& peerObject, const bool silent)
 
             const bool validnym = Check(
                 peerObject.nym(),
-                PeerObjectAllowedNym.at(peerObject.version()).first,
-                PeerObjectAllowedNym.at(peerObject.version()).second,
+                PeerObjectAllowedCredentialIndex.at(peerObject.version()).first,
+                PeerObjectAllowedCredentialIndex.at(peerObject.version())
+                    .second,
                 silent);
 
             if (!validnym) {

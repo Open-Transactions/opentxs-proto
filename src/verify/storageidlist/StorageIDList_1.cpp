@@ -46,42 +46,35 @@ namespace opentxs
 namespace proto
 {
 
-bool CheckProto_1(const StorageThread& thread, const bool silent)
+bool CheckProto_1(const StorageIDList& list, const bool silent)
 {
-    if (!thread.has_id()) {
-        FAIL("storage thread", "missing id")
+    if (false == list.has_id()) {
+        FAIL("storage id list", "missing id")
     }
 
-    if (MIN_PLAUSIBLE_IDENTIFIER > thread.id().size()) {
-        FAIL("storage thread", "invalid id")
+    if (MIN_PLAUSIBLE_IDENTIFIER > list.id().size()) {
+        FAIL2("storage id list", "invalid id", list.id())
     }
 
-    for (auto& nym : thread.participant()) {
-        if (MIN_PLAUSIBLE_IDENTIFIER > nym.size()) {
-            FAIL("storage thread", "invalid participant")
+    if (MAX_PLAUSIBLE_IDENTIFIER < list.id().size()) {
+        FAIL2("storage id list", "invalid id", list.id())
+    }
+
+    for (const auto& it : list.list()) {
+        if (MIN_PLAUSIBLE_IDENTIFIER > it.size()) {
+            FAIL2("storage id list", "invalid list item", it)
         }
-    }
 
-    if (0 == thread.participant_size()) {
-        FAIL("storage thread", "no patricipants")
-    }
-
-    for (auto& item : thread.item()) {
-        if (!Check(
-                item,
-                StorageThreadAllowedItem.at(thread.version()).first,
-                StorageThreadAllowedItem.at(thread.version()).second,
-                silent)) {
-            FAIL("storage thread", "invalid item")
+        if (MAX_PLAUSIBLE_IDENTIFIER < it.size()) {
+            FAIL2("storage id list", "invalid list item", it)
         }
     }
 
     return true;
 }
-
-bool CheckProto_2(const StorageThread&, const bool) { return false; }
-bool CheckProto_3(const StorageThread&, const bool) { return false; }
-bool CheckProto_4(const StorageThread&, const bool) { return false; }
-bool CheckProto_5(const StorageThread&, const bool) { return false; }
+bool CheckProto_2(const StorageIDList&, const bool) { return false; }
+bool CheckProto_3(const StorageIDList&, const bool) { return false; }
+bool CheckProto_4(const StorageIDList&, const bool) { return false; }
+bool CheckProto_5(const StorageIDList&, const bool) { return false; }
 }  // namespace proto
 }  // namespace opentxs

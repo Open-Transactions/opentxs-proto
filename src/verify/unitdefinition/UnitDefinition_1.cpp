@@ -70,8 +70,8 @@ bool CheckProto_1(
     if (contract.has_publicnym()) {
         bool goodPublicNym = Check(
             contract.publicnym(),
-            UnitDefinitionAllowedPublicNym.at(contract.version()).first,
-            UnitDefinitionAllowedPublicNym.at(contract.version()).second,
+            UnitDefinitionAllowedCredentialIndex.at(contract.version()).first,
+            UnitDefinitionAllowedCredentialIndex.at(contract.version()).second,
             silent);
 
         if (!goodPublicNym) {

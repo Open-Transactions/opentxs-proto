@@ -420,14 +420,15 @@ bool CheckProto_2(
 }
 
 bool CheckProto_3(
-    const Credential&,
-    const bool,
-    const KeyMode&,
-    const CredentialRole,
-    const bool)
+    const Credential& credential,
+    const bool silent,
+    const KeyMode& mode,
+    const CredentialRole role,
+    const bool withSigs)
 {
-    return false;
+    return CheckProto_1(credential, silent, mode, role, withSigs);
 }
+
 bool CheckProto_4(
     const Credential&,
     const bool,

@@ -56,10 +56,10 @@ bool CheckProto_2(
     const ClaimType indexed,
     const ContactSectionVersion parentVersion);
 bool CheckProto_3(
-    const ContactItem&,
-    const bool,
-    const ClaimType,
-    const ContactSectionVersion);
+    const ContactItem& contactItem,
+    const bool silent,
+    const ClaimType indexed,
+    const ContactSectionVersion parentVersion);
 bool CheckProto_4(
     const ContactItem&,
     const bool,

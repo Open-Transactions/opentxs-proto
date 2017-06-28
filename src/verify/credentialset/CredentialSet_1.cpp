@@ -259,15 +259,16 @@ bool CheckProto_2(
 }
 
 bool CheckProto_3(
-    const CredentialSet&,
-    const bool,
-    const std::string&,
-    const KeyMode&,
-    bool&,
-    const CredentialSetMode&)
+    const CredentialSet& credSet,
+    const bool silent,
+    const std::string& nymID,
+    const KeyMode& key,
+    bool& haveHD,
+    const CredentialSetMode& mode)
 {
-    return false;
+    return CheckProto_1(credSet, silent, nymID, key, haveHD, mode);
 }
+
 bool CheckProto_4(
     const CredentialSet&,
     const bool,

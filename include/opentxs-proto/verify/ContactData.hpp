@@ -53,7 +53,10 @@ bool CheckProto_2(
     const ContactData& contactData,
     const bool silent,
     const ClaimType indexed);
-bool CheckProto_3(const ContactData&, const bool, const ClaimType);
+bool CheckProto_3(
+    const ContactData& contactData,
+    const bool silent,
+    const ClaimType indexed);
 bool CheckProto_4(const ContactData&, const bool, const ClaimType);
 bool CheckProto_5(const ContactData&, const bool, const ClaimType);
 }  // namespace proto

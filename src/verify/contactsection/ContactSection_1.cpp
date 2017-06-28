@@ -88,12 +88,12 @@ bool CheckProto_2(
 }
 
 bool CheckProto_3(
-    const ContactSection&,
-    const bool,
-    const ClaimType,
-    const uint32_t)
+    const ContactSection& contactSection,
+    const bool silent,
+    const ClaimType indexed,
+    const uint32_t parentVersion)
 {
-    return false;
+    return CheckProto_1(contactSection, silent, indexed, parentVersion);
 }
 
 bool CheckProto_4(

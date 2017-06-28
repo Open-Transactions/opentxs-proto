@@ -52,11 +52,12 @@ namespace proto
 typedef std::map<std::uint32_t, std::pair<std::uint32_t, std::uint32_t>>
     VersionMap;
 
-static const std::uint32_t MIN_PLAUSIBLE_IDENTIFIER = 20;
-static const std::uint32_t MAX_PLAUSIBLE_IDENTIFIER = 80;
-static const std::uint32_t MIN_PLAUSIBLE_KEYSIZE = 16;
-static const std::uint32_t MIN_PLAUSIBLE_SIGNATURE = 32;
+static const std::size_t MIN_PLAUSIBLE_IDENTIFIER = 20;
+static const std::size_t MAX_PLAUSIBLE_IDENTIFIER = 80;
+static const std::size_t MIN_PLAUSIBLE_KEYSIZE = 16;
+static const std::size_t MIN_PLAUSIBLE_SIGNATURE = 32;
 static const std::uint32_t MAX_VALID_PORT = 65535;
+static const std::size_t MAX_VALID_CONTACT_VALUE = 512;
 }  // namespace proto
 }  // namespace opentxs
 

@@ -36,52 +36,21 @@
  *
  ************************************************************/
 
-#include "opentxs-proto/Types.hpp"
-#include "opentxs-proto/Check.hpp"
+#ifndef OPENTXS_PROTO_CONTACT_HPP
+#define OPENTXS_PROTO_CONTACT_HPP
 
-#include <iostream>
+#include "VerifyContacts.hpp"
 
 namespace opentxs
 {
 namespace proto
 {
-
-bool CheckProto_1(const StorageThread& thread, const bool silent)
-{
-    if (!thread.has_id()) {
-        FAIL("storage thread", "missing id")
-    }
-
-    if (MIN_PLAUSIBLE_IDENTIFIER > thread.id().size()) {
-        FAIL("storage thread", "invalid id")
-    }
-
-    for (auto& nym : thread.participant()) {
-        if (MIN_PLAUSIBLE_IDENTIFIER > nym.size()) {
-            FAIL("storage thread", "invalid participant")
-        }
-    }
-
-    if (0 == thread.participant_size()) {
-        FAIL("storage thread", "no patricipants")
-    }
-
-    for (auto& item : thread.item()) {
-        if (!Check(
-                item,
-                StorageThreadAllowedItem.at(thread.version()).first,
-                StorageThreadAllowedItem.at(thread.version()).second,
-                silent)) {
-            FAIL("storage thread", "invalid item")
-        }
-    }
-
-    return true;
-}
-
-bool CheckProto_2(const StorageThread&, const bool) { return false; }
-bool CheckProto_3(const StorageThread&, const bool) { return false; }
-bool CheckProto_4(const StorageThread&, const bool) { return false; }
-bool CheckProto_5(const StorageThread&, const bool) { return false; }
+bool CheckProto_1(const Contact& contact, const bool silent);
+bool CheckProto_2(const Contact&, const bool);
+bool CheckProto_3(const Contact&, const bool);
+bool CheckProto_4(const Contact&, const bool);
+bool CheckProto_5(const Contact&, const bool);
 }  // namespace proto
 }  // namespace opentxs
+
+#endif  // OPENTXS_PROTO_CONTACT_HPP

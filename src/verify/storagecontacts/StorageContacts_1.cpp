@@ -46,42 +46,38 @@ namespace opentxs
 namespace proto
 {
 
-bool CheckProto_1(const StorageThread& thread, const bool silent)
+bool CheckProto_1(const StorageContacts& contact, const bool silent)
 {
-    if (!thread.has_id()) {
-        FAIL("storage thread", "missing id")
-    }
+    for (auto& merge : contact.merge()) {
+        bool valid = Check(
+            merge,
+            StorageContactsAllowedList.at(contact.version()).first,
+            StorageContactsAllowedList.at(contact.version()).second,
+            silent);
 
-    if (MIN_PLAUSIBLE_IDENTIFIER > thread.id().size()) {
-        FAIL("storage thread", "invalid id")
-    }
-
-    for (auto& nym : thread.participant()) {
-        if (MIN_PLAUSIBLE_IDENTIFIER > nym.size()) {
-            FAIL("storage thread", "invalid participant")
+        if (!valid) {
+            FAIL("contact storage index", "invalid merge")
         }
     }
 
-    if (0 == thread.participant_size()) {
-        FAIL("storage thread", "no patricipants")
-    }
+    for (auto& hash : contact.contact()) {
+        bool valid = Check(
+            hash,
+            StorageContactsAllowedHash.at(contact.version()).first,
+            StorageContactsAllowedHash.at(contact.version()).second,
+            silent);
 
-    for (auto& item : thread.item()) {
-        if (!Check(
-                item,
-                StorageThreadAllowedItem.at(thread.version()).first,
-                StorageThreadAllowedItem.at(thread.version()).second,
-                silent)) {
-            FAIL("storage thread", "invalid item")
+        if (!valid) {
+            FAIL("contact storage index", "invalid hash")
         }
     }
 
     return true;
 }
 
-bool CheckProto_2(const StorageThread&, const bool) { return false; }
-bool CheckProto_3(const StorageThread&, const bool) { return false; }
-bool CheckProto_4(const StorageThread&, const bool) { return false; }
-bool CheckProto_5(const StorageThread&, const bool) { return false; }
+bool CheckProto_2(const StorageContacts&, const bool) { return false; }
+bool CheckProto_3(const StorageContacts&, const bool) { return false; }
+bool CheckProto_4(const StorageContacts&, const bool) { return false; }
+bool CheckProto_5(const StorageContacts&, const bool) { return false; }
 }  // namespace proto
 }  // namespace opentxs

@@ -60,11 +60,11 @@ bool CheckProto_2(
     bool& haveHD,
     const CredentialSetMode& mode = CREDSETMODE_ERROR);
 bool CheckProto_3(
-    const CredentialSet&,
-    const bool,
-    const std::string&,
-    const KeyMode&,
-    bool&,
+    const CredentialSet& credSet,
+    const bool silent,
+    const std::string& nymID,
+    const KeyMode& key,
+    bool& haveHD,
     const CredentialSetMode& mode = CREDSETMODE_ERROR);
 bool CheckProto_4(
     const CredentialSet&,
