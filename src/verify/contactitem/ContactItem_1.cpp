@@ -89,6 +89,18 @@ bool CheckProto_1(
         }
     }
 
+    if (contactItem.has_subtype()) {
+        if (3 > contactItem.version()) {
+            FAIL("contact item", "Subtype present but not allowed")
+        }
+
+        const auto& section = parentVersion.second;
+
+        if (0 == AllowedSubtypes.count(section)) {
+            FAIL("contact item", "Subtype present but not allowed")
+        }
+    }
+
     return true;
 }
 

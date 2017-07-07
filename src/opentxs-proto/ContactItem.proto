@@ -5,7 +5,8 @@ option optimize_for = LITE_RUNTIME;
 
 import public "ContactEnums.proto";
 
-message ContactItem {
+message ContactItem
+{
     optional uint32 version = 1;
     optional string id = 2;
     optional ContactItemType type = 3;
@@ -13,4 +14,5 @@ message ContactItem {
     optional sint64 start = 5;
     optional sint64 end = 6;
     repeated ContactItemAttribute attribute = 7;
+    optional string subtype = 8;
 }

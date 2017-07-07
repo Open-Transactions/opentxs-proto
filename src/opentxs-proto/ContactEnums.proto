@@ -14,6 +14,7 @@ enum ContactSectionName {
     CONTACTSECTION_DESCRIPTOR = 7;
     CONTACTSECTION_EVENT = 8;
     CONTACTSECTION_CONTRACT = 9;
+    CONTACTSECTION_PROCEDURE= 10;
 }
 
 enum ContactItemType {
@@ -194,6 +195,7 @@ enum ContactItemType {
     CITEMTYPE_SUPERVISOR = 171;
     CITEMTYPE_SUBORDINATE = 172;
     CITEMTYPE_CONTACT = 173;
+    CITEMTYPE_REFRESHED = 174;
 }
 
 enum ContactItemAttribute {

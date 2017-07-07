@@ -113,7 +113,8 @@ static const ContactSectionMap AllowedSectionNames = {
       CONTACTSECTION_RELATIONSHIP,
       CONTACTSECTION_DESCRIPTOR,
       CONTACTSECTION_EVENT,
-      CONTACTSECTION_CONTRACT}},
+      CONTACTSECTION_CONTRACT,
+      CONTACTSECTION_PROCEDURE}},
 };
 
 static const ContactItemMap AllowedItemTypes = {
@@ -434,7 +435,8 @@ static const ContactItemMap AllowedItemTypes = {
       CITEMTYPE_SECONDARYGRADUATION,
       CITEMTYPE_UNIVERSITYGRADUTATION,
       CITEMTYPE_WEDDING,
-      CITEMTYPE_ACCOMPLISHMENT}},
+      CITEMTYPE_ACCOMPLISHMENT,
+      CITEMTYPE_REFRESHED}},
     {{1, CONTACTSECTION_CONTRACT},
      {CITEMTYPE_BTC,   CITEMTYPE_ETH,  CITEMTYPE_XRP,  CITEMTYPE_LTC,
       CITEMTYPE_DAO,   CITEMTYPE_XEM,  CITEMTYPE_DASH, CITEMTYPE_MAID,
@@ -475,13 +477,27 @@ static const ContactItemMap AllowedItemTypes = {
       CITEMTYPE_TNBTC,  CITEMTYPE_TNXRP,   CITEMTYPE_TNLTC, CITEMTYPE_TNXEM,
       CITEMTYPE_TNDASH, CITEMTYPE_TNMAID,  CITEMTYPE_TNLSK, CITEMTYPE_TNDOGE,
       CITEMTYPE_TNXMR,  CITEMTYPE_TNWAVES, CITEMTYPE_TNNXT, CITEMTYPE_TNSC,
-      CITEMTYPE_TNSTEEM}}};
+      CITEMTYPE_TNSTEEM}},
+    {{3, CONTACTSECTION_PROCEDURE},
+     {CITEMTYPE_BTC,   CITEMTYPE_ETH,  CITEMTYPE_XRP,  CITEMTYPE_LTC,
+      CITEMTYPE_DAO,   CITEMTYPE_XEM,  CITEMTYPE_DASH, CITEMTYPE_MAID,
+      CITEMTYPE_LSK,   CITEMTYPE_DOGE, CITEMTYPE_DGD,  CITEMTYPE_XMR,
+      CITEMTYPE_WAVES, CITEMTYPE_NXT,  CITEMTYPE_SC,   CITEMTYPE_STEEM,
+      CITEMTYPE_AMP,   CITEMTYPE_XLM,  CITEMTYPE_FCT,  CITEMTYPE_BTS,
+      CITEMTYPE_USD,   CITEMTYPE_EUR,  CITEMTYPE_GBP,  CITEMTYPE_INR,
+      CITEMTYPE_AUD,   CITEMTYPE_CAD,  CITEMTYPE_SGD,  CITEMTYPE_CHF,
+      CITEMTYPE_MYR,   CITEMTYPE_JPY,  CITEMTYPE_CNY,  CITEMTYPE_NZD,
+      CITEMTYPE_THB,   CITEMTYPE_HUF,  CITEMTYPE_AED,  CITEMTYPE_HKD,
+      CITEMTYPE_MXN,   CITEMTYPE_ZAR,  CITEMTYPE_PHP,  CITEMTYPE_SEK}}};
 
 static const ItemAttributeMap AllowedItemAttributes = {
     {1, {CITEMATTR_ACTIVE, CITEMATTR_PRIMARY}},
     {2, {CITEMATTR_ACTIVE, CITEMATTR_PRIMARY}},
     {3, {CITEMATTR_ACTIVE, CITEMATTR_PRIMARY, CITEMATTR_LOCAL}},
 };
+
+static const std::set<ContactSectionName> AllowedSubtypes = {
+    CONTACTSECTION_PROCEDURE};
 
 static const EnumTranslation ContactSectionNames = {
     {{CONTACTSECTION_SCOPE, "en"}, "Scope"},
@@ -492,7 +508,8 @@ static const EnumTranslation ContactSectionNames = {
     {{CONTACTSECTION_RELATIONSHIP, "en"}, "Relationships"},
     {{CONTACTSECTION_DESCRIPTOR, "en"}, "Descriptor"},
     {{CONTACTSECTION_EVENT, "en"}, "Event"},
-    {{CONTACTSECTION_CONTRACT, "en"}, "Contracts"}};
+    {{CONTACTSECTION_CONTRACT, "en"}, "Contracts"},
+    {{CONTACTSECTION_PROCEDURE, "en"}, "Procedures"}};
 
 static const EnumTranslation ContactItemTypes = {
     {{CITEMTYPE_INDIVIDUAL, "en"}, "Individual"},
@@ -667,7 +684,8 @@ static const EnumTranslation ContactItemTypes = {
     {{CITEMTYPE_FAN, "en"}, "fan of"},
     {{CITEMTYPE_SUPERVISOR, "en"}, "supervisor of"},
     {{CITEMTYPE_SUBORDINATE, "en"}, "subordinate of"},
-    {{CITEMTYPE_CONTACT, "en"}, "contact member"}};
+    {{CITEMTYPE_CONTACT, "en"}, "contact member"},
+    {{CITEMTYPE_REFRESHED, "en"}, "date refreshed"}};
 
 static const EnumTranslation ContactItemAttributes = {
     {{CITEMATTR_ACTIVE, "en"}, "Active"},
