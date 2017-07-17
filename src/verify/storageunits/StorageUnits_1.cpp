@@ -41,33 +41,33 @@
 
 #include <iostream>
 
-namespace opentxs { namespace proto
+namespace opentxs
+{
+namespace proto
 {
 
-bool CheckProto_1(const StorageUnits& Units)
+bool CheckProto_1(const StorageUnits& Units, const bool silent)
 {
-    for (auto& hash: Units.unit()) {
+    for (auto& hash : Units.unit()) {
         bool valid = Check(
             hash,
             StorageUnitsAllowedHash.at(Units.version()).first,
-            StorageUnitsAllowedHash.at(Units.version()).second);
+            StorageUnitsAllowedHash.at(Units.version()).second,
+            silent);
 
         if (!valid) {
-            std::cerr << "Verify serialized unit storage index failed: invalid "
-                      << "hash." << std::endl;
-
-            return false;
+            FAIL("unit storage index", "invalid hash")
         }
     }
 
     return true;
 }
-bool CheckProto_2(const StorageUnits& units)
+bool CheckProto_2(const StorageUnits& units, const bool silent)
 {
-    return CheckProto_1(units);
+    return CheckProto_1(units, silent);
 }
-bool CheckProto_3(const StorageUnits& units) { return false; }
-bool CheckProto_4(const StorageUnits& units) { return false; }
-bool CheckProto_5(const StorageUnits& units) { return false; }
-} // namespace proto
-} // namespace opentxs
+bool CheckProto_3(const StorageUnits&, const bool) { return false; }
+bool CheckProto_4(const StorageUnits&, const bool) { return false; }
+bool CheckProto_5(const StorageUnits&, const bool) { return false; }
+}  // namespace proto
+}  // namespace opentxs

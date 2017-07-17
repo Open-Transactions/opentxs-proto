@@ -41,55 +41,58 @@
 
 #include "opentxs-proto/Basic.hpp"
 
-namespace opentxs { namespace proto
+namespace opentxs
 {
-    class StorageCredentials;
-    class StorageItemHash;
-    class StorageItems;
-    class StorageNym;
-    class StorageNymList;
-    class StorageRoot;
-    class StorageSeeds;
-    class StorageServers;
-    class StorageThread;
-    class StorageThreadItem;
-    class StorageUnits;
+namespace proto
+{
+class StorageContacts;
+class StorageCredentials;
+class StorageIDList;
+class StorageItemHash;
+class StorageItems;
+class StorageNym;
+class StorageNymList;
+class StorageRoot;
+class StorageSeeds;
+class StorageServers;
+class StorageThread;
+class StorageThreadItem;
+class StorageUnits;
 
-    static const VersionMap StorageCredentialAllowedHash =
-        {
-            { 1, {1, 1}},
-            { 2, {1, 2}},
-        };
-    static const VersionMap StorageNymListAllowedHash =
-        {
-            { 1, {1, 1}},
-            { 2, {1, 2}},
-        };
-    static const VersionMap StorageNymAllowedHash =
-        {
-            { 1, {1, 1}},
-            { 2, {1, 2}},
-            { 3, {2, 3}},
-        };
-    static const VersionMap StorageServersAllowedHash =
-        {
-            { 1, {1, 1}},
-            { 2, {1, 2}},
-        };
-    static const VersionMap StorageThreadAllowedItem =
-        {
-            { 1, {1, 1}},
-        };
-    static const VersionMap StorageUnitsAllowedHash =
-        {
-            { 1, {1, 1}},
-            { 2, {1, 2}},
-        };
-    static const VersionMap StorageSeedsAllowedHash =
-        {
-            { 1, {1, 1}},
-            { 2, {1, 2}},
-        };
-} // namespace proto
-} // namespace opentxs
-#endif // OPENTXS_PROTO_VERIFYSTORAGE_HPP
+static const VersionMap StorageContactsAllowedHash = {
+    {1, {1, 2}},
+};
+static const VersionMap StorageContactsAllowedList = {
+    {1, {1, 1}},
+};
+static const VersionMap StorageCredentialAllowedHash = {
+    {1, {1, 1}},
+    {2, {1, 2}},
+};
+static const VersionMap StorageNymListAllowedHash = {
+    {1, {1, 1}},
+    {2, {1, 2}},
+};
+static const VersionMap StorageNymAllowedHash = {
+    {1, {1, 1}},
+    {2, {1, 2}},
+    {3, {2, 3}},
+};
+static const VersionMap StorageServersAllowedHash = {
+    {1, {1, 1}},
+    {2, {1, 2}},
+};
+static const VersionMap StorageThreadAllowedItem = {
+    {1, {1, 1}},
+};
+static const VersionMap StorageUnitsAllowedHash = {
+    {1, {1, 1}},
+    {2, {1, 2}},
+};
+static const VersionMap StorageSeedsAllowedHash = {
+    {1, {1, 1}},
+    {2, {1, 2}},
+};
+}  // namespace proto
+}  // namespace opentxs
+#endif  // OPENTXS_PROTO_VERIFYSTORAGE_HPP

@@ -37,69 +37,67 @@
  ************************************************************/
 
 #include "opentxs-proto/Types.hpp"
+#include "opentxs-proto/Check.hpp"
 
 #include <iostream>
 
-namespace opentxs { namespace proto
+namespace opentxs
+{
+namespace proto
 {
 
 bool CheckProto_1(
     const ContactItem& contactItem,
+    const bool silent,
     const ClaimType indexed,
     const ContactSectionVersion parentVersion)
 {
     if (indexed) {
         if (!contactItem.has_id()) {
-            std::cerr << "Verify serialized contact item failed: missing id."
-                      << std::endl;
-
-            return false;
+            FAIL("contact item", "missing id")
         }
 
-        if (MIN_PLAUSIBLE_IDENTIFIER < contactItem.id().size()) {
-            std::cerr << "Verify serialized contact item failed: invalid id."
-                      << std::endl;
+        if (MIN_PLAUSIBLE_IDENTIFIER > contactItem.id().size()) {
+            FAIL("contact item", "invalid id")
+        }
 
-            return false;
+        if (MAX_PLAUSIBLE_IDENTIFIER < contactItem.id().size()) {
+            FAIL("contact item", "invalid id")
         }
     } else {
         if (contactItem.has_id()) {
-            std::cerr << "Verify serialized contact item failed: id not blank."
-                      << std::endl;
-
-            return false;
+            FAIL("contact item", "id not blank")
         }
     }
 
     if (!contactItem.has_type()) {
-        std::cerr << "Verify serialized contact item failed: missing type."
-                  << std::endl;
-
-        return false;
+        FAIL("contact item", "missing type")
     }
 
     if (!ValidContactItemType(parentVersion, contactItem.type())) {
-        std::cerr << "Verify serialized contact item failed: invalid type."
-                  << std::endl;
-
-        return false;
+        FAIL("contact item", "invalid type")
     }
 
     if (!contactItem.has_value()) {
-        std::cerr << "Verify serialized contact item failed: missing value."
-                  << std::endl;
-
-        return false;
+        FAIL("contact item", "missing value")
     }
 
-    for (auto& it: contactItem.attribute()) {
+    for (auto& it : contactItem.attribute()) {
         if (!ValidContactItemAttribute(
-            contactItem.version(),
-            static_cast<ContactItemAttribute>(it))) {
-            std::cerr << "Verify serialized contact item failed: "
-                      << "invalid attribute." << std::endl;
+                contactItem.version(), static_cast<ContactItemAttribute>(it))) {
+            FAIL("contact item", "invalid attribute")
+        }
+    }
 
-            return false;
+    if (contactItem.has_subtype()) {
+        if (3 > contactItem.version()) {
+            FAIL("contact item", "Subtype present but not allowed")
+        }
+
+        const auto& section = parentVersion.second;
+
+        if (0 == AllowedSubtypes.count(section)) {
+            FAIL("contact item", "Subtype present but not allowed")
         }
     }
 
@@ -108,21 +106,25 @@ bool CheckProto_1(
 
 bool CheckProto_2(
     const ContactItem& contactItem,
+    const bool silent,
     const ClaimType indexed,
     const ContactSectionVersion parentVersion)
 {
-    return CheckProto_1(contactItem, indexed, parentVersion);
+    return CheckProto_1(contactItem, silent, indexed, parentVersion);
 }
 
 bool CheckProto_3(
-    const ContactItem&,
-    const ClaimType,
-    const ContactSectionVersion)
+    const ContactItem& contactItem,
+    const bool silent,
+    const ClaimType indexed,
+    const ContactSectionVersion parentVersion)
 {
-    return false;
+    return CheckProto_1(contactItem, silent, indexed, parentVersion);
 }
+
 bool CheckProto_4(
     const ContactItem&,
+    const bool,
     const ClaimType,
     const ContactSectionVersion)
 {
@@ -130,10 +132,11 @@ bool CheckProto_4(
 }
 bool CheckProto_5(
     const ContactItem&,
+    const bool,
     const ClaimType,
     const ContactSectionVersion)
 {
     return false;
 }
-} // namespace proto
-} // namespace opentxs
+}  // namespace proto
+}  // namespace opentxs

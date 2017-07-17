@@ -64,6 +64,7 @@
 #include <opentxs-proto/ConnectionInfo.pb.h>
 #include <opentxs-proto/ConnectionInfoReply.pb.h>
 #include <opentxs-proto/ConsensusEnums.pb.h>
+#include <opentxs-proto/Contact.pb.h>
 #include <opentxs-proto/ContactData.pb.h>
 #include <opentxs-proto/ContactEnums.pb.h>
 #include <opentxs-proto/ContactItem.pb.h>
@@ -96,8 +97,10 @@
 #include <opentxs-proto/ServerContract.pb.h>
 #include <opentxs-proto/Signature.pb.h>
 #include <opentxs-proto/SourceProof.pb.h>
+#include <opentxs-proto/StorageContacts.pb.h>
 #include <opentxs-proto/StorageCredentials.pb.h>
 #include <opentxs-proto/StorageEnums.pb.h>
+#include <opentxs-proto/StorageIDList.pb.h>
 #include <opentxs-proto/StorageItemHash.pb.h>
 #include <opentxs-proto/StorageItems.pb.h>
 #include <opentxs-proto/StorageNym.pb.h>
@@ -127,6 +130,7 @@
 #include <opentxs-proto/verify/ClientContext.hpp>
 #include <opentxs-proto/verify/ConnectionInfo.hpp>
 #include <opentxs-proto/verify/ConnectionInfoReply.hpp>
+#include <opentxs-proto/verify/Contact.hpp>
 #include <opentxs-proto/verify/ContactData.hpp>
 #include <opentxs-proto/verify/ContactItem.hpp>
 #include <opentxs-proto/verify/ContactSection.hpp>
@@ -156,7 +160,9 @@
 #include <opentxs-proto/verify/Signature.hpp>
 #include <opentxs-proto/verify/Signature.hpp>
 #include <opentxs-proto/verify/SourceProof.hpp>
+#include <opentxs-proto/verify/StorageContacts.hpp>
 #include <opentxs-proto/verify/StorageCredentials.hpp>
+#include <opentxs-proto/verify/StorageIDList.hpp>
 #include <opentxs-proto/verify/StorageItemHash.hpp>
 #include <opentxs-proto/verify/StorageItems.hpp>
 #include <opentxs-proto/verify/StorageNym.hpp>
@@ -183,4 +189,4 @@
 #pragma GCC diagnostic pop
 #endif
 
-#endif // OPENTXS_PROTO_TYPES_HPP
+#endif  // OPENTXS_PROTO_TYPES_HPP

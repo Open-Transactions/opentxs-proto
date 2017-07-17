@@ -41,29 +41,36 @@
 
 #include "VerifyContacts.hpp"
 
-namespace opentxs { namespace proto
+namespace opentxs
 {
-    bool CheckProto_1(
-        const ContactSection& contactSection,
-        const ClaimType indexed,
-        const uint32_t parentVersion = 0xffffffff);
-    bool CheckProto_2(
-        const ContactSection& contactSection,
-        const ClaimType indexed,
-        const uint32_t parentVersion = 0xffffffff);
-    bool CheckProto_3(
-        const ContactSection&,
-        const ClaimType,
-        const uint32_t parentVersion = 0xffffffff);
-    bool CheckProto_4(
-        const ContactSection&,
-        const ClaimType,
-        const uint32_t parentVersion = 0xffffffff);
-    bool CheckProto_5(
-        const ContactSection&,
-        const ClaimType,
-        const uint32_t parentVersion = 0xffffffff);
-} // namespace proto
-} // namespace opentxs
+namespace proto
+{
+bool CheckProto_1(
+    const ContactSection& contactSection,
+    const bool silent,
+    const ClaimType indexed,
+    const uint32_t parentVersion = 0xffffffff);
+bool CheckProto_2(
+    const ContactSection& contactSection,
+    const bool silent,
+    const ClaimType indexed,
+    const uint32_t parentVersion = 0xffffffff);
+bool CheckProto_3(
+    const ContactSection& contactSection,
+    const bool silent,
+    const ClaimType indexed,
+    const uint32_t parentVersion = 0xffffffff);
+bool CheckProto_4(
+    const ContactSection&,
+    const bool,
+    const ClaimType,
+    const uint32_t parentVersion = 0xffffffff);
+bool CheckProto_5(
+    const ContactSection&,
+    const bool,
+    const ClaimType,
+    const uint32_t parentVersion = 0xffffffff);
+}  // namespace proto
+}  // namespace opentxs
 
-#endif // OPENTXS_PROTO_CONTACTSECTION_HPP
+#endif  // OPENTXS_PROTO_CONTACTSECTION_HPP

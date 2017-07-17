@@ -41,34 +41,31 @@
 
 #include <iostream>
 
-namespace opentxs { namespace proto
+namespace opentxs
+{
+namespace proto
 {
 
-bool CheckProto_1(
-    const StorageNymList& nymList)
+bool CheckProto_1(const StorageNymList& nymList, const bool silent)
 {
-    for (auto& nym: nymList.nym()) {
+    for (auto& nym : nymList.nym()) {
         if (!Check(
-            nym,
-            StorageNymListAllowedHash.at(nymList.version()).first,
-            StorageNymListAllowedHash.at(nymList.version()).second)) {
-                std::cerr << "Verify serialized nym index failed: invalid nym."
-                          << std::endl;
-                abort();
-
-                return false;
+                nym,
+                StorageNymListAllowedHash.at(nymList.version()).first,
+                StorageNymListAllowedHash.at(nymList.version()).second,
+                silent)) {
+            FAIL("nym index", "invalid nym")
         }
     }
 
     return true;
 }
-bool CheckProto_2(
-    const StorageNymList& nymList)
+bool CheckProto_2(const StorageNymList& nymList, const bool silent)
 {
-    return CheckProto_1(nymList);
+    return CheckProto_1(nymList, silent);
 }
-bool CheckProto_3(const StorageNymList&) { return false; }
-bool CheckProto_4(const StorageNymList&) { return false; }
-bool CheckProto_5(const StorageNymList&) { return false; }
-} // namespace proto
-} // namespace opentxs
+bool CheckProto_3(const StorageNymList&, const bool) { return false; }
+bool CheckProto_4(const StorageNymList&, const bool) { return false; }
+bool CheckProto_5(const StorageNymList&, const bool) { return false; }
+}  // namespace proto
+}  // namespace opentxs

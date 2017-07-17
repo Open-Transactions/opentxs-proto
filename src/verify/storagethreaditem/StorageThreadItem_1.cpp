@@ -37,33 +37,27 @@
  ************************************************************/
 
 #include "opentxs-proto/Types.hpp"
+#include "opentxs-proto/Check.hpp"
 
 #include <iostream>
 
-namespace opentxs { namespace proto
+namespace opentxs
+{
+namespace proto
 {
 
-bool CheckProto_1(const StorageThreadItem& item)
+bool CheckProto_1(const StorageThreadItem& item, const bool silent)
 {
     if (!item.has_id()) {
-        std::cerr << "Verify serialized storage thread item failed: missing "
-                  << "identifier." << std::endl;
-
-        return false;
+        FAIL("storage thread item", "missing id")
     }
 
     if (MIN_PLAUSIBLE_IDENTIFIER > item.id().size()) {
-        std::cerr << "Verify serialized storage thread item failed: invalid "
-                  << "identifier." << std::endl;
-
-        return false;
+        FAIL("storage thread item", "invalid id")
     }
 
     if (0 == item.box()) {
-        std::cerr << "Verify serialized storage thread item failed: invalid "
-                  << "box." << std::endl;
-
-        return false;
+        FAIL("storage thread item", "invalid box")
     }
 
     const bool hasAccount = (0 < item.account().size());
@@ -71,19 +65,15 @@ bool CheckProto_1(const StorageThreadItem& item)
         (MIN_PLAUSIBLE_IDENTIFIER > item.account().size());
 
     if (hasAccount && invalidAccount) {
-        std::cerr << "Verify serialized storage thread item failed: invalid "
-                  << "account." << std::endl;
-
-        return false;
+        FAIL("storage thread item", "invalid account")
     }
-
 
     return true;
 }
 
-bool CheckProto_2(const StorageThreadItem&) { return false; }
-bool CheckProto_3(const StorageThreadItem&) { return false; }
-bool CheckProto_4(const StorageThreadItem&) { return false; }
-bool CheckProto_5(const StorageThreadItem&) { return false; }
-} // namespace proto
-} // namespace opentxs
+bool CheckProto_2(const StorageThreadItem&, const bool) { return false; }
+bool CheckProto_3(const StorageThreadItem&, const bool) { return false; }
+bool CheckProto_4(const StorageThreadItem&, const bool) { return false; }
+bool CheckProto_5(const StorageThreadItem&, const bool) { return false; }
+}  // namespace proto
+}  // namespace opentxs

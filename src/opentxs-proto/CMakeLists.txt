@@ -15,6 +15,7 @@ set(PROTO_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/ConnectionInfo.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/ConnectionInfoReply.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/ConsensusEnums.proto
+    ${CMAKE_CURRENT_SOURCE_DIR}/Contact.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/ContactData.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/ContactEnums.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/ContactItem.proto
@@ -47,8 +48,10 @@ set(PROTO_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/ServerContract.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/Signature.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/SourceProof.proto
+    ${CMAKE_CURRENT_SOURCE_DIR}/StorageContacts.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/StorageCredentials.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/StorageEnums.proto
+    ${CMAKE_CURRENT_SOURCE_DIR}/StorageIDList.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/StorageItemHash.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/StorageItems.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/StorageNym.proto

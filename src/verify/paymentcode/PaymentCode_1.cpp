@@ -37,56 +37,56 @@
  ************************************************************/
 
 #include "opentxs-proto/Types.hpp"
+#include "opentxs-proto/Check.hpp"
 
 #include <iostream>
 
-namespace opentxs { namespace proto
+namespace opentxs
+{
+namespace proto
 {
 
-bool CheckProto_1(
-    const PaymentCode& serializedPaymentCode)
+bool CheckProto_1(const PaymentCode& code, const bool silent)
 {
-    if (!serializedPaymentCode.has_key()) {
-        std::cerr << "Verify serialized payment code failed: missing pubkey." << std::endl;
-        return false;
-    }
-    if (MIN_PLAUSIBLE_KEYSIZE > serializedPaymentCode.key().size()) {
-        std::cerr << "Verify serialized payment code failed: invalid pubkey." << std::endl;
-        return false;
-    }
-    if (!serializedPaymentCode.has_chaincode()) {
-        std::cerr << "Verify serialized payment code failed: missing chaincode." << std::endl;
-        return false;
-    }
-    if (MIN_PLAUSIBLE_KEYSIZE > serializedPaymentCode.chaincode().size()) {
-        std::cerr << "Verify serialized payment code failed: invalid chaincode." << std::endl;
-        return false;
+    if (!code.has_key()) {
+        FAIL("payment code", "missing pubkey")
     }
 
-    if (serializedPaymentCode.has_bitmessage()) {
-        if (!serializedPaymentCode.has_bitmessageversion()) {
-            std::cerr << "Verify serialized payment code failed: missing Bitmessage address version." << std::endl;
-            return false;
+    if (MIN_PLAUSIBLE_KEYSIZE > code.key().size()) {
+        FAIL("payment code", "invalid pubkey")
+    }
+
+    if (!code.has_chaincode()) {
+        FAIL("payment code", "missing chaincode")
+    }
+
+    if (MIN_PLAUSIBLE_KEYSIZE > code.chaincode().size()) {
+        FAIL("payment code", "invalid chaincode")
+    }
+
+    if (code.has_bitmessage()) {
+        if (!code.has_bitmessageversion()) {
+            FAIL("payment code", "missing Bitmessage address version")
         }
-        if (0xff < serializedPaymentCode.bitmessageversion()) {
-            std::cerr << "Verify serialized payment code failed: invalid Bitmessage address version." << std::endl;
-            return false;
+
+        if (0xff < code.bitmessageversion()) {
+            FAIL("payment code", "invalid Bitmessage address version")
         }
-        if (!serializedPaymentCode.has_bitmessagestream()) {
-            std::cerr << "Verify serialized payment code failed: missing Bitmessage address stream." << std::endl;
-            return false;
+
+        if (!code.has_bitmessagestream()) {
+            FAIL("payment code", "missing Bitmessage address stream")
         }
-        if (0xff < serializedPaymentCode.bitmessagestream()) {
-            std::cerr << "Verify serialized payment code failed: invalid Bitmessage address stream." << std::endl;
-            return false;
+
+        if (0xff < code.bitmessagestream()) {
+            FAIL("payment code", "invalid Bitmessage address stream")
         }
     }
 
     return true;
 }
-bool CheckProto_2(const PaymentCode&) { return false; }
-bool CheckProto_3(const PaymentCode&) { return false; }
-bool CheckProto_4(const PaymentCode&) { return false; }
-bool CheckProto_5(const PaymentCode&) { return false; }
-} // namespace proto
-} // namespace opentxs
+bool CheckProto_2(const PaymentCode&, const bool) { return false; }
+bool CheckProto_3(const PaymentCode&, const bool) { return false; }
+bool CheckProto_4(const PaymentCode&, const bool) { return false; }
+bool CheckProto_5(const PaymentCode&, const bool) { return false; }
+}  // namespace proto
+}  // namespace opentxs

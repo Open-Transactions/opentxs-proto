@@ -41,11 +41,14 @@
 
 #include <iostream>
 
-namespace opentxs { namespace proto
+namespace opentxs
+{
+namespace proto
 {
 
 bool CheckProto_1(
     const VerificationSet& verificationSet,
+    const bool silent,
     const VerificationType indexed)
 {
     if (verificationSet.has_internal()) {
@@ -53,11 +56,11 @@ bool CheckProto_1(
             verificationSet.internal(),
             VerificationSetAllowedGroup.at(verificationSet.version()).first,
             VerificationSetAllowedGroup.at(verificationSet.version()).second,
+            silent,
             indexed);
 
         if (!validInternal) {
-            std::cerr << "Verify serialized verification set failed: invalid internal group." << std::endl;
-            return false;
+            FAIL("verification set", "invalid internal group")
         }
     }
     if (verificationSet.has_external()) {
@@ -65,47 +68,37 @@ bool CheckProto_1(
             verificationSet.external(),
             VerificationSetAllowedGroup.at(verificationSet.version()).first,
             VerificationSetAllowedGroup.at(verificationSet.version()).second,
+            silent,
             indexed);
 
         if (!validExternal) {
-            std::cerr << "Verify serialized verification set failed: invalid external group." << std::endl;
-            return false;
+            FAIL("verification set", "invalid external group")
         }
     }
 
-    for (auto& it: verificationSet.repudiated()) {
+    for (auto& it : verificationSet.repudiated()) {
         if (MIN_PLAUSIBLE_IDENTIFIER < it.size()) {
-            std::cerr << "Verify serialized verification set failed: invalid repudiation."
-            << std::endl;
-            return false;
+            FAIL("verification set", "invalid repudiation")
         }
     }
 
     return true;
 }
-bool CheckProto_2(
-    const VerificationSet&,
-    const VerificationType)
+bool CheckProto_2(const VerificationSet&, const bool, const VerificationType)
 {
     return false;
 }
-bool CheckProto_3(
-    const VerificationSet&,
-    const VerificationType)
+bool CheckProto_3(const VerificationSet&, const bool, const VerificationType)
 {
     return false;
 }
-bool CheckProto_4(
-    const VerificationSet&,
-    const VerificationType)
+bool CheckProto_4(const VerificationSet&, const bool, const VerificationType)
 {
     return false;
 }
-bool CheckProto_5(
-    const VerificationSet&,
-    const VerificationType)
+bool CheckProto_5(const VerificationSet&, const bool, const VerificationType)
 {
     return false;
 }
-} // namespace proto
-} // namespace opentxs
+}  // namespace proto
+}  // namespace opentxs

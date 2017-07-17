@@ -41,39 +41,39 @@
 
 #include <iostream>
 
-namespace opentxs { namespace proto
+namespace opentxs
+{
+namespace proto
 {
 
 bool CheckProto_1(
-    const VerificationIdentity& verificationIdentity,
+    const VerificationIdentity& identity,
+    const bool silent,
     VerificationNymMap& map,
     const VerificationType indexed)
 {
-    if (!verificationIdentity.has_nym()) {
-        std::cerr << "Verify serialized verification identity failed: missing nym."
-        << std::endl;
-        return false;
+    if (!identity.has_nym()) {
+        FAIL("verification identity", "missing nym")
     }
 
-    if (MIN_PLAUSIBLE_IDENTIFIER > verificationIdentity.nym().size()) {
-        std::cerr << "Verify serialized verification identity failed: invalid nym ("
-        << verificationIdentity.nym() << ")." << std::endl;
-        return false;
+    if (MIN_PLAUSIBLE_IDENTIFIER > identity.nym().size()) {
+        FAIL2("verification identity", "invalid nym", identity.nym())
     }
 
-    map[verificationIdentity.nym()] += 1;
+    map[identity.nym()] += 1;
 
-    for (auto& it : verificationIdentity.verification()) {
+    for (auto& it : identity.verification()) {
         bool verification = Check(
             it,
-            VerificationIdentityAllowedVerification.at(verificationIdentity.version()).first,
-            VerificationIdentityAllowedVerification.at(verificationIdentity.version()).second,
+            VerificationIdentityAllowedVerification.at(identity.version())
+                .first,
+            VerificationIdentityAllowedVerification.at(identity.version())
+                .second,
+            silent,
             indexed);
 
         if (!verification) {
-            std::cerr << "Verify serialized verification identity failed:"
-                      << " invalid verification." << std::endl;
-            return false;
+            FAIL("verification identity", "invalid verification")
         }
     }
 
@@ -81,6 +81,7 @@ bool CheckProto_1(
 }
 bool CheckProto_2(
     const VerificationIdentity&,
+    const bool,
     VerificationNymMap&,
     const VerificationType)
 {
@@ -88,6 +89,7 @@ bool CheckProto_2(
 }
 bool CheckProto_3(
     const VerificationIdentity&,
+    const bool,
     VerificationNymMap&,
     const VerificationType)
 {
@@ -95,6 +97,7 @@ bool CheckProto_3(
 }
 bool CheckProto_4(
     const VerificationIdentity&,
+    const bool,
     VerificationNymMap&,
     const VerificationType)
 {
@@ -102,10 +105,11 @@ bool CheckProto_4(
 }
 bool CheckProto_5(
     const VerificationIdentity&,
+    const bool,
     VerificationNymMap&,
     const VerificationType)
 {
     return false;
 }
-} // namespace proto
-} // namespace opentxs
+}  // namespace proto
+}  // namespace opentxs

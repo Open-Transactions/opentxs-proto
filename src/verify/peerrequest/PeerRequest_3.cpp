@@ -41,225 +41,163 @@
 
 #include <iostream>
 
-namespace opentxs { namespace proto
+namespace opentxs
 {
-bool CheckProto_3(const PeerRequest& peerRequest)
+namespace proto
 {
-    if (!peerRequest.has_id()) {
-        std::cerr << "Verify peer request failed: missing identifier."
-                  << std::endl;
-        return false;
+bool CheckProto_3(const PeerRequest& request, const bool silent)
+{
+    if (!request.has_id()) {
+        FAIL("peer request", "missing id")
     }
 
-    if (MIN_PLAUSIBLE_IDENTIFIER > peerRequest.id().size()) {
-        std::cerr << "Verify peer request failed: invalid identifier ("
-                << peerRequest.id() << ")." << std::endl;
-        return false;
+    if (MIN_PLAUSIBLE_IDENTIFIER > request.id().size()) {
+        FAIL("peer request", "invalid id")
     }
 
-    if (!peerRequest.has_initiator()) {
-        std::cerr << "Verify peer reply failed: missing initiator."
-                  << std::endl;
-        return false;
+    if (!request.has_initiator()) {
+        FAIL("peer request", "missing initiato")
     }
 
-    if (MIN_PLAUSIBLE_IDENTIFIER > peerRequest.initiator().size()) {
-        std::cerr << "Verify peer reply failed: invalid initiator ("
-                  << peerRequest.initiator() << ")." << std::endl;
-        return false;
+    if (MIN_PLAUSIBLE_IDENTIFIER > request.initiator().size()) {
+        FAIL2("peer request", "invalid initiator", request.initiator())
     }
 
-    if (!peerRequest.has_recipient()) {
-        std::cerr << "Verify peer reply failed: missing recipient."
-                  << std::endl;
-        return false;
+    if (!request.has_recipient()) {
+        FAIL("peer request", " missing recipient")
     }
 
-    if (MIN_PLAUSIBLE_IDENTIFIER > peerRequest.recipient().size()) {
-        std::cerr << "Verify peer reply failed: invalid recipient ("
-                  << peerRequest.recipient() << ")." << std::endl;
-        return false;
+    if (MIN_PLAUSIBLE_IDENTIFIER > request.recipient().size()) {
+        FAIL2("peer request", "invalid recipient", request.recipient())
     }
 
-    if (!peerRequest.has_type()) {
-        std::cerr << "Verify peer request failed: missing type." << std::endl;
-
-        return false;
+    if (!request.has_type()) {
+        FAIL("peer request", "missing type")
     }
 
-    if ((peerRequest.type() < PEERREQUEST_BAILMENT) ||
-        (peerRequest.type() > PEERREQUEST_VERIFICATIONOFFER)) {
-            std::cerr << "Verify peer request failed: invalid type."
-                      << std::endl;
-
-            return false;
+    if (!request.has_cookie()) {
+        FAIL("peer request", "missing cookie")
     }
 
-    if (!peerRequest.has_cookie()) {
-        std::cerr << "Verify peer request failed: missing cookie." << std::endl;
-
-        return false;
-    }
-
-    const bool validSig = Check(
-        peerRequest.signature(),
-        PeerRequestAllowedSignature.at(peerRequest.version()).first,
-        PeerRequestAllowedSignature.at(peerRequest.version()).second,
+    bool validSig = Check(
+        request.signature(),
+        PeerRequestAllowedSignature.at(request.version()).first,
+        PeerRequestAllowedSignature.at(request.version()).second,
+        silent,
         SIGROLE_PEERREQUEST);
 
     if (!validSig) {
-        std::cerr << "Verify peer request failed: invalid signature."
-                  << std::endl;
-
-        return false;
+        FAIL("peer request", "invalid signature")
     }
 
-    switch (peerRequest.type()) {
-        case PEERREQUEST_BAILMENT : {
-            if (!peerRequest.has_bailment()) {
-                std::cerr << "Verify peer request failed: missing bailment."
-                          << std::endl;
+    if (!request.has_server()) {
+        FAIL("peer request", "missing server")
+    }
 
-                return false;
+    if (MIN_PLAUSIBLE_IDENTIFIER > request.server().size()) {
+        FAIL2("peer request", "invalid server", request.server())
+    }
+
+    switch (request.type()) {
+        case PEERREQUEST_BAILMENT: {
+            if (!request.has_bailment()) {
+                FAIL("peer request", "missing bailment")
             }
 
-            const bool validbailment = Check(
-                peerRequest.bailment(),
-                PeerRequestAllowedBailment.at(peerRequest.version()).first,
-                PeerRequestAllowedBailment.at(peerRequest.version()).second);
+            bool validbailment = Check(
+                request.bailment(),
+                PeerRequestAllowedBailment.at(request.version()).first,
+                PeerRequestAllowedBailment.at(request.version()).second,
+                silent);
 
             if (!validbailment) {
-                std::cerr << "Verify peer request failed: invalid bailment."
-                          << std::endl;
-
-                return false;
+                FAIL("peer request", "invalid bailment")
             }
         } break;
-        case PEERREQUEST_OUTBAILMENT : {
-            if (!peerRequest.has_outbailment()) {
-                std::cerr << "Verify peer request failed: missing outbailment."
-                          << std::endl;
-
-                return false;
+        case PEERREQUEST_OUTBAILMENT: {
+            if (!request.has_outbailment()) {
+                FAIL("peer request", "missing outbailment")
             }
 
-            const bool validoutbailment = Check(
-                peerRequest.outbailment(),
-                PeerRequestAllowedOutBailment.at(peerRequest.version()).first,
-                PeerRequestAllowedOutBailment.at(peerRequest.version()).second);
+            bool validoutbailment = Check(
+                request.outbailment(),
+                PeerRequestAllowedOutBailment.at(request.version()).first,
+                PeerRequestAllowedOutBailment.at(request.version()).second,
+                silent);
 
             if (!validoutbailment) {
-                std::cerr << "Verify peer request failed: invalid outbailment."
-                          << std::endl;
-
-                return false;
+                FAIL("peer request", "invalid outbailment")
             }
         } break;
-        case PEERREQUEST_PENDINGBAILMENT : {
-            if (!peerRequest.has_pendingbailment()) {
-                std::cerr << "Verify peer request failed: missing "
-                          << "pendingbailment." << std::endl;
-
-                return false;
+        case PEERREQUEST_PENDINGBAILMENT: {
+            if (!request.has_pendingbailment()) {
+                FAIL("peer request", "missing pendingbailment")
             }
 
-            const bool validoutbailment = Check(
-                peerRequest.pendingbailment(),
-                PeerRequestAllowedPendingBailment.at(
-                    peerRequest.version()).first,
-                PeerRequestAllowedPendingBailment.at(
-                    peerRequest.version()).second);
+            bool validoutbailment = Check(
+                request.pendingbailment(),
+                PeerRequestAllowedPendingBailment.at(request.version()).first,
+                PeerRequestAllowedPendingBailment.at(request.version()).second,
+                silent);
 
             if (!validoutbailment) {
-                std::cerr << "Verify peer request failed: invalid "
-                          << "pendingbailment." << std::endl;
-
-                return false;
+                FAIL("peer request", "invalid pendingbailment")
             }
         } break;
-        case PEERREQUEST_CONNECTIONINFO : {
-            if (!peerRequest.has_connectioninfo()) {
-                std::cerr << "Verify peer request failed: missing "
-                          << "connectioninfo." << std::endl;
-
-                return false;
+        case PEERREQUEST_CONNECTIONINFO: {
+            if (!request.has_connectioninfo()) {
+                FAIL("peer request", "missing connectioninfo")
             }
 
-            const bool validconnectioninfo = Check(
-                peerRequest.connectioninfo(),
-                PeerRequestAllowedConnectionInfo.at(
-                    peerRequest.version()).first,
-                PeerRequestAllowedConnectionInfo.at(
-                    peerRequest.version()).second);
+            bool validconnectioninfo = Check(
+                request.connectioninfo(),
+                PeerRequestAllowedConnectionInfo.at(request.version()).first,
+                PeerRequestAllowedConnectionInfo.at(request.version()).second,
+                silent);
 
             if (!validconnectioninfo) {
-                std::cerr << "Verify peer request failed: invalid "
-                          << "connectioninfo." << std::endl;
-
-                return false;
+                FAIL("peer request", "invalid connectioninfo")
             }
         } break;
-        case PEERREQUEST_STORESECRET : {
-            if (!peerRequest.has_storesecret()) {
-                std::cerr << "Verify peer request failed: missing "
-                          << "storesecret." << std::endl;
-
-                return false;
+        case PEERREQUEST_STORESECRET: {
+            if (!request.has_storesecret()) {
+                FAIL("peer request", "missing storesecret")
             }
 
-            const bool validstoresecret = Check(
-                peerRequest.storesecret(),
-                PeerRequestAllowedStoreSecret.at(peerRequest.version()).first,
-                PeerRequestAllowedStoreSecret.at(peerRequest.version()).second);
+            bool validstoresecret = Check(
+                request.storesecret(),
+                PeerRequestAllowedStoreSecret.at(request.version()).first,
+                PeerRequestAllowedStoreSecret.at(request.version()).second,
+                silent);
 
             if (!validstoresecret) {
-                std::cerr << "Verify peer request failed: invalid "
-                          << "storesecret." << std::endl;
-
-                return false;
+                FAIL("peer request", "invalid storesecret")
             }
         } break;
-        case PEERREQUEST_VERIFICATIONOFFER : {
-            if (!peerRequest.has_verificationoffer()) {
-                std::cerr << "Verify peer request failed: missing "
-                          << "verificationoffer." << std::endl;
-
-                return false;
+        case PEERREQUEST_VERIFICATIONOFFER: {
+            if (!request.has_verificationoffer()) {
+                FAIL("peer request", "missing verificationoffer")
             }
 
             const bool validverificationoffer = Check(
-                peerRequest.verificationoffer(),
-                PeerRequestAllowedVerificationOffer.at(
-                    peerRequest.version()).first,
-                PeerRequestAllowedVerificationOffer.at(
-                    peerRequest.version()).second);
+                request.verificationoffer(),
+                PeerRequestAllowedVerificationOffer.at(request.version()).first,
+                PeerRequestAllowedVerificationOffer.at(request.version())
+                    .second,
+                silent);
 
             if (!validverificationoffer) {
-                std::cerr << "Verify peer request failed: invalid "
-                          << "verificationoffer." << std::endl;
-
-                return false;
+                FAIL("peer request", "invalid verificationoffer")
             }
         } break;
-        default : {}
-    }
-
-    if (!peerRequest.has_server()) {
-        std::cerr << "Verify peer reply failed: missing server."
-                  << std::endl;
-        return false;
-    }
-
-    if (MIN_PLAUSIBLE_IDENTIFIER > peerRequest.server().size()) {
-        std::cerr << "Verify peer reply failed: invalid server ("
-                  << peerRequest.server() << ")." << std::endl;
-        return false;
+        default: {
+        }
     }
 
     return true;
 }
 
-bool CheckProto_4(const PeerRequest&) { return false; }
-bool CheckProto_5(const PeerRequest&) { return false; }
-} // namespace proto
-} // namespace opentxs
+bool CheckProto_4(const PeerRequest&, const bool) { return false; }
+bool CheckProto_5(const PeerRequest&, const bool) { return false; }
+}  // namespace proto
+}  // namespace opentxs

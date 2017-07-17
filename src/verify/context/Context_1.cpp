@@ -41,130 +41,99 @@
 
 #include <iostream>
 
-namespace opentxs { namespace proto
+namespace opentxs
 {
-bool CheckProto_1(const Context& context)
+namespace proto
+{
+bool CheckProto_1(const Context& context, const bool silent)
 {
     if (!context.has_localnym()) {
-        std::cerr << "Verify context failed: missing local nym." << std::endl;
-
-        return false;
+        FAIL("context", " missing local nym")
     }
 
     if ((MIN_PLAUSIBLE_IDENTIFIER > context.localnym().size()) ||
         (MAX_PLAUSIBLE_IDENTIFIER < context.localnym().size())) {
-            std::cerr << "Verify context failed: invalid local nym."
-                    << std::endl;
-
-            return false;
+        FAIL("context", "invalid local nym")
     }
 
     if (!context.has_remotenym()) {
-        std::cerr << "Verify context failed: missing remote nym." << std::endl;
-
-        return false;
+        FAIL("context", "missing remote nym")
     }
 
     if ((MIN_PLAUSIBLE_IDENTIFIER > context.remotenym().size()) ||
         (MAX_PLAUSIBLE_IDENTIFIER < context.remotenym().size())) {
-            std::cerr << "Verify context failed: invalid remote nym."
-                    << std::endl;
-
-            return false;
+        FAIL("context", "invalid remote nym")
     }
 
     if (!context.has_type()) {
-        std::cerr << "Verify context failed: missing type." << std::endl;
-
-        return false;
+        FAIL("context", "missing type")
     }
 
     switch (context.type()) {
-        case CONSENSUSTYPE_SERVER : {
+        case CONSENSUSTYPE_SERVER: {
             if (!context.has_servercontext()) {
-                std::cerr << "Verify context failed: missing server data."
-                          << std::endl;
-
-                return false;
+                FAIL("context", "missing server data")
             }
 
             if (context.has_clientcontext()) {
-                std::cerr << "Verify context failed: client data in server "
-                          << "context." << std::endl;
-
-                return false;
+                FAIL("context", "client data in server context")
             }
 
             const bool validServer = Check(
                 context.servercontext(),
                 ContextAllowedServer.at(context.version()).first,
-                ContextAllowedServer.at(context.version()).second);
+                ContextAllowedServer.at(context.version()).second,
+                silent);
 
             if (!validServer) {
-                std::cerr << "Verify context failed: invalid server data."
-                          << std::endl;
-
-                return false;
+                FAIL("context", "invalid server data")
             }
         } break;
-        case CONSENSUSTYPE_CLIENT : {
+        case CONSENSUSTYPE_CLIENT: {
             if (!context.has_clientcontext()) {
-                std::cerr << "Verify context failed: missing client data."
-                          << std::endl;
-
-                return false;
+                FAIL("context", "missing client data")
             }
 
             if (context.has_servercontext()) {
-                std::cerr << "Verify context failed: client data in server "
-                          << "context." << std::endl;
-
-                return false;
+                FAIL("context", "client data in server context")
             }
 
             const bool validClient = Check(
                 context.clientcontext(),
                 ContextAllowedClient.at(context.version()).first,
-                ContextAllowedClient.at(context.version()).second);
+                ContextAllowedClient.at(context.version()).second,
+                silent);
 
             if (!validClient) {
-                std::cerr << "Verify context failed: invalid client data."
-                          << std::endl;
-
-                return false;
+                FAIL("context", "invalid client data")
             }
         } break;
-        default : {
-            std::cerr << "Verify context failed: invalid type." << std::endl;
-
-            return false;
+        default: {
+            FAIL("context", "invalid type")
         }
     }
 
     if (!context.has_signature()) {
-        std::cerr << "Verify context failed: missing signature." << std::endl;
-
-        return false;
+        FAIL("context", "missing signature")
     }
 
     const bool validSig = Check(
         context.signature(),
         ContextAllowedSignature.at(context.version()).first,
         ContextAllowedSignature.at(context.version()).first,
+        silent,
         SIGROLE_CONTEXT);
 
     if (!validSig) {
-        std::cerr << "Verify context failed: invalid signature." << std::endl;
-
-        return false;
+        FAIL("context", "invalid signature")
     }
 
     return true;
 }
 
-bool CheckProto_2(const Context&) { return false; }
-bool CheckProto_3(const Context&) { return false; }
-bool CheckProto_4(const Context&) { return false; }
-bool CheckProto_5(const Context&) { return false; }
-} // namespace proto
-} // namespace opentxs
+bool CheckProto_2(const Context&, const bool) { return false; }
+bool CheckProto_3(const Context&, const bool) { return false; }
+bool CheckProto_4(const Context&, const bool) { return false; }
+bool CheckProto_5(const Context&, const bool) { return false; }
+}  // namespace proto
+}  // namespace opentxs

@@ -24,3 +24,18 @@ Open-Transactions uses the CMake build system. The basic steps are:
     cmake ..
     make
     make install
+
+### Contributing
+
+#### CppCheck and clang-format Git hooks
+
+For convenience please enable the git hooks which will trigger cppcheck and
+clang-format each time you push or commit. To do so type in the repo directory:
+
+    cd .git/hooks
+    ln -s ../../scripts/git_hooks/pre-push
+    ln -s ../../scripts/git_hooks/pre-commit
+
+To check your code without pushing the following command can be used:
+
+    git push -n

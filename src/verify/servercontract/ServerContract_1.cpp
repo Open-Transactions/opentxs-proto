@@ -41,96 +41,87 @@
 
 #include <iostream>
 
- namespace opentxs { namespace proto
+namespace opentxs
+{
+namespace proto
 {
 
-bool CheckProto_1(
-    const ServerContract& contract)
+bool CheckProto_1(const ServerContract& contract, const bool silent)
 {
     if (!contract.has_id()) {
-        std::cerr << "Verify serialized server contract failed: missing identifier." << std::endl;
-        return false;
+        FAIL("server contract", " missing id")
     }
 
     if (MIN_PLAUSIBLE_IDENTIFIER > contract.id().size()) {
-        std::cerr << "Verify serialized server contract failed: invalid identifier ("
-        << contract.id() << ")." << std::endl;
-        return false;
+        FAIL2("server contract", "invalid id", contract.id())
     }
 
     if (!contract.has_nymid()) {
-        std::cerr << "Verify serialized server contract failed: missing nym identifier." << std::endl;
-        return false;
+        FAIL("server contract", "missing nym id")
     }
 
     if (!contract.has_name()) {
-        std::cerr << "Verify serialized server contract failed: missing name." << std::endl;
-        return false;
+        FAIL("server contract", "missing name")
     }
 
     if (1 > contract.name().size()) {
-        std::cerr << "Verify serialized server contract failed: invalid name ("
-        << contract.name() << ")." << std::endl;
-        return false;
+        FAIL2("server contract", "invalid name", contract.name())
     }
 
     if (MIN_PLAUSIBLE_IDENTIFIER > contract.nymid().size()) {
-        std::cerr << "Verify serialized server contract failed: invalid nym identifier ("
-        << contract.nymid() << ")." << std::endl;
-        return false;
+        FAIL2("server contract", "invalid nym id", contract.nymid())
     }
 
     if (contract.has_publicnym()) {
-        if (!Check(contract.publicnym(), 0, 0xFFFFFFFF)) {
-                std::cerr << "Verify serialized server contract failed: invalid public nym" << std::endl;
-                return false;
+        if (!Check(
+                contract.publicnym(),
+                ServerContractAllowedCredentialIndex.at(contract.version())
+                    .first,
+                ServerContractAllowedCredentialIndex.at(contract.version())
+                    .second,
+                silent)) {
+            FAIL("server contract", "invalid nym")
         }
     }
 
     if (0 == contract.address().size()) {
-        std::cerr << "Verify serialized server contract failed: no listen "
-                  << "addresses found." << std::endl;
-        return false;
+        FAIL("server contract", "no listen addresses")
     }
 
     if (!Check(
-        contract.address(0),
-        ServerContractAllowedListenAddress.at(contract.version()).first,
-        ServerContractAllowedListenAddress.at(contract.version()).second)) {
-            std::cerr << "Verify serialized server contract failed: invalid address" << std::endl;
-            return false;
+            contract.address(0),
+            ServerContractAllowedListenAddress.at(contract.version()).first,
+            ServerContractAllowedListenAddress.at(contract.version()).second,
+            silent)) {
+        FAIL("server contract", "invalid listen address")
     }
 
     if (!contract.has_transportkey()) {
-        std::cerr << "Verify serialized server contract failed: missing transport key" << std::endl;
-        return false;
+        FAIL("server contract", "missing transport key")
     }
 
     if (MIN_PLAUSIBLE_KEYSIZE > contract.transportkey().size()) {
-        std::cerr << "Verify serialized server contract failed: invalid transport key" << std::endl;
-        return false;
+        FAIL("server contract", "invalid transport key")
     }
 
     if (!contract.has_signature()) {
-        std::cerr << "Verify serialized server contract failed: missing signature" << std::endl;
-        return false;
+        FAIL("server contract", "missing signature")
     }
 
     if (!Check(
-        contract.signature(),
-        ServerContractAllowedSignature.at(contract.version()).first,
-        ServerContractAllowedSignature.at(contract.version()).second,
-        SIGROLE_SERVERCONTRACT)) {
-            std::cerr << "Verify serialized server contract failed: invalid"
-                      << " signature" << std::endl;
-            return false;
+            contract.signature(),
+            ServerContractAllowedSignature.at(contract.version()).first,
+            ServerContractAllowedSignature.at(contract.version()).second,
+            silent,
+            SIGROLE_SERVERCONTRACT)) {
+        FAIL("server contract", "invalid signature")
     }
 
     return true;
 }
-bool CheckProto_2(const ServerContract&) { return false; }
-bool CheckProto_3(const ServerContract&) { return false; }
-bool CheckProto_4(const ServerContract&) { return false; }
-bool CheckProto_5(const ServerContract&) { return false; }
-} // namespace proto
-} // namespace opentxs
+bool CheckProto_2(const ServerContract&, const bool) { return false; }
+bool CheckProto_3(const ServerContract&, const bool) { return false; }
+bool CheckProto_4(const ServerContract&, const bool) { return false; }
+bool CheckProto_5(const ServerContract&, const bool) { return false; }
+}  // namespace proto
+}  // namespace opentxs

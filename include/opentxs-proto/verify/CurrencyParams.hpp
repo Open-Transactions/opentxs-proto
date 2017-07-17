@@ -41,14 +41,16 @@
 
 #include "VerifyContracts.hpp"
 
-namespace opentxs { namespace proto
+namespace opentxs
 {
-    bool CheckProto_1(const CurrencyParams& params);
-    bool CheckProto_2(const CurrencyParams&);
-    bool CheckProto_3(const CurrencyParams&);
-    bool CheckProto_4(const CurrencyParams&);
-    bool CheckProto_5(const CurrencyParams&);
-} // namespace proto
-} // namespace opentxs
+namespace proto
+{
+bool CheckProto_1(const CurrencyParams& params, const bool silent);
+bool CheckProto_2(const CurrencyParams&, const bool);
+bool CheckProto_3(const CurrencyParams&, const bool);
+bool CheckProto_4(const CurrencyParams&, const bool);
+bool CheckProto_5(const CurrencyParams&, const bool);
+}  // namespace proto
+}  // namespace opentxs
 
-#endif // OPENTXS_PROTO_CURRENCYPARAMS_HPP
+#endif  // OPENTXS_PROTO_CURRENCYPARAMS_HPP

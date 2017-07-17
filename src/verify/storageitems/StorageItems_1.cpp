@@ -37,65 +37,52 @@
  ************************************************************/
 
 #include "opentxs-proto/Types.hpp"
+#include "opentxs-proto/Check.hpp"
 
 #include <iostream>
 
-namespace opentxs { namespace proto
+namespace opentxs
+{
+namespace proto
 {
 
-bool CheckProto_1(
-    const StorageItems& items)
+bool CheckProto_1(const StorageItems& items, const bool silent)
 {
     if (items.has_creds()) {
         if (MIN_PLAUSIBLE_IDENTIFIER > items.creds().size()) {
-            std::cerr << "Verify serialized storage item index failed: invalid "
-                      << "credentials." << std::endl;
-
-            return false;
+            FAIL("storage item index", "invalid credentials")
         }
     }
 
     if (items.has_nyms()) {
         if (MIN_PLAUSIBLE_IDENTIFIER > items.nyms().size()) {
-            std::cerr << "Verify serialized storage item index failed: invalid "
-                      << "nym list." << std::endl;
-
-            return false;
+            FAIL("storage item index", "invalid nym list")
         }
     }
 
     if (items.has_servers()) {
         if (MIN_PLAUSIBLE_IDENTIFIER > items.servers().size()) {
-            std::cerr << "Verify serialized storage item index failed: invalid "
-                      << "server list." << std::endl;
-
-            return false;
+            FAIL("storage item index", "invalid server list")
         }
     }
 
     if (items.has_units()) {
         if (MIN_PLAUSIBLE_IDENTIFIER > items.units().size()) {
-            std::cerr << "Verify serialized storage item index failed: invalid "
-                      << "unit list." << std::endl;
-
-            return false;
+            FAIL("storage item index", "invalid unit list")
         }
     }
 
     if (items.has_seeds()) {
         if (MIN_PLAUSIBLE_IDENTIFIER > items.seeds().size()) {
-            std::cerr << "Verify serialized storage item index failed: invalid "
-                      << "seed list." << std::endl;
-
-            return false;
+            FAIL("storage item index", "invalid seed list")
         }
+    }
+
+    if (items.has_contacts()) {
+        FAIL("storage item index", "unexpected contact field found")
     }
 
     return true;
 }
-bool CheckProto_2(const StorageItems&) { return false; }
-bool CheckProto_3(const StorageItems&) { return false; }
-bool CheckProto_4(const StorageItems&) { return false; }
-bool CheckProto_5(const StorageItems&) { return false; }
-} // namespace proto
-} // namespace opentxs
+}  // namespace proto
+}  // namespace opentxs

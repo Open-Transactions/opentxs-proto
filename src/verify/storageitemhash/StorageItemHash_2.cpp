@@ -37,63 +37,55 @@
  ************************************************************/
 
 #include "opentxs-proto/Types.hpp"
+#include "opentxs-proto/Check.hpp"
 
 #include <iostream>
 
-namespace opentxs { namespace proto
+namespace opentxs
 {
-bool CheckProto_2(const StorageItemHash& hash)
+namespace proto
+{
+bool CheckProto_2(const StorageItemHash& hash, const bool silent)
 {
     if (!hash.has_itemid()) {
-        std::cerr << "Verify serialized storage item hash failed: missing "
-                  << "identifier." << std::endl;
-
-        return false;
+        FAIL("storage item hash", "missing id")
     }
 
     if (MIN_PLAUSIBLE_IDENTIFIER > hash.itemid().size()) {
-        std::cerr << "Verify serialized storage item hash failed: invalid "
-                  << "identifier." << std::endl;
-
-        return false;
+        FAIL("storage item hash", "invalid id")
     }
 
     if (!hash.has_hash()) {
-        std::cerr << "Verify serialized storage item hash failed: missing hash."
-                  << std::endl;
-
-        return false;
+        FAIL("storage item hash", "missing hash")
     }
 
     if (MIN_PLAUSIBLE_IDENTIFIER > hash.hash().size()) {
-        std::cerr << "Verify serialized storage item hash failed: invalid hash."
-                  << std::endl;
-
-        return false;
+        FAIL("storage item hash", "invalid hash")
     }
 
     if (!hash.has_type()) {
-        std::cerr << "Verify serialized storage item hash failed: missing type."
-                  << std::endl;
-
-        return false;
+        FAIL("storage item hash", "missing type")
     }
 
     switch (hash.type()) {
-        case STORAGEHASH_PROTO :
-        case STORAGEHASH_RAW : { break; }
-        default : {
-            std::cerr << "Verify serialized storage item hash failed: invalid "
-                      << "type." << std::endl;
-
-            return false;
+        case STORAGEHASH_PROTO:
+        case STORAGEHASH_RAW: {
+            break;
+        }
+        default: {
+            FAIL("storage item hash", "invalid type")
         }
     }
 
     return true;
 }
-bool CheckProto_3(const StorageItemHash& hash) { return CheckProto_2(hash); }
-bool CheckProto_4(const StorageItemHash&) { return false; }
-bool CheckProto_5(const StorageItemHash&) { return false; }
-} // namespace proto
-} // namespace opentxs
+
+bool CheckProto_3(const StorageItemHash& hash, const bool silent)
+{
+    return CheckProto_2(hash, silent);
+}
+
+bool CheckProto_4(const StorageItemHash&, const bool) { return false; }
+bool CheckProto_5(const StorageItemHash&, const bool) { return false; }
+}  // namespace proto
+}  // namespace opentxs

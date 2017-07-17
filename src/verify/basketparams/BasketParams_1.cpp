@@ -41,19 +41,17 @@
 
 #include <iostream>
 
-namespace opentxs { namespace proto
+namespace opentxs
+{
+namespace proto
 {
 
-bool CheckProto_1(
-    const BasketParams& params)
+bool CheckProto_1(const BasketParams& params, const bool silent)
 {
     if (!params.has_weight()) {
-        std::cerr << __FUNCTION__
-                  << ": Verify basket params failed: missing weight."
-                  << std::endl;
-
-        return false;
+        FAIL("basket params", "missing weight")
     }
+
     BasketItemMap itemMap;
 
     for (auto& item : params.item()) {
@@ -61,32 +59,25 @@ bool CheckProto_1(
             item,
             BasketParamsAllowedBasketItem.at(params.version()).first,
             BasketParamsAllowedBasketItem.at(params.version()).second,
+            silent,
             itemMap);
 
         if (!validItem) {
-            std::cerr << __FUNCTION__
-                      << ": Verify basket params failed: invalid basket"
-                      << " item." << std::endl;
-
-            return false;
+            FAIL("basket params", "invalid basket")
         }
     }
 
     for (auto& subcurrency : itemMap) {
         if (subcurrency.second > 1) {
-            std::cerr << __FUNCTION__
-                      << ": Verify basket params failed: duplicate basket"
-                      << " item." << std::endl;
-
-            return false;
+            FAIL("basket params", "duplicate basket")
         }
     }
 
     return true;
 }
-bool CheckProto_2(const BasketParams&) { return false; }
-bool CheckProto_3(const BasketParams&) { return false; }
-bool CheckProto_4(const BasketParams&) { return false; }
-bool CheckProto_5(const BasketParams&) { return false; }
-} // namespace proto
-} // namespace opentxs
+bool CheckProto_2(const BasketParams&, const bool) { return false; }
+bool CheckProto_3(const BasketParams&, const bool) { return false; }
+bool CheckProto_4(const BasketParams&, const bool) { return false; }
+bool CheckProto_5(const BasketParams&, const bool) { return false; }
+}  // namespace proto
+}  // namespace opentxs

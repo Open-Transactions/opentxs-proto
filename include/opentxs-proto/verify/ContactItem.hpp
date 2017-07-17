@@ -41,29 +41,36 @@
 
 #include "VerifyContacts.hpp"
 
-namespace opentxs { namespace proto
+namespace opentxs
 {
-    bool CheckProto_1(
-        const ContactItem& contactItem,
-        const ClaimType indexed,
-        const ContactSectionVersion parentVersion);
-    bool CheckProto_2(
-        const ContactItem& contactItem,
-        const ClaimType indexed,
-        const ContactSectionVersion parentVersion);
-    bool CheckProto_3(
-        const ContactItem&,
-        const ClaimType,
-        const ContactSectionVersion);
-    bool CheckProto_4(
-        const ContactItem&,
-        const ClaimType,
-        const ContactSectionVersion);
-    bool CheckProto_5(
-        const ContactItem&,
-        const ClaimType,
-        const ContactSectionVersion);
-} // namespace proto
-} // namespace opentxs
+namespace proto
+{
+bool CheckProto_1(
+    const ContactItem& contactItem,
+    const bool silent,
+    const ClaimType indexed,
+    const ContactSectionVersion parentVersion);
+bool CheckProto_2(
+    const ContactItem& contactItem,
+    const bool silent,
+    const ClaimType indexed,
+    const ContactSectionVersion parentVersion);
+bool CheckProto_3(
+    const ContactItem& contactItem,
+    const bool silent,
+    const ClaimType indexed,
+    const ContactSectionVersion parentVersion);
+bool CheckProto_4(
+    const ContactItem&,
+    const bool,
+    const ClaimType,
+    const ContactSectionVersion);
+bool CheckProto_5(
+    const ContactItem&,
+    const bool,
+    const ClaimType,
+    const ContactSectionVersion);
+}  // namespace proto
+}  // namespace opentxs
 
-#endif // OPENTXS_PROTO_CONTACTITEM_HPP
+#endif  // OPENTXS_PROTO_CONTACTITEM_HPP

@@ -41,14 +41,16 @@
 
 #include "VerifyConsensus.hpp"
 
-namespace opentxs { namespace proto
+namespace opentxs
 {
-    bool CheckProto_1(const Context& context);
-    bool CheckProto_2(const Context&);
-    bool CheckProto_3(const Context&);
-    bool CheckProto_4(const Context&);
-    bool CheckProto_5(const Context&);
-} // namespace proto
-} // namespace opentxs
+namespace proto
+{
+bool CheckProto_1(const Context& context, const bool silent);
+bool CheckProto_2(const Context&, const bool);
+bool CheckProto_3(const Context&, const bool);
+bool CheckProto_4(const Context&, const bool);
+bool CheckProto_5(const Context&, const bool);
+}  // namespace proto
+}  // namespace opentxs
 
-#endif // OPENTXS_PROTO_CONTEXT_HPP
+#endif  // OPENTXS_PROTO_CONTEXT_HPP

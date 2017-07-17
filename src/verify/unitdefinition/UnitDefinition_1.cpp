@@ -41,239 +41,172 @@
 
 #include <iostream>
 
- namespace opentxs { namespace proto
+namespace opentxs
+{
+namespace proto
 {
 
 bool CheckProto_1(
     const UnitDefinition& contract,
+    const bool silent,
     const bool checkSig)
 {
     if (!contract.has_id()) {
-        std::cerr << __FUNCTION__
-                  << ": Verify unit definition failed: missing identifier."
-                  << std::endl;
-
-        return false;
+        FAIL("unit definition", "missing id")
     }
 
     if (MIN_PLAUSIBLE_IDENTIFIER > contract.id().size()) {
-        std::cerr << __FUNCTION__
-                  << ": Verify unit definition failed: invalid identifier ("
-                  << contract.id() << ")." << std::endl;
-
-        return false;
+        FAIL2("unit definition", "invalid id", contract.id())
     }
 
     if (!contract.has_nymid()) {
-        std::cerr << __FUNCTION__
-                  << ": Verify unit definition failed: missing nymid."
-                  << std::endl;
-
-        return false;
+        FAIL("unit definition", "missing nym id")
     }
 
     if (MIN_PLAUSIBLE_IDENTIFIER > contract.nymid().size()) {
-        std::cerr << __FUNCTION__
-                  << ": Verify unit definition failed: invalid nymid ("
-                  << contract.nymid() << ")." << std::endl;
-
-        return false;
+        FAIL2("unit definition", "invalid nym id", contract.nymid())
     }
 
     if (contract.has_publicnym()) {
         bool goodPublicNym = Check(
             contract.publicnym(),
-            UnitDefinitionAllowedPublicNym.at(contract.version()).first,
-            UnitDefinitionAllowedPublicNym.at(contract.version()).second);
+            UnitDefinitionAllowedCredentialIndex.at(contract.version()).first,
+            UnitDefinitionAllowedCredentialIndex.at(contract.version()).second,
+            silent);
 
         if (!goodPublicNym) {
-            std::cerr << __FUNCTION__
-                      << ": Verify unit definition failed: invalid nym."
-                      << std::endl;
-
-            return false;
+            FAIL("unit definition", "invalid nym")
         }
 
         if (contract.nymid() != contract.publicnym().nymid()) {
-            std::cerr << __FUNCTION__
-                      << ": Verify unit definition failed: wrong nym."
-                      << std::endl;
-
-            return false;
+            FAIL("unit definition", "wrong nym")
         }
     }
 
     if (!contract.has_shortname()) {
-        std::cerr << __FUNCTION__
-                  << ": Verify unit definition failed: missing shortname."
-                  << std::endl;
-
-        return false;
+        FAIL("unit definition", "missing shortname")
     }
 
     if (1 > contract.shortname().size()) {
-        std::cerr << __FUNCTION__
-                  << ": Verify unit definition failed: invalid shortname ("
-                  << contract.shortname() << ")." << std::endl;
-
-        return false;
+        FAIL2("unit definition", "invalid shortname", contract.shortname())
     }
 
     if (!contract.has_terms()) {
-        std::cerr << __FUNCTION__
-                  << ": Verify unit definition failed: missing terms."
-                  << std::endl;
-
-        return false;
+        FAIL("unit definition", "missing terms")
     }
 
     if (1 > contract.terms().size()) {
-        std::cerr << __FUNCTION__
-                  << ": Verify unit definition failed: invalid terms ("
-                  << contract.terms() << ")." << std::endl;
-
-        return false;
+        FAIL2("unit definition", "invalid terms", contract.terms())
     }
 
     if (!contract.has_name()) {
-        std::cerr << __FUNCTION__
-                  << ": Verify unit definition failed: missing name."
-                  << std::endl;
-
-        return false;
+        FAIL("unit definition", "missing name")
     }
 
     if (1 > contract.name().size()) {
-        std::cerr << __FUNCTION__
-                  << ": Verify unit definition failed: invalid name ("
-                  << contract.name() << ")." << std::endl;
-
-        return false;
+        FAIL2("unit definition", "invalid name", contract.name())
     }
 
     if (!contract.has_symbol()) {
-        std::cerr << __FUNCTION__
-                  << ": Verify unit definition failed: missing symbol."
-                  << std::endl;
-
-        return false;
+        FAIL("unit definition", "missing symbol")
     }
 
     if (1 > contract.symbol().size()) {
-        std::cerr << __FUNCTION__
-                  << ": Verify unit definition failed: invalid symbol ("
-                  << contract.symbol() << ")." << std::endl;
-
-        return false;
+        FAIL2("unit definition", "invalid symbol", contract.symbol())
     }
 
     if (!contract.has_type()) {
-        std::cerr << __FUNCTION__
-                  << ": Verify unit definition failed: missing type."
-                  << std::endl;
-
-        return false;
+        FAIL("unit definition", "missing type")
     }
 
     bool goodParams = false;
 
     switch (contract.type()) {
-        case (UNITTYPE_CURRENCY) :
+        case (UNITTYPE_CURRENCY): {
             if (!contract.has_currency()) {
-                std::cerr << __FUNCTION__
-                        << ": Verify unit definition failed: missing"
-                        << " currency params." << std::endl;
-
-                return false;
+                FAIL("unit definition", "missing currency params")
             }
 
             goodParams = Check(
                 contract.currency(),
-                UnitDefinitionAllowedCurrencyParams.at(contract.version()).first,
-                UnitDefinitionAllowedCurrencyParams.at(contract.version()).second);
+                UnitDefinitionAllowedCurrencyParams.at(contract.version())
+                    .first,
+                UnitDefinitionAllowedCurrencyParams.at(contract.version())
+                    .second,
+                silent);
 
             if (!goodParams) {
-                std::cerr << __FUNCTION__
-                        << ": Verify unit definition failed: invalid currency"
-                        << " params." << std::endl;
-
-                return false;
+                FAIL("unit definition", "invalid currency params")
             }
 
-            break;
-        case (UNITTYPE_SECURITY) :
+        } break;
+        case (UNITTYPE_SECURITY): {
             if (!contract.has_security()) {
-                std::cerr << __FUNCTION__
-                << ": Verify unit definition failed: missing"
-                << " security params." << std::endl;
-
-                return false;
+                FAIL("unit definition", "missing security params")
             }
 
             goodParams = Check(
                 contract.security(),
-                UnitDefinitionAllowedSecurityParams.at(contract.version()).first,
-                UnitDefinitionAllowedSecurityParams.at(contract.version()).second);
+                UnitDefinitionAllowedSecurityParams.at(contract.version())
+                    .first,
+                UnitDefinitionAllowedSecurityParams.at(contract.version())
+                    .second,
+                silent);
 
             if (!goodParams) {
-                std::cerr << __FUNCTION__
-                        << ": Verify unit definition failed: invalid security"
-                        << " params." << std::endl;
-
-                return false;
+                FAIL("unit definition", "invalid security params")
             }
 
-            break;
-        case (UNITTYPE_BASKET) :
+        } break;
+        case (UNITTYPE_BASKET): {
             if (!contract.has_basket()) {
-                std::cerr << __FUNCTION__
-                << ": Verify unit definition failed: missing"
-                << " currency params." << std::endl;
-
-                return false;
+                FAIL("unit definition", "missing currency params")
             }
 
             goodParams = Check(
                 contract.basket(),
                 UnitDefinitionAllowedBasketParams.at(contract.version()).first,
-                UnitDefinitionAllowedBasketParams.at(contract.version()).second);
+                UnitDefinitionAllowedBasketParams.at(contract.version()).second,
+                silent);
 
             if (!goodParams) {
-                std::cerr << __FUNCTION__
-                        << ": Verify unit definition failed: invalid basket"
-                        << " params." << std::endl;
-
-                return false;
+                FAIL("unit definition", "invalid basket params")
             }
 
-            break;
-        default :
-            std::cerr << __FUNCTION__
-                    << ": Verify unit definition failed: invalid type."
-                    << std::endl;
-
-            return false;
+        } break;
+        default: {
+            FAIL("unit definition", "invalid type")
+        }
     }
 
     if (checkSig) {
         if (!Check(
-            contract.signature(),
-            UnitDefinitionAllowedSignature.at(contract.version()).first,
-            UnitDefinitionAllowedSignature.at(contract.version()).second,
-            SIGROLE_UNITDEFINITION)) {
-                std::cerr << __FUNCTION__
-                << ": Verify unit definition failed: invalid signature"
-                << " params." << std::endl;
-
-                return false;
+                contract.signature(),
+                UnitDefinitionAllowedSignature.at(contract.version()).first,
+                UnitDefinitionAllowedSignature.at(contract.version()).second,
+                silent,
+                SIGROLE_UNITDEFINITION)) {
+            FAIL("nit definition", "invalid signature")
         }
     }
 
     return true;
 }
-bool CheckProto_2(const UnitDefinition&, const bool) { return false; }
-bool CheckProto_3(const UnitDefinition&, const bool) { return false; }
-bool CheckProto_4(const UnitDefinition&, const bool) { return false; }
-bool CheckProto_5(const UnitDefinition&, const bool) { return false; }
-} // namespace proto
-} // namespace opentxs
+bool CheckProto_2(const UnitDefinition&, const bool, const bool)
+{
+    return false;
+}
+bool CheckProto_3(const UnitDefinition&, const bool, const bool)
+{
+    return false;
+}
+bool CheckProto_4(const UnitDefinition&, const bool, const bool)
+{
+    return false;
+}
+bool CheckProto_5(const UnitDefinition&, const bool, const bool)
+{
+    return false;
+}
+}  // namespace proto
+}  // namespace opentxs

@@ -41,119 +41,109 @@
 
 #include "opentxs-proto/Basic.hpp"
 
-namespace opentxs { namespace proto
+namespace opentxs
 {
-    class AsymmetricKey;
-    class ChildCredentialParameters;
-    class Ciphertext;
-    class Credential;
-    class CredentialIndex;
-    class CredentialSet;
-    class Envelope;
-    class HDPath;
-    class KeyCredential;
-    class MasterCredentialParameters;
-    class NymIDSource;
-    class PaymentCode;
-    class Seed;
-    class Signature;
-    class SourceProof;
-    class SymmetricKey;
+namespace proto
+{
+class AsymmetricKey;
+class ChildCredentialParameters;
+class Ciphertext;
+class Credential;
+class CredentialIndex;
+class CredentialSet;
+class Envelope;
+class HDPath;
+class KeyCredential;
+class MasterCredentialParameters;
+class NymIDSource;
+class PaymentCode;
+class Seed;
+class Signature;
+class SourceProof;
+class SymmetricKey;
 
-    static const VersionMap CredentialAllowedKeyCredentials =
-        {
-            { 1, {1, 1}},
-            { 2, {1, 1}},
-        };
-    static const VersionMap CredentialAllowedContactData =
-        {
-            { 1, {1, 1}},
-            { 2, {2, 2}},
-        };
-    static const VersionMap CredentialAllowedVerification =
-        {
-            { 1, {1, 1}},
-            { 2, {1, 1}},
-        };
-    static const VersionMap CredentialAllowedSignatures =
-        {
-            { 1, {1, 1}},
-            { 2, {1, 1}},
-        };
-    static const VersionMap CredentialAllowedMasterParams =
-        {
-            { 1, {1, 1}},
-            { 2, {1, 1}},
-        };
-    static const VersionMap CredentialAllowedChildParams =
-        {
-            { 1, {1, 1}},
-            { 2, {1, 1}},
-        };
-    static const VersionMap KeyCredentialAllowedAsymmetricKey =
-        {
-            { 1, {1, 1}},
-        };
-    static const VersionMap MasterParamsAllowedNymIDSource =
-        {
-            { 1, {1, 1}},
-        };
-    static const VersionMap MasterParamsAllowedSourceProof =
-        {
-            { 1, {1, 1}},
-        };
-    static const VersionMap NymIDSourceAllowedAsymmetricKey =
-        {
-            { 1, {1, 1}},
-        };
-    static const VersionMap NymIDSourceAllowedPaymentCode =
-        {
-            { 1, {1, 1}},
-        };
-    static const VersionMap CredentialIndexAllowedNymIDSource =
-        {
-            { 1, {1, 1}},
-            { 2, {1, 1}},
-        };
-    static const VersionMap CredentialIndexAllowedCredentialSets =
-        {
-            { 1, {1, 1}},
-            { 2, {1, 2}},
-        };
-    static const VersionMap CredentialSetAllowedCredentials =
-        {
-            { 1, {1, 1}},
-            { 2, {1, 2}},
-        };
-    static const VersionMap AsymmetricKeyAllowedHDPath =
-        {
-            { 1, {1, 1}},
-        };
-    static const VersionMap AsymmetricKeyAllowedCiphertext =
-        {
-            { 1, {1, 1}},
-        };
-    static const VersionMap SeedAllowedCiphertext =
-        {
-            { 1, {1, 1}},
-            { 2, {1, 1}},
-        };
-    static const VersionMap CiphertextAllowedSymmetricKey =
-        {
-            { 1, {1, 1}},
-        };
-    static const VersionMap SymmetricKeyAllowedCiphertext =
-        {
-            { 1, {1, 1}},
-        };
-    static const VersionMap EnvelopeAllowedAsymmetricKey =
-        {
-            { 1, {1, 1}},
-        };
-    static const VersionMap EnvelopeAllowedCiphertext =
-        {
-            { 1, {1, 1}},
-        };
-} // namespace proto
-} // namespace opentxs
-#endif // OPENTXS_PROTO_VERIFYCREDENTIALS_HPP
+static const VersionMap CredentialAllowedKeyCredentials = {
+    {1, {1, 1}},
+    {2, {1, 1}},
+    {3, {1, 1}},
+};
+static const VersionMap CredentialAllowedContactData = {
+    {1, {1, 1}},
+    {2, {2, 2}},
+    {3, {3, 3}},
+};
+static const VersionMap CredentialAllowedVerification = {
+    {1, {1, 1}},
+    {2, {1, 1}},
+    {3, {1, 1}},
+};
+static const VersionMap CredentialAllowedSignatures = {
+    {1, {1, 1}},
+    {2, {1, 1}},
+    {3, {1, 1}},
+};
+static const VersionMap CredentialAllowedMasterParams = {
+    {1, {1, 1}},
+    {2, {1, 1}},
+    {3, {1, 1}},
+};
+static const VersionMap CredentialAllowedChildParams = {
+    {1, {1, 1}},
+    {2, {1, 1}},
+    {3, {1, 1}},
+};
+static const VersionMap KeyCredentialAllowedAsymmetricKey = {
+    {1, {1, 1}},
+};
+static const VersionMap MasterParamsAllowedNymIDSource = {
+    {1, {1, 1}},
+};
+static const VersionMap MasterParamsAllowedSourceProof = {
+    {1, {1, 1}},
+};
+static const VersionMap NymIDSourceAllowedAsymmetricKey = {
+    {1, {1, 1}},
+};
+static const VersionMap NymIDSourceAllowedPaymentCode = {
+    {1, {1, 1}},
+};
+static const VersionMap CredentialIndexAllowedNymIDSource = {
+    {1, {1, 1}},
+    {2, {1, 1}},
+    {3, {1, 1}},
+};
+static const VersionMap CredentialIndexAllowedCredentialSets = {
+    {1, {1, 1}},
+    {2, {1, 2}},
+    {3, {1, 3}},
+};
+static const VersionMap CredentialSetAllowedCredentials = {
+    {1, {1, 1}},
+    {2, {1, 2}},
+    {3, {1, 3}},
+};
+static const VersionMap AsymmetricKeyAllowedHDPath = {
+    {1, {1, 1}},
+};
+static const VersionMap AsymmetricKeyAllowedCiphertext = {
+    {1, {1, 1}},
+};
+static const VersionMap SeedAllowedCiphertext = {
+    {1, {1, 1}},
+    {2, {1, 1}},
+};
+static const VersionMap CiphertextAllowedSymmetricKey = {
+    {1, {1, 1}},
+};
+static const VersionMap SymmetricKeyAllowedCiphertext = {
+    {1, {1, 1}},
+};
+static const VersionMap EnvelopeAllowedAsymmetricKey = {
+    {1, {1, 1}},
+};
+static const VersionMap EnvelopeAllowedCiphertext = {
+    {1, {1, 1}},
+};
+}  // namespace proto
+}  // namespace opentxs
+#endif  // OPENTXS_PROTO_VERIFYCREDENTIALS_HPP

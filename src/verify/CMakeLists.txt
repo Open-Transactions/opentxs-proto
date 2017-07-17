@@ -13,6 +13,7 @@ set(cxx-sources
   clientcontext/ClientContext_1.cpp
   connectioninfo/ConnectionInfo_1.cpp
   connectioninforeply/ConnectionInfoReply_1.cpp
+  contact/Contact_1.cpp
   contactdata/ContactData_1.cpp
   contactitem/ContactItem_1.cpp
   contactsection/ContactSection_1.cpp
@@ -47,10 +48,13 @@ set(cxx-sources
   signature/Signature_1.cpp
   signature/Signature_2.cpp
   sourceproof/SourceProof_1.cpp
+  storagecontacts/StorageContacts_1.cpp
   storagecredentials/StorageCredentials_1.cpp
-  storageitems/StorageItems_1.cpp
+  storageidlist/StorageIDList_1.cpp
   storageitemhash/StorageItemHash_1.cpp
   storageitemhash/StorageItemHash_2.cpp
+  storageitems/StorageItems_1.cpp
+  storageitems/StorageItems_2.cpp
   storagenym/StorageNym_1.cpp
   storagenym/StorageNym_2.cpp
   storagenym/StorageNym_3.cpp

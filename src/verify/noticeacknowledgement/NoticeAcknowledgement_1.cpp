@@ -37,34 +37,37 @@
  ************************************************************/
 
 #include "opentxs-proto/Types.hpp"
+#include "opentxs-proto/Check.hpp"
 
 #include <iostream>
 
-namespace opentxs { namespace proto
+namespace opentxs
+{
+namespace proto
 {
 
-bool CheckProto_1(const NoticeAcknowledgement& reply)
+bool CheckProto_1(const NoticeAcknowledgement& reply, const bool silent)
 {
     if (!reply.has_ack()) {
-        std::cerr << "Verify bailment reply failed: missing ack/nack."
-                  << std::endl;
-        return false;
+        FAIL("notice acknowledgedment", "missing ack/nack")
     }
 
     return true;
 }
 
-bool CheckProto_2(const NoticeAcknowledgement& reply) {
+bool CheckProto_2(const NoticeAcknowledgement& reply, const bool silent)
+{
 
-    return CheckProto_1(reply);
+    return CheckProto_1(reply, silent);
 }
 
-bool CheckProto_3(const NoticeAcknowledgement& reply) {
+bool CheckProto_3(const NoticeAcknowledgement& reply, const bool silent)
+{
 
-    return CheckProto_1(reply);
+    return CheckProto_1(reply, silent);
 }
 
-bool CheckProto_4(const NoticeAcknowledgement&) { return false; }
-bool CheckProto_5(const NoticeAcknowledgement&) { return false; }
-} // namespace proto
-} // namespace opentxs
+bool CheckProto_4(const NoticeAcknowledgement&, const bool) { return false; }
+bool CheckProto_5(const NoticeAcknowledgement&, const bool) { return false; }
+}  // namespace proto
+}  // namespace opentxs

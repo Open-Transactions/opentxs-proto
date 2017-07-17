@@ -37,42 +37,42 @@
  ************************************************************/
 
 #include "opentxs-proto/Types.hpp"
+#include "opentxs-proto/Check.hpp"
 
 #include <iostream>
 
-namespace opentxs { namespace proto
+namespace opentxs
+{
+namespace proto
 {
 
 bool CheckProto_1(
-    const SourceProof& serializedSourceProof,
+    const SourceProof& proot,
+    const bool silent,
     bool& ExpectSourceSignature)
 {
-    if (!serializedSourceProof.has_type()) {
-        std::cerr << "Verify serialized source proof failed: missing type." << std::endl;
-        return false;
+    if (!proot.has_type()) {
+        FAIL("source proof", "missing type")
     }
 
-    switch (serializedSourceProof.type()) {
-        case SOURCEPROOFTYPE_SELF_SIGNATURE :
+    switch (proot.type()) {
+        case SOURCEPROOFTYPE_SELF_SIGNATURE:
             ExpectSourceSignature = false;
 
             break;
-        case SOURCEPROOFTYPE_SIGNATURE :
+        case SOURCEPROOFTYPE_SIGNATURE:
             ExpectSourceSignature = true;
 
             break;
-        default :
-            std::cerr << "Verify source proof failed: incorrect or unknown type ("
-                    << serializedSourceProof.type() << ")." << std::endl;
-
-            return false;
+        default:
+            FAIL2("source proof", "incorrect or unknown type", proot.type())
     }
 
     return true;
 }
-bool CheckProto_2(const SourceProof&, bool&) { return false; }
-bool CheckProto_3(const SourceProof&, bool&) { return false; }
-bool CheckProto_4(const SourceProof&, bool&) { return false; }
-bool CheckProto_5(const SourceProof&, bool&) { return false; }
-} // namespace proto
-} // namespace opentxs
+bool CheckProto_2(const SourceProof&, const bool, bool&) { return false; }
+bool CheckProto_3(const SourceProof&, const bool, bool&) { return false; }
+bool CheckProto_4(const SourceProof&, const bool, bool&) { return false; }
+bool CheckProto_5(const SourceProof&, const bool, bool&) { return false; }
+}  // namespace proto
+}  // namespace opentxs

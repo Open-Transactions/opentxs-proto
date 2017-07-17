@@ -41,92 +41,86 @@
 
 #include <iostream>
 
-namespace opentxs { namespace proto
+namespace opentxs
+{
+namespace proto
 {
 
 bool CheckProto_1(
     const Verification& verification,
+    const bool silent,
     const VerificationType indexed)
 {
     if (indexed) {
         if (!verification.has_id()) {
-            std::cerr << "Verify serialized verification failed: missing ID."
-                      << std::endl;
-            return false;
+            FAIL("verification", "missing ID")
         }
 
         if (MIN_PLAUSIBLE_IDENTIFIER > verification.id().size()) {
-            std::cerr << "Verify serialized verification failed: invalid ID."
-                      << std::endl;
-            return false;
+            FAIL("verification", "invalid ID")
         }
     } else {
         if (verification.has_id()) {
-            std::cerr << "Verify serialized verification failed: ID field not "
-                      << "empty." << std::endl;
-            return false;
+            FAIL("verification", "ID field not empty")
         }
     }
 
     if (!verification.has_claim()) {
-        std::cerr << "Verify serialized verification failed: missing claim."
-        << std::endl;
-        return false;
+        FAIL("verification", "missing claim")
     }
 
     if (MIN_PLAUSIBLE_IDENTIFIER > verification.claim().size()) {
-        std::cerr << "Verify serialized verification failed: invalid claim."
-        << std::endl;
-        return false;
+        FAIL("verification", "invalid claim")
     }
 
     if (!verification.has_valid()) {
-        std::cerr << "Verify serialized verification failed: missing validity."
-        << std::endl;
-        return false;
+        FAIL("verification", "missing validity")
     }
 
     if (!verification.has_start()) {
-        std::cerr << "Verify serialized verification failed: missing start time."
-        << std::endl;
-        return false;
+        FAIL("verification", "missing start time")
     }
 
     if (!verification.has_end()) {
-        std::cerr << "Verify serialized verification failed: missing end time."
-        << std::endl;
-        return false;
+        FAIL("verification", "missing end time")
     }
 
     if (verification.end() < verification.start()) {
-        std::cerr << "Verify serialized verification failed: invalid end time."
-        << std::endl;
-        return false;
+        FAIL("verification", "invalid end time")
     }
 
     if (!verification.has_sig()) {
-        std::cerr << "Verify serialized verification failed: missing signature."
-        << std::endl;
-        return false;
+        FAIL("verification", "missing signature")
     }
 
     bool validSignature = Check(
         verification.sig(),
         VerificationAllowedSignature.at(verification.version()).first,
         VerificationAllowedSignature.at(verification.version()).second,
+        silent,
         proto::SIGROLE_CLAIM);
 
     if (!validSignature) {
-        std::cerr << "Verify serialized verification failed: invalid signature."
-                  << std::endl;
-        return false;
+        FAIL("verification", "invalid signature")
     }
 
     return true;
 }
-bool CheckProto_2(const Verification&, const VerificationType) { return false; }
-bool CheckProto_3(const Verification&, const VerificationType) { return false; }
-bool CheckProto_4(const Verification&, const VerificationType) { return false; }
-bool CheckProto_5(const Verification&, const VerificationType) { return false; }
-} // namespace proto
-} // namespace opentxs
+bool CheckProto_2(const Verification&, const bool, const VerificationType)
+{
+    return false;
+}
+bool CheckProto_3(const Verification&, const bool, const VerificationType)
+{
+    return false;
+}
+bool CheckProto_4(const Verification&, const bool, const VerificationType)
+{
+    return false;
+}
+bool CheckProto_5(const Verification&, const bool, const VerificationType)
+{
+    return false;
+}
+}  // namespace proto
+}  // namespace opentxs

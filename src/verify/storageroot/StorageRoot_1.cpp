@@ -37,43 +37,34 @@
  ************************************************************/
 
 #include "opentxs-proto/Types.hpp"
+#include "opentxs-proto/Check.hpp"
 
 #include <iostream>
 
-namespace opentxs { namespace proto
+namespace opentxs
+{
+namespace proto
 {
 
-bool CheckProto_1(const StorageRoot& root)
+bool CheckProto_1(const StorageRoot& root, const bool silent)
 {
     if (!root.has_items()) {
-        std::cerr << "Verify serialized storage root failed: missing hash."
-                  << std::endl;
-
-        return false;
+        FAIL("storage root", "missing hash")
     }
 
     if (MIN_PLAUSIBLE_IDENTIFIER > root.items().size()) {
-        std::cerr << "Verify serialized storage root failed: invalid hash."
-                  << std::endl;
-
-        return false;
+        FAIL("storage root", "invalid hash")
     }
 
     if (MAX_PLAUSIBLE_IDENTIFIER < root.items().size()) {
-        std::cerr << "Verify serialized storage root failed: invalid hash."
-                  << std::endl;
-
-        return false;
+        FAIL("storage root", "invalid hash")
     }
 
     if (root.has_sequence()) {
-        std::cerr << "Verify serialized storage root failed: sequence present "
-                  << "in version 1." << std::endl;
-
-        return false;
+        FAIL("storage root", "unexpected sequence field present")
     }
 
     return true;
 }
-} // namespace proto
-} // namespace opentxs
+}  // namespace proto
+}  // namespace opentxs

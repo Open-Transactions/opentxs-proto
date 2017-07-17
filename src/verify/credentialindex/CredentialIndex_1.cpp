@@ -41,151 +41,117 @@
 
 #include <iostream>
 
-namespace opentxs { namespace proto
+namespace opentxs
+{
+namespace proto
 {
 
-bool CheckProto_1(const CredentialIndex& serializedCredIndex)
+bool CheckProto_1(const CredentialIndex& index, const bool silent)
 {
     bool validSource = false;
 
-    if (!serializedCredIndex.has_nymid()) {
-        std::cerr << "Verify serialized credential index failed: missing nym "
-                  << "identifier." << std::endl;
-
-        return false;
+    if (!index.has_nymid()) {
+        FAIL("credential index", "missing nym id")
     }
 
-    if (MIN_PLAUSIBLE_IDENTIFIER > serializedCredIndex.nymid().size()) {
-        std::cerr << "Verify serialized credential index failed: invalid nym "
-                  << "identifier (" << serializedCredIndex.nymid() << ")."
-                  << std::endl;
-
-        return false;
+    if (MIN_PLAUSIBLE_IDENTIFIER > index.nymid().size()) {
+        FAIL2("credential index", "invalid nym id", index.nymid())
     }
 
-    if (!serializedCredIndex.has_mode()) {
-        std::cerr << "Verify serialized credential index failed: missing "
-                  << "mode." << std::endl;
-
-        return false;
+    if (!index.has_mode()) {
+        FAIL("credential index", "missing mode")
     }
 
-    const auto actualMode = serializedCredIndex.mode();
+    const auto actualMode = index.mode();
 
-    if (!serializedCredIndex.has_revision()) {
-        std::cerr << "Verify serialized credential index failed: missing "
-                  << "revision." << std::endl;
-
-        return false;
+    if (!index.has_revision()) {
+        FAIL("credential index", "missing revision")
     }
 
-    if (1 > serializedCredIndex.revision()) {
-        std::cerr << "Verify serialized credential index failed: invalid"
-                  << " revision (" << serializedCredIndex.revision() << ")."
-                  << std::endl;
-        return false;
+    if (1 > index.revision()) {
+        FAIL2("credential index", "invalid revision", index.revision())
     }
 
-    if (!serializedCredIndex.has_source()) {
-        std::cerr << "Verify serialized credential index failed: missing "
-                  << "nym identifier source." << std::endl;
-
-        return false;
+    if (!index.has_source()) {
+        FAIL("credential index", "missing nym id source")
     }
 
     validSource = Check(
-        serializedCredIndex.source(),
-        CredentialIndexAllowedNymIDSource.at(
-            serializedCredIndex.version()).first,
-        CredentialIndexAllowedNymIDSource.at(
-            serializedCredIndex.version()).second);
+        index.source(),
+        CredentialIndexAllowedNymIDSource.at(index.version()).first,
+        CredentialIndexAllowedNymIDSource.at(index.version()).second,
+        silent);
 
     if (!validSource) {
-        std::cerr << "Verify serialized credential index failed: invalid "
-                  << "source." << std::endl;
-
-        return false;
+        FAIL("credential index", "invalid nym id source")
     }
 
     bool haveHD = false;
 
-    for (auto& it: serializedCredIndex.activecredentials()) {
+    for (auto& it : index.activecredentials()) {
         if (!Check(
                 it,
-                CredentialIndexAllowedCredentialSets.at(
-                    serializedCredIndex.version()).first,
-                CredentialIndexAllowedCredentialSets.at(
-                    serializedCredIndex.version()).second,
-                serializedCredIndex.nymid(),
-                (CREDINDEX_PRIVATE == actualMode)
-                    ? KEYMODE_PRIVATE : KEYMODE_PUBLIC,
+                CredentialIndexAllowedCredentialSets.at(index.version()).first,
+                CredentialIndexAllowedCredentialSets.at(index.version()).second,
+                silent,
+                index.nymid(),
+                (CREDINDEX_PRIVATE == actualMode) ? KEYMODE_PRIVATE
+                                                  : KEYMODE_PUBLIC,
                 haveHD)) {
-                    std::cerr << "Verify serialized credential index failed: "
-                              << "invalid credential set." << std::endl;
-
-                    return false;
+            FAIL("credential index", "invalid credential set")
         }
     }
 
-    for (auto& it: serializedCredIndex.revokedcredentials()) {
+    for (auto& it : index.revokedcredentials()) {
         if (!Check(
                 it,
-                CredentialIndexAllowedCredentialSets.at(
-                    serializedCredIndex.version()).first,
-                CredentialIndexAllowedCredentialSets.at(
-                    serializedCredIndex.version()).second,
-                serializedCredIndex.nymid(),
-                (CREDINDEX_PRIVATE == actualMode)
-                    ? KEYMODE_PRIVATE : KEYMODE_PUBLIC,
+                CredentialIndexAllowedCredentialSets.at(index.version()).first,
+                CredentialIndexAllowedCredentialSets.at(index.version()).second,
+                silent,
+                index.nymid(),
+                (CREDINDEX_PRIVATE == actualMode) ? KEYMODE_PRIVATE
+                                                  : KEYMODE_PUBLIC,
                 haveHD)) {
-                    std::cerr << "Verify serialized credential index failed: "
-                              << "invalid credential set." << std::endl;
-
-                    return false;
+            FAIL("credential index", "invalid credential set")
         }
     }
 
     switch (actualMode) {
-        case (CREDINDEX_PRIVATE) : {
+        case (CREDINDEX_PRIVATE): {
             if (haveHD) {
-                if (1 > serializedCredIndex.index()) {
-                    std::cerr << "Verify serialized credential index failed: "
-                            << "missing index." << std::endl;
-
-                    return false;
+                if (1 > index.index()) {
+                    FAIL("credential index", "missing index")
                 }
             }
 
             break;
         }
-        case (CREDINDEX_PUBLIC) : {
-            if (serializedCredIndex.has_index()) {
-                std::cerr << "Verify serialized credential index failed: "
-                          << "index present in public mode." << std::endl;
-
-                return false;
+        case (CREDINDEX_PUBLIC): {
+            if (index.has_index()) {
+                FAIL("credential index", "index present in public mode")
             }
 
             break;
         }
-        default : {
-            std::cerr << "Verify serialized credential index failed: invalid "
-                      << "mode: (" << actualMode << ")" << std::endl;
-
-            return false;
+        default: {
+            FAIL2("credential index", "invalid mode", actualMode)
         }
     }
 
     return true;
 }
 
-bool CheckProto_2(const CredentialIndex& serializedCredIndex)
+bool CheckProto_2(const CredentialIndex& index, const bool silent)
 {
-    return CheckProto_1(serializedCredIndex);
+    return CheckProto_1(index, silent);
 }
 
-bool CheckProto_3(const CredentialIndex&) { return false; }
-bool CheckProto_4(const CredentialIndex&) { return false; }
-bool CheckProto_5(const CredentialIndex&) { return false; }
-} // namespace proto
-} // namespace opentxs
+bool CheckProto_3(const CredentialIndex& index, const bool silent)
+{
+    return CheckProto_1(index, silent);
+}
+
+bool CheckProto_4(const CredentialIndex&, const bool) { return false; }
+bool CheckProto_5(const CredentialIndex&, const bool) { return false; }
+}  // namespace proto
+}  // namespace opentxs

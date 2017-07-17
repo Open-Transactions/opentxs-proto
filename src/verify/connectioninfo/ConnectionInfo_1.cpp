@@ -37,67 +37,52 @@
  ************************************************************/
 
 #include "opentxs-proto/Types.hpp"
+#include "opentxs-proto/Check.hpp"
 
 #include <iostream>
 
-namespace opentxs { namespace proto
+namespace opentxs
 {
-bool CheckProto_1(const ConnectionInfo& request)
+namespace proto
+{
+bool CheckProto_1(const ConnectionInfo& request, const bool silent)
 {
     if (!request.has_type()) {
-        std::cerr << "Verify ConnectionInfo failed: missing type."
-                  << std::endl;
-
-        return false;
+        FAIL("ConnectionInfo", "missing type")
     }
 
     if ((CONNECTIONINFO_BITCOIN > request.type()) ||
-        (CONNECTIONINFO_BITMESSAGERPC < request.type()))
-    {
-        std::cerr << "Verify ConnectionInfo failed: invalid type ("
-                << request.type() << ")." << std::endl;
-
-        return false;
+        (CONNECTIONINFO_BITMESSAGERPC < request.type())) {
+        FAIL2("ConnectionInfo", "invalid type", request.type())
     }
 
     if (request.has_nym()) {
-        std::cerr << "Verify ConnectionInfo failed: for field present in "
-                  << "version " << request.version() << " request."
-                  << std::endl;
-
-        return false;
+        FAIL("ConnectionInfo", "unexpected 'for' field present")
     }
 
     return true;
 }
 
-bool CheckProto_2(const ConnectionInfo& request)
+bool CheckProto_2(const ConnectionInfo& request, const bool silent)
 {
-    return CheckProto_1(request);
+    return CheckProto_1(request, silent);
 }
 
-bool CheckProto_3(const ConnectionInfo& request)
+bool CheckProto_3(const ConnectionInfo& request, const bool silent)
 {
     if (!request.has_type()) {
-        std::cerr << "Verify ConnectionInfo failed: missing type."
-                  << std::endl;
-
-        return false;
+        FAIL("ConnectionInfo", "missing type")
     }
 
     if ((CONNECTIONINFO_BITCOIN > request.type()) ||
-        (CONNECTIONINFO_CJDNS < request.type()))
-    {
-        std::cerr << "Verify ConnectionInfo failed: invalid type ("
-                << request.type() << ")." << std::endl;
-
-        return false;
+        (CONNECTIONINFO_CJDNS < request.type())) {
+        FAIL2("ConnectionInfo", "invalid type", request.type())
     }
 
     return true;
 }
 
-bool CheckProto_4(const ConnectionInfo&) { return false; }
-bool CheckProto_5(const ConnectionInfo&) { return false; }
-} // namespace proto
-} // namespace opentxs
+bool CheckProto_4(const ConnectionInfo&, const bool) { return false; }
+bool CheckProto_5(const ConnectionInfo&, const bool) { return false; }
+}  // namespace proto
+}  // namespace opentxs

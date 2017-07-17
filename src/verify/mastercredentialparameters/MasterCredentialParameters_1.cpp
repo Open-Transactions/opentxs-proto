@@ -41,47 +41,62 @@
 
 #include <iostream>
 
-namespace opentxs { namespace proto
+namespace opentxs
+{
+namespace proto
 {
 
 bool CheckProto_1(
-    const MasterCredentialParameters& serializedMasterParams,
+    const MasterCredentialParameters& master,
+    const bool silent,
     bool& expectSourceSignature)
 {
-    bool validSource = false;
-    bool validProof = false;
+    if (false == master.has_source()) {
+        FAIL("master parameters", "missing nym id source")
+    }
 
-    validSource = Check(
-        serializedMasterParams.source(),
-        MasterParamsAllowedNymIDSource.at(serializedMasterParams.version()).first,
-        MasterParamsAllowedNymIDSource.at(serializedMasterParams.version()).second);
+    const bool validSource = Check(
+        master.source(),
+        MasterParamsAllowedNymIDSource.at(master.version()).first,
+        MasterParamsAllowedNymIDSource.at(master.version()).second,
+        silent);
 
     if (!validSource) {
-        std::cerr << "Verify serialized master parameters failed: invalid nym id source." << std::endl;
-        return false;
+        FAIL("master parameters", "invalid nym id source")
     }
 
-    if (!serializedMasterParams.has_sourceproof()) {
-        std::cerr << "Verify serialized master parameters failed: missing source proof." << std::endl;
-        return false;
+    if (!master.has_sourceproof()) {
+        FAIL("master parameters", "missing nym id source proof")
     }
 
-    validProof = Check(
-        serializedMasterParams.sourceproof(),
-        MasterParamsAllowedSourceProof.at(serializedMasterParams.version()).first,
-        MasterParamsAllowedSourceProof.at(serializedMasterParams.version()).second,
+    const bool validProof = Check(
+        master.sourceproof(),
+        MasterParamsAllowedSourceProof.at(master.version()).first,
+        MasterParamsAllowedSourceProof.at(master.version()).second,
+        silent,
         expectSourceSignature);
 
     if (!validProof) {
-        std::cerr << "Verify serialized master parameters failed: invalid nym id source proof." << std::endl;
-        return false;
+        FAIL("master parameters", "invalid nym id source proof")
     }
 
     return true;
 }
-bool CheckProto_2(const MasterCredentialParameters&, bool&) { return false; }
-bool CheckProto_3(const MasterCredentialParameters&, bool&) { return false; }
-bool CheckProto_4(const MasterCredentialParameters&, bool&) { return false; }
-bool CheckProto_5(const MasterCredentialParameters&, bool&) { return false; }
-} // namespace proto
-} // namespace opentxs
+bool CheckProto_2(const MasterCredentialParameters&, const bool, bool&)
+{
+    return false;
+}
+bool CheckProto_3(const MasterCredentialParameters&, const bool, bool&)
+{
+    return false;
+}
+bool CheckProto_4(const MasterCredentialParameters&, const bool, bool&)
+{
+    return false;
+}
+bool CheckProto_5(const MasterCredentialParameters&, const bool, bool&)
+{
+    return false;
+}
+}  // namespace proto
+}  // namespace opentxs

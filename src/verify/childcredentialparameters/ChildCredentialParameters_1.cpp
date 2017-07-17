@@ -37,31 +37,43 @@
  ************************************************************/
 
 #include "opentxs-proto/Types.hpp"
+#include "opentxs-proto/Check.hpp"
 
 #include <iostream>
 
-namespace opentxs { namespace proto
+namespace opentxs
+{
+namespace proto
 {
 
-bool CheckProto_1(
-    const ChildCredentialParameters& serializedChildParams)
+bool CheckProto_1(const ChildCredentialParameters& child, const bool silent)
 {
-    if (!serializedChildParams.has_masterid()) {
-        std::cerr << "Verify serialized child parameters failed: missing master identifier." << std::endl;
-        return false;
+    if (!child.has_masterid()) {
+        FAIL("child parameters", "missing master identifier")
     }
 
-    if (MIN_PLAUSIBLE_IDENTIFIER > serializedChildParams.masterid().size()) {
-        std::cerr << "Verify serialized credential failed: invalid master identifier ("
-                << serializedChildParams.masterid() << ")." << std::endl;
-        return false;
+    if (MIN_PLAUSIBLE_IDENTIFIER > child.masterid().size()) {
+        FAIL2("child parameters", "invalid master identifier", child.masterid())
     }
 
     return true;
 }
-bool CheckProto_2(const ChildCredentialParameters&) { return false; }
-bool CheckProto_3(const ChildCredentialParameters&) { return false; }
-bool CheckProto_4(const ChildCredentialParameters&) { return false; }
-bool CheckProto_5(const ChildCredentialParameters&) { return false; }
-} // namespace proto
-} // namespace opentxs
+
+bool CheckProto_2(const ChildCredentialParameters&, const bool)
+{
+    return false;
+}
+bool CheckProto_3(const ChildCredentialParameters&, const bool)
+{
+    return false;
+}
+bool CheckProto_4(const ChildCredentialParameters&, const bool)
+{
+    return false;
+}
+bool CheckProto_5(const ChildCredentialParameters&, const bool)
+{
+    return false;
+}
+}  // namespace proto
+}  // namespace opentxs

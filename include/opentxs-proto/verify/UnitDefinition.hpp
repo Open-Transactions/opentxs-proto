@@ -41,16 +41,31 @@
 
 #include "VerifyContracts.hpp"
 
-namespace opentxs { namespace proto
+namespace opentxs
 {
-    bool CheckProto_1(
-        const UnitDefinition& contract,
-        const bool checkSig = true);
-    bool CheckProto_2(const UnitDefinition&, const bool checkSig = true);
-    bool CheckProto_3(const UnitDefinition&, const bool checkSig = true);
-    bool CheckProto_4(const UnitDefinition&, const bool checkSig = true);
-    bool CheckProto_5(const UnitDefinition&, const bool checkSig = true);
-} // namespace proto
-} // namespace opentxs
+namespace proto
+{
+bool CheckProto_1(
+    const UnitDefinition& contract,
+    const bool silent,
+    const bool checkSig = true);
+bool CheckProto_2(
+    const UnitDefinition&,
+    const bool,
+    const bool checkSig = true);
+bool CheckProto_3(
+    const UnitDefinition&,
+    const bool,
+    const bool checkSig = true);
+bool CheckProto_4(
+    const UnitDefinition&,
+    const bool,
+    const bool checkSig = true);
+bool CheckProto_5(
+    const UnitDefinition&,
+    const bool,
+    const bool checkSig = true);
+}  // namespace proto
+}  // namespace opentxs
 
-#endif // OPENTXS_PROTO_UNITDEFINITION_HPP
+#endif  // OPENTXS_PROTO_UNITDEFINITION_HPP

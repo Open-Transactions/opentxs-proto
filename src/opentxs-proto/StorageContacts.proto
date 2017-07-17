@@ -1,0 +1,13 @@
+syntax = "proto2";
+
+package opentxs.proto;
+option optimize_for = LITE_RUNTIME;
+
+import public "StorageIDList.proto";
+import public "StorageItemHash.proto";
+
+message StorageContacts {
+    optional uint32 version = 1;
+    repeated StorageIDList merge = 2;
+    repeated StorageItemHash contact = 3;
+}
