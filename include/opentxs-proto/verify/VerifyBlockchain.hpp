@@ -36,31 +36,38 @@
  *
  ************************************************************/
 
-#ifndef OPENTXS_PROTO_BASIC_HPP
-#define OPENTXS_PROTO_BASIC_HPP
+#ifndef OPENTXS_PROTO_VERIFYBLOCKCHAIN_HPP
+#define OPENTXS_PROTO_VERIFYBLOCKCHAIN_HPP
 
-#include <cstdint>
-#include <map>
-#include <tuple>
+#include "opentxs-proto/Basic.hpp"
 
 namespace opentxs
 {
 namespace proto
 {
-// This defined a map between the version of the parent object
-// and the (minimum, maximum) acceptable versions of a child object.
-typedef std::map<std::uint32_t, std::pair<std::uint32_t, std::uint32_t>>
-    VersionMap;
 
-static const std::size_t MIN_PLAUSIBLE_IDENTIFIER = 20;
-static const std::size_t MAX_PLAUSIBLE_IDENTIFIER = 80;
-static const std::size_t MIN_PLAUSIBLE_KEYSIZE = 16;
-static const std::size_t MIN_PLAUSIBLE_SIGNATURE = 32;
-static const std::uint32_t MAX_VALID_PORT = 65535;
-static const std::size_t MAX_VALID_CONTACT_VALUE = 512;
-static const std::size_t MIN_PLAUSIBLE_SCRIPT = 2;
-static const std::size_t MAX_PLAUSIBLE_SCRIPT = 1048576;
+class Bip44Account;
+class Bip44Address;
+class BlockchainInput;
+class BlockchainOutput;
+class BlockchainTransaction;
+class StorageBlockchainAccountList;
+
+static const VersionMap Bip44AccountAllowedBip44Address = {
+    {1, {1, 1}},
+};
+static const VersionMap Bip44AccountAllowedHDPath = {
+    {1, {1, 1}},
+};
+static const VersionMap BlockchainTransactionAllowedInput = {
+    {1, {1, 1}},
+};
+static const VersionMap BlockchainTransactionAllowedOutput = {
+    {1, {1, 1}},
+};
+static const VersionMap StorageBlockchainTransactionsAllowedHash = {
+    {1, {1, 1}},
+};
 }  // namespace proto
 }  // namespace opentxs
-
-#endif  // OPENTXS_PROTO_BASIC_HPP
+#endif  // OPENTXS_PROTO_VERIFYBLOCKCHAIN_HPP

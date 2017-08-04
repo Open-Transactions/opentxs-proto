@@ -3,7 +3,8 @@ syntax = "proto2";
 package opentxs.proto;
 option optimize_for = LITE_RUNTIME;
 
-message StorageItems {
+message StorageItems
+{
     optional uint32 version = 1;
     optional string creds = 2;
     optional string nyms = 3;
@@ -11,4 +12,5 @@ message StorageItems {
     optional string units = 5;
     optional string seeds = 6;
     optional string contacts = 7;
+    optional string blockchaintransactions = 8;
 }

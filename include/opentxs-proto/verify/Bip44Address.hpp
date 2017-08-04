@@ -36,31 +36,21 @@
  *
  ************************************************************/
 
-#ifndef OPENTXS_PROTO_BASIC_HPP
-#define OPENTXS_PROTO_BASIC_HPP
+#ifndef OPENTXS_PROTO_BIP44_ADDRESS_HPP
+#define OPENTXS_PROTO_BIP44_ADDRESS_HPP
 
-#include <cstdint>
-#include <map>
-#include <tuple>
+#include "VerifyBlockchain.hpp"
 
 namespace opentxs
 {
 namespace proto
 {
-// This defined a map between the version of the parent object
-// and the (minimum, maximum) acceptable versions of a child object.
-typedef std::map<std::uint32_t, std::pair<std::uint32_t, std::uint32_t>>
-    VersionMap;
-
-static const std::size_t MIN_PLAUSIBLE_IDENTIFIER = 20;
-static const std::size_t MAX_PLAUSIBLE_IDENTIFIER = 80;
-static const std::size_t MIN_PLAUSIBLE_KEYSIZE = 16;
-static const std::size_t MIN_PLAUSIBLE_SIGNATURE = 32;
-static const std::uint32_t MAX_VALID_PORT = 65535;
-static const std::size_t MAX_VALID_CONTACT_VALUE = 512;
-static const std::size_t MIN_PLAUSIBLE_SCRIPT = 2;
-static const std::size_t MAX_PLAUSIBLE_SCRIPT = 1048576;
+bool CheckProto_1(const Bip44Address& address, const bool silent);
+bool CheckProto_2(const Bip44Address&, const bool);
+bool CheckProto_3(const Bip44Address&, const bool);
+bool CheckProto_4(const Bip44Address&, const bool);
+bool CheckProto_5(const Bip44Address&, const bool);
 }  // namespace proto
 }  // namespace opentxs
 
-#endif  // OPENTXS_PROTO_BASIC_HPP
+#endif  // OPENTXS_PROTO_BIP44_ADDRESS_HPP

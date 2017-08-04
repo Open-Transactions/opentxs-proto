@@ -36,31 +36,63 @@
  *
  ************************************************************/
 
-#ifndef OPENTXS_PROTO_BASIC_HPP
-#define OPENTXS_PROTO_BASIC_HPP
+#include "opentxs-proto/Types.hpp"
+#include "opentxs-proto/Check.hpp"
+#include "opentxs-proto/Contact.hpp"
 
-#include <cstdint>
-#include <map>
-#include <tuple>
+#include <iostream>
+
+#define CONTACT_VERSION 3
 
 namespace opentxs
 {
 namespace proto
 {
-// This defined a map between the version of the parent object
-// and the (minimum, maximum) acceptable versions of a child object.
-typedef std::map<std::uint32_t, std::pair<std::uint32_t, std::uint32_t>>
-    VersionMap;
 
-static const std::size_t MIN_PLAUSIBLE_IDENTIFIER = 20;
-static const std::size_t MAX_PLAUSIBLE_IDENTIFIER = 80;
-static const std::size_t MIN_PLAUSIBLE_KEYSIZE = 16;
-static const std::size_t MIN_PLAUSIBLE_SIGNATURE = 32;
-static const std::uint32_t MAX_VALID_PORT = 65535;
-static const std::size_t MAX_VALID_CONTACT_VALUE = 512;
-static const std::size_t MIN_PLAUSIBLE_SCRIPT = 2;
-static const std::size_t MAX_PLAUSIBLE_SCRIPT = 1048576;
+bool CheckProto_1(const StorageBlockchainAccountList& list, const bool silent)
+{
+    if (false == list.has_id()) {
+        FAIL("storage blockchain account list", "missing id")
+    }
+
+    const bool validChain = ValidContactItemType(
+        {CONTACT_VERSION, CONTACTSECTION_CONTRACT}, list.id());
+
+    if (false == validChain) {
+        FAIL("transaction", "invalid chain")
+    }
+
+    for (const auto& it : list.list()) {
+        if (MIN_PLAUSIBLE_IDENTIFIER > it.size()) {
+            FAIL2("storage blockchain account list", "invalid list item", it)
+        }
+
+        if (MAX_PLAUSIBLE_IDENTIFIER < it.size()) {
+            FAIL2("storage blockchain account list", "invalid list item", it)
+        }
+    }
+
+    return true;
+}
+
+bool CheckProto_2(const StorageBlockchainAccountList&, const bool)
+{
+    return false;
+}
+
+bool CheckProto_3(const StorageBlockchainAccountList&, const bool)
+{
+    return false;
+}
+
+bool CheckProto_4(const StorageBlockchainAccountList&, const bool)
+{
+    return false;
+}
+
+bool CheckProto_5(const StorageBlockchainAccountList&, const bool)
+{
+    return false;
+}
 }  // namespace proto
 }  // namespace opentxs
-
-#endif  // OPENTXS_PROTO_BASIC_HPP

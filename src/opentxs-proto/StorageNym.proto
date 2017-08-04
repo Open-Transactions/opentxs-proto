@@ -3,6 +3,8 @@ syntax = "proto2";
 package opentxs.proto;
 option optimize_for = LITE_RUNTIME;
 
+import public "Bip44Account.proto";
+import public "StorageBlockchainAccountList.proto";
 import public "StorageItemHash.proto";
 
 message StorageNym {
@@ -22,4 +24,6 @@ message StorageNym {
     optional StorageItemHash Threads = 14;
     optional StorageItemHash Contexts = 15;
     optional StorageItemHash Accounts = 16;
+    repeated StorageBlockchainAccountList BlockchainAccountIndex = 17;
+    repeated Bip44Account BlockchainAccount = 18;
 }

@@ -69,14 +69,21 @@ static const VersionMap StorageCredentialAllowedHash = {
     {1, {1, 1}},
     {2, {1, 2}},
 };
-static const VersionMap StorageNymListAllowedHash = {
-    {1, {1, 1}},
-    {2, {1, 2}},
-};
 static const VersionMap StorageNymAllowedHash = {
     {1, {1, 1}},
     {2, {1, 2}},
     {3, {2, 3}},
+    {4, {2, 4}},
+};
+static const VersionMap StorageNymAllowedBlockchainAccountList{
+    {4, {1, 1}},
+};
+static const VersionMap StorageNymAllowedBip44Account{
+    {4, {1, 1}},
+};
+static const VersionMap StorageNymListAllowedHash = {
+    {1, {1, 1}},
+    {2, {1, 2}},
 };
 static const VersionMap StorageServersAllowedHash = {
     {1, {1, 1}},

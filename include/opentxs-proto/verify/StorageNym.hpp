@@ -48,7 +48,7 @@ namespace proto
 bool CheckProto_1(const StorageNym& creds, const bool silent);
 bool CheckProto_2(const StorageNym& creds, const bool silent);
 bool CheckProto_3(const StorageNym& creds, const bool silent);
-bool CheckProto_4(const StorageNym&, const bool);
+bool CheckProto_4(const StorageNym& creds, const bool silent);
 bool CheckProto_5(const StorageNym&, const bool);
 }  // namespace proto
 }  // namespace opentxs

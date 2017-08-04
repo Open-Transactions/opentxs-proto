@@ -1,0 +1,26 @@
+syntax = "proto2";
+
+package opentxs.proto;
+option optimize_for = LITE_RUNTIME;
+
+import public "BlockchainTransactionInput.proto";
+import public "BlockchainTransactionOutput.proto";
+import public "ContactEnums.proto";
+
+message BlockchainTransaction {
+    optional uint32 version = 1;
+    optional ContactItemType chain = 2;
+    optional string txid = 3;
+    optional uint32 txversion = 4;
+    optional uint32 locktime = 5;
+    optional bytes serialized = 6;
+    repeated BlockchainTransactionInput input = 7;
+    repeated BlockchainTransactionOutput output = 8;
+    optional uint32 confirmations = 9;
+    optional string blockhash = 10;
+    optional uint32 blockindex = 11;
+    optional uint64 fee = 12;
+    optional int64 time = 13;
+    repeated string conflicts = 14;
+    optional string memo = 15;
+}

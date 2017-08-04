@@ -46,7 +46,7 @@ namespace opentxs
 namespace proto
 {
 
-bool CheckProto_1(const StorageItems& items, const bool silent)
+bool CheckProto_3(const StorageItems& items, const bool silent)
 {
     if (items.has_creds()) {
         if (MIN_PLAUSIBLE_IDENTIFIER > items.creds().size()) {
@@ -99,16 +99,30 @@ bool CheckProto_1(const StorageItems& items, const bool silent)
     }
 
     if (items.has_contacts()) {
-        FAIL("storage item index", "unexpected contact field found")
+        if (MIN_PLAUSIBLE_IDENTIFIER > items.contacts().size()) {
+            FAIL("storage item index", "invalid contact list")
+        }
+
+        if (MAX_PLAUSIBLE_IDENTIFIER < items.contacts().size()) {
+            FAIL("storage item index", "invalid contact list")
+        }
     }
 
     if (items.has_blockchaintransactions()) {
-        FAIL(
-            "storage item index",
-            "unexpected blockchaintransactions field found")
+        if (MIN_PLAUSIBLE_IDENTIFIER > items.blockchaintransactions().size()) {
+            FAIL("storage item index", "invalid blockchain transaction list")
+        }
+
+        if (MAX_PLAUSIBLE_IDENTIFIER < items.blockchaintransactions().size()) {
+            FAIL("storage item index", "invalid blockchain transaction list")
+        }
     }
 
     return true;
 }
+
+bool CheckProto_4(const StorageItems&, const bool) { return false; }
+
+bool CheckProto_5(const StorageItems&, const bool) { return false; }
 }  // namespace proto
 }  // namespace opentxs

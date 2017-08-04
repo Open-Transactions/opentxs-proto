@@ -36,31 +36,62 @@
  *
  ************************************************************/
 
-#ifndef OPENTXS_PROTO_BASIC_HPP
-#define OPENTXS_PROTO_BASIC_HPP
+#include "opentxs-proto/Types.hpp"
+#include "opentxs-proto/Check.hpp"
 
-#include <cstdint>
-#include <map>
-#include <tuple>
+#include <iostream>
 
 namespace opentxs
 {
 namespace proto
 {
-// This defined a map between the version of the parent object
-// and the (minimum, maximum) acceptable versions of a child object.
-typedef std::map<std::uint32_t, std::pair<std::uint32_t, std::uint32_t>>
-    VersionMap;
 
-static const std::size_t MIN_PLAUSIBLE_IDENTIFIER = 20;
-static const std::size_t MAX_PLAUSIBLE_IDENTIFIER = 80;
-static const std::size_t MIN_PLAUSIBLE_KEYSIZE = 16;
-static const std::size_t MIN_PLAUSIBLE_SIGNATURE = 32;
-static const std::uint32_t MAX_VALID_PORT = 65535;
-static const std::size_t MAX_VALID_CONTACT_VALUE = 512;
-static const std::size_t MIN_PLAUSIBLE_SCRIPT = 2;
-static const std::size_t MAX_PLAUSIBLE_SCRIPT = 1048576;
+bool CheckProto_1(const BlockchainTransactionInput& input, const bool silent)
+{
+    if (false == input.has_index()) {
+        FAIL("input", "missing index")
+    }
+
+    if (false == input.has_serializedscript()) {
+        FAIL("input", "missing serializedscript")
+    }
+
+    if (MIN_PLAUSIBLE_SCRIPT > input.serializedscript().size()) {
+        FAIL("input", "invalid serializedscript")
+    }
+
+    if (MAX_PLAUSIBLE_SCRIPT < input.serializedscript().size()) {
+        FAIL("input", "invalid serializedscript")
+    }
+
+    for (const auto& address : input.address()) {
+        if (MIN_PLAUSIBLE_IDENTIFIER > address.size()) {
+            FAIL("input", "invalid serializedscript")
+        }
+
+        if (MAX_PLAUSIBLE_IDENTIFIER < address.size()) {
+            FAIL("input", "invalid serializedscript")
+        }
+    }
+
+    return true;
+}
+
+bool CheckProto_2(const BlockchainTransactionInput&, const bool)
+{
+    return false;
+}
+bool CheckProto_3(const BlockchainTransactionInput&, const bool)
+{
+    return false;
+}
+bool CheckProto_4(const BlockchainTransactionInput&, const bool)
+{
+    return false;
+}
+bool CheckProto_5(const BlockchainTransactionInput&, const bool)
+{
+    return false;
+}
 }  // namespace proto
 }  // namespace opentxs
-
-#endif  // OPENTXS_PROTO_BASIC_HPP

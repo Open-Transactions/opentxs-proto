@@ -57,6 +57,11 @@
 #include <opentxs-proto/BailmentReply.pb.h>
 #include <opentxs-proto/BasketItem.pb.h>
 #include <opentxs-proto/BasketParams.pb.h>
+#include <opentxs-proto/Bip44Account.pb.h>
+#include <opentxs-proto/Bip44Address.pb.h>
+#include <opentxs-proto/BlockchainTransaction.pb.h>
+#include <opentxs-proto/BlockchainTransactionInput.pb.h>
+#include <opentxs-proto/BlockchainTransactionOutput.pb.h>
 #include <opentxs-proto/ChildCredentialParameters.pb.h>
 #include <opentxs-proto/Ciphertext.pb.h>
 #include <opentxs-proto/Claim.pb.h>
@@ -97,6 +102,8 @@
 #include <opentxs-proto/ServerContract.pb.h>
 #include <opentxs-proto/Signature.pb.h>
 #include <opentxs-proto/SourceProof.pb.h>
+#include <opentxs-proto/StorageBlockchainAccountList.pb.h>
+#include <opentxs-proto/StorageBlockchainTransactions.pb.h>
 #include <opentxs-proto/StorageContacts.pb.h>
 #include <opentxs-proto/StorageCredentials.pb.h>
 #include <opentxs-proto/StorageEnums.pb.h>
@@ -124,6 +131,11 @@
 #include <opentxs-proto/verify/BailmentReply.hpp>
 #include <opentxs-proto/verify/BasketItem.hpp>
 #include <opentxs-proto/verify/BasketParams.hpp>
+#include <opentxs-proto/verify/Bip44Account.hpp>
+#include <opentxs-proto/verify/Bip44Address.hpp>
+#include <opentxs-proto/verify/BlockchainTransaction.hpp>
+#include <opentxs-proto/verify/BlockchainTransactionInput.hpp>
+#include <opentxs-proto/verify/BlockchainTransactionOutput.hpp>
 #include <opentxs-proto/verify/ChildCredentialParameters.hpp>
 #include <opentxs-proto/verify/Ciphertext.hpp>
 #include <opentxs-proto/verify/Claim.hpp>
@@ -160,6 +172,8 @@
 #include <opentxs-proto/verify/Signature.hpp>
 #include <opentxs-proto/verify/Signature.hpp>
 #include <opentxs-proto/verify/SourceProof.hpp>
+#include <opentxs-proto/verify/StorageBlockchainAccountList.hpp>
+#include <opentxs-proto/verify/StorageBlockchainTransactions.hpp>
 #include <opentxs-proto/verify/StorageContacts.hpp>
 #include <opentxs-proto/verify/StorageCredentials.hpp>
 #include <opentxs-proto/verify/StorageIDList.hpp>

@@ -45,51 +45,53 @@ namespace opentxs
 {
 namespace proto
 {
-bool CheckProto_2(const StorageItemHash& hash, const bool silent)
+
+bool CheckProto_1(const Bip44Address& address, const bool silent)
 {
-    if (!hash.has_itemid()) {
-        FAIL("storage item hash", "missing id")
+    if (false == address.has_address()) {
+        FAIL("address", "missing index")
     }
 
-    if (MIN_PLAUSIBLE_IDENTIFIER > hash.itemid().size()) {
-        FAIL("storage item hash", "invalid id")
-    }
-
-    if (!hash.has_hash()) {
-        FAIL("storage item hash", "missing hash")
-    }
-
-    if (MIN_PLAUSIBLE_IDENTIFIER > hash.hash().size()) {
-        FAIL("storage item hash", "invalid hash")
-    }
-
-    if (!hash.has_type()) {
-        FAIL("storage item hash", "missing type")
-    }
-
-    switch (hash.type()) {
-        case STORAGEHASH_PROTO:
-        case STORAGEHASH_RAW: {
-            break;
+    if (address.has_address()) {
+        if (MIN_PLAUSIBLE_SCRIPT > address.address().size()) {
+            FAIL("address", "invalid address")
         }
-        default: {
-            FAIL("storage item hash", "invalid type")
+
+        if (MAX_PLAUSIBLE_SCRIPT < address.address().size()) {
+            FAIL("address", "invalid address")
+        }
+    }
+
+    if (MAX_VALID_CONTACT_VALUE > address.label().size()) {
+        FAIL("transaction", "invalid label")
+    }
+
+    if (address.has_contact()) {
+        if (MIN_PLAUSIBLE_IDENTIFIER > address.contact().size()) {
+            FAIL("address", "invalid contact")
+        }
+
+        if (MAX_PLAUSIBLE_IDENTIFIER < address.contact().size()) {
+            FAIL("address", "invalid contact")
+        }
+    }
+
+    for (const auto& txid : address.incoming()) {
+        if (MIN_PLAUSIBLE_IDENTIFIER > txid.size()) {
+            FAIL("address", "invalid txid")
+        }
+
+        if (MAX_PLAUSIBLE_IDENTIFIER < txid.size()) {
+            FAIL("address", "invalid txid")
         }
     }
 
     return true;
 }
 
-bool CheckProto_3(const StorageItemHash& hash, const bool silent)
-{
-    return CheckProto_2(hash, silent);
-}
-
-bool CheckProto_4(const StorageItemHash& hash, const bool silent)
-{
-    return CheckProto_2(hash, silent);
-}
-
-bool CheckProto_5(const StorageItemHash&, const bool) { return false; }
+bool CheckProto_2(const Bip44Address&, const bool) { return false; }
+bool CheckProto_3(const Bip44Address&, const bool) { return false; }
+bool CheckProto_4(const Bip44Address&, const bool) { return false; }
+bool CheckProto_5(const Bip44Address&, const bool) { return false; }
 }  // namespace proto
 }  // namespace opentxs

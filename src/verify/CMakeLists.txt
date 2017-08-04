@@ -7,6 +7,11 @@ set(cxx-sources
   bailmentreply/BailmentReply_1.cpp
   basketitem/BasketItem_1.cpp
   basketparams/BasketParams_1.cpp
+  bip44account/Bip44Account_1.cpp
+  bip44address/Bip44Address_1.cpp
+  blockchaintransaction/BlockchainTransaction_1.cpp
+  blockchaintransactioninput/BlockchainTransactionInput_1.cpp
+  blockchaintransactionoutput/BlockchainTransactionOutput_1.cpp
   childcredentialparameters/ChildCredentialParameters_1.cpp
   ciphertext/Ciphertext_1.cpp
   claim/Claim_1.cpp
@@ -48,6 +53,8 @@ set(cxx-sources
   signature/Signature_1.cpp
   signature/Signature_2.cpp
   sourceproof/SourceProof_1.cpp
+  storageblockchainaccountlist/StorageBlockchainAccountList_1.cpp
+  storageblockchaintransactions/StorageBlockchainTransactions_1.cpp
   storagecontacts/StorageContacts_1.cpp
   storagecredentials/StorageCredentials_1.cpp
   storageidlist/StorageIDList_1.cpp
@@ -55,9 +62,11 @@ set(cxx-sources
   storageitemhash/StorageItemHash_2.cpp
   storageitems/StorageItems_1.cpp
   storageitems/StorageItems_2.cpp
+  storageitems/StorageItems_3.cpp
   storagenym/StorageNym_1.cpp
   storagenym/StorageNym_2.cpp
   storagenym/StorageNym_3.cpp
+  storagenym/StorageNym_4.cpp
   storagenymlist/StorageNymList_1.cpp
   storageroot/StorageRoot_1.cpp
   storageroot/StorageRoot_2.cpp

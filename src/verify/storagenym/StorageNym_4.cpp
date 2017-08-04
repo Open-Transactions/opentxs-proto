@@ -46,7 +46,7 @@ namespace opentxs
 namespace proto
 {
 
-bool CheckProto_2(const StorageNym& nym, const bool silent)
+bool CheckProto_4(const StorageNym& nym, const bool silent)
 {
     if (nym.has_credlist()) {
         bool valid = Check(
@@ -193,22 +193,56 @@ bool CheckProto_2(const StorageNym& nym, const bool silent)
     }
 
     if (nym.has_contexts()) {
-        FAIL("storage nym", "unexpected contexts field present")
+        bool valid = Check(
+            nym.contexts(),
+            StorageNymAllowedHash.at(nym.version()).first,
+            StorageNymAllowedHash.at(nym.version()).second,
+            silent);
+
+        if (!valid) {
+            FAIL("storage nym", "invalid contexts")
+        }
     }
 
     if (nym.has_accounts()) {
-        FAIL("storage nym", "unexpected accounts field present")
+        bool valid = Check(
+            nym.accounts(),
+            StorageNymAllowedHash.at(nym.version()).first,
+            StorageNymAllowedHash.at(nym.version()).second,
+            silent);
+
+        if (!valid) {
+            FAIL("storage nym", "invalid accounts")
+        }
     }
 
-    if (0 < nym.blockchainaccountindex().size()) {
-        FAIL("storage nym", "unexpected blockchainaccountindex field present")
+    for (const auto& index : nym.blockchainaccountindex()) {
+        bool valid = Check(
+            index,
+            StorageNymAllowedBlockchainAccountList.at(nym.version()).first,
+            StorageNymAllowedBlockchainAccountList.at(nym.version()).second,
+            silent);
+
+        if (!valid) {
+            FAIL("storage nym", "invalid blockchain account index")
+        }
     }
 
-    if (0 < nym.blockchainaccount().size()) {
-        FAIL("storage nym", "unexpected blockchainaccount field present")
+    for (const auto& bip44 : nym.blockchainaccount()) {
+        bool valid = Check(
+            bip44,
+            StorageNymAllowedBip44Account.at(nym.version()).first,
+            StorageNymAllowedBip44Account.at(nym.version()).second,
+            silent);
+
+        if (!valid) {
+            FAIL("storage nym", "invalid blockchain account")
+        }
     }
 
     return true;
 }
+
+bool CheckProto_5(const StorageNym&, const bool) { return false; }
 }  // namespace proto
 }  // namespace opentxs
