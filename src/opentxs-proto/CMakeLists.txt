@@ -55,6 +55,7 @@ set(PROTO_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/SourceProof.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/StorageBlockchainAccountList.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/StorageBlockchainTransactions.proto
+    ${CMAKE_CURRENT_SOURCE_DIR}/StorageContactAddressIndex.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/StorageContacts.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/StorageCredentials.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/StorageEnums.proto

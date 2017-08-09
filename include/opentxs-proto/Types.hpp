@@ -39,6 +39,8 @@
 #ifndef OPENTXS_PROTO_TYPES_HPP
 #define OPENTXS_PROTO_TYPES_HPP
 
+#define CONTACT_VERSION 3
+
 #ifdef _WIN32
 #pragma warning(push)
 #pragma warning(disable : 4244)
@@ -104,6 +106,7 @@
 #include <opentxs-proto/SourceProof.pb.h>
 #include <opentxs-proto/StorageBlockchainAccountList.pb.h>
 #include <opentxs-proto/StorageBlockchainTransactions.pb.h>
+#include <opentxs-proto/StorageContactAddressIndex.pb.h>
 #include <opentxs-proto/StorageContacts.pb.h>
 #include <opentxs-proto/StorageCredentials.pb.h>
 #include <opentxs-proto/StorageEnums.pb.h>
@@ -174,6 +177,7 @@
 #include <opentxs-proto/verify/SourceProof.hpp>
 #include <opentxs-proto/verify/StorageBlockchainAccountList.hpp>
 #include <opentxs-proto/verify/StorageBlockchainTransactions.hpp>
+#include <opentxs-proto/verify/StorageContactAddressIndex.hpp>
 #include <opentxs-proto/verify/StorageContacts.hpp>
 #include <opentxs-proto/verify/StorageCredentials.hpp>
 #include <opentxs-proto/verify/StorageIDList.hpp>

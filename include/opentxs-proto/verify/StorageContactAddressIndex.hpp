@@ -36,61 +36,21 @@
  *
  ************************************************************/
 
-#include "opentxs-proto/Types.hpp"
-#include "opentxs-proto/Check.hpp"
-#include "opentxs-proto/Contact.hpp"
+#ifndef OPENTXS_PROTO_STORAGECONTACTADDRESSINDEXLIST_HPP
+#define OPENTXS_PROTO_STORAGECONTACTADDRESSINDEXLIST_HPP
 
-#include <iostream>
+#include "VerifyStorage.hpp"
 
 namespace opentxs
 {
 namespace proto
 {
-
-bool CheckProto_1(const StorageBlockchainAccountList& list, const bool silent)
-{
-    if (false == list.has_id()) {
-        FAIL("storage blockchain account list", "missing id")
-    }
-
-    const bool validChain = ValidContactItemType(
-        {CONTACT_VERSION, CONTACTSECTION_CONTRACT}, list.id());
-
-    if (false == validChain) {
-        FAIL("transaction", "invalid chain")
-    }
-
-    for (const auto& it : list.list()) {
-        if (MIN_PLAUSIBLE_IDENTIFIER > it.size()) {
-            FAIL2("storage blockchain account list", "invalid list item", it)
-        }
-
-        if (MAX_PLAUSIBLE_IDENTIFIER < it.size()) {
-            FAIL2("storage blockchain account list", "invalid list item", it)
-        }
-    }
-
-    return true;
-}
-
-bool CheckProto_2(const StorageBlockchainAccountList&, const bool)
-{
-    return false;
-}
-
-bool CheckProto_3(const StorageBlockchainAccountList&, const bool)
-{
-    return false;
-}
-
-bool CheckProto_4(const StorageBlockchainAccountList&, const bool)
-{
-    return false;
-}
-
-bool CheckProto_5(const StorageBlockchainAccountList&, const bool)
-{
-    return false;
-}
+bool CheckProto_1(const StorageContactAddressIndex& list, const bool silent);
+bool CheckProto_2(const StorageContactAddressIndex&, const bool);
+bool CheckProto_3(const StorageContactAddressIndex&, const bool);
+bool CheckProto_4(const StorageContactAddressIndex&, const bool);
+bool CheckProto_5(const StorageContactAddressIndex&, const bool);
 }  // namespace proto
 }  // namespace opentxs
+
+#endif  // OPENTXS_PROTO_STORAGECONTACTADDRESSINDEXLIST_HPP

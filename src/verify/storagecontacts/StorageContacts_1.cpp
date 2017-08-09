@@ -72,6 +72,18 @@ bool CheckProto_1(const StorageContacts& contact, const bool silent)
         }
     }
 
+    for (auto& index : contact.address()) {
+        bool valid = Check(
+            index,
+            StorageContactsAllowedAddress.at(contact.version()).first,
+            StorageContactsAllowedAddress.at(contact.version()).second,
+            silent);
+
+        if (!valid) {
+            FAIL("contact storage index", "invalid address index")
+        }
+    }
+
     return true;
 }
 

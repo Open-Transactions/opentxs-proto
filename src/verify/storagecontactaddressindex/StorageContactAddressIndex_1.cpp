@@ -38,7 +38,6 @@
 
 #include "opentxs-proto/Types.hpp"
 #include "opentxs-proto/Check.hpp"
-#include "opentxs-proto/Contact.hpp"
 
 #include <iostream>
 
@@ -47,48 +46,53 @@ namespace opentxs
 namespace proto
 {
 
-bool CheckProto_1(const StorageBlockchainAccountList& list, const bool silent)
+bool CheckProto_1(const StorageContactAddressIndex& list, const bool silent)
 {
-    if (false == list.has_id()) {
-        FAIL("storage blockchain account list", "missing id")
+    if (false == list.has_contact()) {
+        FAIL("storage contact list", "missing contact")
+    }
+
+    if (MIN_PLAUSIBLE_IDENTIFIER > list.contact().size()) {
+        FAIL2("storage contact list", "invalid contact", list.contact())
+    }
+
+    if (MAX_PLAUSIBLE_IDENTIFIER < list.contact().size()) {
+        FAIL2("storage contact list", "invalid contact", list.contact())
     }
 
     const bool validChain = ValidContactItemType(
-        {CONTACT_VERSION, CONTACTSECTION_CONTRACT}, list.id());
+        {CONTACT_VERSION, CONTACTSECTION_CONTRACT}, list.chain());
 
     if (false == validChain) {
-        FAIL("transaction", "invalid chain")
+        FAIL("storage contact list", "invalid type")
     }
 
-    for (const auto& it : list.list()) {
+    for (const auto& it : list.address()) {
         if (MIN_PLAUSIBLE_IDENTIFIER > it.size()) {
-            FAIL2("storage blockchain account list", "invalid list item", it)
+            FAIL2("storage contact list", "invalid address", it)
         }
 
         if (MAX_PLAUSIBLE_IDENTIFIER < it.size()) {
-            FAIL2("storage blockchain account list", "invalid list item", it)
+            FAIL2("storage contact list", "invalid address", it)
         }
     }
 
     return true;
 }
 
-bool CheckProto_2(const StorageBlockchainAccountList&, const bool)
+bool CheckProto_2(const StorageContactAddressIndex&, const bool)
 {
     return false;
 }
-
-bool CheckProto_3(const StorageBlockchainAccountList&, const bool)
+bool CheckProto_3(const StorageContactAddressIndex&, const bool)
 {
     return false;
 }
-
-bool CheckProto_4(const StorageBlockchainAccountList&, const bool)
+bool CheckProto_4(const StorageContactAddressIndex&, const bool)
 {
     return false;
 }
-
-bool CheckProto_5(const StorageBlockchainAccountList&, const bool)
+bool CheckProto_5(const StorageContactAddressIndex&, const bool)
 {
     return false;
 }

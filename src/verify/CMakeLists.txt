@@ -55,6 +55,7 @@ set(cxx-sources
   sourceproof/SourceProof_1.cpp
   storageblockchainaccountlist/StorageBlockchainAccountList_1.cpp
   storageblockchaintransactions/StorageBlockchainTransactions_1.cpp
+  storagecontactaddressindex/StorageContactAddressIndex_1.cpp
   storagecontacts/StorageContacts_1.cpp
   storagecredentials/StorageCredentials_1.cpp
   storageidlist/StorageIDList_1.cpp

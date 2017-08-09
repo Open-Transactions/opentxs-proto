@@ -45,6 +45,8 @@ namespace opentxs
 {
 namespace proto
 {
+
+class StorageContactAddressIndex;
 class StorageContacts;
 class StorageCredentials;
 class StorageIDList;
@@ -59,6 +61,9 @@ class StorageThread;
 class StorageThreadItem;
 class StorageUnits;
 
+static const VersionMap StorageContactsAllowedAddress = {
+    {1, {1, 1}},
+};
 static const VersionMap StorageContactsAllowedHash = {
     {1, {1, 2}},
 };

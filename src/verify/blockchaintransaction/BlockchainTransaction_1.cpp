@@ -42,8 +42,6 @@
 
 #include <iostream>
 
-#define CONTACT_VERSION 3
-
 namespace opentxs
 {
 namespace proto
