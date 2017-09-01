@@ -191,13 +191,11 @@ bool CheckProto_3(const PeerRequest& request, const bool silent)
             }
         } break;
         default: {
+            FAIL("peer request", "invalid type")
         }
     }
 
     return true;
 }
-
-bool CheckProto_4(const PeerRequest&, const bool) { return false; }
-bool CheckProto_5(const PeerRequest&, const bool) { return false; }
 }  // namespace proto
 }  // namespace opentxs

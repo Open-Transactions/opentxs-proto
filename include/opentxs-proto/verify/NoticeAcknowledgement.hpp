@@ -54,7 +54,9 @@ bool CheckProto_2(
 bool CheckProto_3(
     const NoticeAcknowledgement& acknowledgement,
     const bool silent);
-bool CheckProto_4(const NoticeAcknowledgement& acknowledgement, const bool);
+bool CheckProto_4(
+    const NoticeAcknowledgement& acknowledgement,
+    const bool silent);
 bool CheckProto_5(const NoticeAcknowledgement& acknowledgement, const bool);
 }  // namespace proto
 }  // namespace opentxs

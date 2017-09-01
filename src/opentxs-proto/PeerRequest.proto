@@ -5,6 +5,7 @@ option optimize_for = LITE_RUNTIME;
 
 import public "Bailment.proto";
 import public "ConnectionInfo.proto";
+import public "Faucet.proto";
 import public "OutBailment.proto";
 import public "PeerEnums.proto";
 import public "PendingBailment.proto";
@@ -27,6 +28,7 @@ message PeerRequest {
         ConnectionInfo connectioninfo = 11;
         StoreSecret storesecret = 12;
         VerificationOffer verificationoffer = 14;
+        Faucet faucet = 15;
     }
     optional string server = 13;
 }

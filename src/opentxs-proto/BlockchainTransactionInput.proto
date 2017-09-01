@@ -1,0 +1,12 @@
+syntax = "proto2";
+
+package opentxs.proto;
+option optimize_for = LITE_RUNTIME;
+
+message BlockchainTransactionInput {
+    optional uint32 version = 1;
+    optional uint32 index = 2;
+    optional bytes serializedscript = 3;
+    optional uint32 sequence = 4;
+    repeated string address = 5;
+}

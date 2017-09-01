@@ -8,6 +8,11 @@ set(PROTO_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/BailmentReply.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/BasketParams.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/BasketItem.proto
+    ${CMAKE_CURRENT_SOURCE_DIR}/Bip44Account.proto
+    ${CMAKE_CURRENT_SOURCE_DIR}/Bip44Address.proto
+    ${CMAKE_CURRENT_SOURCE_DIR}/BlockchainTransaction.proto
+    ${CMAKE_CURRENT_SOURCE_DIR}/BlockchainTransactionInput.proto
+    ${CMAKE_CURRENT_SOURCE_DIR}/BlockchainTransactionOutput.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/ChildCredentialParameters.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/Ciphertext.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/Claim.proto
@@ -29,6 +34,7 @@ set(PROTO_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/Enums.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/Envelope.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/EquityParams.proto
+    ${CMAKE_CURRENT_SOURCE_DIR}/Faucet.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/HDPath.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/KeyCredential.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/ListenAddress.proto
@@ -48,6 +54,9 @@ set(PROTO_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/ServerContract.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/Signature.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/SourceProof.proto
+    ${CMAKE_CURRENT_SOURCE_DIR}/StorageBlockchainAccountList.proto
+    ${CMAKE_CURRENT_SOURCE_DIR}/StorageBlockchainTransactions.proto
+    ${CMAKE_CURRENT_SOURCE_DIR}/StorageContactAddressIndex.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/StorageContacts.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/StorageCredentials.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/StorageEnums.proto

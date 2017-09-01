@@ -56,17 +56,19 @@ bool CheckProto_1(const ConnectionInfoReply& reply, const bool silent)
 
 bool CheckProto_2(const ConnectionInfoReply& reply, const bool silent)
 {
-
     return CheckProto_1(reply, silent);
 }
 
 bool CheckProto_3(const ConnectionInfoReply& reply, const bool silent)
 {
-
     return CheckProto_1(reply, silent);
 }
 
-bool CheckProto_4(const ConnectionInfoReply&, const bool) { return false; }
+bool CheckProto_4(const ConnectionInfoReply& reply, const bool silent)
+{
+    return CheckProto_1(reply, silent);
+}
+
 bool CheckProto_5(const ConnectionInfoReply&, const bool) { return false; }
 }  // namespace proto
 }  // namespace opentxs

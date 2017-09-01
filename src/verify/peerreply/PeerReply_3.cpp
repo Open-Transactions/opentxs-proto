@@ -168,7 +168,5 @@ bool CheckProto_3(const PeerReply& reply, const bool silent)
 
     return true;
 }
-bool CheckProto_4(const PeerReply&, const bool) { return false; }
-bool CheckProto_5(const PeerReply&, const bool) { return false; }
 }  // namespace proto
 }  // namespace opentxs

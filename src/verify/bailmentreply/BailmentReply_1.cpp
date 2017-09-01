@@ -54,15 +54,22 @@ bool CheckProto_1(const BailmentReply& reply, const bool silent)
 
     return true;
 }
+
 bool CheckProto_2(const BailmentReply& reply, const bool silent)
 {
     return CheckProto_1(reply, silent);
 }
+
 bool CheckProto_3(const BailmentReply& reply, const bool silent)
 {
     return CheckProto_1(reply, silent);
 }
-bool CheckProto_4(const BailmentReply&, const bool) { return false; }
+
+bool CheckProto_4(const BailmentReply& reply, const bool silent)
+{
+    return CheckProto_1(reply, silent);
+}
+
 bool CheckProto_5(const BailmentReply&, const bool) { return false; }
 }  // namespace proto
 }  // namespace opentxs

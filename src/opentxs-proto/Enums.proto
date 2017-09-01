@@ -85,6 +85,7 @@ enum HashType {
     HASHTYPE_BLAKE2B160 = 4;
     HASHTYPE_BLAKE2B256 = 5;
     HASHTYPE_BLAKE2B512 = 6;
+    HASHTYPE_RIMEMD160 = 7;
 }
 
 enum CredentialIndexMode {

@@ -85,7 +85,11 @@ bool CheckProto_3(const StorageItemHash& hash, const bool silent)
     return CheckProto_2(hash, silent);
 }
 
-bool CheckProto_4(const StorageItemHash&, const bool) { return false; }
+bool CheckProto_4(const StorageItemHash& hash, const bool silent)
+{
+    return CheckProto_2(hash, silent);
+}
+
 bool CheckProto_5(const StorageItemHash&, const bool) { return false; }
 }  // namespace proto
 }  // namespace opentxs

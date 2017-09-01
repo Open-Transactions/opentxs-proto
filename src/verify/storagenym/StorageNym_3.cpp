@@ -216,9 +216,15 @@ bool CheckProto_3(const StorageNym& nym, const bool silent)
         }
     }
 
+    if (0 < nym.blockchainaccountindex().size()) {
+        FAIL("storage nym", "unexpected blockchainaccountindex field present")
+    }
+
+    if (0 < nym.blockchainaccount().size()) {
+        FAIL("storage nym", "unexpected blockchainaccount field present")
+    }
+
     return true;
 }
-bool CheckProto_4(const StorageNym&, const bool) { return false; }
-bool CheckProto_5(const StorageNym&, const bool) { return false; }
 }  // namespace proto
 }  // namespace opentxs
