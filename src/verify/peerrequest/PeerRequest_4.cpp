@@ -45,7 +45,7 @@ namespace opentxs
 {
 namespace proto
 {
-bool CheckProto_3(const PeerRequest& request, const bool silent)
+bool CheckProto_4(const PeerRequest& request, const bool silent)
 {
     if (!request.has_id()) {
         FAIL("peer request", "missing id")
@@ -190,6 +190,21 @@ bool CheckProto_3(const PeerRequest& request, const bool silent)
                 FAIL("peer request", "invalid verificationoffer")
             }
         } break;
+        case PEERREQUEST_FAUCET: {
+            if (!request.has_faucet()) {
+                FAIL("peer request", "missing faucet")
+            }
+
+            const bool validfaucet = Check(
+                request.faucet(),
+                PeerRequestAllowedFaucet.at(request.version()).first,
+                PeerRequestAllowedFaucet.at(request.version()).second,
+                silent);
+
+            if (false == validfaucet) {
+                FAIL("peer request", "invalid faucet")
+            }
+        } break;
         default: {
             FAIL("peer request", "invalid type")
         }
@@ -197,5 +212,7 @@ bool CheckProto_3(const PeerRequest& request, const bool silent)
 
     return true;
 }
+
+bool CheckProto_5(const PeerRequest&, const bool) { return false; }
 }  // namespace proto
 }  // namespace opentxs

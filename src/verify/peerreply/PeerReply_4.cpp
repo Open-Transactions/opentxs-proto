@@ -45,7 +45,7 @@ namespace opentxs
 {
 namespace proto
 {
-bool CheckProto_3(const PeerReply& reply, const bool silent)
+bool CheckProto_4(const PeerReply& reply, const bool silent)
 {
     if (!reply.has_id()) {
         FAIL("peer reply", "missing id")
@@ -131,7 +131,8 @@ bool CheckProto_3(const PeerReply& reply, const bool silent)
         } break;
         case PEERREQUEST_PENDINGBAILMENT:
         case PEERREQUEST_STORESECRET:
-        case PEERREQUEST_VERIFICATIONOFFER: {
+        case PEERREQUEST_VERIFICATIONOFFER:
+        case PEERREQUEST_FAUCET: {
             if (!reply.has_notice()) {
                 FAIL("peer reply", "missing notice")
             }
@@ -168,5 +169,7 @@ bool CheckProto_3(const PeerReply& reply, const bool silent)
 
     return true;
 }
+
+bool CheckProto_5(const PeerReply&, const bool) { return false; }
 }  // namespace proto
 }  // namespace opentxs

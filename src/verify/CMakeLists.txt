@@ -29,6 +29,7 @@ set(cxx-sources
   credentialset/CredentialSet_1.cpp
   equityparams/EquityParams_1.cpp
   envelope/Envelope_1.cpp
+  faucet/Faucet_1.cpp
   hdpath/HDPath_1.cpp
   keycredential/KeyCredential_1.cpp
   listenaddress/ListenAddress_1.cpp
@@ -42,9 +43,11 @@ set(cxx-sources
   peerreply/PeerReply_1.cpp
   peerreply/PeerReply_2.cpp
   peerreply/PeerReply_3.cpp
+  peerreply/PeerReply_4.cpp
   peerrequest/PeerRequest_1.cpp
   peerrequest/PeerRequest_2.cpp
   peerrequest/PeerRequest_3.cpp
+  peerrequest/PeerRequest_4.cpp
   pendingbailment/PendingBailment_1.cpp
   seed/Seed_1.cpp
   seed/Seed_2.cpp

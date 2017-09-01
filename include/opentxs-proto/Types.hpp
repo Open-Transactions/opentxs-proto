@@ -85,6 +85,7 @@
 #include <opentxs-proto/Enums.pb.h>
 #include <opentxs-proto/Envelope.pb.h>
 #include <opentxs-proto/EquityParams.pb.h>
+#include <opentxs-proto/Faucet.pb.h>
 #include <opentxs-proto/HDPath.pb.h>
 #include <opentxs-proto/KeyCredential.pb.h>
 #include <opentxs-proto/ListenAddress.pb.h>
@@ -154,6 +155,7 @@
 #include <opentxs-proto/verify/CredentialIndex.hpp>
 #include <opentxs-proto/verify/CredentialSet.hpp>
 #include <opentxs-proto/verify/CurrencyParams.hpp>
+#include <opentxs-proto/verify/Faucet.hpp>
 #include <opentxs-proto/verify/Envelope.hpp>
 #include <opentxs-proto/verify/EquityParams.hpp>
 #include <opentxs-proto/verify/HDPath.hpp>

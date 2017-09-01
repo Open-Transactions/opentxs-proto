@@ -45,8 +45,10 @@ namespace opentxs
 {
 namespace proto
 {
+bool CheckProto_1(const VerificationOffer&, const bool) { return false; }
+bool CheckProto_2(const VerificationOffer&, const bool) { return false; }
 
-bool CheckProto_1(const VerificationOffer& offer, const bool silent)
+bool CheckProto_3(const VerificationOffer& offer, const bool silent)
 {
     if (!offer.has_offeringnym()) {
         FAIL("verification offer", "missing sender nym id")
@@ -99,9 +101,12 @@ bool CheckProto_1(const VerificationOffer& offer, const bool silent)
 
     return true;
 }
-bool CheckProto_2(const VerificationOffer&, const bool) { return false; }
-bool CheckProto_3(const VerificationOffer&, const bool) { return false; }
-bool CheckProto_4(const VerificationOffer&, const bool) { return false; }
+
+bool CheckProto_4(const VerificationOffer& offer, const bool silent)
+{
+    return CheckProto_3(offer, silent);
+}
+
 bool CheckProto_5(const VerificationOffer&, const bool) { return false; }
 }  // namespace proto
 }  // namespace opentxs

@@ -36,40 +36,21 @@
  *
  ************************************************************/
 
-#include "opentxs-proto/Types.hpp"
-#include "opentxs-proto/Check.hpp"
+#ifndef OPENTXS_PROTO_FAUCET_HPP
+#define OPENTXS_PROTO_FAUCET_HPP
 
-#include <iostream>
+#include "VerifyPeer.hpp"
 
 namespace opentxs
 {
 namespace proto
 {
-
-bool CheckProto_1(const BailmentReply& reply, const bool silent)
-{
-    if (!reply.has_instructions()) {
-        FAIL("bailment reply", "missing instructions")
-    }
-
-    return true;
-}
-
-bool CheckProto_2(const BailmentReply& reply, const bool silent)
-{
-    return CheckProto_1(reply, silent);
-}
-
-bool CheckProto_3(const BailmentReply& reply, const bool silent)
-{
-    return CheckProto_1(reply, silent);
-}
-
-bool CheckProto_4(const BailmentReply& reply, const bool silent)
-{
-    return CheckProto_1(reply, silent);
-}
-
-bool CheckProto_5(const BailmentReply&, const bool) { return false; }
+bool CheckProto_1(const Faucet&, const bool);
+bool CheckProto_2(const Faucet&, const bool);
+bool CheckProto_3(const Faucet&, const bool);
+bool CheckProto_4(const Faucet& request, const bool silent);
+bool CheckProto_5(const Faucet&, const bool);
 }  // namespace proto
 }  // namespace opentxs
+
+#endif  // OPENTXS_PROTO_FAUCET_HPP

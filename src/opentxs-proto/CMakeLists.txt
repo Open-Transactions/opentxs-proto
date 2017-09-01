@@ -34,6 +34,7 @@ set(PROTO_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/Enums.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/Envelope.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/EquityParams.proto
+    ${CMAKE_CURRENT_SOURCE_DIR}/Faucet.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/HDPath.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/KeyCredential.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/ListenAddress.proto

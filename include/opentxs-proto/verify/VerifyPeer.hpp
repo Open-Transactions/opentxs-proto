@@ -49,6 +49,7 @@ class Bailment;
 class BailmentReply;
 class ConnectionInfo;
 class ConnectionInfoReply;
+class Faucet;
 class NoticeAcknowledgement;
 class OutBailment;
 class OutBailmentReply;
@@ -63,75 +64,97 @@ static const VersionMap PeerObjectAllowedReply = {
     {1, {1, 1}},
     {2, {2, 2}},
     {3, {3, 3}},
+    {4, {4, 4}},
 };
 static const VersionMap PeerObjectAllowedRequest = {
     {1, {1, 2}},
     {2, {2, 2}},
     {3, {3, 3}},
+    {4, {4, 4}},
 };
 static const VersionMap PeerObjectAllowedCredentialIndex = {
     {1, {1, 3}},
     {2, {1, 3}},
     {3, {1, 3}},
+    {4, {1, 3}},
 };
 static const VersionMap PeerReplyAllowedSignature = {
     {1, {1, 1}},
     {2, {1, 1}},
     {3, {1, 1}},
+    {4, {1, 1}},
 };
 static const VersionMap PeerReplyAllowedBailment = {
     {1, {1, 1}},
     {2, {2, 2}},
     {3, {3, 3}},
+    {4, {4, 4}},
 };
 static const VersionMap PeerReplyAllowedNotice = {
     {1, {1, 1}},
     {2, {2, 2}},
     {3, {3, 3}},
+    {4, {4, 4}},
 };
 static const VersionMap PeerReplyAllowedOutBailment = {
     {1, {1, 1}},
     {2, {2, 2}},
     {3, {3, 3}},
+    {4, {4, 4}},
 };
 static const VersionMap PeerReplyAllowedConnectionInfo = {
     {1, {1, 1}},
     {2, {2, 2}},
     {3, {3, 3}},
+    {4, {4, 4}},
 };
 static const VersionMap PeerRequestAllowedSignature = {
     {1, {1, 1}},
     {2, {1, 1}},
     {3, {1, 1}},
+    {4, {1, 1}},
 };
 static const VersionMap PeerRequestAllowedBailment = {
     {1, {1, 1}},
     {2, {2, 2}},
     {3, {3, 3}},
+    {4, {4, 4}},
 };
 static const VersionMap PeerRequestAllowedOutBailment = {
     {1, {1, 1}},
     {2, {2, 2}},
     {3, {3, 3}},
+    {4, {4, 4}},
 };
 static const VersionMap PeerRequestAllowedPendingBailment = {
     {1, {1, 1}},
     {2, {2, 2}},
     {3, {3, 3}},
+    {4, {4, 4}},
 };
 static const VersionMap PeerRequestAllowedConnectionInfo = {
     {1, {1, 1}},
     {2, {2, 2}},
+    {3, {3, 3}},
+    {4, {4, 4}},
 };
 static const VersionMap PeerRequestAllowedStoreSecret = {
     {1, {1, 1}},
     {2, {2, 2}},
     {3, {3, 3}},
+    {4, {4, 4}},
 };
 static const VersionMap PeerRequestAllowedVerificationOffer = {
     {1, {0, 0}},
     {2, {0, 0}},
     {3, {3, 3}},
+    {4, {4, 4}},
+};
+static const VersionMap PeerRequestAllowedFaucet = {
+    {1, {0, 0}},
+    {2, {0, 0}},
+    {3, {0, 0}},
+    {4, {4, 4}},
 };
 }  // namespace proto
 }  // namespace opentxs

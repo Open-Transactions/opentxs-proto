@@ -82,7 +82,11 @@ bool CheckProto_3(const ConnectionInfo& request, const bool silent)
     return true;
 }
 
-bool CheckProto_4(const ConnectionInfo&, const bool) { return false; }
+bool CheckProto_4(const ConnectionInfo& request, const bool silent)
+{
+    return CheckProto_3(request, silent);
+}
+
 bool CheckProto_5(const ConnectionInfo&, const bool) { return false; }
 }  // namespace proto
 }  // namespace opentxs

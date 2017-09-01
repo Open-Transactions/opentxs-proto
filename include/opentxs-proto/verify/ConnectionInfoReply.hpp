@@ -48,7 +48,7 @@ namespace proto
 bool CheckProto_1(const ConnectionInfoReply& reply, const bool silent);
 bool CheckProto_2(const ConnectionInfoReply& reply, const bool silent);
 bool CheckProto_3(const ConnectionInfoReply& reply, const bool silent);
-bool CheckProto_4(const ConnectionInfoReply&, const bool);
+bool CheckProto_4(const ConnectionInfoReply& reply, const bool silent);
 bool CheckProto_5(const ConnectionInfoReply&, const bool);
 }  // namespace proto
 }  // namespace opentxs

@@ -45,10 +45,10 @@ namespace opentxs
 {
 namespace proto
 {
-bool CheckProto_1(const VerificationOffer& request, const bool silent);
-bool CheckProto_2(const VerificationOffer& request, const bool silent);
+bool CheckProto_1(const VerificationOffer&, const bool);
+bool CheckProto_2(const VerificationOffer&, const bool);
 bool CheckProto_3(const VerificationOffer& request, const bool silent);
-bool CheckProto_4(const VerificationOffer&, const bool);
+bool CheckProto_4(const VerificationOffer& request, const bool silent);
 bool CheckProto_5(const VerificationOffer&, const bool);
 }  // namespace proto
 }  // namespace opentxs
