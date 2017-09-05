@@ -50,61 +50,63 @@ bool CheckProto_2(const StorageItems& items, const bool silent)
 {
     if (items.has_creds()) {
         if (MIN_PLAUSIBLE_IDENTIFIER > items.creds().size()) {
-            FAIL("storage item index", "invalid credentials")
+            FAIL2("storage item index", "invalid credentials", items.creds())
         }
 
         if (MAX_PLAUSIBLE_IDENTIFIER < items.creds().size()) {
-            FAIL("storage item index", "invalid credentials")
+            FAIL2("storage item index", "invalid credentials", items.creds())
         }
     }
 
     if (items.has_nyms()) {
         if (MIN_PLAUSIBLE_IDENTIFIER > items.nyms().size()) {
-            FAIL("storage item index", "invalid nym list")
+            FAIL2("storage item index", "invalid nym list", items.nyms())
         }
 
         if (MAX_PLAUSIBLE_IDENTIFIER < items.nyms().size()) {
-            FAIL("storage item index", "invalid nym list")
+            FAIL2("storage item index", "invalid nym list", items.nyms())
         }
     }
 
     if (items.has_servers()) {
         if (MIN_PLAUSIBLE_IDENTIFIER > items.servers().size()) {
-            FAIL("storage item index", "invalid server list")
+            FAIL2("storage item index", "invalid server list", items.servers())
         }
 
         if (MAX_PLAUSIBLE_IDENTIFIER < items.servers().size()) {
-            FAIL("storage item index", "invalid server list")
+            FAIL2("storage item index", "invalid server list", items.servers())
         }
     }
 
     if (items.has_units()) {
         if (MIN_PLAUSIBLE_IDENTIFIER > items.units().size()) {
-            FAIL("storage item index", "invalid unit list")
+            FAIL2("storage item index", "invalid unit list", items.units())
         }
 
         if (MAX_PLAUSIBLE_IDENTIFIER < items.units().size()) {
-            FAIL("storage item index", "invalid unit list")
+            FAIL2("storage item index", "invalid unit list", items.units())
         }
     }
 
     if (items.has_seeds()) {
         if (MIN_PLAUSIBLE_IDENTIFIER > items.seeds().size()) {
-            FAIL("storage item index", "invalid seed list")
+            FAIL2("storage item index", "invalid seed list", items.seeds())
         }
 
         if (MAX_PLAUSIBLE_IDENTIFIER < items.seeds().size()) {
-            FAIL("storage item index", "invalid seed list")
+            FAIL2("storage item index", "invalid seed list", items.seeds())
         }
     }
 
     if (items.has_contacts()) {
         if (MIN_PLAUSIBLE_IDENTIFIER > items.contacts().size()) {
-            FAIL("storage item index", "invalid contact list")
+            FAIL2(
+                "storage item index", "invalid contact list", items.contacts())
         }
 
         if (MAX_PLAUSIBLE_IDENTIFIER < items.contacts().size()) {
-            FAIL("storage item index", "invalid contact list")
+            FAIL2(
+                "storage item index", "invalid contact list", items.contacts())
         }
     }
 
