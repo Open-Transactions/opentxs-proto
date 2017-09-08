@@ -41,24 +41,26 @@
 
 #include "opentxs-proto/Basic.hpp"
 
-namespace opentxs { namespace proto
+namespace opentxs
 {
-    class ClientContext;
-    class Context;
-    class ServerContext;
+namespace proto
+{
+class ClientContext;
+class Context;
+class ServerContext;
 
-    static const VersionMap ContextAllowedServer =
-        {
-            { 1, {1, 1}},
-        };
-    static const VersionMap ContextAllowedClient =
-        {
-            { 1, {1, 1}},
-        };
-    static const VersionMap ContextAllowedSignature =
-        {
-            { 1, {2, 2}},
-        };
-} // namespace proto
-} // namespace opentxs
-#endif // OPENTXS_PROTO_VERIFYCONSENSUS_HPP
+static const VersionMap ContextAllowedServer = {
+    {1, {1, 1}},
+    {2, {2, 2}},
+};
+static const VersionMap ContextAllowedClient = {
+    {1, {1, 1}},
+    {2, {1, 2}},
+};
+static const VersionMap ContextAllowedSignature = {
+    {1, {2, 2}},
+    {2, {2, 2}},
+};
+}  // namespace proto
+}  // namespace opentxs
+#endif  // OPENTXS_PROTO_VERIFYCONSENSUS_HPP

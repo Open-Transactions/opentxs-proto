@@ -52,6 +52,7 @@ set(cxx-sources
   seed/Seed_1.cpp
   seed/Seed_2.cpp
   servercontext/ServerContext_1.cpp
+  servercontext/ServerContext_2.cpp
   servercontract/ServerContract_1.cpp
   signature/Signature_1.cpp
   signature/Signature_2.cpp

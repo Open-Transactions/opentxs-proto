@@ -36,21 +36,31 @@
  *
  ************************************************************/
 
-#ifndef OPENTXS_PROTO_CONTEXT_HPP
-#define OPENTXS_PROTO_CONTEXT_HPP
+#include "opentxs-proto/Types.hpp"
+#include "opentxs-proto/Check.hpp"
 
-#include "VerifyConsensus.hpp"
+#include <iostream>
 
 namespace opentxs
 {
 namespace proto
 {
-bool CheckProto_1(const Context& context, const bool silent);
-bool CheckProto_2(const Context& context, const bool silent);
-bool CheckProto_3(const Context&, const bool);
-bool CheckProto_4(const Context&, const bool);
-bool CheckProto_5(const Context&, const bool);
+bool CheckProto_2(const ServerContext& context, const bool silent)
+{
+    if (!context.has_serverid()) {
+        FAIL("server context", "missing server id")
+    }
+
+    if ((MIN_PLAUSIBLE_IDENTIFIER > context.serverid().size()) ||
+        (MAX_PLAUSIBLE_IDENTIFIER < context.serverid().size())) {
+        FAIL("server context", "invalid server id")
+    }
+
+    return true;
+}
+
+bool CheckProto_3(const ServerContext&, const bool) { return false; }
+bool CheckProto_4(const ServerContext&, const bool) { return false; }
+bool CheckProto_5(const ServerContext&, const bool) { return false; }
 }  // namespace proto
 }  // namespace opentxs
-
-#endif  // OPENTXS_PROTO_CONTEXT_HPP
