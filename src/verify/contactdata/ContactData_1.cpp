@@ -94,10 +94,14 @@ bool CheckProto_3(
     return CheckProto_1(contactData, silent, indexed);
 }
 
-bool CheckProto_4(const ContactData&, const bool, const ClaimType)
+bool CheckProto_4(
+    const ContactData& contactData,
+    const bool silent,
+    const ClaimType indexed)
 {
-    return false;
+    return CheckProto_1(contactData, silent, indexed);
 }
+
 bool CheckProto_5(const ContactData&, const bool, const ClaimType)
 {
     return false;
