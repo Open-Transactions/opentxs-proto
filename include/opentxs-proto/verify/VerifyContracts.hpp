@@ -54,7 +54,7 @@ class UnitDefinition;
 class VerifyCredentials;
 
 static const VersionMap ServerContractAllowedCredentialIndex = {
-    {1, {1, 3}},
+    {1, {1, 4}},
 };
 static const VersionMap ServerContractAllowedListenAddress = {
     {1, {1, 1}},
@@ -63,7 +63,7 @@ static const VersionMap ServerContractAllowedSignature = {
     {1, {1, 1}},
 };
 static const VersionMap UnitDefinitionAllowedCredentialIndex = {
-    {1, {1, 3}},
+    {1, {1, 4}},
 };
 static const VersionMap UnitDefinitionAllowedCurrencyParams = {
     {1, {1, 1}},

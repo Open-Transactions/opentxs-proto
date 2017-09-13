@@ -45,66 +45,22 @@ namespace opentxs
 {
 namespace proto
 {
-
-bool CheckProto_1(
-    const ContactData& contactData,
-    const bool silent,
-    const ClaimType indexed)
+bool CheckProto_2(const ServerContext& context, const bool silent)
 {
-    std::map<ContactSectionName, uint32_t> sectionCount;
+    if (!context.has_serverid()) {
+        FAIL("server context", "missing server id")
+    }
 
-    for (auto& it : contactData.section()) {
-        bool validSection = Check(
-            it,
-            ContactDataAllowedSection.at(contactData.version()).first,
-            ContactDataAllowedSection.at(contactData.version()).second,
-            silent,
-            indexed,
-            contactData.version());
-
-        if (!validSection) {
-            FAIL("contact data", "invalid section")
-        }
-
-        ContactSectionName name = it.name();
-
-        if (sectionCount.count(name) > 0) {
-            FAIL("contact data", "duplicate section")
-        } else {
-            sectionCount.insert({name, 1});
-        }
+    if ((MIN_PLAUSIBLE_IDENTIFIER > context.serverid().size()) ||
+        (MAX_PLAUSIBLE_IDENTIFIER < context.serverid().size())) {
+        FAIL("server context", "invalid server id")
     }
 
     return true;
 }
 
-bool CheckProto_2(
-    const ContactData& contactData,
-    const bool silent,
-    const ClaimType indexed)
-{
-    return CheckProto_1(contactData, silent, indexed);
-}
-
-bool CheckProto_3(
-    const ContactData& contactData,
-    const bool silent,
-    const ClaimType indexed)
-{
-    return CheckProto_1(contactData, silent, indexed);
-}
-
-bool CheckProto_4(
-    const ContactData& contactData,
-    const bool silent,
-    const ClaimType indexed)
-{
-    return CheckProto_1(contactData, silent, indexed);
-}
-
-bool CheckProto_5(const ContactData&, const bool, const ClaimType)
-{
-    return false;
-}
+bool CheckProto_3(const ServerContext&, const bool) { return false; }
+bool CheckProto_4(const ServerContext&, const bool) { return false; }
+bool CheckProto_5(const ServerContext&, const bool) { return false; }
 }  // namespace proto
 }  // namespace opentxs

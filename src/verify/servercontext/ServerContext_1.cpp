@@ -56,12 +56,23 @@ bool CheckProto_1(const ServerContext& context, const bool silent)
         FAIL("server context", "invalid server id")
     }
 
+    if (0 < context.revision()) {
+        FAIL("server context", "unexpected revision field found");
+    }
+
+    if (0 < context.adminpassword().size()) {
+        FAIL("server context", "unexpected adminpassword field found");
+    }
+
+    if (context.adminattempted()) {
+        FAIL("server context", "unexpected adminattempted field found");
+    }
+
+    if (context.adminsuccess()) {
+        FAIL("server context", "unexpected adminsuccess field found");
+    }
+
     return true;
 }
-
-bool CheckProto_2(const ServerContext&, const bool) { return false; }
-bool CheckProto_3(const ServerContext&, const bool) { return false; }
-bool CheckProto_4(const ServerContext&, const bool) { return false; }
-bool CheckProto_5(const ServerContext&, const bool) { return false; }
 }  // namespace proto
 }  // namespace opentxs

@@ -64,8 +64,8 @@ bool CheckProto_3(
     const CredentialRole role = CREDROLE_ERROR,
     const bool withSigs = true);
 bool CheckProto_4(
-    const Credential&,
-    const bool,
+    const Credential& serializedCred,
+    const bool silent,
     const KeyMode& mode = KEYMODE_ERROR,
     const CredentialRole role = CREDROLE_ERROR,
     const bool withSigs = true);
