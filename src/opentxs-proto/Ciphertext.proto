@@ -1,6 +1,8 @@
 syntax = "proto2";
 
 package opentxs.proto;
+option java_package = "org.opentransactions.proto";
+option java_outer_classname = "OTCiphertext";
 option optimize_for = LITE_RUNTIME;
 
 import "Enums.proto";
