@@ -233,21 +233,25 @@ bool CheckProto_1(
 
     return true;
 }
-bool CheckProto_2(const UnitDefinition&, const bool, const bool)
+
+bool CheckProto_2(const UnitDefinition&, const bool silent, const bool)
 {
-    return false;
+    UNDEFINED_VERSION("unit definition", 2)
 }
-bool CheckProto_3(const UnitDefinition&, const bool, const bool)
+
+bool CheckProto_3(const UnitDefinition&, const bool silent, const bool)
 {
-    return false;
+    UNDEFINED_VERSION("unit definition", 3)
 }
-bool CheckProto_4(const UnitDefinition&, const bool, const bool)
+
+bool CheckProto_4(const UnitDefinition&, const bool silent, const bool)
 {
-    return false;
+    UNDEFINED_VERSION("unit definition", 4)
 }
-bool CheckProto_5(const UnitDefinition&, const bool, const bool)
+
+bool CheckProto_5(const UnitDefinition&, const bool silent, const bool)
 {
-    return false;
+    UNDEFINED_VERSION("unit definition", 5)
 }
 }  // namespace proto
 }  // namespace opentxs

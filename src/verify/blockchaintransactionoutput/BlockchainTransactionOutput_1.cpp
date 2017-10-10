@@ -49,67 +49,70 @@ namespace proto
 bool CheckProto_1(const BlockchainTransactionOutput& output, const bool silent)
 {
     if (false == output.has_index()) {
-        FAIL("output", "missing index")
+        FAIL("blockchain transaction output", "missing index")
     }
 
     if (output.has_serializedscript()) {
         if (MIN_PLAUSIBLE_SCRIPT > output.serializedscript().size()) {
-            FAIL("output", "invalid serializedscript")
+            FAIL("blockchain transaction output", "invalid serializedscript")
         }
 
         if (MAX_PLAUSIBLE_SCRIPT < output.serializedscript().size()) {
-            FAIL("output", "invalid serializedscript")
+            FAIL("blockchain transaction output", "invalid serializedscript")
         }
     }
 
     if (output.has_address()) {
         if (MIN_PLAUSIBLE_IDENTIFIER > output.address().size()) {
-            FAIL("output", "invalid address")
+            FAIL("blockchain transaction output", "invalid address")
         }
 
         if (MAX_PLAUSIBLE_IDENTIFIER < output.address().size()) {
-            FAIL("output", "invalid address")
+            FAIL("blockchain transaction output", "invalid address")
         }
     }
 
     if (output.has_confirmedspend()) {
         if (MIN_PLAUSIBLE_IDENTIFIER > output.confirmedspend().size()) {
-            FAIL("output", "invalid confirmedspend")
+            FAIL("blockchain transaction output", "invalid confirmedspend")
         }
 
         if (MAX_PLAUSIBLE_IDENTIFIER < output.confirmedspend().size()) {
-            FAIL("output", "invalid confirmedspend")
+            FAIL("blockchain transaction output", "invalid confirmedspend")
         }
     }
 
     for (const auto& orphan : output.orphanedspend()) {
         if (MIN_PLAUSIBLE_IDENTIFIER > orphan.size()) {
-            FAIL("output", "invalid orphanedspend")
+            FAIL("blockchain transaction output", "invalid orphanedspend")
         }
 
         if (MAX_PLAUSIBLE_IDENTIFIER < orphan.size()) {
-            FAIL("output", "invalid orphanedspend")
+            FAIL("blockchain transaction output", "invalid orphanedspend")
         }
     }
 
     return true;
 }
 
-bool CheckProto_2(const BlockchainTransactionOutput&, const bool)
+bool CheckProto_2(const BlockchainTransactionOutput&, const bool silent)
 {
-    return false;
+    UNDEFINED_VERSION("blockchain transaction output", 2)
 }
-bool CheckProto_3(const BlockchainTransactionOutput&, const bool)
+
+bool CheckProto_3(const BlockchainTransactionOutput&, const bool silent)
 {
-    return false;
+    UNDEFINED_VERSION("blockchain transaction output", 3)
 }
-bool CheckProto_4(const BlockchainTransactionOutput&, const bool)
+
+bool CheckProto_4(const BlockchainTransactionOutput&, const bool silent)
 {
-    return false;
+    UNDEFINED_VERSION("blockchain transaction output", 4)
 }
-bool CheckProto_5(const BlockchainTransactionOutput&, const bool)
+
+bool CheckProto_5(const BlockchainTransactionOutput&, const bool silent)
 {
-    return false;
+    UNDEFINED_VERSION("blockchain transaction output", 5)
 }
 }  // namespace proto
 }  // namespace opentxs

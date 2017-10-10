@@ -355,6 +355,9 @@ bool CheckProto_4(const StorageNym& nym, const bool silent)
     return true;
 }
 
-bool CheckProto_5(const StorageNym&, const bool) { return false; }
+bool CheckProto_5(const StorageNym&, const bool silent)
+{
+    UNDEFINED_VERSION("storage nym", 5)
+}
 }  // namespace proto
 }  // namespace opentxs

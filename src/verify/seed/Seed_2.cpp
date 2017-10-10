@@ -109,8 +109,20 @@ bool CheckProto_2(const Seed& seed, const bool silent)
 
     return true;
 }
-bool CheckProto_3(const Seed&, const bool) { return false; }
-bool CheckProto_4(const Seed&, const bool) { return false; }
-bool CheckProto_5(const Seed&, const bool) { return false; }
+
+bool CheckProto_3(const Seed&, const bool silent)
+{
+    UNDEFINED_VERSION("seed", 3)
+}
+
+bool CheckProto_4(const Seed&, const bool silent)
+{
+    UNDEFINED_VERSION("seed", 4)
+}
+
+bool CheckProto_5(const Seed&, const bool silent)
+{
+    UNDEFINED_VERSION("seed", 5)
+}
 }  // namespace proto
 }  // namespace opentxs

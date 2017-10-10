@@ -88,9 +88,24 @@ bool CheckProto_1(const StorageThread& thread, const bool silent)
     return true;
 }
 
-bool CheckProto_2(const StorageThread&, const bool) { return false; }
-bool CheckProto_3(const StorageThread&, const bool) { return false; }
-bool CheckProto_4(const StorageThread&, const bool) { return false; }
-bool CheckProto_5(const StorageThread&, const bool) { return false; }
+bool CheckProto_2(const StorageThread&, const bool silent)
+{
+    UNDEFINED_VERSION("storage thread", 2)
+}
+
+bool CheckProto_3(const StorageThread&, const bool silent)
+{
+    UNDEFINED_VERSION("storage thread", 3)
+}
+
+bool CheckProto_4(const StorageThread&, const bool silent)
+{
+    UNDEFINED_VERSION("storage thread", 4)
+}
+
+bool CheckProto_5(const StorageThread&, const bool silent)
+{
+    UNDEFINED_VERSION("storage thread", 5)
+}
 }  // namespace proto
 }  // namespace opentxs

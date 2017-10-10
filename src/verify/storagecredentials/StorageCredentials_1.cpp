@@ -69,12 +69,25 @@ bool CheckProto_1(const StorageCredentials& creds, const bool silent)
 
     return true;
 }
+
 bool CheckProto_2(const StorageCredentials& creds, const bool silent)
 {
     return CheckProto_1(creds, silent);
 }
-bool CheckProto_3(const StorageCredentials&, const bool) { return false; }
-bool CheckProto_4(const StorageCredentials&, const bool) { return false; }
-bool CheckProto_5(const StorageCredentials&, const bool) { return false; }
+
+bool CheckProto_3(const StorageCredentials&, const bool silent)
+{
+    UNDEFINED_VERSION("credential storage index", 3)
+}
+
+bool CheckProto_4(const StorageCredentials&, const bool silent)
+{
+    UNDEFINED_VERSION("credential storage index", 4)
+}
+
+bool CheckProto_5(const StorageCredentials&, const bool silent)
+{
+    UNDEFINED_VERSION("credential storage index", 5)
+}
 }  // namespace proto
 }  // namespace opentxs

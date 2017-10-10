@@ -129,37 +129,41 @@ bool CheckProto_1(
 
     return true;
 }
+
 bool CheckProto_2(
     const KeyCredential&,
-    const bool,
+    const bool silent,
     const CredentialType,
     const KeyMode)
 {
-    return false;
+    UNDEFINED_VERSION("key credential", 2)
 }
+
 bool CheckProto_3(
     const KeyCredential&,
-    const bool,
+    const bool silent,
     const CredentialType,
     const KeyMode)
 {
-    return false;
+    UNDEFINED_VERSION("key credential", 3)
 }
+
 bool CheckProto_4(
     const KeyCredential&,
-    const bool,
+    const bool silent,
     const CredentialType,
     const KeyMode)
 {
-    return false;
+    UNDEFINED_VERSION("key credential", 4)
 }
+
 bool CheckProto_5(
     const KeyCredential&,
-    const bool,
+    const bool silent,
     const CredentialType,
     const KeyMode)
 {
-    return false;
+    UNDEFINED_VERSION("key credential", 5)
 }
 }  // namespace proto
 }  // namespace opentxs

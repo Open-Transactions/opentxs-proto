@@ -101,9 +101,25 @@ bool CheckProto_1(const SymmetricKey& key, const bool silent)
 
     return true;
 }
-bool CheckProto_2(const SymmetricKey&, const bool) { return false; }
-bool CheckProto_3(const SymmetricKey&, const bool) { return false; }
-bool CheckProto_4(const SymmetricKey&, const bool) { return false; }
-bool CheckProto_5(const SymmetricKey&, const bool) { return false; }
+
+bool CheckProto_2(const SymmetricKey&, const bool silent)
+{
+    UNDEFINED_VERSION("symmetric key", 2)
+}
+
+bool CheckProto_3(const SymmetricKey&, const bool silent)
+{
+    UNDEFINED_VERSION("symmetric key", 3)
+}
+
+bool CheckProto_4(const SymmetricKey&, const bool silent)
+{
+    UNDEFINED_VERSION("symmetric key", 4)
+}
+
+bool CheckProto_5(const SymmetricKey&, const bool silent)
+{
+    UNDEFINED_VERSION("symmetric key", 5)
+}
 }  // namespace proto
 }  // namespace opentxs

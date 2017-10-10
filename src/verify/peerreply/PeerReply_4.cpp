@@ -205,6 +205,9 @@ bool CheckProto_4(const PeerReply& reply, const bool silent)
     return true;
 }
 
-bool CheckProto_5(const PeerReply&, const bool) { return false; }
+bool CheckProto_5(const PeerReply&, const bool silent)
+{
+    UNDEFINED_VERSION("peer reply", 5)
+}
 }  // namespace proto
 }  // namespace opentxs

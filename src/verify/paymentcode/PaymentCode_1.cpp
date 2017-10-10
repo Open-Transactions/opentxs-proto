@@ -84,9 +84,25 @@ bool CheckProto_1(const PaymentCode& code, const bool silent)
 
     return true;
 }
-bool CheckProto_2(const PaymentCode&, const bool) { return false; }
-bool CheckProto_3(const PaymentCode&, const bool) { return false; }
-bool CheckProto_4(const PaymentCode&, const bool) { return false; }
-bool CheckProto_5(const PaymentCode&, const bool) { return false; }
+
+bool CheckProto_2(const PaymentCode&, const bool silent)
+{
+    UNDEFINED_VERSION("payment code", 2)
+}
+
+bool CheckProto_3(const PaymentCode&, const bool silent)
+{
+    UNDEFINED_VERSION("payment code", 3)
+}
+
+bool CheckProto_4(const PaymentCode&, const bool silent)
+{
+    UNDEFINED_VERSION("payment code", 4)
+}
+
+bool CheckProto_5(const PaymentCode&, const bool silent)
+{
+    UNDEFINED_VERSION("payment code", 5)
+}
 }  // namespace proto
 }  // namespace opentxs

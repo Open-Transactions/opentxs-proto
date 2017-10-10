@@ -157,8 +157,19 @@ bool CheckProto_2(const Context& context, const bool silent)
     return CheckProto_1(context, silent);
 }
 
-bool CheckProto_3(const Context&, const bool) { return false; }
-bool CheckProto_4(const Context&, const bool) { return false; }
-bool CheckProto_5(const Context&, const bool) { return false; }
+bool CheckProto_3(const Context&, const bool silent)
+{
+    UNDEFINED_VERSION("context", 3)
+}
+
+bool CheckProto_4(const Context&, const bool silent)
+{
+    UNDEFINED_VERSION("context", 4)
+}
+
+bool CheckProto_5(const Context&, const bool silent)
+{
+    UNDEFINED_VERSION("context", 5)
+}
 }  // namespace proto
 }  // namespace opentxs

@@ -146,9 +146,25 @@ bool CheckProto_1(const ServerContract& contract, const bool silent)
 
     return true;
 }
-bool CheckProto_2(const ServerContract&, const bool) { return false; }
-bool CheckProto_3(const ServerContract&, const bool) { return false; }
-bool CheckProto_4(const ServerContract&, const bool) { return false; }
-bool CheckProto_5(const ServerContract&, const bool) { return false; }
+
+bool CheckProto_2(const ServerContract&, const bool silent)
+{
+    UNDEFINED_VERSION("server contract", 2)
+}
+
+bool CheckProto_3(const ServerContract&, const bool silent)
+{
+    UNDEFINED_VERSION("server contract", 3)
+}
+
+bool CheckProto_4(const ServerContract&, const bool silent)
+{
+    UNDEFINED_VERSION("server contract", 4)
+}
+
+bool CheckProto_5(const ServerContract&, const bool silent)
+{
+    UNDEFINED_VERSION("server contract", 5)
+}
 }  // namespace proto
 }  // namespace opentxs

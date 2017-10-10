@@ -69,12 +69,25 @@ bool CheckProto_1(const StorageServers& servers, const bool silent)
 
     return true;
 }
+
 bool CheckProto_2(const StorageServers& servers, const bool silent)
 {
     return CheckProto_1(servers, silent);
 }
-bool CheckProto_3(const StorageServers&, const bool) { return false; }
-bool CheckProto_4(const StorageServers&, const bool) { return false; }
-bool CheckProto_5(const StorageServers&, const bool) { return false; }
+
+bool CheckProto_3(const StorageServers&, const bool silent)
+{
+    UNDEFINED_VERSION("server storage index", 3)
+}
+
+bool CheckProto_4(const StorageServers&, const bool silent)
+{
+    UNDEFINED_VERSION("server storage index", 4)
+}
+
+bool CheckProto_5(const StorageServers&, const bool silent)
+{
+    UNDEFINED_VERSION("server storage index", 5)
+}
 }  // namespace proto
 }  // namespace opentxs

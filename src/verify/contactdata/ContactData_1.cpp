@@ -109,9 +109,9 @@ bool CheckProto_4(
     return CheckProto_1(contactData, silent, indexed);
 }
 
-bool CheckProto_5(const ContactData&, const bool, const ClaimType)
+bool CheckProto_5(const ContactData&, const bool silent, const ClaimType)
 {
-    return false;
+    UNDEFINED_VERSION("contact data", 5)
 }
 }  // namespace proto
 }  // namespace opentxs

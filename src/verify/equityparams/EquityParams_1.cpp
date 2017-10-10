@@ -63,9 +63,25 @@ bool CheckProto_1(const EquityParams& params, const bool silent)
 
     return true;
 }
-bool CheckProto_2(const EquityParams&, const bool) { return false; }
-bool CheckProto_3(const EquityParams&, const bool) { return false; }
-bool CheckProto_4(const EquityParams&, const bool) { return false; }
-bool CheckProto_5(const EquityParams&, const bool) { return false; }
+
+bool CheckProto_2(const EquityParams&, const bool silent)
+{
+    UNDEFINED_VERSION("equity params", 2)
+}
+
+bool CheckProto_3(const EquityParams&, const bool silent)
+{
+    UNDEFINED_VERSION("equity params", 3)
+}
+
+bool CheckProto_4(const EquityParams&, const bool silent)
+{
+    UNDEFINED_VERSION("equity params", 4)
+}
+
+bool CheckProto_5(const EquityParams&, const bool silent)
+{
+    UNDEFINED_VERSION("equity params", 5)
+}
 }  // namespace proto
 }  // namespace opentxs

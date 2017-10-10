@@ -59,21 +59,24 @@ bool CheckProto_1(const ChildCredentialParameters& child, const bool silent)
     return true;
 }
 
-bool CheckProto_2(const ChildCredentialParameters&, const bool)
+bool CheckProto_2(const ChildCredentialParameters&, const bool silent)
 {
-    return false;
+    UNDEFINED_VERSION("child parameters", 2)
 }
-bool CheckProto_3(const ChildCredentialParameters&, const bool)
+
+bool CheckProto_3(const ChildCredentialParameters&, const bool silent)
 {
-    return false;
+    UNDEFINED_VERSION("child parameters", 3)
 }
-bool CheckProto_4(const ChildCredentialParameters&, const bool)
+
+bool CheckProto_4(const ChildCredentialParameters&, const bool silent)
 {
-    return false;
+    UNDEFINED_VERSION("child parameters", 4)
 }
-bool CheckProto_5(const ChildCredentialParameters&, const bool)
+
+bool CheckProto_5(const ChildCredentialParameters&, const bool silent)
 {
-    return false;
+    UNDEFINED_VERSION("child parameters", 5)
 }
 }  // namespace proto
 }  // namespace opentxs

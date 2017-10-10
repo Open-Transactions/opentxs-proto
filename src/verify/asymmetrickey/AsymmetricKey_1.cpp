@@ -221,41 +221,45 @@ bool CheckProto_1(
 
     return true;
 }
+
 bool CheckProto_2(
     const AsymmetricKey&,
-    const bool,
+    const bool silent,
     const CredentialType,
     const KeyMode,
     const KeyRole)
 {
-    return false;
+    UNDEFINED_VERSION("asymmetric key", 2)
 }
+
 bool CheckProto_3(
     const AsymmetricKey&,
-    const bool,
+    const bool silent,
     const CredentialType,
     const KeyMode,
     const KeyRole)
 {
-    return false;
+    UNDEFINED_VERSION("asymmetric key", 3)
 }
+
 bool CheckProto_4(
     const AsymmetricKey&,
-    const bool,
+    const bool silent,
     const CredentialType,
     const KeyMode,
     const KeyRole)
 {
-    return false;
+    UNDEFINED_VERSION("asymmetric key", 4)
 }
+
 bool CheckProto_5(
     const AsymmetricKey&,
-    const bool,
+    const bool silent,
     const CredentialType,
     const KeyMode,
     const KeyRole)
 {
-    return false;
+    UNDEFINED_VERSION("asymmetric key", 5)
 }
 }  // namespace proto
 }  // namespace opentxs

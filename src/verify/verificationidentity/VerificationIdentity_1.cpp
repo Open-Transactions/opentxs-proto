@@ -86,37 +86,41 @@ bool CheckProto_1(
 
     return true;
 }
+
 bool CheckProto_2(
     const VerificationIdentity&,
-    const bool,
+    const bool silent,
     VerificationNymMap&,
     const VerificationType)
 {
-    return false;
+    UNDEFINED_VERSION("verification identity", 2)
 }
+
 bool CheckProto_3(
     const VerificationIdentity&,
-    const bool,
+    const bool silent,
     VerificationNymMap&,
     const VerificationType)
 {
-    return false;
+    UNDEFINED_VERSION("verification identity", 3)
 }
+
 bool CheckProto_4(
     const VerificationIdentity&,
-    const bool,
+    const bool silent,
     VerificationNymMap&,
     const VerificationType)
 {
-    return false;
+    UNDEFINED_VERSION("verification identity", 4)
 }
+
 bool CheckProto_5(
     const VerificationIdentity&,
-    const bool,
+    const bool silent,
     VerificationNymMap&,
     const VerificationType)
 {
-    return false;
+    UNDEFINED_VERSION("verification identity", 5)
 }
 }  // namespace proto
 }  // namespace opentxs

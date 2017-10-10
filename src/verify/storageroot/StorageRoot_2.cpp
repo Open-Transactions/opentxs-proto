@@ -67,8 +67,19 @@ bool CheckProto_2(const StorageRoot& root, const bool silent)
     return true;
 }
 
-bool CheckProto_3(const StorageRoot&, const bool) { return false; }
-bool CheckProto_4(const StorageRoot&, const bool) { return false; }
-bool CheckProto_5(const StorageRoot&, const bool) { return false; }
+bool CheckProto_3(const StorageRoot&, const bool silent)
+{
+    UNDEFINED_VERSION("storage root", 3)
+}
+
+bool CheckProto_4(const StorageRoot&, const bool silent)
+{
+    UNDEFINED_VERSION("storage root", 4)
+}
+
+bool CheckProto_5(const StorageRoot&, const bool silent)
+{
+    UNDEFINED_VERSION("storage root", 5)
+}
 }  // namespace proto
 }  // namespace opentxs

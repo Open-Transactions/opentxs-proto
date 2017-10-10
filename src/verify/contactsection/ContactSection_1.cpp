@@ -114,11 +114,11 @@ bool CheckProto_4(
 
 bool CheckProto_5(
     const ContactSection&,
-    const bool,
+    const bool silent,
     const ClaimType,
     const uint32_t)
 {
-    return false;
+    UNDEFINED_VERSION("contact section", 5)
 }
 }  // namespace proto
 }  // namespace opentxs

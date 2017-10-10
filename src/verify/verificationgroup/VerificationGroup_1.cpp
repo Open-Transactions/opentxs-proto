@@ -84,21 +84,37 @@ bool CheckProto_1(
 
     return true;
 }
-bool CheckProto_2(const VerificationGroup&, const bool, const VerificationType)
+
+bool CheckProto_2(
+    const VerificationGroup&,
+    const bool silent,
+    const VerificationType)
 {
-    return false;
+    UNDEFINED_VERSION("verification group", 2)
 }
-bool CheckProto_3(const VerificationGroup&, const bool, const VerificationType)
+
+bool CheckProto_3(
+    const VerificationGroup&,
+    const bool silent,
+    const VerificationType)
 {
-    return false;
+    UNDEFINED_VERSION("verification group", 3)
 }
-bool CheckProto_4(const VerificationGroup&, const bool, const VerificationType)
+
+bool CheckProto_4(
+    const VerificationGroup&,
+    const bool silent,
+    const VerificationType)
 {
-    return false;
+    UNDEFINED_VERSION("verification group", 4)
 }
-bool CheckProto_5(const VerificationGroup&, const bool, const VerificationType)
+
+bool CheckProto_5(
+    const VerificationGroup&,
+    const bool silent,
+    const VerificationType)
 {
-    return false;
+    UNDEFINED_VERSION("verification group", 5)
 }
 }  // namespace proto
 }  // namespace opentxs

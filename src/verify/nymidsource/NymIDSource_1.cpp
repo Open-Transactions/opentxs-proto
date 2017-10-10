@@ -119,9 +119,25 @@ bool CheckProto_1(const NymIDSource& source, const bool silent)
 
     return true;
 }
-bool CheckProto_2(const NymIDSource&, const bool) { return false; }
-bool CheckProto_3(const NymIDSource&, const bool) { return false; }
-bool CheckProto_4(const NymIDSource&, const bool) { return false; }
-bool CheckProto_5(const NymIDSource&, const bool) { return false; }
+
+bool CheckProto_2(const NymIDSource&, const bool silent)
+{
+    UNDEFINED_VERSION("nym id source", 2)
+}
+
+bool CheckProto_3(const NymIDSource&, const bool silent)
+{
+    UNDEFINED_VERSION("nym id source", 3)
+}
+
+bool CheckProto_4(const NymIDSource&, const bool silent)
+{
+    UNDEFINED_VERSION("nym id source", 4)
+}
+
+bool CheckProto_5(const NymIDSource&, const bool silent)
+{
+    UNDEFINED_VERSION("nym id source", 5)
+}
 }  // namespace proto
 }  // namespace opentxs

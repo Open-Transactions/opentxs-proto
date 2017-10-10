@@ -74,6 +74,9 @@ bool CheckProto_4(const StoreSecret& request, const bool silent)
     return CheckProto_1(request, silent);
 }
 
-bool CheckProto_5(const StoreSecret&, const bool) { return false; }
+bool CheckProto_5(const StoreSecret&, const bool silent)
+{
+    UNDEFINED_VERSION("StoreSecret", 5)
+}
 }  // namespace proto
 }  // namespace opentxs

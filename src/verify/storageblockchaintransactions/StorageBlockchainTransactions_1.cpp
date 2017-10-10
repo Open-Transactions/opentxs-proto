@@ -76,24 +76,24 @@ bool CheckProto_1(
     return true;
 }
 
-bool CheckProto_2(const StorageBlockchainTransactions&, const bool)
+bool CheckProto_2(const StorageBlockchainTransactions&, const bool silent)
 {
-    return false;
+    UNDEFINED_VERSION("storage blockchain transactions", 2)
 }
 
-bool CheckProto_3(const StorageBlockchainTransactions&, const bool)
+bool CheckProto_3(const StorageBlockchainTransactions&, const bool silent)
 {
-    return false;
+    UNDEFINED_VERSION("storage blockchain transactions", 3)
 }
 
-bool CheckProto_4(const StorageBlockchainTransactions&, const bool)
+bool CheckProto_4(const StorageBlockchainTransactions&, const bool silent)
 {
-    return false;
+    UNDEFINED_VERSION("storage blockchain transactions", 4)
 }
 
-bool CheckProto_5(const StorageBlockchainTransactions&, const bool)
+bool CheckProto_5(const StorageBlockchainTransactions&, const bool silent)
 {
-    return false;
+    UNDEFINED_VERSION("storage blockchain transactions", 5)
 }
 }  // namespace proto
 }  // namespace opentxs

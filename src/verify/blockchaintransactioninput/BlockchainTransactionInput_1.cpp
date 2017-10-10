@@ -49,49 +49,52 @@ namespace proto
 bool CheckProto_1(const BlockchainTransactionInput& input, const bool silent)
 {
     if (false == input.has_index()) {
-        FAIL("input", "missing index")
+        FAIL("blockchain transaction input", "missing index")
     }
 
     if (false == input.has_serializedscript()) {
-        FAIL("input", "missing serializedscript")
+        FAIL("blockchain transaction input", "missing serializedscript")
     }
 
     if (MIN_PLAUSIBLE_SCRIPT > input.serializedscript().size()) {
-        FAIL("input", "invalid serializedscript")
+        FAIL("blockchain transaction input", "invalid serializedscript")
     }
 
     if (MAX_PLAUSIBLE_SCRIPT < input.serializedscript().size()) {
-        FAIL("input", "invalid serializedscript")
+        FAIL("blockchain transaction input", "invalid serializedscript")
     }
 
     for (const auto& address : input.address()) {
         if (MIN_PLAUSIBLE_IDENTIFIER > address.size()) {
-            FAIL("input", "invalid serializedscript")
+            FAIL("blockchain transaction input", "invalid serializedscript")
         }
 
         if (MAX_PLAUSIBLE_IDENTIFIER < address.size()) {
-            FAIL("input", "invalid serializedscript")
+            FAIL("blockchain transaction input", "invalid serializedscript")
         }
     }
 
     return true;
 }
 
-bool CheckProto_2(const BlockchainTransactionInput&, const bool)
+bool CheckProto_2(const BlockchainTransactionInput&, const bool silent)
 {
-    return false;
+    UNDEFINED_VERSION("blockchain transaction input", 2)
 }
-bool CheckProto_3(const BlockchainTransactionInput&, const bool)
+
+bool CheckProto_3(const BlockchainTransactionInput&, const bool silent)
 {
-    return false;
+    UNDEFINED_VERSION("blockchain transaction input", 3)
 }
-bool CheckProto_4(const BlockchainTransactionInput&, const bool)
+
+bool CheckProto_4(const BlockchainTransactionInput&, const bool silent)
 {
-    return false;
+    UNDEFINED_VERSION("blockchain transaction input", 4)
 }
-bool CheckProto_5(const BlockchainTransactionInput&, const bool)
+
+bool CheckProto_5(const BlockchainTransactionInput&, const bool silent)
 {
-    return false;
+    UNDEFINED_VERSION("blockchain transaction input", 5)
 }
 }  // namespace proto
 }  // namespace opentxs

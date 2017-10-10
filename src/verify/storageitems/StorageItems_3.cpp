@@ -129,8 +129,14 @@ bool CheckProto_3(const StorageItems& items, const bool silent)
     return true;
 }
 
-bool CheckProto_4(const StorageItems&, const bool) { return false; }
+bool CheckProto_4(const StorageItems&, const bool silent)
+{
+    UNDEFINED_VERSION("storage item index", 4)
+}
 
-bool CheckProto_5(const StorageItems&, const bool) { return false; }
+bool CheckProto_5(const StorageItems&, const bool silent)
+{
+    UNDEFINED_VERSION("storage item index", 5)
+}
 }  // namespace proto
 }  // namespace opentxs

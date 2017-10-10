@@ -282,13 +282,13 @@ bool CheckProto_4(
 
 bool CheckProto_5(
     const CredentialSet&,
-    const bool,
+    const bool silent,
     const std::string&,
     const KeyMode&,
     bool&,
     const CredentialSetMode&)
 {
-    return false;
+    UNDEFINED_VERSION("credential set", 5)
 }
 }  // namespace proto
 }  // namespace opentxs

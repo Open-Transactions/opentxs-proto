@@ -49,16 +49,16 @@ namespace proto
 bool CheckProto_1(const Bip44Address& address, const bool silent)
 {
     if (false == address.has_address()) {
-        FAIL("address", "missing index")
+        FAIL("blockchain address", "missing index")
     }
 
     if (address.has_address()) {
         if (MIN_PLAUSIBLE_SCRIPT > address.address().size()) {
-            FAIL("address", "invalid address")
+            FAIL("blockchain address", "invalid address")
         }
 
         if (MAX_PLAUSIBLE_SCRIPT < address.address().size()) {
-            FAIL("address", "invalid address")
+            FAIL("blockchain address", "invalid address")
         }
     }
 
@@ -68,30 +68,45 @@ bool CheckProto_1(const Bip44Address& address, const bool silent)
 
     if (address.has_contact()) {
         if (MIN_PLAUSIBLE_IDENTIFIER > address.contact().size()) {
-            FAIL("address", "invalid contact")
+            FAIL("blockchain address", "invalid contact")
         }
 
         if (MAX_PLAUSIBLE_IDENTIFIER < address.contact().size()) {
-            FAIL("address", "invalid contact")
+            FAIL("blockchain address", "invalid contact")
         }
     }
 
     for (const auto& txid : address.incoming()) {
         if (MIN_PLAUSIBLE_IDENTIFIER > txid.size()) {
-            FAIL("address", "invalid txid")
+            FAIL("blockchain address", "invalid txid")
         }
 
         if (MAX_PLAUSIBLE_IDENTIFIER < txid.size()) {
-            FAIL("address", "invalid txid")
+            FAIL("blockchain address", "invalid txid")
         }
     }
 
     return true;
 }
 
-bool CheckProto_2(const Bip44Address&, const bool) { return false; }
-bool CheckProto_3(const Bip44Address&, const bool) { return false; }
-bool CheckProto_4(const Bip44Address&, const bool) { return false; }
-bool CheckProto_5(const Bip44Address&, const bool) { return false; }
+bool CheckProto_2(const Bip44Address&, const bool silent)
+{
+    UNDEFINED_VERSION("blockchain address", 2)
+}
+
+bool CheckProto_3(const Bip44Address&, const bool silent)
+{
+    UNDEFINED_VERSION("blockchain address", 3)
+}
+
+bool CheckProto_4(const Bip44Address&, const bool silent)
+{
+    UNDEFINED_VERSION("blockchain address", 4)
+}
+
+bool CheckProto_5(const Bip44Address&, const bool silent)
+{
+    UNDEFINED_VERSION("blockchain address", 5)
+}
 }  // namespace proto
 }  // namespace opentxs

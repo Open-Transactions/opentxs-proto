@@ -96,21 +96,25 @@ bool CheckProto_1(
 
     return true;
 }
-bool CheckProto_2(const MasterCredentialParameters&, const bool, bool&)
+
+bool CheckProto_2(const MasterCredentialParameters&, const bool silent, bool&)
 {
-    return false;
+    UNDEFINED_VERSION("master parameters", 2)
 }
-bool CheckProto_3(const MasterCredentialParameters&, const bool, bool&)
+
+bool CheckProto_3(const MasterCredentialParameters&, const bool silent, bool&)
 {
-    return false;
+    UNDEFINED_VERSION("master parameters", 3)
 }
-bool CheckProto_4(const MasterCredentialParameters&, const bool, bool&)
+
+bool CheckProto_4(const MasterCredentialParameters&, const bool silent, bool&)
 {
-    return false;
+    UNDEFINED_VERSION("master parameters", 4)
 }
-bool CheckProto_5(const MasterCredentialParameters&, const bool, bool&)
+
+bool CheckProto_5(const MasterCredentialParameters&, const bool silent, bool&)
 {
-    return false;
+    UNDEFINED_VERSION("master parameters", 5)
 }
 }  // namespace proto
 }  // namespace opentxs

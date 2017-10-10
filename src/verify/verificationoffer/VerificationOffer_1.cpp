@@ -121,6 +121,9 @@ bool CheckProto_4(const VerificationOffer& offer, const bool silent)
     return CheckProto_3(offer, silent);
 }
 
-bool CheckProto_5(const VerificationOffer&, const bool) { return false; }
+bool CheckProto_5(const VerificationOffer&, const bool silent)
+{
+    UNDEFINED_VERSION("verification offer", 5)
+}
 }  // namespace proto
 }  // namespace opentxs

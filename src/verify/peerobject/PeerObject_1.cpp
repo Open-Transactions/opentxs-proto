@@ -219,7 +219,15 @@ bool CheckProto_3(const PeerObject& object, const bool silent)
 {
     return CheckProto_1(object, silent);
 }
-bool CheckProto_4(const PeerObject&, const bool) { return false; }
-bool CheckProto_5(const PeerObject&, const bool) { return false; }
+
+bool CheckProto_4(const PeerObject&, const bool silent)
+{
+    UNDEFINED_VERSION("peer object", 4)
+}
+
+bool CheckProto_5(const PeerObject&, const bool silent)
+{
+    UNDEFINED_VERSION("peer object", 5)
+}
 }  // namespace proto
 }  // namespace opentxs

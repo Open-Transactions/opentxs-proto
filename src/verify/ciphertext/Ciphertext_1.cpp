@@ -108,9 +108,24 @@ bool CheckProto_1(const Ciphertext& data, const bool silent, const bool nested)
 
     return true;
 }
-bool CheckProto_2(const Ciphertext&, const bool, const bool) { return false; }
-bool CheckProto_3(const Ciphertext&, const bool, const bool) { return false; }
-bool CheckProto_4(const Ciphertext&, const bool, const bool) { return false; }
-bool CheckProto_5(const Ciphertext&, const bool, const bool) { return false; }
+bool CheckProto_2(const Ciphertext&, const bool, const bool silent)
+{
+    UNDEFINED_VERSION("ciphertext", 2)
+}
+
+bool CheckProto_3(const Ciphertext&, const bool, const bool silent)
+{
+    UNDEFINED_VERSION("ciphertext", 3)
+}
+
+bool CheckProto_4(const Ciphertext&, const bool, const bool silent)
+{
+    UNDEFINED_VERSION("ciphertext", 4)
+}
+
+bool CheckProto_5(const Ciphertext&, const bool, const bool silent)
+{
+    UNDEFINED_VERSION("ciphertext", 5)
+}
 }  // namespace proto
 }  // namespace opentxs

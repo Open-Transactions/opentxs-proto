@@ -72,9 +72,25 @@ bool CheckProto_1(const StorageIDList& list, const bool silent)
 
     return true;
 }
-bool CheckProto_2(const StorageIDList&, const bool) { return false; }
-bool CheckProto_3(const StorageIDList&, const bool) { return false; }
-bool CheckProto_4(const StorageIDList&, const bool) { return false; }
-bool CheckProto_5(const StorageIDList&, const bool) { return false; }
+
+bool CheckProto_2(const StorageIDList&, const bool silent)
+{
+    UNDEFINED_VERSION("storage id list", 2)
+}
+
+bool CheckProto_3(const StorageIDList&, const bool silent)
+{
+    UNDEFINED_VERSION("storage id list", 3)
+}
+
+bool CheckProto_4(const StorageIDList&, const bool silent)
+{
+    UNDEFINED_VERSION("storage id list", 4)
+}
+
+bool CheckProto_5(const StorageIDList&, const bool silent)
+{
+    UNDEFINED_VERSION("storage id list", 5)
+}
 }  // namespace proto
 }  // namespace opentxs

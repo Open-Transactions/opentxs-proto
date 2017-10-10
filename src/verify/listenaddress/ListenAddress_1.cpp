@@ -80,9 +80,25 @@ bool CheckProto_1(const ListenAddress& address, const bool silent)
 
     return true;
 }
-bool CheckProto_2(const ListenAddress&, const bool) { return false; }
-bool CheckProto_3(const ListenAddress&, const bool) { return false; }
-bool CheckProto_4(const ListenAddress&, const bool) { return false; }
-bool CheckProto_5(const ListenAddress&, const bool) { return false; }
+
+bool CheckProto_2(const ListenAddress&, const bool silent)
+{
+    UNDEFINED_VERSION("listen address", 2)
+}
+
+bool CheckProto_3(const ListenAddress&, const bool silent)
+{
+    UNDEFINED_VERSION("listen address", 3)
+}
+
+bool CheckProto_4(const ListenAddress&, const bool silent)
+{
+    UNDEFINED_VERSION("listen address", 4)
+}
+
+bool CheckProto_5(const ListenAddress&, const bool silent)
+{
+    UNDEFINED_VERSION("listen address", 5)
+}
 }  // namespace proto
 }  // namespace opentxs

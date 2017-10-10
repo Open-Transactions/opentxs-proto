@@ -69,6 +69,9 @@ bool CheckProto_4(const ConnectionInfoReply& reply, const bool silent)
     return CheckProto_1(reply, silent);
 }
 
-bool CheckProto_5(const ConnectionInfoReply&, const bool) { return false; }
+bool CheckProto_5(const ConnectionInfoReply&, const bool silent)
+{
+    UNDEFINED_VERSION("ConnectionInfo reply", 5)
+}
 }  // namespace proto
 }  // namespace opentxs

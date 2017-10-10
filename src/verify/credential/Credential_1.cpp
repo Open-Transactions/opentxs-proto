@@ -492,12 +492,12 @@ bool CheckProto_4(
 
 bool CheckProto_5(
     const Credential&,
-    const bool,
+    const bool silent,
     const KeyMode&,
     const CredentialRole,
     const bool)
 {
-    return false;
+    UNDEFINED_VERSION("credential", 5)
 }
 }  // namespace proto
 }  // namespace opentxs

@@ -101,21 +101,37 @@ bool CheckProto_1(
 
     return true;
 }
-bool CheckProto_2(const VerificationSet&, const bool, const VerificationType)
+
+bool CheckProto_2(
+    const VerificationSet&,
+    const bool silent,
+    const VerificationType)
 {
-    return false;
+    UNDEFINED_VERSION("verification set", 2)
 }
-bool CheckProto_3(const VerificationSet&, const bool, const VerificationType)
+
+bool CheckProto_3(
+    const VerificationSet&,
+    const bool silent,
+    const VerificationType)
 {
-    return false;
+    UNDEFINED_VERSION("verification set", 3)
 }
-bool CheckProto_4(const VerificationSet&, const bool, const VerificationType)
+
+bool CheckProto_4(
+    const VerificationSet&,
+    const bool silent,
+    const VerificationType)
 {
-    return false;
+    UNDEFINED_VERSION("verification set", 4)
 }
-bool CheckProto_5(const VerificationSet&, const bool, const VerificationType)
+
+bool CheckProto_5(
+    const VerificationSet&,
+    const bool silent,
+    const VerificationType)
 {
-    return false;
+    UNDEFINED_VERSION("verification set", 5)
 }
 }  // namespace proto
 }  // namespace opentxs

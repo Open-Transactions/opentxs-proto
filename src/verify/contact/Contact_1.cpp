@@ -117,9 +117,24 @@ bool CheckProto_1(const Contact& contact, const bool silent)
 
     return true;
 }
-bool CheckProto_2(const Contact&, const bool) { return false; }
-bool CheckProto_3(const Contact&, const bool) { return false; }
-bool CheckProto_4(const Contact&, const bool) { return false; }
-bool CheckProto_5(const Contact&, const bool) { return false; }
+bool CheckProto_2(const Contact&, const bool silent)
+{
+    UNDEFINED_VERSION("contact", 2)
+}
+
+bool CheckProto_3(const Contact&, const bool silent)
+{
+    UNDEFINED_VERSION("contact", 3)
+}
+
+bool CheckProto_4(const Contact&, const bool silent)
+{
+    UNDEFINED_VERSION("contact", 4)
+}
+
+bool CheckProto_5(const Contact&, const bool silent)
+{
+    UNDEFINED_VERSION("contact", 5)
+}
 }  // namespace proto
 }  // namespace opentxs

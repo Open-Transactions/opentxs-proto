@@ -53,24 +53,24 @@ bool CheckProto_1(const BlockchainTransaction& transaction, const bool silent)
         {CONTACT_VERSION, CONTACTSECTION_CONTRACT}, transaction.chain());
 
     if (false == validChain) {
-        FAIL("transaction", "invalid chain")
+        FAIL("blockchain transaction", "invalid chain")
     }
 
     if (MIN_PLAUSIBLE_IDENTIFIER > transaction.txid().size()) {
-        FAIL("transaction", "invalid txid")
+        FAIL("blockchain transaction", "invalid txid")
     }
 
     if (MAX_PLAUSIBLE_IDENTIFIER < transaction.txid().size()) {
-        FAIL("transaction", "invalid txid")
+        FAIL("blockchain transaction", "invalid txid")
     }
 
     if (transaction.has_serialized()) {
         if (MIN_PLAUSIBLE_SCRIPT > transaction.serialized().size()) {
-            FAIL("transaction", "invalid serialized")
+            FAIL("blockchain transaction", "invalid serialized")
         }
 
         if (MAX_PLAUSIBLE_SCRIPT < transaction.serialized().size()) {
-            FAIL("transaction", "invalid serialized")
+            FAIL("blockchain transaction", "invalid serialized")
         }
     }
 
@@ -85,11 +85,11 @@ bool CheckProto_1(const BlockchainTransaction& transaction, const bool silent)
                 silent);
 
             if (false == validInput) {
-                FAIL("transaction", "invalid input")
+                FAIL("blockchain transaction", "invalid input")
             }
         } catch (const std::out_of_range&) {
             FAIL2(
-                "transaction",
+                "blockchain transaction",
                 "allowed input version not defined for version",
                 transaction.version())
         }
@@ -106,11 +106,11 @@ bool CheckProto_1(const BlockchainTransaction& transaction, const bool silent)
                 silent);
 
             if (false == validOutput) {
-                FAIL("transaction", "invalid output")
+                FAIL("blockchain transaction", "invalid output")
             }
         } catch (const std::out_of_range&) {
             FAIL2(
-                "transaction",
+                "blockchain transaction",
                 "allowed output version not defined for version",
                 transaction.version())
         }
@@ -118,34 +118,49 @@ bool CheckProto_1(const BlockchainTransaction& transaction, const bool silent)
 
     if (transaction.has_blockhash()) {
         if (MIN_PLAUSIBLE_IDENTIFIER > transaction.blockhash().size()) {
-            FAIL("transaction", "invalid blockhash")
+            FAIL("blockchain transaction", "invalid blockhash")
         }
 
         if (MIN_PLAUSIBLE_IDENTIFIER < transaction.blockhash().size()) {
-            FAIL("transaction", "invalid blockhash")
+            FAIL("blockchain transaction", "invalid blockhash")
         }
     }
 
     for (const auto& conflict : transaction.conflicts()) {
         if (MIN_PLAUSIBLE_IDENTIFIER > conflict.size()) {
-            FAIL("transaction", "invalid conflict")
+            FAIL("blockchain transaction", "invalid conflict")
         }
 
         if (MIN_PLAUSIBLE_IDENTIFIER < conflict.size()) {
-            FAIL("transaction", "invalid conflict")
+            FAIL("blockchain transaction", "invalid conflict")
         }
     }
 
     if (MAX_VALID_CONTACT_VALUE > transaction.memo().size()) {
-        FAIL("transaction", "invalid memo")
+        FAIL("blockchain transaction", "invalid memo")
     }
 
     return true;
 }
 
-bool CheckProto_2(const BlockchainTransaction&, const bool) { return false; }
-bool CheckProto_3(const BlockchainTransaction&, const bool) { return false; }
-bool CheckProto_4(const BlockchainTransaction&, const bool) { return false; }
-bool CheckProto_5(const BlockchainTransaction&, const bool) { return false; }
+bool CheckProto_2(const BlockchainTransaction&, const bool silent)
+{
+    UNDEFINED_VERSION("blockchain transaction", 2)
+}
+
+bool CheckProto_3(const BlockchainTransaction&, const bool silent)
+{
+    UNDEFINED_VERSION("blockchain transaction", 3)
+}
+
+bool CheckProto_4(const BlockchainTransaction&, const bool silent)
+{
+    UNDEFINED_VERSION("blockchain transaction", 4)
+}
+
+bool CheckProto_5(const BlockchainTransaction&, const bool silent)
+{
+    UNDEFINED_VERSION("blockchain transaction", 5)
+}
 }  // namespace proto
 }  // namespace opentxs

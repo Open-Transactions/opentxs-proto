@@ -109,9 +109,25 @@ bool CheckProto_1(const Envelope& data, const bool silent)
 
     return true;
 }
-bool CheckProto_2(const Envelope&, const bool) { return false; }
-bool CheckProto_3(const Envelope&, const bool) { return false; }
-bool CheckProto_4(const Envelope&, const bool) { return false; }
-bool CheckProto_5(const Envelope&, const bool) { return false; }
+
+bool CheckProto_2(const Envelope&, const bool silent)
+{
+    UNDEFINED_VERSION("envelope", 2)
+}
+
+bool CheckProto_3(const Envelope&, const bool silent)
+{
+    UNDEFINED_VERSION("envelope", 3)
+}
+
+bool CheckProto_4(const Envelope&, const bool silent)
+{
+    UNDEFINED_VERSION("envelope", 4)
+}
+
+bool CheckProto_5(const Envelope&, const bool silent)
+{
+    UNDEFINED_VERSION("envelope", 5)
+}
 }  // namespace proto
 }  // namespace opentxs

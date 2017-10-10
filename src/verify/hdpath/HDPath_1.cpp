@@ -58,9 +58,25 @@ bool CheckProto_1(const HDPath& path, const bool silent)
 
     return true;
 }
-bool CheckProto_2(const HDPath&, const bool) { return false; }
-bool CheckProto_3(const HDPath&, const bool) { return false; }
-bool CheckProto_4(const HDPath&, const bool) { return false; }
-bool CheckProto_5(const HDPath&, const bool) { return false; }
+
+bool CheckProto_2(const HDPath&, const bool silent)
+{
+    UNDEFINED_VERSION("HD path", 2)
+}
+
+bool CheckProto_3(const HDPath&, const bool silent)
+{
+    UNDEFINED_VERSION("HD path", 3)
+}
+
+bool CheckProto_4(const HDPath&, const bool silent)
+{
+    UNDEFINED_VERSION("HD path", 4)
+}
+
+bool CheckProto_5(const HDPath&, const bool silent)
+{
+    UNDEFINED_VERSION("HD path", 5)
+}
 }  // namespace proto
 }  // namespace opentxs
