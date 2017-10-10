@@ -55,29 +55,43 @@ bool CheckProto_1(
         FAIL("master parameters", "missing nym id source")
     }
 
-    const bool validSource = Check(
-        master.source(),
-        MasterParamsAllowedNymIDSource.at(master.version()).first,
-        MasterParamsAllowedNymIDSource.at(master.version()).second,
-        silent);
+    try {
+        const bool validSource = Check(
+            master.source(),
+            MasterParamsAllowedNymIDSource.at(master.version()).first,
+            MasterParamsAllowedNymIDSource.at(master.version()).second,
+            silent);
 
-    if (!validSource) {
-        FAIL("master parameters", "invalid nym id source")
+        if (!validSource) {
+            FAIL("master parameters", "invalid nym id source")
+        }
+    } catch (const std::out_of_range&) {
+        FAIL2(
+            "master parameters",
+            "allowed nym ID source version not defined for version",
+            master.version())
     }
 
     if (!master.has_sourceproof()) {
         FAIL("master parameters", "missing nym id source proof")
     }
 
-    const bool validProof = Check(
-        master.sourceproof(),
-        MasterParamsAllowedSourceProof.at(master.version()).first,
-        MasterParamsAllowedSourceProof.at(master.version()).second,
-        silent,
-        expectSourceSignature);
+    try {
+        const bool validProof = Check(
+            master.sourceproof(),
+            MasterParamsAllowedSourceProof.at(master.version()).first,
+            MasterParamsAllowedSourceProof.at(master.version()).second,
+            silent,
+            expectSourceSignature);
 
-    if (!validProof) {
-        FAIL("master parameters", "invalid nym id source proof")
+        if (!validProof) {
+            FAIL("master parameters", "invalid nym id source proof")
+        }
+    } catch (const std::out_of_range&) {
+        FAIL2(
+            "master parameters",
+            "allowed source proof version not defined for version",
+            master.version())
     }
 
     return true;

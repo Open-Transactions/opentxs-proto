@@ -67,14 +67,21 @@ bool CheckProto_1(const Ciphertext& data, const bool silent, const bool nested)
         }
     } else {
         if (data.has_key()) {
-            const bool validKey = Check(
-                data.key(),
-                CiphertextAllowedSymmetricKey.at(data.version()).first,
-                CiphertextAllowedSymmetricKey.at(data.version()).second,
-                silent);
+            try {
+                const bool validKey = Check(
+                    data.key(),
+                    CiphertextAllowedSymmetricKey.at(data.version()).first,
+                    CiphertextAllowedSymmetricKey.at(data.version()).second,
+                    silent);
 
-            if (!validKey) {
-                FAIL("ciphertext", "invalid key")
+                if (!validKey) {
+                    FAIL("ciphertext", "invalid key")
+                }
+            } catch (const std::out_of_range&) {
+                FAIL2(
+                    "ciphertext",
+                    "allowed symmetric key version not defined for version",
+                    data.version())
             }
         }
     }

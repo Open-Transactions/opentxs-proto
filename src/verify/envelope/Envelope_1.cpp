@@ -49,35 +49,62 @@ namespace proto
 bool CheckProto_1(const Envelope& data, const bool silent)
 {
     for (const auto& dhKey : data.dhkey()) {
-        if (!Check(
+        try {
+            const bool validDHKey = Check(
                 dhKey,
                 EnvelopeAllowedAsymmetricKey.at(data.version()).first,
                 EnvelopeAllowedAsymmetricKey.at(data.version()).second,
                 silent,
                 CREDTYPE_LEGACY,
                 KEYMODE_PUBLIC,
-                KEYROLE_ENCRYPT)) {
-            FAIL("envelope", "invalid dhkey")
+                KEYROLE_ENCRYPT);
+
+            if (false == validDHKey) {
+                FAIL("envelope", "invalid dhkey")
+            }
+        } catch (const std::out_of_range&) {
+            FAIL2(
+                "envelope",
+                "allowed asymmetric key version not defined for version",
+                data.version())
         }
     }
 
     for (const auto& sessionKey : data.sessionkey()) {
-        if (!Check(
+        try {
+            const bool validSessionKey = Check(
                 sessionKey,
                 EnvelopeAllowedCiphertext.at(data.version()).first,
                 EnvelopeAllowedCiphertext.at(data.version()).second,
-                silent)) {
-            FAIL("envelope", "invalid session key")
+                silent);
+
+            if (false == validSessionKey) {
+                FAIL("envelope", "invalid session key")
+            }
+        } catch (const std::out_of_range&) {
+            FAIL2(
+                "envelope",
+                "allowed ciphertext version not defined for version",
+                data.version())
         }
     }
 
-    if (!Check(
+    try {
+        const bool validCiphertext = Check(
             data.ciphertext(),
             EnvelopeAllowedCiphertext.at(data.version()).first,
             EnvelopeAllowedCiphertext.at(data.version()).second,
             silent,
-            false)) {
-        FAIL("envelope", "invalid ciphertext")
+            false);
+
+        if (false == validCiphertext) {
+            FAIL("envelope", "invalid ciphertext")
+        }
+    } catch (const std::out_of_range&) {
+        FAIL2(
+            "envelope",
+            "allowed ciphertext version not defined for version",
+            data.version())
     }
 
     return true;

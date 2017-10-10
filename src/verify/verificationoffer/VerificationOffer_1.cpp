@@ -74,29 +74,43 @@ bool CheckProto_3(const VerificationOffer& offer, const bool silent)
         FAIL("verification offer", "invalid recipient nym id")
     }
 
-    const bool validClaim = Check(
-        offer.claim(),
-        VerificationOfferAllowedClaim.at(offer.version()).first,
-        VerificationOfferAllowedClaim.at(offer.version()).second,
-        silent);
+    try {
+        const bool validClaim = Check(
+            offer.claim(),
+            VerificationOfferAllowedClaim.at(offer.version()).first,
+            VerificationOfferAllowedClaim.at(offer.version()).second,
+            silent);
 
-    if (!validClaim) {
-        FAIL("verification offer", "invalid claim")
+        if (!validClaim) {
+            FAIL("verification offer", "invalid claim")
+        }
+    } catch (const std::out_of_range&) {
+        FAIL2(
+            "verification offer",
+            "allowed claim version not defined for version",
+            offer.version())
     }
 
     if (offer.claim().nymid() != offer.recipientnym()) {
         FAIL("verification offer", "claim nym does not match recipient nym")
     }
 
-    const bool validVerification = Check(
-        offer.verification(),
-        VerificationOfferAllowedVerification.at(offer.version()).first,
-        VerificationOfferAllowedVerification.at(offer.version()).second,
-        silent,
-        VERIFICATIONS_NORMAL);
+    try {
+        const bool validVerification = Check(
+            offer.verification(),
+            VerificationOfferAllowedVerification.at(offer.version()).first,
+            VerificationOfferAllowedVerification.at(offer.version()).second,
+            silent,
+            VERIFICATIONS_NORMAL);
 
-    if (!validVerification) {
-        FAIL("verification offer", "invalid verification")
+        if (!validVerification) {
+            FAIL("verification offer", "invalid verification")
+        }
+    } catch (const std::out_of_range&) {
+        FAIL2(
+            "verification offer",
+            "allowed verification version not defined for version",
+            offer.version())
     }
 
     return true;

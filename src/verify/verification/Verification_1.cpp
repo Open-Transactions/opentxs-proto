@@ -93,15 +93,22 @@ bool CheckProto_1(
         FAIL("verification", "missing signature")
     }
 
-    bool validSignature = Check(
-        verification.sig(),
-        VerificationAllowedSignature.at(verification.version()).first,
-        VerificationAllowedSignature.at(verification.version()).second,
-        silent,
-        proto::SIGROLE_CLAIM);
+    try {
+        const bool validSignature = Check(
+            verification.sig(),
+            VerificationAllowedSignature.at(verification.version()).first,
+            VerificationAllowedSignature.at(verification.version()).second,
+            silent,
+            proto::SIGROLE_CLAIM);
 
-    if (!validSignature) {
-        FAIL("verification", "invalid signature")
+        if (!validSignature) {
+            FAIL("verification", "invalid signature")
+        }
+    } catch (const std::out_of_range&) {
+        FAIL2(
+            "verification",
+            "allowed signature version not defined for version",
+            verification.version())
     }
 
     return true;

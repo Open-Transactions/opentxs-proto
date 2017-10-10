@@ -67,15 +67,22 @@ bool CheckProto_1(const Contact& contact, const bool silent)
     }
 
     if (contact.has_contactdata()) {
-        const auto validContactData = Check(
-            contact.contactdata(),
-            ContactAllowedContactData.at(contact.version()).first,
-            ContactAllowedContactData.at(contact.version()).second,
-            silent,
-            CLAIMS_NORMAL);
+        try {
+            const auto validContactData = Check(
+                contact.contactdata(),
+                ContactAllowedContactData.at(contact.version()).first,
+                ContactAllowedContactData.at(contact.version()).second,
+                silent,
+                CLAIMS_NORMAL);
 
-        if (!validContactData) {
-            FAIL("contact", "invalid contact data")
+            if (!validContactData) {
+                FAIL("contact", "invalid contact data")
+            }
+        } catch (const std::out_of_range&) {
+            FAIL2(
+                "contact",
+                "allowed contact data not defined for version",
+                contact.version())
         }
     }
 

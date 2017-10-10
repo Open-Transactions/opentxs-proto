@@ -54,16 +54,23 @@ bool CheckProto_1(
     std::map<ContactSectionName, uint32_t> sectionCount;
 
     for (auto& it : contactData.section()) {
-        bool validSection = Check(
-            it,
-            ContactDataAllowedSection.at(contactData.version()).first,
-            ContactDataAllowedSection.at(contactData.version()).second,
-            silent,
-            indexed,
-            contactData.version());
+        try {
+            bool validSection = Check(
+                it,
+                ContactDataAllowedSection.at(contactData.version()).first,
+                ContactDataAllowedSection.at(contactData.version()).second,
+                silent,
+                indexed,
+                contactData.version());
 
-        if (!validSection) {
-            FAIL("contact data", "invalid section")
+            if (!validSection) {
+                FAIL("contact data", "invalid section")
+            }
+        } catch (const std::out_of_range&) {
+            FAIL2(
+                "contact data",
+                "allowed contact section version not defined for version",
+                contactData.version())
         }
 
         ContactSectionName name = it.name();

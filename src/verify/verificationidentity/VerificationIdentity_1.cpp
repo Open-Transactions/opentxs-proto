@@ -63,17 +63,24 @@ bool CheckProto_1(
     map[identity.nym()] += 1;
 
     for (auto& it : identity.verification()) {
-        bool verification = Check(
-            it,
-            VerificationIdentityAllowedVerification.at(identity.version())
-                .first,
-            VerificationIdentityAllowedVerification.at(identity.version())
-                .second,
-            silent,
-            indexed);
+        try {
+            const bool verification = Check(
+                it,
+                VerificationIdentityAllowedVerification.at(identity.version())
+                    .first,
+                VerificationIdentityAllowedVerification.at(identity.version())
+                    .second,
+                silent,
+                indexed);
 
-        if (!verification) {
-            FAIL("verification identity", "invalid verification")
+            if (!verification) {
+                FAIL("verification identity", "invalid verification")
+            }
+        } catch (const std::out_of_range&) {
+            FAIL2(
+                "verification identity",
+                "allowed verification version not defined for version",
+                identity.version())
         }
     }
 

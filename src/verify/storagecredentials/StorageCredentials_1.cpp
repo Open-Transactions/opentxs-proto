@@ -49,14 +49,21 @@ namespace proto
 bool CheckProto_1(const StorageCredentials& creds, const bool silent)
 {
     for (auto& hash : creds.cred()) {
-        bool valid = Check(
-            hash,
-            StorageCredentialAllowedHash.at(creds.version()).first,
-            StorageCredentialAllowedHash.at(creds.version()).second,
-            silent);
+        try {
+            const bool valid = Check(
+                hash,
+                StorageCredentialAllowedHash.at(creds.version()).first,
+                StorageCredentialAllowedHash.at(creds.version()).second,
+                silent);
 
-        if (!valid) {
-            FAIL("credential storage index", "invalid hash")
+            if (!valid) {
+                FAIL("credential storage index", "invalid hash")
+            }
+        } catch (const std::out_of_range&) {
+            FAIL2(
+                "credential storage index",
+                "allowed storage item hash version not defined for version",
+                creds.version())
         }
     }
 

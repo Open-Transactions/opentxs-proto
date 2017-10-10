@@ -79,15 +79,22 @@ bool CheckProto_1(const PeerRequest& request, const bool silent)
         FAIL("peer request", "missing cookie")
     }
 
-    bool validSig = Check(
-        request.signature(),
-        PeerRequestAllowedSignature.at(request.version()).first,
-        PeerRequestAllowedSignature.at(request.version()).second,
-        silent,
-        SIGROLE_PEERREQUEST);
+    try {
+        const bool validSig = Check(
+            request.signature(),
+            PeerReplyAllowedSignature.at(request.version()).first,
+            PeerReplyAllowedSignature.at(request.version()).second,
+            silent,
+            SIGROLE_PEERREPLY);
 
-    if (!validSig) {
-        FAIL("peer request", "invalid signature")
+        if (!validSig) {
+            FAIL("peer request", "invalid signature")
+        }
+    } catch (const std::out_of_range&) {
+        FAIL2(
+            "peer request",
+            "allowed signature version not defined for version",
+            request.version())
     }
 
     switch (request.type()) {
@@ -96,14 +103,21 @@ bool CheckProto_1(const PeerRequest& request, const bool silent)
                 FAIL("peer request", "missing bailment")
             }
 
-            bool validbailment = Check(
-                request.bailment(),
-                PeerRequestAllowedBailment.at(request.version()).first,
-                PeerRequestAllowedBailment.at(request.version()).second,
-                silent);
+            try {
+                const bool validbailment = Check(
+                    request.bailment(),
+                    PeerRequestAllowedBailment.at(request.version()).first,
+                    PeerRequestAllowedBailment.at(request.version()).second,
+                    silent);
 
-            if (!validbailment) {
-                FAIL("peer request", "invalid bailment")
+                if (!validbailment) {
+                    FAIL("peer request", "invalid bailment")
+                }
+            } catch (const std::out_of_range&) {
+                FAIL2(
+                    "peer request",
+                    "allowed bailment version not defined for version",
+                    request.version())
             }
         } break;
         case PEERREQUEST_OUTBAILMENT: {
@@ -111,14 +125,21 @@ bool CheckProto_1(const PeerRequest& request, const bool silent)
                 FAIL("peer request", "missing outbailment")
             }
 
-            bool validoutbailment = Check(
-                request.outbailment(),
-                PeerRequestAllowedOutBailment.at(request.version()).first,
-                PeerRequestAllowedOutBailment.at(request.version()).second,
-                silent);
+            try {
+                const bool validoutbailment = Check(
+                    request.outbailment(),
+                    PeerRequestAllowedOutBailment.at(request.version()).first,
+                    PeerRequestAllowedOutBailment.at(request.version()).second,
+                    silent);
 
-            if (!validoutbailment) {
-                FAIL("peer request", "invalid outbailment")
+                if (!validoutbailment) {
+                    FAIL("peer request", "invalid outbailment")
+                }
+            } catch (const std::out_of_range&) {
+                FAIL2(
+                    "peer request",
+                    "allowed outbailment version not defined for version",
+                    request.version())
             }
         } break;
         case PEERREQUEST_PENDINGBAILMENT: {
@@ -126,14 +147,23 @@ bool CheckProto_1(const PeerRequest& request, const bool silent)
                 FAIL("peer request", "missing pendingbailment")
             }
 
-            bool validoutbailment = Check(
-                request.pendingbailment(),
-                PeerRequestAllowedPendingBailment.at(request.version()).first,
-                PeerRequestAllowedPendingBailment.at(request.version()).second,
-                silent);
+            try {
+                const bool validoutbailment = Check(
+                    request.pendingbailment(),
+                    PeerRequestAllowedPendingBailment.at(request.version())
+                        .first,
+                    PeerRequestAllowedPendingBailment.at(request.version())
+                        .second,
+                    silent);
 
-            if (!validoutbailment) {
-                FAIL("peer request", "invalid pendingbailment")
+                if (!validoutbailment) {
+                    FAIL("peer request", "invalid pendingbailment")
+                }
+            } catch (const std::out_of_range&) {
+                FAIL2(
+                    "peer request",
+                    "allowed pending bailment version not defined for version",
+                    request.version())
             }
         } break;
         case PEERREQUEST_CONNECTIONINFO: {
@@ -141,14 +171,23 @@ bool CheckProto_1(const PeerRequest& request, const bool silent)
                 FAIL("peer request", "missing connectioninfo")
             }
 
-            bool validconnectioninfo = Check(
-                request.connectioninfo(),
-                PeerRequestAllowedConnectionInfo.at(request.version()).first,
-                PeerRequestAllowedConnectionInfo.at(request.version()).second,
-                silent);
+            try {
+                const bool validconnectioninfo = Check(
+                    request.connectioninfo(),
+                    PeerRequestAllowedConnectionInfo.at(request.version())
+                        .first,
+                    PeerRequestAllowedConnectionInfo.at(request.version())
+                        .second,
+                    silent);
 
-            if (!validconnectioninfo) {
-                FAIL("peer request", "invalid connectioninfo")
+                if (!validconnectioninfo) {
+                    FAIL("peer request", "invalid connectioninfo")
+                }
+            } catch (const std::out_of_range&) {
+                FAIL2(
+                    "peer request",
+                    "allowed connectioninfo version not defined for version",
+                    request.version())
             }
         } break;
         case PEERREQUEST_STORESECRET: {
@@ -156,14 +195,21 @@ bool CheckProto_1(const PeerRequest& request, const bool silent)
                 FAIL("peer request", "missing storesecret")
             }
 
-            bool validstoresecret = Check(
-                request.storesecret(),
-                PeerRequestAllowedStoreSecret.at(request.version()).first,
-                PeerRequestAllowedStoreSecret.at(request.version()).second,
-                silent);
+            try {
+                const bool validstoresecret = Check(
+                    request.storesecret(),
+                    PeerRequestAllowedStoreSecret.at(request.version()).first,
+                    PeerRequestAllowedStoreSecret.at(request.version()).second,
+                    silent);
 
-            if (!validstoresecret) {
-                FAIL("peer request", "invalid storesecret")
+                if (!validstoresecret) {
+                    FAIL("peer request", "invalid storesecret")
+                }
+            } catch (const std::out_of_range&) {
+                FAIL2(
+                    "peer request",
+                    "allowed storesecret version not defined for version",
+                    request.version())
             }
         } break;
         default: {

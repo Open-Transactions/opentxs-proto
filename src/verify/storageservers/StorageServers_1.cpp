@@ -49,14 +49,21 @@ namespace proto
 bool CheckProto_1(const StorageServers& servers, const bool silent)
 {
     for (auto& hash : servers.server()) {
-        bool valid = Check(
-            hash,
-            StorageServersAllowedHash.at(servers.version()).first,
-            StorageServersAllowedHash.at(servers.version()).second,
-            silent);
+        try {
+            const bool valid = Check(
+                hash,
+                StorageServersAllowedHash.at(servers.version()).first,
+                StorageServersAllowedHash.at(servers.version()).second,
+                silent);
 
-        if (!valid) {
-            FAIL("server storage index", "invalid hash")
+            if (!valid) {
+                FAIL("server storage index", "invalid hash")
+            }
+        } catch (const std::out_of_range&) {
+            FAIL2(
+                "server storage index",
+                "allowed storage item hash version not defined for version",
+                servers.version())
         }
     }
 

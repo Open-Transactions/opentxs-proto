@@ -49,12 +49,21 @@ namespace proto
 bool CheckProto_1(const StorageNymList& nymList, const bool silent)
 {
     for (auto& nym : nymList.nym()) {
-        if (!Check(
+        try {
+            const bool validList = Check(
                 nym,
                 StorageNymListAllowedHash.at(nymList.version()).first,
                 StorageNymListAllowedHash.at(nymList.version()).second,
-                silent)) {
-            FAIL("nym index", "invalid nym")
+                silent);
+
+            if (false == validList) {
+                FAIL("nym index", "invalid nym")
+            }
+        } catch (const std::out_of_range&) {
+            FAIL2(
+                "nym index",
+                "allowed storage item hash version not defined for version",
+                nymList.version())
         }
     }
 

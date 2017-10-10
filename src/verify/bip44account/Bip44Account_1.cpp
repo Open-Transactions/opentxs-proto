@@ -71,25 +71,39 @@ bool CheckProto_1(const Bip44Account& account, const bool silent)
         FAIL("account", "missing path")
     }
 
-    const bool validPath = Check(
-        account.path(),
-        Bip44AccountAllowedHDPath.at(account.version()).first,
-        Bip44AccountAllowedHDPath.at(account.version()).second,
-        silent);
+    try {
+        const bool validPath = Check(
+            account.path(),
+            Bip44AccountAllowedHDPath.at(account.version()).first,
+            Bip44AccountAllowedHDPath.at(account.version()).second,
+            silent);
 
-    if (false == validPath) {
-        FAIL("account", "invalid path")
+        if (false == validPath) {
+            FAIL("account", "invalid path")
+        }
+    } catch (const std::out_of_range&) {
+        FAIL2(
+            "account",
+            "allowed HD path version not defined for version",
+            account.version())
     }
 
     for (const auto& address : account.internaladdress()) {
-        const bool validAddress = Check(
-            address,
-            Bip44AccountAllowedBip44Address.at(account.version()).first,
-            Bip44AccountAllowedBip44Address.at(account.version()).second,
-            silent);
+        try {
+            const bool validAddress = Check(
+                address,
+                Bip44AccountAllowedBip44Address.at(account.version()).first,
+                Bip44AccountAllowedBip44Address.at(account.version()).second,
+                silent);
 
-        if (false == validAddress) {
-            FAIL("account", "invalid address")
+            if (false == validAddress) {
+                FAIL("account", "invalid address")
+            }
+        } catch (const std::out_of_range&) {
+            FAIL2(
+                "account",
+                "allowed Bip44 address version not defined for version",
+                account.version())
         }
     }
 

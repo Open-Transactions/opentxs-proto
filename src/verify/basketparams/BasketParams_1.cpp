@@ -55,15 +55,22 @@ bool CheckProto_1(const BasketParams& params, const bool silent)
     BasketItemMap itemMap;
 
     for (auto& item : params.item()) {
-        bool validItem = Check(
-            item,
-            BasketParamsAllowedBasketItem.at(params.version()).first,
-            BasketParamsAllowedBasketItem.at(params.version()).second,
-            silent,
-            itemMap);
+        try {
+            bool validItem = Check(
+                item,
+                BasketParamsAllowedBasketItem.at(params.version()).first,
+                BasketParamsAllowedBasketItem.at(params.version()).second,
+                silent,
+                itemMap);
 
-        if (!validItem) {
-            FAIL("basket params", "invalid basket")
+            if (!validItem) {
+                FAIL("basket params", "invalid basket")
+            }
+        } catch (const std::out_of_range&) {
+            FAIL2(
+                "basket params",
+                "allowed basket item version not defined for version",
+                params.version())
         }
     }
 

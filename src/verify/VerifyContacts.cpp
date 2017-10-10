@@ -38,7 +38,9 @@
 
 #include "opentxs-proto/verify/VerifyContacts.hpp"
 
-namespace opentxs { namespace proto
+namespace opentxs
+{
+namespace proto
 {
 bool ValidContactSectionName(
     const std::uint32_t version,
@@ -46,23 +48,45 @@ bool ValidContactSectionName(
 {
     std::set<ContactSectionName> allowedNames = AllowedSectionNames.at(version);
 
-    return (std::find(allowedNames.begin(), allowedNames.end(), name) != allowedNames.end());
+    try {
+        return (
+            std::find(allowedNames.begin(), allowedNames.end(), name) !=
+            allowedNames.end());
+    } catch (const std::out_of_range&) {
+        return false;
+    }
 }
+
 bool ValidContactItemType(
     const ContactSectionVersion version,
     const ContactItemType itemType)
 {
     std::set<ContactItemType> allowedTypes = AllowedItemTypes.at(version);
 
-    return (std::find(allowedTypes.begin(), allowedTypes.end(), itemType) != allowedTypes.end());
+    try {
+        return (
+            std::find(allowedTypes.begin(), allowedTypes.end(), itemType) !=
+            allowedTypes.end());
+    } catch (const std::out_of_range&) {
+        return false;
+    }
 }
 bool ValidContactItemAttribute(
     const std::uint32_t version,
     const ContactItemAttribute attribute)
 {
-    std::set<ContactItemAttribute> allowedAttributes = AllowedItemAttributes.at(version);
+    std::set<ContactItemAttribute> allowedAttributes =
+        AllowedItemAttributes.at(version);
 
-    return (std::find(allowedAttributes.begin(), allowedAttributes.end(), attribute) != allowedAttributes.end());
+    try {
+        return (
+            std::find(
+                allowedAttributes.begin(),
+                allowedAttributes.end(),
+                attribute) != allowedAttributes.end());
+    } catch (const std::out_of_range&) {
+        return false;
+    }
 }
 
 std::string TranslateSectionName(
@@ -115,7 +139,10 @@ std::uint32_t ReciprocalRelationship(const std::uint32_t relationship)
     bool found = (RelationshipMap.find(input) != RelationshipMap.end());
 
     if (found) {
-        return RelationshipMap.at(input);
+        try {
+            return RelationshipMap.at(input);
+        } catch (const std::out_of_range&) {
+        }
     }
 
     return CITEMTYPE_ERROR;
@@ -141,5 +168,5 @@ bool CheckCombination(
 
     return false;
 }
-} // namespace proto
-} // namespace opentxs
+}  // namespace proto
+}  // namespace opentxs

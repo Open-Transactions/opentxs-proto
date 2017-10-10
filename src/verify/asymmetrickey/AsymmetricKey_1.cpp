@@ -117,15 +117,22 @@ bool CheckProto_1(
                 FAIL("asymmetric key", "missing encrypted key")
             }
 
-            const bool validEncryptedKey = Check(
-                key.encryptedkey(),
-                AsymmetricKeyAllowedCiphertext.at(key.version()).first,
-                AsymmetricKeyAllowedCiphertext.at(key.version()).second,
-                silent,
-                false);
+            try {
+                const bool validEncryptedKey = Check(
+                    key.encryptedkey(),
+                    AsymmetricKeyAllowedCiphertext.at(key.version()).first,
+                    AsymmetricKeyAllowedCiphertext.at(key.version()).second,
+                    silent,
+                    false);
 
-            if (!validEncryptedKey) {
-                FAIL("asymmetric key", "invalid encrypted key")
+                if (!validEncryptedKey) {
+                    FAIL("asymmetric key", "invalid encrypted key")
+                }
+            } catch (const std::out_of_range&) {
+                FAIL2(
+                    "asymmetric key",
+                    "allowed ciphertext version not defined for version",
+                    key.version())
             }
 
             if (key.has_key()) {
@@ -167,29 +174,43 @@ bool CheckProto_1(
                     FAIL("asymmetric key", "missing chain code")
                 }
 
-                const bool validChainCode = Check(
-                    key.chaincode(),
-                    AsymmetricKeyAllowedCiphertext.at(key.version()).first,
-                    AsymmetricKeyAllowedCiphertext.at(key.version()).second,
-                    silent,
-                    false);
+                try {
+                    const bool validChainCode = Check(
+                        key.chaincode(),
+                        AsymmetricKeyAllowedCiphertext.at(key.version()).first,
+                        AsymmetricKeyAllowedCiphertext.at(key.version()).second,
+                        silent,
+                        false);
 
-                if (!validChainCode) {
-                    FAIL("asymmetric key", "invalid chain code")
+                    if (!validChainCode) {
+                        FAIL("asymmetric key", "invalid chain code")
+                    }
+                } catch (const std::out_of_range&) {
+                    FAIL2(
+                        "asymmetric key",
+                        "allowed ciphertext version not defined for version",
+                        key.version())
                 }
 
                 if (!key.has_path()) {
                     FAIL("asymmetric key", "missing HD path")
                 }
 
-                bool validPath = Check(
-                    key.path(),
-                    AsymmetricKeyAllowedHDPath.at(key.version()).first,
-                    AsymmetricKeyAllowedHDPath.at(key.version()).second,
-                    silent);
+                try {
+                    bool validPath = Check(
+                        key.path(),
+                        AsymmetricKeyAllowedHDPath.at(key.version()).first,
+                        AsymmetricKeyAllowedHDPath.at(key.version()).second,
+                        silent);
 
-                if (!validPath) {
-                    FAIL("asymmetric key", "invalid HD path")
+                    if (!validPath) {
+                        FAIL("asymmetric key", "invalid HD path")
+                    }
+                } catch (const std::out_of_range&) {
+                    FAIL2(
+                        "asymmetric key",
+                        "allowed HD path version not defined for version",
+                        key.version())
                 }
             }
 

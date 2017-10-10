@@ -49,38 +49,59 @@ namespace proto
 bool CheckProto_1(const StorageContacts& contact, const bool silent)
 {
     for (auto& merge : contact.merge()) {
-        bool valid = Check(
-            merge,
-            StorageContactsAllowedList.at(contact.version()).first,
-            StorageContactsAllowedList.at(contact.version()).second,
-            silent);
+        try {
+            const bool valid = Check(
+                merge,
+                StorageContactsAllowedList.at(contact.version()).first,
+                StorageContactsAllowedList.at(contact.version()).second,
+                silent);
 
-        if (!valid) {
-            FAIL("contact storage index", "invalid merge")
+            if (!valid) {
+                FAIL("contact storage index", "invalid merge")
+            }
+        } catch (const std::out_of_range&) {
+            FAIL2(
+                "contact storage index",
+                "allowed storage id list version not defined for version",
+                contact.version())
         }
     }
 
     for (auto& hash : contact.contact()) {
-        bool valid = Check(
-            hash,
-            StorageContactsAllowedHash.at(contact.version()).first,
-            StorageContactsAllowedHash.at(contact.version()).second,
-            silent);
+        try {
+            const bool valid = Check(
+                hash,
+                StorageContactsAllowedHash.at(contact.version()).first,
+                StorageContactsAllowedHash.at(contact.version()).second,
+                silent);
 
-        if (!valid) {
-            FAIL("contact storage index", "invalid hash")
+            if (!valid) {
+                FAIL("contact storage index", "invalid hash")
+            }
+        } catch (const std::out_of_range&) {
+            FAIL2(
+                "contact storage index",
+                "allowed storage item hash version not defined for version",
+                contact.version())
         }
     }
 
     for (auto& index : contact.address()) {
-        bool valid = Check(
-            index,
-            StorageContactsAllowedAddress.at(contact.version()).first,
-            StorageContactsAllowedAddress.at(contact.version()).second,
-            silent);
+        try {
+            const bool valid = Check(
+                index,
+                StorageContactsAllowedAddress.at(contact.version()).first,
+                StorageContactsAllowedAddress.at(contact.version()).second,
+                silent);
 
-        if (!valid) {
-            FAIL("contact storage index", "invalid address index")
+            if (!valid) {
+                FAIL("contact storage index", "invalid address index")
+            }
+        } catch (const std::out_of_range&) {
+            FAIL2(
+                "contact storage index",
+                "allowed address index version not defined for version",
+                contact.version())
         }
     }
 

@@ -48,15 +48,22 @@ namespace proto
 
 bool CheckProto_1(const SymmetricKey& key, const bool silent)
 {
-    const bool validKey = Check(
-        key.key(),
-        SymmetricKeyAllowedCiphertext.at(key.version()).first,
-        SymmetricKeyAllowedCiphertext.at(key.version()).second,
-        silent,
-        true);
+    try {
+        const bool validKey = Check(
+            key.key(),
+            SymmetricKeyAllowedCiphertext.at(key.version()).first,
+            SymmetricKeyAllowedCiphertext.at(key.version()).second,
+            silent,
+            true);
 
-    if (!validKey) {
-        FAIL("symmetric key", "invalid encrypted key")
+        if (!validKey) {
+            FAIL("symmetric key", "invalid encrypted key")
+        }
+    } catch (const std::out_of_range&) {
+        FAIL2(
+            "symmetric key",
+            "allowed ciphertext version not defined for version",
+            key.version())
     }
 
     if (!key.has_size()) {

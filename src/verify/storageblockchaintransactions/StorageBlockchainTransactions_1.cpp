@@ -51,7 +51,8 @@ bool CheckProto_1(
     const bool silent)
 {
     for (auto& transaction : transactions.transaction()) {
-        if (!Check(
+        try {
+            const bool validHash = Check(
                 transaction,
                 StorageBlockchainTransactionsAllowedHash
                     .at(transactions.version())
@@ -59,8 +60,16 @@ bool CheckProto_1(
                 StorageBlockchainTransactionsAllowedHash
                     .at(transactions.version())
                     .second,
-                silent)) {
-            FAIL("storage blockchain transactions", "invalid hash")
+                silent);
+
+            if (false == validHash) {
+                FAIL("storage blockchain transactions", "invalid hash")
+            }
+        } catch (const std::out_of_range&) {
+            FAIL2(
+                "storage blockchain transactions",
+                "allowed storage hash version not defined for version",
+                transactions.version())
         }
     }
 

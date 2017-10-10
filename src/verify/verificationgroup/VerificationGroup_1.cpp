@@ -54,18 +54,25 @@ bool CheckProto_1(
     VerificationNymMap nymMap;
 
     for (auto& it : verificationGroup.identity()) {
-        bool validIdentity = Check(
-            it,
-            VerificationGroupAllowedIdentity.at(verificationGroup.version())
-                .first,
-            VerificationGroupAllowedIdentity.at(verificationGroup.version())
-                .second,
-            silent,
-            nymMap,
-            indexed);
+        try {
+            const bool validIdentity = Check(
+                it,
+                VerificationGroupAllowedIdentity.at(verificationGroup.version())
+                    .first,
+                VerificationGroupAllowedIdentity.at(verificationGroup.version())
+                    .second,
+                silent,
+                nymMap,
+                indexed);
 
-        if (!validIdentity) {
-            FAIL2("verification group", "invalid identity", it.nym())
+            if (!validIdentity) {
+                FAIL2("verification group", "invalid identity", it.nym())
+            }
+        } catch (const std::out_of_range&) {
+            FAIL2(
+                "verification group",
+                "allowed verification identity version not defined for version",
+                verificationGroup.version())
         }
     }
 

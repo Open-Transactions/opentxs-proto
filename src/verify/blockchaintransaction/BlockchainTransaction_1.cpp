@@ -75,26 +75,44 @@ bool CheckProto_1(const BlockchainTransaction& transaction, const bool silent)
     }
 
     for (const auto& input : transaction.input()) {
-        const bool validInput = Check(
-            input,
-            BlockchainTransactionAllowedInput.at(transaction.version()).first,
-            BlockchainTransactionAllowedInput.at(transaction.version()).second,
-            silent);
+        try {
+            const bool validInput = Check(
+                input,
+                BlockchainTransactionAllowedInput.at(transaction.version())
+                    .first,
+                BlockchainTransactionAllowedInput.at(transaction.version())
+                    .second,
+                silent);
 
-        if (false == validInput) {
-            FAIL("transaction", "invalid input")
+            if (false == validInput) {
+                FAIL("transaction", "invalid input")
+            }
+        } catch (const std::out_of_range&) {
+            FAIL2(
+                "transaction",
+                "allowed input version not defined for version",
+                transaction.version())
         }
     }
 
     for (const auto& output : transaction.output()) {
-        const bool validOutput = Check(
-            output,
-            BlockchainTransactionAllowedOutput.at(transaction.version()).first,
-            BlockchainTransactionAllowedOutput.at(transaction.version()).second,
-            silent);
+        try {
+            const bool validOutput = Check(
+                output,
+                BlockchainTransactionAllowedOutput.at(transaction.version())
+                    .first,
+                BlockchainTransactionAllowedOutput.at(transaction.version())
+                    .second,
+                silent);
 
-        if (false == validOutput) {
-            FAIL("transaction", "invalid output")
+            if (false == validOutput) {
+                FAIL("transaction", "invalid output")
+            }
+        } catch (const std::out_of_range&) {
+            FAIL2(
+                "transaction",
+                "allowed output version not defined for version",
+                transaction.version())
         }
     }
 

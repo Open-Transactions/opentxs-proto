@@ -80,41 +80,51 @@ bool CheckProto_1(
     encryptKey = keyCredential.key(KEYROLE_ENCRYPT - 1);
     signKey = keyCredential.key(KEYROLE_SIGN - 1);
 
-    validAuthKey = Check(
-        authKey,
-        KeyCredentialAllowedAsymmetricKey.at(keyCredential.version()).first,
-        KeyCredentialAllowedAsymmetricKey.at(keyCredential.version()).second,
-        silent,
-        credType,
-        mode,
-        KEYROLE_AUTH);
-    validEncryptKey = Check(
-        encryptKey,
-        KeyCredentialAllowedAsymmetricKey.at(keyCredential.version()).first,
-        KeyCredentialAllowedAsymmetricKey.at(keyCredential.version()).second,
-        silent,
-        credType,
-        mode,
-        KEYROLE_ENCRYPT);
-    validSignKey = Check(
-        signKey,
-        KeyCredentialAllowedAsymmetricKey.at(keyCredential.version()).first,
-        KeyCredentialAllowedAsymmetricKey.at(keyCredential.version()).second,
-        silent,
-        credType,
-        mode,
-        KEYROLE_SIGN);
+    try {
+        validAuthKey = Check(
+            authKey,
+            KeyCredentialAllowedAsymmetricKey.at(keyCredential.version()).first,
+            KeyCredentialAllowedAsymmetricKey.at(keyCredential.version())
+                .second,
+            silent,
+            credType,
+            mode,
+            KEYROLE_AUTH);
+        validEncryptKey = Check(
+            encryptKey,
+            KeyCredentialAllowedAsymmetricKey.at(keyCredential.version()).first,
+            KeyCredentialAllowedAsymmetricKey.at(keyCredential.version())
+                .second,
+            silent,
+            credType,
+            mode,
+            KEYROLE_ENCRYPT);
+        validSignKey = Check(
+            signKey,
+            KeyCredentialAllowedAsymmetricKey.at(keyCredential.version()).first,
+            KeyCredentialAllowedAsymmetricKey.at(keyCredential.version())
+                .second,
+            silent,
+            credType,
+            mode,
+            KEYROLE_SIGN);
 
-    if (!validAuthKey) {
-        FAIL("key credential", "invalid auth key")
-    }
+        if (!validAuthKey) {
+            FAIL("key credential", "invalid auth key")
+        }
 
-    if (!validEncryptKey) {
-        FAIL("key credential", "invalid encrypt key")
-    }
+        if (!validEncryptKey) {
+            FAIL("key credential", "invalid encrypt key")
+        }
 
-    if (!validSignKey) {
-        FAIL("key credential", "invalid sign key")
+        if (!validSignKey) {
+            FAIL("key credential", "invalid sign key")
+        }
+    } catch (const std::out_of_range&) {
+        FAIL2(
+            "key credential",
+            "allowed asymmetric key version not defined for version",
+            keyCredential.version())
     }
 
     return true;

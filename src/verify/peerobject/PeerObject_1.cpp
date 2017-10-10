@@ -76,29 +76,44 @@ bool CheckProto_1(const PeerObject& peerObject, const bool silent)
                 FAIL("peer object", "missing otrequest")
             }
 
-            const bool validrequest = Check(
-                peerObject.otrequest(),
-                PeerObjectAllowedRequest.at(peerObject.version()).first,
-                PeerObjectAllowedRequest.at(peerObject.version()).second,
-                silent);
+            try {
+                const bool validrequest = Check(
+                    peerObject.otrequest(),
+                    PeerObjectAllowedRequest.at(peerObject.version()).first,
+                    PeerObjectAllowedRequest.at(peerObject.version()).second,
+                    silent);
 
-            if (!validrequest) {
-                FAIL("peer object", "invalid otrequest")
+                if (!validrequest) {
+                    FAIL("peer object", "invalid otrequest")
+                }
+            } catch (const std::out_of_range&) {
+                FAIL2(
+                    "peer object",
+                    "allowed peer request version not defined for version",
+                    peerObject.version())
             }
 
             if (!peerObject.has_nym()) {
                 FAIL("peer object", " missing nym")
             }
 
-            const bool validnym = Check(
-                peerObject.nym(),
-                PeerObjectAllowedCredentialIndex.at(peerObject.version()).first,
-                PeerObjectAllowedCredentialIndex.at(peerObject.version())
-                    .second,
-                silent);
+            try {
+                const bool validnym = Check(
+                    peerObject.nym(),
+                    PeerObjectAllowedCredentialIndex.at(peerObject.version())
+                        .first,
+                    PeerObjectAllowedCredentialIndex.at(peerObject.version())
+                        .second,
+                    silent);
 
-            if (!validnym) {
-                FAIL("peer object", "invalid nym")
+                if (!validnym) {
+                    FAIL("peer object", "invalid nym")
+                }
+            } catch (const std::out_of_range&) {
+                FAIL2(
+                    "peer object",
+                    "allowed credential index version not defined for version",
+                    peerObject.version())
             }
 
             if (peerObject.has_otmessage()) {
@@ -114,28 +129,42 @@ bool CheckProto_1(const PeerObject& peerObject, const bool silent)
                 FAIL("peer object", "missing otrequest")
             }
 
-            const bool validrequest = Check(
-                peerObject.otrequest(),
-                PeerObjectAllowedRequest.at(peerObject.version()).first,
-                PeerObjectAllowedRequest.at(peerObject.version()).second,
-                silent);
+            try {
+                const bool validrequest = Check(
+                    peerObject.otrequest(),
+                    PeerObjectAllowedRequest.at(peerObject.version()).first,
+                    PeerObjectAllowedRequest.at(peerObject.version()).second,
+                    silent);
 
-            if (!validrequest) {
-                FAIL("peer object", "invalid otrequest")
+                if (!validrequest) {
+                    FAIL("peer object", "invalid otrequest")
+                }
+            } catch (const std::out_of_range&) {
+                FAIL2(
+                    "peer object",
+                    "allowed peer request version not defined for version",
+                    peerObject.version())
             }
 
             if (!peerObject.has_otreply()) {
                 FAIL("peer object", "missing otreply")
             }
 
-            const bool validreply = Check(
-                peerObject.otreply(),
-                PeerObjectAllowedReply.at(peerObject.version()).first,
-                PeerObjectAllowedReply.at(peerObject.version()).second,
-                silent);
+            try {
+                const bool validreply = Check(
+                    peerObject.otreply(),
+                    PeerObjectAllowedReply.at(peerObject.version()).first,
+                    PeerObjectAllowedReply.at(peerObject.version()).second,
+                    silent);
 
-            if (!validreply) {
-                FAIL("peer object", "invalid otreply")
+                if (!validreply) {
+                    FAIL("peer object", "invalid otreply")
+                }
+            } catch (const std::out_of_range&) {
+                FAIL2(
+                    "peer object",
+                    "allowed peer reply version not defined for version",
+                    peerObject.version())
             }
 
             const bool matchingID =

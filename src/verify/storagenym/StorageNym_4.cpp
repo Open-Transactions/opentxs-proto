@@ -49,194 +49,306 @@ namespace proto
 bool CheckProto_4(const StorageNym& nym, const bool silent)
 {
     if (nym.has_credlist()) {
-        bool valid = Check(
-            nym.credlist(),
-            StorageNymAllowedHash.at(nym.version()).first,
-            StorageNymAllowedHash.at(nym.version()).second,
-            silent);
+        try {
+            const bool valid = Check(
+                nym.credlist(),
+                StorageNymAllowedHash.at(nym.version()).first,
+                StorageNymAllowedHash.at(nym.version()).second,
+                silent);
 
-        if (!valid) {
-            FAIL("storage nym", "invalid credential list")
+            if (!valid) {
+                FAIL("storage nym", "invalid credential list")
+            }
+        } catch (const std::out_of_range&) {
+            FAIL2(
+                "storage nym",
+                "allowed storage item hash version not defined for version",
+                nym.version())
         }
     }
 
     if (nym.has_sentpeerrequests()) {
-        bool valid = Check(
-            nym.sentpeerrequests(),
-            StorageNymAllowedHash.at(nym.version()).first,
-            StorageNymAllowedHash.at(nym.version()).second,
-            silent);
+        try {
+            const bool valid = Check(
+                nym.sentpeerrequests(),
+                StorageNymAllowedHash.at(nym.version()).first,
+                StorageNymAllowedHash.at(nym.version()).second,
+                silent);
 
-        if (!valid) {
-            FAIL("storage nym", "invalid sentpeerrequests")
+            if (!valid) {
+                FAIL("storage nym", "invalid sentpeerrequests")
+            }
+        } catch (const std::out_of_range&) {
+            FAIL2(
+                "storage nym",
+                "allowed storage item hash version not defined for version",
+                nym.version())
         }
     }
 
     if (nym.has_incomingpeerrequests()) {
-        bool valid = Check(
-            nym.incomingpeerrequests(),
-            StorageNymAllowedHash.at(nym.version()).first,
-            StorageNymAllowedHash.at(nym.version()).second,
-            silent);
+        try {
+            const bool valid = Check(
+                nym.incomingpeerrequests(),
+                StorageNymAllowedHash.at(nym.version()).first,
+                StorageNymAllowedHash.at(nym.version()).second,
+                silent);
 
-        if (!valid) {
-            FAIL("storage nym", "invalid incomingpeerrequests")
+            if (!valid) {
+                FAIL("storage nym", "invalid incomingpeerrequests")
+            }
+        } catch (const std::out_of_range&) {
+            FAIL2(
+                "storage nym",
+                "allowed storage item hash version not defined for version",
+                nym.version())
         }
     }
 
     if (nym.has_sentpeerreply()) {
-        bool valid = Check(
-            nym.sentpeerreply(),
-            StorageNymAllowedHash.at(nym.version()).first,
-            StorageNymAllowedHash.at(nym.version()).second,
-            silent);
+        try {
+            const bool valid = Check(
+                nym.sentpeerreply(),
+                StorageNymAllowedHash.at(nym.version()).first,
+                StorageNymAllowedHash.at(nym.version()).second,
+                silent);
 
-        if (!valid) {
-            FAIL("storage nym", "invalid sentpeerreply")
+            if (!valid) {
+                FAIL("storage nym", "invalid sentpeerreply")
+            }
+        } catch (const std::out_of_range&) {
+            FAIL2(
+                "storage nym",
+                "allowed storage item hash version not defined for version",
+                nym.version())
         }
     }
 
     if (nym.has_incomingpeerreply()) {
-        bool valid = Check(
-            nym.incomingpeerreply(),
-            StorageNymAllowedHash.at(nym.version()).first,
-            StorageNymAllowedHash.at(nym.version()).second,
-            silent);
+        try {
+            const bool valid = Check(
+                nym.incomingpeerreply(),
+                StorageNymAllowedHash.at(nym.version()).first,
+                StorageNymAllowedHash.at(nym.version()).second,
+                silent);
 
-        if (!valid) {
-            FAIL("storage nym", "invalid incomingpeerreply")
+            if (!valid) {
+                FAIL("storage nym", "invalid incomingpeerreply")
+            }
+        } catch (const std::out_of_range&) {
+            FAIL2(
+                "storage nym",
+                "allowed storage item hash version not defined for version",
+                nym.version())
         }
     }
 
     if (nym.has_finishedpeerrequest()) {
-        bool valid = Check(
-            nym.finishedpeerrequest(),
-            StorageNymAllowedHash.at(nym.version()).first,
-            StorageNymAllowedHash.at(nym.version()).second,
-            silent);
+        try {
+            const bool valid = Check(
+                nym.finishedpeerrequest(),
+                StorageNymAllowedHash.at(nym.version()).first,
+                StorageNymAllowedHash.at(nym.version()).second,
+                silent);
 
-        if (!valid) {
-            FAIL("storage nym", "invalid finishedpeerrequest")
+            if (!valid) {
+                FAIL("storage nym", "invalid finishedpeerrequest")
+            }
+        } catch (const std::out_of_range&) {
+            FAIL2(
+                "storage nym",
+                "allowed storage item hash version not defined for version",
+                nym.version())
         }
     }
 
     if (nym.has_finishedpeerreply()) {
-        bool valid = Check(
-            nym.finishedpeerreply(),
-            StorageNymAllowedHash.at(nym.version()).first,
-            StorageNymAllowedHash.at(nym.version()).second,
-            silent);
+        try {
+            const bool valid = Check(
+                nym.finishedpeerreply(),
+                StorageNymAllowedHash.at(nym.version()).first,
+                StorageNymAllowedHash.at(nym.version()).second,
+                silent);
 
-        if (!valid) {
-            FAIL("storage nym", "invalid finishedpeerreply")
+            if (!valid) {
+                FAIL("storage nym", "invalid finishedpeerreply")
+            }
+        } catch (const std::out_of_range&) {
+            FAIL2(
+                "storage nym",
+                "allowed storage item hash version not defined for version",
+                nym.version())
         }
     }
 
     if (nym.has_processedpeerrequest()) {
-        bool valid = Check(
-            nym.processedpeerrequest(),
-            StorageNymAllowedHash.at(nym.version()).first,
-            StorageNymAllowedHash.at(nym.version()).second,
-            silent);
+        try {
+            const bool valid = Check(
+                nym.processedpeerrequest(),
+                StorageNymAllowedHash.at(nym.version()).first,
+                StorageNymAllowedHash.at(nym.version()).second,
+                silent);
 
-        if (!valid) {
-            FAIL("storage nym", "invalid processedpeerrequest")
+            if (!valid) {
+                FAIL("storage nym", "invalid processedpeerrequest")
+            }
+        } catch (const std::out_of_range&) {
+            FAIL2(
+                "storage nym",
+                "allowed storage item hash version not defined for version",
+                nym.version())
         }
     }
 
     if (nym.has_processedpeerreply()) {
-        bool valid = Check(
-            nym.processedpeerreply(),
-            StorageNymAllowedHash.at(nym.version()).first,
-            StorageNymAllowedHash.at(nym.version()).second,
-            silent);
+        try {
+            const bool valid = Check(
+                nym.processedpeerreply(),
+                StorageNymAllowedHash.at(nym.version()).first,
+                StorageNymAllowedHash.at(nym.version()).second,
+                silent);
 
-        if (!valid) {
-            FAIL("storage nym", "invalid processedpeerreply")
+            if (!valid) {
+                FAIL("storage nym", "invalid processedpeerreply")
+            }
+        } catch (const std::out_of_range&) {
+            FAIL2(
+                "storage nym",
+                "allowed storage item hash version not defined for version",
+                nym.version())
         }
     }
 
     if (nym.has_mailinbox()) {
-        bool valid = Check(
-            nym.mailinbox(),
-            StorageNymAllowedHash.at(nym.version()).first,
-            StorageNymAllowedHash.at(nym.version()).second,
-            silent);
+        try {
+            const bool valid = Check(
+                nym.mailinbox(),
+                StorageNymAllowedHash.at(nym.version()).first,
+                StorageNymAllowedHash.at(nym.version()).second,
+                silent);
 
-        if (!valid) {
-            FAIL("storage nym", "invalid mailinbox")
+            if (!valid) {
+                FAIL("storage nym", "invalid mailinbox")
+            }
+        } catch (const std::out_of_range&) {
+            FAIL2(
+                "storage nym",
+                "allowed storage item hash version not defined for version",
+                nym.version())
         }
     }
 
     if (nym.has_mailoutbox()) {
-        bool valid = Check(
-            nym.mailoutbox(),
-            StorageNymAllowedHash.at(nym.version()).first,
-            StorageNymAllowedHash.at(nym.version()).second,
-            silent);
+        try {
+            const bool valid = Check(
+                nym.mailoutbox(),
+                StorageNymAllowedHash.at(nym.version()).first,
+                StorageNymAllowedHash.at(nym.version()).second,
+                silent);
 
-        if (!valid) {
-            FAIL("storage nym", "invalid mailoutbox")
+            if (!valid) {
+                FAIL("storage nym", "invalid mailoutbox")
+            }
+        } catch (const std::out_of_range&) {
+            FAIL2(
+                "storage nym",
+                "allowed storage item hash version not defined for version",
+                nym.version())
         }
     }
 
     if (nym.has_threads()) {
-        bool valid = Check(
-            nym.threads(),
-            StorageNymAllowedHash.at(nym.version()).first,
-            StorageNymAllowedHash.at(nym.version()).second,
-            silent);
+        try {
+            const bool valid = Check(
+                nym.threads(),
+                StorageNymAllowedHash.at(nym.version()).first,
+                StorageNymAllowedHash.at(nym.version()).second,
+                silent);
 
-        if (!valid) {
-            FAIL("storage nym", "invalid threads")
+            if (!valid) {
+                FAIL("storage nym", "invalid threads")
+            }
+        } catch (const std::out_of_range&) {
+            FAIL2(
+                "storage nym",
+                "allowed storage item hash version not defined for version",
+                nym.version())
         }
     }
 
     if (nym.has_contexts()) {
-        bool valid = Check(
-            nym.contexts(),
-            StorageNymAllowedHash.at(nym.version()).first,
-            StorageNymAllowedHash.at(nym.version()).second,
-            silent);
+        try {
+            const bool valid = Check(
+                nym.contexts(),
+                StorageNymAllowedHash.at(nym.version()).first,
+                StorageNymAllowedHash.at(nym.version()).second,
+                silent);
 
-        if (!valid) {
-            FAIL("storage nym", "invalid contexts")
+            if (!valid) {
+                FAIL("storage nym", "invalid contexts")
+            }
+        } catch (const std::out_of_range&) {
+            FAIL2(
+                "storage nym",
+                "allowed storage item hash version not defined for version",
+                nym.version())
         }
     }
 
     if (nym.has_accounts()) {
-        bool valid = Check(
-            nym.accounts(),
-            StorageNymAllowedHash.at(nym.version()).first,
-            StorageNymAllowedHash.at(nym.version()).second,
-            silent);
+        try {
+            const bool valid = Check(
+                nym.accounts(),
+                StorageNymAllowedHash.at(nym.version()).first,
+                StorageNymAllowedHash.at(nym.version()).second,
+                silent);
 
-        if (!valid) {
-            FAIL("storage nym", "invalid accounts")
+            if (!valid) {
+                FAIL("storage nym", "invalid accounts")
+            }
+        } catch (const std::out_of_range&) {
+            FAIL2(
+                "storage nym",
+                "allowed storage item hash version not defined for version",
+                nym.version())
         }
     }
 
     for (const auto& index : nym.blockchainaccountindex()) {
-        bool valid = Check(
-            index,
-            StorageNymAllowedBlockchainAccountList.at(nym.version()).first,
-            StorageNymAllowedBlockchainAccountList.at(nym.version()).second,
-            silent);
+        try {
+            const bool valid = Check(
+                index,
+                StorageNymAllowedBlockchainAccountList.at(nym.version()).first,
+                StorageNymAllowedBlockchainAccountList.at(nym.version()).second,
+                silent);
 
-        if (!valid) {
-            FAIL("storage nym", "invalid blockchain account index")
+            if (!valid) {
+                FAIL("storage nym", "invalid blockchain account index")
+            }
+        } catch (const std::out_of_range&) {
+            FAIL2(
+                "storage nym",
+                "allowed storage item hash version not defined for version",
+                nym.version())
         }
     }
 
     for (const auto& bip44 : nym.blockchainaccount()) {
-        bool valid = Check(
-            bip44,
-            StorageNymAllowedBip44Account.at(nym.version()).first,
-            StorageNymAllowedBip44Account.at(nym.version()).second,
-            silent);
+        try {
+            const bool valid = Check(
+                bip44,
+                StorageNymAllowedBip44Account.at(nym.version()).first,
+                StorageNymAllowedBip44Account.at(nym.version()).second,
+                silent);
 
-        if (!valid) {
-            FAIL("storage nym", "invalid blockchain account")
+            if (!valid) {
+                FAIL("storage nym", "invalid blockchain account")
+            }
+        } catch (const std::out_of_range&) {
+            FAIL2(
+                "storage nym",
+                "allowed storage item hash version not defined for version",
+                nym.version())
         }
     }
 

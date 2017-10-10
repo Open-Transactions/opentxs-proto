@@ -57,14 +57,21 @@ bool CheckProto_1(const StorageSeeds& seed, const bool silent)
     }
 
     for (auto& hash : seed.seed()) {
-        bool valid = Check(
-            hash,
-            StorageSeedsAllowedHash.at(seed.version()).first,
-            StorageSeedsAllowedHash.at(seed.version()).second,
-            silent);
+        try {
+            const bool valid = Check(
+                hash,
+                StorageSeedsAllowedHash.at(seed.version()).first,
+                StorageSeedsAllowedHash.at(seed.version()).second,
+                silent);
 
-        if (!valid) {
-            FAIL("seed storage index", "invalid has")
+            if (!valid) {
+                FAIL("seed storage index", "invalid has")
+            }
+        } catch (const std::out_of_range&) {
+            FAIL2(
+                "seed storage index",
+                "allowed storage item hash version not defined for version",
+                seed.version())
         }
     }
 

@@ -67,12 +67,21 @@ bool CheckProto_1(const StorageThread& thread, const bool silent)
     }
 
     for (auto& item : thread.item()) {
-        if (!Check(
+        try {
+            const bool valid = Check(
                 item,
                 StorageThreadAllowedItem.at(thread.version()).first,
                 StorageThreadAllowedItem.at(thread.version()).second,
-                silent)) {
-            FAIL("storage thread", "invalid item")
+                silent);
+
+            if (false == valid) {
+                FAIL("storage thread", "invalid item")
+            }
+        } catch (const std::out_of_range&) {
+            FAIL2(
+                "storage thread",
+                "allowed storage item hash version not defined for version",
+                thread.version())
         }
     }
 
