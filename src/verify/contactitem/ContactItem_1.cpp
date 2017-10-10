@@ -132,12 +132,12 @@ bool CheckProto_4(
 }
 
 bool CheckProto_5(
-    const ContactItem&,
+    const ContactItem& contactItem,
     const bool silent,
-    const ClaimType,
-    const ContactSectionVersion)
+    const ClaimType indexed,
+    const ContactSectionVersion parentVersion)
 {
-    UNDEFINED_VERSION("contact item", 5)
+    return CheckProto_1(contactItem, silent, indexed, parentVersion);
 }
 }  // namespace proto
 }  // namespace opentxs
