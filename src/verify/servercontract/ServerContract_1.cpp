@@ -73,14 +73,23 @@ bool CheckProto_1(const ServerContract& contract, const bool silent)
     }
 
     if (contract.has_publicnym()) {
-        if (!Check(
+        try {
+            const bool validNym = Check(
                 contract.publicnym(),
                 ServerContractAllowedCredentialIndex.at(contract.version())
                     .first,
                 ServerContractAllowedCredentialIndex.at(contract.version())
                     .second,
-                silent)) {
-            FAIL("server contract", "invalid nym")
+                silent);
+
+            if (false == validNym) {
+                FAIL("server contract", "invalid nym")
+            }
+        } catch (const std::out_of_range&) {
+            FAIL2(
+                "server contract",
+                "allowed credential index version not defined for version",
+                contract.version())
         }
     }
 
@@ -88,12 +97,21 @@ bool CheckProto_1(const ServerContract& contract, const bool silent)
         FAIL("server contract", "no listen addresses")
     }
 
-    if (!Check(
+    try {
+        const bool validAddress = Check(
             contract.address(0),
             ServerContractAllowedListenAddress.at(contract.version()).first,
             ServerContractAllowedListenAddress.at(contract.version()).second,
-            silent)) {
-        FAIL("server contract", "invalid listen address")
+            silent);
+
+        if (false == validAddress) {
+            FAIL("server contract", "invalid listen address")
+        }
+    } catch (const std::out_of_range&) {
+        FAIL2(
+            "server contract",
+            "allowed listen address version not defined for version",
+            contract.version())
     }
 
     if (!contract.has_transportkey()) {
@@ -108,20 +126,45 @@ bool CheckProto_1(const ServerContract& contract, const bool silent)
         FAIL("server contract", "missing signature")
     }
 
-    if (!Check(
+    try {
+        const bool validSig = Check(
             contract.signature(),
             ServerContractAllowedSignature.at(contract.version()).first,
             ServerContractAllowedSignature.at(contract.version()).second,
             silent,
-            SIGROLE_SERVERCONTRACT)) {
-        FAIL("server contract", "invalid signature")
+            SIGROLE_SERVERCONTRACT);
+
+        if (false == validSig) {
+            FAIL("server contract", "invalid signature")
+        }
+    } catch (const std::out_of_range&) {
+        FAIL2(
+            "server contract",
+            "allowed signature version not defined for version",
+            contract.version())
     }
 
     return true;
 }
-bool CheckProto_2(const ServerContract&, const bool) { return false; }
-bool CheckProto_3(const ServerContract&, const bool) { return false; }
-bool CheckProto_4(const ServerContract&, const bool) { return false; }
-bool CheckProto_5(const ServerContract&, const bool) { return false; }
+
+bool CheckProto_2(const ServerContract&, const bool silent)
+{
+    UNDEFINED_VERSION("server contract", 2)
+}
+
+bool CheckProto_3(const ServerContract&, const bool silent)
+{
+    UNDEFINED_VERSION("server contract", 3)
+}
+
+bool CheckProto_4(const ServerContract&, const bool silent)
+{
+    UNDEFINED_VERSION("server contract", 4)
+}
+
+bool CheckProto_5(const ServerContract&, const bool silent)
+{
+    UNDEFINED_VERSION("server contract", 5)
+}
 }  // namespace proto
 }  // namespace opentxs

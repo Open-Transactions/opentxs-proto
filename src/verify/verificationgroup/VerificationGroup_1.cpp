@@ -54,18 +54,25 @@ bool CheckProto_1(
     VerificationNymMap nymMap;
 
     for (auto& it : verificationGroup.identity()) {
-        bool validIdentity = Check(
-            it,
-            VerificationGroupAllowedIdentity.at(verificationGroup.version())
-                .first,
-            VerificationGroupAllowedIdentity.at(verificationGroup.version())
-                .second,
-            silent,
-            nymMap,
-            indexed);
+        try {
+            const bool validIdentity = Check(
+                it,
+                VerificationGroupAllowedIdentity.at(verificationGroup.version())
+                    .first,
+                VerificationGroupAllowedIdentity.at(verificationGroup.version())
+                    .second,
+                silent,
+                nymMap,
+                indexed);
 
-        if (!validIdentity) {
-            FAIL2("verification group", "invalid identity", it.nym())
+            if (!validIdentity) {
+                FAIL2("verification group", "invalid identity", it.nym())
+            }
+        } catch (const std::out_of_range&) {
+            FAIL2(
+                "verification group",
+                "allowed verification identity version not defined for version",
+                verificationGroup.version())
         }
     }
 
@@ -77,21 +84,37 @@ bool CheckProto_1(
 
     return true;
 }
-bool CheckProto_2(const VerificationGroup&, const bool, const VerificationType)
+
+bool CheckProto_2(
+    const VerificationGroup&,
+    const bool silent,
+    const VerificationType)
 {
-    return false;
+    UNDEFINED_VERSION("verification group", 2)
 }
-bool CheckProto_3(const VerificationGroup&, const bool, const VerificationType)
+
+bool CheckProto_3(
+    const VerificationGroup&,
+    const bool silent,
+    const VerificationType)
 {
-    return false;
+    UNDEFINED_VERSION("verification group", 3)
 }
-bool CheckProto_4(const VerificationGroup&, const bool, const VerificationType)
+
+bool CheckProto_4(
+    const VerificationGroup&,
+    const bool silent,
+    const VerificationType)
 {
-    return false;
+    UNDEFINED_VERSION("verification group", 4)
 }
-bool CheckProto_5(const VerificationGroup&, const bool, const VerificationType)
+
+bool CheckProto_5(
+    const VerificationGroup&,
+    const bool silent,
+    const VerificationType)
 {
-    return false;
+    UNDEFINED_VERSION("verification group", 5)
 }
 }  // namespace proto
 }  // namespace opentxs

@@ -79,14 +79,21 @@ bool CheckProto_1(const Context& context, const bool silent)
                 FAIL("context", "client data in server context")
             }
 
-            const bool validServer = Check(
-                context.servercontext(),
-                ContextAllowedServer.at(context.version()).first,
-                ContextAllowedServer.at(context.version()).second,
-                silent);
+            try {
+                const bool validServer = Check(
+                    context.servercontext(),
+                    ContextAllowedServer.at(context.version()).first,
+                    ContextAllowedServer.at(context.version()).second,
+                    silent);
 
-            if (!validServer) {
-                FAIL("context", "invalid server data")
+                if (!validServer) {
+                    FAIL("context", "invalid server data")
+                }
+            } catch (const std::out_of_range&) {
+                FAIL2(
+                    "context",
+                    "allowed server data version not defined for version",
+                    context.version())
             }
         } break;
         case CONSENSUSTYPE_CLIENT: {
@@ -98,14 +105,21 @@ bool CheckProto_1(const Context& context, const bool silent)
                 FAIL("context", "client data in server context")
             }
 
-            const bool validClient = Check(
-                context.clientcontext(),
-                ContextAllowedClient.at(context.version()).first,
-                ContextAllowedClient.at(context.version()).second,
-                silent);
+            try {
+                const bool validClient = Check(
+                    context.clientcontext(),
+                    ContextAllowedClient.at(context.version()).first,
+                    ContextAllowedClient.at(context.version()).second,
+                    silent);
 
-            if (!validClient) {
-                FAIL("context", "invalid client data")
+                if (!validClient) {
+                    FAIL("context", "invalid client data")
+                }
+            } catch (const std::out_of_range&) {
+                FAIL2(
+                    "context",
+                    "allowed client data version not defined for version",
+                    context.version())
             }
         } break;
         default: {
@@ -117,15 +131,22 @@ bool CheckProto_1(const Context& context, const bool silent)
         FAIL("context", "missing signature")
     }
 
-    const bool validSig = Check(
-        context.signature(),
-        ContextAllowedSignature.at(context.version()).first,
-        ContextAllowedSignature.at(context.version()).first,
-        silent,
-        SIGROLE_CONTEXT);
+    try {
+        const bool validSig = Check(
+            context.signature(),
+            ContextAllowedSignature.at(context.version()).first,
+            ContextAllowedSignature.at(context.version()).first,
+            silent,
+            SIGROLE_CONTEXT);
 
-    if (!validSig) {
-        FAIL("context", "invalid signature")
+        if (!validSig) {
+            FAIL("context", "invalid signature")
+        }
+    } catch (const std::out_of_range&) {
+        FAIL2(
+            "context",
+            "allowed signature version not defined for version",
+            context.version())
     }
 
     return true;
@@ -136,8 +157,19 @@ bool CheckProto_2(const Context& context, const bool silent)
     return CheckProto_1(context, silent);
 }
 
-bool CheckProto_3(const Context&, const bool) { return false; }
-bool CheckProto_4(const Context&, const bool) { return false; }
-bool CheckProto_5(const Context&, const bool) { return false; }
+bool CheckProto_3(const Context&, const bool silent)
+{
+    UNDEFINED_VERSION("context", 3)
+}
+
+bool CheckProto_4(const Context&, const bool silent)
+{
+    UNDEFINED_VERSION("context", 4)
+}
+
+bool CheckProto_5(const Context&, const bool silent)
+{
+    UNDEFINED_VERSION("context", 5)
+}
 }  // namespace proto
 }  // namespace opentxs

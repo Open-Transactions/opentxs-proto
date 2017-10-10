@@ -52,27 +52,41 @@ bool CheckProto_1(const Seed& seed, const bool silent)
         FAIL("seed", "missing words")
     }
 
-    const bool validWords = Check(
-        seed.words(),
-        SeedAllowedCiphertext.at(seed.version()).first,
-        SeedAllowedCiphertext.at(seed.version()).second,
-        silent,
-        false);
-
-    if (!validWords) {
-        FAIL("seed", "invalid words")
-    }
-
-    if (seed.has_passphrase()) {
+    try {
         const bool validWords = Check(
-            seed.passphrase(),
+            seed.words(),
             SeedAllowedCiphertext.at(seed.version()).first,
             SeedAllowedCiphertext.at(seed.version()).second,
             silent,
             false);
 
         if (!validWords) {
-            FAIL("seed", "invalid passphrase")
+            FAIL("seed", "invalid words")
+        }
+    } catch (const std::out_of_range&) {
+        FAIL2(
+            "seed",
+            "allowed ciphertext version not defined for version",
+            seed.version())
+    }
+
+    if (seed.has_passphrase()) {
+        try {
+            const bool validWords = Check(
+                seed.passphrase(),
+                SeedAllowedCiphertext.at(seed.version()).first,
+                SeedAllowedCiphertext.at(seed.version()).second,
+                silent,
+                false);
+
+            if (!validWords) {
+                FAIL("seed", "invalid passphrase")
+            }
+        } catch (const std::out_of_range&) {
+            FAIL2(
+                "seed",
+                "allowed ciphertext version not defined for version",
+                seed.version())
         }
 
         if (seed.passphrase().has_key()) {

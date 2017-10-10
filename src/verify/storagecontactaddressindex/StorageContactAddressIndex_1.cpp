@@ -80,21 +80,24 @@ bool CheckProto_1(const StorageContactAddressIndex& list, const bool silent)
     return true;
 }
 
-bool CheckProto_2(const StorageContactAddressIndex&, const bool)
+bool CheckProto_2(const StorageContactAddressIndex&, const bool silent)
 {
-    return false;
+    UNDEFINED_VERSION("storage contact list", 2)
 }
-bool CheckProto_3(const StorageContactAddressIndex&, const bool)
+
+bool CheckProto_3(const StorageContactAddressIndex&, const bool silent)
 {
-    return false;
+    UNDEFINED_VERSION("storage contact list", 3)
 }
-bool CheckProto_4(const StorageContactAddressIndex&, const bool)
+
+bool CheckProto_4(const StorageContactAddressIndex&, const bool silent)
 {
-    return false;
+    UNDEFINED_VERSION("storage contact list", 4)
 }
-bool CheckProto_5(const StorageContactAddressIndex&, const bool)
+
+bool CheckProto_5(const StorageContactAddressIndex&, const bool silent)
 {
-    return false;
+    UNDEFINED_VERSION("storage contact list", 5)
 }
 }  // namespace proto
 }  // namespace opentxs

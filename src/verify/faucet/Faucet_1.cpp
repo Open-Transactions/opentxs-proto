@@ -45,9 +45,20 @@ namespace opentxs
 {
 namespace proto
 {
-bool CheckProto_1(const Faucet&, const bool) { return false; }
-bool CheckProto_2(const Faucet&, const bool) { return false; }
-bool CheckProto_3(const Faucet&, const bool) { return false; }
+bool CheckProto_1(const Faucet&, const bool silent)
+{
+    UNDEFINED_VERSION("faucet request", 1)
+}
+
+bool CheckProto_2(const Faucet&, const bool silent)
+{
+    UNDEFINED_VERSION("faucet request", 2)
+}
+
+bool CheckProto_3(const Faucet&, const bool silent)
+{
+    UNDEFINED_VERSION("faucet request", 3)
+}
 
 bool CheckProto_4(const Faucet& request, const bool silent)
 {
@@ -65,6 +76,9 @@ bool CheckProto_4(const Faucet& request, const bool silent)
     return true;
 }
 
-bool CheckProto_5(const Faucet&, const bool) { return false; }
+bool CheckProto_5(const Faucet&, const bool silent)
+{
+    UNDEFINED_VERSION("faucet request", 5)
+}
 }  // namespace proto
 }  // namespace opentxs

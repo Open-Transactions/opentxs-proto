@@ -49,25 +49,45 @@ namespace proto
 bool CheckProto_1(const StorageServers& servers, const bool silent)
 {
     for (auto& hash : servers.server()) {
-        bool valid = Check(
-            hash,
-            StorageServersAllowedHash.at(servers.version()).first,
-            StorageServersAllowedHash.at(servers.version()).second,
-            silent);
+        try {
+            const bool valid = Check(
+                hash,
+                StorageServersAllowedHash.at(servers.version()).first,
+                StorageServersAllowedHash.at(servers.version()).second,
+                silent);
 
-        if (!valid) {
-            FAIL("server storage index", "invalid hash")
+            if (!valid) {
+                FAIL("server storage index", "invalid hash")
+            }
+        } catch (const std::out_of_range&) {
+            FAIL2(
+                "server storage index",
+                "allowed storage item hash version not defined for version",
+                servers.version())
         }
     }
 
     return true;
 }
+
 bool CheckProto_2(const StorageServers& servers, const bool silent)
 {
     return CheckProto_1(servers, silent);
 }
-bool CheckProto_3(const StorageServers&, const bool) { return false; }
-bool CheckProto_4(const StorageServers&, const bool) { return false; }
-bool CheckProto_5(const StorageServers&, const bool) { return false; }
+
+bool CheckProto_3(const StorageServers&, const bool silent)
+{
+    UNDEFINED_VERSION("server storage index", 3)
+}
+
+bool CheckProto_4(const StorageServers&, const bool silent)
+{
+    UNDEFINED_VERSION("server storage index", 4)
+}
+
+bool CheckProto_5(const StorageServers&, const bool silent)
+{
+    UNDEFINED_VERSION("server storage index", 5)
+}
 }  // namespace proto
 }  // namespace opentxs

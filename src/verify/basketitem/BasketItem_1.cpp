@@ -72,21 +72,25 @@ bool CheckProto_1(const BasketItem& item, const bool silent, BasketItemMap& map)
 
     return true;
 }
-bool CheckProto_2(const BasketItem&, const bool, BasketItemMap&)
+
+bool CheckProto_2(const BasketItem&, const bool silent, BasketItemMap&)
 {
-    return false;
+    UNDEFINED_VERSION("basket item", 2)
 }
-bool CheckProto_3(const BasketItem&, const bool, BasketItemMap&)
+
+bool CheckProto_3(const BasketItem&, const bool silent, BasketItemMap&)
 {
-    return false;
+    UNDEFINED_VERSION("basket item", 3)
 }
-bool CheckProto_4(const BasketItem&, const bool, BasketItemMap&)
+
+bool CheckProto_4(const BasketItem&, const bool silent, BasketItemMap&)
 {
-    return false;
+    UNDEFINED_VERSION("basket item", 4)
 }
-bool CheckProto_5(const BasketItem&, const bool, BasketItemMap&)
+
+bool CheckProto_5(const BasketItem&, const bool silent, BasketItemMap&)
 {
-    return false;
+    UNDEFINED_VERSION("basket item", 5)
 }
 }  // namespace proto
 }  // namespace opentxs

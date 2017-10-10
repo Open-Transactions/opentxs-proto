@@ -67,21 +67,45 @@ bool CheckProto_1(const StorageThread& thread, const bool silent)
     }
 
     for (auto& item : thread.item()) {
-        if (!Check(
+        try {
+            const bool valid = Check(
                 item,
                 StorageThreadAllowedItem.at(thread.version()).first,
                 StorageThreadAllowedItem.at(thread.version()).second,
-                silent)) {
-            FAIL("storage thread", "invalid item")
+                silent);
+
+            if (false == valid) {
+                FAIL("storage thread", "invalid item")
+            }
+        } catch (const std::out_of_range&) {
+            FAIL2(
+                "storage thread",
+                "allowed storage item hash version not defined for version",
+                thread.version())
         }
     }
 
     return true;
 }
 
-bool CheckProto_2(const StorageThread&, const bool) { return false; }
-bool CheckProto_3(const StorageThread&, const bool) { return false; }
-bool CheckProto_4(const StorageThread&, const bool) { return false; }
-bool CheckProto_5(const StorageThread&, const bool) { return false; }
+bool CheckProto_2(const StorageThread&, const bool silent)
+{
+    UNDEFINED_VERSION("storage thread", 2)
+}
+
+bool CheckProto_3(const StorageThread&, const bool silent)
+{
+    UNDEFINED_VERSION("storage thread", 3)
+}
+
+bool CheckProto_4(const StorageThread&, const bool silent)
+{
+    UNDEFINED_VERSION("storage thread", 4)
+}
+
+bool CheckProto_5(const StorageThread&, const bool silent)
+{
+    UNDEFINED_VERSION("storage thread", 5)
+}
 }  // namespace proto
 }  // namespace opentxs

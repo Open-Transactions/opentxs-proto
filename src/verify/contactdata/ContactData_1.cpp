@@ -54,16 +54,23 @@ bool CheckProto_1(
     std::map<ContactSectionName, uint32_t> sectionCount;
 
     for (auto& it : contactData.section()) {
-        bool validSection = Check(
-            it,
-            ContactDataAllowedSection.at(contactData.version()).first,
-            ContactDataAllowedSection.at(contactData.version()).second,
-            silent,
-            indexed,
-            contactData.version());
+        try {
+            bool validSection = Check(
+                it,
+                ContactDataAllowedSection.at(contactData.version()).first,
+                ContactDataAllowedSection.at(contactData.version()).second,
+                silent,
+                indexed,
+                contactData.version());
 
-        if (!validSection) {
-            FAIL("contact data", "invalid section")
+            if (!validSection) {
+                FAIL("contact data", "invalid section")
+            }
+        } catch (const std::out_of_range&) {
+            FAIL2(
+                "contact data",
+                "allowed contact section version not defined for version",
+                contactData.version())
         }
 
         ContactSectionName name = it.name();
@@ -102,9 +109,9 @@ bool CheckProto_4(
     return CheckProto_1(contactData, silent, indexed);
 }
 
-bool CheckProto_5(const ContactData&, const bool, const ClaimType)
+bool CheckProto_5(const ContactData&, const bool silent, const ClaimType)
 {
-    return false;
+    UNDEFINED_VERSION("contact data", 5)
 }
 }  // namespace proto
 }  // namespace opentxs

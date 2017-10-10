@@ -102,6 +102,9 @@ bool CheckProto_4(const PendingBailment& request, const bool silent)
     return CheckProto_1(request, silent);
 }
 
-bool CheckProto_5(const PendingBailment&, const bool) { return false; }
+bool CheckProto_5(const PendingBailment&, const bool silent)
+{
+    UNDEFINED_VERSION("pending bailment", 5)
+}
 }  // namespace proto
 }  // namespace opentxs

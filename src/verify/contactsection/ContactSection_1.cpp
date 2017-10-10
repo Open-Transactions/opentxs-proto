@@ -61,17 +61,24 @@ bool CheckProto_1(
     }
 
     for (auto& it : contactSection.item()) {
-        bool validItem = Check(
-            it,
-            ContactSectionAllowedItem.at(contactSection.version()).first,
-            ContactSectionAllowedItem.at(contactSection.version()).second,
-            silent,
-            indexed,
-            ContactSectionVersion{contactSection.version(),
-                                  contactSection.name()});
+        try {
+            bool validItem = Check(
+                it,
+                ContactSectionAllowedItem.at(contactSection.version()).first,
+                ContactSectionAllowedItem.at(contactSection.version()).second,
+                silent,
+                indexed,
+                ContactSectionVersion{contactSection.version(),
+                                      contactSection.name()});
 
-        if (!validItem) {
-            FAIL("contact section", "invalid item")
+            if (!validItem) {
+                FAIL("contact section", "invalid item")
+            }
+        } catch (const std::out_of_range&) {
+            FAIL2(
+                "contact section",
+                "allowed contact item version not defined for version",
+                contactSection.version())
         }
     }
 
@@ -107,11 +114,11 @@ bool CheckProto_4(
 
 bool CheckProto_5(
     const ContactSection&,
-    const bool,
+    const bool silent,
     const ClaimType,
     const uint32_t)
 {
-    return false;
+    UNDEFINED_VERSION("contact section", 5)
 }
 }  // namespace proto
 }  // namespace opentxs

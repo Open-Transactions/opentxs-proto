@@ -51,7 +51,8 @@ bool CheckProto_1(
     const bool silent)
 {
     for (auto& transaction : transactions.transaction()) {
-        if (!Check(
+        try {
+            const bool validHash = Check(
                 transaction,
                 StorageBlockchainTransactionsAllowedHash
                     .at(transactions.version())
@@ -59,32 +60,40 @@ bool CheckProto_1(
                 StorageBlockchainTransactionsAllowedHash
                     .at(transactions.version())
                     .second,
-                silent)) {
-            FAIL("storage blockchain transactions", "invalid hash")
+                silent);
+
+            if (false == validHash) {
+                FAIL("storage blockchain transactions", "invalid hash")
+            }
+        } catch (const std::out_of_range&) {
+            FAIL2(
+                "storage blockchain transactions",
+                "allowed storage hash version not defined for version",
+                transactions.version())
         }
     }
 
     return true;
 }
 
-bool CheckProto_2(const StorageBlockchainTransactions&, const bool)
+bool CheckProto_2(const StorageBlockchainTransactions&, const bool silent)
 {
-    return false;
+    UNDEFINED_VERSION("storage blockchain transactions", 2)
 }
 
-bool CheckProto_3(const StorageBlockchainTransactions&, const bool)
+bool CheckProto_3(const StorageBlockchainTransactions&, const bool silent)
 {
-    return false;
+    UNDEFINED_VERSION("storage blockchain transactions", 3)
 }
 
-bool CheckProto_4(const StorageBlockchainTransactions&, const bool)
+bool CheckProto_4(const StorageBlockchainTransactions&, const bool silent)
 {
-    return false;
+    UNDEFINED_VERSION("storage blockchain transactions", 4)
 }
 
-bool CheckProto_5(const StorageBlockchainTransactions&, const bool)
+bool CheckProto_5(const StorageBlockchainTransactions&, const bool silent)
 {
-    return false;
+    UNDEFINED_VERSION("storage blockchain transactions", 5)
 }
 }  // namespace proto
 }  // namespace opentxs

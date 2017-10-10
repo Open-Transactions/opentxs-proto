@@ -49,23 +49,45 @@ namespace proto
 bool CheckProto_1(const StorageNymList& nymList, const bool silent)
 {
     for (auto& nym : nymList.nym()) {
-        if (!Check(
+        try {
+            const bool validList = Check(
                 nym,
                 StorageNymListAllowedHash.at(nymList.version()).first,
                 StorageNymListAllowedHash.at(nymList.version()).second,
-                silent)) {
-            FAIL("nym index", "invalid nym")
+                silent);
+
+            if (false == validList) {
+                FAIL("nym index", "invalid nym")
+            }
+        } catch (const std::out_of_range&) {
+            FAIL2(
+                "nym index",
+                "allowed storage item hash version not defined for version",
+                nymList.version())
         }
     }
 
     return true;
 }
+
 bool CheckProto_2(const StorageNymList& nymList, const bool silent)
 {
     return CheckProto_1(nymList, silent);
 }
-bool CheckProto_3(const StorageNymList&, const bool) { return false; }
-bool CheckProto_4(const StorageNymList&, const bool) { return false; }
-bool CheckProto_5(const StorageNymList&, const bool) { return false; }
+
+bool CheckProto_3(const StorageNymList&, const bool silent)
+{
+    UNDEFINED_VERSION("nym index", 3)
+}
+
+bool CheckProto_4(const StorageNymList&, const bool silent)
+{
+    UNDEFINED_VERSION("nym index", 4)
+}
+
+bool CheckProto_5(const StorageNymList&, const bool silent)
+{
+    UNDEFINED_VERSION("nym index", 5)
+}
 }  // namespace proto
 }  // namespace opentxs

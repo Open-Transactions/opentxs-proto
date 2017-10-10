@@ -67,14 +67,21 @@ bool CheckProto_1(const Ciphertext& data, const bool silent, const bool nested)
         }
     } else {
         if (data.has_key()) {
-            const bool validKey = Check(
-                data.key(),
-                CiphertextAllowedSymmetricKey.at(data.version()).first,
-                CiphertextAllowedSymmetricKey.at(data.version()).second,
-                silent);
+            try {
+                const bool validKey = Check(
+                    data.key(),
+                    CiphertextAllowedSymmetricKey.at(data.version()).first,
+                    CiphertextAllowedSymmetricKey.at(data.version()).second,
+                    silent);
 
-            if (!validKey) {
-                FAIL("ciphertext", "invalid key")
+                if (!validKey) {
+                    FAIL("ciphertext", "invalid key")
+                }
+            } catch (const std::out_of_range&) {
+                FAIL2(
+                    "ciphertext",
+                    "allowed symmetric key version not defined for version",
+                    data.version())
             }
         }
     }
@@ -101,9 +108,24 @@ bool CheckProto_1(const Ciphertext& data, const bool silent, const bool nested)
 
     return true;
 }
-bool CheckProto_2(const Ciphertext&, const bool, const bool) { return false; }
-bool CheckProto_3(const Ciphertext&, const bool, const bool) { return false; }
-bool CheckProto_4(const Ciphertext&, const bool, const bool) { return false; }
-bool CheckProto_5(const Ciphertext&, const bool, const bool) { return false; }
+bool CheckProto_2(const Ciphertext&, const bool, const bool silent)
+{
+    UNDEFINED_VERSION("ciphertext", 2)
+}
+
+bool CheckProto_3(const Ciphertext&, const bool, const bool silent)
+{
+    UNDEFINED_VERSION("ciphertext", 3)
+}
+
+bool CheckProto_4(const Ciphertext&, const bool, const bool silent)
+{
+    UNDEFINED_VERSION("ciphertext", 4)
+}
+
+bool CheckProto_5(const Ciphertext&, const bool, const bool silent)
+{
+    UNDEFINED_VERSION("ciphertext", 5)
+}
 }  // namespace proto
 }  // namespace opentxs

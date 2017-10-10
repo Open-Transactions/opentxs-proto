@@ -133,11 +133,11 @@ bool CheckProto_4(
 
 bool CheckProto_5(
     const ContactItem&,
-    const bool,
+    const bool silent,
     const ClaimType,
     const ContactSectionVersion)
 {
-    return false;
+    UNDEFINED_VERSION("contact item", 5)
 }
 }  // namespace proto
 }  // namespace opentxs

@@ -65,17 +65,24 @@ bool CheckProto_1(const NymIDSource& source, const bool silent)
                 FAIL("nym id source", "pubkey source includes payment code")
             }
 
-            validSourcePubkey = Check(
-                source.key(),
-                NymIDSourceAllowedAsymmetricKey.at(source.version()).first,
-                NymIDSourceAllowedAsymmetricKey.at(source.version()).second,
-                silent,
-                CREDTYPE_LEGACY,
-                KEYMODE_PUBLIC,
-                KEYROLE_SIGN);
+            try {
+                validSourcePubkey = Check(
+                    source.key(),
+                    NymIDSourceAllowedAsymmetricKey.at(source.version()).first,
+                    NymIDSourceAllowedAsymmetricKey.at(source.version()).second,
+                    silent,
+                    CREDTYPE_LEGACY,
+                    KEYMODE_PUBLIC,
+                    KEYROLE_SIGN);
 
-            if (!validSourcePubkey) {
-                FAIL("nym id source", "invalid public key")
+                if (!validSourcePubkey) {
+                    FAIL("nym id source", "invalid public key")
+                }
+            } catch (const std::out_of_range&) {
+                FAIL2(
+                    "nym id source",
+                    "allowed asymmetric key version not defined for version",
+                    source.version())
             }
 
             break;
@@ -88,14 +95,21 @@ bool CheckProto_1(const NymIDSource& source, const bool silent)
                 FAIL("nym id source", "bip47 source includes public key")
             }
 
-            validPaymentCode = Check(
-                source.paymentcode(),
-                NymIDSourceAllowedPaymentCode.at(source.version()).first,
-                NymIDSourceAllowedPaymentCode.at(source.version()).second,
-                silent);
+            try {
+                validPaymentCode = Check(
+                    source.paymentcode(),
+                    NymIDSourceAllowedPaymentCode.at(source.version()).first,
+                    NymIDSourceAllowedPaymentCode.at(source.version()).second,
+                    silent);
 
-            if (!validPaymentCode) {
-                FAIL("nym id source", "invalid payment code")
+                if (!validPaymentCode) {
+                    FAIL("nym id source", "invalid payment code")
+                }
+            } catch (const std::out_of_range&) {
+                FAIL2(
+                    "nym id source",
+                    "allowed payment code version not defined for version",
+                    source.version())
             }
 
             break;
@@ -105,9 +119,25 @@ bool CheckProto_1(const NymIDSource& source, const bool silent)
 
     return true;
 }
-bool CheckProto_2(const NymIDSource&, const bool) { return false; }
-bool CheckProto_3(const NymIDSource&, const bool) { return false; }
-bool CheckProto_4(const NymIDSource&, const bool) { return false; }
-bool CheckProto_5(const NymIDSource&, const bool) { return false; }
+
+bool CheckProto_2(const NymIDSource&, const bool silent)
+{
+    UNDEFINED_VERSION("nym id source", 2)
+}
+
+bool CheckProto_3(const NymIDSource&, const bool silent)
+{
+    UNDEFINED_VERSION("nym id source", 3)
+}
+
+bool CheckProto_4(const NymIDSource&, const bool silent)
+{
+    UNDEFINED_VERSION("nym id source", 4)
+}
+
+bool CheckProto_5(const NymIDSource&, const bool silent)
+{
+    UNDEFINED_VERSION("nym id source", 5)
+}
 }  // namespace proto
 }  // namespace opentxs

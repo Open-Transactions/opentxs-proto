@@ -52,27 +52,44 @@ bool CheckProto_1(
     const VerificationType indexed)
 {
     if (verificationSet.has_internal()) {
-        bool validInternal = Check(
-            verificationSet.internal(),
-            VerificationSetAllowedGroup.at(verificationSet.version()).first,
-            VerificationSetAllowedGroup.at(verificationSet.version()).second,
-            silent,
-            indexed);
+        try {
+            const bool validInternal = Check(
+                verificationSet.internal(),
+                VerificationSetAllowedGroup.at(verificationSet.version()).first,
+                VerificationSetAllowedGroup.at(verificationSet.version())
+                    .second,
+                silent,
+                indexed);
 
-        if (!validInternal) {
-            FAIL("verification set", "invalid internal group")
+            if (!validInternal) {
+                FAIL("verification set", "invalid internal group")
+            }
+        } catch (const std::out_of_range&) {
+            FAIL2(
+                "verification set",
+                "allowed verification group version not defined for version",
+                verificationSet.version())
         }
     }
-    if (verificationSet.has_external()) {
-        bool validExternal = Check(
-            verificationSet.external(),
-            VerificationSetAllowedGroup.at(verificationSet.version()).first,
-            VerificationSetAllowedGroup.at(verificationSet.version()).second,
-            silent,
-            indexed);
 
-        if (!validExternal) {
-            FAIL("verification set", "invalid external group")
+    if (verificationSet.has_external()) {
+        try {
+            const bool validExternal = Check(
+                verificationSet.external(),
+                VerificationSetAllowedGroup.at(verificationSet.version()).first,
+                VerificationSetAllowedGroup.at(verificationSet.version())
+                    .second,
+                silent,
+                indexed);
+
+            if (!validExternal) {
+                FAIL("verification set", "invalid external group")
+            }
+        } catch (const std::out_of_range&) {
+            FAIL2(
+                "verification set",
+                "allowed verification group version not defined for version",
+                verificationSet.version())
         }
     }
 
@@ -84,21 +101,37 @@ bool CheckProto_1(
 
     return true;
 }
-bool CheckProto_2(const VerificationSet&, const bool, const VerificationType)
+
+bool CheckProto_2(
+    const VerificationSet&,
+    const bool silent,
+    const VerificationType)
 {
-    return false;
+    UNDEFINED_VERSION("verification set", 2)
 }
-bool CheckProto_3(const VerificationSet&, const bool, const VerificationType)
+
+bool CheckProto_3(
+    const VerificationSet&,
+    const bool silent,
+    const VerificationType)
 {
-    return false;
+    UNDEFINED_VERSION("verification set", 3)
 }
-bool CheckProto_4(const VerificationSet&, const bool, const VerificationType)
+
+bool CheckProto_4(
+    const VerificationSet&,
+    const bool silent,
+    const VerificationType)
 {
-    return false;
+    UNDEFINED_VERSION("verification set", 4)
 }
-bool CheckProto_5(const VerificationSet&, const bool, const VerificationType)
+
+bool CheckProto_5(
+    const VerificationSet&,
+    const bool silent,
+    const VerificationType)
 {
-    return false;
+    UNDEFINED_VERSION("verification set", 5)
 }
 }  // namespace proto
 }  // namespace opentxs

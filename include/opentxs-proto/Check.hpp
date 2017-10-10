@@ -72,6 +72,11 @@
         return false;                                                          \
     }
 
+#define UNDEFINED_VERSION(a, b)                                                \
+    {                                                                          \
+        FAIL2(a, "undefined version", b)                                       \
+    }
+
 namespace opentxs
 {
 namespace proto

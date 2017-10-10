@@ -48,15 +48,22 @@ namespace proto
 
 bool CheckProto_1(const SymmetricKey& key, const bool silent)
 {
-    const bool validKey = Check(
-        key.key(),
-        SymmetricKeyAllowedCiphertext.at(key.version()).first,
-        SymmetricKeyAllowedCiphertext.at(key.version()).second,
-        silent,
-        true);
+    try {
+        const bool validKey = Check(
+            key.key(),
+            SymmetricKeyAllowedCiphertext.at(key.version()).first,
+            SymmetricKeyAllowedCiphertext.at(key.version()).second,
+            silent,
+            true);
 
-    if (!validKey) {
-        FAIL("symmetric key", "invalid encrypted key")
+        if (!validKey) {
+            FAIL("symmetric key", "invalid encrypted key")
+        }
+    } catch (const std::out_of_range&) {
+        FAIL2(
+            "symmetric key",
+            "allowed ciphertext version not defined for version",
+            key.version())
     }
 
     if (!key.has_size()) {
@@ -94,9 +101,25 @@ bool CheckProto_1(const SymmetricKey& key, const bool silent)
 
     return true;
 }
-bool CheckProto_2(const SymmetricKey&, const bool) { return false; }
-bool CheckProto_3(const SymmetricKey&, const bool) { return false; }
-bool CheckProto_4(const SymmetricKey&, const bool) { return false; }
-bool CheckProto_5(const SymmetricKey&, const bool) { return false; }
+
+bool CheckProto_2(const SymmetricKey&, const bool silent)
+{
+    UNDEFINED_VERSION("symmetric key", 2)
+}
+
+bool CheckProto_3(const SymmetricKey&, const bool silent)
+{
+    UNDEFINED_VERSION("symmetric key", 3)
+}
+
+bool CheckProto_4(const SymmetricKey&, const bool silent)
+{
+    UNDEFINED_VERSION("symmetric key", 4)
+}
+
+bool CheckProto_5(const SymmetricKey&, const bool silent)
+{
+    UNDEFINED_VERSION("symmetric key", 5)
+}
 }  // namespace proto
 }  // namespace opentxs

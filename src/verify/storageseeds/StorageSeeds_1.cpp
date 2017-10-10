@@ -57,25 +57,45 @@ bool CheckProto_1(const StorageSeeds& seed, const bool silent)
     }
 
     for (auto& hash : seed.seed()) {
-        bool valid = Check(
-            hash,
-            StorageSeedsAllowedHash.at(seed.version()).first,
-            StorageSeedsAllowedHash.at(seed.version()).second,
-            silent);
+        try {
+            const bool valid = Check(
+                hash,
+                StorageSeedsAllowedHash.at(seed.version()).first,
+                StorageSeedsAllowedHash.at(seed.version()).second,
+                silent);
 
-        if (!valid) {
-            FAIL("seed storage index", "invalid has")
+            if (!valid) {
+                FAIL("seed storage index", "invalid has")
+            }
+        } catch (const std::out_of_range&) {
+            FAIL2(
+                "seed storage index",
+                "allowed storage item hash version not defined for version",
+                seed.version())
         }
     }
 
     return true;
 }
+
 bool CheckProto_2(const StorageSeeds& seed, const bool silent)
 {
     return CheckProto_1(seed, silent);
 }
-bool CheckProto_3(const StorageSeeds&, const bool) { return false; }
-bool CheckProto_4(const StorageSeeds&, const bool) { return false; }
-bool CheckProto_5(const StorageSeeds&, const bool) { return false; }
+
+bool CheckProto_3(const StorageSeeds&, const bool silent)
+{
+    UNDEFINED_VERSION("seed storage index", 3)
+}
+
+bool CheckProto_4(const StorageSeeds&, const bool silent)
+{
+    UNDEFINED_VERSION("seed storage index", 4)
+}
+
+bool CheckProto_5(const StorageSeeds&, const bool silent)
+{
+    UNDEFINED_VERSION("seed storage index", 5)
+}
 }  // namespace proto
 }  // namespace opentxs

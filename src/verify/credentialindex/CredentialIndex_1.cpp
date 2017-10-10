@@ -76,43 +76,72 @@ bool CheckProto_1(const CredentialIndex& index, const bool silent)
         FAIL("credential index", "missing nym id source")
     }
 
-    validSource = Check(
-        index.source(),
-        CredentialIndexAllowedNymIDSource.at(index.version()).first,
-        CredentialIndexAllowedNymIDSource.at(index.version()).second,
-        silent);
+    try {
+        validSource = Check(
+            index.source(),
+            CredentialIndexAllowedNymIDSource.at(index.version()).first,
+            CredentialIndexAllowedNymIDSource.at(index.version()).second,
+            silent);
 
-    if (!validSource) {
-        FAIL("credential index", "invalid nym id source")
+        if (!validSource) {
+            FAIL("credential index", "invalid nym id source")
+        }
+    } catch (const std::out_of_range&) {
+        FAIL2(
+            "credential index",
+            "allowed nym ID source version not defined for version",
+            index.version())
     }
 
     bool haveHD = false;
 
     for (auto& it : index.activecredentials()) {
-        if (!Check(
+        try {
+            const KeyMode mode = (CREDINDEX_PRIVATE == actualMode)
+                                     ? KEYMODE_PRIVATE
+                                     : KEYMODE_PUBLIC;
+            const bool validSet = Check(
                 it,
                 CredentialIndexAllowedCredentialSets.at(index.version()).first,
                 CredentialIndexAllowedCredentialSets.at(index.version()).second,
                 silent,
                 index.nymid(),
-                (CREDINDEX_PRIVATE == actualMode) ? KEYMODE_PRIVATE
-                                                  : KEYMODE_PUBLIC,
-                haveHD)) {
-            FAIL("credential index", "invalid credential set")
+                mode,
+                haveHD);
+
+            if (false == validSet) {
+                FAIL("credential index", "invalid credential set")
+            }
+        } catch (const std::out_of_range&) {
+            FAIL2(
+                "credential index",
+                "allowed credential set version not defined for version",
+                index.version())
         }
     }
 
     for (auto& it : index.revokedcredentials()) {
-        if (!Check(
+        try {
+            const KeyMode mode = (CREDINDEX_PRIVATE == actualMode)
+                                     ? KEYMODE_PRIVATE
+                                     : KEYMODE_PUBLIC;
+            const bool validSet = Check(
                 it,
                 CredentialIndexAllowedCredentialSets.at(index.version()).first,
                 CredentialIndexAllowedCredentialSets.at(index.version()).second,
                 silent,
                 index.nymid(),
-                (CREDINDEX_PRIVATE == actualMode) ? KEYMODE_PRIVATE
-                                                  : KEYMODE_PUBLIC,
-                haveHD)) {
-            FAIL("credential index", "invalid credential set")
+                mode,
+                haveHD);
+
+            if (false == validSet) {
+                FAIL("credential index", "invalid credential set")
+            }
+        } catch (const std::out_of_range&) {
+            FAIL2(
+                "credential index",
+                "allowed credential set version not defined for version",
+                index.version())
         }
     }
 
@@ -156,6 +185,9 @@ bool CheckProto_4(const CredentialIndex& index, const bool silent)
     return CheckProto_1(index, silent);
 }
 
-bool CheckProto_5(const CredentialIndex&, const bool) { return false; }
+bool CheckProto_5(const CredentialIndex&, const bool silent)
+{
+    UNDEFINED_VERSION("credential index", 5)
+}
 }  // namespace proto
 }  // namespace opentxs

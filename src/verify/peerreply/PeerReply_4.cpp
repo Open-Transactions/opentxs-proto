@@ -79,15 +79,22 @@ bool CheckProto_4(const PeerReply& reply, const bool silent)
         FAIL("peer reply", "missing cookie")
     }
 
-    bool validSig = Check(
-        reply.signature(),
-        PeerReplyAllowedSignature.at(reply.version()).first,
-        PeerReplyAllowedSignature.at(reply.version()).second,
-        silent,
-        SIGROLE_PEERREPLY);
+    try {
+        const bool validSig = Check(
+            reply.signature(),
+            PeerReplyAllowedSignature.at(reply.version()).first,
+            PeerReplyAllowedSignature.at(reply.version()).second,
+            silent,
+            SIGROLE_PEERREPLY);
 
-    if (!validSig) {
-        FAIL("peer reply", "invalid signature")
+        if (!validSig) {
+            FAIL("peer reply", "invalid signature")
+        }
+    } catch (const std::out_of_range&) {
+        FAIL2(
+            "peer reply",
+            "allowed signature version not defined for version",
+            reply.version())
     }
 
     if (!reply.has_server()) {
@@ -104,14 +111,21 @@ bool CheckProto_4(const PeerReply& reply, const bool silent)
                 FAIL("peer reply", "missing bailment")
             }
 
-            bool validbailment = Check(
-                reply.bailment(),
-                PeerReplyAllowedBailment.at(reply.version()).first,
-                PeerReplyAllowedBailment.at(reply.version()).second,
-                silent);
+            try {
+                const bool validbailment = Check(
+                    reply.bailment(),
+                    PeerReplyAllowedBailment.at(reply.version()).first,
+                    PeerReplyAllowedBailment.at(reply.version()).second,
+                    silent);
 
-            if (!validbailment) {
-                FAIL("peer reply", "invalid bailment")
+                if (!validbailment) {
+                    FAIL("peer reply", "invalid bailment")
+                }
+            } catch (const std::out_of_range&) {
+                FAIL2(
+                    "peer reply",
+                    "allowed bailment version not defined for version",
+                    reply.version())
             }
         } break;
         case PEERREQUEST_OUTBAILMENT: {
@@ -119,14 +133,21 @@ bool CheckProto_4(const PeerReply& reply, const bool silent)
                 FAIL("peer reply", "missing outbailment")
             }
 
-            bool validoutbailment = Check(
-                reply.outbailment(),
-                PeerReplyAllowedOutBailment.at(reply.version()).first,
-                PeerReplyAllowedOutBailment.at(reply.version()).second,
-                silent);
+            try {
+                const bool validoutbailment = Check(
+                    reply.outbailment(),
+                    PeerReplyAllowedOutBailment.at(reply.version()).first,
+                    PeerReplyAllowedOutBailment.at(reply.version()).second,
+                    silent);
 
-            if (!validoutbailment) {
-                FAIL("peer reply", "invalid outbailment")
+                if (!validoutbailment) {
+                    FAIL("peer reply", "invalid outbailment")
+                }
+            } catch (const std::out_of_range&) {
+                FAIL2(
+                    "peer reply",
+                    "allowed outbailment version not defined for version",
+                    reply.version())
             }
         } break;
         case PEERREQUEST_PENDINGBAILMENT:
@@ -137,14 +158,21 @@ bool CheckProto_4(const PeerReply& reply, const bool silent)
                 FAIL("peer reply", "missing notice")
             }
 
-            bool validnotice = Check(
-                reply.notice(),
-                PeerReplyAllowedNotice.at(reply.version()).first,
-                PeerReplyAllowedNotice.at(reply.version()).second,
-                silent);
+            try {
+                const bool validnotice = Check(
+                    reply.notice(),
+                    PeerReplyAllowedNotice.at(reply.version()).first,
+                    PeerReplyAllowedNotice.at(reply.version()).second,
+                    silent);
 
-            if (!validnotice) {
-                FAIL("peer reply", "invalid notice")
+                if (!validnotice) {
+                    FAIL("peer reply", "invalid notice")
+                }
+            } catch (const std::out_of_range&) {
+                FAIL2(
+                    "peer reply",
+                    "allowed peer notice version not defined for version",
+                    reply.version())
             }
         } break;
         case PEERREQUEST_CONNECTIONINFO: {
@@ -152,14 +180,21 @@ bool CheckProto_4(const PeerReply& reply, const bool silent)
                 FAIL("peer reply", "missing connectioninfo")
             }
 
-            bool validconnectioninfo = Check(
-                reply.connectioninfo(),
-                PeerReplyAllowedConnectionInfo.at(reply.version()).first,
-                PeerReplyAllowedConnectionInfo.at(reply.version()).second,
-                silent);
+            try {
+                const bool validconnectioninfo = Check(
+                    reply.connectioninfo(),
+                    PeerReplyAllowedConnectionInfo.at(reply.version()).first,
+                    PeerReplyAllowedConnectionInfo.at(reply.version()).second,
+                    silent);
 
-            if (!validconnectioninfo) {
-                FAIL("peer reply", "invalid connectioninfo")
+                if (!validconnectioninfo) {
+                    FAIL("peer reply", "invalid connectioninfo")
+                }
+            } catch (const std::out_of_range&) {
+                FAIL2(
+                    "peer reply",
+                    "allowed connection info version not defined for version",
+                    reply.version())
             }
         } break;
         default: {
@@ -170,6 +205,9 @@ bool CheckProto_4(const PeerReply& reply, const bool silent)
     return true;
 }
 
-bool CheckProto_5(const PeerReply&, const bool) { return false; }
+bool CheckProto_5(const PeerReply&, const bool silent)
+{
+    UNDEFINED_VERSION("peer reply", 5)
+}
 }  // namespace proto
 }  // namespace opentxs

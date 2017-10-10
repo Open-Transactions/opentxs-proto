@@ -68,14 +68,23 @@ bool CheckProto_1(
     }
 
     if (contract.has_publicnym()) {
-        bool goodPublicNym = Check(
-            contract.publicnym(),
-            UnitDefinitionAllowedCredentialIndex.at(contract.version()).first,
-            UnitDefinitionAllowedCredentialIndex.at(contract.version()).second,
-            silent);
+        try {
+            const bool goodPublicNym = Check(
+                contract.publicnym(),
+                UnitDefinitionAllowedCredentialIndex.at(contract.version())
+                    .first,
+                UnitDefinitionAllowedCredentialIndex.at(contract.version())
+                    .second,
+                silent);
 
-        if (!goodPublicNym) {
-            FAIL("unit definition", "invalid nym")
+            if (!goodPublicNym) {
+                FAIL("unit definition", "invalid nym")
+            }
+        } catch (const std::out_of_range&) {
+            FAIL2(
+                "unit definition",
+                "allowed credential index version not defined for version",
+                contract.version())
         }
 
         if (contract.nymid() != contract.publicnym().nymid()) {
@@ -127,13 +136,20 @@ bool CheckProto_1(
                 FAIL("unit definition", "missing currency params")
             }
 
-            goodParams = Check(
-                contract.currency(),
-                UnitDefinitionAllowedCurrencyParams.at(contract.version())
-                    .first,
-                UnitDefinitionAllowedCurrencyParams.at(contract.version())
-                    .second,
-                silent);
+            try {
+                goodParams = Check(
+                    contract.currency(),
+                    UnitDefinitionAllowedCurrencyParams.at(contract.version())
+                        .first,
+                    UnitDefinitionAllowedCurrencyParams.at(contract.version())
+                        .second,
+                    silent);
+            } catch (const std::out_of_range&) {
+                FAIL2(
+                    "unit definition",
+                    "allowed currency params version not defined for version",
+                    contract.version())
+            }
 
             if (!goodParams) {
                 FAIL("unit definition", "invalid currency params")
@@ -145,13 +161,20 @@ bool CheckProto_1(
                 FAIL("unit definition", "missing security params")
             }
 
-            goodParams = Check(
-                contract.security(),
-                UnitDefinitionAllowedSecurityParams.at(contract.version())
-                    .first,
-                UnitDefinitionAllowedSecurityParams.at(contract.version())
-                    .second,
-                silent);
+            try {
+                goodParams = Check(
+                    contract.security(),
+                    UnitDefinitionAllowedSecurityParams.at(contract.version())
+                        .first,
+                    UnitDefinitionAllowedSecurityParams.at(contract.version())
+                        .second,
+                    silent);
+            } catch (const std::out_of_range&) {
+                FAIL2(
+                    "unit definition",
+                    "allowed security params version not defined for version",
+                    contract.version())
+            }
 
             if (!goodParams) {
                 FAIL("unit definition", "invalid security params")
@@ -163,11 +186,20 @@ bool CheckProto_1(
                 FAIL("unit definition", "missing currency params")
             }
 
-            goodParams = Check(
-                contract.basket(),
-                UnitDefinitionAllowedBasketParams.at(contract.version()).first,
-                UnitDefinitionAllowedBasketParams.at(contract.version()).second,
-                silent);
+            try {
+                goodParams = Check(
+                    contract.basket(),
+                    UnitDefinitionAllowedBasketParams.at(contract.version())
+                        .first,
+                    UnitDefinitionAllowedBasketParams.at(contract.version())
+                        .second,
+                    silent);
+            } catch (const std::out_of_range&) {
+                FAIL2(
+                    "unit definition",
+                    "allowed basket params version not defined for version",
+                    contract.version())
+            }
 
             if (!goodParams) {
                 FAIL("unit definition", "invalid basket params")
@@ -180,33 +212,46 @@ bool CheckProto_1(
     }
 
     if (checkSig) {
-        if (!Check(
+        try {
+            const bool valid = Check(
                 contract.signature(),
                 UnitDefinitionAllowedSignature.at(contract.version()).first,
                 UnitDefinitionAllowedSignature.at(contract.version()).second,
                 silent,
-                SIGROLE_UNITDEFINITION)) {
-            FAIL("nit definition", "invalid signature")
+                SIGROLE_UNITDEFINITION);
+
+            if (false == valid) {
+                FAIL("unit definition", "invalid signature")
+            }
+        } catch (const std::out_of_range&) {
+            FAIL2(
+                "unit definition",
+                "allowed signature version not defined for version",
+                contract.version())
         }
     }
 
     return true;
 }
-bool CheckProto_2(const UnitDefinition&, const bool, const bool)
+
+bool CheckProto_2(const UnitDefinition&, const bool silent, const bool)
 {
-    return false;
+    UNDEFINED_VERSION("unit definition", 2)
 }
-bool CheckProto_3(const UnitDefinition&, const bool, const bool)
+
+bool CheckProto_3(const UnitDefinition&, const bool silent, const bool)
 {
-    return false;
+    UNDEFINED_VERSION("unit definition", 3)
 }
-bool CheckProto_4(const UnitDefinition&, const bool, const bool)
+
+bool CheckProto_4(const UnitDefinition&, const bool silent, const bool)
 {
-    return false;
+    UNDEFINED_VERSION("unit definition", 4)
 }
-bool CheckProto_5(const UnitDefinition&, const bool, const bool)
+
+bool CheckProto_5(const UnitDefinition&, const bool silent, const bool)
 {
-    return false;
+    UNDEFINED_VERSION("unit definition", 5)
 }
 }  // namespace proto
 }  // namespace opentxs

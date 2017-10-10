@@ -55,15 +55,22 @@ bool CheckProto_1(const BasketParams& params, const bool silent)
     BasketItemMap itemMap;
 
     for (auto& item : params.item()) {
-        bool validItem = Check(
-            item,
-            BasketParamsAllowedBasketItem.at(params.version()).first,
-            BasketParamsAllowedBasketItem.at(params.version()).second,
-            silent,
-            itemMap);
+        try {
+            bool validItem = Check(
+                item,
+                BasketParamsAllowedBasketItem.at(params.version()).first,
+                BasketParamsAllowedBasketItem.at(params.version()).second,
+                silent,
+                itemMap);
 
-        if (!validItem) {
-            FAIL("basket params", "invalid basket")
+            if (!validItem) {
+                FAIL("basket params", "invalid basket")
+            }
+        } catch (const std::out_of_range&) {
+            FAIL2(
+                "basket params",
+                "allowed basket item version not defined for version",
+                params.version())
         }
     }
 
@@ -75,9 +82,25 @@ bool CheckProto_1(const BasketParams& params, const bool silent)
 
     return true;
 }
-bool CheckProto_2(const BasketParams&, const bool) { return false; }
-bool CheckProto_3(const BasketParams&, const bool) { return false; }
-bool CheckProto_4(const BasketParams&, const bool) { return false; }
-bool CheckProto_5(const BasketParams&, const bool) { return false; }
+
+bool CheckProto_2(const BasketParams&, const bool silent)
+{
+    UNDEFINED_VERSION("basket params", 2)
+}
+
+bool CheckProto_3(const BasketParams&, const bool silent)
+{
+    UNDEFINED_VERSION("basket params", 3)
+}
+
+bool CheckProto_4(const BasketParams&, const bool silent)
+{
+    UNDEFINED_VERSION("basket params", 4)
+}
+
+bool CheckProto_5(const BasketParams&, const bool silent)
+{
+    UNDEFINED_VERSION("basket params", 5)
+}
 }  // namespace proto
 }  // namespace opentxs

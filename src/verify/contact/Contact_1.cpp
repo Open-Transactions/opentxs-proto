@@ -67,15 +67,22 @@ bool CheckProto_1(const Contact& contact, const bool silent)
     }
 
     if (contact.has_contactdata()) {
-        const auto validContactData = Check(
-            contact.contactdata(),
-            ContactAllowedContactData.at(contact.version()).first,
-            ContactAllowedContactData.at(contact.version()).second,
-            silent,
-            CLAIMS_NORMAL);
+        try {
+            const auto validContactData = Check(
+                contact.contactdata(),
+                ContactAllowedContactData.at(contact.version()).first,
+                ContactAllowedContactData.at(contact.version()).second,
+                silent,
+                CLAIMS_NORMAL);
 
-        if (!validContactData) {
-            FAIL("contact", "invalid contact data")
+            if (!validContactData) {
+                FAIL("contact", "invalid contact data")
+            }
+        } catch (const std::out_of_range&) {
+            FAIL2(
+                "contact",
+                "allowed contact data not defined for version",
+                contact.version())
         }
     }
 
@@ -110,9 +117,24 @@ bool CheckProto_1(const Contact& contact, const bool silent)
 
     return true;
 }
-bool CheckProto_2(const Contact&, const bool) { return false; }
-bool CheckProto_3(const Contact&, const bool) { return false; }
-bool CheckProto_4(const Contact&, const bool) { return false; }
-bool CheckProto_5(const Contact&, const bool) { return false; }
+bool CheckProto_2(const Contact&, const bool silent)
+{
+    UNDEFINED_VERSION("contact", 2)
+}
+
+bool CheckProto_3(const Contact&, const bool silent)
+{
+    UNDEFINED_VERSION("contact", 3)
+}
+
+bool CheckProto_4(const Contact&, const bool silent)
+{
+    UNDEFINED_VERSION("contact", 4)
+}
+
+bool CheckProto_5(const Contact&, const bool silent)
+{
+    UNDEFINED_VERSION("contact", 5)
+}
 }  // namespace proto
 }  // namespace opentxs

@@ -117,6 +117,7 @@ static const VersionMap CredentialIndexAllowedNymIDSource = {
     {1, {1, 1}},
     {2, {1, 1}},
     {3, {1, 1}},
+    {4, {1, 1}},
 };
 static const VersionMap CredentialIndexAllowedCredentialSets = {
     {1, {1, 1}},

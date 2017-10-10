@@ -191,14 +191,21 @@ bool CheckProto_1(
             FAIL("credential", "missing child data")
         }
 
-        validChildData = Check(
-            credential.childdata(),
-            CredentialAllowedChildParams.at(credential.version()).first,
-            CredentialAllowedChildParams.at(credential.version()).second,
-            silent);
+        try {
+            validChildData = Check(
+                credential.childdata(),
+                CredentialAllowedChildParams.at(credential.version()).first,
+                CredentialAllowedChildParams.at(credential.version()).second,
+                silent);
 
-        if (!validChildData) {
-            FAIL("credential", "invalid child data")
+            if (!validChildData) {
+                FAIL("credential", "invalid child data")
+            }
+        } catch (const std::out_of_range&) {
+            FAIL2(
+                "credential",
+                "allowed child params version not defined for version",
+                credential.version())
         }
     }
 
@@ -207,15 +214,22 @@ bool CheckProto_1(
             FAIL("credential", "missing master data")
         }
 
-        validMasterData = Check(
-            credential.masterdata(),
-            CredentialAllowedMasterParams.at(credential.version()).first,
-            CredentialAllowedChildParams.at(credential.version()).second,
-            silent,
-            expectSourceSignature);
+        try {
+            validMasterData = Check(
+                credential.masterdata(),
+                CredentialAllowedMasterParams.at(credential.version()).first,
+                CredentialAllowedMasterParams.at(credential.version()).second,
+                silent,
+                expectSourceSignature);
 
-        if (!validMasterData) {
-            FAIL("credential", "invalid master data")
+            if (!validMasterData) {
+                FAIL("credential", "invalid master data")
+            }
+        } catch (const std::out_of_range&) {
+            FAIL2(
+                "credential",
+                "allowed master params version not defined for version",
+                credential.version())
         }
 
         if (expectSourceSignature) {
@@ -268,15 +282,22 @@ bool CheckProto_1(
             FAIL("credential", "missing contact data")
         }
 
-        validContactData = Check(
-            credential.contactdata(),
-            CredentialAllowedContactData.at(credential.version()).first,
-            CredentialAllowedContactData.at(credential.version()).second,
-            silent,
-            CLAIMS_NORMAL);
+        try {
+            validContactData = Check(
+                credential.contactdata(),
+                CredentialAllowedContactData.at(credential.version()).first,
+                CredentialAllowedContactData.at(credential.version()).second,
+                silent,
+                CLAIMS_NORMAL);
 
-        if (!validContactData) {
-            FAIL("credential", "invalid contact data")
+            if (!validContactData) {
+                FAIL("credential", "invalid contact data")
+            }
+        } catch (const std::out_of_range&) {
+            FAIL2(
+                "credential",
+                "allowed contact data version not defined for version",
+                credential.version())
         }
     }
 
@@ -289,42 +310,65 @@ bool CheckProto_1(
             FAIL("credential", "missing verification data")
         }
 
-        bool validVerificationSet = Check(
-            credential.verification(),
-            CredentialAllowedVerification.at(credential.version()).first,
-            CredentialAllowedVerification.at(credential.version()).second,
-            silent,
-            VERIFICATIONS_NORMAL);
+        try {
+            bool validVerificationSet = Check(
+                credential.verification(),
+                CredentialAllowedVerification.at(credential.version()).first,
+                CredentialAllowedVerification.at(credential.version()).second,
+                silent,
+                VERIFICATIONS_NORMAL);
 
-        if (!validVerificationSet) {
-            FAIL("credential", "invalid verification data")
+            if (!validVerificationSet) {
+                FAIL("credential", "invalid verification data")
+            }
+        } catch (const std::out_of_range&) {
+            FAIL2(
+                "credential",
+                "allowed verification version not defined for version",
+                credential.version())
         }
     }
 
     if (keyCredential) {
-        validPublicData = Check(
-            credential.publiccredential(),
-            CredentialAllowedKeyCredentials.at(credential.version()).first,
-            CredentialAllowedKeyCredentials.at(credential.version()).second,
-            silent,
-            credential.type(),
-            KEYMODE_PUBLIC);
-
-        if (!validPublicData) {
-            FAIL("credential", "invalid public data")
-        }
-
-        if (isPrivate) {
-            validPrivateData = Check(
-                credential.privatecredential(),
+        try {
+            validPublicData = Check(
+                credential.publiccredential(),
                 CredentialAllowedKeyCredentials.at(credential.version()).first,
                 CredentialAllowedKeyCredentials.at(credential.version()).second,
                 silent,
                 credential.type(),
-                KEYMODE_PRIVATE);
+                KEYMODE_PUBLIC);
 
-            if (!validPrivateData) {
-                FAIL("credential", "invalid private data")
+            if (!validPublicData) {
+                FAIL("credential", "invalid public data")
+            }
+        } catch (const std::out_of_range&) {
+            FAIL2(
+                "credential",
+                "allowed key credential version not defined for version",
+                credential.version())
+        }
+
+        if (isPrivate) {
+            try {
+                validPrivateData = Check(
+                    credential.privatecredential(),
+                    CredentialAllowedKeyCredentials.at(credential.version())
+                        .first,
+                    CredentialAllowedKeyCredentials.at(credential.version())
+                        .second,
+                    silent,
+                    credential.type(),
+                    KEYMODE_PRIVATE);
+
+                if (!validPrivateData) {
+                    FAIL("credential", "invalid private data")
+                }
+            } catch (const std::out_of_range&) {
+                FAIL2(
+                    "credential",
+                    "allowed key credential version not defined for version",
+                    credential.version())
             }
         }
     }
@@ -346,20 +390,27 @@ bool CheckProto_1(
         uint32_t sourcePublicCount = 0;
 
         for (auto& it : credential.signature()) {
-            bool validSig = Check(
-                it,
-                CredentialAllowedSignatures.at(credential.version()).first,
-                CredentialAllowedSignatures.at(credential.version()).second,
-                silent,
-                credential.id(),
-                masterID,
-                selfPublicCount,
-                selfPrivateCount,
-                masterPublicCount,
-                sourcePublicCount);
+            try {
+                bool validSig = Check(
+                    it,
+                    CredentialAllowedSignatures.at(credential.version()).first,
+                    CredentialAllowedSignatures.at(credential.version()).second,
+                    silent,
+                    credential.id(),
+                    masterID,
+                    selfPublicCount,
+                    selfPrivateCount,
+                    masterPublicCount,
+                    sourcePublicCount);
 
-            if (!validSig) {
-                FAIL("credential", "invalid signature")
+                if (!validSig) {
+                    FAIL("credential", "invalid signature")
+                }
+            } catch (const std::out_of_range&) {
+                FAIL2(
+                    "credential",
+                    "allowed signature version not defined for version",
+                    credential.version())
             }
         }
 
@@ -441,12 +492,12 @@ bool CheckProto_4(
 
 bool CheckProto_5(
     const Credential&,
-    const bool,
+    const bool silent,
     const KeyMode&,
     const CredentialRole,
     const bool)
 {
-    return false;
+    UNDEFINED_VERSION("credential", 5)
 }
 }  // namespace proto
 }  // namespace opentxs
