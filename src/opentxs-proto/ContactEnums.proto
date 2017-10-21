@@ -203,6 +203,7 @@ enum ContactItemType {
     CITEMTYPE_TNBCH = 177;
     CITEMTYPE_OWNER = 178;
     CITEMTYPE_PROPERTY = 179;
+    CITEMTYPE_UNKNOWN = 180;
 }
 
 enum ContactItemAttribute {

@@ -66,9 +66,9 @@ bool CheckProto_4(
     const ClaimType indexed,
     const uint32_t parentVersion = 0xffffffff);
 bool CheckProto_5(
-    const ContactSection&,
-    const bool,
-    const ClaimType,
+    const ContactSection& contactSection,
+    const bool silent,
+    const ClaimType indexed,
     const uint32_t parentVersion = 0xffffffff);
 }  // namespace proto
 }  // namespace opentxs

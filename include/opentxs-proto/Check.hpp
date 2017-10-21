@@ -41,12 +41,18 @@
 
 #include <cstdint>
 #include <iostream>
+#include <sstream>
+
+#ifdef ANDROID
+#include <android/log.h>
 
 #define FAIL(a, b)                                                             \
     {                                                                          \
         if (false == silent) {                                                 \
-            std::cerr << "Verify serialized " << a << " failed: " << b         \
-                      << std::endl;                                            \
+            std::stringstream out{};                                           \
+            out << "Verify serialized " << a << " failed: " << b << std::endl; \
+            __android_log_write(                                               \
+                ANDROID_LOG_INFO, "opentxs-proto", out.str().c_str());         \
         }                                                                      \
                                                                                \
         return false;                                                          \
@@ -55,8 +61,11 @@
 #define FAIL2(a, b, c)                                                         \
     {                                                                          \
         if (false == silent) {                                                 \
-            std::cerr << "Verify serialized " << a << " failed: " << b << "("  \
-                      << c << ")." << std::endl;                               \
+            std::stringstream out{};                                           \
+            out << "Verify serialized " << a << " failed: " << b << "(" << c   \
+                << ")." << std::endl;                                          \
+            __android_log_write(                                               \
+                ANDROID_LOG_INFO, "opentxs-proto", out.str().c_str());         \
         }                                                                      \
                                                                                \
         return false;                                                          \
@@ -65,12 +74,51 @@
 #define FAIL3(a, b, c, d, e)                                                   \
     {                                                                          \
         if (false == silent) {                                                 \
-            std::cerr << "Verify serialized " << a << " failed: " << b << "("  \
-                      << c << ")" << d << "(" << e << ")" << std::endl;        \
+            std::stringstream out{};                                           \
+            out << "Verify serialized " << a << " failed: " << b << "(" << c   \
+                << ")" << d << "(" << e << ")" << std::endl;                   \
+            __android_log_write(                                               \
+                ANDROID_LOG_INFO, "opentxs-proto", out.str().c_str());         \
         }                                                                      \
                                                                                \
         return false;                                                          \
     }
+#else
+#define FAIL(a, b)                                                             \
+    {                                                                          \
+        if (false == silent) {                                                 \
+            std::stringstream out{};                                           \
+            out << "Verify serialized " << a << " failed: " << b << std::endl; \
+            std::cerr << out.str();                                            \
+        }                                                                      \
+                                                                               \
+        return false;                                                          \
+    }
+
+#define FAIL2(a, b, c)                                                         \
+    {                                                                          \
+        if (false == silent) {                                                 \
+            std::stringstream out{};                                           \
+            out << "Verify serialized " << a << " failed: " << b << "(" << c   \
+                << ")." << std::endl;                                          \
+            std::cerr << out.str();                                            \
+        }                                                                      \
+                                                                               \
+        return false;                                                          \
+    }
+
+#define FAIL3(a, b, c, d, e)                                                   \
+    {                                                                          \
+        if (false == silent) {                                                 \
+            std::stringstream out{};                                           \
+            out << "Verify serialized " << a << " failed: " << b << "(" << c   \
+                << ")" << d << "(" << e << ")" << std::endl;                   \
+            std::cerr << out.str();                                            \
+        }                                                                      \
+                                                                               \
+        return false;                                                          \
+    }
+#endif
 
 #define UNDEFINED_VERSION(a, b)                                                \
     {                                                                          \

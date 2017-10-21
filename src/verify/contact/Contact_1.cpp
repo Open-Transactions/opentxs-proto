@@ -117,9 +117,10 @@ bool CheckProto_1(const Contact& contact, const bool silent)
 
     return true;
 }
-bool CheckProto_2(const Contact&, const bool silent)
+
+bool CheckProto_2(const Contact& contact, const bool silent)
 {
-    UNDEFINED_VERSION("contact", 2)
+    return CheckProto_1(contact, silent);
 }
 
 bool CheckProto_3(const Contact&, const bool silent)
