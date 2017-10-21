@@ -18,6 +18,8 @@ add_library(${MODULE_NAME}_static STATIC
 target_link_libraries(${MODULE_NAME}
   PUBLIC
   ${PROTOBUF_LITE_LIBRARIES}
+  PRIVATE
+  ${OPENTXS_SYSTEM_LIBRARIES}
 )
 
 set_target_properties(${MODULE_NAME} PROPERTIES OUTPUT_NAME opentxs-proto)
