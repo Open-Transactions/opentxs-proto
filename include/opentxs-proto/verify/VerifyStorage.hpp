@@ -47,6 +47,7 @@ namespace proto
 {
 
 class StorageContactAddressIndex;
+class StorageContactNymIndex;
 class StorageContacts;
 class StorageCredentials;
 class StorageIDList;
@@ -63,12 +64,18 @@ class StorageUnits;
 
 static const VersionMap StorageContactsAllowedAddress = {
     {1, {1, 1}},
+    {2, {1, 1}},
 };
 static const VersionMap StorageContactsAllowedHash = {
     {1, {1, 2}},
+    {2, {1, 2}},
 };
 static const VersionMap StorageContactsAllowedList = {
     {1, {1, 1}},
+    {2, {1, 1}},
+};
+static const VersionMap StorageContactsAllowedNym = {
+    {2, {1, 1}},
 };
 static const VersionMap StorageCredentialAllowedHash = {
     {1, {1, 1}},
