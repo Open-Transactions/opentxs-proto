@@ -43,7 +43,7 @@
 
 namespace opentxs::proto
 {
-bool CheckProto_1(const StorageContacts& contact, const bool silent)
+bool CheckProto_2(const StorageContacts& contact, const bool silent)
 {
     for (auto& merge : contact.merge()) {
         try {
@@ -102,13 +102,40 @@ bool CheckProto_1(const StorageContacts& contact, const bool silent)
         }
     }
 
-    if (0 < contact.nym().size()) {
-        FAIL2(
-            "contact storage index",
-            "nym index not allowed for version",
-            contact.version())
+    for (auto& index : contact.nym()) {
+        try {
+            const bool valid = Check(
+                index,
+                StorageContactsAllowedNym.at(contact.version()).first,
+                StorageContactsAllowedNym.at(contact.version()).second,
+                silent);
+
+            if (!valid) {
+                FAIL("contact storage index", "invalid nym index")
+            }
+        } catch (const std::out_of_range&) {
+            FAIL2(
+                "contact storage index",
+                "allowed nym index version not defined for version",
+                contact.version())
+        }
     }
 
     return true;
+}
+
+bool CheckProto_3(const StorageContacts&, const bool silent)
+{
+    UNDEFINED_VERSION("contact storage index", 3)
+}
+
+bool CheckProto_4(const StorageContacts&, const bool silent)
+{
+    UNDEFINED_VERSION("contact storage index", 4)
+}
+
+bool CheckProto_5(const StorageContacts&, const bool silent)
+{
+    UNDEFINED_VERSION("contact storage index", 5)
 }
 }  // namespace opentxs::proto

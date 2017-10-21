@@ -60,7 +60,9 @@ set(cxx-sources
   storageblockchainaccountlist/StorageBlockchainAccountList_1.cpp
   storageblockchaintransactions/StorageBlockchainTransactions_1.cpp
   storagecontactaddressindex/StorageContactAddressIndex_1.cpp
+  storagecontactnymindex/StorageContactNymIndex_1.cpp
   storagecontacts/StorageContacts_1.cpp
+  storagecontacts/StorageContacts_2.cpp
   storagecredentials/StorageCredentials_1.cpp
   storageidlist/StorageIDList_1.cpp
   storageitemhash/StorageItemHash_1.cpp
