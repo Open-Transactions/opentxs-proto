@@ -10,11 +10,13 @@ import public "PeerEnums.proto";
 import public "PeerReply.proto";
 import public "PeerRequest.proto";
 
-message PeerObject {
+message PeerObject
+{
     optional uint32 version = 1;
     optional PeerObjectType type = 2;
     optional string otmessage = 3;
     optional PeerRequest otrequest = 4;
     optional PeerReply otreply = 5;
     optional CredentialIndex nym = 6;
+    optional string otpayment = 7;
 }

@@ -46,10 +46,10 @@ namespace opentxs
 namespace proto
 {
 bool CheckProto_1(const PeerObject& peerObject, const bool silent);
-bool CheckProto_2(const PeerObject&, const bool);
-bool CheckProto_3(const PeerObject&, const bool);
-bool CheckProto_4(const PeerObject&, const bool);
-bool CheckProto_5(const PeerObject&, const bool);
+bool CheckProto_2(const PeerObject& peerObject, const bool silent);
+bool CheckProto_3(const PeerObject& peerObject, const bool silent);
+bool CheckProto_4(const PeerObject& peerObject, const bool silent);
+bool CheckProto_5(const PeerObject& peerObject, const bool silent);
 }  // namespace proto
 }  // namespace opentxs
 

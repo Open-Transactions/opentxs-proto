@@ -40,6 +40,7 @@ set(cxx-sources
   outbailmentreply/OutBailmentReply_1.cpp
   paymentcode/PaymentCode_1.cpp
   peerobject/PeerObject_1.cpp
+  peerobject/PeerObject_2.cpp
   peerreply/PeerReply_1.cpp
   peerreply/PeerReply_2.cpp
   peerreply/PeerReply_3.cpp
