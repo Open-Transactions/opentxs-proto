@@ -2,17 +2,20 @@ cmake_minimum_required(VERSION 2.8.12)
 project(opentxs-proto)
 
 
+if(NOT ANDROID)
 set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM LAST)
 find_package(Git)
 if(GIT_FOUND)
     execute_process(COMMAND git "describe" OUTPUT_VARIABLE GIT_VERSION WORKING_DIRECTORY ${CMAKE_SOURCE_DIR} OUTPUT_STRIP_TRAILING_WHITESPACE)
     string(REGEX REPLACE "^([0-9]+)\\..*" "\\1" VERSION_MAJOR "${GIT_VERSION}")
-    string(REGEX REPLACE "^[0-9]+\\.([0-9]+).*" "\\1" VERSION_MINOR "${GIT_VERSION}")
-    string(REGEX REPLACE "^[0-9]+\\.[0-9]+\\.([0-9]+).*" "\\1" VERSION_BUGFIX "${GIT_VERSION}")
-    string(REGEX REPLACE "^[0-9]+\\.[0-9]+\\.[0-9]+-([0-9]+)-.*" "\\1" VERSION_NEW_COMMITS "${GIT_VERSION}")
-    string(REGEX REPLACE "^[0-9]+\\.[0-9]+\\.[0-9]+-[0-9]+-(.*)" "\\1" VERSION_SHA1 "${GIT_VERSION}")
-    if("${VERSION_SHA1}" STREQUAL "")
+    string(REGEX REPLACE "^${VERSION_MAJOR}\\.([0-9]+).*" "\\1" VERSION_MINOR "${GIT_VERSION}")
+    string(REGEX REPLACE "^${VERSION_MAJOR}\\.${VERSION_MINOR}\\.([0-9]+).*" "\\1" VERSION_BUGFIX "${GIT_VERSION}")
+    string(REGEX REPLACE "^${VERSION_MAJOR}\\.${VERSION_MINOR}\\.${VERSION_BUGFIX}-([0-9]+)-.*" "\\1" VERSION_NEW_COMMITS "${GIT_VERSION}")
+    string(REGEX REPLACE "^${VERSION_MAJOR}\\.${VERSION_MINOR}\\.${VERSION_BUGFIX}-${VERSION_NEW_COMMITS}-(.*)" "\\1" VERSION_SHA1 "${GIT_VERSION}")
+    if("${VERSION_NEW_COMMITS}" STREQUAL "${GIT_VERSION}")
         set(VERSION_STRING "${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_BUGFIX}")
+        set(VERSION_NEW_COMMITS "")
+        set(VERSION_SHA1 "")
     else()
         set(VERSION_STRING "${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_BUGFIX}-${VERSION_NEW_COMMITS}-${VERSION_SHA1}")
     endif()
@@ -22,6 +25,7 @@ if(GIT_FOUND)
 else()
   message(FATAL_ERROR "Git not found.")
 endif()
+endif() # NOT ANDROID
 
 #-----------------------------------------------------------------------------
 # Options for building
@@ -112,7 +116,11 @@ endif()
 message(STATUS "C++ Compiler ID: ${CMAKE_CXX_COMPILER_ID}")
 message(STATUS "C++ Flags:       ${CMAKE_CXX_FLAGS}")
 message(STATUS "C++ link flags:  ${CMAKE_CXX_LINK_FLAGS}")
-message(STATUS "Package version:  ${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_BUGFIX}")
+message(STATUS "Package version:  ${VERSION_STRING}")
+message(STATUS "Package version:  ${VERSION_MAJOR}")
+message(STATUS "Package version:  ${VERSION_MINOR}")
+message(STATUS "Package version:  ${VERSION_BUGFIX}")
+message(STATUS "Package version:  ${VERSION_SHA1}")
 
 message(STATUS "Bindings ------------------------------------")
 message(STATUS "Java binding:           ${JAVA}")
@@ -302,7 +310,22 @@ endif()
 install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/include/
         DESTINATION include
         COMPONENT dev
-        FILES_MATCHING PATTERN "*.hpp")
+        FILES_MATCHING PATTERN "Basic.hpp")
+
+install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/include/
+        DESTINATION include
+        COMPONENT dev
+        FILES_MATCHING PATTERN "Check.hpp")
+
+install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/include/
+        DESTINATION include
+        COMPONENT dev
+        FILES_MATCHING PATTERN "Contact.hpp")
+
+install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/include/
+        DESTINATION include
+        COMPONENT dev
+        FILES_MATCHING PATTERN "Types.hpp")
 
 install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/src/opentxs-proto/
         DESTINATION include/opentxs-proto
