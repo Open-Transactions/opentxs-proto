@@ -217,7 +217,7 @@ endif()
 
 #-----------------------------------------------------------------------------
 # Set in-source Version
-configure_file("include/opentxs-proto/Version.hpp" "${CMAKE_CURRENT_BINARY_DIR}/include/opentxs-proto/Version.hpp" @ONLY)
+configure_file("include/Version.hpp" "${CMAKE_CURRENT_BINARY_DIR}/include/opentxs-proto/Version.hpp" @ONLY)
 
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/include/opentxs-proto/Version.hpp
         DESTINATION include/opentxs-proto/
@@ -310,22 +310,7 @@ endif()
 install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/include/
         DESTINATION include
         COMPONENT dev
-        FILES_MATCHING PATTERN "Basic.hpp")
-
-install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/include/
-        DESTINATION include
-        COMPONENT dev
-        FILES_MATCHING PATTERN "Check.hpp")
-
-install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/include/
-        DESTINATION include
-        COMPONENT dev
-        FILES_MATCHING PATTERN "Contact.hpp")
-
-install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/include/
-        DESTINATION include
-        COMPONENT dev
-        FILES_MATCHING PATTERN "Types.hpp")
+        FILES_MATCHING PATTERN "*.hpp")
 
 install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/src/opentxs-proto/
         DESTINATION include/opentxs-proto
