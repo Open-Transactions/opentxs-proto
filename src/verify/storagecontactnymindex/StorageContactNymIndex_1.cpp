@@ -43,21 +43,21 @@
 
 namespace opentxs::proto
 {
-bool CheckProto_1(const StorageContactNymIndex& list, const bool silent)
+bool CheckProto_1(const StorageContactNymIndex& input, const bool silent)
 {
-    if (false == list.has_contact()) {
+    if (false == input.has_contact()) {
         FAIL("storage contact nym index", "missing contact")
     }
 
-    if (MIN_PLAUSIBLE_IDENTIFIER > list.contact().size()) {
-        FAIL2("storage contact nym index", "invalid contact", list.contact())
+    if (MIN_PLAUSIBLE_IDENTIFIER > input.contact().size()) {
+        FAIL2("storage contact nym index", "invalid contact", input.contact())
     }
 
-    if (MAX_PLAUSIBLE_IDENTIFIER < list.contact().size()) {
-        FAIL2("storage contact nym index", "invalid contact", list.contact())
+    if (MAX_PLAUSIBLE_IDENTIFIER < input.contact().size()) {
+        FAIL2("storage contact nym index", "invalid contact", input.contact())
     }
 
-    for (const auto& it : list.nym()) {
+    for (const auto& it : input.nym()) {
         if (MIN_PLAUSIBLE_IDENTIFIER > it.size()) {
             FAIL2("storage contact nym index", "invalid nym", it)
         }
@@ -70,22 +70,22 @@ bool CheckProto_1(const StorageContactNymIndex& list, const bool silent)
     return true;
 }
 
-bool CheckProto_2(const StorageContactNymIndex&, const bool silent)
+bool CheckProto_2(const StorageContactNymIndex& input, const bool silent)
 {
     UNDEFINED_VERSION("storage contact nym index", 2)
 }
 
-bool CheckProto_3(const StorageContactNymIndex&, const bool silent)
+bool CheckProto_3(const StorageContactNymIndex& input, const bool silent)
 {
     UNDEFINED_VERSION("storage contact nym index", 3)
 }
 
-bool CheckProto_4(const StorageContactNymIndex&, const bool silent)
+bool CheckProto_4(const StorageContactNymIndex& input, const bool silent)
 {
     UNDEFINED_VERSION("storage contact nym index", 4)
 }
 
-bool CheckProto_5(const StorageContactNymIndex&, const bool silent)
+bool CheckProto_5(const StorageContactNymIndex& input, const bool silent)
 {
     UNDEFINED_VERSION("storage contact nym index", 5)
 }

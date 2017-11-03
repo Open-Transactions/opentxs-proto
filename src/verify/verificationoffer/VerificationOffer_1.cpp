@@ -45,40 +45,47 @@ namespace opentxs
 {
 namespace proto
 {
-bool CheckProto_1(const VerificationOffer&, const bool) { return false; }
-bool CheckProto_2(const VerificationOffer&, const bool) { return false; }
-
-bool CheckProto_3(const VerificationOffer& offer, const bool silent)
+bool CheckProto_1(const VerificationOffer& input, const bool silent)
 {
-    if (!offer.has_offeringnym()) {
+    UNDEFINED_VERSION("verification offer", 1)
+}
+
+bool CheckProto_2(const VerificationOffer& input, const bool silent)
+{
+    UNDEFINED_VERSION("verification offer", 2)
+}
+
+bool CheckProto_3(const VerificationOffer& input, const bool silent)
+{
+    if (!input.has_offeringnym()) {
         FAIL("verification offer", "missing sender nym id")
     }
 
-    if (MIN_PLAUSIBLE_IDENTIFIER > offer.offeringnym().size()) {
+    if (MIN_PLAUSIBLE_IDENTIFIER > input.offeringnym().size()) {
         FAIL("verification offer", "invalid sender nym id")
     }
 
-    if (MAX_PLAUSIBLE_IDENTIFIER < offer.offeringnym().size()) {
+    if (MAX_PLAUSIBLE_IDENTIFIER < input.offeringnym().size()) {
         FAIL("verification offer", "invalid sender nym id")
     }
 
-    if (!offer.has_recipientnym()) {
+    if (!input.has_recipientnym()) {
         FAIL("verification offer", "missing recipient nym id")
     }
 
-    if (MIN_PLAUSIBLE_IDENTIFIER > offer.recipientnym().size()) {
+    if (MIN_PLAUSIBLE_IDENTIFIER > input.recipientnym().size()) {
         FAIL("verification offer", "invalid recipient nym id")
     }
 
-    if (MAX_PLAUSIBLE_IDENTIFIER < offer.recipientnym().size()) {
+    if (MAX_PLAUSIBLE_IDENTIFIER < input.recipientnym().size()) {
         FAIL("verification offer", "invalid recipient nym id")
     }
 
     try {
         const bool validClaim = Check(
-            offer.claim(),
-            VerificationOfferAllowedClaim.at(offer.version()).first,
-            VerificationOfferAllowedClaim.at(offer.version()).second,
+            input.claim(),
+            VerificationOfferAllowedClaim.at(input.version()).first,
+            VerificationOfferAllowedClaim.at(input.version()).second,
             silent);
 
         if (!validClaim) {
@@ -88,18 +95,18 @@ bool CheckProto_3(const VerificationOffer& offer, const bool silent)
         FAIL2(
             "verification offer",
             "allowed claim version not defined for version",
-            offer.version())
+            input.version())
     }
 
-    if (offer.claim().nymid() != offer.recipientnym()) {
+    if (input.claim().nymid() != input.recipientnym()) {
         FAIL("verification offer", "claim nym does not match recipient nym")
     }
 
     try {
         const bool validVerification = Check(
-            offer.verification(),
-            VerificationOfferAllowedVerification.at(offer.version()).first,
-            VerificationOfferAllowedVerification.at(offer.version()).second,
+            input.verification(),
+            VerificationOfferAllowedVerification.at(input.version()).first,
+            VerificationOfferAllowedVerification.at(input.version()).second,
             silent,
             VERIFICATIONS_NORMAL);
 
@@ -110,18 +117,18 @@ bool CheckProto_3(const VerificationOffer& offer, const bool silent)
         FAIL2(
             "verification offer",
             "allowed verification version not defined for version",
-            offer.version())
+            input.version())
     }
 
     return true;
 }
 
-bool CheckProto_4(const VerificationOffer& offer, const bool silent)
+bool CheckProto_4(const VerificationOffer& input, const bool silent)
 {
-    return CheckProto_3(offer, silent);
+    return CheckProto_3(input, silent);
 }
 
-bool CheckProto_5(const VerificationOffer&, const bool silent)
+bool CheckProto_5(const VerificationOffer& input, const bool silent)
 {
     UNDEFINED_VERSION("verification offer", 5)
 }

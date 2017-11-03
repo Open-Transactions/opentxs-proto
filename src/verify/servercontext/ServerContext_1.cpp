@@ -45,30 +45,30 @@ namespace opentxs
 {
 namespace proto
 {
-bool CheckProto_1(const ServerContext& context, const bool silent)
+bool CheckProto_1(const ServerContext& input, const bool silent)
 {
-    if (!context.has_serverid()) {
+    if (!input.has_serverid()) {
         FAIL("server context", "missing server id")
     }
 
-    if ((MIN_PLAUSIBLE_IDENTIFIER > context.serverid().size()) ||
-        (MAX_PLAUSIBLE_IDENTIFIER < context.serverid().size())) {
+    if ((MIN_PLAUSIBLE_IDENTIFIER > input.serverid().size()) ||
+        (MAX_PLAUSIBLE_IDENTIFIER < input.serverid().size())) {
         FAIL("server context", "invalid server id")
     }
 
-    if (0 < context.revision()) {
+    if (0 < input.revision()) {
         FAIL("server context", "unexpected revision field found");
     }
 
-    if (0 < context.adminpassword().size()) {
+    if (0 < input.adminpassword().size()) {
         FAIL("server context", "unexpected adminpassword field found");
     }
 
-    if (context.adminattempted()) {
+    if (input.adminattempted()) {
         FAIL("server context", "unexpected adminattempted field found");
     }
 
-    if (context.adminsuccess()) {
+    if (input.adminsuccess()) {
         FAIL("server context", "unexpected adminsuccess field found");
     }
 

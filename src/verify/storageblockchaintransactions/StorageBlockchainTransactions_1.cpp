@@ -46,19 +46,15 @@ namespace opentxs
 namespace proto
 {
 
-bool CheckProto_1(
-    const StorageBlockchainTransactions& transactions,
-    const bool silent)
+bool CheckProto_1(const StorageBlockchainTransactions& input, const bool silent)
 {
-    for (auto& transaction : transactions.transaction()) {
+    for (auto& transaction : input.transaction()) {
         try {
             const bool validHash = Check(
                 transaction,
-                StorageBlockchainTransactionsAllowedHash
-                    .at(transactions.version())
+                StorageBlockchainTransactionsAllowedHash.at(input.version())
                     .first,
-                StorageBlockchainTransactionsAllowedHash
-                    .at(transactions.version())
+                StorageBlockchainTransactionsAllowedHash.at(input.version())
                     .second,
                 silent);
 
@@ -69,29 +65,29 @@ bool CheckProto_1(
             FAIL2(
                 "storage blockchain transactions",
                 "allowed storage hash version not defined for version",
-                transactions.version())
+                input.version())
         }
     }
 
     return true;
 }
 
-bool CheckProto_2(const StorageBlockchainTransactions&, const bool silent)
+bool CheckProto_2(const StorageBlockchainTransactions& input, const bool silent)
 {
     UNDEFINED_VERSION("storage blockchain transactions", 2)
 }
 
-bool CheckProto_3(const StorageBlockchainTransactions&, const bool silent)
+bool CheckProto_3(const StorageBlockchainTransactions& input, const bool silent)
 {
     UNDEFINED_VERSION("storage blockchain transactions", 3)
 }
 
-bool CheckProto_4(const StorageBlockchainTransactions&, const bool silent)
+bool CheckProto_4(const StorageBlockchainTransactions& input, const bool silent)
 {
     UNDEFINED_VERSION("storage blockchain transactions", 4)
 }
 
-bool CheckProto_5(const StorageBlockchainTransactions&, const bool silent)
+bool CheckProto_5(const StorageBlockchainTransactions& input, const bool silent)
 {
     UNDEFINED_VERSION("storage blockchain transactions", 5)
 }

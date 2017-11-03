@@ -47,7 +47,7 @@ namespace proto
 {
 
 bool CheckProto_1(
-    const KeyCredential& keyCredential,
+    const KeyCredential& input,
     const bool silent,
     const CredentialType credType,
     const KeyMode mode)
@@ -59,51 +59,48 @@ bool CheckProto_1(
     bool validEncryptKey = false;
     bool validSignKey = false;
 
-    if (!keyCredential.has_mode()) {
+    if (!input.has_mode()) {
         FAIL("key credential", "missing mode")
     }
 
-    if (keyCredential.mode() != mode) {
-        FAIL2("key credential", "incorrect mode", keyCredential.mode())
+    if (input.mode() != mode) {
+        FAIL2("key credential", "incorrect mode", input.mode())
     }
 
-    if (3 != keyCredential.key_size()) {
+    if (3 != input.key_size()) {
         FAIL3(
             "key credential",
             "wrong number of keys",
-            keyCredential.key_size(),
+            input.key_size(),
             " required: ",
             "3")
     }
 
-    authKey = keyCredential.key(KEYROLE_AUTH - 1);
-    encryptKey = keyCredential.key(KEYROLE_ENCRYPT - 1);
-    signKey = keyCredential.key(KEYROLE_SIGN - 1);
+    authKey = input.key(KEYROLE_AUTH - 1);
+    encryptKey = input.key(KEYROLE_ENCRYPT - 1);
+    signKey = input.key(KEYROLE_SIGN - 1);
 
     try {
         validAuthKey = Check(
             authKey,
-            KeyCredentialAllowedAsymmetricKey.at(keyCredential.version()).first,
-            KeyCredentialAllowedAsymmetricKey.at(keyCredential.version())
-                .second,
+            KeyCredentialAllowedAsymmetricKey.at(input.version()).first,
+            KeyCredentialAllowedAsymmetricKey.at(input.version()).second,
             silent,
             credType,
             mode,
             KEYROLE_AUTH);
         validEncryptKey = Check(
             encryptKey,
-            KeyCredentialAllowedAsymmetricKey.at(keyCredential.version()).first,
-            KeyCredentialAllowedAsymmetricKey.at(keyCredential.version())
-                .second,
+            KeyCredentialAllowedAsymmetricKey.at(input.version()).first,
+            KeyCredentialAllowedAsymmetricKey.at(input.version()).second,
             silent,
             credType,
             mode,
             KEYROLE_ENCRYPT);
         validSignKey = Check(
             signKey,
-            KeyCredentialAllowedAsymmetricKey.at(keyCredential.version()).first,
-            KeyCredentialAllowedAsymmetricKey.at(keyCredential.version())
-                .second,
+            KeyCredentialAllowedAsymmetricKey.at(input.version()).first,
+            KeyCredentialAllowedAsymmetricKey.at(input.version()).second,
             silent,
             credType,
             mode,
@@ -124,14 +121,14 @@ bool CheckProto_1(
         FAIL2(
             "key credential",
             "allowed asymmetric key version not defined for version",
-            keyCredential.version())
+            input.version())
     }
 
     return true;
 }
 
 bool CheckProto_2(
-    const KeyCredential&,
+    const KeyCredential& input,
     const bool silent,
     const CredentialType,
     const KeyMode)
@@ -140,7 +137,7 @@ bool CheckProto_2(
 }
 
 bool CheckProto_3(
-    const KeyCredential&,
+    const KeyCredential& input,
     const bool silent,
     const CredentialType,
     const KeyMode)
@@ -149,7 +146,7 @@ bool CheckProto_3(
 }
 
 bool CheckProto_4(
-    const KeyCredential&,
+    const KeyCredential& input,
     const bool silent,
     const CredentialType,
     const KeyMode)
@@ -158,7 +155,7 @@ bool CheckProto_4(
 }
 
 bool CheckProto_5(
-    const KeyCredential&,
+    const KeyCredential& input,
     const bool silent,
     const CredentialType,
     const KeyMode)

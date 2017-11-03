@@ -46,14 +46,14 @@ namespace opentxs
 namespace proto
 {
 
-bool CheckProto_1(const Envelope& data, const bool silent)
+bool CheckProto_1(const Envelope& input, const bool silent)
 {
-    for (const auto& dhKey : data.dhkey()) {
+    for (const auto& dhKey : input.dhkey()) {
         try {
             const bool validDHKey = Check(
                 dhKey,
-                EnvelopeAllowedAsymmetricKey.at(data.version()).first,
-                EnvelopeAllowedAsymmetricKey.at(data.version()).second,
+                EnvelopeAllowedAsymmetricKey.at(input.version()).first,
+                EnvelopeAllowedAsymmetricKey.at(input.version()).second,
                 silent,
                 CREDTYPE_LEGACY,
                 KEYMODE_PUBLIC,
@@ -66,16 +66,16 @@ bool CheckProto_1(const Envelope& data, const bool silent)
             FAIL2(
                 "envelope",
                 "allowed asymmetric key version not defined for version",
-                data.version())
+                input.version())
         }
     }
 
-    for (const auto& sessionKey : data.sessionkey()) {
+    for (const auto& sessionKey : input.sessionkey()) {
         try {
             const bool validSessionKey = Check(
                 sessionKey,
-                EnvelopeAllowedCiphertext.at(data.version()).first,
-                EnvelopeAllowedCiphertext.at(data.version()).second,
+                EnvelopeAllowedCiphertext.at(input.version()).first,
+                EnvelopeAllowedCiphertext.at(input.version()).second,
                 silent);
 
             if (false == validSessionKey) {
@@ -85,15 +85,15 @@ bool CheckProto_1(const Envelope& data, const bool silent)
             FAIL2(
                 "envelope",
                 "allowed ciphertext version not defined for version",
-                data.version())
+                input.version())
         }
     }
 
     try {
         const bool validCiphertext = Check(
-            data.ciphertext(),
-            EnvelopeAllowedCiphertext.at(data.version()).first,
-            EnvelopeAllowedCiphertext.at(data.version()).second,
+            input.ciphertext(),
+            EnvelopeAllowedCiphertext.at(input.version()).first,
+            EnvelopeAllowedCiphertext.at(input.version()).second,
             silent,
             false);
 
@@ -104,28 +104,28 @@ bool CheckProto_1(const Envelope& data, const bool silent)
         FAIL2(
             "envelope",
             "allowed ciphertext version not defined for version",
-            data.version())
+            input.version())
     }
 
     return true;
 }
 
-bool CheckProto_2(const Envelope&, const bool silent)
+bool CheckProto_2(const Envelope& input, const bool silent)
 {
     UNDEFINED_VERSION("envelope", 2)
 }
 
-bool CheckProto_3(const Envelope&, const bool silent)
+bool CheckProto_3(const Envelope& input, const bool silent)
 {
     UNDEFINED_VERSION("envelope", 3)
 }
 
-bool CheckProto_4(const Envelope&, const bool silent)
+bool CheckProto_4(const Envelope& input, const bool silent)
 {
     UNDEFINED_VERSION("envelope", 4)
 }
 
-bool CheckProto_5(const Envelope&, const bool silent)
+bool CheckProto_5(const Envelope& input, const bool silent)
 {
     UNDEFINED_VERSION("envelope", 5)
 }

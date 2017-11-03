@@ -46,51 +46,51 @@ namespace opentxs
 namespace proto
 {
 
-bool CheckProto_1(const Bailment& request, const bool silent)
+bool CheckProto_1(const Bailment& input, const bool silent)
 {
-    if (!request.has_unitid()) {
+    if (!input.has_unitid()) {
         FAIL("bailment", "missing unit id")
     }
 
-    if (MIN_PLAUSIBLE_IDENTIFIER > request.unitid().size()) {
-        FAIL2("bailment", "invalid unit id", request.unitid())
+    if (MIN_PLAUSIBLE_IDENTIFIER > input.unitid().size()) {
+        FAIL2("bailment", "invalid unit id", input.unitid())
     }
 
-    if (MAX_PLAUSIBLE_IDENTIFIER < request.unitid().size()) {
-        FAIL2("bailment", "invalid unit id", request.unitid())
+    if (MAX_PLAUSIBLE_IDENTIFIER < input.unitid().size()) {
+        FAIL2("bailment", "invalid unit id", input.unitid())
     }
 
-    if (!request.has_serverid()) {
+    if (!input.has_serverid()) {
         FAIL("bailment", "missing server id")
     }
 
-    if (MIN_PLAUSIBLE_IDENTIFIER > request.serverid().size()) {
-        FAIL2("bailment", "invalid server id", request.serverid())
+    if (MIN_PLAUSIBLE_IDENTIFIER > input.serverid().size()) {
+        FAIL2("bailment", "invalid server id", input.serverid())
     }
 
-    if (MAX_PLAUSIBLE_IDENTIFIER < request.serverid().size()) {
-        FAIL2("bailment", "invalid server id", request.serverid())
+    if (MAX_PLAUSIBLE_IDENTIFIER < input.serverid().size()) {
+        FAIL2("bailment", "invalid server id", input.serverid())
     }
 
     return true;
 }
 
-bool CheckProto_2(const Bailment& request, const bool silent)
+bool CheckProto_2(const Bailment& input, const bool silent)
 {
-    return CheckProto_1(request, silent);
+    return CheckProto_1(input, silent);
 }
 
-bool CheckProto_3(const Bailment& request, const bool silent)
+bool CheckProto_3(const Bailment& input, const bool silent)
 {
-    return CheckProto_1(request, silent);
+    return CheckProto_1(input, silent);
 }
 
-bool CheckProto_4(const Bailment& request, const bool silent)
+bool CheckProto_4(const Bailment& input, const bool silent)
 {
-    return CheckProto_1(request, silent);
+    return CheckProto_1(input, silent);
 }
 
-bool CheckProto_5(const Bailment&, const bool silent)
+bool CheckProto_5(const Bailment& input, const bool silent)
 {
     UNDEFINED_VERSION("bailment", 5)
 }

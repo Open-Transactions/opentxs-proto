@@ -45,29 +45,29 @@ namespace opentxs
 {
 namespace proto
 {
-bool CheckProto_2(const StorageItemHash& hash, const bool silent)
+bool CheckProto_2(const StorageItemHash& input, const bool silent)
 {
-    if (!hash.has_itemid()) {
+    if (!input.has_itemid()) {
         FAIL("storage item hash", "missing id")
     }
 
-    if (MIN_PLAUSIBLE_IDENTIFIER > hash.itemid().size()) {
+    if (MIN_PLAUSIBLE_IDENTIFIER > input.itemid().size()) {
         FAIL("storage item hash", "invalid id")
     }
 
-    if (!hash.has_hash()) {
+    if (!input.has_hash()) {
         FAIL("storage item hash", "missing hash")
     }
 
-    if (MIN_PLAUSIBLE_IDENTIFIER > hash.hash().size()) {
+    if (MIN_PLAUSIBLE_IDENTIFIER > input.hash().size()) {
         FAIL("storage item hash", "invalid hash")
     }
 
-    if (!hash.has_type()) {
+    if (!input.has_type()) {
         FAIL("storage item hash", "missing type")
     }
 
-    switch (hash.type()) {
+    switch (input.type()) {
         case STORAGEHASH_PROTO:
         case STORAGEHASH_RAW: {
             break;
@@ -80,17 +80,17 @@ bool CheckProto_2(const StorageItemHash& hash, const bool silent)
     return true;
 }
 
-bool CheckProto_3(const StorageItemHash& hash, const bool silent)
+bool CheckProto_3(const StorageItemHash& input, const bool silent)
 {
-    return CheckProto_2(hash, silent);
+    return CheckProto_2(input, silent);
 }
 
-bool CheckProto_4(const StorageItemHash& hash, const bool silent)
+bool CheckProto_4(const StorageItemHash& input, const bool silent)
 {
-    return CheckProto_2(hash, silent);
+    return CheckProto_2(input, silent);
 }
 
-bool CheckProto_5(const StorageItemHash&, const bool silent)
+bool CheckProto_5(const StorageItemHash& input, const bool silent)
 {
     UNDEFINED_VERSION("storage item hash", 5)
 }

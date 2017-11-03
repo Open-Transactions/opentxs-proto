@@ -46,38 +46,38 @@ namespace opentxs
 namespace proto
 {
 
-bool CheckProto_1(const PaymentCode& code, const bool silent)
+bool CheckProto_1(const PaymentCode& input, const bool silent)
 {
-    if (!code.has_key()) {
+    if (!input.has_key()) {
         FAIL("payment code", "missing pubkey")
     }
 
-    if (MIN_PLAUSIBLE_KEYSIZE > code.key().size()) {
+    if (MIN_PLAUSIBLE_KEYSIZE > input.key().size()) {
         FAIL("payment code", "invalid pubkey")
     }
 
-    if (!code.has_chaincode()) {
+    if (!input.has_chaincode()) {
         FAIL("payment code", "missing chaincode")
     }
 
-    if (MIN_PLAUSIBLE_KEYSIZE > code.chaincode().size()) {
+    if (MIN_PLAUSIBLE_KEYSIZE > input.chaincode().size()) {
         FAIL("payment code", "invalid chaincode")
     }
 
-    if (code.has_bitmessage()) {
-        if (!code.has_bitmessageversion()) {
+    if (input.has_bitmessage()) {
+        if (!input.has_bitmessageversion()) {
             FAIL("payment code", "missing Bitmessage address version")
         }
 
-        if (0xff < code.bitmessageversion()) {
+        if (0xff < input.bitmessageversion()) {
             FAIL("payment code", "invalid Bitmessage address version")
         }
 
-        if (!code.has_bitmessagestream()) {
+        if (!input.has_bitmessagestream()) {
             FAIL("payment code", "missing Bitmessage address stream")
         }
 
-        if (0xff < code.bitmessagestream()) {
+        if (0xff < input.bitmessagestream()) {
             FAIL("payment code", "invalid Bitmessage address stream")
         }
     }
@@ -85,22 +85,22 @@ bool CheckProto_1(const PaymentCode& code, const bool silent)
     return true;
 }
 
-bool CheckProto_2(const PaymentCode&, const bool silent)
+bool CheckProto_2(const PaymentCode& input, const bool silent)
 {
     UNDEFINED_VERSION("payment code", 2)
 }
 
-bool CheckProto_3(const PaymentCode&, const bool silent)
+bool CheckProto_3(const PaymentCode& input, const bool silent)
 {
     UNDEFINED_VERSION("payment code", 3)
 }
 
-bool CheckProto_4(const PaymentCode&, const bool silent)
+bool CheckProto_4(const PaymentCode& input, const bool silent)
 {
     UNDEFINED_VERSION("payment code", 4)
 }
 
-bool CheckProto_5(const PaymentCode&, const bool silent)
+bool CheckProto_5(const PaymentCode& input, const bool silent)
 {
     UNDEFINED_VERSION("payment code", 5)
 }

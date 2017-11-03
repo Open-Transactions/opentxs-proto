@@ -46,32 +46,32 @@ namespace opentxs
 namespace proto
 {
 
-bool CheckProto_1(const StorageThread& thread, const bool silent)
+bool CheckProto_1(const StorageThread& input, const bool silent)
 {
-    if (!thread.has_id()) {
+    if (!input.has_id()) {
         FAIL("storage thread", "missing id")
     }
 
-    if (MIN_PLAUSIBLE_IDENTIFIER > thread.id().size()) {
+    if (MIN_PLAUSIBLE_IDENTIFIER > input.id().size()) {
         FAIL("storage thread", "invalid id")
     }
 
-    for (auto& nym : thread.participant()) {
+    for (auto& nym : input.participant()) {
         if (MIN_PLAUSIBLE_IDENTIFIER > nym.size()) {
             FAIL("storage thread", "invalid participant")
         }
     }
 
-    if (0 == thread.participant_size()) {
+    if (0 == input.participant_size()) {
         FAIL("storage thread", "no patricipants")
     }
 
-    for (auto& item : thread.item()) {
+    for (auto& item : input.item()) {
         try {
             const bool valid = Check(
                 item,
-                StorageThreadAllowedItem.at(thread.version()).first,
-                StorageThreadAllowedItem.at(thread.version()).second,
+                StorageThreadAllowedItem.at(input.version()).first,
+                StorageThreadAllowedItem.at(input.version()).second,
                 silent);
 
             if (false == valid) {
@@ -81,29 +81,29 @@ bool CheckProto_1(const StorageThread& thread, const bool silent)
             FAIL2(
                 "storage thread",
                 "allowed storage item hash version not defined for version",
-                thread.version())
+                input.version())
         }
     }
 
     return true;
 }
 
-bool CheckProto_2(const StorageThread&, const bool silent)
+bool CheckProto_2(const StorageThread& input, const bool silent)
 {
     UNDEFINED_VERSION("storage thread", 2)
 }
 
-bool CheckProto_3(const StorageThread&, const bool silent)
+bool CheckProto_3(const StorageThread& input, const bool silent)
 {
     UNDEFINED_VERSION("storage thread", 3)
 }
 
-bool CheckProto_4(const StorageThread&, const bool silent)
+bool CheckProto_4(const StorageThread& input, const bool silent)
 {
     UNDEFINED_VERSION("storage thread", 4)
 }
 
-bool CheckProto_5(const StorageThread&, const bool silent)
+bool CheckProto_5(const StorageThread& input, const bool silent)
 {
     UNDEFINED_VERSION("storage thread", 5)
 }

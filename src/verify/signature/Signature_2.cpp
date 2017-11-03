@@ -46,7 +46,7 @@ namespace opentxs
 namespace proto
 {
 bool CheckProto_2(
-    const Signature& sig,
+    const Signature& input,
     const bool silent,
     const std::string& selfID,
     const std::string& masterID,
@@ -56,11 +56,11 @@ bool CheckProto_2(
     std::uint32_t& sourcePublic,
     const SignatureRole role)
 {
-    if (!sig.has_role()) {
+    if (!input.has_role()) {
         FAIL("signature", "missing role")
     }
 
-    switch (sig.role()) {
+    switch (input.role()) {
         case SIGROLE_PUBCREDENTIAL:
         case SIGROLE_PRIVCREDENTIAL:
         case SIGROLE_NYMIDSOURCE:
@@ -74,57 +74,57 @@ bool CheckProto_2(
             break;
         }
         default: {
-            FAIL2("signature", "invalid role", sig.role())
+            FAIL2("signature", "invalid role", input.role())
         }
     }
 
-    if ((SIGROLE_ERROR != role) && (role != sig.role())) {
-        FAIL3("signature", "incorrect role", sig.role(), " specified ", role)
+    if ((SIGROLE_ERROR != role) && (role != input.role())) {
+        FAIL3("signature", "incorrect role", input.role(), " specified ", role)
     }
 
-    if (proto::SIGROLE_NYMIDSOURCE != sig.role()) {
+    if (proto::SIGROLE_NYMIDSOURCE != input.role()) {
 
-        if (!sig.has_credentialid()) {
+        if (!input.has_credentialid()) {
             FAIL("signature", " missing credential identifier")
         }
 
-        if (MIN_PLAUSIBLE_IDENTIFIER > sig.credentialid().size()) {
-            FAIL2("signature", "invalid credential id", sig.credentialid())
+        if (MIN_PLAUSIBLE_IDENTIFIER > input.credentialid().size()) {
+            FAIL2("signature", "invalid credential id", input.credentialid())
         }
     }
 
-    if (!sig.has_hashtype()) {
+    if (!input.has_hashtype()) {
         FAIL("signature", "missing hashtype")
     }
 
-    if (sig.hashtype() > proto::HASHTYPE_BLAKE2B512) {
-        FAIL2("signature", "invalid hash type", sig.hashtype())
+    if (input.hashtype() > proto::HASHTYPE_BLAKE2B512) {
+        FAIL2("signature", "invalid hash type", input.hashtype())
     }
 
-    if (!sig.has_signature()) {
+    if (!input.has_signature()) {
         FAIL("signature", "missing signature")
     }
 
-    if (MIN_PLAUSIBLE_SIGNATURE > sig.signature().size()) {
+    if (MIN_PLAUSIBLE_SIGNATURE > input.signature().size()) {
         FAIL("signature", "invalid signature")
     }
 
-    if ((SIGROLE_PUBCREDENTIAL == sig.role()) &&
-        (selfID == sig.credentialid())) {
+    if ((SIGROLE_PUBCREDENTIAL == input.role()) &&
+        (selfID == input.credentialid())) {
         selfPublic += 1;
     }
 
-    if ((SIGROLE_PUBCREDENTIAL == sig.role()) &&
-        (masterID == sig.credentialid())) {
+    if ((SIGROLE_PUBCREDENTIAL == input.role()) &&
+        (masterID == input.credentialid())) {
         masterPublic += 1;
     }
 
-    if ((SIGROLE_PRIVCREDENTIAL == sig.role()) &&
-        (selfID == sig.credentialid())) {
+    if ((SIGROLE_PRIVCREDENTIAL == input.role()) &&
+        (selfID == input.credentialid())) {
         selfPrivate += 1;
     }
 
-    if (SIGROLE_NYMIDSOURCE == sig.role()) {
+    if (SIGROLE_NYMIDSOURCE == input.role()) {
         sourcePublic += 1;
     }
 
@@ -132,19 +132,19 @@ bool CheckProto_2(
 }
 
 bool CheckProto_2(
-    const Signature& sig,
+    const Signature& input,
     const bool silent,
     const SignatureRole role)
 {
     std::uint32_t unused = 0;
 
     return CheckProto_2(
-        sig, silent, "", "", unused, unused, unused, unused, role);
+        input, silent, "", "", unused, unused, unused, unused, role);
 }
 
 bool CheckProto_3(
-    const Signature&,
-    const bool,
+    const Signature& input,
+    const bool silent,
     const std::string&,
     const std::string&,
     std::uint32_t&,
@@ -153,23 +153,23 @@ bool CheckProto_3(
     std::uint32_t&,
     const SignatureRole)
 {
-    return false;
+    UNDEFINED_VERSION("signature", 3)
 }
 
 bool CheckProto_3(
-    const Signature& sig,
+    const Signature& input,
     const bool silent,
     const SignatureRole role)
 {
     std::uint32_t unused = 0;
 
     return CheckProto_3(
-        sig, silent, "", "", unused, unused, unused, unused, role);
+        input, silent, "", "", unused, unused, unused, unused, role);
 }
 
 bool CheckProto_4(
-    const Signature&,
-    const bool,
+    const Signature& input,
+    const bool silent,
     const std::string&,
     const std::string&,
     std::uint32_t&,
@@ -178,23 +178,23 @@ bool CheckProto_4(
     std::uint32_t&,
     const SignatureRole)
 {
-    return false;
+    UNDEFINED_VERSION("signature", 4)
 }
 
 bool CheckProto_4(
-    const Signature& sig,
+    const Signature& input,
     const bool silent,
     const SignatureRole role)
 {
     std::uint32_t unused = 0;
 
     return CheckProto_4(
-        sig, silent, "", "", unused, unused, unused, unused, role);
+        input, silent, "", "", unused, unused, unused, unused, role);
 }
 
 bool CheckProto_5(
-    const Signature&,
-    const bool,
+    const Signature& input,
+    const bool silent,
     const std::string&,
     const std::string&,
     std::uint32_t&,
@@ -203,18 +203,18 @@ bool CheckProto_5(
     std::uint32_t&,
     const SignatureRole)
 {
-    return false;
+    UNDEFINED_VERSION("signature", 5)
 }
 
 bool CheckProto_5(
-    const Signature& sig,
+    const Signature& input,
     const bool silent,
     const SignatureRole role)
 {
     std::uint32_t unused = 0;
 
     return CheckProto_5(
-        sig, silent, "", "", unused, unused, unused, unused, role);
+        input, silent, "", "", unused, unused, unused, unused, role);
 }
 }  // namespace proto
 }  // namespace opentxs

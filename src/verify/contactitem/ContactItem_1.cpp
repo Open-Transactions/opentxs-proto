@@ -47,50 +47,50 @@ namespace proto
 {
 
 bool CheckProto_1(
-    const ContactItem& contactItem,
+    const ContactItem& input,
     const bool silent,
     const ClaimType indexed,
     const ContactSectionVersion parentVersion)
 {
     if (indexed) {
-        if (!contactItem.has_id()) {
+        if (!input.has_id()) {
             FAIL("contact item", "missing id")
         }
 
-        if (MIN_PLAUSIBLE_IDENTIFIER > contactItem.id().size()) {
+        if (MIN_PLAUSIBLE_IDENTIFIER > input.id().size()) {
             FAIL("contact item", "invalid id")
         }
 
-        if (MAX_PLAUSIBLE_IDENTIFIER < contactItem.id().size()) {
+        if (MAX_PLAUSIBLE_IDENTIFIER < input.id().size()) {
             FAIL("contact item", "invalid id")
         }
     } else {
-        if (contactItem.has_id()) {
+        if (input.has_id()) {
             FAIL("contact item", "id not blank")
         }
     }
 
-    if (!contactItem.has_type()) {
+    if (!input.has_type()) {
         FAIL("contact item", "missing type")
     }
 
-    if (!ValidContactItemType(parentVersion, contactItem.type())) {
+    if (!ValidContactItemType(parentVersion, input.type())) {
         FAIL("contact item", "invalid type")
     }
 
-    if (!contactItem.has_value()) {
+    if (!input.has_value()) {
         FAIL("contact item", "missing value")
     }
 
-    for (auto& it : contactItem.attribute()) {
+    for (auto& it : input.attribute()) {
         if (!ValidContactItemAttribute(
-                contactItem.version(), static_cast<ContactItemAttribute>(it))) {
+                input.version(), static_cast<ContactItemAttribute>(it))) {
             FAIL("contact item", "invalid attribute")
         }
     }
 
-    if (contactItem.has_subtype()) {
-        if (3 > contactItem.version()) {
+    if (input.has_subtype()) {
+        if (3 > input.version()) {
             FAIL("contact item", "Subtype present but not allowed")
         }
 
@@ -105,39 +105,39 @@ bool CheckProto_1(
 }
 
 bool CheckProto_2(
-    const ContactItem& contactItem,
+    const ContactItem& input,
     const bool silent,
     const ClaimType indexed,
     const ContactSectionVersion parentVersion)
 {
-    return CheckProto_1(contactItem, silent, indexed, parentVersion);
+    return CheckProto_1(input, silent, indexed, parentVersion);
 }
 
 bool CheckProto_3(
-    const ContactItem& contactItem,
+    const ContactItem& input,
     const bool silent,
     const ClaimType indexed,
     const ContactSectionVersion parentVersion)
 {
-    return CheckProto_1(contactItem, silent, indexed, parentVersion);
+    return CheckProto_1(input, silent, indexed, parentVersion);
 }
 
 bool CheckProto_4(
-    const ContactItem& contactItem,
+    const ContactItem& input,
     const bool silent,
     const ClaimType indexed,
     const ContactSectionVersion parentVersion)
 {
-    return CheckProto_1(contactItem, silent, indexed, parentVersion);
+    return CheckProto_1(input, silent, indexed, parentVersion);
 }
 
 bool CheckProto_5(
-    const ContactItem& contactItem,
+    const ContactItem& input,
     const bool silent,
     const ClaimType indexed,
     const ContactSectionVersion parentVersion)
 {
-    return CheckProto_1(contactItem, silent, indexed, parentVersion);
+    return CheckProto_1(input, silent, indexed, parentVersion);
 }
 }  // namespace proto
 }  // namespace opentxs

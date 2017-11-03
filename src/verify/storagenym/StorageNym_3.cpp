@@ -46,14 +46,14 @@ namespace opentxs
 namespace proto
 {
 
-bool CheckProto_3(const StorageNym& nym, const bool silent)
+bool CheckProto_3(const StorageNym& input, const bool silent)
 {
-    if (nym.has_credlist()) {
+    if (input.has_credlist()) {
         try {
             const bool valid = Check(
-                nym.credlist(),
-                StorageNymAllowedHash.at(nym.version()).first,
-                StorageNymAllowedHash.at(nym.version()).second,
+                input.credlist(),
+                StorageNymAllowedHash.at(input.version()).first,
+                StorageNymAllowedHash.at(input.version()).second,
                 silent);
 
             if (!valid) {
@@ -63,16 +63,16 @@ bool CheckProto_3(const StorageNym& nym, const bool silent)
             FAIL2(
                 "storage nym",
                 "allowed storage item hash version not defined for version",
-                nym.version())
+                input.version())
         }
     }
 
-    if (nym.has_sentpeerrequests()) {
+    if (input.has_sentpeerrequests()) {
         try {
             const bool valid = Check(
-                nym.sentpeerrequests(),
-                StorageNymAllowedHash.at(nym.version()).first,
-                StorageNymAllowedHash.at(nym.version()).second,
+                input.sentpeerrequests(),
+                StorageNymAllowedHash.at(input.version()).first,
+                StorageNymAllowedHash.at(input.version()).second,
                 silent);
 
             if (!valid) {
@@ -82,16 +82,16 @@ bool CheckProto_3(const StorageNym& nym, const bool silent)
             FAIL2(
                 "storage nym",
                 "allowed storage item hash version not defined for version",
-                nym.version())
+                input.version())
         }
     }
 
-    if (nym.has_incomingpeerrequests()) {
+    if (input.has_incomingpeerrequests()) {
         try {
             const bool valid = Check(
-                nym.incomingpeerrequests(),
-                StorageNymAllowedHash.at(nym.version()).first,
-                StorageNymAllowedHash.at(nym.version()).second,
+                input.incomingpeerrequests(),
+                StorageNymAllowedHash.at(input.version()).first,
+                StorageNymAllowedHash.at(input.version()).second,
                 silent);
 
             if (!valid) {
@@ -101,16 +101,16 @@ bool CheckProto_3(const StorageNym& nym, const bool silent)
             FAIL2(
                 "storage nym",
                 "allowed storage item hash version not defined for version",
-                nym.version())
+                input.version())
         }
     }
 
-    if (nym.has_sentpeerreply()) {
+    if (input.has_sentpeerreply()) {
         try {
             const bool valid = Check(
-                nym.sentpeerreply(),
-                StorageNymAllowedHash.at(nym.version()).first,
-                StorageNymAllowedHash.at(nym.version()).second,
+                input.sentpeerreply(),
+                StorageNymAllowedHash.at(input.version()).first,
+                StorageNymAllowedHash.at(input.version()).second,
                 silent);
 
             if (!valid) {
@@ -120,16 +120,16 @@ bool CheckProto_3(const StorageNym& nym, const bool silent)
             FAIL2(
                 "storage nym",
                 "allowed storage item hash version not defined for version",
-                nym.version())
+                input.version())
         }
     }
 
-    if (nym.has_incomingpeerreply()) {
+    if (input.has_incomingpeerreply()) {
         try {
             const bool valid = Check(
-                nym.incomingpeerreply(),
-                StorageNymAllowedHash.at(nym.version()).first,
-                StorageNymAllowedHash.at(nym.version()).second,
+                input.incomingpeerreply(),
+                StorageNymAllowedHash.at(input.version()).first,
+                StorageNymAllowedHash.at(input.version()).second,
                 silent);
 
             if (!valid) {
@@ -139,16 +139,16 @@ bool CheckProto_3(const StorageNym& nym, const bool silent)
             FAIL2(
                 "storage nym",
                 "allowed storage item hash version not defined for version",
-                nym.version())
+                input.version())
         }
     }
 
-    if (nym.has_finishedpeerrequest()) {
+    if (input.has_finishedpeerrequest()) {
         try {
             const bool valid = Check(
-                nym.finishedpeerrequest(),
-                StorageNymAllowedHash.at(nym.version()).first,
-                StorageNymAllowedHash.at(nym.version()).second,
+                input.finishedpeerrequest(),
+                StorageNymAllowedHash.at(input.version()).first,
+                StorageNymAllowedHash.at(input.version()).second,
                 silent);
 
             if (!valid) {
@@ -158,16 +158,16 @@ bool CheckProto_3(const StorageNym& nym, const bool silent)
             FAIL2(
                 "storage nym",
                 "allowed storage item hash version not defined for version",
-                nym.version())
+                input.version())
         }
     }
 
-    if (nym.has_finishedpeerreply()) {
+    if (input.has_finishedpeerreply()) {
         try {
             const bool valid = Check(
-                nym.finishedpeerreply(),
-                StorageNymAllowedHash.at(nym.version()).first,
-                StorageNymAllowedHash.at(nym.version()).second,
+                input.finishedpeerreply(),
+                StorageNymAllowedHash.at(input.version()).first,
+                StorageNymAllowedHash.at(input.version()).second,
                 silent);
 
             if (!valid) {
@@ -177,16 +177,16 @@ bool CheckProto_3(const StorageNym& nym, const bool silent)
             FAIL2(
                 "storage nym",
                 "allowed storage item hash version not defined for version",
-                nym.version())
+                input.version())
         }
     }
 
-    if (nym.has_processedpeerrequest()) {
+    if (input.has_processedpeerrequest()) {
         try {
             const bool valid = Check(
-                nym.processedpeerrequest(),
-                StorageNymAllowedHash.at(nym.version()).first,
-                StorageNymAllowedHash.at(nym.version()).second,
+                input.processedpeerrequest(),
+                StorageNymAllowedHash.at(input.version()).first,
+                StorageNymAllowedHash.at(input.version()).second,
                 silent);
 
             if (!valid) {
@@ -196,16 +196,16 @@ bool CheckProto_3(const StorageNym& nym, const bool silent)
             FAIL2(
                 "storage nym",
                 "allowed storage item hash version not defined for version",
-                nym.version())
+                input.version())
         }
     }
 
-    if (nym.has_processedpeerreply()) {
+    if (input.has_processedpeerreply()) {
         try {
             const bool valid = Check(
-                nym.processedpeerreply(),
-                StorageNymAllowedHash.at(nym.version()).first,
-                StorageNymAllowedHash.at(nym.version()).second,
+                input.processedpeerreply(),
+                StorageNymAllowedHash.at(input.version()).first,
+                StorageNymAllowedHash.at(input.version()).second,
                 silent);
 
             if (!valid) {
@@ -215,16 +215,16 @@ bool CheckProto_3(const StorageNym& nym, const bool silent)
             FAIL2(
                 "storage nym",
                 "allowed storage item hash version not defined for version",
-                nym.version())
+                input.version())
         }
     }
 
-    if (nym.has_mailinbox()) {
+    if (input.has_mailinbox()) {
         try {
             const bool valid = Check(
-                nym.mailinbox(),
-                StorageNymAllowedHash.at(nym.version()).first,
-                StorageNymAllowedHash.at(nym.version()).second,
+                input.mailinbox(),
+                StorageNymAllowedHash.at(input.version()).first,
+                StorageNymAllowedHash.at(input.version()).second,
                 silent);
 
             if (!valid) {
@@ -234,16 +234,16 @@ bool CheckProto_3(const StorageNym& nym, const bool silent)
             FAIL2(
                 "storage nym",
                 "allowed storage item hash version not defined for version",
-                nym.version())
+                input.version())
         }
     }
 
-    if (nym.has_mailoutbox()) {
+    if (input.has_mailoutbox()) {
         try {
             const bool valid = Check(
-                nym.mailoutbox(),
-                StorageNymAllowedHash.at(nym.version()).first,
-                StorageNymAllowedHash.at(nym.version()).second,
+                input.mailoutbox(),
+                StorageNymAllowedHash.at(input.version()).first,
+                StorageNymAllowedHash.at(input.version()).second,
                 silent);
 
             if (!valid) {
@@ -253,16 +253,16 @@ bool CheckProto_3(const StorageNym& nym, const bool silent)
             FAIL2(
                 "storage nym",
                 "allowed storage item hash version not defined for version",
-                nym.version())
+                input.version())
         }
     }
 
-    if (nym.has_threads()) {
+    if (input.has_threads()) {
         try {
             const bool valid = Check(
-                nym.threads(),
-                StorageNymAllowedHash.at(nym.version()).first,
-                StorageNymAllowedHash.at(nym.version()).second,
+                input.threads(),
+                StorageNymAllowedHash.at(input.version()).first,
+                StorageNymAllowedHash.at(input.version()).second,
                 silent);
 
             if (!valid) {
@@ -272,16 +272,16 @@ bool CheckProto_3(const StorageNym& nym, const bool silent)
             FAIL2(
                 "storage nym",
                 "allowed storage item hash version not defined for version",
-                nym.version())
+                input.version())
         }
     }
 
-    if (nym.has_contexts()) {
+    if (input.has_contexts()) {
         try {
             const bool valid = Check(
-                nym.contexts(),
-                StorageNymAllowedHash.at(nym.version()).first,
-                StorageNymAllowedHash.at(nym.version()).second,
+                input.contexts(),
+                StorageNymAllowedHash.at(input.version()).first,
+                StorageNymAllowedHash.at(input.version()).second,
                 silent);
 
             if (!valid) {
@@ -291,16 +291,16 @@ bool CheckProto_3(const StorageNym& nym, const bool silent)
             FAIL2(
                 "storage nym",
                 "allowed storage item hash version not defined for version",
-                nym.version())
+                input.version())
         }
     }
 
-    if (nym.has_accounts()) {
+    if (input.has_accounts()) {
         try {
             const bool valid = Check(
-                nym.accounts(),
-                StorageNymAllowedHash.at(nym.version()).first,
-                StorageNymAllowedHash.at(nym.version()).second,
+                input.accounts(),
+                StorageNymAllowedHash.at(input.version()).first,
+                StorageNymAllowedHash.at(input.version()).second,
                 silent);
 
             if (!valid) {
@@ -310,15 +310,15 @@ bool CheckProto_3(const StorageNym& nym, const bool silent)
             FAIL2(
                 "storage nym",
                 "allowed storage item hash version not defined for version",
-                nym.version())
+                input.version())
         }
     }
 
-    if (0 < nym.blockchainaccountindex().size()) {
+    if (0 < input.blockchainaccountindex().size()) {
         FAIL("storage nym", "unexpected blockchainaccountindex field present")
     }
 
-    if (0 < nym.blockchainaccount().size()) {
+    if (0 < input.blockchainaccount().size()) {
         FAIL("storage nym", "unexpected blockchainaccount field present")
     }
 

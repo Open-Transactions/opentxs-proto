@@ -47,29 +47,28 @@ namespace proto
 {
 
 bool CheckProto_1(
-    const ContactSection& contactSection,
+    const ContactSection& input,
     const bool silent,
     const ClaimType indexed,
     const uint32_t parentVersion)
 {
-    if (!contactSection.has_name()) {
+    if (!input.has_name()) {
         FAIL("contact section", "missing name")
     }
 
-    if (!ValidContactSectionName(parentVersion, contactSection.name())) {
-        FAIL2("contact section", "invalid name", contactSection.name())
+    if (!ValidContactSectionName(parentVersion, input.name())) {
+        FAIL2("contact section", "invalid name", input.name())
     }
 
-    for (auto& it : contactSection.item()) {
+    for (auto& it : input.item()) {
         try {
             bool validItem = Check(
                 it,
-                ContactSectionAllowedItem.at(contactSection.version()).first,
-                ContactSectionAllowedItem.at(contactSection.version()).second,
+                ContactSectionAllowedItem.at(input.version()).first,
+                ContactSectionAllowedItem.at(input.version()).second,
                 silent,
                 indexed,
-                ContactSectionVersion{contactSection.version(),
-                                      contactSection.name()});
+                ContactSectionVersion{input.version(), input.name()});
 
             if (!validItem) {
                 FAIL("contact section", "invalid item")
@@ -78,7 +77,7 @@ bool CheckProto_1(
             FAIL2(
                 "contact section",
                 "allowed contact item version not defined for version",
-                contactSection.version())
+                input.version())
         }
     }
 
@@ -86,39 +85,39 @@ bool CheckProto_1(
 }
 
 bool CheckProto_2(
-    const ContactSection& contactSection,
+    const ContactSection& input,
     const bool silent,
     const ClaimType indexed,
     const uint32_t parentVersion)
 {
-    return CheckProto_1(contactSection, silent, indexed, parentVersion);
+    return CheckProto_1(input, silent, indexed, parentVersion);
 }
 
 bool CheckProto_3(
-    const ContactSection& contactSection,
+    const ContactSection& input,
     const bool silent,
     const ClaimType indexed,
     const uint32_t parentVersion)
 {
-    return CheckProto_1(contactSection, silent, indexed, parentVersion);
+    return CheckProto_1(input, silent, indexed, parentVersion);
 }
 
 bool CheckProto_4(
-    const ContactSection& contactSection,
+    const ContactSection& input,
     const bool silent,
     const ClaimType indexed,
     const uint32_t parentVersion)
 {
-    return CheckProto_1(contactSection, silent, indexed, parentVersion);
+    return CheckProto_1(input, silent, indexed, parentVersion);
 }
 
 bool CheckProto_5(
-    const ContactSection& contactSection,
+    const ContactSection& input,
     const bool silent,
     const ClaimType indexed,
     const uint32_t parentVersion)
 {
-    return CheckProto_1(contactSection, silent, indexed, parentVersion);
+    return CheckProto_1(input, silent, indexed, parentVersion);
 }
 }  // namespace proto
 }  // namespace opentxs

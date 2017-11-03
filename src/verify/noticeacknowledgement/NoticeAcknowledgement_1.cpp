@@ -46,34 +46,34 @@ namespace opentxs
 namespace proto
 {
 
-bool CheckProto_1(const NoticeAcknowledgement& reply, const bool silent)
+bool CheckProto_1(const NoticeAcknowledgement& input, const bool silent)
 {
-    if (!reply.has_ack()) {
+    if (!input.has_ack()) {
         FAIL("notice acknowledgedment", "missing ack/nack")
     }
 
     return true;
 }
 
-bool CheckProto_2(const NoticeAcknowledgement& reply, const bool silent)
+bool CheckProto_2(const NoticeAcknowledgement& input, const bool silent)
 {
 
-    return CheckProto_1(reply, silent);
+    return CheckProto_1(input, silent);
 }
 
-bool CheckProto_3(const NoticeAcknowledgement& reply, const bool silent)
+bool CheckProto_3(const NoticeAcknowledgement& input, const bool silent)
 {
 
-    return CheckProto_1(reply, silent);
+    return CheckProto_1(input, silent);
 }
 
-bool CheckProto_4(const NoticeAcknowledgement& reply, const bool silent)
+bool CheckProto_4(const NoticeAcknowledgement& input, const bool silent)
 {
 
-    return CheckProto_1(reply, silent);
+    return CheckProto_1(input, silent);
 }
 
-bool CheckProto_5(const NoticeAcknowledgement& reply, const bool silent)
+bool CheckProto_5(const NoticeAcknowledgement& input, const bool silent)
 {
     UNDEFINED_VERSION("notice acknowledgedment", 5)
 }

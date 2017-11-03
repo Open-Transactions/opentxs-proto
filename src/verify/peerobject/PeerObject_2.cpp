@@ -46,95 +46,94 @@ namespace opentxs
 namespace proto
 {
 
-bool CheckProto_5(const PeerObject& peerObject, const bool silent)
+bool CheckProto_5(const PeerObject& input, const bool silent)
 {
-    if (!peerObject.has_type()) {
+    if (!input.has_type()) {
         FAIL("peer object", "missing type")
     }
 
-    switch (peerObject.type()) {
+    switch (input.type()) {
         case PEEROBJECT_MESSAGE: {
-            if (false == peerObject.has_otmessage()) {
+            if (false == input.has_otmessage()) {
                 FAIL("peer object", "missing otmessage")
             }
 
-            if (peerObject.has_otrequest()) {
+            if (input.has_otrequest()) {
                 FAIL("peer object", "otrequest not empty")
             }
 
-            if (peerObject.has_otreply()) {
+            if (input.has_otreply()) {
                 FAIL("peer object", "otreply not empty")
             }
 
-            if (peerObject.has_otpayment()) {
+            if (input.has_otpayment()) {
                 FAIL("peer object", "otpayment not empty")
             }
         } break;
         case PEEROBJECT_REQUEST: {
-            if (!peerObject.has_otrequest()) {
+            if (!input.has_otrequest()) {
                 FAIL("peer object", "missing otrequest")
             }
 
             const bool validrequest = Check(
-                peerObject.otrequest(),
-                PeerObjectAllowedRequest.at(peerObject.version()).first,
-                PeerObjectAllowedRequest.at(peerObject.version()).second,
+                input.otrequest(),
+                PeerObjectAllowedRequest.at(input.version()).first,
+                PeerObjectAllowedRequest.at(input.version()).second,
                 silent);
 
             if (!validrequest) {
                 FAIL("peer object", "invalid otrequest")
             }
 
-            if (!peerObject.has_nym()) {
+            if (!input.has_nym()) {
                 FAIL("peer object", " missing nym")
             }
 
             const bool validnym = Check(
-                peerObject.nym(),
-                PeerObjectAllowedCredentialIndex.at(peerObject.version()).first,
-                PeerObjectAllowedCredentialIndex.at(peerObject.version())
-                    .second,
+                input.nym(),
+                PeerObjectAllowedCredentialIndex.at(input.version()).first,
+                PeerObjectAllowedCredentialIndex.at(input.version()).second,
                 silent);
 
             if (!validnym) {
                 FAIL("peer object", "invalid nym")
             }
 
-            if (peerObject.has_otmessage()) {
+            if (input.has_otmessage()) {
                 FAIL("peer object", "otmessage not empty")
             }
 
-            if (peerObject.has_otreply()) {
+            if (input.has_otreply()) {
                 FAIL("peer object", "otreply not empty")
             }
 
-            if (peerObject.has_otpayment()) {
+            if (input.has_otpayment()) {
                 FAIL("peer object", "otpayment not empty")
             }
         } break;
         case PEEROBJECT_RESPONSE: {
-            if (!peerObject.has_otrequest()) {
+            if (!input.has_otrequest()) {
                 FAIL("peer object", "missing otrequest")
             }
 
             const bool validrequest = Check(
-                peerObject.otrequest(),
-                PeerObjectAllowedRequest.at(peerObject.version()).first,
-                PeerObjectAllowedRequest.at(peerObject.version()).second,
+                input.otrequest(),
+                PeerObjectAllowedRequest.at(input.version()).first,
+                PeerObjectAllowedRequest.at(input.version()).second,
                 silent);
 
             if (!validrequest) {
                 FAIL("peer object", "invalid otrequest")
             }
 
-            if (!peerObject.has_otreply()) {
+            if (!input.has_otreply()) {
                 FAIL("peer object", "missing otreply")
             }
 
             const bool validreply = Check(
-                peerObject.otreply(),
-                PeerObjectAllowedReply.at(peerObject.version()).first,
-                PeerObjectAllowedReply.at(peerObject.version()).second,
+                input.otreply(),
+                PeerObjectAllowedReply.at(input.version()).first,
+                PeerObjectAllowedReply.at(input.version()).second,
                 silent);
 
             if (!validreply) {
@@ -142,22 +141,21 @@ bool CheckProto_5(const PeerObject& peerObject, const bool silent)
             }
 
             const bool matchingID =
-                (peerObject.otrequest().id() == peerObject.otreply().cookie());
+                (input.otrequest().id() == input.otreply().cookie());
 
             if (!matchingID) {
                 FAIL("peer object", "reply cookie does not match request id")
             }
 
             const bool matchingtype =
-                (peerObject.otrequest().type() == peerObject.otreply().type());
+                (input.otrequest().type() == input.otreply().type());
 
             if (!matchingtype) {
                 FAIL("peer object", "reply type does not match request type")
             }
 
             const bool matchingInitiator =
-                (peerObject.otrequest().initiator() ==
-                 peerObject.otreply().initiator());
+                (input.otrequest().initiator() == input.otreply().initiator());
 
             if (!matchingInitiator) {
                 FAIL(
@@ -166,8 +164,7 @@ bool CheckProto_5(const PeerObject& peerObject, const bool silent)
             }
 
             const bool matchingRecipient =
-                (peerObject.otrequest().recipient() ==
-                 peerObject.otreply().recipient());
+                (input.otrequest().recipient() == input.otreply().recipient());
 
             if (!matchingRecipient) {
                 FAIL(
@@ -175,28 +172,28 @@ bool CheckProto_5(const PeerObject& peerObject, const bool silent)
                     "reply recipient does not match request recipient")
             }
 
-            if (peerObject.has_otmessage()) {
+            if (input.has_otmessage()) {
                 FAIL("peer object", "otmessage not empty")
             }
 
-            if (peerObject.has_otpayment()) {
+            if (input.has_otpayment()) {
                 FAIL("peer object", "otpayment not empty")
             }
         } break;
         case PEEROBJECT_PAYMENT: {
-            if (false == peerObject.has_otpayment()) {
+            if (false == input.has_otpayment()) {
                 FAIL("peer object", "missing otpayment")
             }
 
-            if (peerObject.has_otrequest()) {
+            if (input.has_otrequest()) {
                 FAIL("peer object", "otrequest not empty")
             }
 
-            if (peerObject.has_otreply()) {
+            if (input.has_otreply()) {
                 FAIL("peer object", "otreply not empty")
             }
 
-            if (peerObject.has_otmessage()) {
+            if (input.has_otmessage()) {
                 FAIL("peer object", "otmessage not empty")
             }
         } break;

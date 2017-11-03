@@ -46,71 +46,71 @@ namespace opentxs
 namespace proto
 {
 
-bool CheckProto_2(const StorageItems& items, const bool silent)
+bool CheckProto_2(const StorageItems& input, const bool silent)
 {
-    if (items.has_creds()) {
-        if (MIN_PLAUSIBLE_IDENTIFIER > items.creds().size()) {
-            FAIL2("storage item index", "invalid credentials", items.creds())
+    if (input.has_creds()) {
+        if (MIN_PLAUSIBLE_IDENTIFIER > input.creds().size()) {
+            FAIL2("storage item index", "invalid credentials", input.creds())
         }
 
-        if (MAX_PLAUSIBLE_IDENTIFIER < items.creds().size()) {
-            FAIL2("storage item index", "invalid credentials", items.creds())
-        }
-    }
-
-    if (items.has_nyms()) {
-        if (MIN_PLAUSIBLE_IDENTIFIER > items.nyms().size()) {
-            FAIL2("storage item index", "invalid nym list", items.nyms())
-        }
-
-        if (MAX_PLAUSIBLE_IDENTIFIER < items.nyms().size()) {
-            FAIL2("storage item index", "invalid nym list", items.nyms())
+        if (MAX_PLAUSIBLE_IDENTIFIER < input.creds().size()) {
+            FAIL2("storage item index", "invalid credentials", input.creds())
         }
     }
 
-    if (items.has_servers()) {
-        if (MIN_PLAUSIBLE_IDENTIFIER > items.servers().size()) {
-            FAIL2("storage item index", "invalid server list", items.servers())
+    if (input.has_nyms()) {
+        if (MIN_PLAUSIBLE_IDENTIFIER > input.nyms().size()) {
+            FAIL2("storage item index", "invalid nym list", input.nyms())
         }
 
-        if (MAX_PLAUSIBLE_IDENTIFIER < items.servers().size()) {
-            FAIL2("storage item index", "invalid server list", items.servers())
-        }
-    }
-
-    if (items.has_units()) {
-        if (MIN_PLAUSIBLE_IDENTIFIER > items.units().size()) {
-            FAIL2("storage item index", "invalid unit list", items.units())
-        }
-
-        if (MAX_PLAUSIBLE_IDENTIFIER < items.units().size()) {
-            FAIL2("storage item index", "invalid unit list", items.units())
+        if (MAX_PLAUSIBLE_IDENTIFIER < input.nyms().size()) {
+            FAIL2("storage item index", "invalid nym list", input.nyms())
         }
     }
 
-    if (items.has_seeds()) {
-        if (MIN_PLAUSIBLE_IDENTIFIER > items.seeds().size()) {
-            FAIL2("storage item index", "invalid seed list", items.seeds())
+    if (input.has_servers()) {
+        if (MIN_PLAUSIBLE_IDENTIFIER > input.servers().size()) {
+            FAIL2("storage item index", "invalid server list", input.servers())
         }
 
-        if (MAX_PLAUSIBLE_IDENTIFIER < items.seeds().size()) {
-            FAIL2("storage item index", "invalid seed list", items.seeds())
+        if (MAX_PLAUSIBLE_IDENTIFIER < input.servers().size()) {
+            FAIL2("storage item index", "invalid server list", input.servers())
         }
     }
 
-    if (items.has_contacts()) {
-        if (MIN_PLAUSIBLE_IDENTIFIER > items.contacts().size()) {
+    if (input.has_units()) {
+        if (MIN_PLAUSIBLE_IDENTIFIER > input.units().size()) {
+            FAIL2("storage item index", "invalid unit list", input.units())
+        }
+
+        if (MAX_PLAUSIBLE_IDENTIFIER < input.units().size()) {
+            FAIL2("storage item index", "invalid unit list", input.units())
+        }
+    }
+
+    if (input.has_seeds()) {
+        if (MIN_PLAUSIBLE_IDENTIFIER > input.seeds().size()) {
+            FAIL2("storage item index", "invalid seed list", input.seeds())
+        }
+
+        if (MAX_PLAUSIBLE_IDENTIFIER < input.seeds().size()) {
+            FAIL2("storage item index", "invalid seed list", input.seeds())
+        }
+    }
+
+    if (input.has_contacts()) {
+        if (MIN_PLAUSIBLE_IDENTIFIER > input.contacts().size()) {
             FAIL2(
-                "storage item index", "invalid contact list", items.contacts())
+                "storage item index", "invalid contact list", input.contacts())
         }
 
-        if (MAX_PLAUSIBLE_IDENTIFIER < items.contacts().size()) {
+        if (MAX_PLAUSIBLE_IDENTIFIER < input.contacts().size()) {
             FAIL2(
-                "storage item index", "invalid contact list", items.contacts())
+                "storage item index", "invalid contact list", input.contacts())
         }
     }
 
-    if (items.has_blockchaintransactions()) {
+    if (input.has_blockchaintransactions()) {
         FAIL(
             "storage item index",
             "unexpected blockchaintransactions field found")

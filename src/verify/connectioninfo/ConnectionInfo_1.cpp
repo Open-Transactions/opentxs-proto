@@ -45,49 +45,49 @@ namespace opentxs
 {
 namespace proto
 {
-bool CheckProto_1(const ConnectionInfo& request, const bool silent)
+bool CheckProto_1(const ConnectionInfo& input, const bool silent)
 {
-    if (!request.has_type()) {
+    if (!input.has_type()) {
         FAIL("ConnectionInfo", "missing type")
     }
 
-    if ((CONNECTIONINFO_BITCOIN > request.type()) ||
-        (CONNECTIONINFO_BITMESSAGERPC < request.type())) {
-        FAIL2("ConnectionInfo", "invalid type", request.type())
+    if ((CONNECTIONINFO_BITCOIN > input.type()) ||
+        (CONNECTIONINFO_BITMESSAGERPC < input.type())) {
+        FAIL2("ConnectionInfo", "invalid type", input.type())
     }
 
-    if (request.has_nym()) {
+    if (input.has_nym()) {
         FAIL("ConnectionInfo", "unexpected 'for' field present")
     }
 
     return true;
 }
 
-bool CheckProto_2(const ConnectionInfo& request, const bool silent)
+bool CheckProto_2(const ConnectionInfo& input, const bool silent)
 {
-    return CheckProto_1(request, silent);
+    return CheckProto_1(input, silent);
 }
 
-bool CheckProto_3(const ConnectionInfo& request, const bool silent)
+bool CheckProto_3(const ConnectionInfo& input, const bool silent)
 {
-    if (!request.has_type()) {
+    if (!input.has_type()) {
         FAIL("ConnectionInfo", "missing type")
     }
 
-    if ((CONNECTIONINFO_BITCOIN > request.type()) ||
-        (CONNECTIONINFO_CJDNS < request.type())) {
-        FAIL2("ConnectionInfo", "invalid type", request.type())
+    if ((CONNECTIONINFO_BITCOIN > input.type()) ||
+        (CONNECTIONINFO_CJDNS < input.type())) {
+        FAIL2("ConnectionInfo", "invalid type", input.type())
     }
 
     return true;
 }
 
-bool CheckProto_4(const ConnectionInfo& request, const bool silent)
+bool CheckProto_4(const ConnectionInfo& input, const bool silent)
 {
-    return CheckProto_3(request, silent);
+    return CheckProto_3(input, silent);
 }
 
-bool CheckProto_5(const ConnectionInfo&, const bool silent)
+bool CheckProto_5(const ConnectionInfo& input, const bool silent)
 {
     UNDEFINED_VERSION("ConnectionInfo", 5)
 }

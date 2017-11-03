@@ -45,31 +45,31 @@ namespace opentxs
 {
 namespace proto
 {
-bool CheckProto_1(const ConnectionInfoReply& reply, const bool silent)
+bool CheckProto_1(const ConnectionInfoReply& input, const bool silent)
 {
-    if (!reply.has_success()) {
+    if (!input.has_success()) {
         FAIL("ConnectionInfo reply", "missing success")
     }
 
     return true;
 }
 
-bool CheckProto_2(const ConnectionInfoReply& reply, const bool silent)
+bool CheckProto_2(const ConnectionInfoReply& input, const bool silent)
 {
-    return CheckProto_1(reply, silent);
+    return CheckProto_1(input, silent);
 }
 
-bool CheckProto_3(const ConnectionInfoReply& reply, const bool silent)
+bool CheckProto_3(const ConnectionInfoReply& input, const bool silent)
 {
-    return CheckProto_1(reply, silent);
+    return CheckProto_1(input, silent);
 }
 
-bool CheckProto_4(const ConnectionInfoReply& reply, const bool silent)
+bool CheckProto_4(const ConnectionInfoReply& input, const bool silent)
 {
-    return CheckProto_1(reply, silent);
+    return CheckProto_1(input, silent);
 }
 
-bool CheckProto_5(const ConnectionInfoReply&, const bool silent)
+bool CheckProto_5(const ConnectionInfoReply& input, const bool silent)
 {
     UNDEFINED_VERSION("ConnectionInfo reply", 5)
 }

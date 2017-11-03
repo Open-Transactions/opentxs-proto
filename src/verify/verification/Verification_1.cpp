@@ -47,57 +47,57 @@ namespace proto
 {
 
 bool CheckProto_1(
-    const Verification& verification,
+    const Verification& input,
     const bool silent,
     const VerificationType indexed)
 {
     if (indexed) {
-        if (!verification.has_id()) {
+        if (!input.has_id()) {
             FAIL("verification", "missing ID")
         }
 
-        if (MIN_PLAUSIBLE_IDENTIFIER > verification.id().size()) {
+        if (MIN_PLAUSIBLE_IDENTIFIER > input.id().size()) {
             FAIL("verification", "invalid ID")
         }
     } else {
-        if (verification.has_id()) {
+        if (input.has_id()) {
             FAIL("verification", "ID field not empty")
         }
     }
 
-    if (!verification.has_claim()) {
+    if (!input.has_claim()) {
         FAIL("verification", "missing claim")
     }
 
-    if (MIN_PLAUSIBLE_IDENTIFIER > verification.claim().size()) {
+    if (MIN_PLAUSIBLE_IDENTIFIER > input.claim().size()) {
         FAIL("verification", "invalid claim")
     }
 
-    if (!verification.has_valid()) {
+    if (!input.has_valid()) {
         FAIL("verification", "missing validity")
     }
 
-    if (!verification.has_start()) {
+    if (!input.has_start()) {
         FAIL("verification", "missing start time")
     }
 
-    if (!verification.has_end()) {
+    if (!input.has_end()) {
         FAIL("verification", "missing end time")
     }
 
-    if (verification.end() < verification.start()) {
+    if (input.end() < input.start()) {
         FAIL("verification", "invalid end time")
     }
 
-    if (!verification.has_sig()) {
+    if (!input.has_sig()) {
         FAIL("verification", "missing signature")
     }
 
     try {
         const bool validSignature = Check(
-            verification.sig(),
-            VerificationAllowedSignature.at(verification.version()).first,
-            VerificationAllowedSignature.at(verification.version()).second,
+            input.sig(),
+            VerificationAllowedSignature.at(input.version()).first,
+            VerificationAllowedSignature.at(input.version()).second,
             silent,
             proto::SIGROLE_CLAIM);
 
@@ -108,14 +108,14 @@ bool CheckProto_1(
         FAIL2(
             "verification",
             "allowed signature version not defined for version",
-            verification.version())
+            input.version())
     }
 
     return true;
 }
 
 bool CheckProto_2(
-    const Verification&,
+    const Verification& input,
     const bool silent,
     const VerificationType)
 {
@@ -123,7 +123,7 @@ bool CheckProto_2(
 }
 
 bool CheckProto_3(
-    const Verification&,
+    const Verification& input,
     const bool silent,
     const VerificationType)
 {
@@ -131,7 +131,7 @@ bool CheckProto_3(
 }
 
 bool CheckProto_4(
-    const Verification&,
+    const Verification& input,
     const bool silent,
     const VerificationType)
 {
@@ -139,7 +139,7 @@ bool CheckProto_4(
 }
 
 bool CheckProto_5(
-    const Verification&,
+    const Verification& input,
     const bool silent,
     const VerificationType)
 {

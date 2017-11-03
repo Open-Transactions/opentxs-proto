@@ -45,45 +45,45 @@ namespace opentxs
 {
 namespace proto
 {
-bool CheckProto_1(const Context& context, const bool silent)
+bool CheckProto_1(const Context& input, const bool silent)
 {
-    if (!context.has_localnym()) {
+    if (!input.has_localnym()) {
         FAIL("context", " missing local nym")
     }
 
-    if ((MIN_PLAUSIBLE_IDENTIFIER > context.localnym().size()) ||
-        (MAX_PLAUSIBLE_IDENTIFIER < context.localnym().size())) {
+    if ((MIN_PLAUSIBLE_IDENTIFIER > input.localnym().size()) ||
+        (MAX_PLAUSIBLE_IDENTIFIER < input.localnym().size())) {
         FAIL("context", "invalid local nym")
     }
 
-    if (!context.has_remotenym()) {
+    if (!input.has_remotenym()) {
         FAIL("context", "missing remote nym")
     }
 
-    if ((MIN_PLAUSIBLE_IDENTIFIER > context.remotenym().size()) ||
-        (MAX_PLAUSIBLE_IDENTIFIER < context.remotenym().size())) {
+    if ((MIN_PLAUSIBLE_IDENTIFIER > input.remotenym().size()) ||
+        (MAX_PLAUSIBLE_IDENTIFIER < input.remotenym().size())) {
         FAIL("context", "invalid remote nym")
     }
 
-    if (!context.has_type()) {
+    if (!input.has_type()) {
         FAIL("context", "missing type")
     }
 
-    switch (context.type()) {
+    switch (input.type()) {
         case CONSENSUSTYPE_SERVER: {
-            if (!context.has_servercontext()) {
+            if (!input.has_servercontext()) {
                 FAIL("context", "missing server data")
             }
 
-            if (context.has_clientcontext()) {
+            if (input.has_clientcontext()) {
                 FAIL("context", "client data in server context")
             }
 
             try {
                 const bool validServer = Check(
-                    context.servercontext(),
-                    ContextAllowedServer.at(context.version()).first,
-                    ContextAllowedServer.at(context.version()).second,
+                    input.servercontext(),
+                    ContextAllowedServer.at(input.version()).first,
+                    ContextAllowedServer.at(input.version()).second,
                     silent);
 
                 if (!validServer) {
@@ -93,23 +93,23 @@ bool CheckProto_1(const Context& context, const bool silent)
                 FAIL2(
                     "context",
                     "allowed server data version not defined for version",
-                    context.version())
+                    input.version())
             }
         } break;
         case CONSENSUSTYPE_CLIENT: {
-            if (!context.has_clientcontext()) {
+            if (!input.has_clientcontext()) {
                 FAIL("context", "missing client data")
             }
 
-            if (context.has_servercontext()) {
+            if (input.has_servercontext()) {
                 FAIL("context", "client data in server context")
             }
 
             try {
                 const bool validClient = Check(
-                    context.clientcontext(),
-                    ContextAllowedClient.at(context.version()).first,
-                    ContextAllowedClient.at(context.version()).second,
+                    input.clientcontext(),
+                    ContextAllowedClient.at(input.version()).first,
+                    ContextAllowedClient.at(input.version()).second,
                     silent);
 
                 if (!validClient) {
@@ -119,7 +119,7 @@ bool CheckProto_1(const Context& context, const bool silent)
                 FAIL2(
                     "context",
                     "allowed client data version not defined for version",
-                    context.version())
+                    input.version())
             }
         } break;
         default: {
@@ -127,15 +127,15 @@ bool CheckProto_1(const Context& context, const bool silent)
         }
     }
 
-    if (!context.has_signature()) {
+    if (!input.has_signature()) {
         FAIL("context", "missing signature")
     }
 
     try {
         const bool validSig = Check(
-            context.signature(),
-            ContextAllowedSignature.at(context.version()).first,
-            ContextAllowedSignature.at(context.version()).first,
+            input.signature(),
+            ContextAllowedSignature.at(input.version()).first,
+            ContextAllowedSignature.at(input.version()).first,
             silent,
             SIGROLE_CONTEXT);
 
@@ -146,28 +146,28 @@ bool CheckProto_1(const Context& context, const bool silent)
         FAIL2(
             "context",
             "allowed signature version not defined for version",
-            context.version())
+            input.version())
     }
 
     return true;
 }
 
-bool CheckProto_2(const Context& context, const bool silent)
+bool CheckProto_2(const Context& input, const bool silent)
 {
-    return CheckProto_1(context, silent);
+    return CheckProto_1(input, silent);
 }
 
-bool CheckProto_3(const Context&, const bool silent)
+bool CheckProto_3(const Context& input, const bool silent)
 {
     UNDEFINED_VERSION("context", 3)
 }
 
-bool CheckProto_4(const Context&, const bool silent)
+bool CheckProto_4(const Context& input, const bool silent)
 {
     UNDEFINED_VERSION("context", 4)
 }
 
-bool CheckProto_5(const Context&, const bool silent)
+bool CheckProto_5(const Context& input, const bool silent)
 {
     UNDEFINED_VERSION("context", 5)
 }

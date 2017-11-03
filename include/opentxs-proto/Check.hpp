@@ -50,7 +50,8 @@
     {                                                                          \
         if (false == silent) {                                                 \
             std::stringstream out{};                                           \
-            out << "Verify serialized " << a << " failed: " << b << std::endl; \
+            out << "Verify version " << input.version() << " " << a            \
+                << " failed: " << b << std::endl;                              \
             __android_log_write(                                               \
                 ANDROID_LOG_INFO, "opentxs-proto", out.str().c_str());         \
         }                                                                      \
@@ -62,8 +63,8 @@
     {                                                                          \
         if (false == silent) {                                                 \
             std::stringstream out{};                                           \
-            out << "Verify serialized " << a << " failed: " << b << "(" << c   \
-                << ")." << std::endl;                                          \
+            out << "Verify version " << input.version() << " " << a            \
+                << " failed: " << b << "(" << c << ")." << std::endl;          \
             __android_log_write(                                               \
                 ANDROID_LOG_INFO, "opentxs-proto", out.str().c_str());         \
         }                                                                      \
@@ -75,8 +76,9 @@
     {                                                                          \
         if (false == silent) {                                                 \
             std::stringstream out{};                                           \
-            out << "Verify serialized " << a << " failed: " << b << "(" << c   \
-                << ")" << d << "(" << e << ")" << std::endl;                   \
+            out << "Verify version " << input.version() << " " << a            \
+                << " failed: " << b << "(" << c << ")" << d << "(" << e << ")" \
+                << std::endl;                                                  \
             __android_log_write(                                               \
                 ANDROID_LOG_INFO, "opentxs-proto", out.str().c_str());         \
         }                                                                      \
@@ -88,7 +90,8 @@
     {                                                                          \
         if (false == silent) {                                                 \
             std::stringstream out{};                                           \
-            out << "Verify serialized " << a << " failed: " << b << std::endl; \
+            out << "Verify version " << input.version() << " " << a            \
+                << " failed: " << b << std::endl;                              \
             std::cerr << out.str();                                            \
         }                                                                      \
                                                                                \
@@ -99,8 +102,8 @@
     {                                                                          \
         if (false == silent) {                                                 \
             std::stringstream out{};                                           \
-            out << "Verify serialized " << a << " failed: " << b << "(" << c   \
-                << ")." << std::endl;                                          \
+            out << "Verify version " << input.version() << " " << a            \
+                << " failed: " << b << "(" << c << ")." << std::endl;          \
             std::cerr << out.str();                                            \
         }                                                                      \
                                                                                \
@@ -111,8 +114,9 @@
     {                                                                          \
         if (false == silent) {                                                 \
             std::stringstream out{};                                           \
-            out << "Verify serialized " << a << " failed: " << b << "(" << c   \
-                << ")" << d << "(" << e << ")" << std::endl;                   \
+            out << "Verify version " << input.version() << " " << a            \
+                << " failed: " << b << "(" << c << ")" << d << "(" << e << ")" \
+                << std::endl;                                                  \
             std::cerr << out.str();                                            \
         }                                                                      \
                                                                                \
@@ -131,40 +135,40 @@ namespace proto
 {
 template <typename T, typename... Args>
 bool Check(
-    const T& serialized,
+    const T& input,
     const std::uint32_t minVersion,
     const std::uint32_t maxVersion,
     const bool silent,
     Args&&... params)
 {
-    if (!serialized.has_version()) {
+    if (!input.has_version()) {
         FAIL("protobuf", "missing version.")
     }
 
-    const std::uint32_t version = serialized.version();
+    const std::uint32_t version = input.version();
 
     if ((version < minVersion) || (version > maxVersion)) {
-        FAIL2("protobuf", "incorrect version", serialized.version())
+        FAIL2("protobuf", "incorrect version", input.version())
     }
 
     switch (version) {
         case 1: {
-            return CheckProto_1(serialized, silent, params...);
+            return CheckProto_1(input, silent, params...);
         }
         case 2: {
-            return CheckProto_2(serialized, silent, params...);
+            return CheckProto_2(input, silent, params...);
         }
         case 3: {
-            return CheckProto_3(serialized, silent, params...);
+            return CheckProto_3(input, silent, params...);
         }
         case 4: {
-            return CheckProto_4(serialized, silent, params...);
+            return CheckProto_4(input, silent, params...);
         }
         case 5: {
-            return CheckProto_5(serialized, silent, params...);
+            return CheckProto_5(input, silent, params...);
         }
         default: {
-            FAIL2("protobuf", "unknown version", serialized.version())
+            FAIL2("protobuf", "unknown version", input.version())
         }
     }
 
@@ -172,16 +176,16 @@ bool Check(
 }
 
 template <typename T, typename... Args>
-bool Validate(const T& serialized, const bool silent, Args&&... params)
+bool Validate(const T& input, const bool silent, Args&&... params)
 {
 
-    if (!serialized.has_version()) {
+    if (!input.has_version()) {
         FAIL("protobuf", "missing version")
     }
 
-    const std::uint32_t version = serialized.version();
+    const std::uint32_t version = input.version();
 
-    return Check<T>(serialized, version, version, silent, params...);
+    return Check<T>(input, version, version, silent, params...);
 }
 }  // namespace proto
 }  // namespace opentxs

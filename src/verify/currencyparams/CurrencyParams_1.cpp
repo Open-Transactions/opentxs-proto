@@ -46,46 +46,46 @@ namespace opentxs
 namespace proto
 {
 
-bool CheckProto_1(const CurrencyParams& params, const bool silent)
+bool CheckProto_1(const CurrencyParams& input, const bool silent)
 {
-    if (!params.has_tla()) {
+    if (!input.has_tla()) {
         FAIL("currency params", "missing TLA")
     }
 
-    if (3 != params.tla().size()) {
-        FAIL2("currency params", "invalid TLA", params.tla())
+    if (3 != input.tla().size()) {
+        FAIL2("currency params", "invalid TLA", input.tla())
     }
 
-    if (!params.has_fraction()) {
+    if (!input.has_fraction()) {
         FAIL("currency params", "missing fraction")
     }
 
-    if (1 > params.fraction().size()) {
-        FAIL2("currency params", "invalid fraction", params.fraction())
+    if (1 > input.fraction().size()) {
+        FAIL2("currency params", "invalid fraction", input.fraction())
     }
 
-    if (!params.has_power()) {
+    if (!input.has_power()) {
         FAIL("currency params", "missing power")
     }
 
     return true;
 }
-bool CheckProto_2(const CurrencyParams&, const bool silent)
+bool CheckProto_2(const CurrencyParams& input, const bool silent)
 {
     UNDEFINED_VERSION("currency params", 2)
 }
 
-bool CheckProto_3(const CurrencyParams&, const bool silent)
+bool CheckProto_3(const CurrencyParams& input, const bool silent)
 {
     UNDEFINED_VERSION("currency params", 3)
 }
 
-bool CheckProto_4(const CurrencyParams&, const bool silent)
+bool CheckProto_4(const CurrencyParams& input, const bool silent)
 {
     UNDEFINED_VERSION("currency params", 4)
 }
 
-bool CheckProto_5(const CurrencyParams&, const bool silent)
+bool CheckProto_5(const CurrencyParams& input, const bool silent)
 {
     UNDEFINED_VERSION("currency params", 5)
 }

@@ -47,19 +47,19 @@ namespace proto
 {
 
 bool CheckProto_1(
-    const MasterCredentialParameters& master,
+    const MasterCredentialParameters& input,
     const bool silent,
     bool& expectSourceSignature)
 {
-    if (false == master.has_source()) {
+    if (false == input.has_source()) {
         FAIL("master parameters", "missing nym id source")
     }
 
     try {
         const bool validSource = Check(
-            master.source(),
-            MasterParamsAllowedNymIDSource.at(master.version()).first,
-            MasterParamsAllowedNymIDSource.at(master.version()).second,
+            input.source(),
+            MasterParamsAllowedNymIDSource.at(input.version()).first,
+            MasterParamsAllowedNymIDSource.at(input.version()).second,
             silent);
 
         if (!validSource) {
@@ -69,18 +69,18 @@ bool CheckProto_1(
         FAIL2(
             "master parameters",
             "allowed nym ID source version not defined for version",
-            master.version())
+            input.version())
     }
 
-    if (!master.has_sourceproof()) {
+    if (!input.has_sourceproof()) {
         FAIL("master parameters", "missing nym id source proof")
     }
 
     try {
         const bool validProof = Check(
-            master.sourceproof(),
-            MasterParamsAllowedSourceProof.at(master.version()).first,
-            MasterParamsAllowedSourceProof.at(master.version()).second,
+            input.sourceproof(),
+            MasterParamsAllowedSourceProof.at(input.version()).first,
+            MasterParamsAllowedSourceProof.at(input.version()).second,
             silent,
             expectSourceSignature);
 
@@ -91,28 +91,40 @@ bool CheckProto_1(
         FAIL2(
             "master parameters",
             "allowed source proof version not defined for version",
-            master.version())
+            input.version())
     }
 
     return true;
 }
 
-bool CheckProto_2(const MasterCredentialParameters&, const bool silent, bool&)
+bool CheckProto_2(
+    const MasterCredentialParameters& input,
+    const bool silent,
+    bool&)
 {
     UNDEFINED_VERSION("master parameters", 2)
 }
 
-bool CheckProto_3(const MasterCredentialParameters&, const bool silent, bool&)
+bool CheckProto_3(
+    const MasterCredentialParameters& input,
+    const bool silent,
+    bool&)
 {
     UNDEFINED_VERSION("master parameters", 3)
 }
 
-bool CheckProto_4(const MasterCredentialParameters&, const bool silent, bool&)
+bool CheckProto_4(
+    const MasterCredentialParameters& input,
+    const bool silent,
+    bool&)
 {
     UNDEFINED_VERSION("master parameters", 4)
 }
 
-bool CheckProto_5(const MasterCredentialParameters&, const bool silent, bool&)
+bool CheckProto_5(
+    const MasterCredentialParameters& input,
+    const bool silent,
+    bool&)
 {
     UNDEFINED_VERSION("master parameters", 5)
 }

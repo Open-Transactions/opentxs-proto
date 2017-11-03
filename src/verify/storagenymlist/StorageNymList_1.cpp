@@ -46,14 +46,14 @@ namespace opentxs
 namespace proto
 {
 
-bool CheckProto_1(const StorageNymList& nymList, const bool silent)
+bool CheckProto_1(const StorageNymList& input, const bool silent)
 {
-    for (auto& nym : nymList.nym()) {
+    for (auto& nym : input.nym()) {
         try {
             const bool validList = Check(
                 nym,
-                StorageNymListAllowedHash.at(nymList.version()).first,
-                StorageNymListAllowedHash.at(nymList.version()).second,
+                StorageNymListAllowedHash.at(input.version()).first,
+                StorageNymListAllowedHash.at(input.version()).second,
                 silent);
 
             if (false == validList) {
@@ -63,29 +63,29 @@ bool CheckProto_1(const StorageNymList& nymList, const bool silent)
             FAIL2(
                 "nym index",
                 "allowed storage item hash version not defined for version",
-                nymList.version())
+                input.version())
         }
     }
 
     return true;
 }
 
-bool CheckProto_2(const StorageNymList& nymList, const bool silent)
+bool CheckProto_2(const StorageNymList& input, const bool silent)
 {
-    return CheckProto_1(nymList, silent);
+    return CheckProto_1(input, silent);
 }
 
-bool CheckProto_3(const StorageNymList&, const bool silent)
+bool CheckProto_3(const StorageNymList& input, const bool silent)
 {
     UNDEFINED_VERSION("nym index", 3)
 }
 
-bool CheckProto_4(const StorageNymList&, const bool silent)
+bool CheckProto_4(const StorageNymList& input, const bool silent)
 {
     UNDEFINED_VERSION("nym index", 4)
 }
 
-bool CheckProto_5(const StorageNymList&, const bool silent)
+bool CheckProto_5(const StorageNymList& input, const bool silent)
 {
     UNDEFINED_VERSION("nym index", 5)
 }

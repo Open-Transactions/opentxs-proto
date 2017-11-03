@@ -45,38 +45,38 @@ namespace opentxs
 {
 namespace proto
 {
-bool CheckProto_1(const Faucet&, const bool silent)
+bool CheckProto_1(const Faucet& input, const bool silent)
 {
     UNDEFINED_VERSION("faucet request", 1)
 }
 
-bool CheckProto_2(const Faucet&, const bool silent)
+bool CheckProto_2(const Faucet& input, const bool silent)
 {
     UNDEFINED_VERSION("faucet request", 2)
 }
 
-bool CheckProto_3(const Faucet&, const bool silent)
+bool CheckProto_3(const Faucet& input, const bool silent)
 {
     UNDEFINED_VERSION("faucet request", 3)
 }
 
-bool CheckProto_4(const Faucet& request, const bool silent)
+bool CheckProto_4(const Faucet& input, const bool silent)
 {
     const bool validChain = ValidContactItemType(
-        {CONTACT_VERSION, CONTACTSECTION_CONTRACT}, request.type());
+        {CONTACT_VERSION, CONTACTSECTION_CONTRACT}, input.type());
 
     if (false == validChain) {
         FAIL("faucet request", "invalid chain")
     }
 
-    if (MAX_PLAUSIBLE_IDENTIFIER < request.address().size()) {
+    if (MAX_PLAUSIBLE_IDENTIFIER < input.address().size()) {
         FAIL("faucet request", "invalid address")
     }
 
     return true;
 }
 
-bool CheckProto_5(const Faucet&, const bool silent)
+bool CheckProto_5(const Faucet& input, const bool silent)
 {
     UNDEFINED_VERSION("faucet request", 5)
 }

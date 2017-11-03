@@ -46,57 +46,57 @@ namespace opentxs
 namespace proto
 {
 
-bool CheckProto_1(const ListenAddress& address, const bool silent)
+bool CheckProto_1(const ListenAddress& input, const bool silent)
 {
-    if (!address.has_type()) {
+    if (!input.has_type()) {
         FAIL("listen address", "missing type")
     }
 
-    if ((ADDRESSTYPE_ERROR == address.type()) ||
-        (ADDRESSTYPE_EEP < address.type())) {
+    if ((ADDRESSTYPE_ERROR == input.type()) ||
+        (ADDRESSTYPE_EEP < input.type())) {
         FAIL("listen address", "invalid type")
     }
 
-    if (!address.has_protocol()) {
+    if (!input.has_protocol()) {
         FAIL("listen address", "missing protocol")
     }
 
-    if ((PROTOCOLVERSION_ERROR == address.protocol()) ||
-        (PROTOCOLVERSION_NOTIFY < address.protocol())) {
+    if ((PROTOCOLVERSION_ERROR == input.protocol()) ||
+        (PROTOCOLVERSION_NOTIFY < input.protocol())) {
         FAIL("listen address", "invalid protocol")
     }
 
-    if (!address.has_host()) {
+    if (!input.has_host()) {
         FAIL("listen address", "missing host")
     }
 
-    if (!address.has_port()) {
+    if (!input.has_port()) {
         FAIL("listen address", "missing port")
     }
 
-    if (MAX_VALID_PORT < address.port()) {
+    if (MAX_VALID_PORT < input.port()) {
         FAIL("listen address", "invalid port")
     }
 
     return true;
 }
 
-bool CheckProto_2(const ListenAddress&, const bool silent)
+bool CheckProto_2(const ListenAddress& input, const bool silent)
 {
     UNDEFINED_VERSION("listen address", 2)
 }
 
-bool CheckProto_3(const ListenAddress&, const bool silent)
+bool CheckProto_3(const ListenAddress& input, const bool silent)
 {
     UNDEFINED_VERSION("listen address", 3)
 }
 
-bool CheckProto_4(const ListenAddress&, const bool silent)
+bool CheckProto_4(const ListenAddress& input, const bool silent)
 {
     UNDEFINED_VERSION("listen address", 4)
 }
 
-bool CheckProto_5(const ListenAddress&, const bool silent)
+bool CheckProto_5(const ListenAddress& input, const bool silent)
 {
     UNDEFINED_VERSION("listen address", 5)
 }

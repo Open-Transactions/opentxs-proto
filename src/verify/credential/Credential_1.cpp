@@ -48,7 +48,7 @@ namespace proto
 {
 
 bool CheckProto_1(
-    const Credential& credential,
+    const Credential& input,
     const bool silent,
     const KeyMode& mode,
     const CredentialRole role,
@@ -66,37 +66,35 @@ bool CheckProto_1(
     int32_t expectedSigCount = 1;  // public self-signature
     bool checkRole = (CREDROLE_ERROR != role);
 
-    if (!credential.has_id()) {
+    if (!input.has_id()) {
         FAIL("credential", "missing identifier")
     }
 
-    if (MIN_PLAUSIBLE_IDENTIFIER > credential.id().size()) {
-        FAIL2("credential", "invalid identifier", credential.id())
+    if (MIN_PLAUSIBLE_IDENTIFIER > input.id().size()) {
+        FAIL2("credential", "invalid identifier", input.id())
     }
 
-    if (!credential.has_type()) {
+    if (!input.has_type()) {
         FAIL("credential", "missing type")
     }
 
-    switch (credential.type()) {
+    switch (input.type()) {
         case CREDTYPE_LEGACY:
         case CREDTYPE_HD:
             break;
         default: {
-            FAIL2("credential", "invalid type", credential.type())
+            FAIL2("credential", "invalid type", input.type())
         }
     }
 
-    if (!credential.has_role()) {
+    if (!input.has_role()) {
         FAIL("credential", "missing role")
-
-        return false;
     }
 
-    CredentialRole actualRole = credential.role();
+    CredentialRole actualRole = input.role();
 
     if (checkRole && (role != actualRole)) {
-        FAIL2("credential", "incorrect role", credential.role())
+        FAIL2("credential", "incorrect role", input.role())
     }
 
     bool masterCredential = (CREDROLE_MASTERKEY == actualRole);
@@ -113,14 +111,10 @@ bool CheckProto_1(
     }
 
     if (checkRole && !knownRole) {
-        if (false == silent) {
-            FAIL2("credential", "invalid role", role)
-        }
-
-        return false;
+        FAIL2("credential", "invalid role", role)
     }
 
-    if (!credential.has_mode()) {
+    if (!input.has_mode()) {
         FAIL("credential", "missing mode")
     }
 
@@ -138,11 +132,11 @@ bool CheckProto_1(
             break;
         }
         default: {
-            FAIL2("credential", "incorrect role", credential.role())
+            FAIL2("credential", "incorrect role", input.role())
         }
     }
 
-    const auto actualMode = credential.mode();
+    const auto actualMode = input.mode();
 
     if (KEYMODE_ERROR != requiredMode) {
         if (actualMode != requiredMode) {
@@ -178,24 +172,24 @@ bool CheckProto_1(
         }
     }
 
-    if (!credential.has_nymid()) {
+    if (!input.has_nymid()) {
         FAIL("credential", "missing nym id")
     }
 
-    if (MIN_PLAUSIBLE_IDENTIFIER > credential.nymid().size()) {
-        FAIL2("credential", "invalid nym id", credential.nymid())
+    if (MIN_PLAUSIBLE_IDENTIFIER > input.nymid().size()) {
+        FAIL2("credential", "invalid nym id", input.nymid())
     }
 
     if (!masterCredential) {
-        if (!credential.has_childdata()) {
+        if (!input.has_childdata()) {
             FAIL("credential", "missing child data")
         }
 
         try {
             validChildData = Check(
-                credential.childdata(),
-                CredentialAllowedChildParams.at(credential.version()).first,
-                CredentialAllowedChildParams.at(credential.version()).second,
+                input.childdata(),
+                CredentialAllowedChildParams.at(input.version()).first,
+                CredentialAllowedChildParams.at(input.version()).second,
                 silent);
 
             if (!validChildData) {
@@ -205,20 +199,20 @@ bool CheckProto_1(
             FAIL2(
                 "credential",
                 "allowed child params version not defined for version",
-                credential.version())
+                input.version())
         }
     }
 
     if (masterCredential) {
-        if (!credential.has_masterdata()) {
+        if (!input.has_masterdata()) {
             FAIL("credential", "missing master data")
         }
 
         try {
             validMasterData = Check(
-                credential.masterdata(),
-                CredentialAllowedMasterParams.at(credential.version()).first,
-                CredentialAllowedMasterParams.at(credential.version()).second,
+                input.masterdata(),
+                CredentialAllowedMasterParams.at(input.version()).first,
+                CredentialAllowedMasterParams.at(input.version()).second,
                 silent,
                 expectSourceSignature);
 
@@ -229,7 +223,7 @@ bool CheckProto_1(
             FAIL2(
                 "credential",
                 "allowed master params version not defined for version",
-                credential.version())
+                input.version())
         }
 
         if (expectSourceSignature) {
@@ -237,56 +231,56 @@ bool CheckProto_1(
         }
     }
 
-    if ((!masterCredential) && (credential.has_masterdata())) {
+    if ((!masterCredential) && (input.has_masterdata())) {
         FAIL("credential", "child credential contains master data")
     }
 
-    if (isPublic && credential.has_privatecredential()) {
+    if (isPublic && input.has_privatecredential()) {
         FAIL("credential", " public credential contains private data")
     }
 
     if (keyCredential) {
-        if (credential.has_contactdata()) {
+        if (input.has_contactdata()) {
             FAIL("credential", "key credential contains contact data")
         }
 
-        if (credential.has_verification()) {
+        if (input.has_verification()) {
             FAIL("credential", "key credential contains verification data")
         }
 
-        if (!credential.has_publiccredential()) {
+        if (!input.has_publiccredential()) {
             FAIL("credential", "missing public data")
         }
 
-        if (isPrivate && (!credential.has_privatecredential())) {
+        if (isPrivate && (!input.has_privatecredential())) {
             FAIL("credential", "missing private data")
         }
     }
 
     if (metadataContainer) {
-        if (credential.has_privatecredential()) {
+        if (input.has_privatecredential()) {
             FAIL("credential", "metadata credential contains private key data")
         }
 
-        if (credential.has_publiccredential()) {
+        if (input.has_publiccredential()) {
             FAIL("credential", "metadata credential contains public key data")
         }
     }
 
     if (contactCredential) {
-        if (credential.has_verification()) {
+        if (input.has_verification()) {
             FAIL("credential", "contact credential contains verification data")
         }
 
-        if (!credential.has_contactdata()) {
+        if (!input.has_contactdata()) {
             FAIL("credential", "missing contact data")
         }
 
         try {
             validContactData = Check(
-                credential.contactdata(),
-                CredentialAllowedContactData.at(credential.version()).first,
-                CredentialAllowedContactData.at(credential.version()).second,
+                input.contactdata(),
+                CredentialAllowedContactData.at(input.version()).first,
+                CredentialAllowedContactData.at(input.version()).second,
                 silent,
                 CLAIMS_NORMAL);
 
@@ -297,24 +291,24 @@ bool CheckProto_1(
             FAIL2(
                 "credential",
                 "allowed contact data version not defined for version",
-                credential.version())
+                input.version())
         }
     }
 
     if (verifyCredential) {
-        if (credential.has_contactdata()) {
+        if (input.has_contactdata()) {
             FAIL("credential", "verification credential contains contact data")
         }
 
-        if (!credential.has_verification()) {
+        if (!input.has_verification()) {
             FAIL("credential", "missing verification data")
         }
 
         try {
             bool validVerificationSet = Check(
-                credential.verification(),
-                CredentialAllowedVerification.at(credential.version()).first,
-                CredentialAllowedVerification.at(credential.version()).second,
+                input.verification(),
+                CredentialAllowedVerification.at(input.version()).first,
+                CredentialAllowedVerification.at(input.version()).second,
                 silent,
                 VERIFICATIONS_NORMAL);
 
@@ -325,18 +319,18 @@ bool CheckProto_1(
             FAIL2(
                 "credential",
                 "allowed verification version not defined for version",
-                credential.version())
+                input.version())
         }
     }
 
     if (keyCredential) {
         try {
             validPublicData = Check(
-                credential.publiccredential(),
-                CredentialAllowedKeyCredentials.at(credential.version()).first,
-                CredentialAllowedKeyCredentials.at(credential.version()).second,
+                input.publiccredential(),
+                CredentialAllowedKeyCredentials.at(input.version()).first,
+                CredentialAllowedKeyCredentials.at(input.version()).second,
                 silent,
-                credential.type(),
+                input.type(),
                 KEYMODE_PUBLIC);
 
             if (!validPublicData) {
@@ -346,19 +340,17 @@ bool CheckProto_1(
             FAIL2(
                 "credential",
                 "allowed key credential version not defined for version",
-                credential.version())
+                input.version())
         }
 
         if (isPrivate) {
             try {
                 validPrivateData = Check(
-                    credential.privatecredential(),
-                    CredentialAllowedKeyCredentials.at(credential.version())
-                        .first,
-                    CredentialAllowedKeyCredentials.at(credential.version())
-                        .second,
+                    input.privatecredential(),
+                    CredentialAllowedKeyCredentials.at(input.version()).first,
+                    CredentialAllowedKeyCredentials.at(input.version()).second,
                     silent,
-                    credential.type(),
+                    input.type(),
                     KEYMODE_PRIVATE);
 
                 if (!validPrivateData) {
@@ -368,17 +360,17 @@ bool CheckProto_1(
                 FAIL2(
                     "credential",
                     "allowed key credential version not defined for version",
-                    credential.version())
+                    input.version())
             }
         }
     }
 
     if (withSigs) {
-        std::string masterID = credential.childdata().masterid();
+        std::string masterID = input.childdata().masterid();
 
-        if (expectedSigCount != credential.signature_size()) {
+        if (expectedSigCount != input.signature_size()) {
             std::stringstream ss;
-            ss << credential.signature_size() << " of " << expectedSigCount
+            ss << input.signature_size() << " of " << expectedSigCount
                << " found";
 
             FAIL2("credential", "incorrect number of signatures", ss.str())
@@ -389,14 +381,14 @@ bool CheckProto_1(
         uint32_t masterPublicCount = 0;
         uint32_t sourcePublicCount = 0;
 
-        for (auto& it : credential.signature()) {
+        for (auto& it : input.signature()) {
             try {
                 bool validSig = Check(
                     it,
-                    CredentialAllowedSignatures.at(credential.version()).first,
-                    CredentialAllowedSignatures.at(credential.version()).second,
+                    CredentialAllowedSignatures.at(input.version()).first,
+                    CredentialAllowedSignatures.at(input.version()).second,
                     silent,
-                    credential.id(),
+                    input.id(),
                     masterID,
                     selfPublicCount,
                     selfPrivateCount,
@@ -410,7 +402,7 @@ bool CheckProto_1(
                 FAIL2(
                     "credential",
                     "allowed signature version not defined for version",
-                    credential.version())
+                    input.version())
             }
         }
 
@@ -461,37 +453,37 @@ bool CheckProto_1(
 }
 
 bool CheckProto_2(
-    const Credential& credential,
+    const Credential& input,
     const bool silent,
     const KeyMode& mode,
     const CredentialRole role,
     const bool withSigs)
 {
-    return CheckProto_1(credential, silent, mode, role, withSigs);
+    return CheckProto_1(input, silent, mode, role, withSigs);
 }
 
 bool CheckProto_3(
-    const Credential& credential,
+    const Credential& input,
     const bool silent,
     const KeyMode& mode,
     const CredentialRole role,
     const bool withSigs)
 {
-    return CheckProto_1(credential, silent, mode, role, withSigs);
+    return CheckProto_1(input, silent, mode, role, withSigs);
 }
 
 bool CheckProto_4(
-    const Credential& credential,
+    const Credential& input,
     const bool silent,
     const KeyMode& mode,
     const CredentialRole role,
     const bool withSigs)
 {
-    return CheckProto_1(credential, silent, mode, role, withSigs);
+    return CheckProto_1(input, silent, mode, role, withSigs);
 }
 
 bool CheckProto_5(
-    const Credential&,
+    const Credential& input,
     const bool silent,
     const KeyMode&,
     const CredentialRole,

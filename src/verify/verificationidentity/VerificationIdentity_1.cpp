@@ -47,28 +47,28 @@ namespace proto
 {
 
 bool CheckProto_1(
-    const VerificationIdentity& identity,
+    const VerificationIdentity& input,
     const bool silent,
     VerificationNymMap& map,
     const VerificationType indexed)
 {
-    if (!identity.has_nym()) {
+    if (!input.has_nym()) {
         FAIL("verification identity", "missing nym")
     }
 
-    if (MIN_PLAUSIBLE_IDENTIFIER > identity.nym().size()) {
-        FAIL2("verification identity", "invalid nym", identity.nym())
+    if (MIN_PLAUSIBLE_IDENTIFIER > input.nym().size()) {
+        FAIL2("verification identity", "invalid nym", input.nym())
     }
 
-    map[identity.nym()] += 1;
+    map[input.nym()] += 1;
 
-    for (auto& it : identity.verification()) {
+    for (auto& it : input.verification()) {
         try {
             const bool verification = Check(
                 it,
-                VerificationIdentityAllowedVerification.at(identity.version())
+                VerificationIdentityAllowedVerification.at(input.version())
                     .first,
-                VerificationIdentityAllowedVerification.at(identity.version())
+                VerificationIdentityAllowedVerification.at(input.version())
                     .second,
                 silent,
                 indexed);
@@ -80,7 +80,7 @@ bool CheckProto_1(
             FAIL2(
                 "verification identity",
                 "allowed verification version not defined for version",
-                identity.version())
+                input.version())
         }
     }
 
@@ -88,7 +88,7 @@ bool CheckProto_1(
 }
 
 bool CheckProto_2(
-    const VerificationIdentity&,
+    const VerificationIdentity& input,
     const bool silent,
     VerificationNymMap&,
     const VerificationType)
@@ -97,7 +97,7 @@ bool CheckProto_2(
 }
 
 bool CheckProto_3(
-    const VerificationIdentity&,
+    const VerificationIdentity& input,
     const bool silent,
     VerificationNymMap&,
     const VerificationType)
@@ -106,7 +106,7 @@ bool CheckProto_3(
 }
 
 bool CheckProto_4(
-    const VerificationIdentity&,
+    const VerificationIdentity& input,
     const bool silent,
     VerificationNymMap&,
     const VerificationType)
@@ -115,7 +115,7 @@ bool CheckProto_4(
 }
 
 bool CheckProto_5(
-    const VerificationIdentity&,
+    const VerificationIdentity& input,
     const bool silent,
     VerificationNymMap&,
     const VerificationType)

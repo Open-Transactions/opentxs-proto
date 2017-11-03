@@ -47,15 +47,15 @@ namespace proto
 {
 
 bool CheckProto_1(
-    const SourceProof& proot,
+    const SourceProof& input,
     const bool silent,
     bool& ExpectSourceSignature)
 {
-    if (!proot.has_type()) {
+    if (!input.has_type()) {
         FAIL("source proof", "missing type")
     }
 
-    switch (proot.type()) {
+    switch (input.type()) {
         case SOURCEPROOFTYPE_SELF_SIGNATURE:
             ExpectSourceSignature = false;
 
@@ -65,14 +65,30 @@ bool CheckProto_1(
 
             break;
         default:
-            FAIL2("source proof", "incorrect or unknown type", proot.type())
+            FAIL2("source proof", "incorrect or unknown type", input.type())
     }
 
     return true;
 }
-bool CheckProto_2(const SourceProof&, const bool, bool&) { return false; }
-bool CheckProto_3(const SourceProof&, const bool, bool&) { return false; }
-bool CheckProto_4(const SourceProof&, const bool, bool&) { return false; }
-bool CheckProto_5(const SourceProof&, const bool, bool&) { return false; }
+
+bool CheckProto_2(const SourceProof& input, const bool silent, bool&)
+{
+    UNDEFINED_VERSION("source proof", 2)
+}
+
+bool CheckProto_3(const SourceProof& input, const bool silent, bool&)
+{
+    UNDEFINED_VERSION("source proof", 3)
+}
+
+bool CheckProto_4(const SourceProof& input, const bool silent, bool&)
+{
+    UNDEFINED_VERSION("source proof", 4)
+}
+
+bool CheckProto_5(const SourceProof& input, const bool silent, bool&)
+{
+    UNDEFINED_VERSION("source proof", 5)
+}
 }  // namespace proto
 }  // namespace opentxs

@@ -43,14 +43,14 @@
 
 namespace opentxs::proto
 {
-bool CheckProto_1(const StorageContacts& contact, const bool silent)
+bool CheckProto_1(const StorageContacts& input, const bool silent)
 {
-    for (auto& merge : contact.merge()) {
+    for (auto& merge : input.merge()) {
         try {
             const bool valid = Check(
                 merge,
-                StorageContactsAllowedList.at(contact.version()).first,
-                StorageContactsAllowedList.at(contact.version()).second,
+                StorageContactsAllowedList.at(input.version()).first,
+                StorageContactsAllowedList.at(input.version()).second,
                 silent);
 
             if (!valid) {
@@ -60,16 +60,16 @@ bool CheckProto_1(const StorageContacts& contact, const bool silent)
             FAIL2(
                 "contact storage index",
                 "allowed storage id list version not defined for version",
-                contact.version())
+                input.version())
         }
     }
 
-    for (auto& hash : contact.contact()) {
+    for (auto& hash : input.contact()) {
         try {
             const bool valid = Check(
                 hash,
-                StorageContactsAllowedHash.at(contact.version()).first,
-                StorageContactsAllowedHash.at(contact.version()).second,
+                StorageContactsAllowedHash.at(input.version()).first,
+                StorageContactsAllowedHash.at(input.version()).second,
                 silent);
 
             if (!valid) {
@@ -79,16 +79,16 @@ bool CheckProto_1(const StorageContacts& contact, const bool silent)
             FAIL2(
                 "contact storage index",
                 "allowed storage item hash version not defined for version",
-                contact.version())
+                input.version())
         }
     }
 
-    for (auto& index : contact.address()) {
+    for (auto& index : input.address()) {
         try {
             const bool valid = Check(
                 index,
-                StorageContactsAllowedAddress.at(contact.version()).first,
-                StorageContactsAllowedAddress.at(contact.version()).second,
+                StorageContactsAllowedAddress.at(input.version()).first,
+                StorageContactsAllowedAddress.at(input.version()).second,
                 silent);
 
             if (!valid) {
@@ -98,15 +98,15 @@ bool CheckProto_1(const StorageContacts& contact, const bool silent)
             FAIL2(
                 "contact storage index",
                 "allowed address index version not defined for version",
-                contact.version())
+                input.version())
         }
     }
 
-    if (0 < contact.nym().size()) {
+    if (0 < input.nym().size()) {
         FAIL2(
             "contact storage index",
             "nym index not allowed for version",
-            contact.version())
+            input.version())
     }
 
     return true;

@@ -46,38 +46,38 @@ namespace opentxs
 namespace proto
 {
 
-bool CheckProto_2(const StorageRoot& root, const bool silent)
+bool CheckProto_2(const StorageRoot& input, const bool silent)
 {
-    if (!root.has_items()) {
+    if (!input.has_items()) {
         FAIL("storage root", "missing hash")
     }
 
-    if (MIN_PLAUSIBLE_IDENTIFIER > root.items().size()) {
+    if (MIN_PLAUSIBLE_IDENTIFIER > input.items().size()) {
         FAIL("storage root", "invalid hash")
     }
 
-    if (MAX_PLAUSIBLE_IDENTIFIER < root.items().size()) {
+    if (MAX_PLAUSIBLE_IDENTIFIER < input.items().size()) {
         FAIL("storage root", "invalid hash")
     }
 
-    if (!root.has_sequence()) {
+    if (!input.has_sequence()) {
         FAIL("storage root", "missing sequence")
     }
 
     return true;
 }
 
-bool CheckProto_3(const StorageRoot&, const bool silent)
+bool CheckProto_3(const StorageRoot& input, const bool silent)
 {
     UNDEFINED_VERSION("storage root", 3)
 }
 
-bool CheckProto_4(const StorageRoot&, const bool silent)
+bool CheckProto_4(const StorageRoot& input, const bool silent)
 {
     UNDEFINED_VERSION("storage root", 4)
 }
 
-bool CheckProto_5(const StorageRoot&, const bool silent)
+bool CheckProto_5(const StorageRoot& input, const bool silent)
 {
     UNDEFINED_VERSION("storage root", 5)
 }

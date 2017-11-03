@@ -47,20 +47,20 @@ namespace opentxs
 namespace proto
 {
 
-bool CheckProto_1(const StorageBlockchainAccountList& list, const bool silent)
+bool CheckProto_1(const StorageBlockchainAccountList& input, const bool silent)
 {
-    if (false == list.has_id()) {
+    if (false == input.has_id()) {
         FAIL("storage blockchain account list", "missing id")
     }
 
     const bool validChain = ValidContactItemType(
-        {CONTACT_VERSION, CONTACTSECTION_CONTRACT}, list.id());
+        {CONTACT_VERSION, CONTACTSECTION_CONTRACT}, input.id());
 
     if (false == validChain) {
         FAIL("transaction", "invalid chain")
     }
 
-    for (const auto& it : list.list()) {
+    for (const auto& it : input.list()) {
         if (MIN_PLAUSIBLE_IDENTIFIER > it.size()) {
             FAIL2("storage blockchain account list", "invalid list item", it)
         }
@@ -73,22 +73,22 @@ bool CheckProto_1(const StorageBlockchainAccountList& list, const bool silent)
     return true;
 }
 
-bool CheckProto_2(const StorageBlockchainAccountList&, const bool silent)
+bool CheckProto_2(const StorageBlockchainAccountList& input, const bool silent)
 {
     UNDEFINED_VERSION("storage blockchain account list", 2)
 }
 
-bool CheckProto_3(const StorageBlockchainAccountList&, const bool silent)
+bool CheckProto_3(const StorageBlockchainAccountList& input, const bool silent)
 {
     UNDEFINED_VERSION("storage blockchain account list", 3)
 }
 
-bool CheckProto_4(const StorageBlockchainAccountList&, const bool silent)
+bool CheckProto_4(const StorageBlockchainAccountList& input, const bool silent)
 {
     UNDEFINED_VERSION("storage blockchain account list", 4)
 }
 
-bool CheckProto_5(const StorageBlockchainAccountList&, const bool silent)
+bool CheckProto_5(const StorageBlockchainAccountList& input, const bool silent)
 {
     UNDEFINED_VERSION("storage blockchain account list", 5)
 }

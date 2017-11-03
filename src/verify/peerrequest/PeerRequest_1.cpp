@@ -45,45 +45,45 @@ namespace opentxs
 {
 namespace proto
 {
-bool CheckProto_1(const PeerRequest& request, const bool silent)
+bool CheckProto_1(const PeerRequest& input, const bool silent)
 {
-    if (!request.has_id()) {
+    if (!input.has_id()) {
         FAIL("peer request", "missing id")
     }
 
-    if (MIN_PLAUSIBLE_IDENTIFIER > request.id().size()) {
+    if (MIN_PLAUSIBLE_IDENTIFIER > input.id().size()) {
         FAIL("peer request", "invalid id")
     }
 
-    if (!request.has_initiator()) {
+    if (!input.has_initiator()) {
         FAIL("peer request", "missing initiato")
     }
 
-    if (MIN_PLAUSIBLE_IDENTIFIER > request.initiator().size()) {
-        FAIL2("peer request", "invalid initiator", request.initiator())
+    if (MIN_PLAUSIBLE_IDENTIFIER > input.initiator().size()) {
+        FAIL2("peer request", "invalid initiator", input.initiator())
     }
 
-    if (!request.has_recipient()) {
+    if (!input.has_recipient()) {
         FAIL("peer request", " missing recipient")
     }
 
-    if (MIN_PLAUSIBLE_IDENTIFIER > request.recipient().size()) {
-        FAIL2("peer request", "invalid recipient", request.recipient())
+    if (MIN_PLAUSIBLE_IDENTIFIER > input.recipient().size()) {
+        FAIL2("peer request", "invalid recipient", input.recipient())
     }
 
-    if (!request.has_type()) {
+    if (!input.has_type()) {
         FAIL("peer request", "missing type")
     }
 
-    if (!request.has_cookie()) {
+    if (!input.has_cookie()) {
         FAIL("peer request", "missing cookie")
     }
 
     try {
         const bool validSig = Check(
-            request.signature(),
-            PeerReplyAllowedSignature.at(request.version()).first,
-            PeerReplyAllowedSignature.at(request.version()).second,
+            input.signature(),
+            PeerReplyAllowedSignature.at(input.version()).first,
+            PeerReplyAllowedSignature.at(input.version()).second,
             silent,
             SIGROLE_PEERREQUEST);
 
@@ -94,20 +94,20 @@ bool CheckProto_1(const PeerRequest& request, const bool silent)
         FAIL2(
             "peer request",
             "allowed signature version not defined for version",
-            request.version())
+            input.version())
     }
 
-    switch (request.type()) {
+    switch (input.type()) {
         case PEERREQUEST_BAILMENT: {
-            if (!request.has_bailment()) {
+            if (!input.has_bailment()) {
                 FAIL("peer request", "missing bailment")
             }
 
             try {
                 const bool validbailment = Check(
-                    request.bailment(),
-                    PeerRequestAllowedBailment.at(request.version()).first,
-                    PeerRequestAllowedBailment.at(request.version()).second,
+                    input.bailment(),
+                    PeerRequestAllowedBailment.at(input.version()).first,
+                    PeerRequestAllowedBailment.at(input.version()).second,
                     silent);
 
                 if (!validbailment) {
@@ -117,19 +117,19 @@ bool CheckProto_1(const PeerRequest& request, const bool silent)
                 FAIL2(
                     "peer request",
                     "allowed bailment version not defined for version",
-                    request.version())
+                    input.version())
             }
         } break;
         case PEERREQUEST_OUTBAILMENT: {
-            if (!request.has_outbailment()) {
+            if (!input.has_outbailment()) {
                 FAIL("peer request", "missing outbailment")
             }
 
             try {
                 const bool validoutbailment = Check(
-                    request.outbailment(),
-                    PeerRequestAllowedOutBailment.at(request.version()).first,
-                    PeerRequestAllowedOutBailment.at(request.version()).second,
+                    input.outbailment(),
+                    PeerRequestAllowedOutBailment.at(input.version()).first,
+                    PeerRequestAllowedOutBailment.at(input.version()).second,
                     silent);
 
                 if (!validoutbailment) {
@@ -139,20 +139,19 @@ bool CheckProto_1(const PeerRequest& request, const bool silent)
                 FAIL2(
                     "peer request",
                     "allowed outbailment version not defined for version",
-                    request.version())
+                    input.version())
             }
         } break;
         case PEERREQUEST_PENDINGBAILMENT: {
-            if (!request.has_pendingbailment()) {
+            if (!input.has_pendingbailment()) {
                 FAIL("peer request", "missing pendingbailment")
             }
 
             try {
                 const bool validoutbailment = Check(
-                    request.pendingbailment(),
-                    PeerRequestAllowedPendingBailment.at(request.version())
-                        .first,
-                    PeerRequestAllowedPendingBailment.at(request.version())
+                    input.pendingbailment(),
+                    PeerRequestAllowedPendingBailment.at(input.version()).first,
+                    PeerRequestAllowedPendingBailment.at(input.version())
                         .second,
                     silent);
 
@@ -163,21 +162,19 @@ bool CheckProto_1(const PeerRequest& request, const bool silent)
                 FAIL2(
                     "peer request",
                     "allowed pending bailment version not defined for version",
-                    request.version())
+                    input.version())
             }
         } break;
         case PEERREQUEST_CONNECTIONINFO: {
-            if (!request.has_connectioninfo()) {
+            if (!input.has_connectioninfo()) {
                 FAIL("peer request", "missing connectioninfo")
             }
 
             try {
                 const bool validconnectioninfo = Check(
-                    request.connectioninfo(),
-                    PeerRequestAllowedConnectionInfo.at(request.version())
-                        .first,
-                    PeerRequestAllowedConnectionInfo.at(request.version())
-                        .second,
+                    input.connectioninfo(),
+                    PeerRequestAllowedConnectionInfo.at(input.version()).first,
+                    PeerRequestAllowedConnectionInfo.at(input.version()).second,
                     silent);
 
                 if (!validconnectioninfo) {
@@ -187,19 +184,19 @@ bool CheckProto_1(const PeerRequest& request, const bool silent)
                 FAIL2(
                     "peer request",
                     "allowed connectioninfo version not defined for version",
-                    request.version())
+                    input.version())
             }
         } break;
         case PEERREQUEST_STORESECRET: {
-            if (!request.has_storesecret()) {
+            if (!input.has_storesecret()) {
                 FAIL("peer request", "missing storesecret")
             }
 
             try {
                 const bool validstoresecret = Check(
-                    request.storesecret(),
-                    PeerRequestAllowedStoreSecret.at(request.version()).first,
-                    PeerRequestAllowedStoreSecret.at(request.version()).second,
+                    input.storesecret(),
+                    PeerRequestAllowedStoreSecret.at(input.version()).first,
+                    PeerRequestAllowedStoreSecret.at(input.version()).second,
                     silent);
 
                 if (!validstoresecret) {
@@ -209,7 +206,7 @@ bool CheckProto_1(const PeerRequest& request, const bool silent)
                 FAIL2(
                     "peer request",
                     "allowed storesecret version not defined for version",
-                    request.version())
+                    input.version())
             }
         } break;
         default: {

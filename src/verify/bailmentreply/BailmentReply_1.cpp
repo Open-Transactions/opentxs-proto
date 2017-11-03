@@ -46,31 +46,31 @@ namespace opentxs
 namespace proto
 {
 
-bool CheckProto_1(const BailmentReply& reply, const bool silent)
+bool CheckProto_1(const BailmentReply& input, const bool silent)
 {
-    if (!reply.has_instructions()) {
+    if (!input.has_instructions()) {
         FAIL("bailment reply", "missing instructions")
     }
 
     return true;
 }
 
-bool CheckProto_2(const BailmentReply& reply, const bool silent)
+bool CheckProto_2(const BailmentReply& input, const bool silent)
 {
-    return CheckProto_1(reply, silent);
+    return CheckProto_1(input, silent);
 }
 
-bool CheckProto_3(const BailmentReply& reply, const bool silent)
+bool CheckProto_3(const BailmentReply& input, const bool silent)
 {
-    return CheckProto_1(reply, silent);
+    return CheckProto_1(input, silent);
 }
 
-bool CheckProto_4(const BailmentReply& reply, const bool silent)
+bool CheckProto_4(const BailmentReply& input, const bool silent)
 {
-    return CheckProto_1(reply, silent);
+    return CheckProto_1(input, silent);
 }
 
-bool CheckProto_5(const BailmentReply&, const bool silent)
+bool CheckProto_5(const BailmentReply& input, const bool silent)
 {
     UNDEFINED_VERSION("bailment reply", 5)
 }

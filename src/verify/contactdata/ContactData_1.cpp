@@ -47,21 +47,21 @@ namespace proto
 {
 
 bool CheckProto_1(
-    const ContactData& contactData,
+    const ContactData& input,
     const bool silent,
     const ClaimType indexed)
 {
     std::map<ContactSectionName, uint32_t> sectionCount;
 
-    for (auto& it : contactData.section()) {
+    for (auto& it : input.section()) {
         try {
             bool validSection = Check(
                 it,
-                ContactDataAllowedSection.at(contactData.version()).first,
-                ContactDataAllowedSection.at(contactData.version()).second,
+                ContactDataAllowedSection.at(input.version()).first,
+                ContactDataAllowedSection.at(input.version()).second,
                 silent,
                 indexed,
-                contactData.version());
+                input.version());
 
             if (!validSection) {
                 FAIL("contact data", "invalid section")
@@ -70,7 +70,7 @@ bool CheckProto_1(
             FAIL2(
                 "contact data",
                 "allowed contact section version not defined for version",
-                contactData.version())
+                input.version())
         }
 
         ContactSectionName name = it.name();
@@ -86,35 +86,35 @@ bool CheckProto_1(
 }
 
 bool CheckProto_2(
-    const ContactData& contactData,
+    const ContactData& input,
     const bool silent,
     const ClaimType indexed)
 {
-    return CheckProto_1(contactData, silent, indexed);
+    return CheckProto_1(input, silent, indexed);
 }
 
 bool CheckProto_3(
-    const ContactData& contactData,
+    const ContactData& input,
     const bool silent,
     const ClaimType indexed)
 {
-    return CheckProto_1(contactData, silent, indexed);
+    return CheckProto_1(input, silent, indexed);
 }
 
 bool CheckProto_4(
-    const ContactData& contactData,
+    const ContactData& input,
     const bool silent,
     const ClaimType indexed)
 {
-    return CheckProto_1(contactData, silent, indexed);
+    return CheckProto_1(input, silent, indexed);
 }
 
 bool CheckProto_5(
-    const ContactData& contactData,
+    const ContactData& input,
     const bool silent,
     const ClaimType indexed)
 {
-    return CheckProto_1(contactData, silent, indexed);
+    return CheckProto_1(input, silent, indexed);
 }
 }  // namespace proto
 }  // namespace opentxs

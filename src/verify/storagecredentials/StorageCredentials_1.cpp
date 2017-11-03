@@ -46,14 +46,14 @@ namespace opentxs
 namespace proto
 {
 
-bool CheckProto_1(const StorageCredentials& creds, const bool silent)
+bool CheckProto_1(const StorageCredentials& input, const bool silent)
 {
-    for (auto& hash : creds.cred()) {
+    for (auto& hash : input.cred()) {
         try {
             const bool valid = Check(
                 hash,
-                StorageCredentialAllowedHash.at(creds.version()).first,
-                StorageCredentialAllowedHash.at(creds.version()).second,
+                StorageCredentialAllowedHash.at(input.version()).first,
+                StorageCredentialAllowedHash.at(input.version()).second,
                 silent);
 
             if (!valid) {
@@ -63,29 +63,29 @@ bool CheckProto_1(const StorageCredentials& creds, const bool silent)
             FAIL2(
                 "credential storage index",
                 "allowed storage item hash version not defined for version",
-                creds.version())
+                input.version())
         }
     }
 
     return true;
 }
 
-bool CheckProto_2(const StorageCredentials& creds, const bool silent)
+bool CheckProto_2(const StorageCredentials& input, const bool silent)
 {
-    return CheckProto_1(creds, silent);
+    return CheckProto_1(input, silent);
 }
 
-bool CheckProto_3(const StorageCredentials&, const bool silent)
+bool CheckProto_3(const StorageCredentials& input, const bool silent)
 {
     UNDEFINED_VERSION("credential storage index", 3)
 }
 
-bool CheckProto_4(const StorageCredentials&, const bool silent)
+bool CheckProto_4(const StorageCredentials& input, const bool silent)
 {
     UNDEFINED_VERSION("credential storage index", 4)
 }
 
-bool CheckProto_5(const StorageCredentials&, const bool silent)
+bool CheckProto_5(const StorageCredentials& input, const bool silent)
 {
     UNDEFINED_VERSION("credential storage index", 5)
 }

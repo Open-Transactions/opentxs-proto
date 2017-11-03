@@ -46,32 +46,32 @@ namespace opentxs
 namespace proto
 {
 
-bool CheckProto_1(const Ciphertext& data, const bool silent, const bool nested)
+bool CheckProto_1(const Ciphertext& input, const bool silent, const bool nested)
 {
-    if (!data.has_mode()) {
+    if (!input.has_mode()) {
         FAIL("ciphertext", "missing mode")
     }
 
-    switch (data.mode()) {
+    switch (input.mode()) {
         case (SMODE_CHACHA20POLY1305): {
             break;
         }
         default: {
-            FAIL2("ciphertext", "invalid mode", data.mode())
+            FAIL2("ciphertext", "invalid mode", input.mode())
         }
     }
 
     if (nested) {
-        if (data.has_key()) {
+        if (input.has_key()) {
             FAIL("ciphertext", "key present in nested ciphertext")
         }
     } else {
-        if (data.has_key()) {
+        if (input.has_key()) {
             try {
                 const bool validKey = Check(
-                    data.key(),
-                    CiphertextAllowedSymmetricKey.at(data.version()).first,
-                    CiphertextAllowedSymmetricKey.at(data.version()).second,
+                    input.key(),
+                    CiphertextAllowedSymmetricKey.at(input.version()).first,
+                    CiphertextAllowedSymmetricKey.at(input.version()).second,
                     silent);
 
                 if (!validKey) {
@@ -81,49 +81,49 @@ bool CheckProto_1(const Ciphertext& data, const bool silent, const bool nested)
                 FAIL2(
                     "ciphertext",
                     "allowed symmetric key version not defined for version",
-                    data.version())
+                    input.version())
             }
         }
     }
 
-    if (!data.has_iv()) {
+    if (!input.has_iv()) {
         FAIL("ciphertext", "missing iv")
     }
 
-    if (1 > data.iv().size()) {
+    if (1 > input.iv().size()) {
         FAIL("ciphertext", "invalid iv")
     }
 
-    if (!data.has_tag()) {
+    if (!input.has_tag()) {
         FAIL("ciphertext", "missing tag")
     }
 
-    if (1 > data.tag().size()) {
+    if (1 > input.tag().size()) {
         FAIL("ciphertext", "invalid tag")
     }
 
-    if (!data.has_data()) {
+    if (!input.has_data()) {
         FAIL("ciphertext", "missing data")
     }
 
     return true;
 }
-bool CheckProto_2(const Ciphertext&, const bool, const bool silent)
+bool CheckProto_2(const Ciphertext& input, const bool silent, const bool)
 {
     UNDEFINED_VERSION("ciphertext", 2)
 }
 
-bool CheckProto_3(const Ciphertext&, const bool, const bool silent)
+bool CheckProto_3(const Ciphertext& input, const bool silent, const bool)
 {
     UNDEFINED_VERSION("ciphertext", 3)
 }
 
-bool CheckProto_4(const Ciphertext&, const bool, const bool silent)
+bool CheckProto_4(const Ciphertext& input, const bool silent, const bool)
 {
     UNDEFINED_VERSION("ciphertext", 4)
 }
 
-bool CheckProto_5(const Ciphertext&, const bool, const bool silent)
+bool CheckProto_5(const Ciphertext& input, const bool silent, const bool)
 {
     UNDEFINED_VERSION("ciphertext", 5)
 }

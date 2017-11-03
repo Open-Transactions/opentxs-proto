@@ -45,22 +45,22 @@ namespace proto
 {
 bool CheckProto_1(const ClientContext&, const bool) { return true; }
 
-bool CheckProto_2(const ClientContext&, const bool silent)
+bool CheckProto_2(const ClientContext& input, const bool silent)
 {
     UNDEFINED_VERSION("client context", 2)
 }
 
-bool CheckProto_3(const ClientContext&, const bool silent)
+bool CheckProto_3(const ClientContext& input, const bool silent)
 {
     UNDEFINED_VERSION("client context", 3)
 }
 
-bool CheckProto_4(const ClientContext&, const bool silent)
+bool CheckProto_4(const ClientContext& input, const bool silent)
 {
     UNDEFINED_VERSION("client context", 4)
 }
 
-bool CheckProto_5(const ClientContext&, const bool silent)
+bool CheckProto_5(const ClientContext& input, const bool silent)
 {
     UNDEFINED_VERSION("client context", 5)
 }
