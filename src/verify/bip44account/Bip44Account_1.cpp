@@ -46,36 +46,36 @@ namespace opentxs
 namespace proto
 {
 
-bool CheckProto_1(const Bip44Account& account, const bool silent)
+bool CheckProto_1(const Bip44Account& input, const bool silent)
 {
-    if (false == account.has_id()) {
+    if (false == input.has_id()) {
         FAIL("blockchain account", "missing id")
     }
 
-    if (MIN_PLAUSIBLE_IDENTIFIER > account.id().size()) {
+    if (MIN_PLAUSIBLE_IDENTIFIER > input.id().size()) {
         FAIL("blockchain account", "invalid id")
     }
 
-    if (MAX_PLAUSIBLE_IDENTIFIER < account.id().size()) {
+    if (MAX_PLAUSIBLE_IDENTIFIER < input.id().size()) {
         FAIL("blockchain account", "invalid id")
     }
 
     const bool validChain = ValidContactItemType(
-        {CONTACT_VERSION, CONTACTSECTION_CONTRACT}, account.type());
+        {CONTACT_VERSION, CONTACTSECTION_CONTRACT}, input.type());
 
     if (false == validChain) {
         FAIL("blockchain account", "invalid type")
     }
 
-    if (false == account.has_path()) {
+    if (false == input.has_path()) {
         FAIL("blockchain account", "missing path")
     }
 
     try {
         const bool validPath = Check(
-            account.path(),
-            Bip44AccountAllowedHDPath.at(account.version()).first,
-            Bip44AccountAllowedHDPath.at(account.version()).second,
+            input.path(),
+            Bip44AccountAllowedHDPath.at(input.version()).first,
+            Bip44AccountAllowedHDPath.at(input.version()).second,
             silent);
 
         if (false == validPath) {
@@ -85,15 +85,15 @@ bool CheckProto_1(const Bip44Account& account, const bool silent)
         FAIL2(
             "blockchain account",
             "allowed HD path version not defined for version",
-            account.version())
+            input.version())
     }
 
-    for (const auto& address : account.internaladdress()) {
+    for (const auto& address : input.internaladdress()) {
         try {
             const bool validAddress = Check(
                 address,
-                Bip44AccountAllowedBip44Address.at(account.version()).first,
-                Bip44AccountAllowedBip44Address.at(account.version()).second,
+                Bip44AccountAllowedBip44Address.at(input.version()).first,
+                Bip44AccountAllowedBip44Address.at(input.version()).second,
                 silent);
 
             if (false == validAddress) {
@@ -103,11 +103,11 @@ bool CheckProto_1(const Bip44Account& account, const bool silent)
             FAIL2(
                 "blockchain account",
                 "allowed Bip44 address version not defined for version",
-                account.version())
+                input.version())
         }
     }
 
-    for (const auto& txid : account.outgoing()) {
+    for (const auto& txid : input.outgoing()) {
         if (MIN_PLAUSIBLE_IDENTIFIER > txid.size()) {
             FAIL("blockchain account", "invalid txid")
         }
@@ -120,22 +120,22 @@ bool CheckProto_1(const Bip44Account& account, const bool silent)
     return true;
 }
 
-bool CheckProto_2(const Bip44Account&, const bool silent)
+bool CheckProto_2(const Bip44Account& input, const bool silent)
 {
     UNDEFINED_VERSION("blockchain account", 2)
 }
 
-bool CheckProto_3(const Bip44Account&, const bool silent)
+bool CheckProto_3(const Bip44Account& input, const bool silent)
 {
     UNDEFINED_VERSION("blockchain account", 3)
 }
 
-bool CheckProto_4(const Bip44Account&, const bool silent)
+bool CheckProto_4(const Bip44Account& input, const bool silent)
 {
     UNDEFINED_VERSION("blockchain account", 4)
 }
 
-bool CheckProto_5(const Bip44Account&, const bool silent)
+bool CheckProto_5(const Bip44Account& input, const bool silent)
 {
     UNDEFINED_VERSION("blockchain account", 5)
 }

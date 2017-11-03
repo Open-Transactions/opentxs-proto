@@ -45,36 +45,36 @@ namespace opentxs
 {
 namespace proto
 {
-bool CheckProto_1(const StoreSecret& request, const bool silent)
+bool CheckProto_1(const StoreSecret& input, const bool silent)
 {
-    if (!request.has_type()) {
+    if (!input.has_type()) {
         FAIL("StoreSecret", "missing type")
     }
 
-    if ((SECRETTYPE_BIP39 > request.type()) ||
-        (SECRETTYPE_BIP39 < request.type())) {
-        FAIL2("StoreSecret", "invalid type", request.type())
+    if ((SECRETTYPE_BIP39 > input.type()) ||
+        (SECRETTYPE_BIP39 < input.type())) {
+        FAIL2("StoreSecret", "invalid type", input.type())
     }
 
     return true;
 }
 
-bool CheckProto_2(const StoreSecret& request, const bool silent)
+bool CheckProto_2(const StoreSecret& input, const bool silent)
 {
-    return CheckProto_1(request, silent);
+    return CheckProto_1(input, silent);
 }
 
-bool CheckProto_3(const StoreSecret& request, const bool silent)
+bool CheckProto_3(const StoreSecret& input, const bool silent)
 {
-    return CheckProto_1(request, silent);
+    return CheckProto_1(input, silent);
 }
 
-bool CheckProto_4(const StoreSecret& request, const bool silent)
+bool CheckProto_4(const StoreSecret& input, const bool silent)
 {
-    return CheckProto_1(request, silent);
+    return CheckProto_1(input, silent);
 }
 
-bool CheckProto_5(const StoreSecret&, const bool silent)
+bool CheckProto_5(const StoreSecret& input, const bool silent)
 {
     UNDEFINED_VERSION("StoreSecret", 5)
 }

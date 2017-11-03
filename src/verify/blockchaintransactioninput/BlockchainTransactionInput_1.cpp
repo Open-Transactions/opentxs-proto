@@ -77,22 +77,22 @@ bool CheckProto_1(const BlockchainTransactionInput& input, const bool silent)
     return true;
 }
 
-bool CheckProto_2(const BlockchainTransactionInput&, const bool silent)
+bool CheckProto_2(const BlockchainTransactionInput& input, const bool silent)
 {
     UNDEFINED_VERSION("blockchain transaction input", 2)
 }
 
-bool CheckProto_3(const BlockchainTransactionInput&, const bool silent)
+bool CheckProto_3(const BlockchainTransactionInput& input, const bool silent)
 {
     UNDEFINED_VERSION("blockchain transaction input", 3)
 }
 
-bool CheckProto_4(const BlockchainTransactionInput&, const bool silent)
+bool CheckProto_4(const BlockchainTransactionInput& input, const bool silent)
 {
     UNDEFINED_VERSION("blockchain transaction input", 4)
 }
 
-bool CheckProto_5(const BlockchainTransactionInput&, const bool silent)
+bool CheckProto_5(const BlockchainTransactionInput& input, const bool silent)
 {
     UNDEFINED_VERSION("blockchain transaction input", 5)
 }

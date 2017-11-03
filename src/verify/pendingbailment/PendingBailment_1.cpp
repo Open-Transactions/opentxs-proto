@@ -46,63 +46,63 @@ namespace opentxs
 namespace proto
 {
 
-bool CheckProto_1(const PendingBailment& request, const bool silent)
+bool CheckProto_1(const PendingBailment& input, const bool silent)
 {
-    if (!request.has_unitid()) {
+    if (!input.has_unitid()) {
         FAIL("pending bailment", "missing unit id")
     }
 
-    if (MIN_PLAUSIBLE_IDENTIFIER > request.unitid().size()) {
-        FAIL2("pending bailment", "invalid unit id", request.unitid())
+    if (MIN_PLAUSIBLE_IDENTIFIER > input.unitid().size()) {
+        FAIL2("pending bailment", "invalid unit id", input.unitid())
     }
 
-    if (MAX_PLAUSIBLE_IDENTIFIER < request.unitid().size()) {
-        FAIL2("pending bailment", "invalid unit id", request.unitid())
+    if (MAX_PLAUSIBLE_IDENTIFIER < input.unitid().size()) {
+        FAIL2("pending bailment", "invalid unit id", input.unitid())
     }
 
-    if (!request.has_serverid()) {
+    if (!input.has_serverid()) {
         FAIL("pending bailment", "missing server id")
     }
 
-    if (MIN_PLAUSIBLE_IDENTIFIER > request.serverid().size()) {
-        FAIL2("pending bailment", "invalid server id", request.serverid())
+    if (MIN_PLAUSIBLE_IDENTIFIER > input.serverid().size()) {
+        FAIL2("pending bailment", "invalid server id", input.serverid())
     }
 
-    if (MAX_PLAUSIBLE_IDENTIFIER < request.serverid().size()) {
-        FAIL2("pending bailment", "invalid server id", request.serverid())
+    if (MAX_PLAUSIBLE_IDENTIFIER < input.serverid().size()) {
+        FAIL2("pending bailment", "invalid server id", input.serverid())
     }
 
-    if (!request.has_txid()) {
+    if (!input.has_txid()) {
         FAIL("pending bailment", "missing txid")
     }
 
-    if (MIN_PLAUSIBLE_IDENTIFIER > request.txid().size()) {
-        FAIL2("pending bailment", "invalid txid", request.txid())
+    if (MIN_PLAUSIBLE_IDENTIFIER > input.txid().size()) {
+        FAIL2("pending bailment", "invalid txid", input.txid())
     }
 
-    if (MAX_PLAUSIBLE_IDENTIFIER < request.txid().size()) {
-        FAIL2("pending bailment", "invalid txid", request.txid())
+    if (MAX_PLAUSIBLE_IDENTIFIER < input.txid().size()) {
+        FAIL2("pending bailment", "invalid txid", input.txid())
     }
 
     return true;
 }
 
-bool CheckProto_2(const PendingBailment& request, const bool silent)
+bool CheckProto_2(const PendingBailment& input, const bool silent)
 {
-    return CheckProto_1(request, silent);
+    return CheckProto_1(input, silent);
 }
 
-bool CheckProto_3(const PendingBailment& request, const bool silent)
+bool CheckProto_3(const PendingBailment& input, const bool silent)
 {
-    return CheckProto_1(request, silent);
+    return CheckProto_1(input, silent);
 }
 
-bool CheckProto_4(const PendingBailment& request, const bool silent)
+bool CheckProto_4(const PendingBailment& input, const bool silent)
 {
-    return CheckProto_1(request, silent);
+    return CheckProto_1(input, silent);
 }
 
-bool CheckProto_5(const PendingBailment&, const bool silent)
+bool CheckProto_5(const PendingBailment& input, const bool silent)
 {
     UNDEFINED_VERSION("pending bailment", 5)
 }

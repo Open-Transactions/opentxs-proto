@@ -46,17 +46,17 @@ namespace opentxs
 namespace proto
 {
 
-bool CheckProto_2(const Seed& seed, const bool silent)
+bool CheckProto_2(const Seed& input, const bool silent)
 {
-    if (!seed.has_words()) {
+    if (!input.has_words()) {
         FAIL("seed", "missing words")
     }
 
     try {
         const bool validWords = Check(
-            seed.words(),
-            SeedAllowedCiphertext.at(seed.version()).first,
-            SeedAllowedCiphertext.at(seed.version()).second,
+            input.words(),
+            SeedAllowedCiphertext.at(input.version()).first,
+            SeedAllowedCiphertext.at(input.version()).second,
             silent,
             false);
 
@@ -67,15 +67,15 @@ bool CheckProto_2(const Seed& seed, const bool silent)
         FAIL2(
             "seed",
             "allowed ciphertext version not defined for version",
-            seed.version())
+            input.version())
     }
 
-    if (seed.has_passphrase()) {
+    if (input.has_passphrase()) {
         try {
             const bool validWords = Check(
-                seed.passphrase(),
-                SeedAllowedCiphertext.at(seed.version()).first,
-                SeedAllowedCiphertext.at(seed.version()).second,
+                input.passphrase(),
+                SeedAllowedCiphertext.at(input.version()).first,
+                SeedAllowedCiphertext.at(input.version()).second,
                 silent,
                 false);
 
@@ -86,41 +86,41 @@ bool CheckProto_2(const Seed& seed, const bool silent)
             FAIL2(
                 "seed",
                 "allowed ciphertext version not defined for version",
-                seed.version())
+                input.version())
         }
 
-        if (seed.passphrase().has_key()) {
+        if (input.passphrase().has_key()) {
             FAIL(
                 "seed", "passphrase not allowed to have embedded symmetric key")
         }
     }
 
-    if (!seed.has_fingerprint()) {
+    if (!input.has_fingerprint()) {
         FAIL("seed", "missing fingerprint")
     }
 
-    if (MIN_PLAUSIBLE_IDENTIFIER > seed.fingerprint().size()) {
+    if (MIN_PLAUSIBLE_IDENTIFIER > input.fingerprint().size()) {
         FAIL("seed", "invalid fingerprint")
     }
 
-    if (!seed.has_index()) {
+    if (!input.has_index()) {
         FAIL("seed", "missing index")
     }
 
     return true;
 }
 
-bool CheckProto_3(const Seed&, const bool silent)
+bool CheckProto_3(const Seed& input, const bool silent)
 {
     UNDEFINED_VERSION("seed", 3)
 }
 
-bool CheckProto_4(const Seed&, const bool silent)
+bool CheckProto_4(const Seed& input, const bool silent)
 {
     UNDEFINED_VERSION("seed", 4)
 }
 
-bool CheckProto_5(const Seed&, const bool silent)
+bool CheckProto_5(const Seed& input, const bool silent)
 {
     UNDEFINED_VERSION("seed", 5)
 }

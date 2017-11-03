@@ -47,20 +47,18 @@ namespace proto
 {
 
 bool CheckProto_1(
-    const VerificationGroup& verificationGroup,
+    const VerificationGroup& input,
     const bool silent,
     const VerificationType indexed)
 {
     VerificationNymMap nymMap;
 
-    for (auto& it : verificationGroup.identity()) {
+    for (auto& it : input.identity()) {
         try {
             const bool validIdentity = Check(
                 it,
-                VerificationGroupAllowedIdentity.at(verificationGroup.version())
-                    .first,
-                VerificationGroupAllowedIdentity.at(verificationGroup.version())
-                    .second,
+                VerificationGroupAllowedIdentity.at(input.version()).first,
+                VerificationGroupAllowedIdentity.at(input.version()).second,
                 silent,
                 nymMap,
                 indexed);
@@ -72,7 +70,7 @@ bool CheckProto_1(
             FAIL2(
                 "verification group",
                 "allowed verification identity version not defined for version",
-                verificationGroup.version())
+                input.version())
         }
     }
 
@@ -86,7 +84,7 @@ bool CheckProto_1(
 }
 
 bool CheckProto_2(
-    const VerificationGroup&,
+    const VerificationGroup& input,
     const bool silent,
     const VerificationType)
 {
@@ -94,7 +92,7 @@ bool CheckProto_2(
 }
 
 bool CheckProto_3(
-    const VerificationGroup&,
+    const VerificationGroup& input,
     const bool silent,
     const VerificationType)
 {
@@ -102,7 +100,7 @@ bool CheckProto_3(
 }
 
 bool CheckProto_4(
-    const VerificationGroup&,
+    const VerificationGroup& input,
     const bool silent,
     const VerificationType)
 {
@@ -110,7 +108,7 @@ bool CheckProto_4(
 }
 
 bool CheckProto_5(
-    const VerificationGroup&,
+    const VerificationGroup& input,
     const bool silent,
     const VerificationType)
 {

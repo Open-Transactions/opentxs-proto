@@ -47,17 +47,16 @@ namespace proto
 {
 
 bool CheckProto_1(
-    const VerificationSet& verificationSet,
+    const VerificationSet& input,
     const bool silent,
     const VerificationType indexed)
 {
-    if (verificationSet.has_internal()) {
+    if (input.has_internal()) {
         try {
             const bool validInternal = Check(
-                verificationSet.internal(),
-                VerificationSetAllowedGroup.at(verificationSet.version()).first,
-                VerificationSetAllowedGroup.at(verificationSet.version())
-                    .second,
+                input.internal(),
+                VerificationSetAllowedGroup.at(input.version()).first,
+                VerificationSetAllowedGroup.at(input.version()).second,
                 silent,
                 indexed);
 
@@ -68,17 +67,16 @@ bool CheckProto_1(
             FAIL2(
                 "verification set",
                 "allowed verification group version not defined for version",
-                verificationSet.version())
+                input.version())
         }
     }
 
-    if (verificationSet.has_external()) {
+    if (input.has_external()) {
         try {
             const bool validExternal = Check(
-                verificationSet.external(),
-                VerificationSetAllowedGroup.at(verificationSet.version()).first,
-                VerificationSetAllowedGroup.at(verificationSet.version())
-                    .second,
+                input.external(),
+                VerificationSetAllowedGroup.at(input.version()).first,
+                VerificationSetAllowedGroup.at(input.version()).second,
                 silent,
                 indexed);
 
@@ -89,11 +87,11 @@ bool CheckProto_1(
             FAIL2(
                 "verification set",
                 "allowed verification group version not defined for version",
-                verificationSet.version())
+                input.version())
         }
     }
 
-    for (auto& it : verificationSet.repudiated()) {
+    for (auto& it : input.repudiated()) {
         if (MIN_PLAUSIBLE_IDENTIFIER < it.size()) {
             FAIL("verification set", "invalid repudiation")
         }
@@ -103,7 +101,7 @@ bool CheckProto_1(
 }
 
 bool CheckProto_2(
-    const VerificationSet&,
+    const VerificationSet& input,
     const bool silent,
     const VerificationType)
 {
@@ -111,7 +109,7 @@ bool CheckProto_2(
 }
 
 bool CheckProto_3(
-    const VerificationSet&,
+    const VerificationSet& input,
     const bool silent,
     const VerificationType)
 {
@@ -119,7 +117,7 @@ bool CheckProto_3(
 }
 
 bool CheckProto_4(
-    const VerificationSet&,
+    const VerificationSet& input,
     const bool silent,
     const VerificationType)
 {
@@ -127,7 +125,7 @@ bool CheckProto_4(
 }
 
 bool CheckProto_5(
-    const VerificationSet&,
+    const VerificationSet& input,
     const bool silent,
     const VerificationType)
 {

@@ -46,41 +46,41 @@ namespace opentxs
 namespace proto
 {
 
-bool CheckProto_1(const CredentialIndex& index, const bool silent)
+bool CheckProto_1(const CredentialIndex& input, const bool silent)
 {
     bool validSource = false;
 
-    if (!index.has_nymid()) {
+    if (!input.has_nymid()) {
         FAIL("credential index", "missing nym id")
     }
 
-    if (MIN_PLAUSIBLE_IDENTIFIER > index.nymid().size()) {
-        FAIL2("credential index", "invalid nym id", index.nymid())
+    if (MIN_PLAUSIBLE_IDENTIFIER > input.nymid().size()) {
+        FAIL2("credential index", "invalid nym id", input.nymid())
     }
 
-    if (!index.has_mode()) {
+    if (!input.has_mode()) {
         FAIL("credential index", "missing mode")
     }
 
-    const auto actualMode = index.mode();
+    const auto actualMode = input.mode();
 
-    if (!index.has_revision()) {
+    if (!input.has_revision()) {
         FAIL("credential index", "missing revision")
     }
 
-    if (1 > index.revision()) {
-        FAIL2("credential index", "invalid revision", index.revision())
+    if (1 > input.revision()) {
+        FAIL2("credential index", "invalid revision", input.revision())
     }
 
-    if (!index.has_source()) {
+    if (!input.has_source()) {
         FAIL("credential index", "missing nym id source")
     }
 
     try {
         validSource = Check(
-            index.source(),
-            CredentialIndexAllowedNymIDSource.at(index.version()).first,
-            CredentialIndexAllowedNymIDSource.at(index.version()).second,
+            input.source(),
+            CredentialIndexAllowedNymIDSource.at(input.version()).first,
+            CredentialIndexAllowedNymIDSource.at(input.version()).second,
             silent);
 
         if (!validSource) {
@@ -90,22 +90,22 @@ bool CheckProto_1(const CredentialIndex& index, const bool silent)
         FAIL2(
             "credential index",
             "allowed nym ID source version not defined for version",
-            index.version())
+            input.version())
     }
 
     bool haveHD = false;
 
-    for (auto& it : index.activecredentials()) {
+    for (auto& it : input.activecredentials()) {
         try {
             const KeyMode mode = (CREDINDEX_PRIVATE == actualMode)
                                      ? KEYMODE_PRIVATE
                                      : KEYMODE_PUBLIC;
             const bool validSet = Check(
                 it,
-                CredentialIndexAllowedCredentialSets.at(index.version()).first,
-                CredentialIndexAllowedCredentialSets.at(index.version()).second,
+                CredentialIndexAllowedCredentialSets.at(input.version()).first,
+                CredentialIndexAllowedCredentialSets.at(input.version()).second,
                 silent,
-                index.nymid(),
+                input.nymid(),
                 mode,
                 haveHD);
 
@@ -116,21 +116,21 @@ bool CheckProto_1(const CredentialIndex& index, const bool silent)
             FAIL2(
                 "credential index",
                 "allowed credential set version not defined for version",
-                index.version())
+                input.version())
         }
     }
 
-    for (auto& it : index.revokedcredentials()) {
+    for (auto& it : input.revokedcredentials()) {
         try {
             const KeyMode mode = (CREDINDEX_PRIVATE == actualMode)
                                      ? KEYMODE_PRIVATE
                                      : KEYMODE_PUBLIC;
             const bool validSet = Check(
                 it,
-                CredentialIndexAllowedCredentialSets.at(index.version()).first,
-                CredentialIndexAllowedCredentialSets.at(index.version()).second,
+                CredentialIndexAllowedCredentialSets.at(input.version()).first,
+                CredentialIndexAllowedCredentialSets.at(input.version()).second,
                 silent,
-                index.nymid(),
+                input.nymid(),
                 mode,
                 haveHD);
 
@@ -141,14 +141,14 @@ bool CheckProto_1(const CredentialIndex& index, const bool silent)
             FAIL2(
                 "credential index",
                 "allowed credential set version not defined for version",
-                index.version())
+                input.version())
         }
     }
 
     switch (actualMode) {
         case (CREDINDEX_PRIVATE): {
             if (haveHD) {
-                if (1 > index.index()) {
+                if (1 > input.index()) {
                     FAIL("credential index", "missing index")
                 }
             }
@@ -156,7 +156,7 @@ bool CheckProto_1(const CredentialIndex& index, const bool silent)
             break;
         }
         case (CREDINDEX_PUBLIC): {
-            if (index.has_index()) {
+            if (input.has_index()) {
                 FAIL("credential index", "index present in public mode")
             }
 
@@ -170,22 +170,22 @@ bool CheckProto_1(const CredentialIndex& index, const bool silent)
     return true;
 }
 
-bool CheckProto_2(const CredentialIndex& index, const bool silent)
+bool CheckProto_2(const CredentialIndex& input, const bool silent)
 {
-    return CheckProto_1(index, silent);
+    return CheckProto_1(input, silent);
 }
 
-bool CheckProto_3(const CredentialIndex& index, const bool silent)
+bool CheckProto_3(const CredentialIndex& input, const bool silent)
 {
-    return CheckProto_1(index, silent);
+    return CheckProto_1(input, silent);
 }
 
-bool CheckProto_4(const CredentialIndex& index, const bool silent)
+bool CheckProto_4(const CredentialIndex& input, const bool silent)
 {
-    return CheckProto_1(index, silent);
+    return CheckProto_1(input, silent);
 }
 
-bool CheckProto_5(const CredentialIndex&, const bool silent)
+bool CheckProto_5(const CredentialIndex& input, const bool silent)
 {
     UNDEFINED_VERSION("credential index", 5)
 }

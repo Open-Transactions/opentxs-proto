@@ -46,40 +46,38 @@ namespace opentxs
 namespace proto
 {
 
-bool CheckProto_1(const ServerContract& contract, const bool silent)
+bool CheckProto_1(const ServerContract& input, const bool silent)
 {
-    if (!contract.has_id()) {
+    if (!input.has_id()) {
         FAIL("server contract", " missing id")
     }
 
-    if (MIN_PLAUSIBLE_IDENTIFIER > contract.id().size()) {
-        FAIL2("server contract", "invalid id", contract.id())
+    if (MIN_PLAUSIBLE_IDENTIFIER > input.id().size()) {
+        FAIL2("server contract", "invalid id", input.id())
     }
 
-    if (!contract.has_nymid()) {
+    if (!input.has_nymid()) {
         FAIL("server contract", "missing nym id")
     }
 
-    if (!contract.has_name()) {
+    if (!input.has_name()) {
         FAIL("server contract", "missing name")
     }
 
-    if (1 > contract.name().size()) {
-        FAIL2("server contract", "invalid name", contract.name())
+    if (1 > input.name().size()) {
+        FAIL2("server contract", "invalid name", input.name())
     }
 
-    if (MIN_PLAUSIBLE_IDENTIFIER > contract.nymid().size()) {
-        FAIL2("server contract", "invalid nym id", contract.nymid())
+    if (MIN_PLAUSIBLE_IDENTIFIER > input.nymid().size()) {
+        FAIL2("server contract", "invalid nym id", input.nymid())
     }
 
-    if (contract.has_publicnym()) {
+    if (input.has_publicnym()) {
         try {
             const bool validNym = Check(
-                contract.publicnym(),
-                ServerContractAllowedCredentialIndex.at(contract.version())
-                    .first,
-                ServerContractAllowedCredentialIndex.at(contract.version())
-                    .second,
+                input.publicnym(),
+                ServerContractAllowedCredentialIndex.at(input.version()).first,
+                ServerContractAllowedCredentialIndex.at(input.version()).second,
                 silent);
 
             if (false == validNym) {
@@ -89,19 +87,19 @@ bool CheckProto_1(const ServerContract& contract, const bool silent)
             FAIL2(
                 "server contract",
                 "allowed credential index version not defined for version",
-                contract.version())
+                input.version())
         }
     }
 
-    if (0 == contract.address().size()) {
+    if (0 == input.address().size()) {
         FAIL("server contract", "no listen addresses")
     }
 
     try {
         const bool validAddress = Check(
-            contract.address(0),
-            ServerContractAllowedListenAddress.at(contract.version()).first,
-            ServerContractAllowedListenAddress.at(contract.version()).second,
+            input.address(0),
+            ServerContractAllowedListenAddress.at(input.version()).first,
+            ServerContractAllowedListenAddress.at(input.version()).second,
             silent);
 
         if (false == validAddress) {
@@ -111,26 +109,26 @@ bool CheckProto_1(const ServerContract& contract, const bool silent)
         FAIL2(
             "server contract",
             "allowed listen address version not defined for version",
-            contract.version())
+            input.version())
     }
 
-    if (!contract.has_transportkey()) {
+    if (!input.has_transportkey()) {
         FAIL("server contract", "missing transport key")
     }
 
-    if (MIN_PLAUSIBLE_KEYSIZE > contract.transportkey().size()) {
+    if (MIN_PLAUSIBLE_KEYSIZE > input.transportkey().size()) {
         FAIL("server contract", "invalid transport key")
     }
 
-    if (!contract.has_signature()) {
+    if (!input.has_signature()) {
         FAIL("server contract", "missing signature")
     }
 
     try {
         const bool validSig = Check(
-            contract.signature(),
-            ServerContractAllowedSignature.at(contract.version()).first,
-            ServerContractAllowedSignature.at(contract.version()).second,
+            input.signature(),
+            ServerContractAllowedSignature.at(input.version()).first,
+            ServerContractAllowedSignature.at(input.version()).second,
             silent,
             SIGROLE_SERVERCONTRACT);
 
@@ -141,28 +139,28 @@ bool CheckProto_1(const ServerContract& contract, const bool silent)
         FAIL2(
             "server contract",
             "allowed signature version not defined for version",
-            contract.version())
+            input.version())
     }
 
     return true;
 }
 
-bool CheckProto_2(const ServerContract&, const bool silent)
+bool CheckProto_2(const ServerContract& input, const bool silent)
 {
     UNDEFINED_VERSION("server contract", 2)
 }
 
-bool CheckProto_3(const ServerContract&, const bool silent)
+bool CheckProto_3(const ServerContract& input, const bool silent)
 {
     UNDEFINED_VERSION("server contract", 3)
 }
 
-bool CheckProto_4(const ServerContract&, const bool silent)
+bool CheckProto_4(const ServerContract& input, const bool silent)
 {
     UNDEFINED_VERSION("server contract", 4)
 }
 
-bool CheckProto_5(const ServerContract&, const bool silent)
+bool CheckProto_5(const ServerContract& input, const bool silent)
 {
     UNDEFINED_VERSION("server contract", 5)
 }

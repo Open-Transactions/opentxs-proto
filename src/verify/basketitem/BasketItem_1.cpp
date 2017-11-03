@@ -46,49 +46,52 @@ namespace opentxs
 namespace proto
 {
 
-bool CheckProto_1(const BasketItem& item, const bool silent, BasketItemMap& map)
+bool CheckProto_1(
+    const BasketItem& input,
+    const bool silent,
+    BasketItemMap& map)
 {
-    if (!item.has_weight()) {
+    if (!input.has_weight()) {
         FAIL("basket item", "missing weight")
     }
 
-    if (!item.has_unit()) {
+    if (!input.has_unit()) {
         FAIL("basket item", "missing unit")
     }
 
-    if (MIN_PLAUSIBLE_IDENTIFIER > item.unit().size()) {
-        FAIL2("basket item", "invalid unit", item.unit())
+    if (MIN_PLAUSIBLE_IDENTIFIER > input.unit().size()) {
+        FAIL2("basket item", "invalid unit", input.unit())
     }
 
-    map[item.unit()] += 1;
+    map[input.unit()] += 1;
 
-    if (!item.has_account()) {
+    if (!input.has_account()) {
         FAIL("basket item", "missing account")
     }
 
-    if (MIN_PLAUSIBLE_IDENTIFIER > item.account().size()) {
-        FAIL2("basket item", "invalid account", item.account())
+    if (MIN_PLAUSIBLE_IDENTIFIER > input.account().size()) {
+        FAIL2("basket item", "invalid account", input.account())
     }
 
     return true;
 }
 
-bool CheckProto_2(const BasketItem&, const bool silent, BasketItemMap&)
+bool CheckProto_2(const BasketItem& input, const bool silent, BasketItemMap&)
 {
     UNDEFINED_VERSION("basket item", 2)
 }
 
-bool CheckProto_3(const BasketItem&, const bool silent, BasketItemMap&)
+bool CheckProto_3(const BasketItem& input, const bool silent, BasketItemMap&)
 {
     UNDEFINED_VERSION("basket item", 3)
 }
 
-bool CheckProto_4(const BasketItem&, const bool silent, BasketItemMap&)
+bool CheckProto_4(const BasketItem& input, const bool silent, BasketItemMap&)
 {
     UNDEFINED_VERSION("basket item", 4)
 }
 
-bool CheckProto_5(const BasketItem&, const bool silent, BasketItemMap&)
+bool CheckProto_5(const BasketItem& input, const bool silent, BasketItemMap&)
 {
     UNDEFINED_VERSION("basket item", 5)
 }

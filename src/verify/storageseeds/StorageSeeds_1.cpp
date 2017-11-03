@@ -46,22 +46,22 @@ namespace opentxs
 namespace proto
 {
 
-bool CheckProto_1(const StorageSeeds& seed, const bool silent)
+bool CheckProto_1(const StorageSeeds& input, const bool silent)
 {
-    if (!seed.has_defaultseed()) {
+    if (!input.has_defaultseed()) {
         FAIL("seed storage index", "missing default seed")
     }
 
-    if (MIN_PLAUSIBLE_IDENTIFIER > seed.defaultseed().size()) {
+    if (MIN_PLAUSIBLE_IDENTIFIER > input.defaultseed().size()) {
         FAIL("seed storage index", "invalid default seed")
     }
 
-    for (auto& hash : seed.seed()) {
+    for (auto& hash : input.seed()) {
         try {
             const bool valid = Check(
                 hash,
-                StorageSeedsAllowedHash.at(seed.version()).first,
-                StorageSeedsAllowedHash.at(seed.version()).second,
+                StorageSeedsAllowedHash.at(input.version()).first,
+                StorageSeedsAllowedHash.at(input.version()).second,
                 silent);
 
             if (!valid) {
@@ -71,29 +71,29 @@ bool CheckProto_1(const StorageSeeds& seed, const bool silent)
             FAIL2(
                 "seed storage index",
                 "allowed storage item hash version not defined for version",
-                seed.version())
+                input.version())
         }
     }
 
     return true;
 }
 
-bool CheckProto_2(const StorageSeeds& seed, const bool silent)
+bool CheckProto_2(const StorageSeeds& input, const bool silent)
 {
-    return CheckProto_1(seed, silent);
+    return CheckProto_1(input, silent);
 }
 
-bool CheckProto_3(const StorageSeeds&, const bool silent)
+bool CheckProto_3(const StorageSeeds& input, const bool silent)
 {
     UNDEFINED_VERSION("seed storage index", 3)
 }
 
-bool CheckProto_4(const StorageSeeds&, const bool silent)
+bool CheckProto_4(const StorageSeeds& input, const bool silent)
 {
     UNDEFINED_VERSION("seed storage index", 4)
 }
 
-bool CheckProto_5(const StorageSeeds&, const bool silent)
+bool CheckProto_5(const StorageSeeds& input, const bool silent)
 {
     UNDEFINED_VERSION("seed storage index", 5)
 }

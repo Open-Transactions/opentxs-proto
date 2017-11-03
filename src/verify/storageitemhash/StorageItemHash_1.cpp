@@ -45,25 +45,25 @@ namespace opentxs
 {
 namespace proto
 {
-bool CheckProto_1(const StorageItemHash& hash, const bool silent)
+bool CheckProto_1(const StorageItemHash& input, const bool silent)
 {
-    if (!hash.has_itemid()) {
+    if (!input.has_itemid()) {
         FAIL("storage item hash", "missing id")
     }
 
-    if (MIN_PLAUSIBLE_IDENTIFIER > hash.itemid().size()) {
+    if (MIN_PLAUSIBLE_IDENTIFIER > input.itemid().size()) {
         FAIL("storage item hash", "invalid id")
     }
 
-    if (!hash.has_hash()) {
+    if (!input.has_hash()) {
         FAIL("storage item hash", "missing hash")
     }
 
-    if (MIN_PLAUSIBLE_IDENTIFIER > hash.hash().size()) {
+    if (MIN_PLAUSIBLE_IDENTIFIER > input.hash().size()) {
         FAIL("storage item hash", "invalid has")
     }
 
-    if (hash.has_type() && (STORAGEHASH_ERROR != hash.type())) {
+    if (input.has_type() && (STORAGEHASH_ERROR != input.type())) {
         FAIL("storage item hash", "unexpected type field present")
     }
 

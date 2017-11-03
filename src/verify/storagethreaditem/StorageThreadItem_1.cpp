@@ -46,23 +46,23 @@ namespace opentxs
 namespace proto
 {
 
-bool CheckProto_1(const StorageThreadItem& item, const bool silent)
+bool CheckProto_1(const StorageThreadItem& input, const bool silent)
 {
-    if (!item.has_id()) {
+    if (!input.has_id()) {
         FAIL("storage thread item", "missing id")
     }
 
-    if (MIN_PLAUSIBLE_IDENTIFIER > item.id().size()) {
+    if (MIN_PLAUSIBLE_IDENTIFIER > input.id().size()) {
         FAIL("storage thread item", "invalid id")
     }
 
-    if (0 == item.box()) {
+    if (0 == input.box()) {
         FAIL("storage thread item", "invalid box")
     }
 
-    const bool hasAccount = (0 < item.account().size());
+    const bool hasAccount = (0 < input.account().size());
     const bool invalidAccount =
-        (MIN_PLAUSIBLE_IDENTIFIER > item.account().size());
+        (MIN_PLAUSIBLE_IDENTIFIER > input.account().size());
 
     if (hasAccount && invalidAccount) {
         FAIL("storage thread item", "invalid account")
@@ -71,22 +71,22 @@ bool CheckProto_1(const StorageThreadItem& item, const bool silent)
     return true;
 }
 
-bool CheckProto_2(const StorageThreadItem&, const bool silent)
+bool CheckProto_2(const StorageThreadItem& input, const bool silent)
 {
     UNDEFINED_VERSION("storage thread item", 2)
 }
 
-bool CheckProto_3(const StorageThreadItem&, const bool silent)
+bool CheckProto_3(const StorageThreadItem& input, const bool silent)
 {
     UNDEFINED_VERSION("storage thread item", 3)
 }
 
-bool CheckProto_4(const StorageThreadItem&, const bool silent)
+bool CheckProto_4(const StorageThreadItem& input, const bool silent)
 {
     UNDEFINED_VERSION("storage thread item", 4)
 }
 
-bool CheckProto_5(const StorageThreadItem&, const bool silent)
+bool CheckProto_5(const StorageThreadItem& input, const bool silent)
 {
     UNDEFINED_VERSION("storage thread item", 5)
 }

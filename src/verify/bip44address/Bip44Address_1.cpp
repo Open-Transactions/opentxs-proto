@@ -46,37 +46,37 @@ namespace opentxs
 namespace proto
 {
 
-bool CheckProto_1(const Bip44Address& address, const bool silent)
+bool CheckProto_1(const Bip44Address& input, const bool silent)
 {
-    if (false == address.has_address()) {
+    if (false == input.has_address()) {
         FAIL("blockchain address", "missing index")
     }
 
-    if (address.has_address()) {
-        if (MIN_PLAUSIBLE_SCRIPT > address.address().size()) {
+    if (input.has_address()) {
+        if (MIN_PLAUSIBLE_SCRIPT > input.address().size()) {
             FAIL("blockchain address", "invalid address")
         }
 
-        if (MAX_PLAUSIBLE_SCRIPT < address.address().size()) {
+        if (MAX_PLAUSIBLE_SCRIPT < input.address().size()) {
             FAIL("blockchain address", "invalid address")
         }
     }
 
-    if (MAX_VALID_CONTACT_VALUE > address.label().size()) {
+    if (MAX_VALID_CONTACT_VALUE > input.label().size()) {
         FAIL("transaction", "invalid label")
     }
 
-    if (address.has_contact()) {
-        if (MIN_PLAUSIBLE_IDENTIFIER > address.contact().size()) {
+    if (input.has_contact()) {
+        if (MIN_PLAUSIBLE_IDENTIFIER > input.contact().size()) {
             FAIL("blockchain address", "invalid contact")
         }
 
-        if (MAX_PLAUSIBLE_IDENTIFIER < address.contact().size()) {
+        if (MAX_PLAUSIBLE_IDENTIFIER < input.contact().size()) {
             FAIL("blockchain address", "invalid contact")
         }
     }
 
-    for (const auto& txid : address.incoming()) {
+    for (const auto& txid : input.incoming()) {
         if (MIN_PLAUSIBLE_IDENTIFIER > txid.size()) {
             FAIL("blockchain address", "invalid txid")
         }
@@ -89,22 +89,22 @@ bool CheckProto_1(const Bip44Address& address, const bool silent)
     return true;
 }
 
-bool CheckProto_2(const Bip44Address&, const bool silent)
+bool CheckProto_2(const Bip44Address& input, const bool silent)
 {
     UNDEFINED_VERSION("blockchain address", 2)
 }
 
-bool CheckProto_3(const Bip44Address&, const bool silent)
+bool CheckProto_3(const Bip44Address& input, const bool silent)
 {
     UNDEFINED_VERSION("blockchain address", 3)
 }
 
-bool CheckProto_4(const Bip44Address&, const bool silent)
+bool CheckProto_4(const Bip44Address& input, const bool silent)
 {
     UNDEFINED_VERSION("blockchain address", 4)
 }
 
-bool CheckProto_5(const Bip44Address&, const bool silent)
+bool CheckProto_5(const Bip44Address& input, const bool silent)
 {
     UNDEFINED_VERSION("blockchain address", 5)
 }

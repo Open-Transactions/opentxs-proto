@@ -45,31 +45,31 @@ namespace opentxs
 {
 namespace proto
 {
-bool CheckProto_2(const ServerContext& context, const bool silent)
+bool CheckProto_2(const ServerContext& input, const bool silent)
 {
-    if (!context.has_serverid()) {
+    if (!input.has_serverid()) {
         FAIL("server context", "missing server id")
     }
 
-    if ((MIN_PLAUSIBLE_IDENTIFIER > context.serverid().size()) ||
-        (MAX_PLAUSIBLE_IDENTIFIER < context.serverid().size())) {
+    if ((MIN_PLAUSIBLE_IDENTIFIER > input.serverid().size()) ||
+        (MAX_PLAUSIBLE_IDENTIFIER < input.serverid().size())) {
         FAIL("server context", "invalid server id")
     }
 
     return true;
 }
 
-bool CheckProto_3(const ServerContext&, const bool silent)
+bool CheckProto_3(const ServerContext& input, const bool silent)
 {
     UNDEFINED_VERSION("server context", 3)
 }
 
-bool CheckProto_4(const ServerContext&, const bool silent)
+bool CheckProto_4(const ServerContext& input, const bool silent)
 {
     UNDEFINED_VERSION("server context", 4)
 }
 
-bool CheckProto_5(const ServerContext&, const bool silent)
+bool CheckProto_5(const ServerContext& input, const bool silent)
 {
     UNDEFINED_VERSION("server context", 5)
 }

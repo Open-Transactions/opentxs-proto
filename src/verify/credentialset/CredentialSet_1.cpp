@@ -47,81 +47,79 @@ namespace proto
 {
 
 bool CheckProto_1(
-    const CredentialSet& credSet,
+    const CredentialSet& input,
     const bool silent,
     const std::string& nymID,
     const KeyMode& key,
     bool& haveHD,
     const CredentialSetMode& mode)
 {
-    if (!credSet.has_nymid()) {
+    if (!input.has_nymid()) {
         FAIL("credential set", "missing nym id")
     }
 
-    if (nymID != credSet.nymid()) {
+    if (nymID != input.nymid()) {
         FAIL("credential set", "wrong nym id")
     }
 
-    if (MIN_PLAUSIBLE_IDENTIFIER > credSet.nymid().size()) {
-        FAIL2("credential set", "invalid nym id", credSet.nymid())
+    if (MIN_PLAUSIBLE_IDENTIFIER > input.nymid().size()) {
+        FAIL2("credential set", "invalid nym id", input.nymid())
     }
 
-    if (!credSet.has_masterid()) {
+    if (!input.has_masterid()) {
         FAIL("credential set", "missing master credential id")
     }
 
-    if (MIN_PLAUSIBLE_IDENTIFIER > credSet.masterid().size()) {
+    if (MIN_PLAUSIBLE_IDENTIFIER > input.masterid().size()) {
         FAIL2(
-            "credential set",
-            "invalid master credential id",
-            credSet.masterid())
+            "credential set", "invalid master credential id", input.masterid())
     }
 
-    if (!credSet.has_mode()) {
+    if (!input.has_mode()) {
         FAIL("credential set", "missing mode")
     }
 
     const bool checkMode = (CREDSETMODE_ERROR != mode);
 
     if (checkMode) {
-        if (credSet.mode() != mode) {
-            FAIL2("credential set", "incorrect mode", credSet.mode())
+        if (input.mode() != mode) {
+            FAIL2("credential set", "incorrect mode", input.mode())
         }
     }
 
-    switch (credSet.mode()) {
+    switch (input.mode()) {
         case CREDSETMODE_INDEX:
             if (KEYMODE_PRIVATE == key) {
-                if (1 > credSet.index()) {
+                if (1 > input.index()) {
                     FAIL("credential set", "missing index")
                 }
             } else {
-                if (0 < credSet.index()) {
+                if (0 < input.index()) {
                     FAIL("credential set", "index present in public mode")
                 }
             }
 
-            if (credSet.has_mastercredential()) {
+            if (input.has_mastercredential()) {
                 FAIL(
                     "credential set",
                     "full master credential included in index mode")
             }
 
-            if (0 < credSet.activechildren_size()) {
+            if (0 < input.activechildren_size()) {
                 FAIL2(
                     "credential set",
                     "full active credentials included in index mode",
-                    credSet.activechildren_size())
+                    input.activechildren_size())
             }
 
-            if (0 < credSet.revokedchildren_size()) {
+            if (0 < input.revokedchildren_size()) {
                 FAIL2(
                     "credential set",
                     "full revoked credentials included in index mode",
-                    credSet.revokedchildren_size())
+                    input.revokedchildren_size())
             }
 
-            for (auto& it : credSet.activechildids()) {
+            for (auto& it : input.activechildids()) {
                 if (MIN_PLAUSIBLE_IDENTIFIER > it.size()) {
                     FAIL2(
                         "credential set",
@@ -130,7 +128,7 @@ bool CheckProto_1(
                 }
             }
 
-            for (auto& it : credSet.revokedchildids()) {
+            for (auto& it : input.revokedchildids()) {
                 if (MIN_PLAUSIBLE_IDENTIFIER > it.size()) {
                     FAIL2(
                         "credential set",
@@ -140,15 +138,14 @@ bool CheckProto_1(
             }
             break;
         case CREDSETMODE_FULL:
-            if (!credSet.has_mastercredential()) {
+            if (!input.has_mastercredential()) {
                 FAIL("credential set", "missing master credential")
             }
 
             if (!Check(
-                    credSet.mastercredential(),
-                    CredentialSetAllowedCredentials.at(credSet.version()).first,
-                    CredentialSetAllowedCredentials.at(credSet.version())
-                        .second,
+                    input.mastercredential(),
+                    CredentialSetAllowedCredentials.at(input.version()).first,
+                    CredentialSetAllowedCredentials.at(input.version()).second,
                     silent,
                     key,
                     CREDROLE_MASTERKEY,
@@ -156,37 +153,37 @@ bool CheckProto_1(
                 FAIL("credential set", "invalid master credential")
             }
 
-            if (CREDTYPE_HD == credSet.mastercredential().type()) {
+            if (CREDTYPE_HD == input.mastercredential().type()) {
                 haveHD = true;
             }
 
-            if (credSet.mastercredential().id() != credSet.masterid()) {
+            if (input.mastercredential().id() != input.masterid()) {
                 FAIL2(
                     "credential set",
                     "wrong master credential",
-                    credSet.mastercredential().id())
+                    input.mastercredential().id())
             }
 
-            if (0 < credSet.activechildids_size()) {
+            if (0 < input.activechildids_size()) {
                 FAIL2(
                     "credential set",
                     "active credential IDs included in full mode",
-                    credSet.activechildids_size())
+                    input.activechildids_size())
             }
 
-            if (0 < credSet.revokedchildids_size()) {
+            if (0 < input.revokedchildids_size()) {
                 FAIL2(
                     "credential set",
                     "revoked credential IDs included in full mode",
-                    credSet.revokedchildids_size())
+                    input.revokedchildids_size())
             }
 
-            for (auto& it : credSet.activechildren()) {
+            for (auto& it : input.activechildren()) {
                 if (!Check(
                         it,
-                        CredentialSetAllowedCredentials.at(credSet.version())
+                        CredentialSetAllowedCredentials.at(input.version())
                             .first,
-                        CredentialSetAllowedCredentials.at(credSet.version())
+                        CredentialSetAllowedCredentials.at(input.version())
                             .second,
                         silent,
                         key,
@@ -204,12 +201,12 @@ bool CheckProto_1(
                 }
             }
 
-            for (auto& it : credSet.revokedchildren()) {
+            for (auto& it : input.revokedchildren()) {
                 if (!Check(
                         it,
-                        CredentialSetAllowedCredentials.at(credSet.version())
+                        CredentialSetAllowedCredentials.at(input.version())
                             .first,
-                        CredentialSetAllowedCredentials.at(credSet.version())
+                        CredentialSetAllowedCredentials.at(input.version())
                             .second,
                         silent,
                         key,
@@ -233,7 +230,7 @@ bool CheckProto_1(
                     "private credentials serialized in public form")
             } else {
                 if (haveHD) {
-                    if (0 < credSet.index()) {
+                    if (0 < input.index()) {
                         FAIL("credential set", "index present in public mode")
                     }
                 }
@@ -241,47 +238,47 @@ bool CheckProto_1(
 
             break;
         default:
-            FAIL2("credential set", "unknown mode", credSet.mode())
+            FAIL2("credential set", "unknown mode", input.mode())
     }
 
     return true;
 }
 
 bool CheckProto_2(
-    const CredentialSet& credSet,
+    const CredentialSet& input,
     const bool silent,
     const std::string& nymID,
     const KeyMode& key,
     bool& haveHD,
     const CredentialSetMode& mode)
 {
-    return CheckProto_1(credSet, silent, nymID, key, haveHD, mode);
+    return CheckProto_1(input, silent, nymID, key, haveHD, mode);
 }
 
 bool CheckProto_3(
-    const CredentialSet& credSet,
+    const CredentialSet& input,
     const bool silent,
     const std::string& nymID,
     const KeyMode& key,
     bool& haveHD,
     const CredentialSetMode& mode)
 {
-    return CheckProto_1(credSet, silent, nymID, key, haveHD, mode);
+    return CheckProto_1(input, silent, nymID, key, haveHD, mode);
 }
 
 bool CheckProto_4(
-    const CredentialSet& credSet,
+    const CredentialSet& input,
     const bool silent,
     const std::string& nymID,
     const KeyMode& key,
     bool& haveHD,
     const CredentialSetMode& mode)
 {
-    return CheckProto_1(credSet, silent, nymID, key, haveHD, mode);
+    return CheckProto_1(input, silent, nymID, key, haveHD, mode);
 }
 
 bool CheckProto_5(
-    const CredentialSet&,
+    const CredentialSet& input,
     const bool silent,
     const std::string&,
     const KeyMode&,

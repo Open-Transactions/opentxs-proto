@@ -46,13 +46,13 @@ namespace opentxs
 namespace proto
 {
 
-bool CheckProto_1(const EquityParams& params, const bool silent)
+bool CheckProto_1(const EquityParams& input, const bool silent)
 {
-    if (!params.has_type()) {
+    if (!input.has_type()) {
         FAIL("equity params", "")
     }
 
-    switch (params.type()) {
+    switch (input.type()) {
         case EQUITYTYPE_SHARES: {
             break;
         }
@@ -64,22 +64,22 @@ bool CheckProto_1(const EquityParams& params, const bool silent)
     return true;
 }
 
-bool CheckProto_2(const EquityParams&, const bool silent)
+bool CheckProto_2(const EquityParams& input, const bool silent)
 {
     UNDEFINED_VERSION("equity params", 2)
 }
 
-bool CheckProto_3(const EquityParams&, const bool silent)
+bool CheckProto_3(const EquityParams& input, const bool silent)
 {
     UNDEFINED_VERSION("equity params", 3)
 }
 
-bool CheckProto_4(const EquityParams&, const bool silent)
+bool CheckProto_4(const EquityParams& input, const bool silent)
 {
     UNDEFINED_VERSION("equity params", 4)
 }
 
-bool CheckProto_5(const EquityParams&, const bool silent)
+bool CheckProto_5(const EquityParams& input, const bool silent)
 {
     UNDEFINED_VERSION("equity params", 5)
 }

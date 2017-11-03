@@ -46,30 +46,30 @@ namespace opentxs
 namespace proto
 {
 
-bool CheckProto_1(const NymIDSource& source, const bool silent)
+bool CheckProto_1(const NymIDSource& input, const bool silent)
 {
-    if (!source.has_type()) {
+    if (!input.has_type()) {
         FAIL("nym id source", "missing type")
     }
 
     bool validSourcePubkey{false};
     bool validPaymentCode{false};
 
-    switch (source.type()) {
+    switch (input.type()) {
         case SOURCETYPE_PUBKEY:
-            if (!source.has_key()) {
+            if (!input.has_key()) {
                 FAIL("nym id source", "missing key")
             }
 
-            if (source.has_paymentcode()) {
+            if (input.has_paymentcode()) {
                 FAIL("nym id source", "pubkey source includes payment code")
             }
 
             try {
                 validSourcePubkey = Check(
-                    source.key(),
-                    NymIDSourceAllowedAsymmetricKey.at(source.version()).first,
-                    NymIDSourceAllowedAsymmetricKey.at(source.version()).second,
+                    input.key(),
+                    NymIDSourceAllowedAsymmetricKey.at(input.version()).first,
+                    NymIDSourceAllowedAsymmetricKey.at(input.version()).second,
                     silent,
                     CREDTYPE_LEGACY,
                     KEYMODE_PUBLIC,
@@ -82,24 +82,24 @@ bool CheckProto_1(const NymIDSource& source, const bool silent)
                 FAIL2(
                     "nym id source",
                     "allowed asymmetric key version not defined for version",
-                    source.version())
+                    input.version())
             }
 
             break;
         case SOURCETYPE_BIP47:
-            if (!source.has_paymentcode()) {
+            if (!input.has_paymentcode()) {
                 FAIL("nym id source", "missing payment code")
             }
 
-            if (source.has_key()) {
+            if (input.has_key()) {
                 FAIL("nym id source", "bip47 source includes public key")
             }
 
             try {
                 validPaymentCode = Check(
-                    source.paymentcode(),
-                    NymIDSourceAllowedPaymentCode.at(source.version()).first,
-                    NymIDSourceAllowedPaymentCode.at(source.version()).second,
+                    input.paymentcode(),
+                    NymIDSourceAllowedPaymentCode.at(input.version()).first,
+                    NymIDSourceAllowedPaymentCode.at(input.version()).second,
                     silent);
 
                 if (!validPaymentCode) {
@@ -109,33 +109,33 @@ bool CheckProto_1(const NymIDSource& source, const bool silent)
                 FAIL2(
                     "nym id source",
                     "allowed payment code version not defined for version",
-                    source.version())
+                    input.version())
             }
 
             break;
         default:
-            FAIL2("nym id source", "incorrect or unknown type", source.type())
+            FAIL2("nym id source", "incorrect or unknown type", input.type())
     }
 
     return true;
 }
 
-bool CheckProto_2(const NymIDSource&, const bool silent)
+bool CheckProto_2(const NymIDSource& input, const bool silent)
 {
     UNDEFINED_VERSION("nym id source", 2)
 }
 
-bool CheckProto_3(const NymIDSource&, const bool silent)
+bool CheckProto_3(const NymIDSource& input, const bool silent)
 {
     UNDEFINED_VERSION("nym id source", 3)
 }
 
-bool CheckProto_4(const NymIDSource&, const bool silent)
+bool CheckProto_4(const NymIDSource& input, const bool silent)
 {
     UNDEFINED_VERSION("nym id source", 4)
 }
 
-bool CheckProto_5(const NymIDSource&, const bool silent)
+bool CheckProto_5(const NymIDSource& input, const bool silent)
 {
     UNDEFINED_VERSION("nym id source", 5)
 }

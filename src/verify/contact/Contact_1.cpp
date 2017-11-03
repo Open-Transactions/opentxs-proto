@@ -46,32 +46,32 @@ namespace opentxs
 namespace proto
 {
 
-bool CheckProto_1(const Contact& contact, const bool silent)
+bool CheckProto_1(const Contact& input, const bool silent)
 {
-    if (false == contact.has_id()) {
+    if (false == input.has_id()) {
         FAIL("contact", "missing id")
     }
 
-    if (MIN_PLAUSIBLE_IDENTIFIER > contact.id().size()) {
-        FAIL2("contact", "invalid id", contact.id())
+    if (MIN_PLAUSIBLE_IDENTIFIER > input.id().size()) {
+        FAIL2("contact", "invalid id", input.id())
     }
 
-    if (MAX_PLAUSIBLE_IDENTIFIER < contact.id().size()) {
-        FAIL2("contact", "invalid id", contact.id())
+    if (MAX_PLAUSIBLE_IDENTIFIER < input.id().size()) {
+        FAIL2("contact", "invalid id", input.id())
     }
 
-    if (contact.has_label()) {
-        if (MAX_VALID_CONTACT_VALUE < contact.label().size()) {
-            FAIL2("contact", "invalid label", contact.id())
+    if (input.has_label()) {
+        if (MAX_VALID_CONTACT_VALUE < input.label().size()) {
+            FAIL2("contact", "invalid label", input.id())
         }
     }
 
-    if (contact.has_contactdata()) {
+    if (input.has_contactdata()) {
         try {
             const auto validContactData = Check(
-                contact.contactdata(),
-                ContactAllowedContactData.at(contact.version()).first,
-                ContactAllowedContactData.at(contact.version()).second,
+                input.contactdata(),
+                ContactAllowedContactData.at(input.version()).first,
+                ContactAllowedContactData.at(input.version()).second,
                 silent,
                 CLAIMS_NORMAL);
 
@@ -82,29 +82,29 @@ bool CheckProto_1(const Contact& contact, const bool silent)
             FAIL2(
                 "contact",
                 "allowed contact data not defined for version",
-                contact.version())
+                input.version())
         }
     }
 
-    const bool merged = 0 < contact.mergedto().size();
-    const bool hasMerges = 0 < contact.merged().size();
+    const bool merged = 0 < input.mergedto().size();
+    const bool hasMerges = 0 < input.merged().size();
 
     if (merged && hasMerges) {
         FAIL("contact", "merged contact may not contain child merges")
     }
 
     if (merged) {
-        if (MIN_PLAUSIBLE_IDENTIFIER > contact.mergedto().size()) {
-            FAIL2("contact", "invalid mergedto", contact.mergedto())
+        if (MIN_PLAUSIBLE_IDENTIFIER > input.mergedto().size()) {
+            FAIL2("contact", "invalid mergedto", input.mergedto())
         }
 
-        if (MAX_PLAUSIBLE_IDENTIFIER < contact.mergedto().size()) {
-            FAIL2("contact", "invalid mergedto", contact.mergedto())
+        if (MAX_PLAUSIBLE_IDENTIFIER < input.mergedto().size()) {
+            FAIL2("contact", "invalid mergedto", input.mergedto())
         }
     }
 
     if (hasMerges) {
-        for (const auto& merge : contact.merged()) {
+        for (const auto& merge : input.merged()) {
             if (MIN_PLAUSIBLE_IDENTIFIER > merge.size()) {
                 FAIL2("contact", "invalid merge", merge)
             }
@@ -118,22 +118,22 @@ bool CheckProto_1(const Contact& contact, const bool silent)
     return true;
 }
 
-bool CheckProto_2(const Contact& contact, const bool silent)
+bool CheckProto_2(const Contact& input, const bool silent)
 {
-    return CheckProto_1(contact, silent);
+    return CheckProto_1(input, silent);
 }
 
-bool CheckProto_3(const Contact&, const bool silent)
+bool CheckProto_3(const Contact& input, const bool silent)
 {
     UNDEFINED_VERSION("contact", 3)
 }
 
-bool CheckProto_4(const Contact&, const bool silent)
+bool CheckProto_4(const Contact& input, const bool silent)
 {
     UNDEFINED_VERSION("contact", 4)
 }
 
-bool CheckProto_5(const Contact&, const bool silent)
+bool CheckProto_5(const Contact& input, const bool silent)
 {
     UNDEFINED_VERSION("contact", 5)
 }

@@ -46,35 +46,35 @@ namespace opentxs
 namespace proto
 {
 
-bool CheckProto_1(const HDPath& path, const bool silent)
+bool CheckProto_1(const HDPath& input, const bool silent)
 {
-    if (!path.has_root()) {
+    if (!input.has_root()) {
         FAIL("HD path", "missing fingerprint")
     }
 
-    if (1 > path.child_size()) {
+    if (1 > input.child_size()) {
         FAIL("HD path", "missing child index")
     }
 
     return true;
 }
 
-bool CheckProto_2(const HDPath&, const bool silent)
+bool CheckProto_2(const HDPath& input, const bool silent)
 {
     UNDEFINED_VERSION("HD path", 2)
 }
 
-bool CheckProto_3(const HDPath&, const bool silent)
+bool CheckProto_3(const HDPath& input, const bool silent)
 {
     UNDEFINED_VERSION("HD path", 3)
 }
 
-bool CheckProto_4(const HDPath&, const bool silent)
+bool CheckProto_4(const HDPath& input, const bool silent)
 {
     UNDEFINED_VERSION("HD path", 4)
 }
 
-bool CheckProto_5(const HDPath&, const bool silent)
+bool CheckProto_5(const HDPath& input, const bool silent)
 {
     UNDEFINED_VERSION("HD path", 5)
 }

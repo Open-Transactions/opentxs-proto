@@ -46,40 +46,40 @@ namespace opentxs
 namespace proto
 {
 
-bool CheckProto_1(const PeerObject& peerObject, const bool silent)
+bool CheckProto_1(const PeerObject& input, const bool silent)
 {
-    if (!peerObject.has_type()) {
+    if (!input.has_type()) {
         FAIL("peer object", "missing type")
     }
 
-    if (peerObject.has_otpayment()) {
+    if (input.has_otpayment()) {
         FAIL("peer object", "unexpected otpayment found")
     }
 
-    switch (peerObject.type()) {
+    switch (input.type()) {
         case PEEROBJECT_MESSAGE: {
-            if (false == peerObject.has_otmessage()) {
+            if (false == input.has_otmessage()) {
                 FAIL("peer object", "missing otmessage")
             }
 
-            if (peerObject.has_otrequest()) {
+            if (input.has_otrequest()) {
                 FAIL("peer object", "otrequest not empty")
             }
 
-            if (peerObject.has_otreply()) {
+            if (input.has_otreply()) {
                 FAIL("peer object", "otreply not empty")
             }
         } break;
         case PEEROBJECT_REQUEST: {
-            if (!peerObject.has_otrequest()) {
+            if (!input.has_otrequest()) {
                 FAIL("peer object", "missing otrequest")
             }
 
             try {
                 const bool validrequest = Check(
-                    peerObject.otrequest(),
-                    PeerObjectAllowedRequest.at(peerObject.version()).first,
-                    PeerObjectAllowedRequest.at(peerObject.version()).second,
+                    input.otrequest(),
+                    PeerObjectAllowedRequest.at(input.version()).first,
+                    PeerObjectAllowedRequest.at(input.version()).second,
                     silent);
 
                 if (!validrequest) {
@@ -89,20 +89,18 @@ bool CheckProto_1(const PeerObject& peerObject, const bool silent)
                 FAIL2(
                     "peer object",
                     "allowed peer request version not defined for version",
-                    peerObject.version())
+                    input.version())
             }
 
-            if (!peerObject.has_nym()) {
+            if (!input.has_nym()) {
                 FAIL("peer object", " missing nym")
             }
 
             try {
                 const bool validnym = Check(
-                    peerObject.nym(),
-                    PeerObjectAllowedCredentialIndex.at(peerObject.version())
-                        .first,
-                    PeerObjectAllowedCredentialIndex.at(peerObject.version())
-                        .second,
+                    input.nym(),
+                    PeerObjectAllowedCredentialIndex.at(input.version()).first,
+                    PeerObjectAllowedCredentialIndex.at(input.version()).second,
                     silent);
 
                 if (!validnym) {
@@ -112,27 +110,27 @@ bool CheckProto_1(const PeerObject& peerObject, const bool silent)
                 FAIL2(
                     "peer object",
                     "allowed credential index version not defined for version",
-                    peerObject.version())
+                    input.version())
             }
 
-            if (peerObject.has_otmessage()) {
+            if (input.has_otmessage()) {
                 FAIL("peer object", "otmessage not empty")
             }
 
-            if (peerObject.has_otreply()) {
+            if (input.has_otreply()) {
                 FAIL("peer object", "otreply not empty")
             }
         } break;
         case PEEROBJECT_RESPONSE: {
-            if (!peerObject.has_otrequest()) {
+            if (!input.has_otrequest()) {
                 FAIL("peer object", "missing otrequest")
             }
 
             try {
                 const bool validrequest = Check(
-                    peerObject.otrequest(),
-                    PeerObjectAllowedRequest.at(peerObject.version()).first,
-                    PeerObjectAllowedRequest.at(peerObject.version()).second,
+                    input.otrequest(),
+                    PeerObjectAllowedRequest.at(input.version()).first,
+                    PeerObjectAllowedRequest.at(input.version()).second,
                     silent);
 
                 if (!validrequest) {
@@ -142,18 +140,18 @@ bool CheckProto_1(const PeerObject& peerObject, const bool silent)
                 FAIL2(
                     "peer object",
                     "allowed peer request version not defined for version",
-                    peerObject.version())
+                    input.version())
             }
 
-            if (!peerObject.has_otreply()) {
+            if (!input.has_otreply()) {
                 FAIL("peer object", "missing otreply")
             }
 
             try {
                 const bool validreply = Check(
-                    peerObject.otreply(),
-                    PeerObjectAllowedReply.at(peerObject.version()).first,
-                    PeerObjectAllowedReply.at(peerObject.version()).second,
+                    input.otreply(),
+                    PeerObjectAllowedReply.at(input.version()).first,
+                    PeerObjectAllowedReply.at(input.version()).second,
                     silent);
 
                 if (!validreply) {
@@ -163,26 +161,25 @@ bool CheckProto_1(const PeerObject& peerObject, const bool silent)
                 FAIL2(
                     "peer object",
                     "allowed peer reply version not defined for version",
-                    peerObject.version())
+                    input.version())
             }
 
             const bool matchingID =
-                (peerObject.otrequest().id() == peerObject.otreply().cookie());
+                (input.otrequest().id() == input.otreply().cookie());
 
             if (!matchingID) {
                 FAIL("peer object", "reply cookie does not match request id")
             }
 
             const bool matchingtype =
-                (peerObject.otrequest().type() == peerObject.otreply().type());
+                (input.otrequest().type() == input.otreply().type());
 
             if (!matchingtype) {
                 FAIL("peer object", "reply type does not match request type")
             }
 
             const bool matchingInitiator =
-                (peerObject.otrequest().initiator() ==
-                 peerObject.otreply().initiator());
+                (input.otrequest().initiator() == input.otreply().initiator());
 
             if (!matchingInitiator) {
                 FAIL(
@@ -191,8 +188,7 @@ bool CheckProto_1(const PeerObject& peerObject, const bool silent)
             }
 
             const bool matchingRecipient =
-                (peerObject.otrequest().recipient() ==
-                 peerObject.otreply().recipient());
+                (input.otrequest().recipient() == input.otreply().recipient());
 
             if (!matchingRecipient) {
                 FAIL(
@@ -200,7 +196,7 @@ bool CheckProto_1(const PeerObject& peerObject, const bool silent)
                     "reply recipient does not match request recipient")
             }
 
-            if (peerObject.has_otmessage()) {
+            if (input.has_otmessage()) {
                 FAIL("peer object", "otmessage not empty")
             }
         } break;
@@ -211,17 +207,17 @@ bool CheckProto_1(const PeerObject& peerObject, const bool silent)
 
     return true;
 }
-bool CheckProto_2(const PeerObject& object, const bool silent)
+bool CheckProto_2(const PeerObject& input, const bool silent)
 {
-    return CheckProto_1(object, silent);
+    return CheckProto_1(input, silent);
 }
-bool CheckProto_3(const PeerObject& object, const bool silent)
+bool CheckProto_3(const PeerObject& input, const bool silent)
 {
-    return CheckProto_1(object, silent);
+    return CheckProto_1(input, silent);
 }
-bool CheckProto_4(const PeerObject& object, const bool silent)
+bool CheckProto_4(const PeerObject& input, const bool silent)
 {
-    return CheckProto_1(object, silent);
+    return CheckProto_1(input, silent);
 }
 
 }  // namespace proto

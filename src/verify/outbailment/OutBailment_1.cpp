@@ -46,62 +46,62 @@ namespace opentxs
 namespace proto
 {
 
-bool CheckProto_1(const OutBailment& request, const bool silent)
+bool CheckProto_1(const OutBailment& input, const bool silent)
 {
-    if (!request.has_unitid()) {
+    if (!input.has_unitid()) {
         FAIL("outbailment", "missing unit id")
     }
 
-    if (MIN_PLAUSIBLE_IDENTIFIER > request.unitid().size()) {
-        FAIL2("outbailment", "invalid unit id", request.unitid())
+    if (MIN_PLAUSIBLE_IDENTIFIER > input.unitid().size()) {
+        FAIL2("outbailment", "invalid unit id", input.unitid())
     }
 
-    if (MAX_PLAUSIBLE_IDENTIFIER < request.unitid().size()) {
-        FAIL2("outbailment", "invalid unit id", request.unitid())
+    if (MAX_PLAUSIBLE_IDENTIFIER < input.unitid().size()) {
+        FAIL2("outbailment", "invalid unit id", input.unitid())
     }
 
-    if (!request.has_serverid()) {
+    if (!input.has_serverid()) {
         FAIL("outbailment", "missing server id")
     }
 
-    if (MIN_PLAUSIBLE_IDENTIFIER > request.serverid().size()) {
-        FAIL2("outbailment", "invalid server id", request.serverid())
+    if (MIN_PLAUSIBLE_IDENTIFIER > input.serverid().size()) {
+        FAIL2("outbailment", "invalid server id", input.serverid())
     }
 
-    if (MAX_PLAUSIBLE_IDENTIFIER < request.serverid().size()) {
-        FAIL2("outbailment", "invalid server id", request.serverid())
+    if (MAX_PLAUSIBLE_IDENTIFIER < input.serverid().size()) {
+        FAIL2("outbailment", "invalid server id", input.serverid())
     }
 
-    if (!request.has_amount()) {
+    if (!input.has_amount()) {
         FAIL("outbailment", "missing amount")
     }
 
-    if (!request.has_instructions()) {
+    if (!input.has_instructions()) {
         FAIL("outbailment", "missing instructions")
     }
 
     return true;
 }
 
-bool CheckProto_2(const OutBailment& request, const bool silent)
+bool CheckProto_2(const OutBailment& input, const bool silent)
 {
 
-    return CheckProto_1(request, silent);
+    return CheckProto_1(input, silent);
 }
 
-bool CheckProto_3(const OutBailment& request, const bool silent)
+bool CheckProto_3(const OutBailment& input, const bool silent)
 {
 
-    return CheckProto_1(request, silent);
+    return CheckProto_1(input, silent);
 }
 
-bool CheckProto_4(const OutBailment& request, const bool silent)
+bool CheckProto_4(const OutBailment& input, const bool silent)
 {
 
-    return CheckProto_1(request, silent);
+    return CheckProto_1(input, silent);
 }
 
-bool CheckProto_5(const OutBailment&, const bool silent)
+bool CheckProto_5(const OutBailment& input, const bool silent)
 {
     UNDEFINED_VERSION("outbailment", 5)
 }

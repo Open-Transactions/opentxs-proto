@@ -47,34 +47,32 @@ namespace proto
 {
 
 bool CheckProto_1(
-    const UnitDefinition& contract,
+    const UnitDefinition& input,
     const bool silent,
     const bool checkSig)
 {
-    if (!contract.has_id()) {
+    if (!input.has_id()) {
         FAIL("unit definition", "missing id")
     }
 
-    if (MIN_PLAUSIBLE_IDENTIFIER > contract.id().size()) {
-        FAIL2("unit definition", "invalid id", contract.id())
+    if (MIN_PLAUSIBLE_IDENTIFIER > input.id().size()) {
+        FAIL2("unit definition", "invalid id", input.id())
     }
 
-    if (!contract.has_nymid()) {
+    if (!input.has_nymid()) {
         FAIL("unit definition", "missing nym id")
     }
 
-    if (MIN_PLAUSIBLE_IDENTIFIER > contract.nymid().size()) {
-        FAIL2("unit definition", "invalid nym id", contract.nymid())
+    if (MIN_PLAUSIBLE_IDENTIFIER > input.nymid().size()) {
+        FAIL2("unit definition", "invalid nym id", input.nymid())
     }
 
-    if (contract.has_publicnym()) {
+    if (input.has_publicnym()) {
         try {
             const bool goodPublicNym = Check(
-                contract.publicnym(),
-                UnitDefinitionAllowedCredentialIndex.at(contract.version())
-                    .first,
-                UnitDefinitionAllowedCredentialIndex.at(contract.version())
-                    .second,
+                input.publicnym(),
+                UnitDefinitionAllowedCredentialIndex.at(input.version()).first,
+                UnitDefinitionAllowedCredentialIndex.at(input.version()).second,
                 silent);
 
             if (!goodPublicNym) {
@@ -84,71 +82,71 @@ bool CheckProto_1(
             FAIL2(
                 "unit definition",
                 "allowed credential index version not defined for version",
-                contract.version())
+                input.version())
         }
 
-        if (contract.nymid() != contract.publicnym().nymid()) {
+        if (input.nymid() != input.publicnym().nymid()) {
             FAIL("unit definition", "wrong nym")
         }
     }
 
-    if (!contract.has_shortname()) {
+    if (!input.has_shortname()) {
         FAIL("unit definition", "missing shortname")
     }
 
-    if (1 > contract.shortname().size()) {
-        FAIL2("unit definition", "invalid shortname", contract.shortname())
+    if (1 > input.shortname().size()) {
+        FAIL2("unit definition", "invalid shortname", input.shortname())
     }
 
-    if (!contract.has_terms()) {
+    if (!input.has_terms()) {
         FAIL("unit definition", "missing terms")
     }
 
-    if (1 > contract.terms().size()) {
-        FAIL2("unit definition", "invalid terms", contract.terms())
+    if (1 > input.terms().size()) {
+        FAIL2("unit definition", "invalid terms", input.terms())
     }
 
-    if (!contract.has_name()) {
+    if (!input.has_name()) {
         FAIL("unit definition", "missing name")
     }
 
-    if (1 > contract.name().size()) {
-        FAIL2("unit definition", "invalid name", contract.name())
+    if (1 > input.name().size()) {
+        FAIL2("unit definition", "invalid name", input.name())
     }
 
-    if (!contract.has_symbol()) {
+    if (!input.has_symbol()) {
         FAIL("unit definition", "missing symbol")
     }
 
-    if (1 > contract.symbol().size()) {
-        FAIL2("unit definition", "invalid symbol", contract.symbol())
+    if (1 > input.symbol().size()) {
+        FAIL2("unit definition", "invalid symbol", input.symbol())
     }
 
-    if (!contract.has_type()) {
+    if (!input.has_type()) {
         FAIL("unit definition", "missing type")
     }
 
     bool goodParams = false;
 
-    switch (contract.type()) {
+    switch (input.type()) {
         case (UNITTYPE_CURRENCY): {
-            if (!contract.has_currency()) {
+            if (!input.has_currency()) {
                 FAIL("unit definition", "missing currency params")
             }
 
             try {
                 goodParams = Check(
-                    contract.currency(),
-                    UnitDefinitionAllowedCurrencyParams.at(contract.version())
+                    input.currency(),
+                    UnitDefinitionAllowedCurrencyParams.at(input.version())
                         .first,
-                    UnitDefinitionAllowedCurrencyParams.at(contract.version())
+                    UnitDefinitionAllowedCurrencyParams.at(input.version())
                         .second,
                     silent);
             } catch (const std::out_of_range&) {
                 FAIL2(
                     "unit definition",
                     "allowed currency params version not defined for version",
-                    contract.version())
+                    input.version())
             }
 
             if (!goodParams) {
@@ -157,23 +155,23 @@ bool CheckProto_1(
 
         } break;
         case (UNITTYPE_SECURITY): {
-            if (!contract.has_security()) {
+            if (!input.has_security()) {
                 FAIL("unit definition", "missing security params")
             }
 
             try {
                 goodParams = Check(
-                    contract.security(),
-                    UnitDefinitionAllowedSecurityParams.at(contract.version())
+                    input.security(),
+                    UnitDefinitionAllowedSecurityParams.at(input.version())
                         .first,
-                    UnitDefinitionAllowedSecurityParams.at(contract.version())
+                    UnitDefinitionAllowedSecurityParams.at(input.version())
                         .second,
                     silent);
             } catch (const std::out_of_range&) {
                 FAIL2(
                     "unit definition",
                     "allowed security params version not defined for version",
-                    contract.version())
+                    input.version())
             }
 
             if (!goodParams) {
@@ -182,23 +180,22 @@ bool CheckProto_1(
 
         } break;
         case (UNITTYPE_BASKET): {
-            if (!contract.has_basket()) {
+            if (!input.has_basket()) {
                 FAIL("unit definition", "missing currency params")
             }
 
             try {
                 goodParams = Check(
-                    contract.basket(),
-                    UnitDefinitionAllowedBasketParams.at(contract.version())
-                        .first,
-                    UnitDefinitionAllowedBasketParams.at(contract.version())
+                    input.basket(),
+                    UnitDefinitionAllowedBasketParams.at(input.version()).first,
+                    UnitDefinitionAllowedBasketParams.at(input.version())
                         .second,
                     silent);
             } catch (const std::out_of_range&) {
                 FAIL2(
                     "unit definition",
                     "allowed basket params version not defined for version",
-                    contract.version())
+                    input.version())
             }
 
             if (!goodParams) {
@@ -214,9 +211,9 @@ bool CheckProto_1(
     if (checkSig) {
         try {
             const bool valid = Check(
-                contract.signature(),
-                UnitDefinitionAllowedSignature.at(contract.version()).first,
-                UnitDefinitionAllowedSignature.at(contract.version()).second,
+                input.signature(),
+                UnitDefinitionAllowedSignature.at(input.version()).first,
+                UnitDefinitionAllowedSignature.at(input.version()).second,
                 silent,
                 SIGROLE_UNITDEFINITION);
 
@@ -227,29 +224,29 @@ bool CheckProto_1(
             FAIL2(
                 "unit definition",
                 "allowed signature version not defined for version",
-                contract.version())
+                input.version())
         }
     }
 
     return true;
 }
 
-bool CheckProto_2(const UnitDefinition&, const bool silent, const bool)
+bool CheckProto_2(const UnitDefinition& input, const bool silent, const bool)
 {
     UNDEFINED_VERSION("unit definition", 2)
 }
 
-bool CheckProto_3(const UnitDefinition&, const bool silent, const bool)
+bool CheckProto_3(const UnitDefinition& input, const bool silent, const bool)
 {
     UNDEFINED_VERSION("unit definition", 3)
 }
 
-bool CheckProto_4(const UnitDefinition&, const bool silent, const bool)
+bool CheckProto_4(const UnitDefinition& input, const bool silent, const bool)
 {
     UNDEFINED_VERSION("unit definition", 4)
 }
 
-bool CheckProto_5(const UnitDefinition&, const bool silent, const bool)
+bool CheckProto_5(const UnitDefinition& input, const bool silent, const bool)
 {
     UNDEFINED_VERSION("unit definition", 5)
 }

@@ -45,45 +45,45 @@ namespace opentxs
 {
 namespace proto
 {
-bool CheckProto_3(const PeerReply& reply, const bool silent)
+bool CheckProto_3(const PeerReply& input, const bool silent)
 {
-    if (!reply.has_id()) {
+    if (!input.has_id()) {
         FAIL("peer reply", "missing id")
     }
 
-    if (MIN_PLAUSIBLE_IDENTIFIER > reply.id().size()) {
+    if (MIN_PLAUSIBLE_IDENTIFIER > input.id().size()) {
         FAIL("peer reply", "invalid id")
     }
 
-    if (!reply.has_initiator()) {
+    if (!input.has_initiator()) {
         FAIL("peer reply", "missing initiator")
     }
 
-    if (MIN_PLAUSIBLE_IDENTIFIER > reply.initiator().size()) {
-        FAIL2("peer reply", "invalid initiator", reply.initiator())
+    if (MIN_PLAUSIBLE_IDENTIFIER > input.initiator().size()) {
+        FAIL2("peer reply", "invalid initiator", input.initiator())
     }
 
-    if (!reply.has_recipient()) {
+    if (!input.has_recipient()) {
         FAIL("peer reply", "missing recipient")
     }
 
-    if (MIN_PLAUSIBLE_IDENTIFIER > reply.recipient().size()) {
-        FAIL2("peer reply", "invalid recipient", reply.recipient())
+    if (MIN_PLAUSIBLE_IDENTIFIER > input.recipient().size()) {
+        FAIL2("peer reply", "invalid recipient", input.recipient())
     }
 
-    if (!reply.has_type()) {
+    if (!input.has_type()) {
         FAIL("peer reply", "missing type")
     }
 
-    if (!reply.has_cookie()) {
+    if (!input.has_cookie()) {
         FAIL("peer reply", "missing cookie")
     }
 
     try {
         const bool validSig = Check(
-            reply.signature(),
-            PeerReplyAllowedSignature.at(reply.version()).first,
-            PeerReplyAllowedSignature.at(reply.version()).second,
+            input.signature(),
+            PeerReplyAllowedSignature.at(input.version()).first,
+            PeerReplyAllowedSignature.at(input.version()).second,
             silent,
             SIGROLE_PEERREPLY);
 
@@ -94,28 +94,28 @@ bool CheckProto_3(const PeerReply& reply, const bool silent)
         FAIL2(
             "peer reply",
             "allowed signature version not defined for version",
-            reply.version())
+            input.version())
     }
 
-    if (!reply.has_server()) {
+    if (!input.has_server()) {
         FAIL("peer reply", "missing server")
     }
 
-    if (MIN_PLAUSIBLE_IDENTIFIER > reply.server().size()) {
-        FAIL2("peer reply", "invalid server", reply.server())
+    if (MIN_PLAUSIBLE_IDENTIFIER > input.server().size()) {
+        FAIL2("peer reply", "invalid server", input.server())
     }
 
-    switch (reply.type()) {
+    switch (input.type()) {
         case PEERREQUEST_BAILMENT: {
-            if (!reply.has_bailment()) {
+            if (!input.has_bailment()) {
                 FAIL("peer reply", "missing bailment")
             }
 
             try {
                 const bool validbailment = Check(
-                    reply.bailment(),
-                    PeerReplyAllowedBailment.at(reply.version()).first,
-                    PeerReplyAllowedBailment.at(reply.version()).second,
+                    input.bailment(),
+                    PeerReplyAllowedBailment.at(input.version()).first,
+                    PeerReplyAllowedBailment.at(input.version()).second,
                     silent);
 
                 if (!validbailment) {
@@ -125,19 +125,19 @@ bool CheckProto_3(const PeerReply& reply, const bool silent)
                 FAIL2(
                     "peer reply",
                     "allowed bailment version not defined for version",
-                    reply.version())
+                    input.version())
             }
         } break;
         case PEERREQUEST_OUTBAILMENT: {
-            if (!reply.has_outbailment()) {
+            if (!input.has_outbailment()) {
                 FAIL("peer reply", "missing outbailment")
             }
 
             try {
                 const bool validoutbailment = Check(
-                    reply.outbailment(),
-                    PeerReplyAllowedOutBailment.at(reply.version()).first,
-                    PeerReplyAllowedOutBailment.at(reply.version()).second,
+                    input.outbailment(),
+                    PeerReplyAllowedOutBailment.at(input.version()).first,
+                    PeerReplyAllowedOutBailment.at(input.version()).second,
                     silent);
 
                 if (!validoutbailment) {
@@ -147,21 +147,21 @@ bool CheckProto_3(const PeerReply& reply, const bool silent)
                 FAIL2(
                     "peer reply",
                     "allowed outbailment version not defined for version",
-                    reply.version())
+                    input.version())
             }
         } break;
         case PEERREQUEST_PENDINGBAILMENT:
         case PEERREQUEST_STORESECRET:
         case PEERREQUEST_VERIFICATIONOFFER: {
-            if (!reply.has_notice()) {
+            if (!input.has_notice()) {
                 FAIL("peer reply", "missing notice")
             }
 
             try {
                 const bool validnotice = Check(
-                    reply.notice(),
-                    PeerReplyAllowedNotice.at(reply.version()).first,
-                    PeerReplyAllowedNotice.at(reply.version()).second,
+                    input.notice(),
+                    PeerReplyAllowedNotice.at(input.version()).first,
+                    PeerReplyAllowedNotice.at(input.version()).second,
                     silent);
 
                 if (!validnotice) {
@@ -171,19 +171,19 @@ bool CheckProto_3(const PeerReply& reply, const bool silent)
                 FAIL2(
                     "peer reply",
                     "allowed peer notice version not defined for version",
-                    reply.version())
+                    input.version())
             }
         } break;
         case PEERREQUEST_CONNECTIONINFO: {
-            if (!reply.has_connectioninfo()) {
+            if (!input.has_connectioninfo()) {
                 FAIL("peer reply", "missing connectioninfo")
             }
 
             try {
                 const bool validconnectioninfo = Check(
-                    reply.connectioninfo(),
-                    PeerReplyAllowedConnectionInfo.at(reply.version()).first,
-                    PeerReplyAllowedConnectionInfo.at(reply.version()).second,
+                    input.connectioninfo(),
+                    PeerReplyAllowedConnectionInfo.at(input.version()).first,
+                    PeerReplyAllowedConnectionInfo.at(input.version()).second,
                     silent);
 
                 if (!validconnectioninfo) {
@@ -193,7 +193,7 @@ bool CheckProto_3(const PeerReply& reply, const bool silent)
                 FAIL2(
                     "peer reply",
                     "allowed connection info version not defined for version",
-                    reply.version())
+                    input.version())
             }
         } break;
         default: {

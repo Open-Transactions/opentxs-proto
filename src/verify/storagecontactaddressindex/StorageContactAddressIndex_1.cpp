@@ -46,28 +46,28 @@ namespace opentxs
 namespace proto
 {
 
-bool CheckProto_1(const StorageContactAddressIndex& list, const bool silent)
+bool CheckProto_1(const StorageContactAddressIndex& input, const bool silent)
 {
-    if (false == list.has_contact()) {
+    if (false == input.has_contact()) {
         FAIL("storage contact list", "missing contact")
     }
 
-    if (MIN_PLAUSIBLE_IDENTIFIER > list.contact().size()) {
-        FAIL2("storage contact list", "invalid contact", list.contact())
+    if (MIN_PLAUSIBLE_IDENTIFIER > input.contact().size()) {
+        FAIL2("storage contact list", "invalid contact", input.contact())
     }
 
-    if (MAX_PLAUSIBLE_IDENTIFIER < list.contact().size()) {
-        FAIL2("storage contact list", "invalid contact", list.contact())
+    if (MAX_PLAUSIBLE_IDENTIFIER < input.contact().size()) {
+        FAIL2("storage contact list", "invalid contact", input.contact())
     }
 
     const bool validChain = ValidContactItemType(
-        {CONTACT_VERSION, CONTACTSECTION_CONTRACT}, list.chain());
+        {CONTACT_VERSION, CONTACTSECTION_CONTRACT}, input.chain());
 
     if (false == validChain) {
         FAIL("storage contact list", "invalid type")
     }
 
-    for (const auto& it : list.address()) {
+    for (const auto& it : input.address()) {
         if (MIN_PLAUSIBLE_IDENTIFIER > it.size()) {
             FAIL2("storage contact list", "invalid address", it)
         }
@@ -80,22 +80,22 @@ bool CheckProto_1(const StorageContactAddressIndex& list, const bool silent)
     return true;
 }
 
-bool CheckProto_2(const StorageContactAddressIndex&, const bool silent)
+bool CheckProto_2(const StorageContactAddressIndex& input, const bool silent)
 {
     UNDEFINED_VERSION("storage contact list", 2)
 }
 
-bool CheckProto_3(const StorageContactAddressIndex&, const bool silent)
+bool CheckProto_3(const StorageContactAddressIndex& input, const bool silent)
 {
     UNDEFINED_VERSION("storage contact list", 3)
 }
 
-bool CheckProto_4(const StorageContactAddressIndex&, const bool silent)
+bool CheckProto_4(const StorageContactAddressIndex& input, const bool silent)
 {
     UNDEFINED_VERSION("storage contact list", 4)
 }
 
-bool CheckProto_5(const StorageContactAddressIndex&, const bool silent)
+bool CheckProto_5(const StorageContactAddressIndex& input, const bool silent)
 {
     UNDEFINED_VERSION("storage contact list", 5)
 }

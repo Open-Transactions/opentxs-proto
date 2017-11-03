@@ -46,54 +46,54 @@ namespace opentxs
 namespace proto
 {
 
-bool CheckProto_1(const Claim& claim, const bool silent)
+bool CheckProto_1(const Claim& input, const bool silent)
 {
-    if (!claim.has_nymid()) {
+    if (!input.has_nymid()) {
         FAIL("claim", "missing nym id")
     }
 
-    if (!claim.has_section()) {
+    if (!input.has_section()) {
         FAIL("claim", "missing section")
     }
 
-    if (!claim.has_type()) {
+    if (!input.has_type()) {
         FAIL("claim", "missing type")
     }
 
-    if (!claim.has_start()) {
+    if (!input.has_start()) {
         FAIL("claim", "missing start")
     }
 
-    if (!claim.has_end()) {
+    if (!input.has_end()) {
         FAIL("claim", "missing end")
     }
 
-    if (!claim.has_value()) {
+    if (!input.has_value()) {
         FAIL("claim", "missing value")
     }
 
-    if (claim.start() > claim.end()) {
+    if (input.start() > input.end()) {
         FAIL("claim", "invalid interval")
     }
 
     return true;
 }
-bool CheckProto_2(const Claim&, const bool silent)
+bool CheckProto_2(const Claim& input, const bool silent)
 {
     UNDEFINED_VERSION("claim", 2)
 }
 
-bool CheckProto_3(const Claim&, const bool silent)
+bool CheckProto_3(const Claim& input, const bool silent)
 {
     UNDEFINED_VERSION("claim", 3)
 }
 
-bool CheckProto_4(const Claim&, const bool silent)
+bool CheckProto_4(const Claim& input, const bool silent)
 {
     UNDEFINED_VERSION("claim", 4)
 }
 
-bool CheckProto_5(const Claim&, const bool silent)
+bool CheckProto_5(const Claim& input, const bool silent)
 {
     UNDEFINED_VERSION("claim", 5)
 }

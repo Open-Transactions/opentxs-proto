@@ -46,13 +46,13 @@ namespace opentxs
 namespace proto
 {
 
-bool CheckProto_1(const SymmetricKey& key, const bool silent)
+bool CheckProto_1(const SymmetricKey& input, const bool silent)
 {
     try {
         const bool validKey = Check(
-            key.key(),
-            SymmetricKeyAllowedCiphertext.at(key.version()).first,
-            SymmetricKeyAllowedCiphertext.at(key.version()).second,
+            input.key(),
+            SymmetricKeyAllowedCiphertext.at(input.version()).first,
+            SymmetricKeyAllowedCiphertext.at(input.version()).second,
             silent,
             true);
 
@@ -63,61 +63,61 @@ bool CheckProto_1(const SymmetricKey& key, const bool silent)
         FAIL2(
             "symmetric key",
             "allowed ciphertext version not defined for version",
-            key.version())
+            input.version())
     }
 
-    if (!key.has_size()) {
+    if (!input.has_size()) {
         FAIL("symmetric key", "missing size")
     }
 
-    if (!key.has_type()) {
+    if (!input.has_type()) {
         FAIL("symmetric key", "missing type")
     }
 
-    switch (key.type()) {
+    switch (input.type()) {
         case (SKEYTYPE_RAW):
         case (SKEYTYPE_ECDH): {
             break;
         }
         case (SKEYTYPE_ARGON2): {
-            if (!key.has_salt()) {
+            if (!input.has_salt()) {
                 FAIL("symmetric key", "missing salt")
             }
 
-            if (1 > key.operations()) {
+            if (1 > input.operations()) {
                 FAIL("symmetric key", "missing operations")
             }
 
-            if (1 > key.difficulty()) {
+            if (1 > input.difficulty()) {
                 FAIL("symmetric key", "missing difficulty")
             }
 
             break;
         }
         default: {
-            FAIL2("symmetric key", "invalid type", key.type())
+            FAIL2("symmetric key", "invalid type", input.type())
         }
     }
 
     return true;
 }
 
-bool CheckProto_2(const SymmetricKey&, const bool silent)
+bool CheckProto_2(const SymmetricKey& input, const bool silent)
 {
     UNDEFINED_VERSION("symmetric key", 2)
 }
 
-bool CheckProto_3(const SymmetricKey&, const bool silent)
+bool CheckProto_3(const SymmetricKey& input, const bool silent)
 {
     UNDEFINED_VERSION("symmetric key", 3)
 }
 
-bool CheckProto_4(const SymmetricKey&, const bool silent)
+bool CheckProto_4(const SymmetricKey& input, const bool silent)
 {
     UNDEFINED_VERSION("symmetric key", 4)
 }
 
-bool CheckProto_5(const SymmetricKey&, const bool silent)
+bool CheckProto_5(const SymmetricKey& input, const bool silent)
 {
     UNDEFINED_VERSION("symmetric key", 5)
 }

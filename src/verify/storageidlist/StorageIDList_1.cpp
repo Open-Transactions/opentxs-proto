@@ -46,21 +46,21 @@ namespace opentxs
 namespace proto
 {
 
-bool CheckProto_1(const StorageIDList& list, const bool silent)
+bool CheckProto_1(const StorageIDList& input, const bool silent)
 {
-    if (false == list.has_id()) {
+    if (false == input.has_id()) {
         FAIL("storage id list", "missing id")
     }
 
-    if (MIN_PLAUSIBLE_IDENTIFIER > list.id().size()) {
-        FAIL2("storage id list", "invalid id", list.id())
+    if (MIN_PLAUSIBLE_IDENTIFIER > input.id().size()) {
+        FAIL2("storage id list", "invalid id", input.id())
     }
 
-    if (MAX_PLAUSIBLE_IDENTIFIER < list.id().size()) {
-        FAIL2("storage id list", "invalid id", list.id())
+    if (MAX_PLAUSIBLE_IDENTIFIER < input.id().size()) {
+        FAIL2("storage id list", "invalid id", input.id())
     }
 
-    for (const auto& it : list.list()) {
+    for (const auto& it : input.list()) {
         if (MIN_PLAUSIBLE_IDENTIFIER > it.size()) {
             FAIL2("storage id list", "invalid list item", it)
         }
@@ -73,22 +73,22 @@ bool CheckProto_1(const StorageIDList& list, const bool silent)
     return true;
 }
 
-bool CheckProto_2(const StorageIDList&, const bool silent)
+bool CheckProto_2(const StorageIDList& input, const bool silent)
 {
     UNDEFINED_VERSION("storage id list", 2)
 }
 
-bool CheckProto_3(const StorageIDList&, const bool silent)
+bool CheckProto_3(const StorageIDList& input, const bool silent)
 {
     UNDEFINED_VERSION("storage id list", 3)
 }
 
-bool CheckProto_4(const StorageIDList&, const bool silent)
+bool CheckProto_4(const StorageIDList& input, const bool silent)
 {
     UNDEFINED_VERSION("storage id list", 4)
 }
 
-bool CheckProto_5(const StorageIDList&, const bool silent)
+bool CheckProto_5(const StorageIDList& input, const bool silent)
 {
     UNDEFINED_VERSION("storage id list", 5)
 }

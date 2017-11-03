@@ -46,14 +46,14 @@ namespace opentxs
 namespace proto
 {
 
-bool CheckProto_1(const StorageServers& servers, const bool silent)
+bool CheckProto_1(const StorageServers& input, const bool silent)
 {
-    for (auto& hash : servers.server()) {
+    for (auto& hash : input.server()) {
         try {
             const bool valid = Check(
                 hash,
-                StorageServersAllowedHash.at(servers.version()).first,
-                StorageServersAllowedHash.at(servers.version()).second,
+                StorageServersAllowedHash.at(input.version()).first,
+                StorageServersAllowedHash.at(input.version()).second,
                 silent);
 
             if (!valid) {
@@ -63,7 +63,7 @@ bool CheckProto_1(const StorageServers& servers, const bool silent)
             FAIL2(
                 "server storage index",
                 "allowed storage item hash version not defined for version",
-                servers.version())
+                input.version())
         }
     }
 
@@ -75,17 +75,17 @@ bool CheckProto_2(const StorageServers& servers, const bool silent)
     return CheckProto_1(servers, silent);
 }
 
-bool CheckProto_3(const StorageServers&, const bool silent)
+bool CheckProto_3(const StorageServers& input, const bool silent)
 {
     UNDEFINED_VERSION("server storage index", 3)
 }
 
-bool CheckProto_4(const StorageServers&, const bool silent)
+bool CheckProto_4(const StorageServers& input, const bool silent)
 {
     UNDEFINED_VERSION("server storage index", 4)
 }
 
-bool CheckProto_5(const StorageServers&, const bool silent)
+bool CheckProto_5(const StorageServers& input, const bool silent)
 {
     UNDEFINED_VERSION("server storage index", 5)
 }
