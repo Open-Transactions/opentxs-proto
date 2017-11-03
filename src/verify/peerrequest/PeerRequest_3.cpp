@@ -85,7 +85,7 @@ bool CheckProto_3(const PeerRequest& request, const bool silent)
             PeerReplyAllowedSignature.at(request.version()).first,
             PeerReplyAllowedSignature.at(request.version()).second,
             silent,
-            SIGROLE_PEERREPLY);
+            SIGROLE_PEERREQUEST);
 
         if (!validSig) {
             FAIL("peer request", "invalid signature")
