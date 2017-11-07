@@ -41,113 +41,33 @@
 
 #include <iostream>
 
+#define PROTO_NAME "context"
+
 namespace opentxs
 {
 namespace proto
 {
 bool CheckProto_1(const Context& input, const bool silent)
 {
-    if (!input.has_localnym()) {
-        FAIL("context", " missing local nym")
-    }
-
-    if ((MIN_PLAUSIBLE_IDENTIFIER > input.localnym().size()) ||
-        (MAX_PLAUSIBLE_IDENTIFIER < input.localnym().size())) {
-        FAIL("context", "invalid local nym")
-    }
-
-    if (!input.has_remotenym()) {
-        FAIL("context", "missing remote nym")
-    }
-
-    if ((MIN_PLAUSIBLE_IDENTIFIER > input.remotenym().size()) ||
-        (MAX_PLAUSIBLE_IDENTIFIER < input.remotenym().size())) {
-        FAIL("context", "invalid remote nym")
-    }
-
-    if (!input.has_type()) {
-        FAIL("context", "missing type")
-    }
+    CHECK_IDENTIFIER(localnym)
+    CHECK_IDENTIFIER(remotenym)
+    CHECK_EXISTS(type)
 
     switch (input.type()) {
         case CONSENSUSTYPE_SERVER: {
-            if (!input.has_servercontext()) {
-                FAIL("context", "missing server data")
-            }
-
-            if (input.has_clientcontext()) {
-                FAIL("context", "client data in server context")
-            }
-
-            try {
-                const bool validServer = Check(
-                    input.servercontext(),
-                    ContextAllowedServer.at(input.version()).first,
-                    ContextAllowedServer.at(input.version()).second,
-                    silent);
-
-                if (!validServer) {
-                    FAIL("context", "invalid server data")
-                }
-            } catch (const std::out_of_range&) {
-                FAIL2(
-                    "context",
-                    "allowed server data version not defined for version",
-                    input.version())
-            }
+            CHECK_EXCLUDED(clientcontext)
+            CHECK_SUBOBJECT(servercontext, ContextAllowedServer)
         } break;
         case CONSENSUSTYPE_CLIENT: {
-            if (!input.has_clientcontext()) {
-                FAIL("context", "missing client data")
-            }
-
-            if (input.has_servercontext()) {
-                FAIL("context", "client data in server context")
-            }
-
-            try {
-                const bool validClient = Check(
-                    input.clientcontext(),
-                    ContextAllowedClient.at(input.version()).first,
-                    ContextAllowedClient.at(input.version()).second,
-                    silent);
-
-                if (!validClient) {
-                    FAIL("context", "invalid client data")
-                }
-            } catch (const std::out_of_range&) {
-                FAIL2(
-                    "context",
-                    "allowed client data version not defined for version",
-                    input.version())
-            }
+            CHECK_EXCLUDED(servercontext)
+            CHECK_SUBOBJECT(clientcontext, ContextAllowedServer)
         } break;
         default: {
-            FAIL("context", "invalid type")
+            FAIL4("invalid type")
         }
     }
 
-    if (!input.has_signature()) {
-        FAIL("context", "missing signature")
-    }
-
-    try {
-        const bool validSig = Check(
-            input.signature(),
-            ContextAllowedSignature.at(input.version()).first,
-            ContextAllowedSignature.at(input.version()).first,
-            silent,
-            SIGROLE_CONTEXT);
-
-        if (!validSig) {
-            FAIL("context", "invalid signature")
-        }
-    } catch (const std::out_of_range&) {
-        FAIL2(
-            "context",
-            "allowed signature version not defined for version",
-            input.version())
-    }
+    CHECK_SUBOBJECT2(signature, ContextAllowedSignature, ", SIGROLE_CONTEXT")
 
     return true;
 }

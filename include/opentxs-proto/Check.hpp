@@ -97,11 +97,101 @@
         return false;                                                          \
     }
 
+#define FAIL4(b)                                                               \
+    {                                                                          \
+        if (false == silent) {                                                 \
+            std::stringstream out{};                                           \
+            out << "Verify version " << input.version() << " " << PROTO_NAME   \
+                << " failed: " << b << std::endl;                              \
+            WRITE_LOG()                                                        \
+        }                                                                      \
+                                                                               \
+        return false;                                                          \
+    }
+
+#define FAIL5(b, c)                                                            \
+    {                                                                          \
+        if (false == silent) {                                                 \
+            std::stringstream out{};                                           \
+            out << "Verify version " << input.version() << " " << PROTO_NAME   \
+                << " failed: " << b << "(" << c << ")." << std::endl;          \
+            WRITE_LOG()                                                        \
+        }                                                                      \
+                                                                               \
+        return false;                                                          \
+    }
+
+#define FAIL6(b, c, d, e)                                                      \
+    {                                                                          \
+        if (false == silent) {                                                 \
+            std::stringstream out{};                                           \
+            out << "Verify version " << input.version() << " " << PROTO_NAME   \
+                << " failed: " << b << "(" << c << ")" << d << "(" << e << ")" \
+                << std::endl;                                                  \
+            WRITE_LOG()                                                        \
+        }                                                                      \
+                                                                               \
+        return false;                                                          \
+    }
+
 #define UNDEFINED_VERSION(a, b)                                                \
     {                                                                          \
         FAIL2(a, "undefined version", b)                                       \
     }
 
+#define CHECK_EXISTS(a)                                                        \
+    {                                                                          \
+        if (false == input.has_##a()) {                                        \
+            FAIL4("missing ##a")                                               \
+        }                                                                      \
+    }
+
+#define CHECK_EXCLUDED(a)                                                      \
+    {                                                                          \
+        if (true == input.has_##a()) {                                         \
+            FAIL4("unexpected ##a present")                                    \
+        }                                                                      \
+    }
+
+#define CHECK_IDENTIFIER(a)                                                    \
+    {                                                                          \
+        CHECK_EXISTS(a)                                                        \
+                                                                               \
+        if ((MIN_PLAUSIBLE_IDENTIFIER > input.a().size()) ||                   \
+            (MAX_PLAUSIBLE_IDENTIFIER < input.a().size())) {                   \
+            FAIL5("invalid ##a size", input.a().size())                        \
+        }                                                                      \
+    }
+
+#define CHECK_SUBOBJECT0(a, b, c)                                              \
+    {                                                                          \
+        CHECK_EXISTS(a)                                                        \
+                                                                               \
+        try {                                                                  \
+            const bool valid##a = Check(                                       \
+                input.a(),                                                     \
+                b.at(input.version()).first,                                   \
+                b.at(input.version()).second,                                  \
+                c);                                                            \
+                                                                               \
+            if (false == valid##a) {                                           \
+                FAIL4("invalid ##a")                                           \
+            }                                                                  \
+        } catch (const std::out_of_range&) {                                   \
+            FAIL5(                                                             \
+                "allowed ##a version not defined for version",                 \
+                input.version())                                               \
+        }                                                                      \
+    }
+#define CHECK_SUBOBJECT(a, b)                                                  \
+    {                                                                          \
+        CHECK_SUBOBJECT0(a, b, "silent")                                       \
+    }
+
+#define CHECK_SUBOBJECT2(a, b, c)                                              \
+    {                                                                          \
+        CHECK_SUBOBJECT0(a, b, "silent##c")                                    \
+    }
 namespace opentxs
 {
 namespace proto
