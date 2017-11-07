@@ -45,54 +45,28 @@
 
 #ifdef ANDROID
 #include <android/log.h>
+#endif
 
-#define FAIL(a, b)                                                             \
+#ifdef ANDROID
+#define WRITE_LOG()                                                            \
     {                                                                          \
-        if (false == silent) {                                                 \
-            std::stringstream out{};                                           \
-            out << "Verify version " << input.version() << " " << a            \
-                << " failed: " << b << std::endl;                              \
-            __android_log_write(                                               \
-                ANDROID_LOG_INFO, "opentxs-proto", out.str().c_str());         \
-        }                                                                      \
-                                                                               \
-        return false;                                                          \
-    }
-
-#define FAIL2(a, b, c)                                                         \
-    {                                                                          \
-        if (false == silent) {                                                 \
-            std::stringstream out{};                                           \
-            out << "Verify version " << input.version() << " " << a            \
-                << " failed: " << b << "(" << c << ")." << std::endl;          \
-            __android_log_write(                                               \
-                ANDROID_LOG_INFO, "opentxs-proto", out.str().c_str());         \
-        }                                                                      \
-                                                                               \
-        return false;                                                          \
-    }
-
-#define FAIL3(a, b, c, d, e)                                                   \
-    {                                                                          \
-        if (false == silent) {                                                 \
-            std::stringstream out{};                                           \
-            out << "Verify version " << input.version() << " " << a            \
-                << " failed: " << b << "(" << c << ")" << d << "(" << e << ")" \
-                << std::endl;                                                  \
-            __android_log_write(                                               \
-                ANDROID_LOG_INFO, "opentxs-proto", out.str().c_str());         \
-        }                                                                      \
-                                                                               \
-        return false;                                                          \
+        __android_log_write(                                                   \
+            ANDROID_LOG_INFO, "opentxs-proto", out.str().c_str());             \
     }
 #else
+#define WRITE_LOG()                                                            \
+    {                                                                          \
+        std::cerr << out.str();                                                \
+    }
+#endif
+
 #define FAIL(a, b)                                                             \
     {                                                                          \
         if (false == silent) {                                                 \
             std::stringstream out{};                                           \
             out << "Verify version " << input.version() << " " << a            \
                 << " failed: " << b << std::endl;                              \
-            std::cerr << out.str();                                            \
+            WRITE_LOG()                                                        \
         }                                                                      \
                                                                                \
         return false;                                                          \
@@ -104,7 +78,7 @@
             std::stringstream out{};                                           \
             out << "Verify version " << input.version() << " " << a            \
                 << " failed: " << b << "(" << c << ")." << std::endl;          \
-            std::cerr << out.str();                                            \
+            WRITE_LOG()                                                        \
         }                                                                      \
                                                                                \
         return false;                                                          \
@@ -117,12 +91,11 @@
             out << "Verify version " << input.version() << " " << a            \
                 << " failed: " << b << "(" << c << ")" << d << "(" << e << ")" \
                 << std::endl;                                                  \
-            std::cerr << out.str();                                            \
+            WRITE_LOG()                                                        \
         }                                                                      \
                                                                                \
         return false;                                                          \
     }
-#endif
 
 #define UNDEFINED_VERSION(a, b)                                                \
     {                                                                          \
