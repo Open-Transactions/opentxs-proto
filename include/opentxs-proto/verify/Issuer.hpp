@@ -36,28 +36,21 @@
  *
  ************************************************************/
 
-#include "opentxs-proto/Types.hpp"
-#include "opentxs-proto/Check.hpp"
+#ifndef OPENTXS_PROTO_ISSUER_HPP
+#define OPENTXS_PROTO_ISSUER_HPP
 
-#include <iostream>
-
-#define PROTO_NAME "storage item index"
+#include "VerifyContracts.hpp"
 
 namespace opentxs
 {
 namespace proto
 {
-bool CheckProto_1(const StorageItems& input, const bool silent)
-{
-    OPTIONAL_IDENTIFIER(creds)
-    OPTIONAL_IDENTIFIER(nyms)
-    OPTIONAL_IDENTIFIER(servers)
-    OPTIONAL_IDENTIFIER(units)
-    OPTIONAL_IDENTIFIER(seeds)
-    CHECK_EXCLUDED(contacts)
-    CHECK_EXCLUDED(blockchaintransactions)
-
-    return true;
-}
+bool CheckProto_1(const Issuer& input, const bool silent);
+bool CheckProto_2(const Issuer&, const bool);
+bool CheckProto_3(const Issuer&, const bool);
+bool CheckProto_4(const Issuer&, const bool);
+bool CheckProto_5(const Issuer&, const bool);
 }  // namespace proto
 }  // namespace opentxs
+
+#endif  // OPENTXS_PROTO_ISSUER_HPP

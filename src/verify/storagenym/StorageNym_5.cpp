@@ -41,21 +41,33 @@
 
 #include <iostream>
 
-#define PROTO_NAME "storage item index"
+#define PROTO_NAME "storage nym"
 
 namespace opentxs
 {
 namespace proto
 {
-bool CheckProto_1(const StorageItems& input, const bool silent)
+
+bool CheckProto_5(const StorageNym& input, const bool silent)
 {
-    OPTIONAL_IDENTIFIER(creds)
-    OPTIONAL_IDENTIFIER(nyms)
-    OPTIONAL_IDENTIFIER(servers)
-    OPTIONAL_IDENTIFIER(units)
-    OPTIONAL_IDENTIFIER(seeds)
-    CHECK_EXCLUDED(contacts)
-    CHECK_EXCLUDED(blockchaintransactions)
+    OPTIONAL_SUBOBJECT(credlist, StorageNymAllowedHash)
+    OPTIONAL_SUBOBJECT(sentpeerrequests, StorageNymAllowedHash)
+    OPTIONAL_SUBOBJECT(incomingpeerrequests, StorageNymAllowedHash)
+    OPTIONAL_SUBOBJECT(sentpeerreply, StorageNymAllowedHash)
+    OPTIONAL_SUBOBJECT(incomingpeerreply, StorageNymAllowedHash)
+    OPTIONAL_SUBOBJECT(finishedpeerrequest, StorageNymAllowedHash)
+    OPTIONAL_SUBOBJECT(finishedpeerreply, StorageNymAllowedHash)
+    OPTIONAL_SUBOBJECT(processedpeerrequest, StorageNymAllowedHash)
+    OPTIONAL_SUBOBJECT(processedpeerreply, StorageNymAllowedHash)
+    OPTIONAL_SUBOBJECT(mailinbox, StorageNymAllowedHash)
+    OPTIONAL_SUBOBJECT(mailoutbox, StorageNymAllowedHash)
+    OPTIONAL_SUBOBJECT(threads, StorageNymAllowedHash)
+    OPTIONAL_SUBOBJECT(contexts, StorageNymAllowedHash)
+    OPTIONAL_SUBOBJECT(accounts, StorageNymAllowedHash)
+    CHECK_SUBOBJECTS(
+        blockchainaccountindex, StorageNymAllowedBlockchainAccountList)
+    CHECK_SUBOBJECTS(blockchainaccount, StorageNymAllowedBip44Account)
+    OPTIONAL_IDENTIFIER(issuers)
 
     return true;
 }

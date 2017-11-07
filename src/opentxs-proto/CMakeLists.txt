@@ -36,6 +36,7 @@ set(PROTO_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/EquityParams.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/Faucet.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/HDPath.proto
+    ${CMAKE_CURRENT_SOURCE_DIR}/Issuer.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/KeyCredential.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/ListenAddress.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/MasterCredentialParameters.proto
@@ -48,6 +49,8 @@ set(PROTO_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/PeerObject.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/PeerReply.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/PeerRequest.proto
+    ${CMAKE_CURRENT_SOURCE_DIR}/PeerRequestHistory.proto
+    ${CMAKE_CURRENT_SOURCE_DIR}/PeerRequestWorkflow.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/PendingBailment.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/Seed.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/ServerContext.proto
@@ -64,6 +67,7 @@ set(PROTO_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/StorageIDList.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/StorageItemHash.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/StorageItems.proto
+    ${CMAKE_CURRENT_SOURCE_DIR}/StorageIssuers.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/StorageNym.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/StorageNymList.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/StorageRoot.proto
@@ -74,6 +78,7 @@ set(PROTO_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/StorageUnits.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/StoreSecret.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/SymmetricKey.proto
+    ${CMAKE_CURRENT_SOURCE_DIR}/UnitAccountMap.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/UnitDefinition.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/Verification.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/VerificationGroup.proto

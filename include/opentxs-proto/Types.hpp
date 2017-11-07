@@ -87,6 +87,7 @@
 #include <opentxs-proto/EquityParams.pb.h>
 #include <opentxs-proto/Faucet.pb.h>
 #include <opentxs-proto/HDPath.pb.h>
+#include <opentxs-proto/Issuer.pb.h>
 #include <opentxs-proto/KeyCredential.pb.h>
 #include <opentxs-proto/ListenAddress.pb.h>
 #include <opentxs-proto/MasterCredentialParameters.pb.h>
@@ -99,6 +100,8 @@
 #include <opentxs-proto/PeerObject.pb.h>
 #include <opentxs-proto/PeerReply.pb.h>
 #include <opentxs-proto/PeerRequest.pb.h>
+#include <opentxs-proto/PeerRequestHistory.pb.h>
+#include <opentxs-proto/PeerRequestWorkflow.pb.h>
 #include <opentxs-proto/PendingBailment.pb.h>
 #include <opentxs-proto/Seed.pb.h>
 #include <opentxs-proto/ServerContext.pb.h>
@@ -113,6 +116,7 @@
 #include <opentxs-proto/StorageCredentials.pb.h>
 #include <opentxs-proto/StorageEnums.pb.h>
 #include <opentxs-proto/StorageIDList.pb.h>
+#include <opentxs-proto/StorageIssuers.pb.h>
 #include <opentxs-proto/StorageItemHash.pb.h>
 #include <opentxs-proto/StorageItems.pb.h>
 #include <opentxs-proto/StorageNym.pb.h>
@@ -125,6 +129,7 @@
 #include <opentxs-proto/StorageUnits.pb.h>
 #include <opentxs-proto/StoreSecret.pb.h>
 #include <opentxs-proto/SymmetricKey.pb.h>
+#include <opentxs-proto/UnitAccountMap.pb.h>
 #include <opentxs-proto/UnitDefinition.pb.h>
 #include <opentxs-proto/Verification.pb.h>
 #include <opentxs-proto/VerificationGroup.pb.h>
@@ -160,6 +165,7 @@
 #include <opentxs-proto/verify/Envelope.hpp>
 #include <opentxs-proto/verify/EquityParams.hpp>
 #include <opentxs-proto/verify/HDPath.hpp>
+#include <opentxs-proto/verify/Issuer.hpp>
 #include <opentxs-proto/verify/KeyCredential.hpp>
 #include <opentxs-proto/verify/ListenAddress.hpp>
 #include <opentxs-proto/verify/MasterCredentialParameters.hpp>
@@ -171,6 +177,8 @@
 #include <opentxs-proto/verify/PeerObject.hpp>
 #include <opentxs-proto/verify/PeerReply.hpp>
 #include <opentxs-proto/verify/PeerRequest.hpp>
+#include <opentxs-proto/verify/PeerRequestHistory.hpp>
+#include <opentxs-proto/verify/PeerRequestWorkflow.hpp>
 #include <opentxs-proto/verify/PendingBailment.hpp>
 #include <opentxs-proto/verify/Seed.hpp>
 #include <opentxs-proto/verify/ServerContext.hpp>
@@ -185,6 +193,7 @@
 #include <opentxs-proto/verify/StorageContacts.hpp>
 #include <opentxs-proto/verify/StorageCredentials.hpp>
 #include <opentxs-proto/verify/StorageIDList.hpp>
+#include <opentxs-proto/verify/StorageIssuers.hpp>
 #include <opentxs-proto/verify/StorageItemHash.hpp>
 #include <opentxs-proto/verify/StorageItems.hpp>
 #include <opentxs-proto/verify/StorageNym.hpp>
@@ -197,6 +206,7 @@
 #include <opentxs-proto/verify/StorageUnits.hpp>
 #include <opentxs-proto/verify/StoreSecret.hpp>
 #include <opentxs-proto/verify/SymmetricKey.hpp>
+#include <opentxs-proto/verify/UnitAccountMap.hpp>
 #include <opentxs-proto/verify/UnitDefinition.hpp>
 #include <opentxs-proto/verify/Verification.hpp>
 #include <opentxs-proto/verify/VerificationGroup.hpp>

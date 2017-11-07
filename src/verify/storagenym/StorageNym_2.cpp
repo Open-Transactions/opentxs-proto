@@ -41,6 +41,8 @@
 
 #include <iostream>
 
+#define PROTO_NAME "storage nym"
+
 namespace opentxs
 {
 namespace proto
@@ -48,249 +50,23 @@ namespace proto
 
 bool CheckProto_2(const StorageNym& input, const bool silent)
 {
-    if (input.has_credlist()) {
-        try {
-            const bool valid = Check(
-                input.credlist(),
-                StorageNymAllowedHash.at(input.version()).first,
-                StorageNymAllowedHash.at(input.version()).second,
-                silent);
-
-            if (!valid) {
-                FAIL("storage nym", "invalid credential list")
-            }
-        } catch (const std::out_of_range&) {
-            FAIL2(
-                "storage nym",
-                "allowed storage item hash version not defined for version",
-                input.version())
-        }
-    }
-
-    if (input.has_sentpeerrequests()) {
-        try {
-            const bool valid = Check(
-                input.sentpeerrequests(),
-                StorageNymAllowedHash.at(input.version()).first,
-                StorageNymAllowedHash.at(input.version()).second,
-                silent);
-
-            if (!valid) {
-                FAIL("storage nym", "invalid sentpeerrequests")
-            }
-        } catch (const std::out_of_range&) {
-            FAIL2(
-                "storage nym",
-                "allowed storage item hash version not defined for version",
-                input.version())
-        }
-    }
-
-    if (input.has_incomingpeerrequests()) {
-        try {
-            const bool valid = Check(
-                input.incomingpeerrequests(),
-                StorageNymAllowedHash.at(input.version()).first,
-                StorageNymAllowedHash.at(input.version()).second,
-                silent);
-
-            if (!valid) {
-                FAIL("storage nym", "invalid incomingpeerrequests")
-            }
-        } catch (const std::out_of_range&) {
-            FAIL2(
-                "storage nym",
-                "allowed storage item hash version not defined for version",
-                input.version())
-        }
-    }
-
-    if (input.has_sentpeerreply()) {
-        try {
-            const bool valid = Check(
-                input.sentpeerreply(),
-                StorageNymAllowedHash.at(input.version()).first,
-                StorageNymAllowedHash.at(input.version()).second,
-                silent);
-
-            if (!valid) {
-                FAIL("storage nym", "invalid sentpeerreply")
-            }
-        } catch (const std::out_of_range&) {
-            FAIL2(
-                "storage nym",
-                "allowed storage item hash version not defined for version",
-                input.version())
-        }
-    }
-
-    if (input.has_incomingpeerreply()) {
-        try {
-            const bool valid = Check(
-                input.incomingpeerreply(),
-                StorageNymAllowedHash.at(input.version()).first,
-                StorageNymAllowedHash.at(input.version()).second,
-                silent);
-
-            if (!valid) {
-                FAIL("storage nym", "invalid incomingpeerreply")
-            }
-        } catch (const std::out_of_range&) {
-            FAIL2(
-                "storage nym",
-                "allowed storage item hash version not defined for version",
-                input.version())
-        }
-    }
-
-    if (input.has_finishedpeerrequest()) {
-        try {
-            const bool valid = Check(
-                input.finishedpeerrequest(),
-                StorageNymAllowedHash.at(input.version()).first,
-                StorageNymAllowedHash.at(input.version()).second,
-                silent);
-
-            if (!valid) {
-                FAIL("storage nym", "invalid finishedpeerrequest")
-            }
-        } catch (const std::out_of_range&) {
-            FAIL2(
-                "storage nym",
-                "allowed storage item hash version not defined for version",
-                input.version())
-        }
-    }
-
-    if (input.has_finishedpeerreply()) {
-        try {
-            const bool valid = Check(
-                input.finishedpeerreply(),
-                StorageNymAllowedHash.at(input.version()).first,
-                StorageNymAllowedHash.at(input.version()).second,
-                silent);
-
-            if (!valid) {
-                FAIL("storage nym", "invalid finishedpeerreply")
-            }
-        } catch (const std::out_of_range&) {
-            FAIL2(
-                "storage nym",
-                "allowed storage item hash version not defined for version",
-                input.version())
-        }
-    }
-
-    if (input.has_processedpeerrequest()) {
-        try {
-            const bool valid = Check(
-                input.processedpeerrequest(),
-                StorageNymAllowedHash.at(input.version()).first,
-                StorageNymAllowedHash.at(input.version()).second,
-                silent);
-
-            if (!valid) {
-                FAIL("storage nym", "invalid processedpeerrequest")
-            }
-        } catch (const std::out_of_range&) {
-            FAIL2(
-                "storage nym",
-                "allowed storage item hash version not defined for version",
-                input.version())
-        }
-    }
-
-    if (input.has_processedpeerreply()) {
-        try {
-            const bool valid = Check(
-                input.processedpeerreply(),
-                StorageNymAllowedHash.at(input.version()).first,
-                StorageNymAllowedHash.at(input.version()).second,
-                silent);
-
-            if (!valid) {
-                FAIL("storage nym", "invalid processedpeerreply")
-            }
-        } catch (const std::out_of_range&) {
-            FAIL2(
-                "storage nym",
-                "allowed storage item hash version not defined for version",
-                input.version())
-        }
-    }
-
-    if (input.has_mailinbox()) {
-        try {
-            const bool valid = Check(
-                input.mailinbox(),
-                StorageNymAllowedHash.at(input.version()).first,
-                StorageNymAllowedHash.at(input.version()).second,
-                silent);
-
-            if (!valid) {
-                FAIL("storage nym", "invalid mailinbox")
-            }
-        } catch (const std::out_of_range&) {
-            FAIL2(
-                "storage nym",
-                "allowed storage item hash version not defined for version",
-                input.version())
-        }
-    }
-
-    if (input.has_mailoutbox()) {
-        try {
-            const bool valid = Check(
-                input.mailoutbox(),
-                StorageNymAllowedHash.at(input.version()).first,
-                StorageNymAllowedHash.at(input.version()).second,
-                silent);
-
-            if (!valid) {
-                FAIL("storage nym", "invalid mailoutbox")
-            }
-        } catch (const std::out_of_range&) {
-            FAIL2(
-                "storage nym",
-                "allowed storage item hash version not defined for version",
-                input.version())
-        }
-    }
-
-    if (input.has_threads()) {
-        try {
-            const bool valid = Check(
-                input.threads(),
-                StorageNymAllowedHash.at(input.version()).first,
-                StorageNymAllowedHash.at(input.version()).second,
-                silent);
-
-            if (!valid) {
-                FAIL("storage nym", "invalid threads")
-            }
-        } catch (const std::out_of_range&) {
-            FAIL2(
-                "storage nym",
-                "allowed storage item hash version not defined for version",
-                input.version())
-        }
-    }
-
-    if (input.has_contexts()) {
-        FAIL("storage nym", "unexpected contexts field present")
-    }
-
-    if (input.has_accounts()) {
-        FAIL("storage nym", "unexpected accounts field present")
-    }
-
-    if (0 < input.blockchainaccountindex().size()) {
-        FAIL("storage nym", "unexpected blockchainaccountindex field present")
-    }
-
-    if (0 < input.blockchainaccount().size()) {
-        FAIL("storage nym", "unexpected blockchainaccount field present")
-    }
+    OPTIONAL_SUBOBJECT(credlist, StorageNymAllowedHash)
+    OPTIONAL_SUBOBJECT(sentpeerrequests, StorageNymAllowedHash)
+    OPTIONAL_SUBOBJECT(incomingpeerrequests, StorageNymAllowedHash)
+    OPTIONAL_SUBOBJECT(sentpeerreply, StorageNymAllowedHash)
+    OPTIONAL_SUBOBJECT(incomingpeerreply, StorageNymAllowedHash)
+    OPTIONAL_SUBOBJECT(finishedpeerrequest, StorageNymAllowedHash)
+    OPTIONAL_SUBOBJECT(finishedpeerreply, StorageNymAllowedHash)
+    OPTIONAL_SUBOBJECT(processedpeerrequest, StorageNymAllowedHash)
+    OPTIONAL_SUBOBJECT(processedpeerreply, StorageNymAllowedHash)
+    OPTIONAL_SUBOBJECT(mailinbox, StorageNymAllowedHash)
+    OPTIONAL_SUBOBJECT(mailoutbox, StorageNymAllowedHash)
+    OPTIONAL_SUBOBJECT(threads, StorageNymAllowedHash)
+    CHECK_EXCLUDED(contexts)
+    CHECK_EXCLUDED(accounts)
+    CHECK_NONE(blockchainaccountindex)
+    CHECK_NONE(blockchainaccount)
+    CHECK_EXCLUDED(issuers)
 
     return true;
 }

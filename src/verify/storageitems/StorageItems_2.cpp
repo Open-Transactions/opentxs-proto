@@ -41,80 +41,21 @@
 
 #include <iostream>
 
+#define PROTO_NAME "storage item index"
+
 namespace opentxs
 {
 namespace proto
 {
-
 bool CheckProto_2(const StorageItems& input, const bool silent)
 {
-    if (input.has_creds()) {
-        if (MIN_PLAUSIBLE_IDENTIFIER > input.creds().size()) {
-            FAIL2("storage item index", "invalid credentials", input.creds())
-        }
-
-        if (MAX_PLAUSIBLE_IDENTIFIER < input.creds().size()) {
-            FAIL2("storage item index", "invalid credentials", input.creds())
-        }
-    }
-
-    if (input.has_nyms()) {
-        if (MIN_PLAUSIBLE_IDENTIFIER > input.nyms().size()) {
-            FAIL2("storage item index", "invalid nym list", input.nyms())
-        }
-
-        if (MAX_PLAUSIBLE_IDENTIFIER < input.nyms().size()) {
-            FAIL2("storage item index", "invalid nym list", input.nyms())
-        }
-    }
-
-    if (input.has_servers()) {
-        if (MIN_PLAUSIBLE_IDENTIFIER > input.servers().size()) {
-            FAIL2("storage item index", "invalid server list", input.servers())
-        }
-
-        if (MAX_PLAUSIBLE_IDENTIFIER < input.servers().size()) {
-            FAIL2("storage item index", "invalid server list", input.servers())
-        }
-    }
-
-    if (input.has_units()) {
-        if (MIN_PLAUSIBLE_IDENTIFIER > input.units().size()) {
-            FAIL2("storage item index", "invalid unit list", input.units())
-        }
-
-        if (MAX_PLAUSIBLE_IDENTIFIER < input.units().size()) {
-            FAIL2("storage item index", "invalid unit list", input.units())
-        }
-    }
-
-    if (input.has_seeds()) {
-        if (MIN_PLAUSIBLE_IDENTIFIER > input.seeds().size()) {
-            FAIL2("storage item index", "invalid seed list", input.seeds())
-        }
-
-        if (MAX_PLAUSIBLE_IDENTIFIER < input.seeds().size()) {
-            FAIL2("storage item index", "invalid seed list", input.seeds())
-        }
-    }
-
-    if (input.has_contacts()) {
-        if (MIN_PLAUSIBLE_IDENTIFIER > input.contacts().size()) {
-            FAIL2(
-                "storage item index", "invalid contact list", input.contacts())
-        }
-
-        if (MAX_PLAUSIBLE_IDENTIFIER < input.contacts().size()) {
-            FAIL2(
-                "storage item index", "invalid contact list", input.contacts())
-        }
-    }
-
-    if (input.has_blockchaintransactions()) {
-        FAIL(
-            "storage item index",
-            "unexpected blockchaintransactions field found")
-    }
+    OPTIONAL_IDENTIFIER(creds)
+    OPTIONAL_IDENTIFIER(nyms)
+    OPTIONAL_IDENTIFIER(servers)
+    OPTIONAL_IDENTIFIER(units)
+    OPTIONAL_IDENTIFIER(seeds)
+    OPTIONAL_IDENTIFIER(contacts)
+    CHECK_EXCLUDED(blockchaintransactions)
 
     return true;
 }

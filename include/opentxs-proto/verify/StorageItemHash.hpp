@@ -48,8 +48,8 @@ namespace proto
 bool CheckProto_1(const StorageItemHash& hash, const bool silent);
 bool CheckProto_2(const StorageItemHash& hash, const bool silent);
 bool CheckProto_3(const StorageItemHash& hash, const bool silent);
-bool CheckProto_4(const StorageItemHash&, const bool);
-bool CheckProto_5(const StorageItemHash&, const bool);
+bool CheckProto_4(const StorageItemHash& hash, const bool silent);
+bool CheckProto_5(const StorageItemHash& hash, const bool silent);
 }  // namespace proto
 }  // namespace opentxs
 
