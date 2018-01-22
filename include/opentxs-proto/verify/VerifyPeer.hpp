@@ -65,14 +65,14 @@ static const VersionMap PeerObjectAllowedReply = {
     {2, {2, 2}},
     {3, {3, 3}},
     {4, {4, 4}},
-    {5, {4, 4}},
+    {5, {4, 5}},
 };
 static const VersionMap PeerObjectAllowedRequest = {
     {1, {1, 2}},
     {2, {2, 2}},
     {3, {3, 3}},
     {4, {4, 4}},
-    {5, {4, 4}},
+    {5, {4, 5}},
 };
 static const VersionMap PeerObjectAllowedCredentialIndex = {
     {1, {1, 3}},
@@ -86,6 +86,7 @@ static const VersionMap PeerReplyAllowedSignature = {
     {2, {1, 1}},
     {3, {1, 1}},
     {4, {1, 1}},
+    {5, {1, 1}},
 };
 static const VersionMap PeerReplyAllowedBailment = {
     {1, {1, 1}},
@@ -98,6 +99,7 @@ static const VersionMap PeerReplyAllowedNotice = {
     {2, {2, 2}},
     {3, {3, 3}},
     {4, {4, 4}},
+    {5, {4, 5}},
 };
 static const VersionMap PeerReplyAllowedOutBailment = {
     {1, {1, 1}},
@@ -116,6 +118,7 @@ static const VersionMap PeerRequestAllowedSignature = {
     {2, {1, 1}},
     {3, {1, 1}},
     {4, {1, 1}},
+    {5, {1, 1}},
 };
 static const VersionMap PeerRequestAllowedBailment = {
     {1, {1, 1}},
@@ -134,6 +137,7 @@ static const VersionMap PeerRequestAllowedPendingBailment = {
     {2, {2, 2}},
     {3, {3, 3}},
     {4, {4, 4}},
+    {5, {5, 5}},
 };
 static const VersionMap PeerRequestAllowedConnectionInfo = {
     {1, {1, 1}},

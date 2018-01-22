@@ -49,7 +49,7 @@ bool CheckProto_1(const PendingBailment& request, const bool silent);
 bool CheckProto_2(const PendingBailment& request, const bool silent);
 bool CheckProto_3(const PendingBailment& request, const bool silent);
 bool CheckProto_4(const PendingBailment& request, const bool silent);
-bool CheckProto_5(const PendingBailment&, const bool);
+bool CheckProto_5(const PendingBailment& request, const bool silent);
 }  // namespace proto
 }  // namespace opentxs
 
