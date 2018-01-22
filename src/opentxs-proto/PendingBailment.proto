@@ -10,4 +10,5 @@ message PendingBailment {
     optional string unitID = 2;
     optional string serverID = 3;
     optional string txid = 4;
+    optional string requestID = 5;
 }

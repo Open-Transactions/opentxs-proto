@@ -41,6 +41,8 @@
 
 #include <iostream>
 
+#define PROTO_NAME "pending bailment"
+
 namespace opentxs
 {
 namespace proto
@@ -48,42 +50,10 @@ namespace proto
 
 bool CheckProto_1(const PendingBailment& input, const bool silent)
 {
-    if (!input.has_unitid()) {
-        FAIL("pending bailment", "missing unit id")
-    }
-
-    if (MIN_PLAUSIBLE_IDENTIFIER > input.unitid().size()) {
-        FAIL2("pending bailment", "invalid unit id", input.unitid())
-    }
-
-    if (MAX_PLAUSIBLE_IDENTIFIER < input.unitid().size()) {
-        FAIL2("pending bailment", "invalid unit id", input.unitid())
-    }
-
-    if (!input.has_serverid()) {
-        FAIL("pending bailment", "missing server id")
-    }
-
-    if (MIN_PLAUSIBLE_IDENTIFIER > input.serverid().size()) {
-        FAIL2("pending bailment", "invalid server id", input.serverid())
-    }
-
-    if (MAX_PLAUSIBLE_IDENTIFIER < input.serverid().size()) {
-        FAIL2("pending bailment", "invalid server id", input.serverid())
-    }
-
-    if (!input.has_txid()) {
-        FAIL("pending bailment", "missing txid")
-    }
-
-    if (MIN_PLAUSIBLE_IDENTIFIER > input.txid().size()) {
-        FAIL2("pending bailment", "invalid txid", input.txid())
-    }
-
-    if (MAX_PLAUSIBLE_IDENTIFIER < input.txid().size()) {
-        FAIL2("pending bailment", "invalid txid", input.txid())
-    }
-
+    CHECK_IDENTIFIER(unitid)
+    CHECK_IDENTIFIER(serverid)
+    CHECK_IDENTIFIER(txid)
+    CHECK_EXCLUDED(requestid)
     return true;
 }
 
@@ -104,7 +74,11 @@ bool CheckProto_4(const PendingBailment& input, const bool silent)
 
 bool CheckProto_5(const PendingBailment& input, const bool silent)
 {
-    UNDEFINED_VERSION("pending bailment", 5)
+    CHECK_IDENTIFIER(unitid)
+    CHECK_IDENTIFIER(serverid)
+    CHECK_IDENTIFIER(txid)
+    OPTIONAL_IDENTIFIER(requestid)
+    return true;
 }
 }  // namespace proto
 }  // namespace opentxs
