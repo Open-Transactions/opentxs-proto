@@ -92,7 +92,7 @@ bool CheckProto_4(const StorageItemHash& input, const bool silent)
 
 bool CheckProto_5(const StorageItemHash& input, const bool silent)
 {
-    UNDEFINED_VERSION("storage item hash", 5)
+    return CheckProto_2(input, silent);
 }
 }  // namespace proto
 }  // namespace opentxs

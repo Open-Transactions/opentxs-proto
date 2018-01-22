@@ -139,6 +139,11 @@
         FAIL2(a, "undefined version", b)                                       \
     }
 
+#define UNDEFINED_VERSION2(b)                                                  \
+    {                                                                          \
+        FAIL2(PROTO_NAME, "undefined version", b)                              \
+    }
+
 #define CHECK_EXISTS(a)                                                        \
     {                                                                          \
         if (false == input.has_##a()) {                                        \
@@ -153,13 +158,35 @@
         }                                                                      \
     }
 
+#define CHECK_NONE(a)                                                          \
+    {                                                                          \
+        if (0 < input.a().size()) {                                            \
+            FAIL4("unexpected ##a present")                                    \
+        }                                                                      \
+    }
+
 #define CHECK_IDENTIFIER(a)                                                    \
     {                                                                          \
         CHECK_EXISTS(a)                                                        \
                                                                                \
         if ((MIN_PLAUSIBLE_IDENTIFIER > input.a().size()) ||                   \
             (MAX_PLAUSIBLE_IDENTIFIER < input.a().size())) {                   \
-            FAIL5("invalid ##a size", input.a().size())                        \
+            const auto fail = std::string("invalid ") + #a + " size";          \
+            FAIL5(fail, input.a().size())                                      \
+        }                                                                      \
+    }
+
+#define OPTIONAL_IDENTIFIER(a)                                                 \
+    {                                                                          \
+        if (true == input.has_##a()) {                                         \
+            if ((MIN_PLAUSIBLE_IDENTIFIER > input.a().size()) ||               \
+                (MAX_PLAUSIBLE_IDENTIFIER < input.a().size())) {               \
+                const auto fail = std::string("invalid ") + #a + " size";      \
+                                                                               \
+                if (0 != input.a().size()) {                                   \
+                    FAIL5(fail, input.a().size())                              \
+                }                                                              \
+            }                                                                  \
         }                                                                      \
     }
 
@@ -175,14 +202,16 @@
                 c);                                                            \
                                                                                \
             if (false == valid##a) {                                           \
-                FAIL4("invalid ##a")                                           \
+                const auto fail = std::string("invalid ") + #a;                \
+                FAIL4(fail)                                                    \
             }                                                                  \
         } catch (const std::out_of_range&) {                                   \
-            FAIL5(                                                             \
-                "allowed ##a version not defined for version",                 \
-                input.version())                                               \
+            const auto fail = std::string("allowed ") + #a +                   \
+                              " version not defined for version";              \
+            FAIL5(fail, input.version())                                       \
         }                                                                      \
     }
+
 #define CHECK_SUBOBJECT(a, b)                                                  \
     {                                                                          \
         CHECK_SUBOBJECT0(a, b, "silent")                                       \
@@ -192,6 +221,55 @@
     {                                                                          \
         CHECK_SUBOBJECT0(a, b, "silent##c")                                    \
     }
+
+#define CHECK_SUBOBJECTS(a, b)                                                 \
+    {                                                                          \
+        for (const auto& it : input.a()) {                                     \
+            try {                                                              \
+                const bool valid##a = Check(                                   \
+                    it,                                                        \
+                    b.at(input.version()).first,                               \
+                    b.at(input.version()).second,                              \
+                    silent);                                                   \
+                                                                               \
+                if (false == valid##a) {                                       \
+                    FAIL4("invalid ##a")                                       \
+                }                                                              \
+            } catch (const std::out_of_range&) {                               \
+                const auto fail = std::string("allowed ") + #a +               \
+                                  " version not defined for version";          \
+                FAIL5(fail, input.version())                                   \
+            }                                                                  \
+        }                                                                      \
+    }
+
+#define OPTIONAL_SUBOBJECT0(a, b, c)                                           \
+    {                                                                          \
+        if (input.has_##a()) {                                                 \
+            try {                                                              \
+                const bool valid##a = Check(                                   \
+                    input.a(),                                                 \
+                    b.at(input.version()).first,                               \
+                    b.at(input.version()).second,                              \
+                    c);                                                        \
+                                                                               \
+                if (false == valid##a) {                                       \
+                    const auto fail = std::string("invalid ") + #a;            \
+                    FAIL4(fail)                                                \
+                }                                                              \
+            } catch (const std::out_of_range&) {                               \
+                const auto fail = std::string("allowed ") + #a +               \
+                                  " version not defined for version";          \
+                FAIL5(fail, input.version())                                   \
+            }                                                                  \
+        }                                                                      \
+    }
+
+#define OPTIONAL_SUBOBJECT(a, b)                                               \
+    {                                                                          \
+        OPTIONAL_SUBOBJECT0(a, b, "silent")                                    \
+    }
+
 namespace opentxs
 {
 namespace proto

@@ -11,7 +11,7 @@
  *       -- Cheques, Vouchers, Transfers, Inboxes.
  *       -- Basket Currencies, Markets, Payment Plans.
  *       -- Signed, XML, Ricardian-style Contracts.
- *       -- Scripted smart contracts.
+ *       -- Scripted smart paramss.
  *
  *  EMAIL:
  *  fellowtraveler@opentransactions.org
@@ -41,23 +41,38 @@
 
 #include <iostream>
 
-#define PROTO_NAME "storage item index"
+#define PROTO_NAME "peer request workflow"
 
 namespace opentxs
 {
 namespace proto
 {
-bool CheckProto_1(const StorageItems& input, const bool silent)
+bool CheckProto_1(const PeerRequestWorkflow& input, const bool silent)
 {
-    OPTIONAL_IDENTIFIER(creds)
-    OPTIONAL_IDENTIFIER(nyms)
-    OPTIONAL_IDENTIFIER(servers)
-    OPTIONAL_IDENTIFIER(units)
-    OPTIONAL_IDENTIFIER(seeds)
-    CHECK_EXCLUDED(contacts)
-    CHECK_EXCLUDED(blockchaintransactions)
+    OPTIONAL_IDENTIFIER(requestid)
+    OPTIONAL_IDENTIFIER(replyid)
 
     return true;
+}
+
+bool CheckProto_2(const PeerRequestWorkflow& input, const bool silent)
+{
+    UNDEFINED_VERSION2(2)
+}
+
+bool CheckProto_3(const PeerRequestWorkflow& input, const bool silent)
+{
+    UNDEFINED_VERSION2(3)
+}
+
+bool CheckProto_4(const PeerRequestWorkflow& input, const bool silent)
+{
+    UNDEFINED_VERSION2(4)
+}
+
+bool CheckProto_5(const PeerRequestWorkflow& input, const bool silent)
+{
+    UNDEFINED_VERSION2(5)
 }
 }  // namespace proto
 }  // namespace opentxs

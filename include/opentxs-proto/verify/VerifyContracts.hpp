@@ -48,8 +48,12 @@ namespace proto
 class BasketItem;
 class BasketParams;
 class CurrencyParams;
+class Issuer;
 class ListenAddress;
+class PeerRequestHistory;
+class PeerRequestWorkflow;
 class ServerContract;
+class UnitAccountMap;
 class UnitDefinition;
 class VerifyCredentials;
 
@@ -78,6 +82,15 @@ static const VersionMap UnitDefinitionAllowedSignature = {
     {1, {1, 1}},
 };
 static const VersionMap BasketParamsAllowedBasketItem = {
+    {1, {1, 1}},
+};
+static const VersionMap IssuerAllowedUnitAccountMap = {
+    {1, {1, 1}},
+};
+static const VersionMap IssuerAllowedPeerRequestHistory = {
+    {1, {1, 1}},
+};
+static const VersionMap PeerRequestHistoryAllowedPeerRequestWorkflow = {
     {1, {1, 1}},
 };
 }  // namespace proto

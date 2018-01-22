@@ -53,6 +53,7 @@ class StorageCredentials;
 class StorageIDList;
 class StorageItemHash;
 class StorageItems;
+class StorageIssuers;
 class StorageNym;
 class StorageNymList;
 class StorageRoot;
@@ -86,12 +87,15 @@ static const VersionMap StorageNymAllowedHash = {
     {2, {1, 2}},
     {3, {2, 3}},
     {4, {2, 4}},
-};
-static const VersionMap StorageNymAllowedBlockchainAccountList{
-    {4, {1, 1}},
+    {5, {2, 5}},
 };
 static const VersionMap StorageNymAllowedBip44Account{
     {4, {1, 1}},
+    {5, {1, 1}},
+};
+static const VersionMap StorageNymAllowedBlockchainAccountList{
+    {4, {1, 1}},
+    {5, {1, 1}},
 };
 static const VersionMap StorageNymListAllowedHash = {
     {1, {1, 1}},
@@ -111,6 +115,9 @@ static const VersionMap StorageUnitsAllowedHash = {
 static const VersionMap StorageSeedsAllowedHash = {
     {1, {1, 1}},
     {2, {1, 2}},
+};
+static const VersionMap StorageIssuerAllowedHash = {
+    {1, {1, 2}},
 };
 }  // namespace proto
 }  // namespace opentxs

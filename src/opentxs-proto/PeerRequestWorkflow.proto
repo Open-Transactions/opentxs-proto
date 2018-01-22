@@ -1,0 +1,14 @@
+syntax = "proto2";
+
+package opentxs.proto;
+option java_package = "org.opentransactions.proto";
+option java_outer_classname = "OTPeerRequestWorkflow";
+option optimize_for = LITE_RUNTIME;
+
+message PeerRequestWorkflow
+{
+    optional uint32 version = 1;
+    optional string requestid = 2;
+    optional string replyid = 3;
+    optional bool used = 4;
+}

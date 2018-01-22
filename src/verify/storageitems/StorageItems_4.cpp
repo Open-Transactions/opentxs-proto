@@ -47,17 +47,14 @@ namespace opentxs
 {
 namespace proto
 {
-bool CheckProto_1(const StorageItems& input, const bool silent)
+bool CheckProto_4(const StorageItems& input, const bool silent)
 {
-    OPTIONAL_IDENTIFIER(creds)
-    OPTIONAL_IDENTIFIER(nyms)
-    OPTIONAL_IDENTIFIER(servers)
-    OPTIONAL_IDENTIFIER(units)
-    OPTIONAL_IDENTIFIER(seeds)
-    CHECK_EXCLUDED(contacts)
-    CHECK_EXCLUDED(blockchaintransactions)
+    UNDEFINED_VERSION(PROTO_NAME, 4)
+}
 
-    return true;
+bool CheckProto_5(const StorageItems& input, const bool silent)
+{
+    UNDEFINED_VERSION(PROTO_NAME, 5)
 }
 }  // namespace proto
 }  // namespace opentxs

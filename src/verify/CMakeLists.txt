@@ -31,6 +31,7 @@ set(cxx-sources
   envelope/Envelope_1.cpp
   faucet/Faucet_1.cpp
   hdpath/HDPath_1.cpp
+  issuer/Issuer_1.cpp
   keycredential/KeyCredential_1.cpp
   listenaddress/ListenAddress_1.cpp
   mastercredentialparameters/MasterCredentialParameters_1.cpp
@@ -49,6 +50,8 @@ set(cxx-sources
   peerrequest/PeerRequest_2.cpp
   peerrequest/PeerRequest_3.cpp
   peerrequest/PeerRequest_4.cpp
+  peerrequesthistory/PeerRequestHistory_1.cpp
+  peerrequestworkflow/PeerRequestWorkflow_1.cpp
   pendingbailment/PendingBailment_1.cpp
   seed/Seed_1.cpp
   seed/Seed_2.cpp
@@ -71,10 +74,13 @@ set(cxx-sources
   storageitems/StorageItems_1.cpp
   storageitems/StorageItems_2.cpp
   storageitems/StorageItems_3.cpp
+  storageitems/StorageItems_4.cpp
+  storageissuers/StorageIssuers_1.cpp
   storagenym/StorageNym_1.cpp
   storagenym/StorageNym_2.cpp
   storagenym/StorageNym_3.cpp
   storagenym/StorageNym_4.cpp
+  storagenym/StorageNym_5.cpp
   storagenymlist/StorageNymList_1.cpp
   storageroot/StorageRoot_1.cpp
   storageroot/StorageRoot_2.cpp
@@ -85,6 +91,7 @@ set(cxx-sources
   storageunits/StorageUnits_1.cpp
   storesecret/StoreSecret_1.cpp
   symmetrickey/SymmetricKey_1.cpp
+  unitaccountmap/UnitAccountMap_1.cpp
   unitdefinition/UnitDefinition_1.cpp
   verification/Verification_1.cpp
   verificationgroup/VerificationGroup_1.cpp
