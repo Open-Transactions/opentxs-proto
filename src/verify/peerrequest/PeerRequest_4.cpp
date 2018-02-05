@@ -41,230 +41,88 @@
 
 #include <iostream>
 
-namespace opentxs
-{
-namespace proto
+#define PROTO_NAME "peer request"
+
+namespace opentxs::proto
 {
 bool CheckProto_4(const PeerRequest& input, const bool silent)
 {
-    if (!input.has_id()) {
-        FAIL("peer request", "missing id")
-    }
-
-    if (MIN_PLAUSIBLE_IDENTIFIER > input.id().size()) {
-        FAIL("peer request", "invalid id")
-    }
-
-    if (!input.has_initiator()) {
-        FAIL("peer request", "missing initiato")
-    }
-
-    if (MIN_PLAUSIBLE_IDENTIFIER > input.initiator().size()) {
-        FAIL2("peer request", "invalid initiator", input.initiator())
-    }
-
-    if (!input.has_recipient()) {
-        FAIL("peer request", " missing recipient")
-    }
-
-    if (MIN_PLAUSIBLE_IDENTIFIER > input.recipient().size()) {
-        FAIL2("peer request", "invalid recipient", input.recipient())
-    }
-
-    if (!input.has_type()) {
-        FAIL("peer request", "missing type")
-    }
-
-    if (!input.has_cookie()) {
-        FAIL("peer request", "missing cookie")
-    }
-
-    try {
-        const bool validSig = Check(
-            input.signature(),
-            PeerReplyAllowedSignature.at(input.version()).first,
-            PeerReplyAllowedSignature.at(input.version()).second,
-            silent,
-            SIGROLE_PEERREQUEST);
-
-        if (!validSig) {
-            FAIL("peer request", "invalid signature")
-        }
-    } catch (const std::out_of_range&) {
-        FAIL2(
-            "peer request",
-            "allowed signature version not defined for version",
-            input.version())
-    }
-
-    if (!input.has_server()) {
-        FAIL("peer request", "missing server")
-    }
-
-    if (MIN_PLAUSIBLE_IDENTIFIER > input.server().size()) {
-        FAIL2("peer request", "invalid server", input.server())
-    }
+    CHECK_IDENTIFIER(id)
+    CHECK_IDENTIFIER(initiator)
+    CHECK_IDENTIFIER(recipient)
+    CHECK_EXISTS(type)
+    CHECK_IDENTIFIER(cookie)
+    CHECK_SUBOBJECT2(
+        signature, PeerReplyAllowedSignature, ", SIGROLE_PEERREQUEST")
+    CHECK_IDENTIFIER(server)
 
     switch (input.type()) {
         case PEERREQUEST_BAILMENT: {
-            if (!input.has_bailment()) {
-                FAIL("peer request", "missing bailment")
-            }
-
-            try {
-                const bool validbailment = Check(
-                    input.bailment(),
-                    PeerRequestAllowedBailment.at(input.version()).first,
-                    PeerRequestAllowedBailment.at(input.version()).second,
-                    silent);
-
-                if (!validbailment) {
-                    FAIL("peer request", "invalid bailment")
-                }
-            } catch (const std::out_of_range&) {
-                FAIL2(
-                    "peer request",
-                    "allowed bailment version not defined for version",
-                    input.version())
-            }
+            CHECK_EXCLUDED(outbailment)
+            CHECK_EXCLUDED(pendingbailment)
+            CHECK_EXCLUDED(connectioninfo)
+            CHECK_EXCLUDED(storesecret)
+            CHECK_EXCLUDED(verificationoffer)
+            CHECK_EXCLUDED(faucet)
+            CHECK_SUBOBJECT(bailment, PeerRequestAllowedBailment)
         } break;
         case PEERREQUEST_OUTBAILMENT: {
-            if (!input.has_outbailment()) {
-                FAIL("peer request", "missing outbailment")
-            }
-
-            try {
-                const bool validoutbailment = Check(
-                    input.outbailment(),
-                    PeerRequestAllowedOutBailment.at(input.version()).first,
-                    PeerRequestAllowedOutBailment.at(input.version()).second,
-                    silent);
-
-                if (!validoutbailment) {
-                    FAIL("peer request", "invalid outbailment")
-                }
-            } catch (const std::out_of_range&) {
-                FAIL2(
-                    "peer request",
-                    "allowed outbailment version not defined for version",
-                    input.version())
-            }
+            CHECK_EXCLUDED(bailment)
+            CHECK_EXCLUDED(pendingbailment)
+            CHECK_EXCLUDED(connectioninfo)
+            CHECK_EXCLUDED(storesecret)
+            CHECK_EXCLUDED(verificationoffer)
+            CHECK_EXCLUDED(faucet)
+            CHECK_SUBOBJECT(outbailment, PeerRequestAllowedOutBailment)
         } break;
         case PEERREQUEST_PENDINGBAILMENT: {
-            if (!input.has_pendingbailment()) {
-                FAIL("peer request", "missing pendingbailment")
-            }
-
-            try {
-                const bool validoutbailment = Check(
-                    input.pendingbailment(),
-                    PeerRequestAllowedPendingBailment.at(input.version()).first,
-                    PeerRequestAllowedPendingBailment.at(input.version())
-                        .second,
-                    silent);
-
-                if (!validoutbailment) {
-                    FAIL("peer request", "invalid pendingbailment")
-                }
-            } catch (const std::out_of_range&) {
-                FAIL2(
-                    "peer request",
-                    "allowed pending bailment version not defined for version",
-                    input.version())
-            }
+            CHECK_EXCLUDED(bailment)
+            CHECK_EXCLUDED(outbailment)
+            CHECK_EXCLUDED(connectioninfo)
+            CHECK_EXCLUDED(storesecret)
+            CHECK_EXCLUDED(verificationoffer)
+            CHECK_EXCLUDED(faucet)
+            CHECK_SUBOBJECT(pendingbailment, PeerRequestAllowedPendingBailment)
         } break;
         case PEERREQUEST_CONNECTIONINFO: {
-            if (!input.has_connectioninfo()) {
-                FAIL("peer request", "missing connectioninfo")
-            }
-
-            try {
-                const bool validconnectioninfo = Check(
-                    input.connectioninfo(),
-                    PeerRequestAllowedConnectionInfo.at(input.version()).first,
-                    PeerRequestAllowedConnectionInfo.at(input.version()).second,
-                    silent);
-
-                if (!validconnectioninfo) {
-                    FAIL("peer request", "invalid connectioninfo")
-                }
-            } catch (const std::out_of_range&) {
-                FAIL2(
-                    "peer request",
-                    "allowed connectioninfo version not defined for version",
-                    input.version())
-            }
+            CHECK_EXCLUDED(bailment)
+            CHECK_EXCLUDED(outbailment)
+            CHECK_EXCLUDED(pendingbailment)
+            CHECK_EXCLUDED(storesecret)
+            CHECK_EXCLUDED(verificationoffer)
+            CHECK_EXCLUDED(faucet)
+            CHECK_SUBOBJECT(connectioninfo, PeerRequestAllowedConnectionInfo)
         } break;
         case PEERREQUEST_STORESECRET: {
-            if (!input.has_storesecret()) {
-                FAIL("peer request", "missing storesecret")
-            }
-
-            try {
-                const bool validstoresecret = Check(
-                    input.storesecret(),
-                    PeerRequestAllowedStoreSecret.at(input.version()).first,
-                    PeerRequestAllowedStoreSecret.at(input.version()).second,
-                    silent);
-
-                if (!validstoresecret) {
-                    FAIL("peer request", "invalid storesecret")
-                }
-            } catch (const std::out_of_range&) {
-                FAIL2(
-                    "peer request",
-                    "allowed storesecret version not defined for version",
-                    input.version())
-            }
+            CHECK_EXCLUDED(bailment)
+            CHECK_EXCLUDED(outbailment)
+            CHECK_EXCLUDED(pendingbailment)
+            CHECK_EXCLUDED(connectioninfo)
+            CHECK_EXCLUDED(verificationoffer)
+            CHECK_EXCLUDED(faucet)
+            CHECK_SUBOBJECT(storesecret, PeerRequestAllowedStoreSecret)
         } break;
         case PEERREQUEST_VERIFICATIONOFFER: {
-            if (!input.has_verificationoffer()) {
-                FAIL("peer request", "missing verificationoffer")
-            }
-
-            try {
-                const bool validverificationoffer = Check(
-                    input.verificationoffer(),
-                    PeerRequestAllowedVerificationOffer.at(input.version())
-                        .first,
-                    PeerRequestAllowedVerificationOffer.at(input.version())
-                        .second,
-                    silent);
-
-                if (!validverificationoffer) {
-                    FAIL("peer request", "invalid verificationoffer")
-                }
-            } catch (const std::out_of_range&) {
-                FAIL2(
-                    "peer request",
-                    "allowed verificationoffer version not defined for version",
-                    input.version())
-            }
+            CHECK_EXCLUDED(bailment)
+            CHECK_EXCLUDED(outbailment)
+            CHECK_EXCLUDED(pendingbailment)
+            CHECK_EXCLUDED(connectioninfo)
+            CHECK_EXCLUDED(storesecret)
+            CHECK_EXCLUDED(faucet)
+            CHECK_SUBOBJECT(
+                verificationoffer, PeerRequestAllowedVerificationOffer)
         } break;
         case PEERREQUEST_FAUCET: {
-            if (!input.has_faucet()) {
-                FAIL("peer request", "missing faucet")
-            }
-
-            try {
-                const bool validfaucet = Check(
-                    input.faucet(),
-                    PeerRequestAllowedFaucet.at(input.version()).first,
-                    PeerRequestAllowedFaucet.at(input.version()).second,
-                    silent);
-
-                if (false == validfaucet) {
-                    FAIL("peer request", "invalid faucet")
-                }
-            } catch (const std::out_of_range&) {
-                FAIL2(
-                    "peer request",
-                    "allowed faucet version not defined for version",
-                    input.version())
-            }
+            CHECK_EXCLUDED(bailment)
+            CHECK_EXCLUDED(outbailment)
+            CHECK_EXCLUDED(pendingbailment)
+            CHECK_EXCLUDED(connectioninfo)
+            CHECK_EXCLUDED(storesecret)
+            CHECK_EXCLUDED(verificationoffer)
+            CHECK_SUBOBJECT(faucet, PeerRequestAllowedFaucet)
         } break;
         default: {
-            FAIL("peer request", "invalid type")
+            FAIL4("invalid type")
         }
     }
 
@@ -273,7 +131,6 @@ bool CheckProto_4(const PeerRequest& input, const bool silent)
 
 bool CheckProto_5(const PeerRequest& input, const bool silent)
 {
-    UNDEFINED_VERSION("peer request", 5)
+    return CheckProto_4(input, silent);
 }
-}  // namespace proto
-}  // namespace opentxs
+}  // namespace opentxs::proto
