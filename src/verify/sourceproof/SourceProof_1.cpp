@@ -41,6 +41,8 @@
 
 #include <iostream>
 
+#define PROTO_NAME "source proof"
+
 namespace opentxs
 {
 namespace proto
@@ -89,6 +91,81 @@ bool CheckProto_4(const SourceProof& input, const bool silent, bool&)
 bool CheckProto_5(const SourceProof& input, const bool silent, bool&)
 {
     UNDEFINED_VERSION("source proof", 5)
+}
+
+bool CheckProto_6(const SourceProof& input, const bool silent, bool&)
+{
+    UNDEFINED_VERSION2(6)
+}
+
+bool CheckProto_7(const SourceProof& input, const bool silent, bool&)
+{
+    UNDEFINED_VERSION2(7)
+}
+
+bool CheckProto_8(const SourceProof& input, const bool silent, bool&)
+{
+    UNDEFINED_VERSION2(8)
+}
+
+bool CheckProto_9(const SourceProof& input, const bool silent, bool&)
+{
+    UNDEFINED_VERSION2(9)
+}
+
+bool CheckProto_10(const SourceProof& input, const bool silent, bool&)
+{
+    UNDEFINED_VERSION2(10)
+}
+
+bool CheckProto_11(const SourceProof& input, const bool silent, bool&)
+{
+    UNDEFINED_VERSION2(11)
+}
+
+bool CheckProto_12(const SourceProof& input, const bool silent, bool&)
+{
+    UNDEFINED_VERSION2(12)
+}
+
+bool CheckProto_13(const SourceProof& input, const bool silent, bool&)
+{
+    UNDEFINED_VERSION2(13)
+}
+
+bool CheckProto_14(const SourceProof& input, const bool silent, bool&)
+{
+    UNDEFINED_VERSION2(14)
+}
+
+bool CheckProto_15(const SourceProof& input, const bool silent, bool&)
+{
+    UNDEFINED_VERSION2(15)
+}
+
+bool CheckProto_16(const SourceProof& input, const bool silent, bool&)
+{
+    UNDEFINED_VERSION2(16)
+}
+
+bool CheckProto_17(const SourceProof& input, const bool silent, bool&)
+{
+    UNDEFINED_VERSION2(17)
+}
+
+bool CheckProto_18(const SourceProof& input, const bool silent, bool&)
+{
+    UNDEFINED_VERSION2(18)
+}
+
+bool CheckProto_19(const SourceProof& input, const bool silent, bool&)
+{
+    UNDEFINED_VERSION2(19)
+}
+
+bool CheckProto_20(const SourceProof& input, const bool silent, bool&)
+{
+    UNDEFINED_VERSION2(20)
 }
 }  // namespace proto
 }  // namespace opentxs

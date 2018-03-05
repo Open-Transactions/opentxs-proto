@@ -41,6 +41,8 @@
 
 #include <iostream>
 
+#define PROTO_NAME "credential set"
+
 namespace opentxs
 {
 namespace proto
@@ -286,6 +288,171 @@ bool CheckProto_5(
     const CredentialSetMode&)
 {
     UNDEFINED_VERSION("credential set", 5)
+}
+
+bool CheckProto_6(
+    const CredentialSet& input,
+    const bool silent,
+    const std::string&,
+    const KeyMode&,
+    bool&,
+    const CredentialSetMode&)
+{
+    UNDEFINED_VERSION2(6)
+}
+
+bool CheckProto_7(
+    const CredentialSet& input,
+    const bool silent,
+    const std::string&,
+    const KeyMode&,
+    bool&,
+    const CredentialSetMode&)
+{
+    UNDEFINED_VERSION2(7)
+}
+
+bool CheckProto_8(
+    const CredentialSet& input,
+    const bool silent,
+    const std::string&,
+    const KeyMode&,
+    bool&,
+    const CredentialSetMode&)
+{
+    UNDEFINED_VERSION2(8)
+}
+
+bool CheckProto_9(
+    const CredentialSet& input,
+    const bool silent,
+    const std::string&,
+    const KeyMode&,
+    bool&,
+    const CredentialSetMode&)
+{
+    UNDEFINED_VERSION2(9)
+}
+
+bool CheckProto_10(
+    const CredentialSet& input,
+    const bool silent,
+    const std::string&,
+    const KeyMode&,
+    bool&,
+    const CredentialSetMode&)
+{
+    UNDEFINED_VERSION2(10)
+}
+
+bool CheckProto_11(
+    const CredentialSet& input,
+    const bool silent,
+    const std::string&,
+    const KeyMode&,
+    bool&,
+    const CredentialSetMode&)
+{
+    UNDEFINED_VERSION2(11)
+}
+
+bool CheckProto_12(
+    const CredentialSet& input,
+    const bool silent,
+    const std::string&,
+    const KeyMode&,
+    bool&,
+    const CredentialSetMode&)
+{
+    UNDEFINED_VERSION2(12)
+}
+
+bool CheckProto_13(
+    const CredentialSet& input,
+    const bool silent,
+    const std::string&,
+    const KeyMode&,
+    bool&,
+    const CredentialSetMode&)
+{
+    UNDEFINED_VERSION2(13)
+}
+
+bool CheckProto_14(
+    const CredentialSet& input,
+    const bool silent,
+    const std::string&,
+    const KeyMode&,
+    bool&,
+    const CredentialSetMode&)
+{
+    UNDEFINED_VERSION2(14)
+}
+
+bool CheckProto_15(
+    const CredentialSet& input,
+    const bool silent,
+    const std::string&,
+    const KeyMode&,
+    bool&,
+    const CredentialSetMode&)
+{
+    UNDEFINED_VERSION2(15)
+}
+
+bool CheckProto_16(
+    const CredentialSet& input,
+    const bool silent,
+    const std::string&,
+    const KeyMode&,
+    bool&,
+    const CredentialSetMode&)
+{
+    UNDEFINED_VERSION2(16)
+}
+
+bool CheckProto_17(
+    const CredentialSet& input,
+    const bool silent,
+    const std::string&,
+    const KeyMode&,
+    bool&,
+    const CredentialSetMode&)
+{
+    UNDEFINED_VERSION2(17)
+}
+
+bool CheckProto_18(
+    const CredentialSet& input,
+    const bool silent,
+    const std::string&,
+    const KeyMode&,
+    bool&,
+    const CredentialSetMode&)
+{
+    UNDEFINED_VERSION2(18)
+}
+
+bool CheckProto_19(
+    const CredentialSet& input,
+    const bool silent,
+    const std::string&,
+    const KeyMode&,
+    bool&,
+    const CredentialSetMode&)
+{
+    UNDEFINED_VERSION2(19)
+}
+
+bool CheckProto_20(
+    const CredentialSet& input,
+    const bool silent,
+    const std::string&,
+    const KeyMode&,
+    bool&,
+    const CredentialSetMode&)
+{
+    UNDEFINED_VERSION2(20)
 }
 }  // namespace proto
 }  // namespace opentxs

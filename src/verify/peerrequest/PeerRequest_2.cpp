@@ -53,7 +53,7 @@ bool CheckProto_2(const PeerRequest& input, const bool silent)
     CHECK_EXISTS(type)
     CHECK_IDENTIFIER(cookie)
     CHECK_SUBOBJECT2(
-        signature, PeerReplyAllowedSignature, ", SIGROLE_PEERREQUEST")
+        signature, PeerRequestAllowedSignature, ", SIGROLE_PEERREQUEST")
     CHECK_IDENTIFIER(server)
 
     switch (input.type()) {

@@ -53,6 +53,21 @@ bool CheckProto_2(const MasterCredentialParameters&, const bool, bool&);
 bool CheckProto_3(const MasterCredentialParameters&, const bool, bool&);
 bool CheckProto_4(const MasterCredentialParameters&, const bool, bool&);
 bool CheckProto_5(const MasterCredentialParameters&, const bool, bool&);
+bool CheckProto_6(const MasterCredentialParameters&, const bool, bool&);
+bool CheckProto_7(const MasterCredentialParameters&, const bool, bool&);
+bool CheckProto_8(const MasterCredentialParameters&, const bool, bool&);
+bool CheckProto_9(const MasterCredentialParameters&, const bool, bool&);
+bool CheckProto_10(const MasterCredentialParameters&, const bool, bool&);
+bool CheckProto_11(const MasterCredentialParameters&, const bool, bool&);
+bool CheckProto_12(const MasterCredentialParameters&, const bool, bool&);
+bool CheckProto_13(const MasterCredentialParameters&, const bool, bool&);
+bool CheckProto_14(const MasterCredentialParameters&, const bool, bool&);
+bool CheckProto_15(const MasterCredentialParameters&, const bool, bool&);
+bool CheckProto_16(const MasterCredentialParameters&, const bool, bool&);
+bool CheckProto_17(const MasterCredentialParameters&, const bool, bool&);
+bool CheckProto_18(const MasterCredentialParameters&, const bool, bool&);
+bool CheckProto_19(const MasterCredentialParameters&, const bool, bool&);
+bool CheckProto_20(const MasterCredentialParameters&, const bool, bool&);
 }  // namespace proto
 }  // namespace opentxs
 

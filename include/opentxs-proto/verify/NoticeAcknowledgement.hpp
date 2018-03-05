@@ -58,6 +58,21 @@ bool CheckProto_4(
     const NoticeAcknowledgement& acknowledgement,
     const bool silent);
 bool CheckProto_5(const NoticeAcknowledgement& acknowledgement, const bool);
+bool CheckProto_6(const NoticeAcknowledgement& acknowledgement, const bool);
+bool CheckProto_7(const NoticeAcknowledgement& acknowledgement, const bool);
+bool CheckProto_8(const NoticeAcknowledgement& acknowledgement, const bool);
+bool CheckProto_9(const NoticeAcknowledgement& acknowledgement, const bool);
+bool CheckProto_10(const NoticeAcknowledgement& acknowledgement, const bool);
+bool CheckProto_11(const NoticeAcknowledgement& acknowledgement, const bool);
+bool CheckProto_12(const NoticeAcknowledgement& acknowledgement, const bool);
+bool CheckProto_13(const NoticeAcknowledgement& acknowledgement, const bool);
+bool CheckProto_14(const NoticeAcknowledgement& acknowledgement, const bool);
+bool CheckProto_15(const NoticeAcknowledgement& acknowledgement, const bool);
+bool CheckProto_16(const NoticeAcknowledgement& acknowledgement, const bool);
+bool CheckProto_17(const NoticeAcknowledgement& acknowledgement, const bool);
+bool CheckProto_18(const NoticeAcknowledgement& acknowledgement, const bool);
+bool CheckProto_19(const NoticeAcknowledgement& acknowledgement, const bool);
+bool CheckProto_20(const NoticeAcknowledgement& acknowledgement, const bool);
 }  // namespace proto
 }  // namespace opentxs
 

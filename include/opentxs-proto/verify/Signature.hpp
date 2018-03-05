@@ -115,6 +115,218 @@ bool CheckProto_5(
     const Signature&,
     const bool,
     const SignatureRole role = SIGROLE_ERROR);
+
+bool CheckProto_6(
+    const Signature&,
+    const bool,
+    const std::string&,
+    const std::string&,
+    std::uint32_t&,
+    std::uint32_t&,
+    std::uint32_t&,
+    std::uint32_t&,
+    const SignatureRole role = SIGROLE_ERROR);
+bool CheckProto_7(
+    const Signature&,
+    const bool,
+    const std::string&,
+    const std::string&,
+    std::uint32_t&,
+    std::uint32_t&,
+    std::uint32_t&,
+    std::uint32_t&,
+    const SignatureRole role = SIGROLE_ERROR);
+bool CheckProto_8(
+    const Signature&,
+    const bool,
+    const std::string&,
+    const std::string&,
+    std::uint32_t&,
+    std::uint32_t&,
+    std::uint32_t&,
+    std::uint32_t&,
+    const SignatureRole role = SIGROLE_ERROR);
+bool CheckProto_9(
+    const Signature&,
+    const bool,
+    const std::string&,
+    const std::string&,
+    std::uint32_t&,
+    std::uint32_t&,
+    std::uint32_t&,
+    std::uint32_t&,
+    const SignatureRole role = SIGROLE_ERROR);
+bool CheckProto_10(
+    const Signature&,
+    const bool,
+    const std::string&,
+    const std::string&,
+    std::uint32_t&,
+    std::uint32_t&,
+    std::uint32_t&,
+    std::uint32_t&,
+    const SignatureRole role = SIGROLE_ERROR);
+bool CheckProto_11(
+    const Signature&,
+    const bool,
+    const std::string&,
+    const std::string&,
+    std::uint32_t&,
+    std::uint32_t&,
+    std::uint32_t&,
+    std::uint32_t&,
+    const SignatureRole role = SIGROLE_ERROR);
+bool CheckProto_12(
+    const Signature&,
+    const bool,
+    const std::string&,
+    const std::string&,
+    std::uint32_t&,
+    std::uint32_t&,
+    std::uint32_t&,
+    std::uint32_t&,
+    const SignatureRole role = SIGROLE_ERROR);
+bool CheckProto_13(
+    const Signature&,
+    const bool,
+    const std::string&,
+    const std::string&,
+    std::uint32_t&,
+    std::uint32_t&,
+    std::uint32_t&,
+    std::uint32_t&,
+    const SignatureRole role = SIGROLE_ERROR);
+bool CheckProto_14(
+    const Signature&,
+    const bool,
+    const std::string&,
+    const std::string&,
+    std::uint32_t&,
+    std::uint32_t&,
+    std::uint32_t&,
+    std::uint32_t&,
+    const SignatureRole role = SIGROLE_ERROR);
+bool CheckProto_15(
+    const Signature&,
+    const bool,
+    const std::string&,
+    const std::string&,
+    std::uint32_t&,
+    std::uint32_t&,
+    std::uint32_t&,
+    std::uint32_t&,
+    const SignatureRole role = SIGROLE_ERROR);
+bool CheckProto_16(
+    const Signature&,
+    const bool,
+    const std::string&,
+    const std::string&,
+    std::uint32_t&,
+    std::uint32_t&,
+    std::uint32_t&,
+    std::uint32_t&,
+    const SignatureRole role = SIGROLE_ERROR);
+bool CheckProto_17(
+    const Signature&,
+    const bool,
+    const std::string&,
+    const std::string&,
+    std::uint32_t&,
+    std::uint32_t&,
+    std::uint32_t&,
+    std::uint32_t&,
+    const SignatureRole role = SIGROLE_ERROR);
+bool CheckProto_18(
+    const Signature&,
+    const bool,
+    const std::string&,
+    const std::string&,
+    std::uint32_t&,
+    std::uint32_t&,
+    std::uint32_t&,
+    std::uint32_t&,
+    const SignatureRole role = SIGROLE_ERROR);
+bool CheckProto_19(
+    const Signature&,
+    const bool,
+    const std::string&,
+    const std::string&,
+    std::uint32_t&,
+    std::uint32_t&,
+    std::uint32_t&,
+    std::uint32_t&,
+    const SignatureRole role = SIGROLE_ERROR);
+bool CheckProto_20(
+    const Signature&,
+    const bool,
+    const std::string&,
+    const std::string&,
+    std::uint32_t&,
+    std::uint32_t&,
+    std::uint32_t&,
+    std::uint32_t&,
+    const SignatureRole role = SIGROLE_ERROR);
+
+bool CheckProto_6(
+    const Signature&,
+    const bool,
+    const SignatureRole role = SIGROLE_ERROR);
+bool CheckProto_7(
+    const Signature&,
+    const bool,
+    const SignatureRole role = SIGROLE_ERROR);
+bool CheckProto_8(
+    const Signature&,
+    const bool,
+    const SignatureRole role = SIGROLE_ERROR);
+bool CheckProto_9(
+    const Signature&,
+    const bool,
+    const SignatureRole role = SIGROLE_ERROR);
+bool CheckProto_10(
+    const Signature&,
+    const bool,
+    const SignatureRole role = SIGROLE_ERROR);
+bool CheckProto_11(
+    const Signature&,
+    const bool,
+    const SignatureRole role = SIGROLE_ERROR);
+bool CheckProto_12(
+    const Signature&,
+    const bool,
+    const SignatureRole role = SIGROLE_ERROR);
+bool CheckProto_13(
+    const Signature&,
+    const bool,
+    const SignatureRole role = SIGROLE_ERROR);
+bool CheckProto_14(
+    const Signature&,
+    const bool,
+    const SignatureRole role = SIGROLE_ERROR);
+bool CheckProto_15(
+    const Signature&,
+    const bool,
+    const SignatureRole role = SIGROLE_ERROR);
+bool CheckProto_16(
+    const Signature&,
+    const bool,
+    const SignatureRole role = SIGROLE_ERROR);
+bool CheckProto_17(
+    const Signature&,
+    const bool,
+    const SignatureRole role = SIGROLE_ERROR);
+bool CheckProto_18(
+    const Signature&,
+    const bool,
+    const SignatureRole role = SIGROLE_ERROR);
+bool CheckProto_19(
+    const Signature&,
+    const bool,
+    const SignatureRole role = SIGROLE_ERROR);
+bool CheckProto_20(
+    const Signature&,
+    const bool,
+    const SignatureRole role = SIGROLE_ERROR);
 }  // namespace proto
 }  // namespace opentxs
 

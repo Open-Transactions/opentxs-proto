@@ -50,6 +50,21 @@ bool CheckProto_2(const VerificationOffer&, const bool);
 bool CheckProto_3(const VerificationOffer& request, const bool silent);
 bool CheckProto_4(const VerificationOffer& request, const bool silent);
 bool CheckProto_5(const VerificationOffer&, const bool);
+bool CheckProto_6(const VerificationOffer&, const bool);
+bool CheckProto_7(const VerificationOffer&, const bool);
+bool CheckProto_8(const VerificationOffer&, const bool);
+bool CheckProto_9(const VerificationOffer&, const bool);
+bool CheckProto_10(const VerificationOffer&, const bool);
+bool CheckProto_11(const VerificationOffer&, const bool);
+bool CheckProto_12(const VerificationOffer&, const bool);
+bool CheckProto_13(const VerificationOffer&, const bool);
+bool CheckProto_14(const VerificationOffer&, const bool);
+bool CheckProto_15(const VerificationOffer&, const bool);
+bool CheckProto_16(const VerificationOffer&, const bool);
+bool CheckProto_17(const VerificationOffer&, const bool);
+bool CheckProto_18(const VerificationOffer&, const bool);
+bool CheckProto_19(const VerificationOffer&, const bool);
+bool CheckProto_20(const VerificationOffer&, const bool);
 }  // namespace proto
 }  // namespace opentxs
 

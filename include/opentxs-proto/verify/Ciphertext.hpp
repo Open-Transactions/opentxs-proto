@@ -50,6 +50,21 @@ bool CheckProto_2(const Ciphertext&, const bool, const bool);
 bool CheckProto_3(const Ciphertext&, const bool, const bool);
 bool CheckProto_4(const Ciphertext&, const bool, const bool);
 bool CheckProto_5(const Ciphertext&, const bool, const bool);
+bool CheckProto_6(const Ciphertext&, const bool, const bool);
+bool CheckProto_7(const Ciphertext&, const bool, const bool);
+bool CheckProto_8(const Ciphertext&, const bool, const bool);
+bool CheckProto_9(const Ciphertext&, const bool, const bool);
+bool CheckProto_10(const Ciphertext&, const bool, const bool);
+bool CheckProto_11(const Ciphertext&, const bool, const bool);
+bool CheckProto_12(const Ciphertext&, const bool, const bool);
+bool CheckProto_13(const Ciphertext&, const bool, const bool);
+bool CheckProto_14(const Ciphertext&, const bool, const bool);
+bool CheckProto_15(const Ciphertext&, const bool, const bool);
+bool CheckProto_16(const Ciphertext&, const bool, const bool);
+bool CheckProto_17(const Ciphertext&, const bool, const bool);
+bool CheckProto_18(const Ciphertext&, const bool, const bool);
+bool CheckProto_19(const Ciphertext&, const bool, const bool);
+bool CheckProto_20(const Ciphertext&, const bool, const bool);
 }  // namespace proto
 }  // namespace opentxs
 

@@ -50,6 +50,21 @@ bool CheckProto_2(const ClientContext&, const bool);
 bool CheckProto_3(const ClientContext&, const bool);
 bool CheckProto_4(const ClientContext&, const bool);
 bool CheckProto_5(const ClientContext&, const bool);
+bool CheckProto_6(const ClientContext&, const bool);
+bool CheckProto_7(const ClientContext&, const bool);
+bool CheckProto_8(const ClientContext&, const bool);
+bool CheckProto_9(const ClientContext&, const bool);
+bool CheckProto_10(const ClientContext&, const bool);
+bool CheckProto_11(const ClientContext&, const bool);
+bool CheckProto_12(const ClientContext&, const bool);
+bool CheckProto_13(const ClientContext&, const bool);
+bool CheckProto_14(const ClientContext&, const bool);
+bool CheckProto_15(const ClientContext&, const bool);
+bool CheckProto_16(const ClientContext&, const bool);
+bool CheckProto_17(const ClientContext&, const bool);
+bool CheckProto_18(const ClientContext&, const bool);
+bool CheckProto_19(const ClientContext&, const bool);
+bool CheckProto_20(const ClientContext&, const bool);
 }  // namespace proto
 }  // namespace opentxs
 

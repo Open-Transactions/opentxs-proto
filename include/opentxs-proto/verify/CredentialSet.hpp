@@ -80,6 +80,111 @@ bool CheckProto_5(
     const KeyMode&,
     bool&,
     const CredentialSetMode& mode = CREDSETMODE_ERROR);
+bool CheckProto_6(
+    const CredentialSet&,
+    const bool,
+    const std::string&,
+    const KeyMode&,
+    bool&,
+    const CredentialSetMode& mode = CREDSETMODE_ERROR);
+bool CheckProto_7(
+    const CredentialSet&,
+    const bool,
+    const std::string&,
+    const KeyMode&,
+    bool&,
+    const CredentialSetMode& mode = CREDSETMODE_ERROR);
+bool CheckProto_8(
+    const CredentialSet&,
+    const bool,
+    const std::string&,
+    const KeyMode&,
+    bool&,
+    const CredentialSetMode& mode = CREDSETMODE_ERROR);
+bool CheckProto_9(
+    const CredentialSet&,
+    const bool,
+    const std::string&,
+    const KeyMode&,
+    bool&,
+    const CredentialSetMode& mode = CREDSETMODE_ERROR);
+bool CheckProto_10(
+    const CredentialSet&,
+    const bool,
+    const std::string&,
+    const KeyMode&,
+    bool&,
+    const CredentialSetMode& mode = CREDSETMODE_ERROR);
+bool CheckProto_11(
+    const CredentialSet&,
+    const bool,
+    const std::string&,
+    const KeyMode&,
+    bool&,
+    const CredentialSetMode& mode = CREDSETMODE_ERROR);
+bool CheckProto_12(
+    const CredentialSet&,
+    const bool,
+    const std::string&,
+    const KeyMode&,
+    bool&,
+    const CredentialSetMode& mode = CREDSETMODE_ERROR);
+bool CheckProto_13(
+    const CredentialSet&,
+    const bool,
+    const std::string&,
+    const KeyMode&,
+    bool&,
+    const CredentialSetMode& mode = CREDSETMODE_ERROR);
+bool CheckProto_14(
+    const CredentialSet&,
+    const bool,
+    const std::string&,
+    const KeyMode&,
+    bool&,
+    const CredentialSetMode& mode = CREDSETMODE_ERROR);
+bool CheckProto_15(
+    const CredentialSet&,
+    const bool,
+    const std::string&,
+    const KeyMode&,
+    bool&,
+    const CredentialSetMode& mode = CREDSETMODE_ERROR);
+bool CheckProto_16(
+    const CredentialSet&,
+    const bool,
+    const std::string&,
+    const KeyMode&,
+    bool&,
+    const CredentialSetMode& mode = CREDSETMODE_ERROR);
+bool CheckProto_17(
+    const CredentialSet&,
+    const bool,
+    const std::string&,
+    const KeyMode&,
+    bool&,
+    const CredentialSetMode& mode = CREDSETMODE_ERROR);
+bool CheckProto_18(
+    const CredentialSet&,
+    const bool,
+    const std::string&,
+    const KeyMode&,
+    bool&,
+    const CredentialSetMode& mode = CREDSETMODE_ERROR);
+bool CheckProto_19(
+    const CredentialSet&,
+    const bool,
+    const std::string&,
+    const KeyMode&,
+    bool&,
+    const CredentialSetMode& mode = CREDSETMODE_ERROR);
+bool CheckProto_20(
+    const CredentialSet&,
+    const bool,
+    const std::string&,
+    const KeyMode&,
+    bool&,
+    const CredentialSetMode& mode = CREDSETMODE_ERROR);
 }  // namespace proto
 }  // namespace opentxs
 

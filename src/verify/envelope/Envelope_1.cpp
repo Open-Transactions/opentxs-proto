@@ -41,6 +41,8 @@
 
 #include <iostream>
 
+#define PROTO_NAME "envelope"
+
 namespace opentxs
 {
 namespace proto
@@ -128,6 +130,81 @@ bool CheckProto_4(const Envelope& input, const bool silent)
 bool CheckProto_5(const Envelope& input, const bool silent)
 {
     UNDEFINED_VERSION("envelope", 5)
+}
+
+bool CheckProto_6(const Envelope& input, const bool silent)
+{
+    UNDEFINED_VERSION2(6)
+}
+
+bool CheckProto_7(const Envelope& input, const bool silent)
+{
+    UNDEFINED_VERSION2(7)
+}
+
+bool CheckProto_8(const Envelope& input, const bool silent)
+{
+    UNDEFINED_VERSION2(8)
+}
+
+bool CheckProto_9(const Envelope& input, const bool silent)
+{
+    UNDEFINED_VERSION2(9)
+}
+
+bool CheckProto_10(const Envelope& input, const bool silent)
+{
+    UNDEFINED_VERSION2(10)
+}
+
+bool CheckProto_11(const Envelope& input, const bool silent)
+{
+    UNDEFINED_VERSION2(11)
+}
+
+bool CheckProto_12(const Envelope& input, const bool silent)
+{
+    UNDEFINED_VERSION2(12)
+}
+
+bool CheckProto_13(const Envelope& input, const bool silent)
+{
+    UNDEFINED_VERSION2(13)
+}
+
+bool CheckProto_14(const Envelope& input, const bool silent)
+{
+    UNDEFINED_VERSION2(14)
+}
+
+bool CheckProto_15(const Envelope& input, const bool silent)
+{
+    UNDEFINED_VERSION2(15)
+}
+
+bool CheckProto_16(const Envelope& input, const bool silent)
+{
+    UNDEFINED_VERSION2(16)
+}
+
+bool CheckProto_17(const Envelope& input, const bool silent)
+{
+    UNDEFINED_VERSION2(17)
+}
+
+bool CheckProto_18(const Envelope& input, const bool silent)
+{
+    UNDEFINED_VERSION2(18)
+}
+
+bool CheckProto_19(const Envelope& input, const bool silent)
+{
+    UNDEFINED_VERSION2(19)
+}
+
+bool CheckProto_20(const Envelope& input, const bool silent)
+{
+    UNDEFINED_VERSION2(20)
 }
 }  // namespace proto
 }  // namespace opentxs

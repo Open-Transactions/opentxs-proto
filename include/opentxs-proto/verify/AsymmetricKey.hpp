@@ -75,6 +75,96 @@ bool CheckProto_5(
     const CredentialType,
     const KeyMode,
     const KeyRole);
+bool CheckProto_6(
+    const AsymmetricKey&,
+    const bool,
+    const CredentialType,
+    const KeyMode,
+    const KeyRole);
+bool CheckProto_7(
+    const AsymmetricKey&,
+    const bool,
+    const CredentialType,
+    const KeyMode,
+    const KeyRole);
+bool CheckProto_8(
+    const AsymmetricKey&,
+    const bool,
+    const CredentialType,
+    const KeyMode,
+    const KeyRole);
+bool CheckProto_9(
+    const AsymmetricKey&,
+    const bool,
+    const CredentialType,
+    const KeyMode,
+    const KeyRole);
+bool CheckProto_10(
+    const AsymmetricKey&,
+    const bool,
+    const CredentialType,
+    const KeyMode,
+    const KeyRole);
+bool CheckProto_11(
+    const AsymmetricKey& key,
+    const bool silent,
+    const CredentialType type,
+    const KeyMode mode,
+    const KeyRole role);
+bool CheckProto_12(
+    const AsymmetricKey&,
+    const bool,
+    const CredentialType,
+    const KeyMode,
+    const KeyRole);
+bool CheckProto_13(
+    const AsymmetricKey&,
+    const bool,
+    const CredentialType,
+    const KeyMode,
+    const KeyRole);
+bool CheckProto_14(
+    const AsymmetricKey&,
+    const bool,
+    const CredentialType,
+    const KeyMode,
+    const KeyRole);
+bool CheckProto_15(
+    const AsymmetricKey&,
+    const bool,
+    const CredentialType,
+    const KeyMode,
+    const KeyRole);
+bool CheckProto_16(
+    const AsymmetricKey&,
+    const bool,
+    const CredentialType,
+    const KeyMode,
+    const KeyRole);
+bool CheckProto_17(
+    const AsymmetricKey&,
+    const bool,
+    const CredentialType,
+    const KeyMode,
+    const KeyRole);
+bool CheckProto_18(
+    const AsymmetricKey&,
+    const bool,
+    const CredentialType,
+    const KeyMode,
+    const KeyRole);
+bool CheckProto_19(
+    const AsymmetricKey&,
+    const bool,
+    const CredentialType,
+    const KeyMode,
+    const KeyRole);
+bool CheckProto_20(
+    const AsymmetricKey&,
+    const bool,
+    const CredentialType,
+    const KeyMode,
+    const KeyRole);
 }  // namespace proto
 }  // namespace opentxs
 

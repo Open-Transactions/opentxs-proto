@@ -53,6 +53,54 @@ bool CheckProto_2(const VerificationGroup&, const bool, const VerificationType);
 bool CheckProto_3(const VerificationGroup&, const bool, const VerificationType);
 bool CheckProto_4(const VerificationGroup&, const bool, const VerificationType);
 bool CheckProto_5(const VerificationGroup&, const bool, const VerificationType);
+bool CheckProto_6(const VerificationGroup&, const bool, const VerificationType);
+bool CheckProto_7(const VerificationGroup&, const bool, const VerificationType);
+bool CheckProto_8(const VerificationGroup&, const bool, const VerificationType);
+bool CheckProto_9(const VerificationGroup&, const bool, const VerificationType);
+bool CheckProto_10(
+    const VerificationGroup&,
+    const bool,
+    const VerificationType);
+bool CheckProto_11(
+    const VerificationGroup&,
+    const bool,
+    const VerificationType);
+bool CheckProto_12(
+    const VerificationGroup&,
+    const bool,
+    const VerificationType);
+bool CheckProto_13(
+    const VerificationGroup&,
+    const bool,
+    const VerificationType);
+bool CheckProto_14(
+    const VerificationGroup&,
+    const bool,
+    const VerificationType);
+bool CheckProto_15(
+    const VerificationGroup&,
+    const bool,
+    const VerificationType);
+bool CheckProto_16(
+    const VerificationGroup&,
+    const bool,
+    const VerificationType);
+bool CheckProto_17(
+    const VerificationGroup&,
+    const bool,
+    const VerificationType);
+bool CheckProto_18(
+    const VerificationGroup&,
+    const bool,
+    const VerificationType);
+bool CheckProto_19(
+    const VerificationGroup&,
+    const bool,
+    const VerificationType);
+bool CheckProto_20(
+    const VerificationGroup&,
+    const bool,
+    const VerificationType);
 }  // namespace proto
 }  // namespace opentxs
 

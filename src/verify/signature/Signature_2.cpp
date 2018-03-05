@@ -41,6 +41,8 @@
 
 #include <iostream>
 
+#define PROTO_NAME "signature"
+
 namespace opentxs
 {
 namespace proto
@@ -215,6 +217,336 @@ bool CheckProto_5(
 
     return CheckProto_5(
         input, silent, "", "", unused, unused, unused, unused, role);
+}
+
+bool CheckProto_6(
+    const Signature& input,
+    const bool silent,
+    const std::string&,
+    const std::string&,
+    std::uint32_t&,
+    std::uint32_t&,
+    std::uint32_t&,
+    std::uint32_t&,
+    const SignatureRole)
+{
+    UNDEFINED_VERSION2(6)
+}
+
+bool CheckProto_7(
+    const Signature& input,
+    const bool silent,
+    const std::string&,
+    const std::string&,
+    std::uint32_t&,
+    std::uint32_t&,
+    std::uint32_t&,
+    std::uint32_t&,
+    const SignatureRole)
+{
+    UNDEFINED_VERSION2(7)
+}
+
+bool CheckProto_8(
+    const Signature& input,
+    const bool silent,
+    const std::string&,
+    const std::string&,
+    std::uint32_t&,
+    std::uint32_t&,
+    std::uint32_t&,
+    std::uint32_t&,
+    const SignatureRole)
+{
+    UNDEFINED_VERSION2(8)
+}
+
+bool CheckProto_9(
+    const Signature& input,
+    const bool silent,
+    const std::string&,
+    const std::string&,
+    std::uint32_t&,
+    std::uint32_t&,
+    std::uint32_t&,
+    std::uint32_t&,
+    const SignatureRole)
+{
+    UNDEFINED_VERSION2(9)
+}
+
+bool CheckProto_10(
+    const Signature& input,
+    const bool silent,
+    const std::string&,
+    const std::string&,
+    std::uint32_t&,
+    std::uint32_t&,
+    std::uint32_t&,
+    std::uint32_t&,
+    const SignatureRole)
+{
+    UNDEFINED_VERSION2(10)
+}
+
+bool CheckProto_11(
+    const Signature& input,
+    const bool silent,
+    const std::string&,
+    const std::string&,
+    std::uint32_t&,
+    std::uint32_t&,
+    std::uint32_t&,
+    std::uint32_t&,
+    const SignatureRole)
+{
+    UNDEFINED_VERSION2(11)
+}
+
+bool CheckProto_12(
+    const Signature& input,
+    const bool silent,
+    const std::string&,
+    const std::string&,
+    std::uint32_t&,
+    std::uint32_t&,
+    std::uint32_t&,
+    std::uint32_t&,
+    const SignatureRole)
+{
+    UNDEFINED_VERSION2(12)
+}
+
+bool CheckProto_13(
+    const Signature& input,
+    const bool silent,
+    const std::string&,
+    const std::string&,
+    std::uint32_t&,
+    std::uint32_t&,
+    std::uint32_t&,
+    std::uint32_t&,
+    const SignatureRole)
+{
+    UNDEFINED_VERSION2(13)
+}
+
+bool CheckProto_14(
+    const Signature& input,
+    const bool silent,
+    const std::string&,
+    const std::string&,
+    std::uint32_t&,
+    std::uint32_t&,
+    std::uint32_t&,
+    std::uint32_t&,
+    const SignatureRole)
+{
+    UNDEFINED_VERSION2(14)
+}
+
+bool CheckProto_15(
+    const Signature& input,
+    const bool silent,
+    const std::string&,
+    const std::string&,
+    std::uint32_t&,
+    std::uint32_t&,
+    std::uint32_t&,
+    std::uint32_t&,
+    const SignatureRole)
+{
+    UNDEFINED_VERSION2(15)
+}
+
+bool CheckProto_16(
+    const Signature& input,
+    const bool silent,
+    const std::string&,
+    const std::string&,
+    std::uint32_t&,
+    std::uint32_t&,
+    std::uint32_t&,
+    std::uint32_t&,
+    const SignatureRole)
+{
+    UNDEFINED_VERSION2(16)
+}
+
+bool CheckProto_17(
+    const Signature& input,
+    const bool silent,
+    const std::string&,
+    const std::string&,
+    std::uint32_t&,
+    std::uint32_t&,
+    std::uint32_t&,
+    std::uint32_t&,
+    const SignatureRole)
+{
+    UNDEFINED_VERSION2(17)
+}
+
+bool CheckProto_18(
+    const Signature& input,
+    const bool silent,
+    const std::string&,
+    const std::string&,
+    std::uint32_t&,
+    std::uint32_t&,
+    std::uint32_t&,
+    std::uint32_t&,
+    const SignatureRole)
+{
+    UNDEFINED_VERSION2(18)
+}
+
+bool CheckProto_19(
+    const Signature& input,
+    const bool silent,
+    const std::string&,
+    const std::string&,
+    std::uint32_t&,
+    std::uint32_t&,
+    std::uint32_t&,
+    std::uint32_t&,
+    const SignatureRole)
+{
+    UNDEFINED_VERSION2(19)
+}
+
+bool CheckProto_20(
+    const Signature& input,
+    const bool silent,
+    const std::string&,
+    const std::string&,
+    std::uint32_t&,
+    std::uint32_t&,
+    std::uint32_t&,
+    std::uint32_t&,
+    const SignatureRole)
+{
+    UNDEFINED_VERSION2(20)
+}
+
+bool CheckProto_6(
+    const Signature& input,
+    const bool silent,
+    const SignatureRole role)
+{
+    UNDEFINED_VERSION2(6)
+}
+
+bool CheckProto_7(
+    const Signature& input,
+    const bool silent,
+    const SignatureRole role)
+{
+    UNDEFINED_VERSION2(7)
+}
+
+bool CheckProto_8(
+    const Signature& input,
+    const bool silent,
+    const SignatureRole role)
+{
+    UNDEFINED_VERSION2(8)
+}
+
+bool CheckProto_9(
+    const Signature& input,
+    const bool silent,
+    const SignatureRole role)
+{
+    UNDEFINED_VERSION2(9)
+}
+
+bool CheckProto_10(
+    const Signature& input,
+    const bool silent,
+    const SignatureRole role)
+{
+    UNDEFINED_VERSION2(10)
+}
+
+bool CheckProto_11(
+    const Signature& input,
+    const bool silent,
+    const SignatureRole role)
+{
+    UNDEFINED_VERSION2(11)
+}
+
+bool CheckProto_12(
+    const Signature& input,
+    const bool silent,
+    const SignatureRole role)
+{
+    UNDEFINED_VERSION2(12)
+}
+
+bool CheckProto_13(
+    const Signature& input,
+    const bool silent,
+    const SignatureRole role)
+{
+    UNDEFINED_VERSION2(13)
+}
+
+bool CheckProto_14(
+    const Signature& input,
+    const bool silent,
+    const SignatureRole role)
+{
+    UNDEFINED_VERSION2(14)
+}
+
+bool CheckProto_15(
+    const Signature& input,
+    const bool silent,
+    const SignatureRole role)
+{
+    UNDEFINED_VERSION2(15)
+}
+
+bool CheckProto_16(
+    const Signature& input,
+    const bool silent,
+    const SignatureRole role)
+{
+    UNDEFINED_VERSION2(16)
+}
+
+bool CheckProto_17(
+    const Signature& input,
+    const bool silent,
+    const SignatureRole role)
+{
+    UNDEFINED_VERSION2(17)
+}
+
+bool CheckProto_18(
+    const Signature& input,
+    const bool silent,
+    const SignatureRole role)
+{
+    UNDEFINED_VERSION2(18)
+}
+
+bool CheckProto_19(
+    const Signature& input,
+    const bool silent,
+    const SignatureRole role)
+{
+    UNDEFINED_VERSION2(19)
+}
+
+bool CheckProto_20(
+    const Signature& input,
+    const bool silent,
+    const SignatureRole role)
+{
+    UNDEFINED_VERSION2(20)
 }
 }  // namespace proto
 }  // namespace opentxs

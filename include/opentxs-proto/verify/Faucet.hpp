@@ -50,6 +50,21 @@ bool CheckProto_2(const Faucet&, const bool);
 bool CheckProto_3(const Faucet&, const bool);
 bool CheckProto_4(const Faucet& request, const bool silent);
 bool CheckProto_5(const Faucet&, const bool);
+bool CheckProto_6(const Faucet&, const bool);
+bool CheckProto_7(const Faucet&, const bool);
+bool CheckProto_8(const Faucet&, const bool);
+bool CheckProto_9(const Faucet&, const bool);
+bool CheckProto_10(const Faucet&, const bool);
+bool CheckProto_11(const Faucet&, const bool);
+bool CheckProto_12(const Faucet&, const bool);
+bool CheckProto_13(const Faucet&, const bool);
+bool CheckProto_14(const Faucet&, const bool);
+bool CheckProto_15(const Faucet&, const bool);
+bool CheckProto_16(const Faucet&, const bool);
+bool CheckProto_17(const Faucet&, const bool);
+bool CheckProto_18(const Faucet&, const bool);
+bool CheckProto_19(const Faucet&, const bool);
+bool CheckProto_20(const Faucet&, const bool);
 }  // namespace proto
 }  // namespace opentxs
 

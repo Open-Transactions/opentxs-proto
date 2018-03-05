@@ -70,6 +70,81 @@ bool CheckProto_5(
     const bool,
     const CredentialType,
     const KeyMode);
+bool CheckProto_6(
+    const KeyCredential&,
+    const bool,
+    const CredentialType,
+    const KeyMode);
+bool CheckProto_7(
+    const KeyCredential&,
+    const bool,
+    const CredentialType,
+    const KeyMode);
+bool CheckProto_8(
+    const KeyCredential&,
+    const bool,
+    const CredentialType,
+    const KeyMode);
+bool CheckProto_9(
+    const KeyCredential&,
+    const bool,
+    const CredentialType,
+    const KeyMode);
+bool CheckProto_10(
+    const KeyCredential&,
+    const bool,
+    const CredentialType,
+    const KeyMode);
+bool CheckProto_11(
+    const KeyCredential&,
+    const bool,
+    const CredentialType,
+    const KeyMode);
+bool CheckProto_12(
+    const KeyCredential&,
+    const bool,
+    const CredentialType,
+    const KeyMode);
+bool CheckProto_13(
+    const KeyCredential&,
+    const bool,
+    const CredentialType,
+    const KeyMode);
+bool CheckProto_14(
+    const KeyCredential&,
+    const bool,
+    const CredentialType,
+    const KeyMode);
+bool CheckProto_15(
+    const KeyCredential&,
+    const bool,
+    const CredentialType,
+    const KeyMode);
+bool CheckProto_16(
+    const KeyCredential&,
+    const bool,
+    const CredentialType,
+    const KeyMode);
+bool CheckProto_17(
+    const KeyCredential&,
+    const bool,
+    const CredentialType,
+    const KeyMode);
+bool CheckProto_18(
+    const KeyCredential&,
+    const bool,
+    const CredentialType,
+    const KeyMode);
+bool CheckProto_19(
+    const KeyCredential&,
+    const bool,
+    const CredentialType,
+    const KeyMode);
+bool CheckProto_20(
+    const KeyCredential&,
+    const bool,
+    const CredentialType,
+    const KeyMode);
 }  // namespace proto
 }  // namespace opentxs
 

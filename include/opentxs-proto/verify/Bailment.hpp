@@ -50,6 +50,21 @@ bool CheckProto_2(const Bailment& request, const bool silent);
 bool CheckProto_3(const Bailment& request, const bool silent);
 bool CheckProto_4(const Bailment& request, const bool silent);
 bool CheckProto_5(const Bailment&, const bool);
+bool CheckProto_6(const Bailment&, const bool);
+bool CheckProto_7(const Bailment&, const bool);
+bool CheckProto_8(const Bailment&, const bool);
+bool CheckProto_9(const Bailment&, const bool);
+bool CheckProto_10(const Bailment&, const bool);
+bool CheckProto_11(const Bailment&, const bool);
+bool CheckProto_12(const Bailment&, const bool);
+bool CheckProto_13(const Bailment&, const bool);
+bool CheckProto_14(const Bailment&, const bool);
+bool CheckProto_15(const Bailment&, const bool);
+bool CheckProto_16(const Bailment&, const bool);
+bool CheckProto_17(const Bailment&, const bool);
+bool CheckProto_18(const Bailment&, const bool);
+bool CheckProto_19(const Bailment&, const bool);
+bool CheckProto_20(const Bailment&, const bool);
 }  // namespace proto
 }  // namespace opentxs
 

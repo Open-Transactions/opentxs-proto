@@ -41,6 +41,8 @@
 
 #include <iostream>
 
+#define PROTO_NAME "master parameters"
+
 namespace opentxs
 {
 namespace proto
@@ -127,6 +129,126 @@ bool CheckProto_5(
     bool&)
 {
     UNDEFINED_VERSION("master parameters", 5)
+}
+
+bool CheckProto_6(
+    const MasterCredentialParameters& input,
+    const bool silent,
+    bool&)
+{
+    UNDEFINED_VERSION2(6)
+}
+
+bool CheckProto_7(
+    const MasterCredentialParameters& input,
+    const bool silent,
+    bool&)
+{
+    UNDEFINED_VERSION2(7)
+}
+
+bool CheckProto_8(
+    const MasterCredentialParameters& input,
+    const bool silent,
+    bool&)
+{
+    UNDEFINED_VERSION2(8)
+}
+
+bool CheckProto_9(
+    const MasterCredentialParameters& input,
+    const bool silent,
+    bool&)
+{
+    UNDEFINED_VERSION2(9)
+}
+
+bool CheckProto_10(
+    const MasterCredentialParameters& input,
+    const bool silent,
+    bool&)
+{
+    UNDEFINED_VERSION2(10)
+}
+
+bool CheckProto_11(
+    const MasterCredentialParameters& input,
+    const bool silent,
+    bool&)
+{
+    UNDEFINED_VERSION2(11)
+}
+
+bool CheckProto_12(
+    const MasterCredentialParameters& input,
+    const bool silent,
+    bool&)
+{
+    UNDEFINED_VERSION2(12)
+}
+
+bool CheckProto_13(
+    const MasterCredentialParameters& input,
+    const bool silent,
+    bool&)
+{
+    UNDEFINED_VERSION2(13)
+}
+
+bool CheckProto_14(
+    const MasterCredentialParameters& input,
+    const bool silent,
+    bool&)
+{
+    UNDEFINED_VERSION2(14)
+}
+
+bool CheckProto_15(
+    const MasterCredentialParameters& input,
+    const bool silent,
+    bool&)
+{
+    UNDEFINED_VERSION2(15)
+}
+
+bool CheckProto_16(
+    const MasterCredentialParameters& input,
+    const bool silent,
+    bool&)
+{
+    UNDEFINED_VERSION2(16)
+}
+
+bool CheckProto_17(
+    const MasterCredentialParameters& input,
+    const bool silent,
+    bool&)
+{
+    UNDEFINED_VERSION2(17)
+}
+
+bool CheckProto_18(
+    const MasterCredentialParameters& input,
+    const bool silent,
+    bool&)
+{
+    UNDEFINED_VERSION2(18)
+}
+
+bool CheckProto_19(
+    const MasterCredentialParameters& input,
+    const bool silent,
+    bool&)
+{
+    UNDEFINED_VERSION2(19)
+}
+
+bool CheckProto_20(
+    const MasterCredentialParameters& input,
+    const bool silent,
+    bool&)
+{
+    UNDEFINED_VERSION2(20)
 }
 }  // namespace proto
 }  // namespace opentxs
