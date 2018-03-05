@@ -100,6 +100,7 @@ static const VersionMap StorageNymAllowedBlockchainAccountList{
 static const VersionMap StorageNymListAllowedHash = {
     {1, {1, 1}},
     {2, {1, 2}},
+    {3, {1, 3}},
 };
 static const VersionMap StorageServersAllowedHash = {
     {1, {1, 1}},

@@ -45,9 +45,9 @@ namespace opentxs
 {
 namespace proto
 {
-bool CheckProto_1(const StorageNymList& creds, const bool silent);
-bool CheckProto_2(const StorageNymList&, const bool);
-bool CheckProto_3(const StorageNymList&, const bool);
+bool CheckProto_1(const StorageNymList& input, const bool silent);
+bool CheckProto_2(const StorageNymList& input, const bool silent);
+bool CheckProto_3(const StorageNymList& input, const bool silent);
 bool CheckProto_4(const StorageNymList&, const bool);
 bool CheckProto_5(const StorageNymList&, const bool);
 bool CheckProto_6(const StorageNymList&, const bool);

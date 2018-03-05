@@ -50,24 +50,8 @@ namespace proto
 
 bool CheckProto_1(const StorageNymList& input, const bool silent)
 {
-    for (auto& nym : input.nym()) {
-        try {
-            const bool validList = Check(
-                nym,
-                StorageNymListAllowedHash.at(input.version()).first,
-                StorageNymListAllowedHash.at(input.version()).second,
-                silent);
-
-            if (false == validList) {
-                FAIL("nym index", "invalid nym")
-            }
-        } catch (const std::out_of_range&) {
-            FAIL2(
-                "nym index",
-                "allowed storage item hash version not defined for version",
-                input.version())
-        }
-    }
+    CHECK_SUBOBJECTS(nym, StorageNymListAllowedHash);
+    CHECK_NONE(localnymid)
 
     return true;
 }
@@ -79,17 +63,20 @@ bool CheckProto_2(const StorageNymList& input, const bool silent)
 
 bool CheckProto_3(const StorageNymList& input, const bool silent)
 {
-    UNDEFINED_VERSION("nym index", 3)
+    CHECK_SUBOBJECTS(nym, StorageNymListAllowedHash);
+    CHECK_IDENTIFIERS(localnymid)
+
+    return true;
 }
 
 bool CheckProto_4(const StorageNymList& input, const bool silent)
 {
-    UNDEFINED_VERSION("nym index", 4)
+    UNDEFINED_VERSION2(4)
 }
 
 bool CheckProto_5(const StorageNymList& input, const bool silent)
 {
-    UNDEFINED_VERSION("nym index", 5)
+    UNDEFINED_VERSION2(5)
 }
 
 bool CheckProto_6(const StorageNymList& input, const bool silent)
