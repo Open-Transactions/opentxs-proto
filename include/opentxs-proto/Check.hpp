@@ -308,6 +308,51 @@ bool Check(
         case 5: {
             return CheckProto_5(input, silent, params...);
         }
+        case 6: {
+            return CheckProto_6(input, silent, params...);
+        }
+        case 7: {
+            return CheckProto_7(input, silent, params...);
+        }
+        case 8: {
+            return CheckProto_8(input, silent, params...);
+        }
+        case 9: {
+            return CheckProto_9(input, silent, params...);
+        }
+        case 10: {
+            return CheckProto_10(input, silent, params...);
+        }
+        case 11: {
+            return CheckProto_11(input, silent, params...);
+        }
+        case 12: {
+            return CheckProto_12(input, silent, params...);
+        }
+        case 13: {
+            return CheckProto_13(input, silent, params...);
+        }
+        case 14: {
+            return CheckProto_14(input, silent, params...);
+        }
+        case 15: {
+            return CheckProto_15(input, silent, params...);
+        }
+        case 16: {
+            return CheckProto_16(input, silent, params...);
+        }
+        case 17: {
+            return CheckProto_17(input, silent, params...);
+        }
+        case 18: {
+            return CheckProto_18(input, silent, params...);
+        }
+        case 19: {
+            return CheckProto_19(input, silent, params...);
+        }
+        case 20: {
+            return CheckProto_20(input, silent, params...);
+        }
         default: {
             FAIL2("protobuf", "unknown version", input.version())
         }

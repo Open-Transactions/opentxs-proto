@@ -50,6 +50,21 @@ bool CheckProto_2(const Bip44Account&, const bool);
 bool CheckProto_3(const Bip44Account&, const bool);
 bool CheckProto_4(const Bip44Account&, const bool);
 bool CheckProto_5(const Bip44Account&, const bool);
+bool CheckProto_6(const Bip44Account&, const bool);
+bool CheckProto_7(const Bip44Account&, const bool);
+bool CheckProto_8(const Bip44Account&, const bool);
+bool CheckProto_9(const Bip44Account&, const bool);
+bool CheckProto_10(const Bip44Account&, const bool);
+bool CheckProto_11(const Bip44Account&, const bool);
+bool CheckProto_12(const Bip44Account&, const bool);
+bool CheckProto_13(const Bip44Account&, const bool);
+bool CheckProto_14(const Bip44Account&, const bool);
+bool CheckProto_15(const Bip44Account&, const bool);
+bool CheckProto_16(const Bip44Account&, const bool);
+bool CheckProto_17(const Bip44Account&, const bool);
+bool CheckProto_18(const Bip44Account&, const bool);
+bool CheckProto_19(const Bip44Account&, const bool);
+bool CheckProto_20(const Bip44Account&, const bool);
 }  // namespace proto
 }  // namespace opentxs
 

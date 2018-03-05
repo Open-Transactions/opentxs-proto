@@ -65,6 +65,66 @@ bool CheckProto_5(
     const UnitDefinition&,
     const bool,
     const bool checkSig = true);
+bool CheckProto_6(
+    const UnitDefinition&,
+    const bool,
+    const bool checkSig = true);
+bool CheckProto_7(
+    const UnitDefinition&,
+    const bool,
+    const bool checkSig = true);
+bool CheckProto_8(
+    const UnitDefinition&,
+    const bool,
+    const bool checkSig = true);
+bool CheckProto_9(
+    const UnitDefinition&,
+    const bool,
+    const bool checkSig = true);
+bool CheckProto_10(
+    const UnitDefinition&,
+    const bool,
+    const bool checkSig = true);
+bool CheckProto_11(
+    const UnitDefinition&,
+    const bool,
+    const bool checkSig = true);
+bool CheckProto_12(
+    const UnitDefinition&,
+    const bool,
+    const bool checkSig = true);
+bool CheckProto_13(
+    const UnitDefinition&,
+    const bool,
+    const bool checkSig = true);
+bool CheckProto_14(
+    const UnitDefinition&,
+    const bool,
+    const bool checkSig = true);
+bool CheckProto_15(
+    const UnitDefinition&,
+    const bool,
+    const bool checkSig = true);
+bool CheckProto_16(
+    const UnitDefinition&,
+    const bool,
+    const bool checkSig = true);
+bool CheckProto_17(
+    const UnitDefinition&,
+    const bool,
+    const bool checkSig = true);
+bool CheckProto_18(
+    const UnitDefinition&,
+    const bool,
+    const bool checkSig = true);
+bool CheckProto_19(
+    const UnitDefinition&,
+    const bool,
+    const bool checkSig = true);
+bool CheckProto_20(
+    const UnitDefinition&,
+    const bool,
+    const bool checkSig = true);
 }  // namespace proto
 }  // namespace opentxs
 

@@ -70,6 +70,81 @@ bool CheckProto_5(
     const bool silent,
     const ClaimType indexed,
     const uint32_t parentVersion = 0xffffffff);
+bool CheckProto_6(
+    const ContactSection& contactSection,
+    const bool silent,
+    const ClaimType indexed,
+    const uint32_t parentVersion = 0xffffffff);
+bool CheckProto_7(
+    const ContactSection& contactSection,
+    const bool silent,
+    const ClaimType indexed,
+    const uint32_t parentVersion = 0xffffffff);
+bool CheckProto_8(
+    const ContactSection& contactSection,
+    const bool silent,
+    const ClaimType indexed,
+    const uint32_t parentVersion = 0xffffffff);
+bool CheckProto_9(
+    const ContactSection& contactSection,
+    const bool silent,
+    const ClaimType indexed,
+    const uint32_t parentVersion = 0xffffffff);
+bool CheckProto_10(
+    const ContactSection& contactSection,
+    const bool silent,
+    const ClaimType indexed,
+    const uint32_t parentVersion = 0xffffffff);
+bool CheckProto_11(
+    const ContactSection& contactSection,
+    const bool silent,
+    const ClaimType indexed,
+    const uint32_t parentVersion = 0xffffffff);
+bool CheckProto_12(
+    const ContactSection& contactSection,
+    const bool silent,
+    const ClaimType indexed,
+    const uint32_t parentVersion = 0xffffffff);
+bool CheckProto_13(
+    const ContactSection& contactSection,
+    const bool silent,
+    const ClaimType indexed,
+    const uint32_t parentVersion = 0xffffffff);
+bool CheckProto_14(
+    const ContactSection& contactSection,
+    const bool silent,
+    const ClaimType indexed,
+    const uint32_t parentVersion = 0xffffffff);
+bool CheckProto_15(
+    const ContactSection& contactSection,
+    const bool silent,
+    const ClaimType indexed,
+    const uint32_t parentVersion = 0xffffffff);
+bool CheckProto_16(
+    const ContactSection& contactSection,
+    const bool silent,
+    const ClaimType indexed,
+    const uint32_t parentVersion = 0xffffffff);
+bool CheckProto_17(
+    const ContactSection& contactSection,
+    const bool silent,
+    const ClaimType indexed,
+    const uint32_t parentVersion = 0xffffffff);
+bool CheckProto_18(
+    const ContactSection& contactSection,
+    const bool silent,
+    const ClaimType indexed,
+    const uint32_t parentVersion = 0xffffffff);
+bool CheckProto_19(
+    const ContactSection& contactSection,
+    const bool silent,
+    const ClaimType indexed,
+    const uint32_t parentVersion = 0xffffffff);
+bool CheckProto_20(
+    const ContactSection& contactSection,
+    const bool silent,
+    const ClaimType indexed,
+    const uint32_t parentVersion = 0xffffffff);
 }  // namespace proto
 }  // namespace opentxs
 

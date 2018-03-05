@@ -50,6 +50,21 @@ bool CheckProto_2(const ConnectionInfo& request, const bool silent);
 bool CheckProto_3(const ConnectionInfo& request, const bool silent);
 bool CheckProto_4(const ConnectionInfo& request, const bool silent);
 bool CheckProto_5(const ConnectionInfo&, const bool);
+bool CheckProto_6(const ConnectionInfo&, const bool);
+bool CheckProto_7(const ConnectionInfo&, const bool);
+bool CheckProto_8(const ConnectionInfo&, const bool);
+bool CheckProto_9(const ConnectionInfo&, const bool);
+bool CheckProto_10(const ConnectionInfo&, const bool);
+bool CheckProto_11(const ConnectionInfo&, const bool);
+bool CheckProto_12(const ConnectionInfo&, const bool);
+bool CheckProto_13(const ConnectionInfo&, const bool);
+bool CheckProto_14(const ConnectionInfo&, const bool);
+bool CheckProto_15(const ConnectionInfo&, const bool);
+bool CheckProto_16(const ConnectionInfo&, const bool);
+bool CheckProto_17(const ConnectionInfo&, const bool);
+bool CheckProto_18(const ConnectionInfo&, const bool);
+bool CheckProto_19(const ConnectionInfo&, const bool);
+bool CheckProto_20(const ConnectionInfo&, const bool);
 }  // namespace proto
 }  // namespace opentxs
 

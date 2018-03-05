@@ -74,6 +74,81 @@ bool CheckProto_5(
     const bool,
     VerificationNymMap&,
     const VerificationType);
+bool CheckProto_6(
+    const VerificationIdentity&,
+    const bool,
+    VerificationNymMap&,
+    const VerificationType);
+bool CheckProto_7(
+    const VerificationIdentity&,
+    const bool,
+    VerificationNymMap&,
+    const VerificationType);
+bool CheckProto_8(
+    const VerificationIdentity&,
+    const bool,
+    VerificationNymMap&,
+    const VerificationType);
+bool CheckProto_9(
+    const VerificationIdentity&,
+    const bool,
+    VerificationNymMap&,
+    const VerificationType);
+bool CheckProto_10(
+    const VerificationIdentity&,
+    const bool,
+    VerificationNymMap&,
+    const VerificationType);
+bool CheckProto_11(
+    const VerificationIdentity&,
+    const bool,
+    VerificationNymMap&,
+    const VerificationType);
+bool CheckProto_12(
+    const VerificationIdentity&,
+    const bool,
+    VerificationNymMap&,
+    const VerificationType);
+bool CheckProto_13(
+    const VerificationIdentity&,
+    const bool,
+    VerificationNymMap&,
+    const VerificationType);
+bool CheckProto_14(
+    const VerificationIdentity&,
+    const bool,
+    VerificationNymMap&,
+    const VerificationType);
+bool CheckProto_15(
+    const VerificationIdentity&,
+    const bool,
+    VerificationNymMap&,
+    const VerificationType);
+bool CheckProto_16(
+    const VerificationIdentity&,
+    const bool,
+    VerificationNymMap&,
+    const VerificationType);
+bool CheckProto_17(
+    const VerificationIdentity&,
+    const bool,
+    VerificationNymMap&,
+    const VerificationType);
+bool CheckProto_18(
+    const VerificationIdentity&,
+    const bool,
+    VerificationNymMap&,
+    const VerificationType);
+bool CheckProto_19(
+    const VerificationIdentity&,
+    const bool,
+    VerificationNymMap&,
+    const VerificationType);
+bool CheckProto_20(
+    const VerificationIdentity&,
+    const bool,
+    VerificationNymMap&,
+    const VerificationType);
 }  // namespace proto
 }  // namespace opentxs
 

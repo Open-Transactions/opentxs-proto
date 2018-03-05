@@ -50,6 +50,21 @@ bool CheckProto_2(const PaymentCode&, const bool);
 bool CheckProto_3(const PaymentCode&, const bool);
 bool CheckProto_4(const PaymentCode&, const bool);
 bool CheckProto_5(const PaymentCode&, const bool);
+bool CheckProto_6(const PaymentCode&, const bool);
+bool CheckProto_7(const PaymentCode&, const bool);
+bool CheckProto_8(const PaymentCode&, const bool);
+bool CheckProto_9(const PaymentCode&, const bool);
+bool CheckProto_10(const PaymentCode&, const bool);
+bool CheckProto_11(const PaymentCode&, const bool);
+bool CheckProto_12(const PaymentCode&, const bool);
+bool CheckProto_13(const PaymentCode&, const bool);
+bool CheckProto_14(const PaymentCode&, const bool);
+bool CheckProto_15(const PaymentCode&, const bool);
+bool CheckProto_16(const PaymentCode&, const bool);
+bool CheckProto_17(const PaymentCode&, const bool);
+bool CheckProto_18(const PaymentCode&, const bool);
+bool CheckProto_19(const PaymentCode&, const bool);
+bool CheckProto_20(const PaymentCode&, const bool);
 }  // namespace proto
 }  // namespace opentxs
 

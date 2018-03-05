@@ -54,6 +54,7 @@ bool CheckProto_1(const PendingBailment& input, const bool silent)
     CHECK_IDENTIFIER(serverid)
     CHECK_IDENTIFIER(txid)
     CHECK_EXCLUDED(requestid)
+    CHECK_EXCLUDED(amount)
     return true;
 }
 
@@ -78,7 +79,87 @@ bool CheckProto_5(const PendingBailment& input, const bool silent)
     CHECK_IDENTIFIER(serverid)
     CHECK_IDENTIFIER(txid)
     OPTIONAL_IDENTIFIER(requestid)
+    CHECK_EXCLUDED(amount)
     return true;
+}
+
+bool CheckProto_6(const PendingBailment& input, const bool silent)
+{
+    CHECK_IDENTIFIER(unitid)
+    CHECK_IDENTIFIER(serverid)
+    CHECK_IDENTIFIER(txid)
+    OPTIONAL_IDENTIFIER(requestid)
+    return true;
+}
+
+bool CheckProto_7(const PendingBailment& input, const bool silent)
+{
+    UNDEFINED_VERSION2(7)
+}
+
+bool CheckProto_8(const PendingBailment& input, const bool silent)
+{
+    UNDEFINED_VERSION2(8)
+}
+
+bool CheckProto_9(const PendingBailment& input, const bool silent)
+{
+    UNDEFINED_VERSION2(9)
+}
+
+bool CheckProto_10(const PendingBailment& input, const bool silent)
+{
+    UNDEFINED_VERSION2(10)
+}
+
+bool CheckProto_11(const PendingBailment& input, const bool silent)
+{
+    UNDEFINED_VERSION2(11)
+}
+
+bool CheckProto_12(const PendingBailment& input, const bool silent)
+{
+    UNDEFINED_VERSION2(12)
+}
+
+bool CheckProto_13(const PendingBailment& input, const bool silent)
+{
+    UNDEFINED_VERSION2(13)
+}
+
+bool CheckProto_14(const PendingBailment& input, const bool silent)
+{
+    UNDEFINED_VERSION2(14)
+}
+
+bool CheckProto_15(const PendingBailment& input, const bool silent)
+{
+    UNDEFINED_VERSION2(15)
+}
+
+bool CheckProto_16(const PendingBailment& input, const bool silent)
+{
+    UNDEFINED_VERSION2(16)
+}
+
+bool CheckProto_17(const PendingBailment& input, const bool silent)
+{
+    UNDEFINED_VERSION2(17)
+}
+
+bool CheckProto_18(const PendingBailment& input, const bool silent)
+{
+    UNDEFINED_VERSION2(18)
+}
+
+bool CheckProto_19(const PendingBailment& input, const bool silent)
+{
+    UNDEFINED_VERSION2(19)
+}
+
+bool CheckProto_20(const PendingBailment& input, const bool silent)
+{
+    UNDEFINED_VERSION2(20)
 }
 }  // namespace proto
 }  // namespace opentxs

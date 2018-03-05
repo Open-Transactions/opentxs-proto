@@ -50,6 +50,21 @@ bool CheckProto_2(const EquityParams&, const bool);
 bool CheckProto_3(const EquityParams&, const bool);
 bool CheckProto_4(const EquityParams&, const bool);
 bool CheckProto_5(const EquityParams&, const bool);
+bool CheckProto_6(const EquityParams&, const bool);
+bool CheckProto_7(const EquityParams&, const bool);
+bool CheckProto_8(const EquityParams&, const bool);
+bool CheckProto_9(const EquityParams&, const bool);
+bool CheckProto_10(const EquityParams&, const bool);
+bool CheckProto_11(const EquityParams&, const bool);
+bool CheckProto_12(const EquityParams&, const bool);
+bool CheckProto_13(const EquityParams&, const bool);
+bool CheckProto_14(const EquityParams&, const bool);
+bool CheckProto_15(const EquityParams&, const bool);
+bool CheckProto_16(const EquityParams&, const bool);
+bool CheckProto_17(const EquityParams&, const bool);
+bool CheckProto_18(const EquityParams&, const bool);
+bool CheckProto_19(const EquityParams&, const bool);
+bool CheckProto_20(const EquityParams&, const bool);
 }  // namespace proto
 }  // namespace opentxs
 

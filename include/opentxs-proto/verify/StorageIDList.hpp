@@ -50,6 +50,21 @@ bool CheckProto_2(const StorageIDList&, const bool);
 bool CheckProto_3(const StorageIDList&, const bool);
 bool CheckProto_4(const StorageIDList&, const bool);
 bool CheckProto_5(const StorageIDList&, const bool);
+bool CheckProto_6(const StorageIDList&, const bool);
+bool CheckProto_7(const StorageIDList&, const bool);
+bool CheckProto_8(const StorageIDList&, const bool);
+bool CheckProto_9(const StorageIDList&, const bool);
+bool CheckProto_10(const StorageIDList&, const bool);
+bool CheckProto_11(const StorageIDList&, const bool);
+bool CheckProto_12(const StorageIDList&, const bool);
+bool CheckProto_13(const StorageIDList&, const bool);
+bool CheckProto_14(const StorageIDList&, const bool);
+bool CheckProto_15(const StorageIDList&, const bool);
+bool CheckProto_16(const StorageIDList&, const bool);
+bool CheckProto_17(const StorageIDList&, const bool);
+bool CheckProto_18(const StorageIDList&, const bool);
+bool CheckProto_19(const StorageIDList&, const bool);
+bool CheckProto_20(const StorageIDList&, const bool);
 }  // namespace proto
 }  // namespace opentxs
 

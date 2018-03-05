@@ -50,6 +50,21 @@ bool CheckProto_2(const StorageContactAddressIndex&, const bool);
 bool CheckProto_3(const StorageContactAddressIndex&, const bool);
 bool CheckProto_4(const StorageContactAddressIndex&, const bool);
 bool CheckProto_5(const StorageContactAddressIndex&, const bool);
+bool CheckProto_6(const StorageContactAddressIndex&, const bool);
+bool CheckProto_7(const StorageContactAddressIndex&, const bool);
+bool CheckProto_8(const StorageContactAddressIndex&, const bool);
+bool CheckProto_9(const StorageContactAddressIndex&, const bool);
+bool CheckProto_10(const StorageContactAddressIndex&, const bool);
+bool CheckProto_11(const StorageContactAddressIndex&, const bool);
+bool CheckProto_12(const StorageContactAddressIndex&, const bool);
+bool CheckProto_13(const StorageContactAddressIndex&, const bool);
+bool CheckProto_14(const StorageContactAddressIndex&, const bool);
+bool CheckProto_15(const StorageContactAddressIndex&, const bool);
+bool CheckProto_16(const StorageContactAddressIndex&, const bool);
+bool CheckProto_17(const StorageContactAddressIndex&, const bool);
+bool CheckProto_18(const StorageContactAddressIndex&, const bool);
+bool CheckProto_19(const StorageContactAddressIndex&, const bool);
+bool CheckProto_20(const StorageContactAddressIndex&, const bool);
 }  // namespace proto
 }  // namespace opentxs
 

@@ -50,6 +50,21 @@ bool CheckProto_2(const PeerReply& peerReply, const bool silent);
 bool CheckProto_3(const PeerReply& peerReply, const bool silent);
 bool CheckProto_4(const PeerReply& peerReply, const bool silent);
 bool CheckProto_5(const PeerReply&, const bool);
+bool CheckProto_6(const PeerReply&, const bool);
+bool CheckProto_7(const PeerReply&, const bool);
+bool CheckProto_8(const PeerReply&, const bool);
+bool CheckProto_9(const PeerReply&, const bool);
+bool CheckProto_10(const PeerReply&, const bool);
+bool CheckProto_11(const PeerReply&, const bool);
+bool CheckProto_12(const PeerReply&, const bool);
+bool CheckProto_13(const PeerReply&, const bool);
+bool CheckProto_14(const PeerReply&, const bool);
+bool CheckProto_15(const PeerReply&, const bool);
+bool CheckProto_16(const PeerReply&, const bool);
+bool CheckProto_17(const PeerReply&, const bool);
+bool CheckProto_18(const PeerReply&, const bool);
+bool CheckProto_19(const PeerReply&, const bool);
+bool CheckProto_20(const PeerReply&, const bool);
 }  // namespace proto
 }  // namespace opentxs
 
