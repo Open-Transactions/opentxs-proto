@@ -147,21 +147,24 @@
 #define CHECK_EXISTS(a)                                                        \
     {                                                                          \
         if (false == input.has_##a()) {                                        \
-            FAIL4("missing ##a")                                               \
+            const auto fail = std::string("missing ") + #a;                    \
+            FAIL4(fail)                                                        \
         }                                                                      \
     }
 
 #define CHECK_EXCLUDED(a)                                                      \
     {                                                                          \
         if (true == input.has_##a()) {                                         \
-            FAIL4("unexpected ##a present")                                    \
+            const auto fail = std::string("unexpected ") + #a + " present";    \
+            FAIL4(fail)                                                        \
         }                                                                      \
     }
 
 #define CHECK_NONE(a)                                                          \
     {                                                                          \
         if (0 < input.a().size()) {                                            \
-            FAIL4("unexpected ##a present")                                    \
+            const auto fail = std::string("unexpected ") + #a + " present";    \
+            FAIL4(fail)                                                        \
         }                                                                      \
     }
 
@@ -186,6 +189,17 @@
                 if (0 != input.a().size()) {                                   \
                     FAIL5(fail, input.a().size())                              \
                 }                                                              \
+            }                                                                  \
+        }                                                                      \
+    }
+
+#define CHECK_IDENTIFIERS(a)                                                   \
+    {                                                                          \
+        for (const auto& it : input.a()) {                                     \
+            if ((MIN_PLAUSIBLE_IDENTIFIER > it.size()) ||                      \
+                (MAX_PLAUSIBLE_IDENTIFIER < it.size())) {                      \
+                const auto fail = std::string("invalid ") + #a + " size";      \
+                FAIL5(fail, it.size())                                         \
             }                                                                  \
         }                                                                      \
     }
@@ -233,7 +247,8 @@
                     silent);                                                   \
                                                                                \
                 if (false == valid##a) {                                       \
-                    FAIL4("invalid ##a")                                       \
+                    const auto fail = std::string("invalid ") + #a;            \
+                    FAIL4(fail)                                                \
                 }                                                              \
             } catch (const std::out_of_range&) {                               \
                 const auto fail = std::string("allowed ") + #a +               \
