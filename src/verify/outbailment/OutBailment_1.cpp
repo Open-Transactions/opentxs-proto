@@ -82,6 +82,8 @@ bool CheckProto_1(const OutBailment& input, const bool silent)
         FAIL("outbailment", "missing instructions")
     }
 
+    CHECK_NONE(payment)
+
     return true;
 }
 
@@ -105,7 +107,37 @@ bool CheckProto_4(const OutBailment& input, const bool silent)
 
 bool CheckProto_5(const OutBailment& input, const bool silent)
 {
-    UNDEFINED_VERSION("outbailment", 5)
+    if (!input.has_unitid()) {
+        FAIL("outbailment", "missing unit id")
+    }
+
+    if (MIN_PLAUSIBLE_IDENTIFIER > input.unitid().size()) {
+        FAIL2("outbailment", "invalid unit id", input.unitid())
+    }
+
+    if (MAX_PLAUSIBLE_IDENTIFIER < input.unitid().size()) {
+        FAIL2("outbailment", "invalid unit id", input.unitid())
+    }
+
+    if (!input.has_serverid()) {
+        FAIL("outbailment", "missing server id")
+    }
+
+    if (MIN_PLAUSIBLE_IDENTIFIER > input.serverid().size()) {
+        FAIL2("outbailment", "invalid server id", input.serverid())
+    }
+
+    if (MAX_PLAUSIBLE_IDENTIFIER < input.serverid().size()) {
+        FAIL2("outbailment", "invalid server id", input.serverid())
+    }
+
+    if (!input.has_amount()) {
+        FAIL("outbailment", "missing amount")
+    }
+
+    if (!input.has_instructions()) {
+        FAIL("outbailment", "missing instructions")
+    }
 }
 
 bool CheckProto_6(const OutBailment& input, const bool silent)
