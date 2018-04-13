@@ -39,6 +39,7 @@ set(cxx-sources
   noticeacknowledgement/NoticeAcknowledgement_1.cpp
   outbailment/OutBailment_1.cpp
   outbailmentreply/OutBailmentReply_1.cpp
+  pairevent/PairEvent_1.cpp
   paymentcode/PaymentCode_1.cpp
   peerobject/PeerObject_1.cpp
   peerobject/PeerObject_2.cpp
