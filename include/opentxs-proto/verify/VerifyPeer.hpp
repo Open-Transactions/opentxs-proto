@@ -135,6 +135,7 @@ static const VersionMap PeerRequestAllowedOutBailment = {
     {2, {2, 2}},
     {3, {3, 3}},
     {4, {4, 4}},
+    {5, {5, 5}},
 };
 static const VersionMap PeerRequestAllowedPendingBailment = {
     {1, {1, 1}},

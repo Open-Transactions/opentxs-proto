@@ -44,6 +44,7 @@ set(PROTO_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/NymIDSource.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/OutBailment.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/OutBailmentReply.proto
+    ${CMAKE_CURRENT_SOURCE_DIR}/PairEvent.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/PaymentCode.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/PeerEnums.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/PeerObject.proto
@@ -85,6 +86,7 @@ set(PROTO_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/VerificationIdentity.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/VerificationOffer.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/VerificationSet.proto
+    ${CMAKE_CURRENT_SOURCE_DIR}/ZMQEnums.proto
 )
 
 PROTOBUF_GENERATE_CPP(

@@ -1,0 +1,12 @@
+syntax = "proto2";
+
+package opentxs.proto;
+option java_package = "org.opentransactions.proto";
+option java_outer_classname = "OTZMQEnums";
+option optimize_for = LITE_RUNTIME;
+
+enum PairEventType {
+    PAIREVENT_ERROR = 0;
+    PAIREVENT_RENAME = 1;
+    PAIREVENT_STORESECRET = 2;
+}

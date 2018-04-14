@@ -95,6 +95,7 @@
 #include <opentxs-proto/NymIDSource.pb.h>
 #include <opentxs-proto/OutBailment.pb.h>
 #include <opentxs-proto/OutBailmentReply.pb.h>
+#include <opentxs-proto/PairEvent.pb.h>
 #include <opentxs-proto/PaymentCode.pb.h>
 #include <opentxs-proto/PeerEnums.pb.h>
 #include <opentxs-proto/PeerObject.pb.h>
@@ -136,6 +137,7 @@
 #include <opentxs-proto/VerificationIdentity.pb.h>
 #include <opentxs-proto/VerificationOffer.pb.h>
 #include <opentxs-proto/VerificationSet.pb.h>
+#include <opentxs-proto/ZMQEnums.pb.h>
 #include <opentxs-proto/verify/AsymmetricKey.hpp>
 #include <opentxs-proto/verify/Bailment.hpp>
 #include <opentxs-proto/verify/BailmentReply.hpp>
@@ -173,6 +175,7 @@
 #include <opentxs-proto/verify/NymIDSource.hpp>
 #include <opentxs-proto/verify/OutBailment.hpp>
 #include <opentxs-proto/verify/OutBailmentReply.hpp>
+#include <opentxs-proto/verify/PairEvent.hpp>
 #include <opentxs-proto/verify/PaymentCode.hpp>
 #include <opentxs-proto/verify/PeerObject.hpp>
 #include <opentxs-proto/verify/PeerReply.hpp>
