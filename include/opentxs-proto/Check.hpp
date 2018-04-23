@@ -134,6 +134,19 @@
         return false;                                                          \
     }
 
+#define FAIL7(b, c, d, e, f, g)                                                \
+    {                                                                          \
+        if (false == silent) {                                                 \
+            std::stringstream out{};                                           \
+            out << "Verify version " << input.version() << " " << PROTO_NAME   \
+                << " failed: " << b << "(" << c << ")" << d << "(" << e << ")" \
+                << f << "(" << g << ")" << std::endl;                          \
+            WRITE_LOG()                                                        \
+        }                                                                      \
+                                                                               \
+        return false;                                                          \
+    }
+
 #define UNDEFINED_VERSION(a, b)                                                \
     {                                                                          \
         FAIL2(a, "undefined version", b)                                       \
@@ -228,7 +241,7 @@
 
 #define CHECK_SUBOBJECT(a, b)                                                  \
     {                                                                          \
-        CHECK_SUBOBJECT0(a, b, "silent")                                       \
+        CHECK_SUBOBJECT0(a, b, silent)                                         \
     }
 
 #define CHECK_SUBOBJECT2(a, b, c)                                              \
@@ -236,7 +249,7 @@
         CHECK_SUBOBJECT0(a, b, "silent##c")                                    \
     }
 
-#define CHECK_SUBOBJECTS(a, b)                                                 \
+#define CHECK_SUBOBJECTS0(a, b, c)                                             \
     {                                                                          \
         for (const auto& it : input.a()) {                                     \
             try {                                                              \
@@ -244,7 +257,7 @@
                     it,                                                        \
                     b.at(input.version()).first,                               \
                     b.at(input.version()).second,                              \
-                    silent);                                                   \
+                    c);                                                        \
                                                                                \
                 if (false == valid##a) {                                       \
                     const auto fail = std::string("invalid ") + #a;            \
@@ -256,6 +269,16 @@
                 FAIL5(fail, input.version())                                   \
             }                                                                  \
         }                                                                      \
+    }
+
+#define CHECK_SUBOBJECTS(a, b)                                                 \
+    {                                                                          \
+        CHECK_SUBOBJECTS0(a, b, silent)                                        \
+    }
+
+#define CHECK_SUBOBJECTS_CUSTOM(a, b, c)                                       \
+    {                                                                          \
+        CHECK_SUBOBJECTS0(a, b, "silent##c")                                   \
     }
 
 #define OPTIONAL_SUBOBJECT0(a, b, c)                                           \
@@ -282,7 +305,7 @@
 
 #define OPTIONAL_SUBOBJECT(a, b)                                               \
     {                                                                          \
-        OPTIONAL_SUBOBJECT0(a, b, "silent")                                    \
+        OPTIONAL_SUBOBJECT0(a, b, silent)                                      \
     }
 
 namespace opentxs

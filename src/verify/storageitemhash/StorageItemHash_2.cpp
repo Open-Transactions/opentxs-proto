@@ -99,7 +99,7 @@ bool CheckProto_5(const StorageItemHash& input, const bool silent)
 
 bool CheckProto_6(const StorageItemHash& input, const bool silent)
 {
-    UNDEFINED_VERSION2(6)
+    return CheckProto_2(input, silent);
 }
 
 bool CheckProto_7(const StorageItemHash& input, const bool silent)

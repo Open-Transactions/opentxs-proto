@@ -31,6 +31,7 @@ set(cxx-sources
   envelope/Envelope_1.cpp
   faucet/Faucet_1.cpp
   hdpath/HDPath_1.cpp
+  instrumentrevision/InstrumentRevision_1.cpp
   issuer/Issuer_1.cpp
   keycredential/KeyCredential_1.cpp
   listenaddress/ListenAddress_1.cpp
@@ -41,6 +42,8 @@ set(cxx-sources
   outbailmentreply/OutBailmentReply_1.cpp
   pairevent/PairEvent_1.cpp
   paymentcode/PaymentCode_1.cpp
+  paymentevent/PaymentEvent_1.cpp
+  paymentworkflow/PaymentWorkflow_1.cpp
   peerobject/PeerObject_1.cpp
   peerobject/PeerObject_2.cpp
   peerreply/PeerReply_1.cpp
@@ -82,7 +85,9 @@ set(cxx-sources
   storagenym/StorageNym_3.cpp
   storagenym/StorageNym_4.cpp
   storagenym/StorageNym_5.cpp
+  storagenym/StorageNym_6.cpp
   storagenymlist/StorageNymList_1.cpp
+  storagepaymentworkflows/StoragePaymentWorkflows_1.cpp
   storageroot/StorageRoot_1.cpp
   storageroot/StorageRoot_2.cpp
   storageseeds/StorageSeeds_1.cpp
@@ -90,6 +95,8 @@ set(cxx-sources
   storagethread/StorageThread_1.cpp
   storagethreaditem/StorageThreadItem_1.cpp
   storageunits/StorageUnits_1.cpp
+  storageworkflowindex/StorageWorkflowIndex_1.cpp
+  storageworkflowtype/StorageWorkflowType_1.cpp
   storesecret/StoreSecret_1.cpp
   symmetrickey/SymmetricKey_1.cpp
   unitaccountmap/UnitAccountMap_1.cpp

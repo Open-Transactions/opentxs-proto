@@ -39,15 +39,10 @@
 #include "opentxs-proto/Types.hpp"
 #include "opentxs-proto/Check.hpp"
 
-#include <iostream>
-
 #define PROTO_NAME "storage nym"
 
-namespace opentxs
+namespace opentxs::proto
 {
-namespace proto
-{
-
 bool CheckProto_4(const StorageNym& input, const bool silent)
 {
     OPTIONAL_SUBOBJECT(credlist, StorageNymAllowedHash)
@@ -68,8 +63,8 @@ bool CheckProto_4(const StorageNym& input, const bool silent)
         blockchainaccountindex, StorageNymAllowedBlockchainAccountList)
     CHECK_SUBOBJECTS(blockchainaccount, StorageNymAllowedBip44Account)
     CHECK_EXCLUDED(issuers)
+    CHECK_EXCLUDED(paymentworkflow)
 
     return true;
 }
-}  // namespace proto
-}  // namespace opentxs
+}  // namespace opentxs::proto

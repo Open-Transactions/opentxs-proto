@@ -1,0 +1,20 @@
+syntax = "proto2";
+
+package opentxs.proto;
+option java_package = "org.opentransactions.proto";
+option java_outer_classname = "OTPaymentEvent";
+option optimize_for = LITE_RUNTIME;
+
+import public "PaymentWorkflowEnums.proto";
+
+message PaymentEvent {
+    optional uint32 version = 1;
+    optional PaymentEventType type = 2;
+    repeated string item = 3;
+    optional int64 time = 4;
+    optional EventTransportMethod method = 5;
+    optional string transport = 6;
+    optional string nym = 7;
+    optional bool success = 8;
+    optional string memo = 9;
+}

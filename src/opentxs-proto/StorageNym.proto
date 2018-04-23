@@ -29,4 +29,5 @@ message StorageNym {
     repeated StorageBlockchainAccountList BlockchainAccountIndex = 17;
     repeated Bip44Account BlockchainAccount = 18;
     optional string issuers = 19;
+    optional string PaymentWorkflow = 20;
 }
