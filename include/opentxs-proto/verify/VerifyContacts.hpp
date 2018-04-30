@@ -61,6 +61,8 @@ static const VerificationType VERIFICATIONS_NORMAL = false;
 #include "opentxs-proto/Basic.hpp"
 #include "opentxs-proto/Contact.hpp"
 
+#define MAX_CONTACT_VERSION 5
+
 namespace opentxs
 {
 namespace proto
@@ -137,7 +139,16 @@ bool CheckCombination(
     const ContactSectionName section,
     const ContactItemType type,
     const std::uint32_t version = 1);
-
+std::uint32_t RequiredVersion(
+    const ContactSectionName section,
+    const ContactItemType type,
+    const std::uint32_t hint = 1);
+std::uint32_t NymRequiredVersion(
+    const std::uint32_t contactDataVersion,
+    const std::uint32_t hint);
+std::uint32_t RequiredCredentialSetVersion(
+    const std::uint32_t contactDataVersion,
+    const std::uint32_t hint);
 }  // namespace proto
 }  // namespace opentxs
 #endif  // OPENTXS_PROTO_VERIFYCONTACTS_HPP

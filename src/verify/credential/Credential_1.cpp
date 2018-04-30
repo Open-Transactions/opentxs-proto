@@ -487,11 +487,11 @@ bool CheckProto_4(
 bool CheckProto_5(
     const Credential& input,
     const bool silent,
-    const KeyMode&,
-    const CredentialRole,
-    const bool)
+    const KeyMode& mode,
+    const CredentialRole role,
+    const bool withSigs)
 {
-    UNDEFINED_VERSION("credential", 5)
+    return CheckProto_1(input, silent, mode, role, withSigs);
 }
 
 bool CheckProto_6(

@@ -67,36 +67,42 @@ static const VersionMap CredentialAllowedKeyCredentials = {
     {2, {1, 1}},
     {3, {1, 1}},
     {4, {1, 1}},
+    {5, {1, 1}},
 };
 static const VersionMap CredentialAllowedContactData = {
     {1, {1, 1}},
     {2, {2, 2}},
     {3, {3, 3}},
     {4, {4, 4}},
+    {5, {5, 5}},
 };
 static const VersionMap CredentialAllowedVerification = {
     {1, {1, 1}},
     {2, {1, 1}},
     {3, {1, 1}},
     {4, {1, 1}},
+    {5, {1, 1}},
 };
 static const VersionMap CredentialAllowedSignatures = {
     {1, {1, 1}},
     {2, {1, 1}},
     {3, {1, 1}},
     {4, {1, 1}},
+    {5, {1, 1}},
 };
 static const VersionMap CredentialAllowedMasterParams = {
     {1, {1, 1}},
     {2, {1, 1}},
     {3, {1, 1}},
     {4, {1, 1}},
+    {5, {1, 1}},
 };
 static const VersionMap CredentialAllowedChildParams = {
     {1, {1, 1}},
     {2, {1, 1}},
     {3, {1, 1}},
     {4, {1, 1}},
+    {5, {1, 1}},
 };
 static const VersionMap KeyCredentialAllowedAsymmetricKey = {
     {1, {1, 1}},
@@ -118,18 +124,21 @@ static const VersionMap CredentialIndexAllowedNymIDSource = {
     {2, {1, 1}},
     {3, {1, 1}},
     {4, {1, 1}},
+    {5, {1, 1}},
 };
 static const VersionMap CredentialIndexAllowedCredentialSets = {
     {1, {1, 1}},
     {2, {1, 2}},
     {3, {1, 3}},
     {4, {1, 4}},
+    {5, {1, 5}},
 };
 static const VersionMap CredentialSetAllowedCredentials = {
     {1, {1, 1}},
     {2, {1, 2}},
     {3, {1, 3}},
     {4, {1, 4}},
+    {5, {1, 5}},
 };
 static const VersionMap AsymmetricKeyAllowedHDPath = {
     {1, {1, 1}},

@@ -37,6 +37,7 @@
  ************************************************************/
 
 #include "opentxs-proto/verify/VerifyContacts.hpp"
+#include "opentxs-proto/verify/VerifyCredentials.hpp"
 
 namespace opentxs
 {
@@ -168,5 +169,75 @@ bool CheckCombination(
 
     return false;
 }
+
+// 0 means not a valid combination for any version
+std::uint32_t RequiredVersion(
+    const ContactSectionName section,
+    const ContactItemType type,
+    const std::uint32_t hint)
+{
+    for (std::uint32_t n = hint; n <= MAX_CONTACT_VERSION; ++n) {
+        try {
+            const auto exists = AllowedItemTypes.at({n, section}).count(type);
+
+            if (1 == exists) {
+
+                return n;
+            }
+        } catch (const std::out_of_range&) {
+        }
+    }
+
+    return 0;
+}
+
+std::uint32_t NymRequiredVersion(
+    const std::uint32_t contactDataVersion,
+    const std::uint32_t hint)
+{
+    for (std::uint32_t n = hint; n <= MAX_CONTACT_VERSION; ++n) {
+        try {
+            const auto maxCredentialSet =
+                CredentialIndexAllowedCredentialSets.at(n).second;
+            const auto maxCredential =
+                CredentialSetAllowedCredentials.at(maxCredentialSet).second;
+            const auto maxContactData =
+                CredentialAllowedContactData.at(maxCredential).second;
+
+            if (maxContactData >= contactDataVersion) {
+
+                return n;
+            }
+        } catch (const std::out_of_range&) {
+
+            return 0;
+        }
+    }
+
+    return 0;
+}
+
+std::uint32_t RequiredCredentialSetVersion(
+    const std::uint32_t contactDataVersion,
+    const std::uint32_t hint)
+{
+    for (std::uint32_t n = hint; n <= MAX_CONTACT_VERSION; ++n) {
+        try {
+            const auto maxCredential =
+                CredentialSetAllowedCredentials.at(n).second;
+            const auto maxContactData =
+                CredentialAllowedContactData.at(maxCredential).second;
+
+            if (maxContactData >= contactDataVersion) {
+
+                return n;
+            }
+        } catch (const std::out_of_range&) {
+        }
+    }
+
+    return 0;
+}
+
 }  // namespace proto
 }  // namespace opentxs

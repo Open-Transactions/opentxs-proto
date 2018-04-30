@@ -189,7 +189,7 @@ bool CheckProto_4(const CredentialIndex& input, const bool silent)
 
 bool CheckProto_5(const CredentialIndex& input, const bool silent)
 {
-    UNDEFINED_VERSION("credential index", 5)
+    return CheckProto_1(input, silent);
 }
 
 bool CheckProto_6(const CredentialIndex& input, const bool silent)

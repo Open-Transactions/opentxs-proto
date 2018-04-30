@@ -282,12 +282,12 @@ bool CheckProto_4(
 bool CheckProto_5(
     const CredentialSet& input,
     const bool silent,
-    const std::string&,
-    const KeyMode&,
-    bool&,
-    const CredentialSetMode&)
+    const std::string& nymID,
+    const KeyMode& key,
+    bool& haveHD,
+    const CredentialSetMode& mode)
 {
-    UNDEFINED_VERSION("credential set", 5)
+    return CheckProto_1(input, silent, nymID, key, haveHD, mode);
 }
 
 bool CheckProto_6(
