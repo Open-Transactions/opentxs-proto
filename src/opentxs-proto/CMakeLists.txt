@@ -36,6 +36,7 @@ set(PROTO_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/EquityParams.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/Faucet.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/HDPath.proto
+    ${CMAKE_CURRENT_SOURCE_DIR}/InstrumentRevision.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/Issuer.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/KeyCredential.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/ListenAddress.proto
@@ -46,6 +47,9 @@ set(PROTO_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/OutBailmentReply.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/PairEvent.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/PaymentCode.proto
+    ${CMAKE_CURRENT_SOURCE_DIR}/PaymentEvent.proto
+    ${CMAKE_CURRENT_SOURCE_DIR}/PaymentWorkflow.proto
+    ${CMAKE_CURRENT_SOURCE_DIR}/PaymentWorkflowEnums.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/PeerEnums.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/PeerObject.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/PeerReply.proto
@@ -71,12 +75,15 @@ set(PROTO_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/StorageIssuers.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/StorageNym.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/StorageNymList.proto
+    ${CMAKE_CURRENT_SOURCE_DIR}/StoragePaymentWorkflows.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/StorageRoot.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/StorageSeeds.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/StorageServers.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/StorageThread.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/StorageThreadItem.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/StorageUnits.proto
+    ${CMAKE_CURRENT_SOURCE_DIR}/StorageWorkflowIndex.proto
+    ${CMAKE_CURRENT_SOURCE_DIR}/StorageWorkflowType.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/StoreSecret.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/SymmetricKey.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/UnitAccountMap.proto

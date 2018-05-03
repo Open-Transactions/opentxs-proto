@@ -87,6 +87,7 @@
 #include <opentxs-proto/EquityParams.pb.h>
 #include <opentxs-proto/Faucet.pb.h>
 #include <opentxs-proto/HDPath.pb.h>
+#include <opentxs-proto/InstrumentRevision.pb.h>
 #include <opentxs-proto/Issuer.pb.h>
 #include <opentxs-proto/KeyCredential.pb.h>
 #include <opentxs-proto/ListenAddress.pb.h>
@@ -97,6 +98,9 @@
 #include <opentxs-proto/OutBailmentReply.pb.h>
 #include <opentxs-proto/PairEvent.pb.h>
 #include <opentxs-proto/PaymentCode.pb.h>
+#include <opentxs-proto/PaymentEvent.pb.h>
+#include <opentxs-proto/PaymentWorkflow.pb.h>
+#include <opentxs-proto/PaymentWorkflowEnums.pb.h>
 #include <opentxs-proto/PeerEnums.pb.h>
 #include <opentxs-proto/PeerObject.pb.h>
 #include <opentxs-proto/PeerReply.pb.h>
@@ -122,12 +126,15 @@
 #include <opentxs-proto/StorageItems.pb.h>
 #include <opentxs-proto/StorageNym.pb.h>
 #include <opentxs-proto/StorageNymList.pb.h>
+#include <opentxs-proto/StoragePaymentWorkflows.pb.h>
 #include <opentxs-proto/StorageRoot.pb.h>
 #include <opentxs-proto/StorageSeeds.pb.h>
 #include <opentxs-proto/StorageServers.pb.h>
 #include <opentxs-proto/StorageThread.pb.h>
 #include <opentxs-proto/StorageThreadItem.pb.h>
 #include <opentxs-proto/StorageUnits.pb.h>
+#include <opentxs-proto/StorageWorkflowIndex.pb.h>
+#include <opentxs-proto/StorageWorkflowType.pb.h>
 #include <opentxs-proto/StoreSecret.pb.h>
 #include <opentxs-proto/SymmetricKey.pb.h>
 #include <opentxs-proto/UnitAccountMap.pb.h>
@@ -167,6 +174,7 @@
 #include <opentxs-proto/verify/Envelope.hpp>
 #include <opentxs-proto/verify/EquityParams.hpp>
 #include <opentxs-proto/verify/HDPath.hpp>
+#include <opentxs-proto/verify/InstrumentRevision.hpp>
 #include <opentxs-proto/verify/Issuer.hpp>
 #include <opentxs-proto/verify/KeyCredential.hpp>
 #include <opentxs-proto/verify/ListenAddress.hpp>
@@ -177,6 +185,8 @@
 #include <opentxs-proto/verify/OutBailmentReply.hpp>
 #include <opentxs-proto/verify/PairEvent.hpp>
 #include <opentxs-proto/verify/PaymentCode.hpp>
+#include <opentxs-proto/verify/PaymentEvent.hpp>
+#include <opentxs-proto/verify/PaymentWorkflow.hpp>
 #include <opentxs-proto/verify/PeerObject.hpp>
 #include <opentxs-proto/verify/PeerReply.hpp>
 #include <opentxs-proto/verify/PeerRequest.hpp>
@@ -201,12 +211,15 @@
 #include <opentxs-proto/verify/StorageItems.hpp>
 #include <opentxs-proto/verify/StorageNym.hpp>
 #include <opentxs-proto/verify/StorageNymList.hpp>
+#include <opentxs-proto/verify/StoragePaymentWorkflows.hpp>
 #include <opentxs-proto/verify/StorageRoot.hpp>
 #include <opentxs-proto/verify/StorageSeeds.hpp>
 #include <opentxs-proto/verify/StorageServers.hpp>
 #include <opentxs-proto/verify/StorageThread.hpp>
 #include <opentxs-proto/verify/StorageThreadItem.hpp>
 #include <opentxs-proto/verify/StorageUnits.hpp>
+#include <opentxs-proto/verify/StorageWorkflowIndex.hpp>
+#include <opentxs-proto/verify/StorageWorkflowType.hpp>
 #include <opentxs-proto/verify/StoreSecret.hpp>
 #include <opentxs-proto/verify/SymmetricKey.hpp>
 #include <opentxs-proto/verify/UnitAccountMap.hpp>

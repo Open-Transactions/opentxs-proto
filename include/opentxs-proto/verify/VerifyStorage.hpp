@@ -41,11 +41,8 @@
 
 #include "opentxs-proto/Basic.hpp"
 
-namespace opentxs
+namespace opentxs::proto
 {
-namespace proto
-{
-
 class StorageContactAddressIndex;
 class StorageContactNymIndex;
 class StorageContacts;
@@ -56,12 +53,15 @@ class StorageItems;
 class StorageIssuers;
 class StorageNym;
 class StorageNymList;
+class StoragePaymentWorkflows;
 class StorageRoot;
 class StorageSeeds;
 class StorageServers;
 class StorageThread;
 class StorageThreadItem;
 class StorageUnits;
+class StorageWorkflowIndex;
+class StorageWorkflowType;
 
 static const VersionMap StorageContactsAllowedAddress = {
     {1, {1, 1}},
@@ -88,19 +88,31 @@ static const VersionMap StorageNymAllowedHash = {
     {3, {2, 3}},
     {4, {2, 4}},
     {5, {2, 5}},
+    {6, {2, 6}},
 };
 static const VersionMap StorageNymAllowedBip44Account{
     {4, {1, 1}},
     {5, {1, 1}},
+    {6, {1, 1}},
 };
 static const VersionMap StorageNymAllowedBlockchainAccountList{
     {4, {1, 1}},
     {5, {1, 1}},
+    {6, {1, 1}},
 };
 static const VersionMap StorageNymListAllowedHash = {
     {1, {1, 1}},
     {2, {1, 2}},
     {3, {1, 3}},
+};
+static const VersionMap StoragePaymentWorkflowsAllowedHash = {
+    {1, {1, 2}},
+};
+static const VersionMap StoragePaymentWorkflowsAllowedIndex = {
+    {1, {1, 1}},
+};
+static const VersionMap StoragePaymentWorkflowsAllowedType = {
+    {1, {1, 1}},
 };
 static const VersionMap StorageServersAllowedHash = {
     {1, {1, 1}},
@@ -120,6 +132,5 @@ static const VersionMap StorageSeedsAllowedHash = {
 static const VersionMap StorageIssuerAllowedHash = {
     {1, {1, 2}},
 };
-}  // namespace proto
-}  // namespace opentxs
+}  // namespace opentxs::proto
 #endif  // OPENTXS_PROTO_VERIFYSTORAGE_HPP

@@ -1,0 +1,15 @@
+syntax = "proto2";
+
+package opentxs.proto;
+option java_package = "org.opentransactions.proto";
+option java_outer_classname = "OTStorageWorkflowType";
+option optimize_for = LITE_RUNTIME;
+
+import public "PaymentWorkflowEnums.proto";
+
+message StorageWorkflowType {
+    optional uint32 version = 1;
+    optional string workflow = 2;
+    optional PaymentWorkflowType type = 3;
+    optional PaymentWorkflowState state = 4;
+}
