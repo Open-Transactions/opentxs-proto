@@ -41,7 +41,9 @@
 
 #include "opentxs-proto/Basic.hpp"
 
-namespace opentxs::proto
+namespace opentxs
+{
+namespace proto
 {
 class StorageContactAddressIndex;
 class StorageContactNymIndex;
@@ -133,4 +135,5 @@ static const VersionMap StorageIssuerAllowedHash = {
     {1, {1, 2}},
 };
 }  // namespace opentxs::proto
+}  // namespace opentxs
 #endif  // OPENTXS_PROTO_VERIFYSTORAGE_HPP
