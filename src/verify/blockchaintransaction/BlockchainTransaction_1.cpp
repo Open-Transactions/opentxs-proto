@@ -134,7 +134,7 @@ bool CheckProto_1(const BlockchainTransaction& input, const bool silent)
         }
     }
 
-    if (MAX_VALID_CONTACT_VALUE > input.memo().size()) {
+    if (MAX_TRANSACTION_MEMO_SIZE < input.memo().size()) {
         FAIL("blockchain transaction", "invalid memo")
     }
 

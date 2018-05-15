@@ -64,7 +64,7 @@ bool CheckProto_1(const Bip44Address& input, const bool silent)
         }
     }
 
-    if (MAX_VALID_CONTACT_VALUE < input.label().size()) {
+    if (MAX_LABEL_SIZE < input.label().size()) {
         FAIL("transaction", "invalid label")
     }
 
