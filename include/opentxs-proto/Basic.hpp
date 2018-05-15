@@ -58,6 +58,8 @@ static const std::size_t MIN_PLAUSIBLE_KEYSIZE = 16;
 static const std::size_t MIN_PLAUSIBLE_SIGNATURE = 32;
 static const std::uint32_t MAX_VALID_PORT = 65535;
 static const std::size_t MAX_VALID_CONTACT_VALUE = 512;
+static const std::size_t MAX_LABEL_SIZE = 512;
+static const std::size_t MAX_TRANSACTION_MEMO_SIZE = 512;
 static const std::size_t MIN_PLAUSIBLE_SCRIPT = 2;
 static const std::size_t MAX_PLAUSIBLE_SCRIPT = 1048576;
 }  // namespace proto
