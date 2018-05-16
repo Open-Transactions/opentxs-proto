@@ -66,7 +66,7 @@ static const VersionMap BlockchainTransactionAllowedOutput = {
     {1, {1, 1}},
 };
 static const VersionMap StorageBlockchainTransactionsAllowedHash = {
-    {1, {1, 1}},
+    {1, {1, 2}},
 };
 }  // namespace proto
 }  // namespace opentxs

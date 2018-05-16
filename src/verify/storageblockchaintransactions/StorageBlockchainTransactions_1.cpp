@@ -50,26 +50,7 @@ namespace proto
 
 bool CheckProto_1(const StorageBlockchainTransactions& input, const bool silent)
 {
-    for (auto& transaction : input.transaction()) {
-        try {
-            const bool validHash = Check(
-                transaction,
-                StorageBlockchainTransactionsAllowedHash.at(input.version())
-                    .first,
-                StorageBlockchainTransactionsAllowedHash.at(input.version())
-                    .second,
-                silent);
-
-            if (false == validHash) {
-                FAIL("storage blockchain transactions", "invalid hash")
-            }
-        } catch (const std::out_of_range&) {
-            FAIL2(
-                "storage blockchain transactions",
-                "allowed storage hash version not defined for version",
-                input.version())
-        }
-    }
+    CHECK_SUBOBJECTS(transaction, StorageBlockchainTransactionsAllowedHash)
 
     return true;
 }
