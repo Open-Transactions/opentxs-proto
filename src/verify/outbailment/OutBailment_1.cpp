@@ -50,9 +50,7 @@ namespace proto
 
 bool CheckProto_1(const OutBailment& input, const bool silent)
 {
-    if (!input.has_unitid()) {
-        FAIL("outbailment", "missing unit id")
-    }
+    if (!input.has_unitid()) { FAIL("outbailment", "missing unit id") }
 
     if (MIN_PLAUSIBLE_IDENTIFIER > input.unitid().size()) {
         FAIL2("outbailment", "invalid unit id", input.unitid())
@@ -62,9 +60,7 @@ bool CheckProto_1(const OutBailment& input, const bool silent)
         FAIL2("outbailment", "invalid unit id", input.unitid())
     }
 
-    if (!input.has_serverid()) {
-        FAIL("outbailment", "missing server id")
-    }
+    if (!input.has_serverid()) { FAIL("outbailment", "missing server id") }
 
     if (MIN_PLAUSIBLE_IDENTIFIER > input.serverid().size()) {
         FAIL2("outbailment", "invalid server id", input.serverid())
@@ -74,9 +70,7 @@ bool CheckProto_1(const OutBailment& input, const bool silent)
         FAIL2("outbailment", "invalid server id", input.serverid())
     }
 
-    if (!input.has_amount()) {
-        FAIL("outbailment", "missing amount")
-    }
+    if (!input.has_amount()) { FAIL("outbailment", "missing amount") }
 
     if (!input.has_instructions()) {
         FAIL("outbailment", "missing instructions")
@@ -107,9 +101,7 @@ bool CheckProto_4(const OutBailment& input, const bool silent)
 
 bool CheckProto_5(const OutBailment& input, const bool silent)
 {
-    if (!input.has_unitid()) {
-        FAIL("outbailment", "missing unit id")
-    }
+    if (!input.has_unitid()) { FAIL("outbailment", "missing unit id") }
 
     if (MIN_PLAUSIBLE_IDENTIFIER > input.unitid().size()) {
         FAIL2("outbailment", "invalid unit id", input.unitid())
@@ -119,9 +111,7 @@ bool CheckProto_5(const OutBailment& input, const bool silent)
         FAIL2("outbailment", "invalid unit id", input.unitid())
     }
 
-    if (!input.has_serverid()) {
-        FAIL("outbailment", "missing server id")
-    }
+    if (!input.has_serverid()) { FAIL("outbailment", "missing server id") }
 
     if (MIN_PLAUSIBLE_IDENTIFIER > input.serverid().size()) {
         FAIL2("outbailment", "invalid server id", input.serverid())
@@ -131,13 +121,13 @@ bool CheckProto_5(const OutBailment& input, const bool silent)
         FAIL2("outbailment", "invalid server id", input.serverid())
     }
 
-    if (!input.has_amount()) {
-        FAIL("outbailment", "missing amount")
-    }
+    if (!input.has_amount()) { FAIL("outbailment", "missing amount") }
 
     if (!input.has_instructions()) {
         FAIL("outbailment", "missing instructions")
     }
+
+    return true;
 }
 
 bool CheckProto_6(const OutBailment& input, const bool silent)
