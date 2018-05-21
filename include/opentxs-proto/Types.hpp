@@ -53,6 +53,11 @@
 #pragma GCC diagnostic ignored "-Wuseless-cast"
 #endif
 #endif
+
+#ifndef PROTOBUF_INLINE_NOT_IN_HEADERS
+#define PROTOBUF_INLINE_NOT_IN_HEADERS 0
+#endif
+
 // IWYU pragma: begin_exports
 #include <opentxs-proto/AsymmetricKey.pb.h>
 #include <opentxs-proto/Bailment.pb.h>

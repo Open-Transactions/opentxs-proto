@@ -54,6 +54,9 @@
 #pragma GCC diagnostic ignored "-Wuseless-cast"
 #endif
 #endif
+#ifndef PROTOBUF_INLINE_NOT_IN_HEADERS
+#define PROTOBUF_INLINE_NOT_IN_HEADERS 0
+#endif
 #include "opentxs-proto/ContactEnums.pb.h"  // IWYU pragma: export
 #ifdef _WIN32
 #pragma warning(pop)
