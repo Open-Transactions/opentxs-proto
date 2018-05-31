@@ -45,6 +45,8 @@ namespace opentxs
 {
 namespace proto
 {
+class StorageAccountIndex;
+class StorageAccounts;
 class StorageBip47ChannelList;
 class StorageContactAddressIndex;
 class StorageContactNymIndex;
@@ -66,6 +68,15 @@ class StorageUnits;
 class StorageWorkflowIndex;
 class StorageWorkflowType;
 
+static const VersionMap StorageAccountsAllowedStorageAccountIndex = {
+    {1, {1, 1}},
+};
+static const VersionMap StorageAccountsAllowedStorageItemHash = {
+    {1, {1, 2}},
+};
+static const VersionMap StorageAccountsAllowedStorageIDList = {
+    {1, {1, 1}},
+};
 static const VersionMap StorageContactsAllowedAddress = {
     {1, {1, 1}},
     {2, {1, 1}},
@@ -100,9 +111,7 @@ static const VersionMap StorageNymAllowedBip44Account{
     {6, {1, 1}},
     {7, {1, 1}},
 };
-static const VersionMap StorageNymAllowedBip47ChannelList = {
-    {7, {1, 1}}
-};
+static const VersionMap StorageNymAllowedBip47ChannelList = {{7, {1, 1}}};
 
 static const VersionMap StorageNymAllowedBlockchainAccountList{
     {4, {1, 1}},
@@ -142,6 +151,6 @@ static const VersionMap StorageSeedsAllowedHash = {
 static const VersionMap StorageIssuerAllowedHash = {
     {1, {1, 2}},
 };
-}  // namespace opentxs::proto
+}  // namespace proto
 }  // namespace opentxs
 #endif  // OPENTXS_PROTO_VERIFYSTORAGE_HPP

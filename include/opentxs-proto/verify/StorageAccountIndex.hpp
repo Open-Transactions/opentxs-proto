@@ -36,8 +36,8 @@
  *
  ************************************************************/
 
-#ifndef OPENTXS_PROTO_STORAGEITEMS_HPP
-#define OPENTXS_PROTO_STORAGEITEMS_HPP
+#ifndef OPENTXS_PROTO_STORAGEACCOUNTINDEX_HPP
+#define OPENTXS_PROTO_STORAGEACCOUNTINDEX_HPP
 
 #include "VerifyStorage.hpp"
 
@@ -45,27 +45,27 @@ namespace opentxs
 {
 namespace proto
 {
-bool CheckProto_1(const StorageItems& input, const bool silent);
-bool CheckProto_2(const StorageItems& input, const bool silent);
-bool CheckProto_3(const StorageItems& input, const bool silent);
-bool CheckProto_4(const StorageItems&, const bool);
-bool CheckProto_5(const StorageItems&, const bool);
-bool CheckProto_6(const StorageItems&, const bool);
-bool CheckProto_7(const StorageItems&, const bool);
-bool CheckProto_8(const StorageItems&, const bool);
-bool CheckProto_9(const StorageItems&, const bool);
-bool CheckProto_10(const StorageItems&, const bool);
-bool CheckProto_11(const StorageItems&, const bool);
-bool CheckProto_12(const StorageItems&, const bool);
-bool CheckProto_13(const StorageItems&, const bool);
-bool CheckProto_14(const StorageItems&, const bool);
-bool CheckProto_15(const StorageItems&, const bool);
-bool CheckProto_16(const StorageItems&, const bool);
-bool CheckProto_17(const StorageItems&, const bool);
-bool CheckProto_18(const StorageItems&, const bool);
-bool CheckProto_19(const StorageItems&, const bool);
-bool CheckProto_20(const StorageItems&, const bool);
+bool CheckProto_1(const StorageAccountIndex& input, const bool silent);
+bool CheckProto_2(const StorageAccountIndex&, const bool);
+bool CheckProto_3(const StorageAccountIndex&, const bool);
+bool CheckProto_4(const StorageAccountIndex&, const bool);
+bool CheckProto_5(const StorageAccountIndex&, const bool);
+bool CheckProto_6(const StorageAccountIndex&, const bool);
+bool CheckProto_7(const StorageAccountIndex&, const bool);
+bool CheckProto_8(const StorageAccountIndex&, const bool);
+bool CheckProto_9(const StorageAccountIndex&, const bool);
+bool CheckProto_10(const StorageAccountIndex&, const bool);
+bool CheckProto_11(const StorageAccountIndex&, const bool);
+bool CheckProto_12(const StorageAccountIndex&, const bool);
+bool CheckProto_13(const StorageAccountIndex&, const bool);
+bool CheckProto_14(const StorageAccountIndex&, const bool);
+bool CheckProto_15(const StorageAccountIndex&, const bool);
+bool CheckProto_16(const StorageAccountIndex&, const bool);
+bool CheckProto_17(const StorageAccountIndex&, const bool);
+bool CheckProto_18(const StorageAccountIndex&, const bool);
+bool CheckProto_19(const StorageAccountIndex&, const bool);
+bool CheckProto_20(const StorageAccountIndex&, const bool);
 }  // namespace proto
 }  // namespace opentxs
 
-#endif  // OPENTXS_PROTO_STORAGEITEMS_HPP
+#endif  // OPENTXS_PROTO_STORAGEACCOUNTINDEX_HPP

@@ -36,8 +36,8 @@
  *
  ************************************************************/
 
-#ifndef OPENTXS_PROTO_STORAGEITEMS_HPP
-#define OPENTXS_PROTO_STORAGEITEMS_HPP
+#ifndef OPENTXS_PROTO_STORAGEACCOUNTS_HPP
+#define OPENTXS_PROTO_STORAGEACCOUNTS_HPP
 
 #include "VerifyStorage.hpp"
 
@@ -45,27 +45,26 @@ namespace opentxs
 {
 namespace proto
 {
-bool CheckProto_1(const StorageItems& input, const bool silent);
-bool CheckProto_2(const StorageItems& input, const bool silent);
-bool CheckProto_3(const StorageItems& input, const bool silent);
-bool CheckProto_4(const StorageItems&, const bool);
-bool CheckProto_5(const StorageItems&, const bool);
-bool CheckProto_6(const StorageItems&, const bool);
-bool CheckProto_7(const StorageItems&, const bool);
-bool CheckProto_8(const StorageItems&, const bool);
-bool CheckProto_9(const StorageItems&, const bool);
-bool CheckProto_10(const StorageItems&, const bool);
-bool CheckProto_11(const StorageItems&, const bool);
-bool CheckProto_12(const StorageItems&, const bool);
-bool CheckProto_13(const StorageItems&, const bool);
-bool CheckProto_14(const StorageItems&, const bool);
-bool CheckProto_15(const StorageItems&, const bool);
-bool CheckProto_16(const StorageItems&, const bool);
-bool CheckProto_17(const StorageItems&, const bool);
-bool CheckProto_18(const StorageItems&, const bool);
-bool CheckProto_19(const StorageItems&, const bool);
-bool CheckProto_20(const StorageItems&, const bool);
+bool CheckProto_1(const StorageAccounts& input, const bool silent);
+bool CheckProto_2(const StorageAccounts&, const bool);
+bool CheckProto_3(const StorageAccounts&, const bool);
+bool CheckProto_4(const StorageAccounts&, const bool);
+bool CheckProto_5(const StorageAccounts&, const bool);
+bool CheckProto_6(const StorageAccounts&, const bool);
+bool CheckProto_7(const StorageAccounts&, const bool);
+bool CheckProto_8(const StorageAccounts&, const bool);
+bool CheckProto_9(const StorageAccounts&, const bool);
+bool CheckProto_10(const StorageAccounts&, const bool);
+bool CheckProto_11(const StorageAccounts&, const bool);
+bool CheckProto_12(const StorageAccounts&, const bool);
+bool CheckProto_13(const StorageAccounts&, const bool);
+bool CheckProto_14(const StorageAccounts&, const bool);
+bool CheckProto_15(const StorageAccounts&, const bool);
+bool CheckProto_16(const StorageAccounts&, const bool);
+bool CheckProto_17(const StorageAccounts&, const bool);
+bool CheckProto_18(const StorageAccounts&, const bool);
+bool CheckProto_19(const StorageAccounts&, const bool);
+bool CheckProto_20(const StorageAccounts&, const bool);
 }  // namespace proto
 }  // namespace opentxs
-
-#endif  // OPENTXS_PROTO_STORAGEITEMS_HPP
+#endif  // OPENTXS_PROTO_STORAGEACCOUNTS_HPP

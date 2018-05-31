@@ -15,4 +15,5 @@ message StorageItems
     optional string seeds = 6;
     optional string contacts = 7;
     optional string blockchaintransactions = 8;
+    optional string accounts = 9;
 }

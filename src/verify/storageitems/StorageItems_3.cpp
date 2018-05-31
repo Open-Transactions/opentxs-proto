@@ -39,15 +39,10 @@
 #include "opentxs-proto/Types.hpp"
 #include "opentxs-proto/Check.hpp"
 
-#include <iostream>
-
 #define PROTO_NAME "storage item index"
 
-namespace opentxs
+namespace opentxs::proto
 {
-namespace proto
-{
-
 bool CheckProto_3(const StorageItems& input, const bool silent)
 {
     OPTIONAL_IDENTIFIER(creds)
@@ -57,8 +52,8 @@ bool CheckProto_3(const StorageItems& input, const bool silent)
     OPTIONAL_IDENTIFIER(seeds)
     OPTIONAL_IDENTIFIER(contacts)
     OPTIONAL_IDENTIFIER(blockchaintransactions)
+    CHECK_EXCLUDED(accounts)
 
     return true;
 }
-}  // namespace proto
-}  // namespace opentxs
+}  // namespace opentxs::proto
