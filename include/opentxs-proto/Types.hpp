@@ -66,6 +66,11 @@
 #include <opentxs-proto/BasketParams.pb.h>
 #include <opentxs-proto/Bip44Account.pb.h>
 #include <opentxs-proto/Bip44Address.pb.h>
+#include <opentxs-proto/Bip47Address.pb.h>
+#include <opentxs-proto/Bip47Chain.pb.h>
+#include <opentxs-proto/Bip47Channel.pb.h>
+#include <opentxs-proto/Bip47Context.pb.h>
+#include <opentxs-proto/Bip47Direction.pb.h>
 #include <opentxs-proto/BlockchainTransaction.pb.h>
 #include <opentxs-proto/BlockchainTransactionInput.pb.h>
 #include <opentxs-proto/BlockchainTransactionOutput.pb.h>

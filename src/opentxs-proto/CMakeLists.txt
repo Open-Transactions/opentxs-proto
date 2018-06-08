@@ -8,6 +8,11 @@ set(PROTO_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/BasketItem.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/Bip44Account.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/Bip44Address.proto
+    ${CMAKE_CURRENT_SOURCE_DIR}/Bip47Address.proto
+    ${CMAKE_CURRENT_SOURCE_DIR}/Bip47Chain.proto
+    ${CMAKE_CURRENT_SOURCE_DIR}/Bip47Channel.proto
+    ${CMAKE_CURRENT_SOURCE_DIR}/Bip47Context.proto
+    ${CMAKE_CURRENT_SOURCE_DIR}/Bip47Direction.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/BlockchainTransaction.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/BlockchainTransactionInput.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/BlockchainTransactionOutput.proto
