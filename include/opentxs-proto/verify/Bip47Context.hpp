@@ -45,7 +45,7 @@ namespace opentxs
 {
 namespace proto
 {
-bool CheckProto_1(const Bip47Context& context, const bool silent);
+bool CheckProto_1(const Bip47Context& input, const bool silent);
 bool CheckProto_2(const Bip47Context&, const bool);
 bool CheckProto_3(const Bip47Context&, const bool);
 bool CheckProto_4(const Bip47Context&, const bool);

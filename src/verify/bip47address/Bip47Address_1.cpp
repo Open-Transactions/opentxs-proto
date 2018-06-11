@@ -50,51 +50,30 @@ namespace proto
 
 bool CheckProto_1(const Bip47Address& input, const bool silent)
 {
-    if (false == input.has_address()) {
-        FAIL("bip47 address", "missing address")
-    }
-
-    if (input.has_address()) {
-        if (MIN_PLAUSIBLE_SCRIPT > input.address().size()) {
-            FAIL("bip47 address", "invalid address")
-        }
-
-        if (MAX_PLAUSIBLE_SCRIPT < input.address().size()) {
-            FAIL("bip47 address", "invalid address")
-        }
-    }
-
-    for (const auto& txid : input.incoming()) {
-        if (MIN_PLAUSIBLE_IDENTIFIER > txid.size()) {
-            FAIL("bip47 address", "invalid txid")
-        }
-
-        if (MAX_PLAUSIBLE_IDENTIFIER < txid.size()) {
-            FAIL("bip47 address", "invalid txid")
-        }
-    }
+    CHECK_IDENTIFIER(address);
+    CHECK_IDENTIFIERS(incoming);
 
     return true;
 }
 
 bool CheckProto_2(const Bip47Address& input, const bool silent)
 {
-    UNDEFINED_VERSION("bip47 address", 2)
+    UNDEFINED_VERSION2(2)
 }
 
 bool CheckProto_3(const Bip47Address& input, const bool silent)
 {
-    UNDEFINED_VERSION("bip47 address", 3)
+    UNDEFINED_VERSION2(3)
 }
 
 bool CheckProto_4(const Bip47Address& input, const bool silent)
 {
-    UNDEFINED_VERSION("bip47 address", 4)
+    UNDEFINED_VERSION2(4)
 }
 
 bool CheckProto_5(const Bip47Address& input, const bool silent)
 {
-    UNDEFINED_VERSION("bip47 address", 5)
+    UNDEFINED_VERSION2(5)
 }
 
 bool CheckProto_6(const Bip47Address& input, const bool silent)

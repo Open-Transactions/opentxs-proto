@@ -52,8 +52,8 @@ bool CheckProto_1(const Bip47Channel& input, const bool silent)
 {
   CHECK_IDENTIFIER(contact);
   CHECK_IDENTIFIER(paymentcode);
-  CHECK_SUBOBJECT(incoming, Bip47DirectionAllowed);
-  CHECK_SUBOBJECT(outgoing, Bip47DirectionAllowed);
+  CHECK_SUBOBJECT(incoming, Bip47ChannelAllowedBip47Direction);
+  CHECK_SUBOBJECT(outgoing, Bip47ChannelAllowedBip47Direction);
   return true;
 }
 

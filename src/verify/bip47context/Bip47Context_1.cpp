@@ -51,7 +51,7 @@ namespace proto
 bool CheckProto_1(const Bip47Context& input, const bool silent)
 {
     CHECK_IDENTIFIER(paymentcode);
-    CHECK_SUBOBJECTS(chain, Bip47ChainAllowed);
+    CHECK_SUBOBJECTS(chain, Bip47ContextAllowedBip47Chain);
     return true;
 }
 

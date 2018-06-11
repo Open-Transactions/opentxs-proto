@@ -64,16 +64,16 @@ static const VersionMap Bip44AccountAllowedBip44Address = {
 static const VersionMap Bip44AccountAllowedHDPath = {
     {1, {1, 1}},
 };
-static const VersionMap Bip47AddressAllowed = {
+static const VersionMap Bip47ChainAllowedBip47Channel = {
     {1, {1, 1}},
 };
-static const VersionMap Bip47ChainAllowed = {
+static const VersionMap Bip47ChannelAllowedBip47Direction = {
     {1, {1, 1}},
 };
-static const VersionMap Bip47ChannelAllowed = {
+static const VersionMap Bip47ContextAllowedBip47Chain = {
     {1, {1, 1}},
 };
-static const VersionMap Bip47DirectionAllowed = {
+static const VersionMap Bip47DirectionAllowedBip47Address = {
     {1, {1, 1}},
 };
 static const VersionMap BlockchainTransactionAllowedInput = {

@@ -45,7 +45,7 @@ namespace opentxs
 {
 namespace proto
 {
-bool CheckProto_1(const Bip47Direction& direction, const bool silent);
+bool CheckProto_1(const Bip47Direction& input, const bool silent);
 bool CheckProto_2(const Bip47Direction&, const bool);
 bool CheckProto_3(const Bip47Direction&, const bool);
 bool CheckProto_4(const Bip47Direction&, const bool);

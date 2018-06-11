@@ -56,29 +56,29 @@ bool CheckProto_1(const Bip47Chain& input, const bool silent)
 
     if (false == validChain) { FAIL("bip47 chain", "invalid type") }
 
-    CHECK_SUBOBJECTS(channel, Bip47ChannelAllowed);
+    CHECK_SUBOBJECTS(channel, Bip47ChainAllowedBip47Channel);
       
     return true;
 }
 
 bool CheckProto_2(const Bip47Chain& input, const bool silent)
 {
-    UNDEFINED_VERSION("bip47 chain", 2)
+    UNDEFINED_VERSION2(2)
 }
 
 bool CheckProto_3(const Bip47Chain& input, const bool silent)
 {
-    UNDEFINED_VERSION("bip47 chain", 3)
+    UNDEFINED_VERSION2(3)
 }
 
 bool CheckProto_4(const Bip47Chain& input, const bool silent)
 {
-    UNDEFINED_VERSION("bip47 chain", 4)
+    UNDEFINED_VERSION2(4)
 }
 
 bool CheckProto_5(const Bip47Chain& input, const bool silent)
 {
-    UNDEFINED_VERSION("bip47 chain", 5)
+    UNDEFINED_VERSION2(5)
 }
 
 bool CheckProto_6(const Bip47Chain& input, const bool silent)
