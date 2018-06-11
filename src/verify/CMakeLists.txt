@@ -1,5 +1,3 @@
-include_directories("${CMAKE_SOURCE_DIR}/include")
-
 set(cxx-sources
   VerifyContacts.cpp
   asymmetrickey/AsymmetricKey_1.cpp

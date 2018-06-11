@@ -136,6 +136,7 @@ message(STATUS "Default Python binding: ${PYTHON}")
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 
 find_package(Protobuf REQUIRED)
+find_package(GTest REQUIRED)
 
 if(PYTHON)
   find_package(PythonInterp)
@@ -260,6 +261,8 @@ function(set_lib_property lib)
 endfunction(set_lib_property)
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
+include_directories(SYSTEM ${CMAKE_CURRENT_BINARY_DIR}/src)
+
 add_subdirectory(src)
 
 if (NOT ANDROID)
@@ -267,8 +270,6 @@ if (NOT ANDROID)
 #-----------------------------------------------------------------------------
 # Build Unit tests
 
-#set_target_properties(opentxs-proto PROPERTIES ENABLE_EXPORTS 1)
-find_package(GTest REQUIRED)
 enable_testing()
 add_subdirectory(tests)
 
