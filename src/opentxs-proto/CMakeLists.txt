@@ -107,8 +107,6 @@ PROTOBUF_GENERATE_CPP(
 
 set(MODULE_NAME opentxs-proto)
 
-include_directories(SYSTEM ${PROTOBUF_INCLUDE_DIR})
-
 add_library(${MODULE_NAME} OBJECT
   ${PROTO_SRC}
   ${PROTO_HEADER}
@@ -121,9 +119,7 @@ if (PYTHON OR PYTHON2 OR PYTHON3)
         #${PROTO_SOURCES}
     #)
 
-    include_directories(
-      ${PYTHON_INCLUDE_PATH}
-    )
+    include_directories(${PYTHON_INCLUDE_PATH})
 
     include(ExternalProject)
 
