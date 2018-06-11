@@ -263,6 +263,15 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 add_subdirectory(src)
 
 if (NOT ANDROID)
+
+#-----------------------------------------------------------------------------
+# Build Unit tests
+
+#set_target_properties(opentxs-proto PROPERTIES ENABLE_EXPORTS 1)
+find_package(GTest REQUIRED)
+enable_testing()
+add_subdirectory(tests)
+
 #-----------------------------------------------------------------------------
 # Produce a cmake-package
 

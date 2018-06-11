@@ -162,6 +162,11 @@
 #include <opentxs-proto/verify/BasketParams.hpp>
 #include <opentxs-proto/verify/Bip44Account.hpp>
 #include <opentxs-proto/verify/Bip44Address.hpp>
+#include <opentxs-proto/verify/Bip47Address.hpp>
+#include <opentxs-proto/verify/Bip47Chain.hpp>
+#include <opentxs-proto/verify/Bip47Channel.hpp>
+#include <opentxs-proto/verify/Bip47Context.hpp>
+#include <opentxs-proto/verify/Bip47Direction.hpp>
 #include <opentxs-proto/verify/BlockchainTransaction.hpp>
 #include <opentxs-proto/verify/BlockchainTransactionInput.hpp>
 #include <opentxs-proto/verify/BlockchainTransactionOutput.hpp>

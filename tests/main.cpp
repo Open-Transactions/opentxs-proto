@@ -36,55 +36,10 @@
  *
  ************************************************************/
 
-#ifndef OPENTXS_PROTO_VERIFYBLOCKCHAIN_HPP
-#define OPENTXS_PROTO_VERIFYBLOCKCHAIN_HPP
+#include <gtest/gtest.h>
 
-#include "opentxs-proto/Basic.hpp"
+int main(int argc, char **argv) {
+  ::testing::InitGoogleTest(&argc, argv);
+  return RUN_ALL_TESTS();
+}
 
-namespace opentxs
-{
-namespace proto
-{
-
-class Bip44Account;
-class Bip44Address;
-class Bip47Address;
-class Bip47Chain;
-class Bip47Channel;
-class Bip47Context;
-class Bip47Direction;
-class BlockchainInput;
-class BlockchainOutput;
-class BlockchainTransaction;
-class StorageBlockchainAccountList;
-
-static const VersionMap Bip44AccountAllowedBip44Address = {
-    {1, {1, 1}},
-};
-static const VersionMap Bip44AccountAllowedHDPath = {
-    {1, {1, 1}},
-};
-static const VersionMap Bip47AddressAllowed = {
-    {1, {1, 1}},
-};
-static const VersionMap Bip47ChainAllowed = {
-    {1, {1, 1}},
-};
-static const VersionMap Bip47ChannelAllowed = {
-    {1, {1, 1}},
-};
-static const VersionMap Bip47DirectionAllowed = {
-    {1, {1, 1}},
-};
-static const VersionMap BlockchainTransactionAllowedInput = {
-    {1, {1, 1}},
-};
-static const VersionMap BlockchainTransactionAllowedOutput = {
-    {1, {1, 1}},
-};
-static const VersionMap StorageBlockchainTransactionsAllowedHash = {
-    {1, {1, 2}},
-};
-}  // namespace proto
-}  // namespace opentxs
-#endif  // OPENTXS_PROTO_VERIFYBLOCKCHAIN_HPP
