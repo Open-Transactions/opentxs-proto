@@ -65,6 +65,7 @@ set(PROTO_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/ServerContract.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/Signature.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/SourceProof.proto
+    ${CMAKE_CURRENT_SOURCE_DIR}/StorageBip47ChannelList.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/StorageBlockchainAccountList.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/StorageBlockchainTransactions.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/StorageContactAddressIndex.proto
