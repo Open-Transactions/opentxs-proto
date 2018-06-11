@@ -9,6 +9,11 @@ set(cxx-sources
   basketparams/BasketParams_1.cpp
   bip44account/Bip44Account_1.cpp
   bip44address/Bip44Address_1.cpp
+  bip47address/Bip47Address_1.cpp
+  bip47chain/Bip47Chain_1.cpp
+  bip47channel/Bip47Channel_1.cpp
+  bip47context/Bip47Context_1.cpp
+  bip47direction/Bip47Direction_1.cpp
   blockchaintransaction/BlockchainTransaction_1.cpp
   blockchaintransactioninput/BlockchainTransactionInput_1.cpp
   blockchaintransactionoutput/BlockchainTransactionOutput_1.cpp

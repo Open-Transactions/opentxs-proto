@@ -50,96 +50,38 @@ namespace proto
 
 bool CheckProto_1(const Bip44Account& input, const bool silent)
 {
-    if (false == input.has_id()) {
-        FAIL("blockchain account", "missing id")
-    }
-
-    if (MIN_PLAUSIBLE_IDENTIFIER > input.id().size()) {
-        FAIL("blockchain account", "invalid id")
-    }
-
-    if (MAX_PLAUSIBLE_IDENTIFIER < input.id().size()) {
-        FAIL("blockchain account", "invalid id")
-    }
+    CHECK_IDENTIFIER(id)
 
     const bool validChain = ValidContactItemType(
         {CONTACT_VERSION, CONTACTSECTION_CONTRACT}, input.type());
 
-    if (false == validChain) {
-        FAIL("blockchain account", "invalid type")
-    }
+    if (false == validChain) { FAIL("blockchain account", "invalid type") }
 
-    if (false == input.has_path()) {
-        FAIL("blockchain account", "missing path")
-    }
-
-    try {
-        const bool validPath = Check(
-            input.path(),
-            Bip44AccountAllowedHDPath.at(input.version()).first,
-            Bip44AccountAllowedHDPath.at(input.version()).second,
-            silent);
-
-        if (false == validPath) {
-            FAIL("blockchain account", "invalid path")
-        }
-    } catch (const std::out_of_range&) {
-        FAIL2(
-            "blockchain account",
-            "allowed HD path version not defined for version",
-            input.version())
-    }
-
-    for (const auto& address : input.internaladdress()) {
-        try {
-            const bool validAddress = Check(
-                address,
-                Bip44AccountAllowedBip44Address.at(input.version()).first,
-                Bip44AccountAllowedBip44Address.at(input.version()).second,
-                silent);
-
-            if (false == validAddress) {
-                FAIL("blockchain account", "invalid address")
-            }
-        } catch (const std::out_of_range&) {
-            FAIL2(
-                "blockchain account",
-                "allowed Bip44 address version not defined for version",
-                input.version())
-        }
-    }
-
-    for (const auto& txid : input.outgoing()) {
-        if (MIN_PLAUSIBLE_IDENTIFIER > txid.size()) {
-            FAIL("blockchain account", "invalid txid")
-        }
-
-        if (MAX_PLAUSIBLE_IDENTIFIER < txid.size()) {
-            FAIL("blockchain account", "invalid txid")
-        }
-    }
+    CHECK_SUBOBJECT(path, Bip44AccountAllowedHDPath)
+    CHECK_SUBOBJECTS(internaladdress, Bip44AccountAllowedBip44Address)
+    CHECK_IDENTIFIERS(outgoing)
 
     return true;
 }
 
 bool CheckProto_2(const Bip44Account& input, const bool silent)
 {
-    UNDEFINED_VERSION("blockchain account", 2)
+    UNDEFINED_VERSION2(2)
 }
 
 bool CheckProto_3(const Bip44Account& input, const bool silent)
 {
-    UNDEFINED_VERSION("blockchain account", 3)
+    UNDEFINED_VERSION2(3)
 }
 
 bool CheckProto_4(const Bip44Account& input, const bool silent)
 {
-    UNDEFINED_VERSION("blockchain account", 4)
+    UNDEFINED_VERSION2(4)
 }
 
 bool CheckProto_5(const Bip44Account& input, const bool silent)
 {
-    UNDEFINED_VERSION("blockchain account", 5)
+    UNDEFINED_VERSION2(5)
 }
 
 bool CheckProto_6(const Bip44Account& input, const bool silent)

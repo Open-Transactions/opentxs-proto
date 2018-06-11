@@ -36,55 +36,36 @@
  *
  ************************************************************/
 
-#ifndef OPENTXS_PROTO_VERIFYBLOCKCHAIN_HPP
-#define OPENTXS_PROTO_VERIFYBLOCKCHAIN_HPP
+#ifndef OPENTXS_PROTO_BIP47_DIRECTION_HPP
+#define OPENTXS_PROTO_BIP47_DIRECTION_HPP
 
-#include "opentxs-proto/Basic.hpp"
+#include "VerifyBlockchain.hpp"
 
 namespace opentxs
 {
 namespace proto
 {
-
-class Bip44Account;
-class Bip44Address;
-class Bip47Address;
-class Bip47Chain;
-class Bip47Channel;
-class Bip47Context;
-class Bip47Direction;
-class BlockchainInput;
-class BlockchainOutput;
-class BlockchainTransaction;
-class StorageBlockchainAccountList;
-
-static const VersionMap Bip44AccountAllowedBip44Address = {
-    {1, {1, 1}},
-};
-static const VersionMap Bip44AccountAllowedHDPath = {
-    {1, {1, 1}},
-};
-static const VersionMap Bip47ChainAllowedBip47Channel = {
-    {1, {1, 1}},
-};
-static const VersionMap Bip47ChannelAllowedBip47Direction = {
-    {1, {1, 1}},
-};
-static const VersionMap Bip47ContextAllowedBip47Chain = {
-    {1, {1, 1}},
-};
-static const VersionMap Bip47DirectionAllowedBip47Address = {
-    {1, {1, 1}},
-};
-static const VersionMap BlockchainTransactionAllowedInput = {
-    {1, {1, 1}},
-};
-static const VersionMap BlockchainTransactionAllowedOutput = {
-    {1, {1, 1}},
-};
-static const VersionMap StorageBlockchainTransactionsAllowedHash = {
-    {1, {1, 2}},
-};
+bool CheckProto_1(const Bip47Direction& input, const bool silent);
+bool CheckProto_2(const Bip47Direction&, const bool);
+bool CheckProto_3(const Bip47Direction&, const bool);
+bool CheckProto_4(const Bip47Direction&, const bool);
+bool CheckProto_5(const Bip47Direction&, const bool);
+bool CheckProto_6(const Bip47Direction&, const bool);
+bool CheckProto_7(const Bip47Direction&, const bool);
+bool CheckProto_8(const Bip47Direction&, const bool);
+bool CheckProto_9(const Bip47Direction&, const bool);
+bool CheckProto_10(const Bip47Direction&, const bool);
+bool CheckProto_11(const Bip47Direction&, const bool);
+bool CheckProto_12(const Bip47Direction&, const bool);
+bool CheckProto_13(const Bip47Direction&, const bool);
+bool CheckProto_14(const Bip47Direction&, const bool);
+bool CheckProto_15(const Bip47Direction&, const bool);
+bool CheckProto_16(const Bip47Direction&, const bool);
+bool CheckProto_17(const Bip47Direction&, const bool);
+bool CheckProto_18(const Bip47Direction&, const bool);
+bool CheckProto_19(const Bip47Direction&, const bool);
+bool CheckProto_20(const Bip47Direction&, const bool);
 }  // namespace proto
 }  // namespace opentxs
-#endif  // OPENTXS_PROTO_VERIFYBLOCKCHAIN_HPP
+
+#endif  // OPENTXS_PROTO_BIP47_DIRECTION_HPP
