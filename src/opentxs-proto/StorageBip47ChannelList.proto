@@ -1,0 +1,15 @@
+syntax = "proto2";
+
+package opentxs.proto;
+option java_package = "org.opentransactions.proto";
+option java_outer_classname = "OTStorageBip47ChannelList";
+option optimize_for = LITE_RUNTIME;
+
+import public "ContactEnums.proto";
+
+message StorageBip47ChannelList {
+    optional uint32 version = 1;
+    optional ContactItemType chain = 2;
+    optional string contact = 3;
+    repeated string paymentcode = 4;
+}

@@ -123,6 +123,7 @@
 #include <opentxs-proto/ServerContract.pb.h>
 #include <opentxs-proto/Signature.pb.h>
 #include <opentxs-proto/SourceProof.pb.h>
+#include <opentxs-proto/StorageBip47ChannelList.pb.h>
 #include <opentxs-proto/StorageBlockchainAccountList.pb.h>
 #include <opentxs-proto/StorageBlockchainTransactions.pb.h>
 #include <opentxs-proto/StorageContactAddressIndex.pb.h>
@@ -214,6 +215,7 @@
 #include <opentxs-proto/verify/Signature.hpp>
 #include <opentxs-proto/verify/Signature.hpp>
 #include <opentxs-proto/verify/SourceProof.hpp>
+#include <opentxs-proto/verify/StorageBip47ChannelList.hpp>
 #include <opentxs-proto/verify/StorageBlockchainAccountList.hpp>
 #include <opentxs-proto/verify/StorageBlockchainTransactions.hpp>
 #include <opentxs-proto/verify/StorageContactAddressIndex.hpp>
