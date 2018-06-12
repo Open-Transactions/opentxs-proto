@@ -45,6 +45,7 @@ namespace opentxs
 {
 namespace proto
 {
+class StorageBip47ChannelList;
 class StorageContactAddressIndex;
 class StorageContactNymIndex;
 class StorageContacts;
@@ -91,16 +92,23 @@ static const VersionMap StorageNymAllowedHash = {
     {4, {2, 4}},
     {5, {2, 5}},
     {6, {2, 6}},
+    {7, {2, 6}},
 };
 static const VersionMap StorageNymAllowedBip44Account{
     {4, {1, 1}},
     {5, {1, 1}},
     {6, {1, 1}},
+    {7, {1, 1}},
 };
+static const VersionMap StorageNymAllowedBip47ChannelList = {
+    {7, {1, 1}}
+};
+
 static const VersionMap StorageNymAllowedBlockchainAccountList{
     {4, {1, 1}},
     {5, {1, 1}},
     {6, {1, 1}},
+    {7, {1, 1}},
 };
 static const VersionMap StorageNymListAllowedHash = {
     {1, {1, 1}},

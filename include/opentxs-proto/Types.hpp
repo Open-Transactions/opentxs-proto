@@ -215,6 +215,7 @@
 #include <opentxs-proto/verify/Signature.hpp>
 #include <opentxs-proto/verify/Signature.hpp>
 #include <opentxs-proto/verify/SourceProof.hpp>
+#include <opentxs-proto/verify/StorageBip47ChannelList.hpp>
 #include <opentxs-proto/verify/StorageBlockchainAccountList.hpp>
 #include <opentxs-proto/verify/StorageBlockchainTransactions.hpp>
 #include <opentxs-proto/verify/StorageContactAddressIndex.hpp>
