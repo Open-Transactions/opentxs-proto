@@ -199,9 +199,7 @@
                 (MAX_PLAUSIBLE_IDENTIFIER < input.a().size())) {               \
                 const auto fail = std::string("invalid ") + #a + " size";      \
                                                                                \
-                if (0 != input.a().size()) {                                   \
-                    FAIL5(fail, input.a().size())                              \
-                }                                                              \
+                if (0 != input.a().size()) { FAIL5(fail, input.a().size()) }   \
             }                                                                  \
         }                                                                      \
     }
@@ -308,6 +306,11 @@
         OPTIONAL_SUBOBJECT0(a, b, silent)                                      \
     }
 
+#define OPTIONAL_SUBOBJECTS(a, b)                                              \
+    {                                                                          \
+        CHECK_SUBOBJECTS0(a, b, silent)                                        \
+    }
+
 namespace opentxs
 {
 namespace proto
@@ -320,9 +323,7 @@ bool Check(
     const bool silent,
     Args&&... params)
 {
-    if (!input.has_version()) {
-        FAIL("protobuf", "missing version.")
-    }
+    if (!input.has_version()) { FAIL("protobuf", "missing version.") }
 
     const std::uint32_t version = input.version();
 
@@ -403,9 +404,7 @@ template <typename T, typename... Args>
 bool Validate(const T& input, const bool silent, Args&&... params)
 {
 
-    if (!input.has_version()) {
-        FAIL("protobuf", "missing version")
-    }
+    if (!input.has_version()) { FAIL("protobuf", "missing version") }
 
     const std::uint32_t version = input.version();
 

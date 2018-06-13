@@ -39,22 +39,27 @@
 #include "opentxs-proto/Types.hpp"
 #include "opentxs-proto/Check.hpp"
 
-#include <iostream>
-
 #define PROTO_NAME "storage item index"
 
-namespace opentxs
-{
-namespace proto
+namespace opentxs::proto
 {
 bool CheckProto_4(const StorageItems& input, const bool silent)
 {
-    UNDEFINED_VERSION(PROTO_NAME, 4)
+    OPTIONAL_IDENTIFIER(creds)
+    OPTIONAL_IDENTIFIER(nyms)
+    OPTIONAL_IDENTIFIER(servers)
+    OPTIONAL_IDENTIFIER(units)
+    OPTIONAL_IDENTIFIER(seeds)
+    OPTIONAL_IDENTIFIER(contacts)
+    OPTIONAL_IDENTIFIER(blockchaintransactions)
+    OPTIONAL_IDENTIFIER(accounts)
+
+    return true;
 }
 
 bool CheckProto_5(const StorageItems& input, const bool silent)
 {
-    UNDEFINED_VERSION(PROTO_NAME, 5)
+    UNDEFINED_VERSION2(5)
 }
 
 bool CheckProto_6(const StorageItems& input, const bool silent)
@@ -131,5 +136,4 @@ bool CheckProto_20(const StorageItems& input, const bool silent)
 {
     UNDEFINED_VERSION2(20)
 }
-}  // namespace proto
-}  // namespace opentxs
+}  // namespace opentxs::proto

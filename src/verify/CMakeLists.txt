@@ -68,6 +68,8 @@ set(cxx-sources
   signature/Signature_1.cpp
   signature/Signature_2.cpp
   sourceproof/SourceProof_1.cpp
+  storageaccountindex/StorageAccountIndex_1.cpp
+  storageaccounts/StorageAccounts_1.cpp
   storagebip47channellist/StorageBip47ChannelList_1.cpp
   storageblockchainaccountlist/StorageBlockchainAccountList_1.cpp
   storageblockchaintransactions/StorageBlockchainTransactions_1.cpp
