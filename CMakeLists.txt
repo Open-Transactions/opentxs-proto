@@ -30,6 +30,12 @@ endif() # NOT ANDROID
 #-----------------------------------------------------------------------------
 # Options for building
 
+if(ANDROID)
+  option(BUILD_TESTS         "Build the unit tests." OFF)
+else()
+  option(BUILD_TESTS         "Build the unit tests." ON)
+endif()
+
 option(BUILD_VERBOSE       "Verbose build output." ON)
 option(USE_CCACHE          "Use ccache." OFF)
 
@@ -114,14 +120,16 @@ endif()
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${PEDANTIC_CXX_FLAGS}")
 
-message(STATUS "C++ Compiler ID: ${CMAKE_CXX_COMPILER_ID}")
-message(STATUS "C++ Flags:       ${CMAKE_CXX_FLAGS}")
-message(STATUS "C++ link flags:  ${CMAKE_CXX_LINK_FLAGS}")
-message(STATUS "Package version:  ${VERSION_STRING}")
-message(STATUS "Package version:  ${VERSION_MAJOR}")
-message(STATUS "Package version:  ${VERSION_MINOR}")
-message(STATUS "Package version:  ${VERSION_BUGFIX}")
-message(STATUS "Package version:  ${VERSION_SHA1}")
+message(STATUS "General -------------------------------------")
+message(STATUS "opentxs-proto version:  ${VERSION_STRING}")
+message(STATUS "CMake version:          ${CMAKE_VERSION}")
+message(STATUS "System:                 ${CMAKE_SYSTEM}")
+message(STATUS "Processor:              ${CMAKE_SYSTEM_PROCESSOR}")
+message(STATUS "C++ Compiler ID:        ${CMAKE_CXX_COMPILER_ID}")
+message(STATUS "C++ Flags:              ${CMAKE_CXX_FLAGS}")
+message(STATUS "C++ link flags:         ${CMAKE_CXX_LINK_FLAGS}")
+message(STATUS "Verbose:                ${BUILD_VERBOSE}")
+message(STATUS "Testing:                ${BUILD_TESTS}")
 
 message(STATUS "Bindings ------------------------------------")
 message(STATUS "Java binding:           ${JAVA}")
@@ -137,8 +145,9 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 
 find_package(Protobuf REQUIRED)
 
-if(NOT ANDROID)
+if(BUILD_TESTS)
   find_package(GTest REQUIRED)
+  enable_testing()
 endif()
 
 if(PYTHON)
@@ -268,42 +277,43 @@ include_directories(SYSTEM ${CMAKE_CURRENT_BINARY_DIR}/src)
 
 add_subdirectory(src)
 
-if (NOT ANDROID)
-
 #-----------------------------------------------------------------------------
 # Build Unit tests
 
-enable_testing()
-add_subdirectory(tests)
+if(GTEST_FOUND)
+  add_subdirectory(tests)
+endif()
 
 #-----------------------------------------------------------------------------
 # Produce a cmake-package
 
-include(CMakePackageConfigHelpers)
-set(CMAKE_CONFIG_DEST "share/cmake/Modules")
-set(OPENTXS_PROTO_INCLUDE_DIRS "${CMAKE_INSTALL_PREFIX}/include")
+if(NOT ANDROID)
+  include(CMakePackageConfigHelpers)
+  set(CMAKE_CONFIG_DEST "share/cmake/Modules")
+  set(OPENTXS_PROTO_INCLUDE_DIRS "${CMAKE_INSTALL_PREFIX}/include")
 
-export(TARGETS opentxs-protobuf FILE "${CMAKE_BINARY_DIR}/opentxs-protoTargets.cmake")
+  export(TARGETS opentxs-protobuf FILE "${CMAKE_BINARY_DIR}/opentxs-protoTargets.cmake")
 
-configure_package_config_file(
-       "cmake/opentxs-protoConfig.cmake.in"
-       "${CMAKE_BINARY_DIR}/opentxs-protoConfig.cmake"
-       INSTALL_DESTINATION ${CMAKE_CONFIG_DEST}
-       PATH_VARS OPENTXS_PROTO_INCLUDE_DIRS)
+  configure_package_config_file(
+         "cmake/opentxs-protoConfig.cmake.in"
+         "${CMAKE_BINARY_DIR}/opentxs-protoConfig.cmake"
+         INSTALL_DESTINATION ${CMAKE_CONFIG_DEST}
+         PATH_VARS OPENTXS_PROTO_INCLUDE_DIRS)
 
-write_basic_package_version_file(
-  "${CMAKE_CURRENT_BINARY_DIR}/opentxs-protoConfigVersion.cmake"
-  VERSION ${VERSION_STRING}
-  COMPATIBILITY AnyNewerVersion)
+  write_basic_package_version_file(
+    "${CMAKE_CURRENT_BINARY_DIR}/opentxs-protoConfigVersion.cmake"
+    VERSION ${VERSION_STRING}
+    COMPATIBILITY AnyNewerVersion)
 
-install(EXPORT opentxs-protobufTargets
-        DESTINATION ${CMAKE_CONFIG_DEST} FILE "opentxs-proto.cmake")
+  install(EXPORT opentxs-protobufTargets
+          DESTINATION ${CMAKE_CONFIG_DEST} FILE "opentxs-proto.cmake")
 
-install(FILES
-        "${CMAKE_CURRENT_BINARY_DIR}/opentxs-protoConfig.cmake"
-        "${CMAKE_CURRENT_BINARY_DIR}/opentxs-protoConfigVersion.cmake"
-        DESTINATION ${CMAKE_CONFIG_DEST}
-        COMPONENT dev)
+  install(FILES
+          "${CMAKE_CURRENT_BINARY_DIR}/opentxs-protoConfig.cmake"
+          "${CMAKE_CURRENT_BINARY_DIR}/opentxs-protoConfigVersion.cmake"
+          DESTINATION ${CMAKE_CONFIG_DEST}
+          COMPONENT dev)
+endif()
 
 #-----------------------------------------------------------------------------
 # Produce a pkg-config file
@@ -340,5 +350,3 @@ configure_file(
 
 add_custom_target(uninstall
     COMMAND ${CMAKE_COMMAND} -P ${CMAKE_CURRENT_BINARY_DIR}/uninstall.cmake)
-
-endif (NOT ANDROID)
