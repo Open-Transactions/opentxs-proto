@@ -136,7 +136,10 @@ message(STATUS "Default Python binding: ${PYTHON}")
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 
 find_package(Protobuf REQUIRED)
-find_package(GTest REQUIRED)
+
+if(NOT ANDROID)
+  find_package(GTest REQUIRED)
+endif()
 
 if(PYTHON)
   find_package(PythonInterp)
