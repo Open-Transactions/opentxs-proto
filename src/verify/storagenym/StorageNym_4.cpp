@@ -65,7 +65,7 @@ bool CheckProto_4(const StorageNym& input, const bool silent)
     CHECK_EXCLUDED(issuers)
     CHECK_EXCLUDED(paymentworkflow)
     CHECK_NONE(bip47channelindex)
-    CHECK_NONE(bip47context)
+    CHECK_EXCLUDED(bip47contexts)
     return true;
 }
 }  // namespace opentxs::proto

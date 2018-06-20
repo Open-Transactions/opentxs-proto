@@ -53,30 +53,23 @@ namespace {
     }
   };
 
-TEST_F(Test_StorageNym, v6_rejectBip47Context)
+TEST_F(Test_StorageNym, v6_rejectBip47Contexts)
 {
-  storeNym->clear_bip47context();
-  ASSERT_EQ(0, storeNym->bip47context_size());
-
   storeNym->set_version(6);
-  proto::StorageItemHash* storedCtx = storeNym->add_bip47context();
-  storedCtx->set_itemid("id___larger___than___20chars___long");
-  storedCtx->set_hash("hash__larger__than__20chars__long");
-  storedCtx->set_type(proto::STORAGEHASH_RAW);
-  ASSERT_EQ(1, storeNym->bip47context_size());
+  proto::StorageItemHash* storedCtxs = storeNym->mutable_bip47contexts();
+  storedCtxs->set_itemid("id___larger___than___20chars___long");
+  storedCtxs->set_hash("hash__larger__than__20chars__long");
+  storedCtxs->set_type(proto::STORAGEHASH_RAW);
 
-  // test: reject versions 1,2
-  storedCtx->set_version(1);
+  // test: reject both version 1 and 2
+  storedCtxs->set_version(1);
   ASSERT_FALSE(proto::Validate(*storeNym, false));
-  storedCtx->set_version(2);
+  storedCtxs->set_version(2);
   ASSERT_FALSE(proto::Validate(*storeNym, false));
 }
 
 TEST_F(Test_StorageNym, v6_rejectBip47ChannelList)
 {
-  storeNym->clear_bip47channelindex();
-  ASSERT_EQ(0, storeNym->bip47channelindex_size());
-
   storeNym->set_version(6);
   proto::StorageBip47ChannelList* newChannel = storeNym->add_bip47channelindex();
   newChannel->set_version(1);
@@ -85,34 +78,34 @@ TEST_F(Test_StorageNym, v6_rejectBip47ChannelList)
   ASSERT_FALSE(proto::Validate(*storeNym, false));
 }
 
-TEST_F(Test_StorageNym, v7_acceptBip47Context)
+TEST_F(Test_StorageNym, v7_acceptBip47Contexts)
 {
-  storeNym->clear_bip47context();
-  ASSERT_EQ(0, storeNym->bip47context_size());
-
   // test: version 7 accepts bip 47 context
   storeNym->set_version(7);
-  proto::StorageItemHash* storedCtx = storeNym->add_bip47context();
-  storedCtx->set_itemid("id___larger___than___20chars___long");
-  storedCtx->set_hash("hash__larger__than__20chars__long");
-  storedCtx->set_type(proto::STORAGEHASH_RAW);
-  ASSERT_EQ(1, storeNym->bip47context_size());
+  proto::StorageItemHash* storedCtxs = storeNym->mutable_bip47contexts();
+  storedCtxs->set_itemid("id___larger___than___20chars___long");
+  storedCtxs->set_hash("hash__larger__than__20chars__long");
+  storedCtxs->set_type(proto::STORAGEHASH_RAW);
 
   // test: version 1 is invalid
-  storedCtx->set_version(1);
+  storedCtxs->set_version(1);
   ASSERT_FALSE(proto::Validate(*storeNym, false));
 
   // test: version 2 is valid
-  storedCtx->set_version(2);
+  storedCtxs->set_version(2);
   ASSERT_TRUE(proto::Validate(*storeNym, false));
 }
 
-TEST_F(Test_StorageNym, v7_rejectBip47ChannelList)
+TEST_F(Test_StorageNym, v7_acceptBip47ChannelList)
 {
-  storeNym->clear_bip47channelindex();
-  ASSERT_EQ(0, storeNym->bip47channelindex_size());
-
   storeNym->set_version(7);
+  proto::StorageItemHash* storedCtxs = storeNym->mutable_bip47contexts();
+  storedCtxs->set_itemid("id___larger___than___20chars___long");
+  storedCtxs->set_hash("hash__larger__than__20chars__long");
+  storedCtxs->set_type(proto::STORAGEHASH_RAW);
+  storedCtxs->set_version(2);
+  ASSERT_TRUE(proto::Validate(*storeNym, false));
+
   proto::StorageBip47ChannelList* newChannel = storeNym->add_bip47channelindex();
   newChannel->set_version(1);
   newChannel->set_chain(proto::CITEMTYPE_BTC);

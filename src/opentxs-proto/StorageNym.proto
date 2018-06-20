@@ -32,5 +32,5 @@ message StorageNym {
     optional string issuers = 19;
     optional string PaymentWorkflow = 20;
     repeated StorageBip47ChannelList Bip47ChannelIndex = 21;
-    repeated StorageItemHash Bip47Context = 22;
+    optional StorageItemHash Bip47Contexts = 22;
 }
