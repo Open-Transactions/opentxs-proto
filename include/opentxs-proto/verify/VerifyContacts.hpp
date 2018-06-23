@@ -55,8 +55,8 @@ static const ClaimType CLAIMS_NORMAL = false;
 typedef bool VerificationType;
 static const VerificationType VERIFICATIONS_INDEXED = true;
 static const VerificationType VERIFICATIONS_NORMAL = false;
-}
-}
+}  // namespace proto
+}  // namespace opentxs
 
 #include "opentxs-proto/Basic.hpp"
 #include "opentxs-proto/Contact.hpp"
@@ -67,17 +67,6 @@ namespace opentxs
 {
 namespace proto
 {
-class Claim;
-class Contact;
-class ContactData;
-class ContactItem;
-class ContactSection;
-class Verification;
-class VerificationGroup;
-class VerificationIdentity;
-class VerificationOffer;
-class VerificationSet;
-
 static const VersionMap ContactAllowedContactData = {
     {1, {1, 4}},
     {2, {5, 5}},

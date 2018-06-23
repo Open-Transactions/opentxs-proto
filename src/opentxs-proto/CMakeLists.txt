@@ -9,9 +9,7 @@ set(PROTO_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/Bip44Account.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/Bip44Address.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/Bip47Address.proto
-    ${CMAKE_CURRENT_SOURCE_DIR}/Bip47Chain.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/Bip47Channel.proto
-    ${CMAKE_CURRENT_SOURCE_DIR}/Bip47Context.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/Bip47Direction.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/BlockchainTransaction.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/BlockchainTransactionInput.proto
@@ -67,7 +65,9 @@ set(PROTO_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/SourceProof.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/StorageAccountIndex.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/StorageAccounts.proto
+    ${CMAKE_CURRENT_SOURCE_DIR}/StorageBip47AddressIndex.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/StorageBip47ChannelList.proto
+    ${CMAKE_CURRENT_SOURCE_DIR}/StorageBip47Contexts.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/StorageBlockchainAccountList.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/StorageBlockchainTransactions.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/StorageContactAddressIndex.proto

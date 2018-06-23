@@ -50,11 +50,19 @@ namespace proto
 
 bool CheckProto_1(const Bip47Channel& input, const bool silent)
 {
-  CHECK_IDENTIFIER(contact);
-  CHECK_IDENTIFIER(paymentcode);
-  CHECK_SUBOBJECT(incoming, Bip47ChannelAllowedBip47Direction);
-  CHECK_SUBOBJECT(outgoing, Bip47ChannelAllowedBip47Direction);
-  return true;
+    CHECK_IDENTIFIER(id);
+    CHECK_IDENTIFIER(localpaymentcode);
+    const bool validChain = ValidContactItemType(
+        {CONTACT_VERSION, CONTACTSECTION_CONTRACT}, input.chain());
+
+    if (false == validChain) { FAIL("bip47 chain", "invalid type"); }
+
+    CHECK_IDENTIFIER(contact);
+    CHECK_IDENTIFIER(remotepaymentcode);
+    CHECK_SUBOBJECT(incoming, Bip47ChannelAllowedBip47Direction);
+    CHECK_SUBOBJECT(outgoing, Bip47ChannelAllowedBip47Direction);
+
+    return true;
 }
 
 bool CheckProto_2(const Bip47Channel& input, const bool silent)

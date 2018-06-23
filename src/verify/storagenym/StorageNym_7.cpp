@@ -64,10 +64,8 @@ bool CheckProto_7(const StorageNym& input, const bool silent)
     CHECK_SUBOBJECTS(blockchainaccount, StorageNymAllowedBip44Account)
     OPTIONAL_IDENTIFIER(issuers)
     OPTIONAL_IDENTIFIER(paymentworkflow)
-    CHECK_SUBOBJECTS(
-        bip47channelindex, StorageNymAllowedBip47ChannelList)
-    CHECK_SUBOBJECT(
-        bip47contexts, StorageNymAllowedHash)
+    OPTIONAL_IDENTIFIER(bip47)
+
     return true;
 }
 

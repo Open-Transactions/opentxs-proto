@@ -64,8 +64,8 @@ bool CheckProto_4(const StorageNym& input, const bool silent)
     CHECK_SUBOBJECTS(blockchainaccount, StorageNymAllowedBip44Account)
     CHECK_EXCLUDED(issuers)
     CHECK_EXCLUDED(paymentworkflow)
-    CHECK_NONE(bip47channelindex)
-    CHECK_EXCLUDED(bip47contexts)
+    CHECK_EXCLUDED(bip47)
+
     return true;
 }
 }  // namespace opentxs::proto

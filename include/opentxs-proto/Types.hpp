@@ -67,9 +67,7 @@
 #include <opentxs-proto/Bip44Account.pb.h>
 #include <opentxs-proto/Bip44Address.pb.h>
 #include <opentxs-proto/Bip47Address.pb.h>
-#include <opentxs-proto/Bip47Chain.pb.h>
 #include <opentxs-proto/Bip47Channel.pb.h>
-#include <opentxs-proto/Bip47Context.pb.h>
 #include <opentxs-proto/Bip47Direction.pb.h>
 #include <opentxs-proto/BlockchainTransaction.pb.h>
 #include <opentxs-proto/BlockchainTransactionInput.pb.h>
@@ -125,7 +123,9 @@
 #include <opentxs-proto/SourceProof.pb.h>
 #include <opentxs-proto/StorageAccountIndex.pb.h>
 #include <opentxs-proto/StorageAccounts.pb.h>
+#include <opentxs-proto/StorageBip47AddressIndex.pb.h>
 #include <opentxs-proto/StorageBip47ChannelList.pb.h>
+#include <opentxs-proto/StorageBip47Contexts.pb.h>
 #include <opentxs-proto/StorageBlockchainAccountList.pb.h>
 #include <opentxs-proto/StorageBlockchainTransactions.pb.h>
 #include <opentxs-proto/StorageContactAddressIndex.pb.h>
@@ -166,9 +166,7 @@
 #include <opentxs-proto/verify/Bip44Account.hpp>
 #include <opentxs-proto/verify/Bip44Address.hpp>
 #include <opentxs-proto/verify/Bip47Address.hpp>
-#include <opentxs-proto/verify/Bip47Chain.hpp>
 #include <opentxs-proto/verify/Bip47Channel.hpp>
-#include <opentxs-proto/verify/Bip47Context.hpp>
 #include <opentxs-proto/verify/Bip47Direction.hpp>
 #include <opentxs-proto/verify/BlockchainTransaction.hpp>
 #include <opentxs-proto/verify/BlockchainTransactionInput.hpp>
@@ -219,7 +217,9 @@
 #include <opentxs-proto/verify/SourceProof.hpp>
 #include <opentxs-proto/verify/StorageAccountIndex.hpp>
 #include <opentxs-proto/verify/StorageAccounts.hpp>
+#include <opentxs-proto/verify/StorageBip47AddressIndex.hpp>
 #include <opentxs-proto/verify/StorageBip47ChannelList.hpp>
+#include <opentxs-proto/verify/StorageBip47Contexts.hpp>
 #include <opentxs-proto/verify/StorageBlockchainAccountList.hpp>
 #include <opentxs-proto/verify/StorageBlockchainTransactions.hpp>
 #include <opentxs-proto/verify/StorageContactAddressIndex.hpp>

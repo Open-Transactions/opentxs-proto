@@ -45,7 +45,6 @@ namespace opentxs
 {
 namespace proto
 {
-class PairEvent;
 }  // namespace proto
 }  // namespace opentxs
 #endif  // OPENTXS_PROTO_VERIFYZMQ_HPP

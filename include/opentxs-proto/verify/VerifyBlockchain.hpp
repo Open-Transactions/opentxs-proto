@@ -45,19 +45,6 @@ namespace opentxs
 {
 namespace proto
 {
-
-class Bip44Account;
-class Bip44Address;
-class Bip47Address;
-class Bip47Chain;
-class Bip47Channel;
-class Bip47Context;
-class Bip47Direction;
-class BlockchainInput;
-class BlockchainOutput;
-class BlockchainTransaction;
-class StorageBlockchainAccountList;
-
 static const VersionMap Bip44AccountAllowedBip44Address = {
     {1, {1, 1}},
 };

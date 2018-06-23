@@ -45,21 +45,6 @@ namespace opentxs
 {
 namespace proto
 {
-class Bailment;
-class BailmentReply;
-class ConnectionInfo;
-class ConnectionInfoReply;
-class Faucet;
-class NoticeAcknowledgement;
-class OutBailment;
-class OutBailmentReply;
-class PeerObject;
-class PeerReply;
-class PeerRequest;
-class PendingBailment;
-class Signature;
-class StoreSecret;
-
 static const VersionMap PeerObjectAllowedReply = {
     {1, {1, 1}},
     {2, {2, 2}},

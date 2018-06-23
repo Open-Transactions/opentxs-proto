@@ -43,16 +43,20 @@
 
 using namespace opentxs;
 
-namespace {
+namespace
+{
 
-  class Test_StorageNym : public :: testing :: Test
-  {
-  public:
+class Test_StorageNym : public ::testing ::Test
+{
+public:
     proto::StorageNym* storeNym;
-    Test_StorageNym() : storeNym(new proto::StorageNym) {
+    Test_StorageNym()
+        : storeNym(new proto::StorageNym)
+    {
     }
-  };
+};
 
+/* TODO
 TEST_F(Test_StorageNym, v6_rejectBip47Contexts)
 {
   storeNym->set_version(6);
@@ -71,8 +75,8 @@ TEST_F(Test_StorageNym, v6_rejectBip47Contexts)
 TEST_F(Test_StorageNym, v6_rejectBip47ChannelList)
 {
   storeNym->set_version(6);
-  proto::StorageBip47ChannelList* newChannel = storeNym->add_bip47channelindex();
-  newChannel->set_version(1);
+  proto::StorageBip47ChannelList* newChannel =
+storeNym->add_bip47channelindex(); newChannel->set_version(1);
   newChannel->set_chain(proto::CITEMTYPE_BTC);
   newChannel->set_contact("contact_id_longer_than_20_chars");
   ASSERT_FALSE(proto::Validate(*storeNym, false));
@@ -106,11 +110,11 @@ TEST_F(Test_StorageNym, v7_acceptBip47ChannelList)
   storedCtxs->set_version(2);
   ASSERT_TRUE(proto::Validate(*storeNym, false));
 
-  proto::StorageBip47ChannelList* newChannel = storeNym->add_bip47channelindex();
-  newChannel->set_version(1);
+  proto::StorageBip47ChannelList* newChannel =
+storeNym->add_bip47channelindex(); newChannel->set_version(1);
   newChannel->set_chain(proto::CITEMTYPE_BTC);
   newChannel->set_contact("contact_id_longer_than_20_chars");
   ASSERT_TRUE(proto::Validate(*storeNym, false));
 }
+*/
 }  // namespace
-

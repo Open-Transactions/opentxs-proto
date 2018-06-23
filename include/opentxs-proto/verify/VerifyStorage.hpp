@@ -45,29 +45,6 @@ namespace opentxs
 {
 namespace proto
 {
-class StorageAccountIndex;
-class StorageAccounts;
-class StorageBip47ChannelList;
-class StorageContactAddressIndex;
-class StorageContactNymIndex;
-class StorageContacts;
-class StorageCredentials;
-class StorageIDList;
-class StorageItemHash;
-class StorageItems;
-class StorageIssuers;
-class StorageNym;
-class StorageNymList;
-class StoragePaymentWorkflows;
-class StorageRoot;
-class StorageSeeds;
-class StorageServers;
-class StorageThread;
-class StorageThreadItem;
-class StorageUnits;
-class StorageWorkflowIndex;
-class StorageWorkflowType;
-
 static const VersionMap StorageAccountsAllowedStorageAccountIndex = {
     {1, {1, 1}},
 };
@@ -77,6 +54,12 @@ static const VersionMap StorageAccountsAllowedStorageItemHash = {
 static const VersionMap StorageAccountsAllowedStorageIDList = {
     {1, {1, 1}},
 };
+static const VersionMap StorageBip47ContextsAllowedStorageBip47AddressIndex = {
+    {1, {1, 1}}};
+static const VersionMap StorageBip47ContextsAllowedStorageItemHash = {
+    {1, {1, 2}}};
+static const VersionMap StorageBip47ContextsAllowedStorageBip47ChannelList = {
+    {1, {1, 1}}};
 static const VersionMap StorageContactsAllowedAddress = {
     {1, {1, 1}},
     {2, {1, 1}},
@@ -111,8 +94,9 @@ static const VersionMap StorageNymAllowedBip44Account{
     {6, {1, 1}},
     {7, {1, 1}},
 };
-static const VersionMap StorageNymAllowedBip47ChannelList = {{7, {1, 1}}};
-
+static const VersionMap StorageNymAllowedStorageBip47AddressIndex{
+    {7, {1, 1}},
+};
 static const VersionMap StorageNymAllowedBlockchainAccountList{
     {4, {1, 1}},
     {5, {1, 1}},
