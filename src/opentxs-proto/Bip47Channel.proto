@@ -6,11 +6,15 @@ option java_outer_classname = "OTBip47Channel";
 option optimize_for = LITE_RUNTIME;
 
 import public "Bip47Direction.proto";
+import public "ContactEnums.proto";
 
 message Bip47Channel {
     optional uint32 version = 1;
-    optional string contact = 2;
-    optional string paymentcode = 3;
-    optional Bip47Direction incoming = 4;
-    optional Bip47Direction outgoing = 5;
+    optional string id = 2;
+    optional string localpaymentcode = 3;
+    optional ContactItemType chain = 4;
+    optional string contact = 5;
+    optional string remotepaymentcode = 6;
+    optional Bip47Direction incoming = 7;
+    optional Bip47Direction outgoing = 8;
 }

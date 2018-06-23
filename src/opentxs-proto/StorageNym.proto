@@ -6,7 +6,7 @@ option java_outer_classname = "OTStorageNym";
 option optimize_for = LITE_RUNTIME;
 
 import public "Bip44Account.proto";
-import public "StorageBip47ChannelList.proto";
+import public "StorageBip47AddressIndex.proto";
 import public "StorageBlockchainAccountList.proto";
 import public "StorageItemHash.proto";
 
@@ -31,6 +31,5 @@ message StorageNym {
     repeated Bip44Account BlockchainAccount = 18;
     optional string issuers = 19;
     optional string PaymentWorkflow = 20;
-    repeated StorageBip47ChannelList Bip47ChannelIndex = 21;
-    optional StorageItemHash Bip47Contexts = 22;
+    optional string bip47 = 21;
 }

@@ -45,23 +45,6 @@ namespace opentxs
 {
 namespace proto
 {
-class AsymmetricKey;
-class ChildCredentialParameters;
-class Ciphertext;
-class Credential;
-class CredentialIndex;
-class CredentialSet;
-class Envelope;
-class HDPath;
-class KeyCredential;
-class MasterCredentialParameters;
-class NymIDSource;
-class PaymentCode;
-class Seed;
-class Signature;
-class SourceProof;
-class SymmetricKey;
-
 static const VersionMap CredentialAllowedKeyCredentials = {
     {1, {1, 1}},
     {2, {1, 1}},

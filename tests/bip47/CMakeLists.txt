@@ -3,9 +3,7 @@ set(name unittests-opentxs-bip47)
 set(cxx-sources
         main.cpp
         Test_Bip47Address.cpp
-        Test_Bip47Chain.cpp
         Test_Bip47Channel.cpp
-        Test_Bip47Context.cpp
         Test_Bip47Direction.cpp
         )
 

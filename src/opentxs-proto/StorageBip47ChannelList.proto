@@ -9,7 +9,9 @@ import public "ContactEnums.proto";
 
 message StorageBip47ChannelList {
     optional uint32 version = 1;
-    optional ContactItemType chain = 2;
-    optional string contact = 3;
-    repeated string paymentcode = 4;
+    optional string localpaymentcode = 2;
+    optional ContactItemType chain = 3;
+    optional string contact = 4;
+    optional string remotepaymentcode = 5;
+    optional string channelid = 6;
 }

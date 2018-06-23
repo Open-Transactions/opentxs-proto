@@ -50,10 +50,6 @@ namespace opentxs
 {
 namespace proto
 {
-class InstrumentRevision;
-class PaymentEvent;
-class PaymentWorkflow;
-
 typedef std::pair<std::uint32_t, PaymentWorkflowType> PaymentWorkflowVersion;
 typedef std::map<PaymentWorkflowVersion, std::set<PaymentEventType>>
     WorkflowEventMap;

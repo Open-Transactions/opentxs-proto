@@ -8,9 +8,7 @@ set(cxx-sources
   bip44account/Bip44Account_1.cpp
   bip44address/Bip44Address_1.cpp
   bip47address/Bip47Address_1.cpp
-  bip47chain/Bip47Chain_1.cpp
   bip47channel/Bip47Channel_1.cpp
-  bip47context/Bip47Context_1.cpp
   bip47direction/Bip47Direction_1.cpp
   blockchaintransaction/BlockchainTransaction_1.cpp
   blockchaintransactioninput/BlockchainTransactionInput_1.cpp
@@ -70,7 +68,9 @@ set(cxx-sources
   sourceproof/SourceProof_1.cpp
   storageaccountindex/StorageAccountIndex_1.cpp
   storageaccounts/StorageAccounts_1.cpp
+  storagebip47addressindex/StorageBip47AddressIndex_1.cpp
   storagebip47channellist/StorageBip47ChannelList_1.cpp
+  storagebip47contexts/StorageBip47Contexts_1.cpp
   storageblockchainaccountlist/StorageBlockchainAccountList_1.cpp
   storageblockchaintransactions/StorageBlockchainTransactions_1.cpp
   storagecontactaddressindex/StorageContactAddressIndex_1.cpp

@@ -1,0 +1,17 @@
+syntax = "proto2";
+
+package opentxs.proto;
+option java_package = "org.opentransactions.proto";
+option java_outer_classname = "OTStorageBip47Contexts";
+option optimize_for = LITE_RUNTIME;
+
+import public "StorageBip47AddressIndex.proto";
+import public "StorageBip47ChannelList.proto";
+import public "StorageItemHash.proto";
+
+message StorageBip47Contexts {
+    optional uint32 version = 1;
+    repeated StorageItemHash context = 2;
+    repeated StorageBip47ChannelList index = 3;
+    repeated StorageBip47AddressIndex address = 4;
+}

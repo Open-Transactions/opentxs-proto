@@ -45,10 +45,6 @@ namespace opentxs
 {
 namespace proto
 {
-class ClientContext;
-class Context;
-class ServerContext;
-
 static const VersionMap ContextAllowedServer = {
     {1, {1, 1}},
     {2, {2, 2}},

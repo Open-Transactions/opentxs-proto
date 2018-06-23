@@ -45,18 +45,6 @@ namespace opentxs
 {
 namespace proto
 {
-class BasketItem;
-class BasketParams;
-class CurrencyParams;
-class Issuer;
-class ListenAddress;
-class PeerRequestHistory;
-class PeerRequestWorkflow;
-class ServerContract;
-class UnitAccountMap;
-class UnitDefinition;
-class VerifyCredentials;
-
 static const VersionMap ServerContractAllowedCredentialIndex = {
     {1, {1, 5}},
 };
