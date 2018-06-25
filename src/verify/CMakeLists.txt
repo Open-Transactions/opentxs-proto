@@ -71,6 +71,7 @@ set(cxx-sources
   storagebip47addressindex/StorageBip47AddressIndex_1.cpp
   storagebip47channellist/StorageBip47ChannelList_1.cpp
   storagebip47contexts/StorageBip47Contexts_1.cpp
+  storagebip47nymaddressindex/StorageBip47NymAddressIndex_1.cpp
   storageblockchainaccountlist/StorageBlockchainAccountList_1.cpp
   storageblockchaintransactions/StorageBlockchainTransactions_1.cpp
   storagecontactaddressindex/StorageContactAddressIndex_1.cpp
