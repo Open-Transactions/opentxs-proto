@@ -103,10 +103,14 @@ static const VersionMap StorageNymAllowedBlockchainAccountList{
     {6, {1, 1}},
     {7, {1, 1}},
 };
+static const VersionMap StorageNymListAllowedStorageBip47NymAddressIndex = {
+    {4, {1, 1}},
+};
 static const VersionMap StorageNymListAllowedHash = {
     {1, {1, 1}},
     {2, {1, 2}},
     {3, {1, 3}},
+    {4, {1, 4}},
 };
 static const VersionMap StoragePaymentWorkflowsAllowedHash = {
     {1, {1, 2}},

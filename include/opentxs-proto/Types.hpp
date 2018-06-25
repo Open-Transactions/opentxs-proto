@@ -126,6 +126,7 @@
 #include <opentxs-proto/StorageBip47AddressIndex.pb.h>
 #include <opentxs-proto/StorageBip47ChannelList.pb.h>
 #include <opentxs-proto/StorageBip47Contexts.pb.h>
+#include <opentxs-proto/StorageBip47NymAddressIndex.pb.h>
 #include <opentxs-proto/StorageBlockchainAccountList.pb.h>
 #include <opentxs-proto/StorageBlockchainTransactions.pb.h>
 #include <opentxs-proto/StorageContactAddressIndex.pb.h>
@@ -220,6 +221,7 @@
 #include <opentxs-proto/verify/StorageBip47AddressIndex.hpp>
 #include <opentxs-proto/verify/StorageBip47ChannelList.hpp>
 #include <opentxs-proto/verify/StorageBip47Contexts.hpp>
+#include <opentxs-proto/verify/StorageBip47NymAddressIndex.hpp>
 #include <opentxs-proto/verify/StorageBlockchainAccountList.hpp>
 #include <opentxs-proto/verify/StorageBlockchainTransactions.hpp>
 #include <opentxs-proto/verify/StorageContactAddressIndex.hpp>

@@ -68,6 +68,7 @@ set(PROTO_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/StorageBip47AddressIndex.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/StorageBip47ChannelList.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/StorageBip47Contexts.proto
+    ${CMAKE_CURRENT_SOURCE_DIR}/StorageBip47NymAddressIndex.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/StorageBlockchainAccountList.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/StorageBlockchainTransactions.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/StorageContactAddressIndex.proto
