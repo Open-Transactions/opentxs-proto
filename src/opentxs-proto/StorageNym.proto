@@ -6,7 +6,6 @@ option java_outer_classname = "OTStorageNym";
 option optimize_for = LITE_RUNTIME;
 
 import public "Bip44Account.proto";
-import public "StorageBip47AddressIndex.proto";
 import public "StorageBlockchainAccountList.proto";
 import public "StorageItemHash.proto";
 

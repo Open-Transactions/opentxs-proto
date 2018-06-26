@@ -52,6 +52,8 @@ bool CheckProto_1(const StorageNymList& input, const bool silent)
 {
     CHECK_SUBOBJECTS(nym, StorageNymListAllowedHash);
     CHECK_NONE(localnymid)
+    CHECK_NONE(address)
+    CHECK_NONE(transaction)
 
     return true;
 }
@@ -65,7 +67,8 @@ bool CheckProto_3(const StorageNymList& input, const bool silent)
 {
     CHECK_SUBOBJECTS(nym, StorageNymListAllowedHash);
     CHECK_IDENTIFIERS(localnymid)
-
+    CHECK_NONE(address)
+    CHECK_NONE(transaction)
     return true;
 }
 
