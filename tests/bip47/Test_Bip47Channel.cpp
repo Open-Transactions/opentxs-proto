@@ -54,8 +54,11 @@ public:
         : channel(new proto::Bip47Channel)
     {
         channel->set_version(1);
+        channel->set_id("otIdentifier_bip47channel");
+        channel->set_localpaymentcode("PM8TJKEj41Q66s6Vqe3JDCAzpo4NSgihP5R4vwRHGE4f26HFQi7guJEvVyFAc9hghNfLHknBcK986Q123cnU266ZD19APzpkgUP8ed7qEh7g2WCpNaAg");
+        channel->set_chain(proto::CITEMTYPE_BTC);
         channel->set_contact("contact_id_longer_than_20_chars");
-        channel->set_remotepaymentcode("payment_id_longer_than_20_chars");
+        channel->set_remotepaymentcode("PM8TJS2JxQ5ztXUpBBRnpTbcUXbUHy2T1abfrb3KkAAtMEGNbey4oumH7Hc578WgQJhPjBxteQ5GHHToTYHE3A1w6p7tU6KSoFmWBVbFGjKPisZDbP97");
 
         proto::Bip47Direction* in = new proto::Bip47Direction;
         in->set_version(1);
@@ -67,7 +70,9 @@ public:
     }
 };
 
-TEST_F(Test_Bip47Channel, versionNumbers)
+/* Test: version 1 is valid, others aren't
+*/
+TEST_F(Test_Bip47Channel, versions)
 {
     // test version 1 is valid
     channel->set_version(1);

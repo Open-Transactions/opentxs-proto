@@ -1,8 +1,8 @@
-set(name unittests-opentxs-storagebip47channellist)
+set(name unittests-opentxs-storage-nym)
 
 set(cxx-sources
         main.cpp
-        Test_StorageBip47ChannelList.cpp
+        Test_StorageNym.cpp
         )
 
 add_executable(${name} ${cxx-sources}  $<TARGET_OBJECTS:opentxs-proto> $<TARGET_OBJECTS:opentxs-verify>)
