@@ -1,40 +1,7 @@
-/************************************************************
- *
- *                 OPEN TRANSACTIONS
- *
- *       Financial Cryptography and Digital Cash
- *       Library, Protocol, API, Server, CLI, GUI
- *
- *       -- Anonymous Numbered Accounts.
- *       -- Untraceable Digital Cash.
- *       -- Triple-Signed Receipts.
- *       -- Cheques, Vouchers, Transfers, Inboxes.
- *       -- Basket Currencies, Markets, Payment Plans.
- *       -- Signed, XML, Ricardian-style Contracts.
- *       -- Scripted smart contracts.
- *
- *  EMAIL:
- *  fellowtraveler@opentransactions.org
- *
- *  WEBSITE:
- *  http://www.opentransactions.org/
- *
- *  -----------------------------------------------------
- *
- *   LICENSE:
- *   This Source Code Form is subject to the terms of the
- *   Mozilla Public License, v. 2.0. If a copy of the MPL
- *   was not distributed with this file, You can obtain one
- *   at http://mozilla.org/MPL/2.0/.
- *
- *   DISCLAIMER:
- *   This program is distributed in the hope that it will
- *   be useful, but WITHOUT ANY WARRANTY; without even the
- *   implied warranty of MERCHANTABILITY or FITNESS FOR A
- *   PARTICULAR PURPOSE.  See the Mozilla Public License
- *   for more details.
- *
- ************************************************************/
+// Copyright (c) 2018 The Open-Transactions developers
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 #include "opentxs-proto/Check.hpp"
 #include "opentxs-proto/Types.hpp"
@@ -44,7 +11,7 @@
 using namespace opentxs;
 
 namespace {
-    
+
   class Test_StorageBip47NymAddressIndex : public :: testing :: Test
   {
   public:
@@ -79,12 +46,12 @@ TEST_F(Test_StorageBip47NymAddressIndex, target)
     // test: empty address is invalid
     addr_nym_idx->set_target("");
     ASSERT_FALSE(proto::Validate(*addr_nym_idx, false));
-    
+
     addr_nym_idx->set_target("XxRB5fnF8KpB9jjRRb7M7pq4qtyL8xbUou");
     ASSERT_TRUE(proto::Validate(*addr_nym_idx, false));
 
     addr_nym_idx->set_target("000000000000000000345aa2f2819a09ced2b73e6727026d47a4b6bd184e519b");
-    ASSERT_TRUE(proto::Validate(*addr_nym_idx, false));    
+    ASSERT_TRUE(proto::Validate(*addr_nym_idx, false));
 }
 
 /* Test: channelid is validated as id

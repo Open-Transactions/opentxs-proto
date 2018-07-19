@@ -1,40 +1,7 @@
-/************************************************************
- *
- *                 OPEN TRANSACTIONS
- *
- *       Financial Cryptography and Digital Cash
- *       Library, Protocol, API, Server, CLI, GUI
- *
- *       -- Anonymous Numbered Accounts.
- *       -- Untraceable Digital Cash.
- *       -- Triple-Signed Receipts.
- *       -- Cheques, Vouchers, Transfers, Inboxes.
- *       -- Basket Currencies, Markets, Payment Plans.
- *       -- Signed, XML, Ricardian-style Contracts.
- *       -- Scripted smart contracts.
- *
- *  EMAIL:
- *  fellowtraveler@opentransactions.org
- *
- *  WEBSITE:
- *  http://www.opentransactions.org/
- *
- *  -----------------------------------------------------
- *
- *   LICENSE:
- *   This Source Code Form is subject to the terms of the
- *   Mozilla Public License, v. 2.0. If a copy of the MPL
- *   was not distributed with this file, You can obtain one
- *   at http://mozilla.org/MPL/2.0/.
- *
- *   DISCLAIMER:
- *   This program is distributed in the hope that it will
- *   be useful, but WITHOUT ANY WARRANTY; without even the
- *   implied warranty of MERCHANTABILITY or FITNESS FOR A
- *   PARTICULAR PURPOSE.  See the Mozilla Public License
- *   for more details.
- *
- ************************************************************/
+// Copyright (c) 2018 The Open-Transactions developers
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 #include "opentxs-proto/Check.hpp"
 #include "opentxs-proto/Types.hpp"
@@ -44,16 +11,16 @@
 using namespace opentxs;
 
 namespace {
-    
+
   class Test_Bip47Direction : public :: testing :: Test
   {
   public:
     proto::Bip47Direction* direction;
     Test_Bip47Direction() : direction(new proto::Bip47Direction) {
-      direction->set_version(1);      
+      direction->set_version(1);
     }
   };
-    
+
 TEST_F(Test_Bip47Direction, versionNumbers)
 {
   // test version 1 is valid
@@ -68,7 +35,7 @@ TEST_F(Test_Bip47Direction, versionNumbers)
 }
 
 TEST_F(Test_Bip47Direction, validNotificationTransactions)
-{  
+{
   ASSERT_EQ(0, direction->notification_size());
   std::string* ntx0 = direction->add_notification();
   ASSERT_EQ(1, direction->notification_size());
@@ -80,18 +47,18 @@ TEST_F(Test_Bip47Direction, validNotificationTransactions)
 TEST_F(Test_Bip47Direction, validAddressVersions)
 {
   ASSERT_EQ(0, direction->address_size());
-  ASSERT_TRUE(proto::Validate(*direction, false));  
+  ASSERT_TRUE(proto::Validate(*direction, false));
 
   proto::Bip47Address* new_addr = direction->add_address();
   new_addr->set_version(1);
   new_addr->set_address("17ywVfCRfcsCxzNT2nEsKE27LkwfDaNotL");
-  
+
   ASSERT_EQ(1, direction->address_size());
   ASSERT_TRUE(proto::Validate(*direction, false));
 
   new_addr->set_version(2);
   ASSERT_FALSE(proto::Validate(*direction, false));
 }
-  
+
 }  // namespace
 
