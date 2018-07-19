@@ -1,40 +1,7 @@
-/************************************************************
- *
- *                 OPEN TRANSACTIONS
- *
- *       Financial Cryptography and Digital Cash
- *       Library, Protocol, API, Server, CLI, GUI
- *
- *       -- Anonymous Numbered Accounts.
- *       -- Untraceable Digital Cash.
- *       -- Triple-Signed Receipts.
- *       -- Cheques, Vouchers, Transfers, Inboxes.
- *       -- Basket Currencies, Markets, Payment Plans.
- *       -- Signed, XML, Ricardian-style Contracts.
- *       -- Scripted smart contracts.
- *
- *  EMAIL:
- *  fellowtraveler@opentransactions.org
- *
- *  WEBSITE:
- *  http://www.opentransactions.org/
- *
- *  -----------------------------------------------------
- *
- *   LICENSE:
- *   This Source Code Form is subject to the terms of the
- *   Mozilla Public License, v. 2.0. If a copy of the MPL
- *   was not distributed with this file, You can obtain one
- *   at http://mozilla.org/MPL/2.0/.
- *
- *   DISCLAIMER:
- *   This program is distributed in the hope that it will
- *   be useful, but WITHOUT ANY WARRANTY; without even the
- *   implied warranty of MERCHANTABILITY or FITNESS FOR A
- *   PARTICULAR PURPOSE.  See the Mozilla Public License
- *   for more details.
- *
- ************************************************************/
+// Copyright (c) 2018 The Open-Transactions developers
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 #include "opentxs-proto/Check.hpp"
 #include "opentxs-proto/Types.hpp"
@@ -44,7 +11,7 @@
 using namespace opentxs;
 
 namespace {
-    
+
   class Test_StorageBip47AddressIndex : public :: testing :: Test
   {
   public:
@@ -81,7 +48,7 @@ TEST_F(Test_StorageBip47AddressIndex, addresses)
     // test: LTC address is valid
     addr_idx->set_address("LPtQazsoyte7qm6XsV92NvdTQNa6KC9HLn");
     ASSERT_TRUE(proto::Validate(*addr_idx, false));
-  
+
     // test: BCH address is valid
     // - cashaddr
     addr_idx->set_address("bitcoincash:qpm2qsznhks23z7629mms6s4cwef74vcwvy22gdx6a");
@@ -92,7 +59,7 @@ TEST_F(Test_StorageBip47AddressIndex, addresses)
     // - legacy
     addr_idx->set_address("1BpEi6DfDAUFd7GtittLSdBeYJvcoaVggu");
     ASSERT_TRUE(proto::Validate(*addr_idx, false));
-    
+
     // test: DASH address is valid
     addr_idx->set_address("XxRB5fnF8KpB9jjRRb7M7pq4qtyL8xbUou");
     ASSERT_TRUE(proto::Validate(*addr_idx, false));
