@@ -33,7 +33,7 @@ if(NOT WIN32)
   set_target_properties(${MODULE_NAME}_static PROPERTIES OUTPUT_NAME opentxs-proto)
 endif()
 
-if(NOT WIN32)
+if((NOT WIN32) AND (NOT OT_BUNDLED_OPENTXS_PROTO))
   include(GNUInstallDirs)
   install(TARGETS ${MODULE_NAME} ${MODULE_NAME}_static
           DESTINATION ${CMAKE_INSTALL_LIBDIR}
