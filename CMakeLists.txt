@@ -292,7 +292,7 @@ endif()
 #-----------------------------------------------------------------------------
 # Produce a cmake-package
 
-if(NOT ANDROID)
+if((NOT ANDROID) AND (NOT OT_BUNDLED_OPENTXS_PROTO))
   include(CMakePackageConfigHelpers)
   set(CMAKE_CONFIG_DEST "share/cmake/Modules")
   set(OPENTXS_PROTO_INCLUDE_DIRS "${CMAKE_INSTALL_PREFIX}/include")
@@ -353,5 +353,7 @@ configure_file(
     "${CMAKE_CURRENT_BINARY_DIR}/uninstall.cmake"
     IMMEDIATE @ONLY)
 
-add_custom_target(uninstall
-    COMMAND ${CMAKE_COMMAND} -P ${CMAKE_CURRENT_BINARY_DIR}/uninstall.cmake)
+if(NOT OT_BUNDLED_OPENTXS_PROTO)
+  add_custom_target(uninstall
+      COMMAND ${CMAKE_COMMAND} -P ${CMAKE_CURRENT_BINARY_DIR}/uninstall.cmake)
+endif()
