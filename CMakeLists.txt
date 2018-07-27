@@ -123,6 +123,15 @@ if(CMAKE_COMPILER_IS_CLANGXX)
   set(PEDANTIC_CXX_FLAGS "${PEDANTIC_CXX_FLAGS} -Wno-unused-parameter -Wno-old-style-cast")
 endif()
 
+if(CMAKE_BUILD_TYPE MATCHES "Debug")
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsanitize=undefined,address -Wformat -Werror=format-security -Werror=array-bounds -fno-optimize-sibling-calls -fno-omit-frame-pointer")
+  set(CMAKE_CXX_LINK_FLAGS "${CMAKE_CXX_LINK_FLAGS} -fsanitize=undefined,address")
+  if(${CMAKE_CXX_COMPILER_ID} MATCHES GNU)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fuse-ld=gold")
+    set(CMAKE_CXX_LINK_FLAGS "${CMAKE_CXX_LINK_FLAGS} -fuse-ld=gold")
+  endif() #GNU LINKER
+endif() # DEBUG
+
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${PEDANTIC_CXX_FLAGS}")
 
 message(STATUS "General -------------------------------------")
