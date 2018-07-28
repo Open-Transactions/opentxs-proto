@@ -43,6 +43,7 @@ endif()
 
 option(BUILD_VERBOSE       "Verbose build output." ON)
 option(USE_CCACHE          "Use ccache." OFF)
+option(OT_SANITIZE         "Enable sanatize options" ON)
 
 option(BUILD_SHARED_LIBS   "Build shared libraries." ON)
 option(JAVA                "Build with Java binding" OFF)
@@ -123,7 +124,7 @@ if(CMAKE_COMPILER_IS_CLANGXX)
   set(PEDANTIC_CXX_FLAGS "${PEDANTIC_CXX_FLAGS} -Wno-unused-parameter -Wno-old-style-cast")
 endif()
 
-if(CMAKE_BUILD_TYPE MATCHES "Debug")
+if(CMAKE_BUILD_TYPE MATCHES "Debug" AND OT_SANITIZE)
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsanitize=undefined,address -Wformat -Werror=format-security -Werror=array-bounds -fno-optimize-sibling-calls -fno-omit-frame-pointer")
   set(CMAKE_CXX_LINK_FLAGS "${CMAKE_CXX_LINK_FLAGS} -fsanitize=undefined,address")
   if(${CMAKE_CXX_COMPILER_ID} MATCHES GNU)
