@@ -21,12 +21,19 @@ if(NOT OT_BUNDLED_OPENTXS_PROTO)
     $<TARGET_OBJECTS:opentxs-verify>
   )
 
-  add_library(${MODULE_NAME} STATIC
+  add_library(${MODULE_NAME}_static STATIC
     $<TARGET_OBJECTS:opentxs-proto>
     $<TARGET_OBJECTS:opentxs-verify>
   )
 
   target_link_libraries(${MODULE_NAME}
+    PUBLIC
+    ${PROTOBUF_LITE_LIBRARIES}
+    PRIVATE
+    ${OPENTXS_SYSTEM_LIBRARIES}
+  )
+
+  target_link_libraries(${MODULE_NAME}_static
     PUBLIC
     ${PROTOBUF_LITE_LIBRARIES}
     PRIVATE
