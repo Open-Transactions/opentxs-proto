@@ -14,12 +14,6 @@ profile
 *ipch/
 *.userprefs
 
-*.pb.cc
-Bitcoin.cc
-Generics.cc
-Markets.cc
-Moneychanger.cc
-
 # KDE Dolphin (file manager) noise
 .directory
 

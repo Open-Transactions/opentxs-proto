@@ -128,4 +128,6 @@ add_library(opentxs-verify OBJECT
   ${cxx-sources}
 )
 
-add_dependencies(opentxs-verify opentxs-proto)
+if(NOT OT_BUNDLED_OPENTXS_PROTO)
+  add_dependencies(opentxs-verify opentxs-proto)
+endif()

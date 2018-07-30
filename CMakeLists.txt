@@ -43,9 +43,10 @@ endif()
 
 option(BUILD_VERBOSE       "Verbose build output." ON)
 option(USE_CCACHE          "Use ccache." OFF)
-option(OT_SANITIZE         "Enable sanatize options" ON)
+option(OT_SANITIZE         "Enable sanitize options" ON)
 
 option(BUILD_SHARED_LIBS   "Build shared libraries." ON)
+
 option(JAVA                "Build with Java binding" OFF)
 option(JAVASCRIPT          "Build with Javascript binding" OFF)
 option(PYTHON3             "Build with Python3 binding" OFF)
@@ -158,9 +159,11 @@ message(STATUS "Default Python binding: ${PYTHON}")
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 
-find_package(Protobuf REQUIRED)
+if(NOT OT_BUNDLED_OPENTXS_PROTO)
+  find_package(Protobuf REQUIRED)
+endif()
 
-if(BUILD_TESTS)
+if(BUILD_TESTS AND NOT OT_BUNDLED_OPENTXS_PROTO)
   find_package(GTest REQUIRED)
   enable_testing()
 endif()
@@ -295,7 +298,7 @@ add_subdirectory(src)
 #-----------------------------------------------------------------------------
 # Build Unit tests
 
-if(GTEST_FOUND)
+if(GTEST_FOUND AND NOT OT_BUNDLED_OPENTXS_PROTO)
   add_subdirectory(tests)
 endif()
 
