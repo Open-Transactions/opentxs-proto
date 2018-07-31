@@ -21,9 +21,7 @@ bool CheckProto_1(
     const ClaimType indexed,
     const uint32_t parentVersion)
 {
-    if (!input.has_name()) {
-        FAIL("contact section", "missing name")
-    }
+    if (!input.has_name()) { FAIL("contact section", "missing name") }
 
     if (!ValidContactSectionName(parentVersion, input.name())) {
         FAIL2("contact section", "invalid name", input.name())
@@ -39,9 +37,7 @@ bool CheckProto_1(
                 indexed,
                 ContactSectionVersion{input.version(), input.name()});
 
-            if (!validItem) {
-                FAIL("contact section", "invalid item")
-            }
+            if (!validItem) { FAIL("contact section", "invalid item") }
         } catch (const std::out_of_range&) {
             FAIL2(
                 "contact section",
@@ -95,7 +91,37 @@ bool CheckProto_6(
     const ClaimType indexed,
     const uint32_t parentVersion)
 {
+    // TODO: Remove the next line when version 6 is added.
     UNDEFINED_VERSION2(6)
+
+    if (!input.has_name()) { FAIL("contact section", "missing name") }
+
+    if (!ValidContactSectionName(parentVersion, input.name())) {
+        FAIL2("contact section", "invalid name", input.name())
+    }
+
+    if (0 == input.item_size()) { FAIL("contact section", "empty section") }
+
+    for (auto& it : input.item()) {
+        try {
+            bool validItem = Check(
+                it,
+                ContactSectionAllowedItem.at(input.version()).first,
+                ContactSectionAllowedItem.at(input.version()).second,
+                silent,
+                indexed,
+                ContactSectionVersion{input.version(), input.name()});
+
+            if (!validItem) { FAIL("contact section", "invalid item") }
+        } catch (const std::out_of_range&) {
+            FAIL2(
+                "contact section",
+                "allowed contact item version not defined for version",
+                input.version())
+        }
+    }
+
+    return true;
 }
 
 bool CheckProto_7(
