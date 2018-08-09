@@ -10,128 +10,40 @@
 
 #define PROTO_NAME "server contract"
 
-namespace opentxs
+namespace opentxs::proto
 {
-namespace proto
-{
-
 bool CheckProto_1(const ServerContract& input, const bool silent)
 {
-    if (!input.has_id()) {
-        FAIL("server contract", " missing id")
-    }
-
-    if (MIN_PLAUSIBLE_IDENTIFIER > input.id().size()) {
-        FAIL2("server contract", "invalid id", input.id())
-    }
-
-    if (!input.has_nymid()) {
-        FAIL("server contract", "missing nym id")
-    }
-
-    if (!input.has_name()) {
-        FAIL("server contract", "missing name")
-    }
-
-    if (1 > input.name().size()) {
-        FAIL2("server contract", "invalid name", input.name())
-    }
-
-    if (MIN_PLAUSIBLE_IDENTIFIER > input.nymid().size()) {
-        FAIL2("server contract", "invalid nym id", input.nymid())
-    }
-
-    if (input.has_publicnym()) {
-        try {
-            const bool validNym = Check(
-                input.publicnym(),
-                ServerContractAllowedCredentialIndex.at(input.version()).first,
-                ServerContractAllowedCredentialIndex.at(input.version()).second,
-                silent);
-
-            if (false == validNym) {
-                FAIL("server contract", "invalid nym")
-            }
-        } catch (const std::out_of_range&) {
-            FAIL2(
-                "server contract",
-                "allowed credential index version not defined for version",
-                input.version())
-        }
-    }
-
-    if (0 == input.address().size()) {
-        FAIL("server contract", "no listen addresses")
-    }
-
-    try {
-        const bool validAddress = Check(
-            input.address(0),
-            ServerContractAllowedListenAddress.at(input.version()).first,
-            ServerContractAllowedListenAddress.at(input.version()).second,
-            silent);
-
-        if (false == validAddress) {
-            FAIL("server contract", "invalid listen address")
-        }
-    } catch (const std::out_of_range&) {
-        FAIL2(
-            "server contract",
-            "allowed listen address version not defined for version",
-            input.version())
-    }
-
-    if (!input.has_transportkey()) {
-        FAIL("server contract", "missing transport key")
-    }
-
-    if (MIN_PLAUSIBLE_KEYSIZE > input.transportkey().size()) {
-        FAIL("server contract", "invalid transport key")
-    }
-
-    if (!input.has_signature()) {
-        FAIL("server contract", "missing signature")
-    }
-
-    try {
-        const bool validSig = Check(
-            input.signature(),
-            ServerContractAllowedSignature.at(input.version()).first,
-            ServerContractAllowedSignature.at(input.version()).second,
-            silent,
-            SIGROLE_SERVERCONTRACT);
-
-        if (false == validSig) {
-            FAIL("server contract", "invalid signature")
-        }
-    } catch (const std::out_of_range&) {
-        FAIL2(
-            "server contract",
-            "allowed signature version not defined for version",
-            input.version())
-    }
+    CHECK_IDENTIFIER(id);
+    CHECK_IDENTIFIER(nymid);
+    CHECK_NAME(name);
+    OPTIONAL_SUBOBJECT(publicnym, ServerContractAllowedCredentialIndex);
+    CHECK_HAVE(address);
+    CHECK_SUBOBJECTS(address, ServerContractAllowedListenAddress);
+    CHECK_KEY(transportkey);
+    CHECK_SUBOBJECT(signature, ServerContractAllowedSignature);
 
     return true;
 }
 
 bool CheckProto_2(const ServerContract& input, const bool silent)
 {
-    UNDEFINED_VERSION("server contract", 2)
+    return CheckProto_1(input, silent);
 }
 
 bool CheckProto_3(const ServerContract& input, const bool silent)
 {
-    UNDEFINED_VERSION("server contract", 3)
+    UNDEFINED_VERSION2(3)
 }
 
 bool CheckProto_4(const ServerContract& input, const bool silent)
 {
-    UNDEFINED_VERSION("server contract", 4)
+    UNDEFINED_VERSION2(4)
 }
 
 bool CheckProto_5(const ServerContract& input, const bool silent)
 {
-    UNDEFINED_VERSION("server contract", 5)
+    UNDEFINED_VERSION2(5)
 }
 
 bool CheckProto_6(const ServerContract& input, const bool silent)
@@ -208,5 +120,4 @@ bool CheckProto_20(const ServerContract& input, const bool silent)
 {
     UNDEFINED_VERSION2(20)
 }
-}  // namespace proto
-}  // namespace opentxs
+}  // namespace opentxs::proto

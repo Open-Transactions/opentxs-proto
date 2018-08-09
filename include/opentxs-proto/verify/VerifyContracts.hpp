@@ -17,6 +17,7 @@ static const VersionMap ServerContractAllowedCredentialIndex = {
 };
 static const VersionMap ServerContractAllowedListenAddress = {
     {1, {1, 1}},
+    {2, {1, 2}},
 };
 static const VersionMap ServerContractAllowedSignature = {
     {1, {1, 1}},

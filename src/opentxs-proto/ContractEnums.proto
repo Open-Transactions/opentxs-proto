@@ -16,6 +16,7 @@ enum AddressType {
     ADDRESSTYPE_IPV6 = 2;
     ADDRESSTYPE_ONION = 3;
     ADDRESSTYPE_EEP = 4;
+    ADDRESSTYPE_INPROC = 5;
 }
 
 enum ProtocolVersion {

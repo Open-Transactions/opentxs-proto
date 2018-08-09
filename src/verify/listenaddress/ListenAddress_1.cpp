@@ -17,57 +17,64 @@ namespace proto
 
 bool CheckProto_1(const ListenAddress& input, const bool silent)
 {
-    if (!input.has_type()) {
-        FAIL("listen address", "missing type")
+    CHECK_EXISTS(type);
+
+    if ((ADDRESSTYPE_IPV4 > input.type()) || (ADDRESSTYPE_EEP < input.type())) {
+        FAIL4("invalid type")
     }
 
-    if ((ADDRESSTYPE_ERROR == input.type()) ||
-        (ADDRESSTYPE_EEP < input.type())) {
-        FAIL("listen address", "invalid type")
-    }
-
-    if (!input.has_protocol()) {
-        FAIL("listen address", "missing protocol")
-    }
+    if (!input.has_protocol()) { FAIL4("missing protocol") }
 
     if ((PROTOCOLVERSION_ERROR == input.protocol()) ||
         (PROTOCOLVERSION_NOTIFY < input.protocol())) {
-        FAIL("listen address", "invalid protocol")
+        FAIL4("invalid protocol")
     }
 
-    if (!input.has_host()) {
-        FAIL("listen address", "missing host")
-    }
+    CHECK_EXISTS(host);
+    CHECK_EXISTS(port);
 
-    if (!input.has_port()) {
-        FAIL("listen address", "missing port")
-    }
-
-    if (MAX_VALID_PORT < input.port()) {
-        FAIL("listen address", "invalid port")
-    }
+    if (MAX_VALID_PORT < input.port()) { FAIL4("invalid port") }
 
     return true;
 }
 
 bool CheckProto_2(const ListenAddress& input, const bool silent)
 {
-    UNDEFINED_VERSION("listen address", 2)
+    CHECK_EXISTS(type);
+
+    if ((ADDRESSTYPE_IPV4 > input.type()) ||
+        (ADDRESSTYPE_INPROC < input.type())) {
+        FAIL4("invalid type")
+    }
+
+    if (!input.has_protocol()) { FAIL4("missing protocol") }
+
+    if ((PROTOCOLVERSION_ERROR == input.protocol()) ||
+        (PROTOCOLVERSION_NOTIFY < input.protocol())) {
+        FAIL4("invalid protocol")
+    }
+
+    CHECK_EXISTS(host);
+    CHECK_EXISTS(port);
+
+    if (MAX_VALID_PORT < input.port()) { FAIL4("invalid port") }
+
+    return true;
 }
 
 bool CheckProto_3(const ListenAddress& input, const bool silent)
 {
-    UNDEFINED_VERSION("listen address", 3)
+    UNDEFINED_VERSION2(3)
 }
 
 bool CheckProto_4(const ListenAddress& input, const bool silent)
 {
-    UNDEFINED_VERSION("listen address", 4)
+    UNDEFINED_VERSION2(4)
 }
 
 bool CheckProto_5(const ListenAddress& input, const bool silent)
 {
-    UNDEFINED_VERSION("listen address", 5)
+    UNDEFINED_VERSION2(5)
 }
 
 bool CheckProto_6(const ListenAddress& input, const bool silent)

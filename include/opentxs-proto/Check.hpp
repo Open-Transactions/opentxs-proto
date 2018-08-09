@@ -140,6 +140,14 @@
         }                                                                      \
     }
 
+#define CHECK_HAVE(a)                                                          \
+    {                                                                          \
+        if (0 == input.a().size()) {                                           \
+            const auto fail = std::string("unexpected ") + #a + " present";    \
+            FAIL4(fail)                                                        \
+        }                                                                      \
+    }
+
 #define CHECK_NONE(a)                                                          \
     {                                                                          \
         if (0 < input.a().size()) {                                            \
@@ -148,15 +156,29 @@
         }                                                                      \
     }
 
-#define CHECK_IDENTIFIER(a)                                                    \
+#define CHECK_STRING(a, min, max)                                              \
     {                                                                          \
         CHECK_EXISTS(a)                                                        \
                                                                                \
-        if ((MIN_PLAUSIBLE_IDENTIFIER > input.a().size()) ||                   \
-            (MAX_PLAUSIBLE_IDENTIFIER < input.a().size())) {                   \
+        if ((min > input.a().size()) || (max < input.a().size())) {            \
             const auto fail = std::string("invalid ") + #a + " size";          \
             FAIL5(fail, input.a().size())                                      \
         }                                                                      \
+    }
+
+#define CHECK_IDENTIFIER(a)                                                    \
+    {                                                                          \
+        CHECK_STRING(a, MIN_PLAUSIBLE_IDENTIFIER, MAX_PLAUSIBLE_IDENTIFIER)    \
+    }
+
+#define CHECK_KEY(a)                                                           \
+    {                                                                          \
+        CHECK_STRING(a, MIN_PLAUSIBLE_KEYSIZE, MAX_PLAUSIBLE_KEYSIZE)          \
+    }
+
+#define CHECK_NAME(a)                                                          \
+    {                                                                          \
+        CHECK_STRING(a, 1, MAX_VALID_CONTACT_VALUE)                            \
     }
 
 #define OPTIONAL_IDENTIFIER(a)                                                 \
