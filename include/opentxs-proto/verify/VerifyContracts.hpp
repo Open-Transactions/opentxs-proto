@@ -14,6 +14,7 @@ namespace proto
 {
 static const VersionMap ServerContractAllowedCredentialIndex = {
     {1, {1, 5}},
+    {2, {1, 5}},
 };
 static const VersionMap ServerContractAllowedListenAddress = {
     {1, {1, 1}},
@@ -21,6 +22,7 @@ static const VersionMap ServerContractAllowedListenAddress = {
 };
 static const VersionMap ServerContractAllowedSignature = {
     {1, {1, 1}},
+    {2, {1, 1}},
 };
 static const VersionMap UnitDefinitionAllowedCredentialIndex = {
     {1, {1, 5}},
