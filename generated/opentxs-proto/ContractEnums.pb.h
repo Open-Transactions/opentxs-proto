@@ -55,11 +55,12 @@ enum AddressType {
   ADDRESSTYPE_IPV4 = 1,
   ADDRESSTYPE_IPV6 = 2,
   ADDRESSTYPE_ONION = 3,
-  ADDRESSTYPE_EEP = 4
+  ADDRESSTYPE_EEP = 4,
+  ADDRESSTYPE_INPROC = 5
 };
 bool AddressType_IsValid(int value);
 const AddressType AddressType_MIN = ADDRESSTYPE_ERROR;
-const AddressType AddressType_MAX = ADDRESSTYPE_EEP;
+const AddressType AddressType_MAX = ADDRESSTYPE_INPROC;
 const int AddressType_ARRAYSIZE = AddressType_MAX + 1;
 
 enum ProtocolVersion {
