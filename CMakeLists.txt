@@ -5,7 +5,7 @@
 
 cmake_minimum_required(VERSION 2.8.12)
 project(opentxs-proto)
-
+include(GNUInstallDirs)
 
 if(NOT ANDROID)
 set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM LAST)
@@ -248,14 +248,6 @@ if(WIN32)
 endif()
 
 #-----------------------------------------------------------------------------
-# Set in-source Version
-configure_file("include/Version.hpp" "${CMAKE_CURRENT_BINARY_DIR}/include/opentxs-proto/Version.hpp" @ONLY)
-
-install(FILES ${CMAKE_CURRENT_BINARY_DIR}/include/opentxs-proto/Version.hpp
-        DESTINATION include/opentxs-proto/
-        COMPONENT dev)
-
-#-----------------------------------------------------------------------------
 # Build source
 
 #Fix RPATH
@@ -278,10 +270,6 @@ if(APPLE)
     IF("${isSystemDir}" STREQUAL "-1")
     SET(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/lib")
     ENDIF("${isSystemDir}" STREQUAL "-1")
-endif()
-
-if(UNIX)
-  add_definitions(-DOT_PREFIX_PATH=\"${CMAKE_INSTALL_PREFIX}\")
 endif()
 
 function(set_lib_property lib)
@@ -307,44 +295,44 @@ endif()
 
 if((NOT ANDROID) AND (NOT OT_BUNDLED_OPENTXS_PROTO))
   include(CMakePackageConfigHelpers)
-  set(CMAKE_CONFIG_DEST "share/cmake/Modules")
+  set(CMAKE_CONFIG_DEST "${CMAKE_INSTALL_LIBDIR}/opentxs-proto")
   set(OPENTXS_PROTO_INCLUDE_DIRS "${CMAKE_INSTALL_PREFIX}/include")
 
-  export(TARGETS opentxs-protobuf FILE "${CMAKE_BINARY_DIR}/opentxs-protoTargets.cmake")
+  if(BUILD_SHARED_LIBS)
+    set(OPENTXS_PROTO_LIBRARIES "${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LIBDIR}/${CMAKE_SHARED_LIBRARY_PREFIX}opentxs-proto${CMAKE_SHARED_LIBRARY_SUFFIX}")
+  else()
+    set(OPENTXS_PROTO_LIBRARIES "${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LIBDIR}/${CMAKE_STATIC_LIBRARY_PREFIX}opentxs-proto${CMAKE_STATIC_LIBRARY_PREFIX}")
+  endif()
 
   configure_package_config_file(
          "cmake/opentxs-protoConfig.cmake.in"
          "${CMAKE_BINARY_DIR}/opentxs-protoConfig.cmake"
          INSTALL_DESTINATION ${CMAKE_CONFIG_DEST}
-         PATH_VARS OPENTXS_PROTO_INCLUDE_DIRS)
+         PATH_VARS OPENTXS_PROTO_INCLUDE_DIRS OPENTXS_PROTO_LIBRARIES)
 
   write_basic_package_version_file(
     "${CMAKE_CURRENT_BINARY_DIR}/opentxs-protoConfigVersion.cmake"
     VERSION ${VERSION_STRING}
     COMPATIBILITY AnyNewerVersion)
 
-  install(EXPORT opentxs-protobufTargets
-          DESTINATION ${CMAKE_CONFIG_DEST} FILE "opentxs-proto.cmake")
-
   install(FILES
           "${CMAKE_CURRENT_BINARY_DIR}/opentxs-protoConfig.cmake"
           "${CMAKE_CURRENT_BINARY_DIR}/opentxs-protoConfigVersion.cmake"
           DESTINATION ${CMAKE_CONFIG_DEST}
           COMPONENT dev)
+
+  install(EXPORT opentxs-proto-targets
+          DESTINATION ${CMAKE_CONFIG_DEST})
 endif()
 
 #-----------------------------------------------------------------------------
 # Produce a pkg-config file
 
-
-if(NOT WIN32)
-	configure_file("cmake/opentxs-proto.pc.in" "opentxs-proto.pc" @ONLY)
-	include(GNUInstallDirs)
-	install(FILES "${CMAKE_CURRENT_BINARY_DIR}/opentxs-proto.pc"
-		DESTINATION "${CMAKE_INSTALL_LIBDIR}/pkgconfig"
-		COMPONENT main)
-endif()
-
+string(REGEX REPLACE "^${CMAKE_INSTALL_PREFIX}(.*)" "\\1" LIB_INSTALL_DIR "${CMAKE_INSTALL_LIBDIR}")
+configure_file("cmake/opentxs-proto.pc.in" "opentxs-proto.pc" @ONLY)
+  install(FILES "${CMAKE_CURRENT_BINARY_DIR}/opentxs-proto.pc"
+          DESTINATION "${CMAKE_INSTALL_LIBDIR}/pkgconfig"
+          COMPONENT main)
 
 #-----------------------------------------------------------------------------
 # Install

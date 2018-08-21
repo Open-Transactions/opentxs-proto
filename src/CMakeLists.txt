@@ -3,9 +3,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-if(NOT OT_BUNDLED_OPENTXS_PROTO)
-  include_directories(SYSTEM ${PROTOBUF_INCLUDE_DIR})
-endif()
+set(MODULE_NAME opentxs-proto)
 
 if(NOT OT_BUNDLED_OPENTXS_PROTO)
   add_subdirectory(opentxs-proto)
@@ -14,16 +12,15 @@ endif()
 add_subdirectory(verify)
 
 if(NOT OT_BUNDLED_OPENTXS_PROTO)
-  set(MODULE_NAME opentxs-protobuf)
 
   add_library(${MODULE_NAME} SHARED
-    $<TARGET_OBJECTS:opentxs-proto>
-    $<TARGET_OBJECTS:opentxs-verify>
+    $<TARGET_OBJECTS:generated>
+    $<TARGET_OBJECTS:verify>
   )
 
   add_library(${MODULE_NAME}_static STATIC
-    $<TARGET_OBJECTS:opentxs-proto>
-    $<TARGET_OBJECTS:opentxs-verify>
+    $<TARGET_OBJECTS:generated>
+    $<TARGET_OBJECTS:verify>
   )
 
   target_link_libraries(${MODULE_NAME}
@@ -40,17 +37,11 @@ if(NOT OT_BUNDLED_OPENTXS_PROTO)
     ${OPENTXS_SYSTEM_LIBRARIES}
   )
 
-  set_target_properties(${MODULE_NAME} PROPERTIES OUTPUT_NAME opentxs-proto)
+  set_target_properties(${MODULE_NAME} PROPERTIES OUTPUT_NAME ${MODULE_NAME})
+  set_target_properties(${MODULE_NAME}_static PROPERTIES OUTPUT_NAME ${MODULE_NAME})
 
-  if(NOT WIN32)
-    set_target_properties(${MODULE_NAME}_static PROPERTIES OUTPUT_NAME opentxs-proto)
-  endif()
-
-  if((NOT WIN32))
-    include(GNUInstallDirs)
-    install(TARGETS ${MODULE_NAME} ${MODULE_NAME}_static
-            DESTINATION ${CMAKE_INSTALL_LIBDIR}
-            EXPORT ${MODULE_NAME}Targets
-            COMPONENT main)
-  endif()
+  install(TARGETS ${MODULE_NAME} ${MODULE_NAME}_static
+          DESTINATION ${CMAKE_INSTALL_LIBDIR}
+          EXPORT ${MODULE_NAME}-targets
+          COMPONENT main)
 endif()
