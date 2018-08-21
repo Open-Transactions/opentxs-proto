@@ -3,7 +3,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-error")
+set(MODULE_NAME generated)
 
 set(PROTO_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/AsymmetricKey.proto
@@ -114,12 +114,12 @@ PROTOBUF_GENERATE_CPP(
     ${PROTO_SOURCES}
 )
 
-set(MODULE_NAME opentxs-proto)
-
 add_library(${MODULE_NAME} OBJECT
   ${PROTO_SRC}
   ${PROTO_HEADER}
 )
+
+target_compile_options(${MODULE_NAME} PRIVATE -Wno-error)
 
 if (PYTHON OR PYTHON2 OR PYTHON3)
     # why doesn't this work?  For some reason it doesn't actually generate .py files'

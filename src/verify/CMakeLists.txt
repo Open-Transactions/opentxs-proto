@@ -3,6 +3,8 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+set(MODULE_NAME verify)
+
 set(cxx-sources
   VerifyContacts.cpp
   asymmetrickey/AsymmetricKey_1.cpp
@@ -123,11 +125,12 @@ set(cxx-sources
 
 file(GLOB cxx-headers "${CMAKE_CURRENT_SOURCE_DIR}/../../include/opentxs-proto/verify/*.hpp")
 
-add_library(opentxs-verify OBJECT
+add_library(${MODULE_NAME} OBJECT
   ${cxx-headers}
   ${cxx-sources}
 )
 
 if(NOT OT_BUNDLED_OPENTXS_PROTO)
-  add_dependencies(opentxs-verify opentxs-proto)
+  target_include_directories(${MODULE_NAME} PUBLIC ${PROTOBUF_INCLUDE_DIR})
+  add_dependencies(${MODULE_NAME} generated)
 endif()
