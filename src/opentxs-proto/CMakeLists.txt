@@ -49,6 +49,7 @@ set(PROTO_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/MasterCredentialParameters.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/NoticeAcknowledgement.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/NymIDSource.proto
+    ${CMAKE_CURRENT_SOURCE_DIR}/OTXEnums.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/OutBailment.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/OutBailmentReply.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/PairEvent.proto
@@ -66,6 +67,8 @@ set(PROTO_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/Seed.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/ServerContext.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/ServerContract.proto
+    ${CMAKE_CURRENT_SOURCE_DIR}/ServerReply.proto
+    ${CMAKE_CURRENT_SOURCE_DIR}/ServerRequest.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/Signature.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/SourceProof.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/StorageAccountIndex.proto

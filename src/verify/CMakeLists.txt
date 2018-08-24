@@ -70,8 +70,11 @@ set(cxx-sources
   servercontext/ServerContext_1.cpp
   servercontext/ServerContext_2.cpp
   servercontract/ServerContract_1.cpp
+  serverreply/ServerReply_1.cpp
+  serverrequest/ServerRequest_1.cpp
   signature/Signature_1.cpp
   signature/Signature_2.cpp
+  signature/Signature_3.cpp
   sourceproof/SourceProof_1.cpp
   storageaccountindex/StorageAccountIndex_1.cpp
   storageaccounts/StorageAccounts_1.cpp

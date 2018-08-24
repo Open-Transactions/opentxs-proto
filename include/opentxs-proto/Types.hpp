@@ -69,6 +69,7 @@
 #include <opentxs-proto/MasterCredentialParameters.pb.h>
 #include <opentxs-proto/NoticeAcknowledgement.pb.h>
 #include <opentxs-proto/NymIDSource.pb.h>
+#include <opentxs-proto/OTXEnums.pb.h>
 #include <opentxs-proto/OutBailment.pb.h>
 #include <opentxs-proto/OutBailmentReply.pb.h>
 #include <opentxs-proto/PairEvent.pb.h>
@@ -86,6 +87,8 @@
 #include <opentxs-proto/Seed.pb.h>
 #include <opentxs-proto/ServerContext.pb.h>
 #include <opentxs-proto/ServerContract.pb.h>
+#include <opentxs-proto/ServerReply.pb.h>
+#include <opentxs-proto/ServerRequest.pb.h>
 #include <opentxs-proto/Signature.pb.h>
 #include <opentxs-proto/SourceProof.pb.h>
 #include <opentxs-proto/StorageAccountIndex.pb.h>
@@ -180,6 +183,8 @@
 #include <opentxs-proto/verify/Seed.hpp>
 #include <opentxs-proto/verify/ServerContext.hpp>
 #include <opentxs-proto/verify/ServerContract.hpp>
+#include <opentxs-proto/verify/ServerReply.hpp>
+#include <opentxs-proto/verify/ServerRequest.hpp>
 #include <opentxs-proto/verify/Signature.hpp>
 #include <opentxs-proto/verify/Signature.hpp>
 #include <opentxs-proto/verify/SourceProof.hpp>
