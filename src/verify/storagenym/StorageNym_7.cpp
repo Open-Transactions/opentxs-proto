@@ -38,66 +38,66 @@ bool CheckProto_7(const StorageNym& input, const bool silent)
 
 bool CheckProto_8(const StorageNym& input, const bool silent)
 {
-    UNDEFINED_VERSION2(8)
+    UNDEFINED_VERSION(8)
 }
 
 bool CheckProto_9(const StorageNym& input, const bool silent)
 {
-    UNDEFINED_VERSION2(9)
+    UNDEFINED_VERSION(9)
 }
 
 bool CheckProto_10(const StorageNym& input, const bool silent)
 {
-    UNDEFINED_VERSION2(10)
+    UNDEFINED_VERSION(10)
 }
 
 bool CheckProto_11(const StorageNym& input, const bool silent)
 {
-    UNDEFINED_VERSION2(11)
+    UNDEFINED_VERSION(11)
 }
 
 bool CheckProto_12(const StorageNym& input, const bool silent)
 {
-    UNDEFINED_VERSION2(12)
+    UNDEFINED_VERSION(12)
 }
 
 bool CheckProto_13(const StorageNym& input, const bool silent)
 {
-    UNDEFINED_VERSION2(13)
+    UNDEFINED_VERSION(13)
 }
 
 bool CheckProto_14(const StorageNym& input, const bool silent)
 {
-    UNDEFINED_VERSION2(14)
+    UNDEFINED_VERSION(14)
 }
 
 bool CheckProto_15(const StorageNym& input, const bool silent)
 {
-    UNDEFINED_VERSION2(15)
+    UNDEFINED_VERSION(15)
 }
 
 bool CheckProto_16(const StorageNym& input, const bool silent)
 {
-    UNDEFINED_VERSION2(16)
+    UNDEFINED_VERSION(16)
 }
 
 bool CheckProto_17(const StorageNym& input, const bool silent)
 {
-    UNDEFINED_VERSION2(17)
+    UNDEFINED_VERSION(17)
 }
 
 bool CheckProto_18(const StorageNym& input, const bool silent)
 {
-    UNDEFINED_VERSION2(18)
+    UNDEFINED_VERSION(18)
 }
 
 bool CheckProto_19(const StorageNym& input, const bool silent)
 {
-    UNDEFINED_VERSION2(19)
+    UNDEFINED_VERSION(19)
 }
 
 bool CheckProto_20(const StorageNym& input, const bool silent)
 {
-    UNDEFINED_VERSION2(20)
+    UNDEFINED_VERSION(20)
 }
 }  // namespace opentxs::proto

@@ -6,8 +6,6 @@
 #include "opentxs-proto/Types.hpp"
 #include "opentxs-proto/Check.hpp"
 
-#include <iostream>
-
 #define PROTO_NAME "peer request"
 
 namespace opentxs::proto
@@ -19,8 +17,8 @@ bool CheckProto_4(const PeerRequest& input, const bool silent)
     CHECK_IDENTIFIER(recipient)
     CHECK_EXISTS(type)
     CHECK_IDENTIFIER(cookie)
-    CHECK_SUBOBJECT2(
-        signature, PeerRequestAllowedSignature, ", SIGROLE_PEERREQUEST")
+    CHECK_SUBOBJECT_VA(
+        signature, PeerRequestAllowedSignature, SIGROLE_PEERREQUEST)
     CHECK_IDENTIFIER(server)
 
     switch (input.type()) {
@@ -89,7 +87,7 @@ bool CheckProto_4(const PeerRequest& input, const bool silent)
             CHECK_SUBOBJECT(faucet, PeerRequestAllowedFaucet)
         } break;
         default: {
-            FAIL4("invalid type")
+            FAIL_1("invalid type")
         }
     }
 
@@ -108,71 +106,71 @@ bool CheckProto_6(const PeerRequest& input, const bool silent)
 
 bool CheckProto_7(const PeerRequest& input, const bool silent)
 {
-    UNDEFINED_VERSION2(7)
+    UNDEFINED_VERSION(7)
 }
 
 bool CheckProto_8(const PeerRequest& input, const bool silent)
 {
-    UNDEFINED_VERSION2(8)
+    UNDEFINED_VERSION(8)
 }
 
 bool CheckProto_9(const PeerRequest& input, const bool silent)
 {
-    UNDEFINED_VERSION2(9)
+    UNDEFINED_VERSION(9)
 }
 
 bool CheckProto_10(const PeerRequest& input, const bool silent)
 {
-    UNDEFINED_VERSION2(10)
+    UNDEFINED_VERSION(10)
 }
 
 bool CheckProto_11(const PeerRequest& input, const bool silent)
 {
-    UNDEFINED_VERSION2(11)
+    UNDEFINED_VERSION(11)
 }
 
 bool CheckProto_12(const PeerRequest& input, const bool silent)
 {
-    UNDEFINED_VERSION2(12)
+    UNDEFINED_VERSION(12)
 }
 
 bool CheckProto_13(const PeerRequest& input, const bool silent)
 {
-    UNDEFINED_VERSION2(13)
+    UNDEFINED_VERSION(13)
 }
 
 bool CheckProto_14(const PeerRequest& input, const bool silent)
 {
-    UNDEFINED_VERSION2(14)
+    UNDEFINED_VERSION(14)
 }
 
 bool CheckProto_15(const PeerRequest& input, const bool silent)
 {
-    UNDEFINED_VERSION2(15)
+    UNDEFINED_VERSION(15)
 }
 
 bool CheckProto_16(const PeerRequest& input, const bool silent)
 {
-    UNDEFINED_VERSION2(16)
+    UNDEFINED_VERSION(16)
 }
 
 bool CheckProto_17(const PeerRequest& input, const bool silent)
 {
-    UNDEFINED_VERSION2(17)
+    UNDEFINED_VERSION(17)
 }
 
 bool CheckProto_18(const PeerRequest& input, const bool silent)
 {
-    UNDEFINED_VERSION2(18)
+    UNDEFINED_VERSION(18)
 }
 
 bool CheckProto_19(const PeerRequest& input, const bool silent)
 {
-    UNDEFINED_VERSION2(19)
+    UNDEFINED_VERSION(19)
 }
 
 bool CheckProto_20(const PeerRequest& input, const bool silent)
 {
-    UNDEFINED_VERSION2(20)
+    UNDEFINED_VERSION(20)
 }
 }  // namespace opentxs::proto

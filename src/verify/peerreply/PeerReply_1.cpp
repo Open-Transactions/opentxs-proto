@@ -6,7 +6,7 @@
 #include "opentxs-proto/Types.hpp"
 #include "opentxs-proto/Check.hpp"
 
-#include <iostream>
+#define PROTO_NAME "peer reply"
 
 namespace opentxs
 {
@@ -15,37 +15,25 @@ namespace proto
 
 bool CheckProto_1(const PeerReply& input, const bool silent)
 {
-    if (!input.has_id()) {
-        FAIL("peer reply", "missing id")
-    }
+    if (!input.has_id()) { FAIL_1("missing id") }
 
-    if (MIN_PLAUSIBLE_IDENTIFIER > input.id().size()) {
-        FAIL("peer reply", "invalid id")
-    }
+    if (MIN_PLAUSIBLE_IDENTIFIER > input.id().size()) { FAIL_1("invalid id") }
 
-    if (!input.has_initiator()) {
-        FAIL("peer reply", "missing initiator")
-    }
+    if (!input.has_initiator()) { FAIL_1("missing initiator") }
 
     if (MIN_PLAUSIBLE_IDENTIFIER > input.initiator().size()) {
-        FAIL2("peer reply", "invalid initiator", input.initiator())
+        FAIL_2("invalid initiator", input.initiator())
     }
 
-    if (!input.has_recipient()) {
-        FAIL("peer reply", "missing recipient")
-    }
+    if (!input.has_recipient()) { FAIL_1("missing recipient") }
 
     if (MIN_PLAUSIBLE_IDENTIFIER > input.recipient().size()) {
-        FAIL2("peer reply", "invalid recipient", input.recipient())
+        FAIL_2("invalid recipient", input.recipient())
     }
 
-    if (!input.has_type()) {
-        FAIL("peer reply", "missing type")
-    }
+    if (!input.has_type()) { FAIL_1("missing type") }
 
-    if (!input.has_cookie()) {
-        FAIL("peer reply", "missing cookie")
-    }
+    if (!input.has_cookie()) { FAIL_1("missing cookie") }
 
     try {
         const bool validSig = Check(
@@ -55,21 +43,16 @@ bool CheckProto_1(const PeerReply& input, const bool silent)
             silent,
             SIGROLE_PEERREPLY);
 
-        if (!validSig) {
-            FAIL("peer reply", "invalid signature")
-        }
+        if (!validSig) { FAIL_1("invalid signature") }
     } catch (const std::out_of_range&) {
-        FAIL2(
-            "peer reply",
+        FAIL_2(
             "allowed signature version not defined for version",
             input.version())
     }
 
     switch (input.type()) {
         case PEERREQUEST_BAILMENT: {
-            if (!input.has_bailment()) {
-                FAIL("peer reply", "missing bailment")
-            }
+            if (!input.has_bailment()) { FAIL_1("missing bailment") }
 
             try {
                 const bool validbailment = Check(
@@ -78,20 +61,15 @@ bool CheckProto_1(const PeerReply& input, const bool silent)
                     PeerReplyAllowedBailment.at(input.version()).second,
                     silent);
 
-                if (!validbailment) {
-                    FAIL("peer reply", "invalid bailment")
-                }
+                if (!validbailment) { FAIL_1("invalid bailment") }
             } catch (const std::out_of_range&) {
-                FAIL2(
-                    "peer reply",
+                FAIL_2(
                     "allowed bailment version not defined for version",
                     input.version())
             }
         } break;
         case PEERREQUEST_OUTBAILMENT: {
-            if (!input.has_outbailment()) {
-                FAIL("peer reply", "missing outbailment")
-            }
+            if (!input.has_outbailment()) { FAIL_1("missing outbailment") }
 
             try {
                 const bool validoutbailment = Check(
@@ -100,21 +78,16 @@ bool CheckProto_1(const PeerReply& input, const bool silent)
                     PeerReplyAllowedOutBailment.at(input.version()).second,
                     silent);
 
-                if (!validoutbailment) {
-                    FAIL("peer reply", "invalid outbailment")
-                }
+                if (!validoutbailment) { FAIL_1("invalid outbailment") }
             } catch (const std::out_of_range&) {
-                FAIL2(
-                    "peer reply",
+                FAIL_2(
                     "allowed outbailment version not defined for version",
                     input.version())
             }
         } break;
         case PEERREQUEST_PENDINGBAILMENT:
         case PEERREQUEST_STORESECRET: {
-            if (!input.has_notice()) {
-                FAIL("peer reply", "missing notice")
-            }
+            if (!input.has_notice()) { FAIL_1("missing notice") }
 
             try {
                 const bool validnotice = Check(
@@ -123,19 +96,16 @@ bool CheckProto_1(const PeerReply& input, const bool silent)
                     PeerReplyAllowedNotice.at(input.version()).second,
                     silent);
 
-                if (!validnotice) {
-                    FAIL("peer reply", "invalid notice")
-                }
+                if (!validnotice) { FAIL_1("invalid notice") }
             } catch (const std::out_of_range&) {
-                FAIL2(
-                    "peer reply",
+                FAIL_2(
                     "allowed peer notice version not defined for version",
                     input.version())
             }
         } break;
         case PEERREQUEST_CONNECTIONINFO: {
             if (!input.has_connectioninfo()) {
-                FAIL("peer reply", "missing connectioninfo")
+                FAIL_1("missing connectioninfo")
             }
 
             try {
@@ -145,18 +115,15 @@ bool CheckProto_1(const PeerReply& input, const bool silent)
                     PeerReplyAllowedConnectionInfo.at(input.version()).second,
                     silent);
 
-                if (!validconnectioninfo) {
-                    FAIL("peer reply", "invalid connectioninfo")
-                }
+                if (!validconnectioninfo) { FAIL_1("invalid connectioninfo") }
             } catch (const std::out_of_range&) {
-                FAIL2(
-                    "peer reply",
+                FAIL_2(
                     "allowed connection info version not defined for version",
                     input.version())
             }
         } break;
         default: {
-            FAIL("peer reply", "invalid type")
+            FAIL_1("invalid type")
         }
     }
 

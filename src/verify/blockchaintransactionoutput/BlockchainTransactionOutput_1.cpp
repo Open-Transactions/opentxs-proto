@@ -6,8 +6,6 @@
 #include "opentxs-proto/Types.hpp"
 #include "opentxs-proto/Check.hpp"
 
-#include <iostream>
-
 #define PROTO_NAME "blockchain transaction output"
 
 namespace opentxs
@@ -17,47 +15,45 @@ namespace proto
 
 bool CheckProto_1(const BlockchainTransactionOutput& input, const bool silent)
 {
-    if (false == input.has_index()) {
-        FAIL("blockchain transaction output", "missing index")
-    }
+    if (false == input.has_index()) { FAIL_1("missing index") }
 
     if (input.has_serializedscript()) {
         if (MIN_PLAUSIBLE_SCRIPT > input.serializedscript().size()) {
-            FAIL("blockchain transaction output", "invalid serializedscript")
+            FAIL_1("invalid serializedscript")
         }
 
         if (MAX_PLAUSIBLE_SCRIPT < input.serializedscript().size()) {
-            FAIL("blockchain transaction output", "invalid serializedscript")
+            FAIL_1("invalid serializedscript")
         }
     }
 
     if (input.has_address()) {
         if (MIN_PLAUSIBLE_IDENTIFIER > input.address().size()) {
-            FAIL("blockchain transaction output", "invalid address")
+            FAIL_1("invalid address")
         }
 
         if (MAX_PLAUSIBLE_IDENTIFIER < input.address().size()) {
-            FAIL("blockchain transaction output", "invalid address")
+            FAIL_1("invalid address")
         }
     }
 
     if (input.has_confirmedspend()) {
         if (MIN_PLAUSIBLE_IDENTIFIER > input.confirmedspend().size()) {
-            FAIL("blockchain transaction output", "invalid confirmedspend")
+            FAIL_1("invalid confirmedspend")
         }
 
         if (MAX_PLAUSIBLE_IDENTIFIER < input.confirmedspend().size()) {
-            FAIL("blockchain transaction output", "invalid confirmedspend")
+            FAIL_1("invalid confirmedspend")
         }
     }
 
     for (const auto& orphan : input.orphanedspend()) {
         if (MIN_PLAUSIBLE_IDENTIFIER > orphan.size()) {
-            FAIL("blockchain transaction output", "invalid orphanedspend")
+            FAIL_1("invalid orphanedspend")
         }
 
         if (MAX_PLAUSIBLE_IDENTIFIER < orphan.size()) {
-            FAIL("blockchain transaction output", "invalid orphanedspend")
+            FAIL_1("invalid orphanedspend")
         }
     }
 
@@ -66,97 +62,97 @@ bool CheckProto_1(const BlockchainTransactionOutput& input, const bool silent)
 
 bool CheckProto_2(const BlockchainTransactionOutput& input, const bool silent)
 {
-    UNDEFINED_VERSION("blockchain transaction output", 2)
+    UNDEFINED_VERSION(2)
 }
 
 bool CheckProto_3(const BlockchainTransactionOutput& input, const bool silent)
 {
-    UNDEFINED_VERSION("blockchain transaction output", 3)
+    UNDEFINED_VERSION(3)
 }
 
 bool CheckProto_4(const BlockchainTransactionOutput& input, const bool silent)
 {
-    UNDEFINED_VERSION("blockchain transaction output", 4)
+    UNDEFINED_VERSION(4)
 }
 
 bool CheckProto_5(const BlockchainTransactionOutput& input, const bool silent)
 {
-    UNDEFINED_VERSION("blockchain transaction output", 5)
+    UNDEFINED_VERSION(5)
 }
 
 bool CheckProto_6(const BlockchainTransactionOutput& input, const bool silent)
 {
-    UNDEFINED_VERSION2(6)
+    UNDEFINED_VERSION(6)
 }
 
 bool CheckProto_7(const BlockchainTransactionOutput& input, const bool silent)
 {
-    UNDEFINED_VERSION2(7)
+    UNDEFINED_VERSION(7)
 }
 
 bool CheckProto_8(const BlockchainTransactionOutput& input, const bool silent)
 {
-    UNDEFINED_VERSION2(8)
+    UNDEFINED_VERSION(8)
 }
 
 bool CheckProto_9(const BlockchainTransactionOutput& input, const bool silent)
 {
-    UNDEFINED_VERSION2(9)
+    UNDEFINED_VERSION(9)
 }
 
 bool CheckProto_10(const BlockchainTransactionOutput& input, const bool silent)
 {
-    UNDEFINED_VERSION2(10)
+    UNDEFINED_VERSION(10)
 }
 
 bool CheckProto_11(const BlockchainTransactionOutput& input, const bool silent)
 {
-    UNDEFINED_VERSION2(11)
+    UNDEFINED_VERSION(11)
 }
 
 bool CheckProto_12(const BlockchainTransactionOutput& input, const bool silent)
 {
-    UNDEFINED_VERSION2(12)
+    UNDEFINED_VERSION(12)
 }
 
 bool CheckProto_13(const BlockchainTransactionOutput& input, const bool silent)
 {
-    UNDEFINED_VERSION2(13)
+    UNDEFINED_VERSION(13)
 }
 
 bool CheckProto_14(const BlockchainTransactionOutput& input, const bool silent)
 {
-    UNDEFINED_VERSION2(14)
+    UNDEFINED_VERSION(14)
 }
 
 bool CheckProto_15(const BlockchainTransactionOutput& input, const bool silent)
 {
-    UNDEFINED_VERSION2(15)
+    UNDEFINED_VERSION(15)
 }
 
 bool CheckProto_16(const BlockchainTransactionOutput& input, const bool silent)
 {
-    UNDEFINED_VERSION2(16)
+    UNDEFINED_VERSION(16)
 }
 
 bool CheckProto_17(const BlockchainTransactionOutput& input, const bool silent)
 {
-    UNDEFINED_VERSION2(17)
+    UNDEFINED_VERSION(17)
 }
 
 bool CheckProto_18(const BlockchainTransactionOutput& input, const bool silent)
 {
-    UNDEFINED_VERSION2(18)
+    UNDEFINED_VERSION(18)
 }
 
 bool CheckProto_19(const BlockchainTransactionOutput& input, const bool silent)
 {
-    UNDEFINED_VERSION2(19)
+    UNDEFINED_VERSION(19)
 }
 
 bool CheckProto_20(const BlockchainTransactionOutput& input, const bool silent)
 {
-    UNDEFINED_VERSION2(20)
+    UNDEFINED_VERSION(20)
 }
 }  // namespace proto
 }  // namespace opentxs

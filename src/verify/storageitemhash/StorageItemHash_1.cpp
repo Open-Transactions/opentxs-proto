@@ -6,7 +6,7 @@
 #include "opentxs-proto/Types.hpp"
 #include "opentxs-proto/Check.hpp"
 
-#include <iostream>
+#define PROTO_NAME "storage item hash"
 
 namespace opentxs
 {
@@ -14,24 +14,20 @@ namespace proto
 {
 bool CheckProto_1(const StorageItemHash& input, const bool silent)
 {
-    if (!input.has_itemid()) {
-        FAIL("storage item hash", "missing id")
-    }
+    if (!input.has_itemid()) { FAIL_1("missing id") }
 
     if (MIN_PLAUSIBLE_IDENTIFIER > input.itemid().size()) {
-        FAIL("storage item hash", "invalid id")
+        FAIL_1("invalid id")
     }
 
-    if (!input.has_hash()) {
-        FAIL("storage item hash", "missing hash")
-    }
+    if (!input.has_hash()) { FAIL_1("missing hash") }
 
     if (MIN_PLAUSIBLE_IDENTIFIER > input.hash().size()) {
-        FAIL("storage item hash", "invalid has")
+        FAIL_1("invalid has")
     }
 
     if (input.has_type() && (STORAGEHASH_ERROR != input.type())) {
-        FAIL("storage item hash", "unexpected type field present")
+        FAIL_1("unexpected type field present")
     }
 
     return true;

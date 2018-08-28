@@ -6,8 +6,6 @@
 #include "opentxs-proto/Types.hpp"
 #include "opentxs-proto/Check.hpp"
 
-#include <iostream>
-
 #define PROTO_NAME "envelope"
 
 namespace opentxs
@@ -28,12 +26,9 @@ bool CheckProto_1(const Envelope& input, const bool silent)
                 KEYMODE_PUBLIC,
                 KEYROLE_ENCRYPT);
 
-            if (false == validDHKey) {
-                FAIL("envelope", "invalid dhkey")
-            }
+            if (false == validDHKey) { FAIL_1("invalid dhkey") }
         } catch (const std::out_of_range&) {
-            FAIL2(
-                "envelope",
+            FAIL_2(
                 "allowed asymmetric key version not defined for version",
                 input.version())
         }
@@ -47,12 +42,9 @@ bool CheckProto_1(const Envelope& input, const bool silent)
                 EnvelopeAllowedCiphertext.at(input.version()).second,
                 silent);
 
-            if (false == validSessionKey) {
-                FAIL("envelope", "invalid session key")
-            }
+            if (false == validSessionKey) { FAIL_1("invalid session key") }
         } catch (const std::out_of_range&) {
-            FAIL2(
-                "envelope",
+            FAIL_2(
                 "allowed ciphertext version not defined for version",
                 input.version())
         }
@@ -66,12 +58,9 @@ bool CheckProto_1(const Envelope& input, const bool silent)
             silent,
             false);
 
-        if (false == validCiphertext) {
-            FAIL("envelope", "invalid ciphertext")
-        }
+        if (false == validCiphertext) { FAIL_1("invalid ciphertext") }
     } catch (const std::out_of_range&) {
-        FAIL2(
-            "envelope",
+        FAIL_2(
             "allowed ciphertext version not defined for version",
             input.version())
     }
@@ -81,97 +70,97 @@ bool CheckProto_1(const Envelope& input, const bool silent)
 
 bool CheckProto_2(const Envelope& input, const bool silent)
 {
-    UNDEFINED_VERSION("envelope", 2)
+    UNDEFINED_VERSION(2)
 }
 
 bool CheckProto_3(const Envelope& input, const bool silent)
 {
-    UNDEFINED_VERSION("envelope", 3)
+    UNDEFINED_VERSION(3)
 }
 
 bool CheckProto_4(const Envelope& input, const bool silent)
 {
-    UNDEFINED_VERSION("envelope", 4)
+    UNDEFINED_VERSION(4)
 }
 
 bool CheckProto_5(const Envelope& input, const bool silent)
 {
-    UNDEFINED_VERSION("envelope", 5)
+    UNDEFINED_VERSION(5)
 }
 
 bool CheckProto_6(const Envelope& input, const bool silent)
 {
-    UNDEFINED_VERSION2(6)
+    UNDEFINED_VERSION(6)
 }
 
 bool CheckProto_7(const Envelope& input, const bool silent)
 {
-    UNDEFINED_VERSION2(7)
+    UNDEFINED_VERSION(7)
 }
 
 bool CheckProto_8(const Envelope& input, const bool silent)
 {
-    UNDEFINED_VERSION2(8)
+    UNDEFINED_VERSION(8)
 }
 
 bool CheckProto_9(const Envelope& input, const bool silent)
 {
-    UNDEFINED_VERSION2(9)
+    UNDEFINED_VERSION(9)
 }
 
 bool CheckProto_10(const Envelope& input, const bool silent)
 {
-    UNDEFINED_VERSION2(10)
+    UNDEFINED_VERSION(10)
 }
 
 bool CheckProto_11(const Envelope& input, const bool silent)
 {
-    UNDEFINED_VERSION2(11)
+    UNDEFINED_VERSION(11)
 }
 
 bool CheckProto_12(const Envelope& input, const bool silent)
 {
-    UNDEFINED_VERSION2(12)
+    UNDEFINED_VERSION(12)
 }
 
 bool CheckProto_13(const Envelope& input, const bool silent)
 {
-    UNDEFINED_VERSION2(13)
+    UNDEFINED_VERSION(13)
 }
 
 bool CheckProto_14(const Envelope& input, const bool silent)
 {
-    UNDEFINED_VERSION2(14)
+    UNDEFINED_VERSION(14)
 }
 
 bool CheckProto_15(const Envelope& input, const bool silent)
 {
-    UNDEFINED_VERSION2(15)
+    UNDEFINED_VERSION(15)
 }
 
 bool CheckProto_16(const Envelope& input, const bool silent)
 {
-    UNDEFINED_VERSION2(16)
+    UNDEFINED_VERSION(16)
 }
 
 bool CheckProto_17(const Envelope& input, const bool silent)
 {
-    UNDEFINED_VERSION2(17)
+    UNDEFINED_VERSION(17)
 }
 
 bool CheckProto_18(const Envelope& input, const bool silent)
 {
-    UNDEFINED_VERSION2(18)
+    UNDEFINED_VERSION(18)
 }
 
 bool CheckProto_19(const Envelope& input, const bool silent)
 {
-    UNDEFINED_VERSION2(19)
+    UNDEFINED_VERSION(19)
 }
 
 bool CheckProto_20(const Envelope& input, const bool silent)
 {
-    UNDEFINED_VERSION2(20)
+    UNDEFINED_VERSION(20)
 }
 }  // namespace proto
 }  // namespace opentxs

@@ -6,8 +6,6 @@
 #include "opentxs-proto/Types.hpp"
 #include "opentxs-proto/Check.hpp"
 
-#include <iostream>
-
 #define PROTO_NAME "ciphertext"
 
 namespace opentxs
@@ -17,23 +15,19 @@ namespace proto
 
 bool CheckProto_1(const Ciphertext& input, const bool silent, const bool nested)
 {
-    if (!input.has_mode()) {
-        FAIL("ciphertext", "missing mode")
-    }
+    if (!input.has_mode()) { FAIL_1("missing mode") }
 
     switch (input.mode()) {
         case (SMODE_CHACHA20POLY1305): {
             break;
         }
         default: {
-            FAIL2("ciphertext", "invalid mode", input.mode())
+            FAIL_2("invalid mode", input.mode())
         }
     }
 
     if (nested) {
-        if (input.has_key()) {
-            FAIL("ciphertext", "key present in nested ciphertext")
-        }
+        if (input.has_key()) { FAIL_1("key present in nested ciphertext") }
     } else {
         if (input.has_key()) {
             try {
@@ -43,133 +37,120 @@ bool CheckProto_1(const Ciphertext& input, const bool silent, const bool nested)
                     CiphertextAllowedSymmetricKey.at(input.version()).second,
                     silent);
 
-                if (!validKey) {
-                    FAIL("ciphertext", "invalid key")
-                }
+                if (!validKey) { FAIL_1("invalid key") }
             } catch (const std::out_of_range&) {
-                FAIL2(
-                    "ciphertext",
+                FAIL_2(
                     "allowed symmetric key version not defined for version",
                     input.version())
             }
         }
     }
 
-    if (!input.has_iv()) {
-        FAIL("ciphertext", "missing iv")
-    }
+    if (!input.has_iv()) { FAIL_1("missing iv") }
 
-    if (1 > input.iv().size()) {
-        FAIL("ciphertext", "invalid iv")
-    }
+    if (1 > input.iv().size()) { FAIL_1("invalid iv") }
 
-    if (!input.has_tag()) {
-        FAIL("ciphertext", "missing tag")
-    }
+    if (!input.has_tag()) { FAIL_1("missing tag") }
 
-    if (1 > input.tag().size()) {
-        FAIL("ciphertext", "invalid tag")
-    }
+    if (1 > input.tag().size()) { FAIL_1("invalid tag") }
 
-    if (!input.has_data()) {
-        FAIL("ciphertext", "missing data")
-    }
+    if (!input.has_data()) { FAIL_1("missing data") }
 
     return true;
 }
 bool CheckProto_2(const Ciphertext& input, const bool silent, const bool)
 {
-    UNDEFINED_VERSION("ciphertext", 2)
+    UNDEFINED_VERSION(2)
 }
 
 bool CheckProto_3(const Ciphertext& input, const bool silent, const bool)
 {
-    UNDEFINED_VERSION("ciphertext", 3)
+    UNDEFINED_VERSION(3)
 }
 
 bool CheckProto_4(const Ciphertext& input, const bool silent, const bool)
 {
-    UNDEFINED_VERSION("ciphertext", 4)
+    UNDEFINED_VERSION(4)
 }
 
 bool CheckProto_5(const Ciphertext& input, const bool silent, const bool)
 {
-    UNDEFINED_VERSION("ciphertext", 5)
+    UNDEFINED_VERSION(5)
 }
 
 bool CheckProto_6(const Ciphertext& input, const bool silent, const bool)
 {
-    UNDEFINED_VERSION2(6)
+    UNDEFINED_VERSION(6)
 }
 
 bool CheckProto_7(const Ciphertext& input, const bool silent, const bool)
 {
-    UNDEFINED_VERSION2(7)
+    UNDEFINED_VERSION(7)
 }
 
 bool CheckProto_8(const Ciphertext& input, const bool silent, const bool)
 {
-    UNDEFINED_VERSION2(8)
+    UNDEFINED_VERSION(8)
 }
 
 bool CheckProto_9(const Ciphertext& input, const bool silent, const bool)
 {
-    UNDEFINED_VERSION2(9)
+    UNDEFINED_VERSION(9)
 }
 
 bool CheckProto_10(const Ciphertext& input, const bool silent, const bool)
 {
-    UNDEFINED_VERSION2(10)
+    UNDEFINED_VERSION(10)
 }
 
 bool CheckProto_11(const Ciphertext& input, const bool silent, const bool)
 {
-    UNDEFINED_VERSION2(11)
+    UNDEFINED_VERSION(11)
 }
 
 bool CheckProto_12(const Ciphertext& input, const bool silent, const bool)
 {
-    UNDEFINED_VERSION2(12)
+    UNDEFINED_VERSION(12)
 }
 
 bool CheckProto_13(const Ciphertext& input, const bool silent, const bool)
 {
-    UNDEFINED_VERSION2(13)
+    UNDEFINED_VERSION(13)
 }
 
 bool CheckProto_14(const Ciphertext& input, const bool silent, const bool)
 {
-    UNDEFINED_VERSION2(14)
+    UNDEFINED_VERSION(14)
 }
 
 bool CheckProto_15(const Ciphertext& input, const bool silent, const bool)
 {
-    UNDEFINED_VERSION2(15)
+    UNDEFINED_VERSION(15)
 }
 
 bool CheckProto_16(const Ciphertext& input, const bool silent, const bool)
 {
-    UNDEFINED_VERSION2(16)
+    UNDEFINED_VERSION(16)
 }
 
 bool CheckProto_17(const Ciphertext& input, const bool silent, const bool)
 {
-    UNDEFINED_VERSION2(17)
+    UNDEFINED_VERSION(17)
 }
 
 bool CheckProto_18(const Ciphertext& input, const bool silent, const bool)
 {
-    UNDEFINED_VERSION2(18)
+    UNDEFINED_VERSION(18)
 }
 
 bool CheckProto_19(const Ciphertext& input, const bool silent, const bool)
 {
-    UNDEFINED_VERSION2(19)
+    UNDEFINED_VERSION(19)
 }
 
 bool CheckProto_20(const Ciphertext& input, const bool silent, const bool)
 {
-    UNDEFINED_VERSION2(20)
+    UNDEFINED_VERSION(20)
 }
 }  // namespace proto
 }  // namespace opentxs

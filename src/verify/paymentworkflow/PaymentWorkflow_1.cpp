@@ -8,7 +8,7 @@
 
 #define BAD_EVENTS(a, b)                                                       \
     {                                                                          \
-        FAIL7(                                                                 \
+        FAIL_6(                                                                \
             a,                                                                 \
             b,                                                                 \
             " Type: ",                                                         \
@@ -31,11 +31,9 @@ bool CheckProto_1(const PaymentWorkflow& input, const bool silent)
              PaymentWorkflowAllowedState.at({input.version(), input.type()})
                  .count(input.state()));
 
-        if (false == valid) {
-            FAIL4("Invalid state")
-        }
+        if (false == valid) { FAIL_1("Invalid state") }
     } catch (const std::out_of_range&) {
-        FAIL4("Invalid type")
+        FAIL_1("Invalid type")
     }
 
     switch (input.type()) {
@@ -44,16 +42,16 @@ bool CheckProto_1(const PaymentWorkflow& input, const bool silent)
         case PAYMENTWORKFLOWTYPE_OUTGOINGINVOICE:
         case PAYMENTWORKFLOWTYPE_INCOMINGINVOICE: {
             if (1 != input.source().size()) {
-                FAIL5(
+                FAIL_2(
                     "Incorrect number of source objects", input.source().size())
             }
 
             if (1 != input.party().size()) {
-                FAIL5("Incorrect number of parties", input.party().size())
+                FAIL_2("Incorrect number of parties", input.party().size())
             }
         } break;
         default: {
-            FAIL4("Invalid type")
+            FAIL_1("Invalid type")
         }
     }
 
@@ -75,12 +73,12 @@ bool CheckProto_1(const PaymentWorkflow& input, const bool silent)
 
             if (false == validevent) {
                 const auto fail = std::string("invalid ") + "event";
-                FAIL4(fail)
+                FAIL_1(fail)
             }
         } catch (const std::out_of_range&) {
             const auto fail = std::string("allowed ") + "event" +
                               " version not defined for version";
-            FAIL5(fail, input.version())
+            FAIL_2(fail, input.version())
         }
     }
 
@@ -97,9 +95,7 @@ bool CheckProto_1(const PaymentWorkflow& input, const bool silent)
     switch (input.type()) {
         case PAYMENTWORKFLOWTYPE_OUTGOINGCHEQUE:
         case PAYMENTWORKFLOWTYPE_OUTGOINGINVOICE: {
-            if (1 != accounts) {
-                FAIL5("Wrong number of accounts", accounts)
-            }
+            if (1 != accounts) { FAIL_2("Wrong number of accounts", accounts) }
 
             switch (input.state()) {
                 case PAYMENTWORKFLOWSTATE_UNSENT: {
@@ -239,7 +235,7 @@ bool CheckProto_1(const PaymentWorkflow& input, const bool silent)
                     }
                 } break;
                 default: {
-                    FAIL4("Invalid state")
+                    FAIL_1("Invalid state")
                 }
             }
         } break;
@@ -333,12 +329,12 @@ bool CheckProto_1(const PaymentWorkflow& input, const bool silent)
                     }
                 } break;
                 default: {
-                    FAIL4("Invalid state")
+                    FAIL_1("Invalid state")
                 }
             }
         } break;
         default: {
-            FAIL4("Invalid type")
+            FAIL_1("Invalid type")
         }
     }
 
@@ -347,9 +343,7 @@ bool CheckProto_1(const PaymentWorkflow& input, const bool silent)
         case PAYMENTWORKFLOWTYPE_INCOMINGCHEQUE:
         case PAYMENTWORKFLOWTYPE_OUTGOINGINVOICE:
         case PAYMENTWORKFLOWTYPE_INCOMINGINVOICE: {
-            if (1 != input.unit().size()) {
-                FAIL4("Missing unite")
-            }
+            if (1 != input.unit().size()) { FAIL_1("Missing unite") }
         } break;
         default: {
         }
@@ -360,96 +354,96 @@ bool CheckProto_1(const PaymentWorkflow& input, const bool silent)
 
 bool CheckProto_2(const PaymentWorkflow& input, const bool silent)
 {
-    UNDEFINED_VERSION2(2)
+    UNDEFINED_VERSION(2)
 }
 
 bool CheckProto_3(const PaymentWorkflow& input, const bool silent)
 {
-    UNDEFINED_VERSION2(3)
+    UNDEFINED_VERSION(3)
 }
 
 bool CheckProto_4(const PaymentWorkflow& input, const bool silent)
 {
-    UNDEFINED_VERSION2(4)
+    UNDEFINED_VERSION(4)
 }
 
 bool CheckProto_5(const PaymentWorkflow& input, const bool silent)
 {
-    UNDEFINED_VERSION2(5)
+    UNDEFINED_VERSION(5)
 }
 
 bool CheckProto_6(const PaymentWorkflow& input, const bool silent)
 {
-    UNDEFINED_VERSION2(6)
+    UNDEFINED_VERSION(6)
 }
 
 bool CheckProto_7(const PaymentWorkflow& input, const bool silent)
 {
-    UNDEFINED_VERSION2(7)
+    UNDEFINED_VERSION(7)
 }
 
 bool CheckProto_8(const PaymentWorkflow& input, const bool silent)
 {
-    UNDEFINED_VERSION2(8)
+    UNDEFINED_VERSION(8)
 }
 
 bool CheckProto_9(const PaymentWorkflow& input, const bool silent)
 {
-    UNDEFINED_VERSION2(9)
+    UNDEFINED_VERSION(9)
 }
 
 bool CheckProto_10(const PaymentWorkflow& input, const bool silent)
 {
-    UNDEFINED_VERSION2(10)
+    UNDEFINED_VERSION(10)
 }
 
 bool CheckProto_11(const PaymentWorkflow& input, const bool silent)
 {
-    UNDEFINED_VERSION2(11)
+    UNDEFINED_VERSION(11)
 }
 
 bool CheckProto_12(const PaymentWorkflow& input, const bool silent)
 {
-    UNDEFINED_VERSION2(12)
+    UNDEFINED_VERSION(12)
 }
 
 bool CheckProto_13(const PaymentWorkflow& input, const bool silent)
 {
-    UNDEFINED_VERSION2(13)
+    UNDEFINED_VERSION(13)
 }
 
 bool CheckProto_14(const PaymentWorkflow& input, const bool silent)
 {
-    UNDEFINED_VERSION2(14)
+    UNDEFINED_VERSION(14)
 }
 
 bool CheckProto_15(const PaymentWorkflow& input, const bool silent)
 {
-    UNDEFINED_VERSION2(15)
+    UNDEFINED_VERSION(15)
 }
 
 bool CheckProto_16(const PaymentWorkflow& input, const bool silent)
 {
-    UNDEFINED_VERSION2(16)
+    UNDEFINED_VERSION(16)
 }
 
 bool CheckProto_17(const PaymentWorkflow& input, const bool silent)
 {
-    UNDEFINED_VERSION2(17)
+    UNDEFINED_VERSION(17)
 }
 
 bool CheckProto_18(const PaymentWorkflow& input, const bool silent)
 {
-    UNDEFINED_VERSION2(18)
+    UNDEFINED_VERSION(18)
 }
 
 bool CheckProto_19(const PaymentWorkflow& input, const bool silent)
 {
-    UNDEFINED_VERSION2(19)
+    UNDEFINED_VERSION(19)
 }
 
 bool CheckProto_20(const PaymentWorkflow& input, const bool silent)
 {
-    UNDEFINED_VERSION2(20)
+    UNDEFINED_VERSION(20)
 }
 }  // namespace opentxs::proto

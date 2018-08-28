@@ -6,8 +6,6 @@
 #include "opentxs-proto/Types.hpp"
 #include "opentxs-proto/Check.hpp"
 
-#include <iostream>
-
 #define PROTO_NAME "master parameters"
 
 namespace opentxs
@@ -20,9 +18,7 @@ bool CheckProto_1(
     const bool silent,
     bool& expectSourceSignature)
 {
-    if (false == input.has_source()) {
-        FAIL("master parameters", "missing nym id source")
-    }
+    if (false == input.has_source()) { FAIL_1("missing nym id source") }
 
     try {
         const bool validSource = Check(
@@ -31,19 +27,14 @@ bool CheckProto_1(
             MasterParamsAllowedNymIDSource.at(input.version()).second,
             silent);
 
-        if (!validSource) {
-            FAIL("master parameters", "invalid nym id source")
-        }
+        if (!validSource) { FAIL_1("invalid nym id source") }
     } catch (const std::out_of_range&) {
-        FAIL2(
-            "master parameters",
+        FAIL_2(
             "allowed nym ID source version not defined for version",
             input.version())
     }
 
-    if (!input.has_sourceproof()) {
-        FAIL("master parameters", "missing nym id source proof")
-    }
+    if (!input.has_sourceproof()) { FAIL_1("missing nym id source proof") }
 
     try {
         const bool validProof = Check(
@@ -53,12 +44,9 @@ bool CheckProto_1(
             silent,
             expectSourceSignature);
 
-        if (!validProof) {
-            FAIL("master parameters", "invalid nym id source proof")
-        }
+        if (!validProof) { FAIL_1("invalid nym id source proof") }
     } catch (const std::out_of_range&) {
-        FAIL2(
-            "master parameters",
+        FAIL_2(
             "allowed source proof version not defined for version",
             input.version())
     }
@@ -71,7 +59,7 @@ bool CheckProto_2(
     const bool silent,
     bool&)
 {
-    UNDEFINED_VERSION("master parameters", 2)
+    UNDEFINED_VERSION(2)
 }
 
 bool CheckProto_3(
@@ -79,7 +67,7 @@ bool CheckProto_3(
     const bool silent,
     bool&)
 {
-    UNDEFINED_VERSION("master parameters", 3)
+    UNDEFINED_VERSION(3)
 }
 
 bool CheckProto_4(
@@ -87,7 +75,7 @@ bool CheckProto_4(
     const bool silent,
     bool&)
 {
-    UNDEFINED_VERSION("master parameters", 4)
+    UNDEFINED_VERSION(4)
 }
 
 bool CheckProto_5(
@@ -95,7 +83,7 @@ bool CheckProto_5(
     const bool silent,
     bool&)
 {
-    UNDEFINED_VERSION("master parameters", 5)
+    UNDEFINED_VERSION(5)
 }
 
 bool CheckProto_6(
@@ -103,7 +91,7 @@ bool CheckProto_6(
     const bool silent,
     bool&)
 {
-    UNDEFINED_VERSION2(6)
+    UNDEFINED_VERSION(6)
 }
 
 bool CheckProto_7(
@@ -111,7 +99,7 @@ bool CheckProto_7(
     const bool silent,
     bool&)
 {
-    UNDEFINED_VERSION2(7)
+    UNDEFINED_VERSION(7)
 }
 
 bool CheckProto_8(
@@ -119,7 +107,7 @@ bool CheckProto_8(
     const bool silent,
     bool&)
 {
-    UNDEFINED_VERSION2(8)
+    UNDEFINED_VERSION(8)
 }
 
 bool CheckProto_9(
@@ -127,7 +115,7 @@ bool CheckProto_9(
     const bool silent,
     bool&)
 {
-    UNDEFINED_VERSION2(9)
+    UNDEFINED_VERSION(9)
 }
 
 bool CheckProto_10(
@@ -135,7 +123,7 @@ bool CheckProto_10(
     const bool silent,
     bool&)
 {
-    UNDEFINED_VERSION2(10)
+    UNDEFINED_VERSION(10)
 }
 
 bool CheckProto_11(
@@ -143,7 +131,7 @@ bool CheckProto_11(
     const bool silent,
     bool&)
 {
-    UNDEFINED_VERSION2(11)
+    UNDEFINED_VERSION(11)
 }
 
 bool CheckProto_12(
@@ -151,7 +139,7 @@ bool CheckProto_12(
     const bool silent,
     bool&)
 {
-    UNDEFINED_VERSION2(12)
+    UNDEFINED_VERSION(12)
 }
 
 bool CheckProto_13(
@@ -159,7 +147,7 @@ bool CheckProto_13(
     const bool silent,
     bool&)
 {
-    UNDEFINED_VERSION2(13)
+    UNDEFINED_VERSION(13)
 }
 
 bool CheckProto_14(
@@ -167,7 +155,7 @@ bool CheckProto_14(
     const bool silent,
     bool&)
 {
-    UNDEFINED_VERSION2(14)
+    UNDEFINED_VERSION(14)
 }
 
 bool CheckProto_15(
@@ -175,7 +163,7 @@ bool CheckProto_15(
     const bool silent,
     bool&)
 {
-    UNDEFINED_VERSION2(15)
+    UNDEFINED_VERSION(15)
 }
 
 bool CheckProto_16(
@@ -183,7 +171,7 @@ bool CheckProto_16(
     const bool silent,
     bool&)
 {
-    UNDEFINED_VERSION2(16)
+    UNDEFINED_VERSION(16)
 }
 
 bool CheckProto_17(
@@ -191,7 +179,7 @@ bool CheckProto_17(
     const bool silent,
     bool&)
 {
-    UNDEFINED_VERSION2(17)
+    UNDEFINED_VERSION(17)
 }
 
 bool CheckProto_18(
@@ -199,7 +187,7 @@ bool CheckProto_18(
     const bool silent,
     bool&)
 {
-    UNDEFINED_VERSION2(18)
+    UNDEFINED_VERSION(18)
 }
 
 bool CheckProto_19(
@@ -207,7 +195,7 @@ bool CheckProto_19(
     const bool silent,
     bool&)
 {
-    UNDEFINED_VERSION2(19)
+    UNDEFINED_VERSION(19)
 }
 
 bool CheckProto_20(
@@ -215,7 +203,7 @@ bool CheckProto_20(
     const bool silent,
     bool&)
 {
-    UNDEFINED_VERSION2(20)
+    UNDEFINED_VERSION(20)
 }
 }  // namespace proto
 }  // namespace opentxs

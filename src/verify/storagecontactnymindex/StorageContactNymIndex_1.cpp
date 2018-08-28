@@ -6,34 +6,26 @@
 #include "opentxs-proto/Types.hpp"
 #include "opentxs-proto/Check.hpp"
 
-#include <iostream>
-
 #define PROTO_NAME "storage contact nym index"
 
 namespace opentxs::proto
 {
 bool CheckProto_1(const StorageContactNymIndex& input, const bool silent)
 {
-    if (false == input.has_contact()) {
-        FAIL("storage contact nym index", "missing contact")
-    }
+    if (false == input.has_contact()) { FAIL_1("missing contact") }
 
     if (MIN_PLAUSIBLE_IDENTIFIER > input.contact().size()) {
-        FAIL2("storage contact nym index", "invalid contact", input.contact())
+        FAIL_2("invalid contact", input.contact())
     }
 
     if (MAX_PLAUSIBLE_IDENTIFIER < input.contact().size()) {
-        FAIL2("storage contact nym index", "invalid contact", input.contact())
+        FAIL_2("invalid contact", input.contact())
     }
 
     for (const auto& it : input.nym()) {
-        if (MIN_PLAUSIBLE_IDENTIFIER > it.size()) {
-            FAIL2("storage contact nym index", "invalid nym", it)
-        }
+        if (MIN_PLAUSIBLE_IDENTIFIER > it.size()) { FAIL_2("invalid nym", it) }
 
-        if (MAX_PLAUSIBLE_IDENTIFIER < it.size()) {
-            FAIL2("storage contact nym index", "invalid nym", it)
-        }
+        if (MAX_PLAUSIBLE_IDENTIFIER < it.size()) { FAIL_2("invalid nym", it) }
     }
 
     return true;
@@ -41,96 +33,96 @@ bool CheckProto_1(const StorageContactNymIndex& input, const bool silent)
 
 bool CheckProto_2(const StorageContactNymIndex& input, const bool silent)
 {
-    UNDEFINED_VERSION("storage contact nym index", 2)
+    UNDEFINED_VERSION(2)
 }
 
 bool CheckProto_3(const StorageContactNymIndex& input, const bool silent)
 {
-    UNDEFINED_VERSION("storage contact nym index", 3)
+    UNDEFINED_VERSION(3)
 }
 
 bool CheckProto_4(const StorageContactNymIndex& input, const bool silent)
 {
-    UNDEFINED_VERSION("storage contact nym index", 4)
+    UNDEFINED_VERSION(4)
 }
 
 bool CheckProto_5(const StorageContactNymIndex& input, const bool silent)
 {
-    UNDEFINED_VERSION("storage contact nym index", 5)
+    UNDEFINED_VERSION(5)
 }
 
 bool CheckProto_6(const StorageContactNymIndex& input, const bool silent)
 {
-    UNDEFINED_VERSION2(6)
+    UNDEFINED_VERSION(6)
 }
 
 bool CheckProto_7(const StorageContactNymIndex& input, const bool silent)
 {
-    UNDEFINED_VERSION2(7)
+    UNDEFINED_VERSION(7)
 }
 
 bool CheckProto_8(const StorageContactNymIndex& input, const bool silent)
 {
-    UNDEFINED_VERSION2(8)
+    UNDEFINED_VERSION(8)
 }
 
 bool CheckProto_9(const StorageContactNymIndex& input, const bool silent)
 {
-    UNDEFINED_VERSION2(9)
+    UNDEFINED_VERSION(9)
 }
 
 bool CheckProto_10(const StorageContactNymIndex& input, const bool silent)
 {
-    UNDEFINED_VERSION2(10)
+    UNDEFINED_VERSION(10)
 }
 
 bool CheckProto_11(const StorageContactNymIndex& input, const bool silent)
 {
-    UNDEFINED_VERSION2(11)
+    UNDEFINED_VERSION(11)
 }
 
 bool CheckProto_12(const StorageContactNymIndex& input, const bool silent)
 {
-    UNDEFINED_VERSION2(12)
+    UNDEFINED_VERSION(12)
 }
 
 bool CheckProto_13(const StorageContactNymIndex& input, const bool silent)
 {
-    UNDEFINED_VERSION2(13)
+    UNDEFINED_VERSION(13)
 }
 
 bool CheckProto_14(const StorageContactNymIndex& input, const bool silent)
 {
-    UNDEFINED_VERSION2(14)
+    UNDEFINED_VERSION(14)
 }
 
 bool CheckProto_15(const StorageContactNymIndex& input, const bool silent)
 {
-    UNDEFINED_VERSION2(15)
+    UNDEFINED_VERSION(15)
 }
 
 bool CheckProto_16(const StorageContactNymIndex& input, const bool silent)
 {
-    UNDEFINED_VERSION2(16)
+    UNDEFINED_VERSION(16)
 }
 
 bool CheckProto_17(const StorageContactNymIndex& input, const bool silent)
 {
-    UNDEFINED_VERSION2(17)
+    UNDEFINED_VERSION(17)
 }
 
 bool CheckProto_18(const StorageContactNymIndex& input, const bool silent)
 {
-    UNDEFINED_VERSION2(18)
+    UNDEFINED_VERSION(18)
 }
 
 bool CheckProto_19(const StorageContactNymIndex& input, const bool silent)
 {
-    UNDEFINED_VERSION2(19)
+    UNDEFINED_VERSION(19)
 }
 
 bool CheckProto_20(const StorageContactNymIndex& input, const bool silent)
 {
-    UNDEFINED_VERSION2(20)
+    UNDEFINED_VERSION(20)
 }
 }  // namespace opentxs::proto

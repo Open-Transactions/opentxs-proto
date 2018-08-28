@@ -6,8 +6,6 @@
 #include "opentxs-proto/Types.hpp"
 #include "opentxs-proto/Check.hpp"
 
-#include <iostream>
-
 #define PROTO_NAME "storage item hash"
 
 namespace opentxs
@@ -16,25 +14,19 @@ namespace proto
 {
 bool CheckProto_2(const StorageItemHash& input, const bool silent)
 {
-    if (!input.has_itemid()) {
-        FAIL("storage item hash", "missing id")
-    }
+    if (!input.has_itemid()) { FAIL_1("missing id") }
 
     if (MIN_PLAUSIBLE_IDENTIFIER > input.itemid().size()) {
-        FAIL("storage item hash", "invalid id")
+        FAIL_1("invalid id")
     }
 
-    if (!input.has_hash()) {
-        FAIL("storage item hash", "missing hash")
-    }
+    if (!input.has_hash()) { FAIL_1("missing hash") }
 
     if (MIN_PLAUSIBLE_IDENTIFIER > input.hash().size()) {
-        FAIL("storage item hash", "invalid hash")
+        FAIL_1("invalid hash")
     }
 
-    if (!input.has_type()) {
-        FAIL("storage item hash", "missing type")
-    }
+    if (!input.has_type()) { FAIL_1("missing type") }
 
     switch (input.type()) {
         case STORAGEHASH_PROTO:
@@ -42,7 +34,7 @@ bool CheckProto_2(const StorageItemHash& input, const bool silent)
             break;
         }
         default: {
-            FAIL("storage item hash", "invalid type")
+            FAIL_1("invalid type")
         }
     }
 
@@ -76,67 +68,67 @@ bool CheckProto_7(const StorageItemHash& input, const bool silent)
 
 bool CheckProto_8(const StorageItemHash& input, const bool silent)
 {
-    UNDEFINED_VERSION2(8)
+    UNDEFINED_VERSION(8)
 }
 
 bool CheckProto_9(const StorageItemHash& input, const bool silent)
 {
-    UNDEFINED_VERSION2(9)
+    UNDEFINED_VERSION(9)
 }
 
 bool CheckProto_10(const StorageItemHash& input, const bool silent)
 {
-    UNDEFINED_VERSION2(10)
+    UNDEFINED_VERSION(10)
 }
 
 bool CheckProto_11(const StorageItemHash& input, const bool silent)
 {
-    UNDEFINED_VERSION2(11)
+    UNDEFINED_VERSION(11)
 }
 
 bool CheckProto_12(const StorageItemHash& input, const bool silent)
 {
-    UNDEFINED_VERSION2(12)
+    UNDEFINED_VERSION(12)
 }
 
 bool CheckProto_13(const StorageItemHash& input, const bool silent)
 {
-    UNDEFINED_VERSION2(13)
+    UNDEFINED_VERSION(13)
 }
 
 bool CheckProto_14(const StorageItemHash& input, const bool silent)
 {
-    UNDEFINED_VERSION2(14)
+    UNDEFINED_VERSION(14)
 }
 
 bool CheckProto_15(const StorageItemHash& input, const bool silent)
 {
-    UNDEFINED_VERSION2(15)
+    UNDEFINED_VERSION(15)
 }
 
 bool CheckProto_16(const StorageItemHash& input, const bool silent)
 {
-    UNDEFINED_VERSION2(16)
+    UNDEFINED_VERSION(16)
 }
 
 bool CheckProto_17(const StorageItemHash& input, const bool silent)
 {
-    UNDEFINED_VERSION2(17)
+    UNDEFINED_VERSION(17)
 }
 
 bool CheckProto_18(const StorageItemHash& input, const bool silent)
 {
-    UNDEFINED_VERSION2(18)
+    UNDEFINED_VERSION(18)
 }
 
 bool CheckProto_19(const StorageItemHash& input, const bool silent)
 {
-    UNDEFINED_VERSION2(19)
+    UNDEFINED_VERSION(19)
 }
 
 bool CheckProto_20(const StorageItemHash& input, const bool silent)
 {
-    UNDEFINED_VERSION2(20)
+    UNDEFINED_VERSION(20)
 }
 }  // namespace proto
 }  // namespace opentxs

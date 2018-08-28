@@ -6,7 +6,7 @@
 #include "opentxs-proto/Types.hpp"
 #include "opentxs-proto/Check.hpp"
 
-#include <iostream>
+#define PROTO_NAME "server context"
 
 namespace opentxs
 {
@@ -14,30 +14,24 @@ namespace proto
 {
 bool CheckProto_1(const ServerContext& input, const bool silent)
 {
-    if (!input.has_serverid()) {
-        FAIL("server context", "missing server id")
-    }
+    if (!input.has_serverid()) { FAIL_1("missing server id") }
 
     if ((MIN_PLAUSIBLE_IDENTIFIER > input.serverid().size()) ||
         (MAX_PLAUSIBLE_IDENTIFIER < input.serverid().size())) {
-        FAIL("server context", "invalid server id")
+        FAIL_1("invalid server id")
     }
 
-    if (0 < input.revision()) {
-        FAIL("server context", "unexpected revision field found");
-    }
+    if (0 < input.revision()) { FAIL_1("unexpected revision field found"); }
 
     if (0 < input.adminpassword().size()) {
-        FAIL("server context", "unexpected adminpassword field found");
+        FAIL_1("unexpected adminpassword field found");
     }
 
     if (input.adminattempted()) {
-        FAIL("server context", "unexpected adminattempted field found");
+        FAIL_1("unexpected adminattempted field found");
     }
 
-    if (input.adminsuccess()) {
-        FAIL("server context", "unexpected adminsuccess field found");
-    }
+    if (input.adminsuccess()) { FAIL_1("unexpected adminsuccess field found"); }
 
     return true;
 }
