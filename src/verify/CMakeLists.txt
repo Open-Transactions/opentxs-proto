@@ -7,6 +7,11 @@ set(MODULE_NAME verify)
 
 set(cxx-sources
   VerifyContacts.cpp
+  accountdata/AccountData_1.cpp
+  accountevent/AccountEvent_1.cpp
+  addclaim/AddClaim_1.cpp
+  addcontact/AddContact_1.cpp
+  apiargument/APIArgument_1.cpp
   asymmetrickey/AsymmetricKey_1.cpp
   bailment/Bailment_1.cpp
   bailmentreply/BailmentReply_1.cpp
@@ -28,10 +33,13 @@ set(cxx-sources
   connectioninforeply/ConnectionInfoReply_1.cpp
   contact/Contact_1.cpp
   contactdata/ContactData_1.cpp
+  contactevent/ContactEvent_1.cpp
   contactitem/ContactItem_1.cpp
   contactsection/ContactSection_1.cpp
   context/Context_1.cpp
   currencyparams/CurrencyParams_1.cpp
+  createinstrumentdefinition/CreateInstrumentDefinition_1.cpp
+  createnym/CreateNym_1.cpp
   credential/Credential_1.cpp
   credentialindex/CredentialIndex_1.cpp
   credentialset/CredentialSet_1.cpp
@@ -39,11 +47,13 @@ set(cxx-sources
   envelope/Envelope_1.cpp
   faucet/Faucet_1.cpp
   hdpath/HDPath_1.cpp
+  hdseed/HDSeed_1.cpp
   instrumentrevision/InstrumentRevision_1.cpp
   issuer/Issuer_1.cpp
   keycredential/KeyCredential_1.cpp
   listenaddress/ListenAddress_1.cpp
   mastercredentialparameters/MasterCredentialParameters_1.cpp
+  movefunds/MoveFunds_1.cpp
   nymidsource/NymIDSource_1.cpp
   noticeacknowledgement/NoticeAcknowledgement_1.cpp
   outbailment/OutBailment_1.cpp
@@ -65,13 +75,19 @@ set(cxx-sources
   peerrequesthistory/PeerRequestHistory_1.cpp
   peerrequestworkflow/PeerRequestWorkflow_1.cpp
   pendingbailment/PendingBailment_1.cpp
+  rpccommand/RPCCommand_1.cpp
+  rpcpush/RPCPush_1.cpp
+  rpcresponse/RPCResponse_1.cpp
   seed/Seed_1.cpp
   seed/Seed_2.cpp
+  sendmessage/SendMessage_1.cpp
+  sendpayment/SendPayment_1.cpp
   servercontext/ServerContext_1.cpp
   servercontext/ServerContext_2.cpp
   servercontract/ServerContract_1.cpp
   serverreply/ServerReply_1.cpp
   serverrequest/ServerRequest_1.cpp
+  sessiondata/SessionData_1.cpp
   signature/Signature_1.cpp
   signature/Signature_2.cpp
   signature/Signature_3.cpp
@@ -116,6 +132,7 @@ set(cxx-sources
   storageworkflowindex/StorageWorkflowIndex_1.cpp
   storageworkflowtype/StorageWorkflowType_1.cpp
   storesecret/StoreSecret_1.cpp
+  taskcomplete/TaskComplete_1.cpp
   symmetrickey/SymmetricKey_1.cpp
   unitaccountmap/UnitAccountMap_1.cpp
   unitdefinition/UnitDefinition_1.cpp
@@ -124,6 +141,7 @@ set(cxx-sources
   verificationidentity/VerificationIdentity_1.cpp
   verificationoffer/VerificationOffer_1.cpp
   verificationset/VerificationSet_1.cpp
+  verifyclaim/VerifyClaim_1.cpp
 )
 
 file(GLOB cxx-headers "${CMAKE_CURRENT_SOURCE_DIR}/../../include/opentxs-proto/verify/*.hpp")

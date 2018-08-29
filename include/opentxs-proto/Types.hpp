@@ -26,6 +26,11 @@
 #endif
 
 // IWYU pragma: begin_exports
+#include <opentxs-proto/AccountData.pb.h>
+#include <opentxs-proto/AccountEvent.pb.h>
+#include <opentxs-proto/AddClaim.pb.h>
+#include <opentxs-proto/AddContact.pb.h>
+#include <opentxs-proto/APIArgument.pb.h>
 #include <opentxs-proto/AsymmetricKey.pb.h>
 #include <opentxs-proto/Bailment.pb.h>
 #include <opentxs-proto/BailmentReply.pb.h>
@@ -49,10 +54,13 @@
 #include <opentxs-proto/Contact.pb.h>
 #include <opentxs-proto/ContactData.pb.h>
 #include <opentxs-proto/ContactEnums.pb.h>
+#include <opentxs-proto/ContactEvent.pb.h>
 #include <opentxs-proto/ContactItem.pb.h>
 #include <opentxs-proto/ContactSection.pb.h>
 #include <opentxs-proto/Context.pb.h>
 #include <opentxs-proto/ContractEnums.pb.h>
+#include <opentxs-proto/CreateInstrumentDefinition.pb.h>
+#include <opentxs-proto/CreateNym.pb.h>
 #include <opentxs-proto/Credential.pb.h>
 #include <opentxs-proto/CredentialIndex.pb.h>
 #include <opentxs-proto/CredentialSet.pb.h>
@@ -62,11 +70,13 @@
 #include <opentxs-proto/EquityParams.pb.h>
 #include <opentxs-proto/Faucet.pb.h>
 #include <opentxs-proto/HDPath.pb.h>
+#include <opentxs-proto/HDSeed.pb.h>
 #include <opentxs-proto/InstrumentRevision.pb.h>
 #include <opentxs-proto/Issuer.pb.h>
 #include <opentxs-proto/KeyCredential.pb.h>
 #include <opentxs-proto/ListenAddress.pb.h>
 #include <opentxs-proto/MasterCredentialParameters.pb.h>
+#include <opentxs-proto/MoveFunds.pb.h>
 #include <opentxs-proto/NoticeAcknowledgement.pb.h>
 #include <opentxs-proto/NymIDSource.pb.h>
 #include <opentxs-proto/OTXEnums.pb.h>
@@ -84,11 +94,18 @@
 #include <opentxs-proto/PeerRequestHistory.pb.h>
 #include <opentxs-proto/PeerRequestWorkflow.pb.h>
 #include <opentxs-proto/PendingBailment.pb.h>
+#include <opentxs-proto/RPCCommand.pb.h>
+#include <opentxs-proto/RPCEnums.pb.h>
+#include <opentxs-proto/RPCPush.pb.h>
+#include <opentxs-proto/RPCResponse.pb.h>
 #include <opentxs-proto/Seed.pb.h>
+#include <opentxs-proto/SendMessage.pb.h>
+#include <opentxs-proto/SendPayment.pb.h>
 #include <opentxs-proto/ServerContext.pb.h>
 #include <opentxs-proto/ServerContract.pb.h>
 #include <opentxs-proto/ServerReply.pb.h>
 #include <opentxs-proto/ServerRequest.pb.h>
+#include <opentxs-proto/SessionData.pb.h>
 #include <opentxs-proto/Signature.pb.h>
 #include <opentxs-proto/SourceProof.pb.h>
 #include <opentxs-proto/StorageAccountIndex.pb.h>
@@ -121,6 +138,7 @@
 #include <opentxs-proto/StorageWorkflowType.pb.h>
 #include <opentxs-proto/StoreSecret.pb.h>
 #include <opentxs-proto/SymmetricKey.pb.h>
+#include <opentxs-proto/TaskComplete.pb.h>
 #include <opentxs-proto/UnitAccountMap.pb.h>
 #include <opentxs-proto/UnitDefinition.pb.h>
 #include <opentxs-proto/Verification.pb.h>
@@ -128,7 +146,13 @@
 #include <opentxs-proto/VerificationIdentity.pb.h>
 #include <opentxs-proto/VerificationOffer.pb.h>
 #include <opentxs-proto/VerificationSet.pb.h>
+#include <opentxs-proto/VerifyClaim.pb.h>
 #include <opentxs-proto/ZMQEnums.pb.h>
+#include <opentxs-proto/verify/AccountData.hpp>
+#include <opentxs-proto/verify/AccountEvent.hpp>
+#include <opentxs-proto/verify/AddClaim.hpp>
+#include <opentxs-proto/verify/AddContact.hpp>
+#include <opentxs-proto/verify/APIArgument.hpp>
 #include <opentxs-proto/verify/AsymmetricKey.hpp>
 #include <opentxs-proto/verify/Bailment.hpp>
 #include <opentxs-proto/verify/BailmentReply.hpp>
@@ -150,9 +174,12 @@
 #include <opentxs-proto/verify/ConnectionInfoReply.hpp>
 #include <opentxs-proto/verify/Contact.hpp>
 #include <opentxs-proto/verify/ContactData.hpp>
+#include <opentxs-proto/verify/ContactEvent.hpp>
 #include <opentxs-proto/verify/ContactItem.hpp>
 #include <opentxs-proto/verify/ContactSection.hpp>
 #include <opentxs-proto/verify/Context.hpp>
+#include <opentxs-proto/verify/CreateInstrumentDefinition.hpp>
+#include <opentxs-proto/verify/CreateNym.hpp>
 #include <opentxs-proto/verify/Credential.hpp>
 #include <opentxs-proto/verify/CredentialIndex.hpp>
 #include <opentxs-proto/verify/CredentialSet.hpp>
@@ -161,11 +188,13 @@
 #include <opentxs-proto/verify/Envelope.hpp>
 #include <opentxs-proto/verify/EquityParams.hpp>
 #include <opentxs-proto/verify/HDPath.hpp>
+#include <opentxs-proto/verify/HDSeed.hpp>
 #include <opentxs-proto/verify/InstrumentRevision.hpp>
 #include <opentxs-proto/verify/Issuer.hpp>
 #include <opentxs-proto/verify/KeyCredential.hpp>
 #include <opentxs-proto/verify/ListenAddress.hpp>
 #include <opentxs-proto/verify/MasterCredentialParameters.hpp>
+#include <opentxs-proto/verify/MoveFunds.hpp>
 #include <opentxs-proto/verify/NoticeAcknowledgement.hpp>
 #include <opentxs-proto/verify/NymIDSource.hpp>
 #include <opentxs-proto/verify/OutBailment.hpp>
@@ -180,11 +209,17 @@
 #include <opentxs-proto/verify/PeerRequestHistory.hpp>
 #include <opentxs-proto/verify/PeerRequestWorkflow.hpp>
 #include <opentxs-proto/verify/PendingBailment.hpp>
+#include <opentxs-proto/verify/RPCCommand.hpp>
+#include <opentxs-proto/verify/RPCPush.hpp>
+#include <opentxs-proto/verify/RPCResponse.hpp>
 #include <opentxs-proto/verify/Seed.hpp>
+#include <opentxs-proto/verify/SendMessage.hpp>
+#include <opentxs-proto/verify/SendPayment.hpp>
 #include <opentxs-proto/verify/ServerContext.hpp>
 #include <opentxs-proto/verify/ServerContract.hpp>
 #include <opentxs-proto/verify/ServerReply.hpp>
 #include <opentxs-proto/verify/ServerRequest.hpp>
+#include <opentxs-proto/verify/SessionData.hpp>
 #include <opentxs-proto/verify/Signature.hpp>
 #include <opentxs-proto/verify/Signature.hpp>
 #include <opentxs-proto/verify/SourceProof.hpp>
@@ -217,6 +252,7 @@
 #include <opentxs-proto/verify/StorageWorkflowType.hpp>
 #include <opentxs-proto/verify/StoreSecret.hpp>
 #include <opentxs-proto/verify/SymmetricKey.hpp>
+#include <opentxs-proto/verify/TaskComplete.hpp>
 #include <opentxs-proto/verify/UnitAccountMap.hpp>
 #include <opentxs-proto/verify/UnitDefinition.hpp>
 #include <opentxs-proto/verify/Verification.hpp>
@@ -225,6 +261,7 @@
 #include <opentxs-proto/verify/VerificationOffer.hpp>
 #include <opentxs-proto/verify/VerificationSet.hpp>
 #include <opentxs-proto/verify/VerifyCredentials.hpp>
+#include <opentxs-proto/verify/VerifyClaim.hpp>
 // IWYU pragma: end_exports
 #ifdef _WIN32
 #pragma warning(pop)

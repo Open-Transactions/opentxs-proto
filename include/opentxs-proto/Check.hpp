@@ -139,6 +139,15 @@
         }                                                                      \
     }
 
+#define CHECK_SIZE(a, b)                                                       \
+    {                                                                          \
+        if (b != input.a().size()) {                                           \
+            const auto fail =                                                  \
+                std::string("Wrong number of ") + #a + " present ";            \
+            FAIL_2(fail, input.a().size());                                    \
+        }                                                                      \
+    }
+
 #define _CHECK_STRING(a, min, max)                                             \
     {                                                                          \
         if (input.has_##a() && (0 < input.a().size())) {                       \
@@ -173,8 +182,8 @@
 
 #define CHECK_IDENTIFIERS(a)                                                   \
     {                                                                          \
-        /* CHECK_EXISTS(a) */                                                  \
-        OPTIONAL_IDENTIFIERS(a)                                                \
+        /* CHECK_EXISTS(a); */                                                 \
+        OPTIONAL_IDENTIFIERS(a);                                               \
     }
 
 #define OPTIONAL_KEY(a)                                                        \
@@ -197,6 +206,22 @@
     {                                                                          \
         CHECK_EXISTS_STRING(a);                                                \
         OPTIONAL_NAME(a);                                                      \
+    }
+
+#define OPTIONAL_NAMES(a)                                                      \
+    {                                                                          \
+        for (const auto& it : input.a()) {                                     \
+            if ((1 > it.size()) || (MAX_VALID_CONTACT_VALUE < it.size())) {    \
+                const auto fail = std::string("invalid ") + #a + " size";      \
+                FAIL_2(fail, it.size())                                        \
+            }                                                                  \
+        }                                                                      \
+    }
+
+#define CHECK_NAMES(a)                                                         \
+    {                                                                          \
+        CHECK_EXISTS(a);                                                       \
+        OPTIONAL_IDENTIFIERS(a);                                               \
     }
 
 #define _CHECK_SUBOBJECT(a, b, ...)                                            \

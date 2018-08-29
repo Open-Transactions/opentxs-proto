@@ -14,17 +14,8 @@ namespace proto
 {
 bool CheckProto_1(const StorageRoot& input, const bool silent)
 {
-    if (!input.has_items()) { FAIL_1("missing hash") }
-
-    if (MIN_PLAUSIBLE_IDENTIFIER > input.items().size()) {
-        FAIL_1("invalid hash")
-    }
-
-    if (MAX_PLAUSIBLE_IDENTIFIER < input.items().size()) {
-        FAIL_1("invalid hash")
-    }
-
-    if (input.has_sequence()) { FAIL_1("unexpected sequence field present") }
+    CHECK_IDENTIFIER(items)
+    CHECK_EXCLUDED(sequence)
 
     return true;
 }
