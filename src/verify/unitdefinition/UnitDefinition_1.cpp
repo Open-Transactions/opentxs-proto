@@ -6,8 +6,6 @@
 #include "opentxs-proto/Types.hpp"
 #include "opentxs-proto/Check.hpp"
 
-#include <iostream>
-
 #define PROTO_NAME "unit definition"
 
 namespace opentxs
@@ -20,20 +18,16 @@ bool CheckProto_1(
     const bool silent,
     const bool checkSig)
 {
-    if (!input.has_id()) {
-        FAIL("unit definition", "missing id")
-    }
+    if (!input.has_id()) { FAIL_1("missing id") }
 
     if (MIN_PLAUSIBLE_IDENTIFIER > input.id().size()) {
-        FAIL2("unit definition", "invalid id", input.id())
+        FAIL_2("invalid id", input.id())
     }
 
-    if (!input.has_nymid()) {
-        FAIL("unit definition", "missing nym id")
-    }
+    if (!input.has_nymid()) { FAIL_1("missing nym id") }
 
     if (MIN_PLAUSIBLE_IDENTIFIER > input.nymid().size()) {
-        FAIL2("unit definition", "invalid nym id", input.nymid())
+        FAIL_2("invalid nym id", input.nymid())
     }
 
     if (input.has_publicnym()) {
@@ -44,64 +38,41 @@ bool CheckProto_1(
                 UnitDefinitionAllowedCredentialIndex.at(input.version()).second,
                 silent);
 
-            if (!goodPublicNym) {
-                FAIL("unit definition", "invalid nym")
-            }
+            if (!goodPublicNym) { FAIL_1("invalid nym") }
         } catch (const std::out_of_range&) {
-            FAIL2(
-                "unit definition",
+            FAIL_2(
                 "allowed credential index version not defined for version",
                 input.version())
         }
 
-        if (input.nymid() != input.publicnym().nymid()) {
-            FAIL("unit definition", "wrong nym")
-        }
+        if (input.nymid() != input.publicnym().nymid()) { FAIL_1("wrong nym") }
     }
 
-    if (!input.has_shortname()) {
-        FAIL("unit definition", "missing shortname")
-    }
+    if (!input.has_shortname()) { FAIL_1("missing shortname") }
 
     if (1 > input.shortname().size()) {
-        FAIL2("unit definition", "invalid shortname", input.shortname())
+        FAIL_2("invalid shortname", input.shortname())
     }
 
-    if (!input.has_terms()) {
-        FAIL("unit definition", "missing terms")
-    }
+    if (!input.has_terms()) { FAIL_1("missing terms") }
 
-    if (1 > input.terms().size()) {
-        FAIL2("unit definition", "invalid terms", input.terms())
-    }
+    if (1 > input.terms().size()) { FAIL_2("invalid terms", input.terms()) }
 
-    if (!input.has_name()) {
-        FAIL("unit definition", "missing name")
-    }
+    if (!input.has_name()) { FAIL_1("missing name") }
 
-    if (1 > input.name().size()) {
-        FAIL2("unit definition", "invalid name", input.name())
-    }
+    if (1 > input.name().size()) { FAIL_2("invalid name", input.name()) }
 
-    if (!input.has_symbol()) {
-        FAIL("unit definition", "missing symbol")
-    }
+    if (!input.has_symbol()) { FAIL_1("missing symbol") }
 
-    if (1 > input.symbol().size()) {
-        FAIL2("unit definition", "invalid symbol", input.symbol())
-    }
+    if (1 > input.symbol().size()) { FAIL_2("invalid symbol", input.symbol()) }
 
-    if (!input.has_type()) {
-        FAIL("unit definition", "missing type")
-    }
+    if (!input.has_type()) { FAIL_1("missing type") }
 
     bool goodParams = false;
 
     switch (input.type()) {
         case (UNITTYPE_CURRENCY): {
-            if (!input.has_currency()) {
-                FAIL("unit definition", "missing currency params")
-            }
+            if (!input.has_currency()) { FAIL_1("missing currency params") }
 
             try {
                 goodParams = Check(
@@ -112,21 +83,16 @@ bool CheckProto_1(
                         .second,
                     silent);
             } catch (const std::out_of_range&) {
-                FAIL2(
-                    "unit definition",
+                FAIL_2(
                     "allowed currency params version not defined for version",
                     input.version())
             }
 
-            if (!goodParams) {
-                FAIL("unit definition", "invalid currency params")
-            }
+            if (!goodParams) { FAIL_1("invalid currency params") }
 
         } break;
         case (UNITTYPE_SECURITY): {
-            if (!input.has_security()) {
-                FAIL("unit definition", "missing security params")
-            }
+            if (!input.has_security()) { FAIL_1("missing security params") }
 
             try {
                 goodParams = Check(
@@ -137,21 +103,16 @@ bool CheckProto_1(
                         .second,
                     silent);
             } catch (const std::out_of_range&) {
-                FAIL2(
-                    "unit definition",
+                FAIL_2(
                     "allowed security params version not defined for version",
                     input.version())
             }
 
-            if (!goodParams) {
-                FAIL("unit definition", "invalid security params")
-            }
+            if (!goodParams) { FAIL_1("invalid security params") }
 
         } break;
         case (UNITTYPE_BASKET): {
-            if (!input.has_basket()) {
-                FAIL("unit definition", "missing currency params")
-            }
+            if (!input.has_basket()) { FAIL_1("missing currency params") }
 
             try {
                 goodParams = Check(
@@ -161,19 +122,16 @@ bool CheckProto_1(
                         .second,
                     silent);
             } catch (const std::out_of_range&) {
-                FAIL2(
-                    "unit definition",
+                FAIL_2(
                     "allowed basket params version not defined for version",
                     input.version())
             }
 
-            if (!goodParams) {
-                FAIL("unit definition", "invalid basket params")
-            }
+            if (!goodParams) { FAIL_1("invalid basket params") }
 
         } break;
         default: {
-            FAIL("unit definition", "invalid type")
+            FAIL_1("invalid type")
         }
     }
 
@@ -186,12 +144,9 @@ bool CheckProto_1(
                 silent,
                 SIGROLE_UNITDEFINITION);
 
-            if (false == valid) {
-                FAIL("unit definition", "invalid signature")
-            }
+            if (false == valid) { FAIL_1("invalid signature") }
         } catch (const std::out_of_range&) {
-            FAIL2(
-                "unit definition",
+            FAIL_2(
                 "allowed signature version not defined for version",
                 input.version())
         }
@@ -202,97 +157,97 @@ bool CheckProto_1(
 
 bool CheckProto_2(const UnitDefinition& input, const bool silent, const bool)
 {
-    UNDEFINED_VERSION("unit definition", 2)
+    UNDEFINED_VERSION(2)
 }
 
 bool CheckProto_3(const UnitDefinition& input, const bool silent, const bool)
 {
-    UNDEFINED_VERSION("unit definition", 3)
+    UNDEFINED_VERSION(3)
 }
 
 bool CheckProto_4(const UnitDefinition& input, const bool silent, const bool)
 {
-    UNDEFINED_VERSION("unit definition", 4)
+    UNDEFINED_VERSION(4)
 }
 
 bool CheckProto_5(const UnitDefinition& input, const bool silent, const bool)
 {
-    UNDEFINED_VERSION("unit definition", 5)
+    UNDEFINED_VERSION(5)
 }
 
 bool CheckProto_6(const UnitDefinition& input, const bool silent, const bool)
 {
-    UNDEFINED_VERSION2(6)
+    UNDEFINED_VERSION(6)
 }
 
 bool CheckProto_7(const UnitDefinition& input, const bool silent, const bool)
 {
-    UNDEFINED_VERSION2(7)
+    UNDEFINED_VERSION(7)
 }
 
 bool CheckProto_8(const UnitDefinition& input, const bool silent, const bool)
 {
-    UNDEFINED_VERSION2(8)
+    UNDEFINED_VERSION(8)
 }
 
 bool CheckProto_9(const UnitDefinition& input, const bool silent, const bool)
 {
-    UNDEFINED_VERSION2(9)
+    UNDEFINED_VERSION(9)
 }
 
 bool CheckProto_10(const UnitDefinition& input, const bool silent, const bool)
 {
-    UNDEFINED_VERSION2(10)
+    UNDEFINED_VERSION(10)
 }
 
 bool CheckProto_11(const UnitDefinition& input, const bool silent, const bool)
 {
-    UNDEFINED_VERSION2(11)
+    UNDEFINED_VERSION(11)
 }
 
 bool CheckProto_12(const UnitDefinition& input, const bool silent, const bool)
 {
-    UNDEFINED_VERSION2(12)
+    UNDEFINED_VERSION(12)
 }
 
 bool CheckProto_13(const UnitDefinition& input, const bool silent, const bool)
 {
-    UNDEFINED_VERSION2(13)
+    UNDEFINED_VERSION(13)
 }
 
 bool CheckProto_14(const UnitDefinition& input, const bool silent, const bool)
 {
-    UNDEFINED_VERSION2(14)
+    UNDEFINED_VERSION(14)
 }
 
 bool CheckProto_15(const UnitDefinition& input, const bool silent, const bool)
 {
-    UNDEFINED_VERSION2(15)
+    UNDEFINED_VERSION(15)
 }
 
 bool CheckProto_16(const UnitDefinition& input, const bool silent, const bool)
 {
-    UNDEFINED_VERSION2(16)
+    UNDEFINED_VERSION(16)
 }
 
 bool CheckProto_17(const UnitDefinition& input, const bool silent, const bool)
 {
-    UNDEFINED_VERSION2(17)
+    UNDEFINED_VERSION(17)
 }
 
 bool CheckProto_18(const UnitDefinition& input, const bool silent, const bool)
 {
-    UNDEFINED_VERSION2(18)
+    UNDEFINED_VERSION(18)
 }
 
 bool CheckProto_19(const UnitDefinition& input, const bool silent, const bool)
 {
-    UNDEFINED_VERSION2(19)
+    UNDEFINED_VERSION(19)
 }
 
 bool CheckProto_20(const UnitDefinition& input, const bool silent, const bool)
 {
-    UNDEFINED_VERSION2(20)
+    UNDEFINED_VERSION(20)
 }
 }  // namespace proto
 }  // namespace opentxs

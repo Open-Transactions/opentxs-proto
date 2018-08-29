@@ -6,8 +6,6 @@
 #include "opentxs-proto/Types.hpp"
 #include "opentxs-proto/Check.hpp"
 
-#include <iostream>
-
 #define PROTO_NAME "credential set"
 
 namespace opentxs
@@ -23,92 +21,69 @@ bool CheckProto_1(
     bool& haveHD,
     const CredentialSetMode& mode)
 {
-    if (!input.has_nymid()) {
-        FAIL("credential set", "missing nym id")
-    }
+    if (!input.has_nymid()) { FAIL_1("missing nym id") }
 
-    if (nymID != input.nymid()) {
-        FAIL("credential set", "wrong nym id")
-    }
+    if (nymID != input.nymid()) { FAIL_1("wrong nym id") }
 
     if (MIN_PLAUSIBLE_IDENTIFIER > input.nymid().size()) {
-        FAIL2("credential set", "invalid nym id", input.nymid())
+        FAIL_2("invalid nym id", input.nymid())
     }
 
-    if (!input.has_masterid()) {
-        FAIL("credential set", "missing master credential id")
-    }
+    if (!input.has_masterid()) { FAIL_1("missing master credential id") }
 
     if (MIN_PLAUSIBLE_IDENTIFIER > input.masterid().size()) {
-        FAIL2(
-            "credential set", "invalid master credential id", input.masterid())
+        FAIL_2("invalid master credential id", input.masterid())
     }
 
-    if (!input.has_mode()) {
-        FAIL("credential set", "missing mode")
-    }
+    if (!input.has_mode()) { FAIL_1("missing mode") }
 
     const bool checkMode = (CREDSETMODE_ERROR != mode);
 
     if (checkMode) {
-        if (input.mode() != mode) {
-            FAIL2("credential set", "incorrect mode", input.mode())
-        }
+        if (input.mode() != mode) { FAIL_2("incorrect mode", input.mode()) }
     }
 
     switch (input.mode()) {
         case CREDSETMODE_INDEX:
             if (KEYMODE_PRIVATE == key) {
-                if (1 > input.index()) {
-                    FAIL("credential set", "missing index")
-                }
+                if (1 > input.index()) { FAIL_1("missing index") }
             } else {
                 if (0 < input.index()) {
-                    FAIL("credential set", "index present in public mode")
+                    FAIL_1("index present in public mode")
                 }
             }
 
             if (input.has_mastercredential()) {
-                FAIL(
-                    "credential set",
-                    "full master credential included in index mode")
+                FAIL_1("full master credential included in index mode")
             }
 
             if (0 < input.activechildren_size()) {
-                FAIL2(
-                    "credential set",
+                FAIL_2(
                     "full active credentials included in index mode",
                     input.activechildren_size())
             }
 
             if (0 < input.revokedchildren_size()) {
-                FAIL2(
-                    "credential set",
+                FAIL_2(
                     "full revoked credentials included in index mode",
                     input.revokedchildren_size())
             }
 
             for (auto& it : input.activechildids()) {
                 if (MIN_PLAUSIBLE_IDENTIFIER > it.size()) {
-                    FAIL2(
-                        "credential set",
-                        "invalid active child credential identifier",
-                        it)
+                    FAIL_2("invalid active child credential identifier", it)
                 }
             }
 
             for (auto& it : input.revokedchildids()) {
                 if (MIN_PLAUSIBLE_IDENTIFIER > it.size()) {
-                    FAIL2(
-                        "credential set",
-                        "invalid revoked child credential identifier",
-                        it)
+                    FAIL_2("invalid revoked child credential identifier", it)
                 }
             }
             break;
         case CREDSETMODE_FULL:
             if (!input.has_mastercredential()) {
-                FAIL("credential set", "missing master credential")
+                FAIL_1("missing master credential")
             }
 
             if (!Check(
@@ -119,7 +94,7 @@ bool CheckProto_1(
                     key,
                     CREDROLE_MASTERKEY,
                     true)) {
-                FAIL("credential set", "invalid master credential")
+                FAIL_1("invalid master credential")
             }
 
             if (CREDTYPE_HD == input.mastercredential().type()) {
@@ -127,22 +102,17 @@ bool CheckProto_1(
             }
 
             if (input.mastercredential().id() != input.masterid()) {
-                FAIL2(
-                    "credential set",
-                    "wrong master credential",
-                    input.mastercredential().id())
+                FAIL_2("wrong master credential", input.mastercredential().id())
             }
 
             if (0 < input.activechildids_size()) {
-                FAIL2(
-                    "credential set",
+                FAIL_2(
                     "active credential IDs included in full mode",
                     input.activechildids_size())
             }
 
             if (0 < input.revokedchildids_size()) {
-                FAIL2(
-                    "credential set",
+                FAIL_2(
                     "revoked credential IDs included in full mode",
                     input.revokedchildids_size())
             }
@@ -158,15 +128,13 @@ bool CheckProto_1(
                         key,
                         CREDROLE_ERROR,
                         true)) {
-                    FAIL("credential set", "invalid active child credential")
+                    FAIL_1("invalid active child credential")
                 }
 
-                if (CREDTYPE_HD == it.type()) {
-                    haveHD = true;
-                }
+                if (CREDTYPE_HD == it.type()) { haveHD = true; }
 
                 if (CREDROLE_MASTERKEY == it.role()) {
-                    FAIL("credential set", "unexpected master credential")
+                    FAIL_1("unexpected master credential")
                 }
             }
 
@@ -181,33 +149,29 @@ bool CheckProto_1(
                         key,
                         CREDROLE_ERROR,
                         true)) {
-                    FAIL("credential set", "invalid revoked child credential")
+                    FAIL_1("invalid revoked child credential")
                 }
 
-                if (CREDTYPE_HD == it.type()) {
-                    haveHD = true;
-                }
+                if (CREDTYPE_HD == it.type()) { haveHD = true; }
 
                 if (CREDROLE_MASTERKEY == it.role()) {
-                    FAIL("credential set", "unexpected master credential")
+                    FAIL_1("unexpected master credential")
                 }
             }
 
             if (KEYMODE_PRIVATE == key) {
-                FAIL(
-                    "credential set",
-                    "private credentials serialized in public form")
+                FAIL_1("private credentials serialized in public form")
             } else {
                 if (haveHD) {
                     if (0 < input.index()) {
-                        FAIL("credential set", "index present in public mode")
+                        FAIL_1("index present in public mode")
                     }
                 }
             }
 
             break;
         default:
-            FAIL2("credential set", "unknown mode", input.mode())
+            FAIL_2("unknown mode", input.mode())
     }
 
     return true;
@@ -265,7 +229,7 @@ bool CheckProto_6(
     bool&,
     const CredentialSetMode&)
 {
-    UNDEFINED_VERSION2(6)
+    UNDEFINED_VERSION(6)
 }
 
 bool CheckProto_7(
@@ -276,7 +240,7 @@ bool CheckProto_7(
     bool&,
     const CredentialSetMode&)
 {
-    UNDEFINED_VERSION2(7)
+    UNDEFINED_VERSION(7)
 }
 
 bool CheckProto_8(
@@ -287,7 +251,7 @@ bool CheckProto_8(
     bool&,
     const CredentialSetMode&)
 {
-    UNDEFINED_VERSION2(8)
+    UNDEFINED_VERSION(8)
 }
 
 bool CheckProto_9(
@@ -298,7 +262,7 @@ bool CheckProto_9(
     bool&,
     const CredentialSetMode&)
 {
-    UNDEFINED_VERSION2(9)
+    UNDEFINED_VERSION(9)
 }
 
 bool CheckProto_10(
@@ -309,7 +273,7 @@ bool CheckProto_10(
     bool&,
     const CredentialSetMode&)
 {
-    UNDEFINED_VERSION2(10)
+    UNDEFINED_VERSION(10)
 }
 
 bool CheckProto_11(
@@ -320,7 +284,7 @@ bool CheckProto_11(
     bool&,
     const CredentialSetMode&)
 {
-    UNDEFINED_VERSION2(11)
+    UNDEFINED_VERSION(11)
 }
 
 bool CheckProto_12(
@@ -331,7 +295,7 @@ bool CheckProto_12(
     bool&,
     const CredentialSetMode&)
 {
-    UNDEFINED_VERSION2(12)
+    UNDEFINED_VERSION(12)
 }
 
 bool CheckProto_13(
@@ -342,7 +306,7 @@ bool CheckProto_13(
     bool&,
     const CredentialSetMode&)
 {
-    UNDEFINED_VERSION2(13)
+    UNDEFINED_VERSION(13)
 }
 
 bool CheckProto_14(
@@ -353,7 +317,7 @@ bool CheckProto_14(
     bool&,
     const CredentialSetMode&)
 {
-    UNDEFINED_VERSION2(14)
+    UNDEFINED_VERSION(14)
 }
 
 bool CheckProto_15(
@@ -364,7 +328,7 @@ bool CheckProto_15(
     bool&,
     const CredentialSetMode&)
 {
-    UNDEFINED_VERSION2(15)
+    UNDEFINED_VERSION(15)
 }
 
 bool CheckProto_16(
@@ -375,7 +339,7 @@ bool CheckProto_16(
     bool&,
     const CredentialSetMode&)
 {
-    UNDEFINED_VERSION2(16)
+    UNDEFINED_VERSION(16)
 }
 
 bool CheckProto_17(
@@ -386,7 +350,7 @@ bool CheckProto_17(
     bool&,
     const CredentialSetMode&)
 {
-    UNDEFINED_VERSION2(17)
+    UNDEFINED_VERSION(17)
 }
 
 bool CheckProto_18(
@@ -397,7 +361,7 @@ bool CheckProto_18(
     bool&,
     const CredentialSetMode&)
 {
-    UNDEFINED_VERSION2(18)
+    UNDEFINED_VERSION(18)
 }
 
 bool CheckProto_19(
@@ -408,7 +372,7 @@ bool CheckProto_19(
     bool&,
     const CredentialSetMode&)
 {
-    UNDEFINED_VERSION2(19)
+    UNDEFINED_VERSION(19)
 }
 
 bool CheckProto_20(
@@ -419,7 +383,7 @@ bool CheckProto_20(
     bool&,
     const CredentialSetMode&)
 {
-    UNDEFINED_VERSION2(20)
+    UNDEFINED_VERSION(20)
 }
 }  // namespace proto
 }  // namespace opentxs

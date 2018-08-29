@@ -6,8 +6,6 @@
 #include "opentxs-proto/Types.hpp"
 #include "opentxs-proto/Check.hpp"
 
-#include <iostream>
-
 #define PROTO_NAME "verification"
 
 namespace opentxs
@@ -21,46 +19,30 @@ bool CheckProto_1(
     const VerificationType indexed)
 {
     if (indexed) {
-        if (!input.has_id()) {
-            FAIL("verification", "missing ID")
-        }
+        if (!input.has_id()) { FAIL_1("missing ID") }
 
         if (MIN_PLAUSIBLE_IDENTIFIER > input.id().size()) {
-            FAIL("verification", "invalid ID")
+            FAIL_1("invalid ID")
         }
     } else {
-        if (input.has_id()) {
-            FAIL("verification", "ID field not empty")
-        }
+        if (input.has_id()) { FAIL_1("ID field not empty") }
     }
 
-    if (!input.has_claim()) {
-        FAIL("verification", "missing claim")
-    }
+    if (!input.has_claim()) { FAIL_1("missing claim") }
 
     if (MIN_PLAUSIBLE_IDENTIFIER > input.claim().size()) {
-        FAIL("verification", "invalid claim")
+        FAIL_1("invalid claim")
     }
 
-    if (!input.has_valid()) {
-        FAIL("verification", "missing validity")
-    }
+    if (!input.has_valid()) { FAIL_1("missing validity") }
 
-    if (!input.has_start()) {
-        FAIL("verification", "missing start time")
-    }
+    if (!input.has_start()) { FAIL_1("missing start time") }
 
-    if (!input.has_end()) {
-        FAIL("verification", "missing end time")
-    }
+    if (!input.has_end()) { FAIL_1("missing end time") }
 
-    if (input.end() < input.start()) {
-        FAIL("verification", "invalid end time")
-    }
+    if (input.end() < input.start()) { FAIL_1("invalid end time") }
 
-    if (!input.has_sig()) {
-        FAIL("verification", "missing signature")
-    }
+    if (!input.has_sig()) { FAIL_1("missing signature") }
 
     try {
         const bool validSignature = Check(
@@ -70,12 +52,9 @@ bool CheckProto_1(
             silent,
             proto::SIGROLE_CLAIM);
 
-        if (!validSignature) {
-            FAIL("verification", "invalid signature")
-        }
+        if (!validSignature) { FAIL_1("invalid signature") }
     } catch (const std::out_of_range&) {
-        FAIL2(
-            "verification",
+        FAIL_2(
             "allowed signature version not defined for version",
             input.version())
     }
@@ -88,7 +67,7 @@ bool CheckProto_2(
     const bool silent,
     const VerificationType)
 {
-    UNDEFINED_VERSION("verification", 2)
+    UNDEFINED_VERSION(2)
 }
 
 bool CheckProto_3(
@@ -96,7 +75,7 @@ bool CheckProto_3(
     const bool silent,
     const VerificationType)
 {
-    UNDEFINED_VERSION("verification", 3)
+    UNDEFINED_VERSION(3)
 }
 
 bool CheckProto_4(
@@ -104,7 +83,7 @@ bool CheckProto_4(
     const bool silent,
     const VerificationType)
 {
-    UNDEFINED_VERSION("verification", 4)
+    UNDEFINED_VERSION(4)
 }
 
 bool CheckProto_5(
@@ -112,7 +91,7 @@ bool CheckProto_5(
     const bool silent,
     const VerificationType)
 {
-    UNDEFINED_VERSION("verification", 5)
+    UNDEFINED_VERSION(5)
 }
 
 bool CheckProto_6(
@@ -120,7 +99,7 @@ bool CheckProto_6(
     const bool silent,
     const VerificationType)
 {
-    UNDEFINED_VERSION2(6)
+    UNDEFINED_VERSION(6)
 }
 
 bool CheckProto_7(
@@ -128,7 +107,7 @@ bool CheckProto_7(
     const bool silent,
     const VerificationType)
 {
-    UNDEFINED_VERSION2(7)
+    UNDEFINED_VERSION(7)
 }
 
 bool CheckProto_8(
@@ -136,7 +115,7 @@ bool CheckProto_8(
     const bool silent,
     const VerificationType)
 {
-    UNDEFINED_VERSION2(8)
+    UNDEFINED_VERSION(8)
 }
 
 bool CheckProto_9(
@@ -144,7 +123,7 @@ bool CheckProto_9(
     const bool silent,
     const VerificationType)
 {
-    UNDEFINED_VERSION2(9)
+    UNDEFINED_VERSION(9)
 }
 
 bool CheckProto_10(
@@ -152,7 +131,7 @@ bool CheckProto_10(
     const bool silent,
     const VerificationType)
 {
-    UNDEFINED_VERSION2(10)
+    UNDEFINED_VERSION(10)
 }
 
 bool CheckProto_11(
@@ -160,7 +139,7 @@ bool CheckProto_11(
     const bool silent,
     const VerificationType)
 {
-    UNDEFINED_VERSION2(11)
+    UNDEFINED_VERSION(11)
 }
 
 bool CheckProto_12(
@@ -168,7 +147,7 @@ bool CheckProto_12(
     const bool silent,
     const VerificationType)
 {
-    UNDEFINED_VERSION2(12)
+    UNDEFINED_VERSION(12)
 }
 
 bool CheckProto_13(
@@ -176,7 +155,7 @@ bool CheckProto_13(
     const bool silent,
     const VerificationType)
 {
-    UNDEFINED_VERSION2(13)
+    UNDEFINED_VERSION(13)
 }
 
 bool CheckProto_14(
@@ -184,7 +163,7 @@ bool CheckProto_14(
     const bool silent,
     const VerificationType)
 {
-    UNDEFINED_VERSION2(14)
+    UNDEFINED_VERSION(14)
 }
 
 bool CheckProto_15(
@@ -192,7 +171,7 @@ bool CheckProto_15(
     const bool silent,
     const VerificationType)
 {
-    UNDEFINED_VERSION2(15)
+    UNDEFINED_VERSION(15)
 }
 
 bool CheckProto_16(
@@ -200,7 +179,7 @@ bool CheckProto_16(
     const bool silent,
     const VerificationType)
 {
-    UNDEFINED_VERSION2(16)
+    UNDEFINED_VERSION(16)
 }
 
 bool CheckProto_17(
@@ -208,7 +187,7 @@ bool CheckProto_17(
     const bool silent,
     const VerificationType)
 {
-    UNDEFINED_VERSION2(17)
+    UNDEFINED_VERSION(17)
 }
 
 bool CheckProto_18(
@@ -216,7 +195,7 @@ bool CheckProto_18(
     const bool silent,
     const VerificationType)
 {
-    UNDEFINED_VERSION2(18)
+    UNDEFINED_VERSION(18)
 }
 
 bool CheckProto_19(
@@ -224,7 +203,7 @@ bool CheckProto_19(
     const bool silent,
     const VerificationType)
 {
-    UNDEFINED_VERSION2(19)
+    UNDEFINED_VERSION(19)
 }
 
 bool CheckProto_20(
@@ -232,7 +211,7 @@ bool CheckProto_20(
     const bool silent,
     const VerificationType)
 {
-    UNDEFINED_VERSION2(20)
+    UNDEFINED_VERSION(20)
 }
 }  // namespace proto
 }  // namespace opentxs

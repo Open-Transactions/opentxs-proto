@@ -6,8 +6,6 @@
 #include "opentxs-proto/Types.hpp"
 #include "opentxs-proto/Check.hpp"
 
-#include <iostream>
-
 #define PROTO_NAME "verification identity"
 
 namespace opentxs
@@ -21,12 +19,10 @@ bool CheckProto_1(
     VerificationNymMap& map,
     const VerificationType indexed)
 {
-    if (!input.has_nym()) {
-        FAIL("verification identity", "missing nym")
-    }
+    if (!input.has_nym()) { FAIL_1("missing nym") }
 
     if (MIN_PLAUSIBLE_IDENTIFIER > input.nym().size()) {
-        FAIL2("verification identity", "invalid nym", input.nym())
+        FAIL_2("invalid nym", input.nym())
     }
 
     map[input.nym()] += 1;
@@ -42,12 +38,9 @@ bool CheckProto_1(
                 silent,
                 indexed);
 
-            if (!verification) {
-                FAIL("verification identity", "invalid verification")
-            }
+            if (!verification) { FAIL_1("invalid verification") }
         } catch (const std::out_of_range&) {
-            FAIL2(
-                "verification identity",
+            FAIL_2(
                 "allowed verification version not defined for version",
                 input.version())
         }
@@ -62,7 +55,7 @@ bool CheckProto_2(
     VerificationNymMap&,
     const VerificationType)
 {
-    UNDEFINED_VERSION("verification identity", 2)
+    UNDEFINED_VERSION(2)
 }
 
 bool CheckProto_3(
@@ -71,7 +64,7 @@ bool CheckProto_3(
     VerificationNymMap&,
     const VerificationType)
 {
-    UNDEFINED_VERSION("verification identity", 3)
+    UNDEFINED_VERSION(3)
 }
 
 bool CheckProto_4(
@@ -80,7 +73,7 @@ bool CheckProto_4(
     VerificationNymMap&,
     const VerificationType)
 {
-    UNDEFINED_VERSION("verification identity", 4)
+    UNDEFINED_VERSION(4)
 }
 
 bool CheckProto_5(
@@ -89,7 +82,7 @@ bool CheckProto_5(
     VerificationNymMap&,
     const VerificationType)
 {
-    UNDEFINED_VERSION("verification identity", 5)
+    UNDEFINED_VERSION(5)
 }
 
 bool CheckProto_6(
@@ -98,7 +91,7 @@ bool CheckProto_6(
     VerificationNymMap&,
     const VerificationType)
 {
-    UNDEFINED_VERSION2(6)
+    UNDEFINED_VERSION(6)
 }
 
 bool CheckProto_7(
@@ -107,7 +100,7 @@ bool CheckProto_7(
     VerificationNymMap&,
     const VerificationType)
 {
-    UNDEFINED_VERSION2(7)
+    UNDEFINED_VERSION(7)
 }
 
 bool CheckProto_8(
@@ -116,7 +109,7 @@ bool CheckProto_8(
     VerificationNymMap&,
     const VerificationType)
 {
-    UNDEFINED_VERSION2(8)
+    UNDEFINED_VERSION(8)
 }
 
 bool CheckProto_9(
@@ -125,7 +118,7 @@ bool CheckProto_9(
     VerificationNymMap&,
     const VerificationType)
 {
-    UNDEFINED_VERSION2(9)
+    UNDEFINED_VERSION(9)
 }
 
 bool CheckProto_10(
@@ -134,7 +127,7 @@ bool CheckProto_10(
     VerificationNymMap&,
     const VerificationType)
 {
-    UNDEFINED_VERSION2(10)
+    UNDEFINED_VERSION(10)
 }
 
 bool CheckProto_11(
@@ -143,7 +136,7 @@ bool CheckProto_11(
     VerificationNymMap&,
     const VerificationType)
 {
-    UNDEFINED_VERSION2(11)
+    UNDEFINED_VERSION(11)
 }
 
 bool CheckProto_12(
@@ -152,7 +145,7 @@ bool CheckProto_12(
     VerificationNymMap&,
     const VerificationType)
 {
-    UNDEFINED_VERSION2(12)
+    UNDEFINED_VERSION(12)
 }
 
 bool CheckProto_13(
@@ -161,7 +154,7 @@ bool CheckProto_13(
     VerificationNymMap&,
     const VerificationType)
 {
-    UNDEFINED_VERSION2(13)
+    UNDEFINED_VERSION(13)
 }
 
 bool CheckProto_14(
@@ -170,7 +163,7 @@ bool CheckProto_14(
     VerificationNymMap&,
     const VerificationType)
 {
-    UNDEFINED_VERSION2(14)
+    UNDEFINED_VERSION(14)
 }
 
 bool CheckProto_15(
@@ -179,7 +172,7 @@ bool CheckProto_15(
     VerificationNymMap&,
     const VerificationType)
 {
-    UNDEFINED_VERSION2(15)
+    UNDEFINED_VERSION(15)
 }
 
 bool CheckProto_16(
@@ -188,7 +181,7 @@ bool CheckProto_16(
     VerificationNymMap&,
     const VerificationType)
 {
-    UNDEFINED_VERSION2(16)
+    UNDEFINED_VERSION(16)
 }
 
 bool CheckProto_17(
@@ -197,7 +190,7 @@ bool CheckProto_17(
     VerificationNymMap&,
     const VerificationType)
 {
-    UNDEFINED_VERSION2(17)
+    UNDEFINED_VERSION(17)
 }
 
 bool CheckProto_18(
@@ -206,7 +199,7 @@ bool CheckProto_18(
     VerificationNymMap&,
     const VerificationType)
 {
-    UNDEFINED_VERSION2(18)
+    UNDEFINED_VERSION(18)
 }
 
 bool CheckProto_19(
@@ -215,7 +208,7 @@ bool CheckProto_19(
     VerificationNymMap&,
     const VerificationType)
 {
-    UNDEFINED_VERSION2(19)
+    UNDEFINED_VERSION(19)
 }
 
 bool CheckProto_20(
@@ -224,7 +217,7 @@ bool CheckProto_20(
     VerificationNymMap&,
     const VerificationType)
 {
-    UNDEFINED_VERSION2(20)
+    UNDEFINED_VERSION(20)
 }
 }  // namespace proto
 }  // namespace opentxs

@@ -6,8 +6,6 @@
 #include "opentxs-proto/Types.hpp"
 #include "opentxs-proto/Check.hpp"
 
-#include <iostream>
-
 #define PROTO_NAME "asymmetric key"
 
 namespace opentxs
@@ -22,9 +20,7 @@ bool CheckProto_1(
     const KeyMode mode,
     const KeyRole role)
 {
-    if (!input.has_type()) {
-        FAIL("asymmetric key", "missing key type")
-    }
+    if (!input.has_type()) { FAIL_1("missing key type") }
 
     switch (input.type()) {
         case (AKEYTYPE_LEGACY): {
@@ -37,54 +33,40 @@ bool CheckProto_1(
             break;
         }
         default: {
-            FAIL2("asymmetric key", "incorrect key type", input.type())
+            FAIL_2("incorrect key type", input.type())
         }
     }
 
-    if (!input.has_mode()) {
-        FAIL("asymmetric key", "missing key mode")
-    }
+    if (!input.has_mode()) { FAIL_1("missing key mode") }
 
-    if (input.mode() != mode) {
-        FAIL2("asymmetric key", "incorrect key mode", input.mode())
-    }
+    if (input.mode() != mode) { FAIL_2("incorrect key mode", input.mode()) }
 
-    if (!input.has_role()) {
-        FAIL("asymmetric key", "missing key role")
-    }
+    if (!input.has_role()) { FAIL_1("missing key role") }
 
-    if (input.role() != role) {
-        FAIL2("asymmetric key", "incorrect key role", input.role())
-    }
+    if (input.role() != role) { FAIL_2("incorrect key role", input.role()) }
 
     if (KEYMODE_PUBLIC == mode) {
-        if (!input.has_key()) {
-            FAIL("asymmetric key", "missing key")
-        }
+        if (!input.has_key()) { FAIL_1("missing key") }
 
         if (MIN_PLAUSIBLE_KEYSIZE > input.key().size()) {
-            FAIL2("asymmetric key", "invalid key", input.key())
+            FAIL_2("invalid key", input.key())
         }
         if (input.has_encryptedkey()) {
-            FAIL("asymmetric key", "encrypted data present in public key")
+            FAIL_1("encrypted data present in public key")
         }
     } else {
         if (AKEYTYPE_LEGACY == input.type()) {
-            if (!input.has_key()) {
-                FAIL("asymmetric key", "missing key")
-            }
+            if (!input.has_key()) { FAIL_1("missing key") }
 
             if (MIN_PLAUSIBLE_KEYSIZE > input.key().size()) {
-                FAIL2("asymmetric key", "invalid key", input.key())
+                FAIL_2("invalid key", input.key())
             }
 
             if (input.has_encryptedkey()) {
-                FAIL("asymmetric key", "encrypted data present in legacy key")
+                FAIL_1("encrypted data present in legacy key")
             }
         } else {
-            if (!input.has_encryptedkey()) {
-                FAIL("asymmetric key", "missing encrypted key")
-            }
+            if (!input.has_encryptedkey()) { FAIL_1("missing encrypted key") }
 
             try {
                 const bool validEncryptedKey = Check(
@@ -94,18 +76,15 @@ bool CheckProto_1(
                     silent,
                     false);
 
-                if (!validEncryptedKey) {
-                    FAIL("asymmetric key", "invalid encrypted key")
-                }
+                if (!validEncryptedKey) { FAIL_1("invalid encrypted key") }
             } catch (const std::out_of_range&) {
-                FAIL2(
-                    "asymmetric key",
+                FAIL_2(
                     "allowed ciphertext version not defined for version",
                     input.version())
             }
 
             if (input.has_key()) {
-                FAIL("asymmetric key", "plaintext data found in private key")
+                FAIL_1("plaintext data found in private key")
             }
         }
     }
@@ -113,35 +92,25 @@ bool CheckProto_1(
     switch (type) {
         case CREDTYPE_LEGACY:
             if (input.has_chaincode()) {
-                FAIL(
-                    "asymmetric key",
-                    "chain code not allowed in legacy credentials")
+                FAIL_1("chain code not allowed in legacy credentials")
             }
 
             if (input.has_path()) {
-                FAIL(
-                    "asymmetric key",
-                    "HD path not allowed in legacy credentials")
+                FAIL_1("HD path not allowed in legacy credentials")
             }
 
             break;
         case CREDTYPE_HD:
             if (KEYMODE_PUBLIC == mode) {
                 if (input.has_chaincode()) {
-                    FAIL(
-                        "asymmetric key",
-                        "chain code not allowed in public credentials")
+                    FAIL_1("chain code not allowed in public credentials")
                 }
 
                 if (input.has_path()) {
-                    FAIL(
-                        "asymmetric key",
-                        "HD path not allowed in public credentials")
+                    FAIL_1("HD path not allowed in public credentials")
                 }
             } else {
-                if (!input.has_chaincode()) {
-                    FAIL("asymmetric key", "missing chain code")
-                }
+                if (!input.has_chaincode()) { FAIL_1("missing chain code") }
 
                 try {
                     const bool validChainCode = Check(
@@ -153,19 +122,14 @@ bool CheckProto_1(
                         silent,
                         false);
 
-                    if (!validChainCode) {
-                        FAIL("asymmetric key", "invalid chain code")
-                    }
+                    if (!validChainCode) { FAIL_1("invalid chain code") }
                 } catch (const std::out_of_range&) {
-                    FAIL2(
-                        "asymmetric key",
+                    FAIL_2(
                         "allowed ciphertext version not defined for version",
                         input.version())
                 }
 
-                if (!input.has_path()) {
-                    FAIL("asymmetric key", "missing HD path")
-                }
+                if (!input.has_path()) { FAIL_1("missing HD path") }
 
                 try {
                     bool validPath = Check(
@@ -174,12 +138,9 @@ bool CheckProto_1(
                         AsymmetricKeyAllowedHDPath.at(input.version()).second,
                         silent);
 
-                    if (!validPath) {
-                        FAIL("asymmetric key", "invalid HD path")
-                    }
+                    if (!validPath) { FAIL_1("invalid HD path") }
                 } catch (const std::out_of_range&) {
-                    FAIL2(
-                        "asymmetric key",
+                    FAIL_2(
                         "allowed HD path version not defined for version",
                         input.version())
                 }
@@ -187,7 +148,7 @@ bool CheckProto_1(
 
             break;
         default:
-            FAIL2("asymmetric key", "incorrect or unknown type", type)
+            FAIL_2("incorrect or unknown type", type)
     }
 
     return true;
@@ -200,7 +161,7 @@ bool CheckProto_2(
     const KeyMode,
     const KeyRole)
 {
-    UNDEFINED_VERSION("asymmetric key", 2)
+    UNDEFINED_VERSION(2)
 }
 
 bool CheckProto_3(
@@ -210,7 +171,7 @@ bool CheckProto_3(
     const KeyMode,
     const KeyRole)
 {
-    UNDEFINED_VERSION("asymmetric key", 3)
+    UNDEFINED_VERSION(3)
 }
 
 bool CheckProto_4(
@@ -220,7 +181,7 @@ bool CheckProto_4(
     const KeyMode,
     const KeyRole)
 {
-    UNDEFINED_VERSION("asymmetric key", 4)
+    UNDEFINED_VERSION(4)
 }
 
 bool CheckProto_5(
@@ -230,7 +191,7 @@ bool CheckProto_5(
     const KeyMode,
     const KeyRole)
 {
-    UNDEFINED_VERSION("asymmetric key", 5)
+    UNDEFINED_VERSION(5)
 }
 
 bool CheckProto_6(
@@ -240,7 +201,7 @@ bool CheckProto_6(
     const KeyMode,
     const KeyRole)
 {
-    UNDEFINED_VERSION2(6)
+    UNDEFINED_VERSION(6)
 }
 
 bool CheckProto_7(
@@ -250,7 +211,7 @@ bool CheckProto_7(
     const KeyMode,
     const KeyRole)
 {
-    UNDEFINED_VERSION2(7)
+    UNDEFINED_VERSION(7)
 }
 
 bool CheckProto_8(
@@ -260,7 +221,7 @@ bool CheckProto_8(
     const KeyMode,
     const KeyRole)
 {
-    UNDEFINED_VERSION2(8)
+    UNDEFINED_VERSION(8)
 }
 
 bool CheckProto_9(
@@ -270,7 +231,7 @@ bool CheckProto_9(
     const KeyMode,
     const KeyRole)
 {
-    UNDEFINED_VERSION2(9)
+    UNDEFINED_VERSION(9)
 }
 
 bool CheckProto_10(
@@ -280,7 +241,7 @@ bool CheckProto_10(
     const KeyMode,
     const KeyRole)
 {
-    UNDEFINED_VERSION2(10)
+    UNDEFINED_VERSION(10)
 }
 
 bool CheckProto_11(
@@ -290,7 +251,7 @@ bool CheckProto_11(
     const KeyMode,
     const KeyRole)
 {
-    UNDEFINED_VERSION2(11)
+    UNDEFINED_VERSION(11)
 }
 
 bool CheckProto_12(
@@ -300,7 +261,7 @@ bool CheckProto_12(
     const KeyMode,
     const KeyRole)
 {
-    UNDEFINED_VERSION2(12)
+    UNDEFINED_VERSION(12)
 }
 
 bool CheckProto_13(
@@ -310,7 +271,7 @@ bool CheckProto_13(
     const KeyMode,
     const KeyRole)
 {
-    UNDEFINED_VERSION2(13)
+    UNDEFINED_VERSION(13)
 }
 
 bool CheckProto_14(
@@ -320,7 +281,7 @@ bool CheckProto_14(
     const KeyMode,
     const KeyRole)
 {
-    UNDEFINED_VERSION2(14)
+    UNDEFINED_VERSION(14)
 }
 
 bool CheckProto_15(
@@ -330,7 +291,7 @@ bool CheckProto_15(
     const KeyMode,
     const KeyRole)
 {
-    UNDEFINED_VERSION2(15)
+    UNDEFINED_VERSION(15)
 }
 
 bool CheckProto_16(
@@ -340,7 +301,7 @@ bool CheckProto_16(
     const KeyMode,
     const KeyRole)
 {
-    UNDEFINED_VERSION2(16)
+    UNDEFINED_VERSION(16)
 }
 
 bool CheckProto_17(
@@ -350,7 +311,7 @@ bool CheckProto_17(
     const KeyMode,
     const KeyRole)
 {
-    UNDEFINED_VERSION2(17)
+    UNDEFINED_VERSION(17)
 }
 
 bool CheckProto_18(
@@ -360,7 +321,7 @@ bool CheckProto_18(
     const KeyMode,
     const KeyRole)
 {
-    UNDEFINED_VERSION2(18)
+    UNDEFINED_VERSION(18)
 }
 
 bool CheckProto_19(
@@ -370,7 +331,7 @@ bool CheckProto_19(
     const KeyMode,
     const KeyRole)
 {
-    UNDEFINED_VERSION2(19)
+    UNDEFINED_VERSION(19)
 }
 
 bool CheckProto_20(
@@ -380,7 +341,7 @@ bool CheckProto_20(
     const KeyMode,
     const KeyRole)
 {
-    UNDEFINED_VERSION2(20)
+    UNDEFINED_VERSION(20)
 }
 }  // namespace proto
 }  // namespace opentxs

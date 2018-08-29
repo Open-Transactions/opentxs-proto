@@ -6,8 +6,6 @@
 #include "opentxs-proto/Types.hpp"
 #include "opentxs-proto/Check.hpp"
 
-#include <iostream>
-
 #define PROTO_NAME "signature"
 
 namespace opentxs
@@ -25,7 +23,7 @@ bool CheckProto_2(
     std::uint32_t& sourcePublic,
     const SignatureRole role)
 {
-    if (!input.has_role()) { FAIL4("missing role") }
+    if (!input.has_role()) { FAIL_1("missing role") }
 
     switch (input.role()) {
         case SIGROLE_PUBCREDENTIAL:
@@ -41,35 +39,35 @@ bool CheckProto_2(
             break;
         }
         default: {
-            FAIL5("invalid role", input.role())
+            FAIL_2("invalid role", input.role())
         }
     }
 
     if ((SIGROLE_ERROR != role) && (role != input.role())) {
-        FAIL6("incorrect role", input.role(), " specified ", role)
+        FAIL_4("incorrect role", input.role(), " specified ", role)
     }
 
     if (proto::SIGROLE_NYMIDSOURCE != input.role()) {
 
         if (!input.has_credentialid()) {
-            FAIL4(" missing credential identifier")
+            FAIL_1(" missing credential identifier")
         }
 
         if (MIN_PLAUSIBLE_IDENTIFIER > input.credentialid().size()) {
-            FAIL5("invalid credential id", input.credentialid())
+            FAIL_2("invalid credential id", input.credentialid())
         }
     }
 
-    if (!input.has_hashtype()) { FAIL4("missing hashtype") }
+    if (!input.has_hashtype()) { FAIL_1("missing hashtype") }
 
     if (input.hashtype() > proto::HASHTYPE_BLAKE2B512) {
-        FAIL5("invalid hash type", input.hashtype())
+        FAIL_2("invalid hash type", input.hashtype())
     }
 
-    if (!input.has_signature()) { FAIL4("missing signature") }
+    if (!input.has_signature()) { FAIL_1("missing signature") }
 
     if (MIN_PLAUSIBLE_SIGNATURE > input.signature().size()) {
-        FAIL4("invalid signature")
+        FAIL_1("invalid signature")
     }
 
     if ((SIGROLE_PUBCREDENTIAL == input.role()) &&

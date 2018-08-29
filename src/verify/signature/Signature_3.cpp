@@ -6,8 +6,6 @@
 #include "opentxs-proto/Types.hpp"
 #include "opentxs-proto/Check.hpp"
 
-#include <iostream>
-
 #define PROTO_NAME "signature"
 
 namespace opentxs
@@ -25,7 +23,7 @@ bool CheckProto_3(
     std::uint32_t& sourcePublic,
     const SignatureRole role)
 {
-    if (!input.has_role()) { FAIL4("missing role") }
+    if (!input.has_role()) { FAIL_1("missing role") }
 
     switch (input.role()) {
         case SIGROLE_PUBCREDENTIAL:
@@ -43,35 +41,35 @@ bool CheckProto_3(
             break;
         }
         default: {
-            FAIL5("invalid role", input.role())
+            FAIL_2("invalid role", input.role())
         }
     }
 
     if ((SIGROLE_ERROR != role) && (role != input.role())) {
-        FAIL6("incorrect role", input.role(), " specified ", role)
+        FAIL_4("incorrect role", input.role(), " specified ", role)
     }
 
     if (proto::SIGROLE_NYMIDSOURCE != input.role()) {
 
         if (!input.has_credentialid()) {
-            FAIL4(" missing credential identifier")
+            FAIL_1(" missing credential identifier")
         }
 
         if (MIN_PLAUSIBLE_IDENTIFIER > input.credentialid().size()) {
-            FAIL5("invalid credential id", input.credentialid())
+            FAIL_2("invalid credential id", input.credentialid())
         }
     }
 
-    if (!input.has_hashtype()) { FAIL4("missing hashtype") }
+    if (!input.has_hashtype()) { FAIL_1("missing hashtype") }
 
     if (input.hashtype() > proto::HASHTYPE_BLAKE2B512) {
-        FAIL5("invalid hash type", input.hashtype())
+        FAIL_2("invalid hash type", input.hashtype())
     }
 
-    if (!input.has_signature()) { FAIL4("missing signature") }
+    if (!input.has_signature()) { FAIL_1("missing signature") }
 
     if (MIN_PLAUSIBLE_SIGNATURE > input.signature().size()) {
-        FAIL4("invalid signature")
+        FAIL_1("invalid signature")
     }
 
     if ((SIGROLE_PUBCREDENTIAL == input.role()) &&
@@ -116,7 +114,7 @@ bool CheckProto_4(
     std::uint32_t&,
     const SignatureRole)
 {
-    UNDEFINED_VERSION2(4)
+    UNDEFINED_VERSION(4)
 }
 
 bool CheckProto_4(
@@ -141,7 +139,7 @@ bool CheckProto_5(
     std::uint32_t&,
     const SignatureRole)
 {
-    UNDEFINED_VERSION2(5)
+    UNDEFINED_VERSION(5)
 }
 
 bool CheckProto_5(
@@ -166,7 +164,7 @@ bool CheckProto_6(
     std::uint32_t&,
     const SignatureRole)
 {
-    UNDEFINED_VERSION2(6)
+    UNDEFINED_VERSION(6)
 }
 
 bool CheckProto_7(
@@ -180,7 +178,7 @@ bool CheckProto_7(
     std::uint32_t&,
     const SignatureRole)
 {
-    UNDEFINED_VERSION2(7)
+    UNDEFINED_VERSION(7)
 }
 
 bool CheckProto_8(
@@ -194,7 +192,7 @@ bool CheckProto_8(
     std::uint32_t&,
     const SignatureRole)
 {
-    UNDEFINED_VERSION2(8)
+    UNDEFINED_VERSION(8)
 }
 
 bool CheckProto_9(
@@ -208,7 +206,7 @@ bool CheckProto_9(
     std::uint32_t&,
     const SignatureRole)
 {
-    UNDEFINED_VERSION2(9)
+    UNDEFINED_VERSION(9)
 }
 
 bool CheckProto_10(
@@ -222,7 +220,7 @@ bool CheckProto_10(
     std::uint32_t&,
     const SignatureRole)
 {
-    UNDEFINED_VERSION2(10)
+    UNDEFINED_VERSION(10)
 }
 
 bool CheckProto_11(
@@ -236,7 +234,7 @@ bool CheckProto_11(
     std::uint32_t&,
     const SignatureRole)
 {
-    UNDEFINED_VERSION2(11)
+    UNDEFINED_VERSION(11)
 }
 
 bool CheckProto_12(
@@ -250,7 +248,7 @@ bool CheckProto_12(
     std::uint32_t&,
     const SignatureRole)
 {
-    UNDEFINED_VERSION2(12)
+    UNDEFINED_VERSION(12)
 }
 
 bool CheckProto_13(
@@ -264,7 +262,7 @@ bool CheckProto_13(
     std::uint32_t&,
     const SignatureRole)
 {
-    UNDEFINED_VERSION2(13)
+    UNDEFINED_VERSION(13)
 }
 
 bool CheckProto_14(
@@ -278,7 +276,7 @@ bool CheckProto_14(
     std::uint32_t&,
     const SignatureRole)
 {
-    UNDEFINED_VERSION2(14)
+    UNDEFINED_VERSION(14)
 }
 
 bool CheckProto_15(
@@ -292,7 +290,7 @@ bool CheckProto_15(
     std::uint32_t&,
     const SignatureRole)
 {
-    UNDEFINED_VERSION2(15)
+    UNDEFINED_VERSION(15)
 }
 
 bool CheckProto_16(
@@ -306,7 +304,7 @@ bool CheckProto_16(
     std::uint32_t&,
     const SignatureRole)
 {
-    UNDEFINED_VERSION2(16)
+    UNDEFINED_VERSION(16)
 }
 
 bool CheckProto_17(
@@ -320,7 +318,7 @@ bool CheckProto_17(
     std::uint32_t&,
     const SignatureRole)
 {
-    UNDEFINED_VERSION2(17)
+    UNDEFINED_VERSION(17)
 }
 
 bool CheckProto_18(
@@ -334,7 +332,7 @@ bool CheckProto_18(
     std::uint32_t&,
     const SignatureRole)
 {
-    UNDEFINED_VERSION2(18)
+    UNDEFINED_VERSION(18)
 }
 
 bool CheckProto_19(
@@ -348,7 +346,7 @@ bool CheckProto_19(
     std::uint32_t&,
     const SignatureRole)
 {
-    UNDEFINED_VERSION2(19)
+    UNDEFINED_VERSION(19)
 }
 
 bool CheckProto_20(
@@ -362,7 +360,7 @@ bool CheckProto_20(
     std::uint32_t&,
     const SignatureRole)
 {
-    UNDEFINED_VERSION2(20)
+    UNDEFINED_VERSION(20)
 }
 
 bool CheckProto_6(
@@ -370,7 +368,7 @@ bool CheckProto_6(
     const bool silent,
     const SignatureRole role)
 {
-    UNDEFINED_VERSION2(6)
+    UNDEFINED_VERSION(6)
 }
 
 bool CheckProto_7(
@@ -378,7 +376,7 @@ bool CheckProto_7(
     const bool silent,
     const SignatureRole role)
 {
-    UNDEFINED_VERSION2(7)
+    UNDEFINED_VERSION(7)
 }
 
 bool CheckProto_8(
@@ -386,7 +384,7 @@ bool CheckProto_8(
     const bool silent,
     const SignatureRole role)
 {
-    UNDEFINED_VERSION2(8)
+    UNDEFINED_VERSION(8)
 }
 
 bool CheckProto_9(
@@ -394,7 +392,7 @@ bool CheckProto_9(
     const bool silent,
     const SignatureRole role)
 {
-    UNDEFINED_VERSION2(9)
+    UNDEFINED_VERSION(9)
 }
 
 bool CheckProto_10(
@@ -402,7 +400,7 @@ bool CheckProto_10(
     const bool silent,
     const SignatureRole role)
 {
-    UNDEFINED_VERSION2(10)
+    UNDEFINED_VERSION(10)
 }
 
 bool CheckProto_11(
@@ -410,7 +408,7 @@ bool CheckProto_11(
     const bool silent,
     const SignatureRole role)
 {
-    UNDEFINED_VERSION2(11)
+    UNDEFINED_VERSION(11)
 }
 
 bool CheckProto_12(
@@ -418,7 +416,7 @@ bool CheckProto_12(
     const bool silent,
     const SignatureRole role)
 {
-    UNDEFINED_VERSION2(12)
+    UNDEFINED_VERSION(12)
 }
 
 bool CheckProto_13(
@@ -426,7 +424,7 @@ bool CheckProto_13(
     const bool silent,
     const SignatureRole role)
 {
-    UNDEFINED_VERSION2(13)
+    UNDEFINED_VERSION(13)
 }
 
 bool CheckProto_14(
@@ -434,7 +432,7 @@ bool CheckProto_14(
     const bool silent,
     const SignatureRole role)
 {
-    UNDEFINED_VERSION2(14)
+    UNDEFINED_VERSION(14)
 }
 
 bool CheckProto_15(
@@ -442,7 +440,7 @@ bool CheckProto_15(
     const bool silent,
     const SignatureRole role)
 {
-    UNDEFINED_VERSION2(15)
+    UNDEFINED_VERSION(15)
 }
 
 bool CheckProto_16(
@@ -450,7 +448,7 @@ bool CheckProto_16(
     const bool silent,
     const SignatureRole role)
 {
-    UNDEFINED_VERSION2(16)
+    UNDEFINED_VERSION(16)
 }
 
 bool CheckProto_17(
@@ -458,7 +456,7 @@ bool CheckProto_17(
     const bool silent,
     const SignatureRole role)
 {
-    UNDEFINED_VERSION2(17)
+    UNDEFINED_VERSION(17)
 }
 
 bool CheckProto_18(
@@ -466,7 +464,7 @@ bool CheckProto_18(
     const bool silent,
     const SignatureRole role)
 {
-    UNDEFINED_VERSION2(18)
+    UNDEFINED_VERSION(18)
 }
 
 bool CheckProto_19(
@@ -474,7 +472,7 @@ bool CheckProto_19(
     const bool silent,
     const SignatureRole role)
 {
-    UNDEFINED_VERSION2(19)
+    UNDEFINED_VERSION(19)
 }
 
 bool CheckProto_20(
@@ -482,7 +480,7 @@ bool CheckProto_20(
     const bool silent,
     const SignatureRole role)
 {
-    UNDEFINED_VERSION2(20)
+    UNDEFINED_VERSION(20)
 }
 }  // namespace proto
 }  // namespace opentxs

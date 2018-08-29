@@ -6,8 +6,6 @@
 #include "opentxs-proto/Types.hpp"
 #include "opentxs-proto/Check.hpp"
 
-#include <iostream>
-
 #define PROTO_NAME "peer request"
 
 namespace opentxs::proto
@@ -19,8 +17,8 @@ bool CheckProto_3(const PeerRequest& input, const bool silent)
     CHECK_IDENTIFIER(recipient)
     CHECK_EXISTS(type)
     CHECK_IDENTIFIER(cookie)
-    CHECK_SUBOBJECT2(
-        signature, PeerRequestAllowedSignature, ", SIGROLE_PEERREQUEST")
+    CHECK_SUBOBJECT_VA(
+        signature, PeerRequestAllowedSignature, SIGROLE_PEERREQUEST)
     CHECK_IDENTIFIER(server)
 
     switch (input.type()) {
@@ -74,7 +72,7 @@ bool CheckProto_3(const PeerRequest& input, const bool silent)
                 verificationoffer, PeerRequestAllowedVerificationOffer)
         } break;
         default: {
-            FAIL4("invalid type")
+            FAIL_1("invalid type")
         }
     }
 

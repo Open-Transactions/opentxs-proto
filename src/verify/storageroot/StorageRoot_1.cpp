@@ -6,30 +6,25 @@
 #include "opentxs-proto/Types.hpp"
 #include "opentxs-proto/Check.hpp"
 
-#include <iostream>
+#define PROTO_NAME "storage root"
 
 namespace opentxs
 {
 namespace proto
 {
-
 bool CheckProto_1(const StorageRoot& input, const bool silent)
 {
-    if (!input.has_items()) {
-        FAIL("storage root", "missing hash")
-    }
+    if (!input.has_items()) { FAIL_1("missing hash") }
 
     if (MIN_PLAUSIBLE_IDENTIFIER > input.items().size()) {
-        FAIL("storage root", "invalid hash")
+        FAIL_1("invalid hash")
     }
 
     if (MAX_PLAUSIBLE_IDENTIFIER < input.items().size()) {
-        FAIL("storage root", "invalid hash")
+        FAIL_1("invalid hash")
     }
 
-    if (input.has_sequence()) {
-        FAIL("storage root", "unexpected sequence field present")
-    }
+    if (input.has_sequence()) { FAIL_1("unexpected sequence field present") }
 
     return true;
 }

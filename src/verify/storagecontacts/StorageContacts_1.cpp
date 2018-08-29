@@ -6,7 +6,7 @@
 #include "opentxs-proto/Types.hpp"
 #include "opentxs-proto/Check.hpp"
 
-#include <iostream>
+#define PROTO_NAME "contact storage index"
 
 namespace opentxs::proto
 {
@@ -20,12 +20,9 @@ bool CheckProto_1(const StorageContacts& input, const bool silent)
                 StorageContactsAllowedList.at(input.version()).second,
                 silent);
 
-            if (!valid) {
-                FAIL("contact storage index", "invalid merge")
-            }
+            if (!valid) { FAIL_1("invalid merge") }
         } catch (const std::out_of_range&) {
-            FAIL2(
-                "contact storage index",
+            FAIL_2(
                 "allowed storage id list version not defined for version",
                 input.version())
         }
@@ -39,12 +36,9 @@ bool CheckProto_1(const StorageContacts& input, const bool silent)
                 StorageContactsAllowedHash.at(input.version()).second,
                 silent);
 
-            if (!valid) {
-                FAIL("contact storage index", "invalid hash")
-            }
+            if (!valid) { FAIL_1("invalid hash") }
         } catch (const std::out_of_range&) {
-            FAIL2(
-                "contact storage index",
+            FAIL_2(
                 "allowed storage item hash version not defined for version",
                 input.version())
         }
@@ -58,22 +52,16 @@ bool CheckProto_1(const StorageContacts& input, const bool silent)
                 StorageContactsAllowedAddress.at(input.version()).second,
                 silent);
 
-            if (!valid) {
-                FAIL("contact storage index", "invalid address index")
-            }
+            if (!valid) { FAIL_1("invalid address index") }
         } catch (const std::out_of_range&) {
-            FAIL2(
-                "contact storage index",
+            FAIL_2(
                 "allowed address index version not defined for version",
                 input.version())
         }
     }
 
     if (0 < input.nym().size()) {
-        FAIL2(
-            "contact storage index",
-            "nym index not allowed for version",
-            input.version())
+        FAIL_2("nym index not allowed for version", input.version())
     }
 
     return true;

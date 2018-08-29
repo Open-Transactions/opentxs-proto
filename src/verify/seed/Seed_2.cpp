@@ -6,20 +6,15 @@
 #include "opentxs-proto/Types.hpp"
 #include "opentxs-proto/Check.hpp"
 
-#include <iostream>
-
 #define PROTO_NAME "seed"
 
 namespace opentxs
 {
 namespace proto
 {
-
 bool CheckProto_2(const Seed& input, const bool silent)
 {
-    if (!input.has_words()) {
-        FAIL("seed", "missing words")
-    }
+    if (!input.has_words()) { FAIL_1("missing words") }
 
     try {
         const bool validWords = Check(
@@ -29,12 +24,9 @@ bool CheckProto_2(const Seed& input, const bool silent)
             silent,
             false);
 
-        if (!validWords) {
-            FAIL("seed", "invalid words")
-        }
+        if (!validWords) { FAIL_1("invalid words") }
     } catch (const std::out_of_range&) {
-        FAIL2(
-            "seed",
+        FAIL_2(
             "allowed ciphertext version not defined for version",
             input.version())
     }
@@ -48,125 +40,96 @@ bool CheckProto_2(const Seed& input, const bool silent)
                 silent,
                 false);
 
-            if (!validWords) {
-                FAIL("seed", "invalid passphrase")
-            }
+            if (!validWords) { FAIL_1("invalid passphrase") }
         } catch (const std::out_of_range&) {
-            FAIL2(
-                "seed",
+            FAIL_2(
                 "allowed ciphertext version not defined for version",
                 input.version())
         }
 
         if (input.passphrase().has_key()) {
-            FAIL(
-                "seed", "passphrase not allowed to have embedded symmetric key")
+            FAIL_1("passphrase not allowed to have embedded symmetric key")
         }
     }
 
-    if (!input.has_fingerprint()) {
-        FAIL("seed", "missing fingerprint")
-    }
+    if (!input.has_fingerprint()) { FAIL_1("missing fingerprint") }
 
     if (MIN_PLAUSIBLE_IDENTIFIER > input.fingerprint().size()) {
-        FAIL("seed", "invalid fingerprint")
+        FAIL_1("invalid fingerprint")
     }
 
-    if (!input.has_index()) {
-        FAIL("seed", "missing index")
-    }
+    if (!input.has_index()) { FAIL_1("missing index") }
 
     return true;
 }
 
-bool CheckProto_3(const Seed& input, const bool silent)
-{
-    UNDEFINED_VERSION("seed", 3)
-}
+bool CheckProto_3(const Seed& input, const bool silent) { UNDEFINED_VERSION(3) }
 
-bool CheckProto_4(const Seed& input, const bool silent)
-{
-    UNDEFINED_VERSION("seed", 4)
-}
+bool CheckProto_4(const Seed& input, const bool silent) { UNDEFINED_VERSION(4) }
 
-bool CheckProto_5(const Seed& input, const bool silent)
-{
-    UNDEFINED_VERSION("seed", 5)
-}
+bool CheckProto_5(const Seed& input, const bool silent) { UNDEFINED_VERSION(5) }
 
-bool CheckProto_6(const Seed& input, const bool silent)
-{
-    UNDEFINED_VERSION2(6)
-}
+bool CheckProto_6(const Seed& input, const bool silent) { UNDEFINED_VERSION(6) }
 
-bool CheckProto_7(const Seed& input, const bool silent)
-{
-    UNDEFINED_VERSION2(7)
-}
+bool CheckProto_7(const Seed& input, const bool silent) { UNDEFINED_VERSION(7) }
 
-bool CheckProto_8(const Seed& input, const bool silent)
-{
-    UNDEFINED_VERSION2(8)
-}
+bool CheckProto_8(const Seed& input, const bool silent) { UNDEFINED_VERSION(8) }
 
-bool CheckProto_9(const Seed& input, const bool silent)
-{
-    UNDEFINED_VERSION2(9)
-}
+bool CheckProto_9(const Seed& input, const bool silent) { UNDEFINED_VERSION(9) }
 
 bool CheckProto_10(const Seed& input, const bool silent)
 {
-    UNDEFINED_VERSION2(10)
+    UNDEFINED_VERSION(10)
 }
 
 bool CheckProto_11(const Seed& input, const bool silent)
 {
-    UNDEFINED_VERSION2(11)
+    UNDEFINED_VERSION(11)
 }
 
 bool CheckProto_12(const Seed& input, const bool silent)
 {
-    UNDEFINED_VERSION2(12)
+    UNDEFINED_VERSION(12)
 }
 
 bool CheckProto_13(const Seed& input, const bool silent)
 {
-    UNDEFINED_VERSION2(13)
+    UNDEFINED_VERSION(13)
 }
 
 bool CheckProto_14(const Seed& input, const bool silent)
 {
-    UNDEFINED_VERSION2(14)
+    UNDEFINED_VERSION(14)
 }
 
 bool CheckProto_15(const Seed& input, const bool silent)
 {
-    UNDEFINED_VERSION2(15)
+    UNDEFINED_VERSION(15)
 }
 
 bool CheckProto_16(const Seed& input, const bool silent)
 {
-    UNDEFINED_VERSION2(16)
+    UNDEFINED_VERSION(16)
 }
 
 bool CheckProto_17(const Seed& input, const bool silent)
 {
-    UNDEFINED_VERSION2(17)
+    UNDEFINED_VERSION(17)
 }
 
 bool CheckProto_18(const Seed& input, const bool silent)
 {
-    UNDEFINED_VERSION2(18)
+    UNDEFINED_VERSION(18)
 }
 
 bool CheckProto_19(const Seed& input, const bool silent)
 {
-    UNDEFINED_VERSION2(19)
+    UNDEFINED_VERSION(19)
 }
 
 bool CheckProto_20(const Seed& input, const bool silent)
 {
-    UNDEFINED_VERSION2(20)
+    UNDEFINED_VERSION(20)
 }
 }  // namespace proto
 }  // namespace opentxs

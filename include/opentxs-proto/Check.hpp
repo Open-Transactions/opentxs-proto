@@ -15,120 +15,103 @@
 #endif
 
 #ifdef ANDROID
-#define WRITE_LOG()                                                            \
+#define _WRITE_LOG()                                                           \
     {                                                                          \
         __android_log_write(                                                   \
             ANDROID_LOG_INFO, "opentxs-proto", out.str().c_str());             \
     }
 #else
-#define WRITE_LOG()                                                            \
+#define _WRITE_LOG()                                                           \
     {                                                                          \
         std::cerr << out.str();                                                \
     }
 #endif
 
-#define FAIL(a, b)                                                             \
+#define _FAIL_1(a, b)                                                          \
     {                                                                          \
         if (false == silent) {                                                 \
             std::stringstream out{};                                           \
             out << "Verify version " << input.version() << " " << a            \
                 << " failed: " << b << std::endl;                              \
-            WRITE_LOG()                                                        \
+            _WRITE_LOG()                                                       \
         }                                                                      \
                                                                                \
         return false;                                                          \
     }
 
-#define FAIL2(a, b, c)                                                         \
+#define _FAIL_2(a, b, c)                                                       \
     {                                                                          \
         if (false == silent) {                                                 \
             std::stringstream out{};                                           \
             out << "Verify version " << input.version() << " " << a            \
                 << " failed: " << b << "(" << c << ")." << std::endl;          \
-            WRITE_LOG()                                                        \
+            _WRITE_LOG()                                                       \
         }                                                                      \
                                                                                \
         return false;                                                          \
     }
 
-#define FAIL3(a, b, c, d, e)                                                   \
+#define FAIL_1(b)                                                              \
     {                                                                          \
-        if (false == silent) {                                                 \
-            std::stringstream out{};                                           \
-            out << "Verify version " << input.version() << " " << a            \
-                << " failed: " << b << "(" << c << ")" << d << "(" << e << ")" \
-                << std::endl;                                                  \
-            WRITE_LOG()                                                        \
-        }                                                                      \
-                                                                               \
-        return false;                                                          \
+        _FAIL_1(PROTO_NAME, b);                                                \
     }
 
-#define FAIL4(b)                                                               \
-    {                                                                          \
-        if (false == silent) {                                                 \
-            std::stringstream out{};                                           \
-            out << "Verify version " << input.version() << " " << PROTO_NAME   \
-                << " failed: " << b << std::endl;                              \
-            WRITE_LOG()                                                        \
-        }                                                                      \
-                                                                               \
-        return false;                                                          \
-    }
-
-#define FAIL5(b, c)                                                            \
+#define FAIL_2(b, c)                                                           \
     {                                                                          \
         if (false == silent) {                                                 \
             std::stringstream out{};                                           \
             out << "Verify version " << input.version() << " " << PROTO_NAME   \
                 << " failed: " << b << "(" << c << ")." << std::endl;          \
-            WRITE_LOG()                                                        \
+            _WRITE_LOG()                                                       \
         }                                                                      \
                                                                                \
         return false;                                                          \
     }
 
-#define FAIL6(b, c, d, e)                                                      \
+#define FAIL_4(b, c, d, e)                                                     \
     {                                                                          \
         if (false == silent) {                                                 \
             std::stringstream out{};                                           \
             out << "Verify version " << input.version() << " " << PROTO_NAME   \
                 << " failed: " << b << "(" << c << ")" << d << "(" << e << ")" \
                 << std::endl;                                                  \
-            WRITE_LOG()                                                        \
+            _WRITE_LOG()                                                       \
         }                                                                      \
                                                                                \
         return false;                                                          \
     }
 
-#define FAIL7(b, c, d, e, f, g)                                                \
+#define FAIL_6(b, c, d, e, f, g)                                               \
     {                                                                          \
         if (false == silent) {                                                 \
             std::stringstream out{};                                           \
             out << "Verify version " << input.version() << " " << PROTO_NAME   \
                 << " failed: " << b << "(" << c << ")" << d << "(" << e << ")" \
                 << f << "(" << g << ")" << std::endl;                          \
-            WRITE_LOG()                                                        \
+            _WRITE_LOG()                                                       \
         }                                                                      \
                                                                                \
         return false;                                                          \
     }
 
-#define UNDEFINED_VERSION(a, b)                                                \
+#define UNDEFINED_VERSION(b)                                                   \
     {                                                                          \
-        FAIL2(a, "undefined version", b)                                       \
-    }
-
-#define UNDEFINED_VERSION2(b)                                                  \
-    {                                                                          \
-        FAIL2(PROTO_NAME, "undefined version", b)                              \
+        _FAIL_2(PROTO_NAME, "undefined version", b)                            \
     }
 
 #define CHECK_EXISTS(a)                                                        \
     {                                                                          \
         if (false == input.has_##a()) {                                        \
             const auto fail = std::string("missing ") + #a;                    \
-            FAIL4(fail)                                                        \
+            FAIL_1(fail)                                                       \
+        }                                                                      \
+    }
+
+#define CHECK_EXISTS_STRING(a)                                                 \
+    {                                                                          \
+        if ((false == input.has_##a()) || (0 == input.a().size())) {           \
+            const auto fail = std::string("missing ") + #a;                    \
+            FAIL_1(fail)                                                       \
         }                                                                      \
     }
 
@@ -136,15 +119,15 @@
     {                                                                          \
         if (true == input.has_##a()) {                                         \
             const auto fail = std::string("unexpected ") + #a + " present";    \
-            FAIL4(fail)                                                        \
+            FAIL_1(fail)                                                       \
         }                                                                      \
     }
 
 #define CHECK_HAVE(a)                                                          \
     {                                                                          \
         if (0 == input.a().size()) {                                           \
-            const auto fail = std::string("unexpected ") + #a + " present";    \
-            FAIL4(fail)                                                        \
+            const auto fail = std::string("missing ") + #a;                    \
+            FAIL_1(fail)                                                       \
         }                                                                      \
     }
 
@@ -152,123 +135,71 @@
     {                                                                          \
         if (0 < input.a().size()) {                                            \
             const auto fail = std::string("unexpected ") + #a + " present";    \
-            FAIL4(fail)                                                        \
+            FAIL_1(fail)                                                       \
         }                                                                      \
     }
 
-#define CHECK_STRING(a, min, max)                                              \
+#define _CHECK_STRING(a, min, max)                                             \
     {                                                                          \
-        CHECK_EXISTS(a)                                                        \
-                                                                               \
-        if ((min > input.a().size()) || (max < input.a().size())) {            \
-            const auto fail = std::string("invalid ") + #a + " size";          \
-            FAIL5(fail, input.a().size())                                      \
+        if (input.has_##a() && (0 < input.a().size())) {                       \
+            if ((min > input.a().size()) || (max < input.a().size())) {        \
+                const auto fail = std::string("invalid ") + #a + " size";      \
+                FAIL_2(fail, input.a().size())                                 \
+            }                                                                  \
         }                                                                      \
-    }
-
-#define CHECK_IDENTIFIER(a)                                                    \
-    {                                                                          \
-        CHECK_STRING(a, MIN_PLAUSIBLE_IDENTIFIER, MAX_PLAUSIBLE_IDENTIFIER)    \
-    }
-
-#define CHECK_KEY(a)                                                           \
-    {                                                                          \
-        CHECK_STRING(a, MIN_PLAUSIBLE_KEYSIZE, MAX_PLAUSIBLE_KEYSIZE)          \
-    }
-
-#define CHECK_NAME(a)                                                          \
-    {                                                                          \
-        CHECK_STRING(a, 1, MAX_VALID_CONTACT_VALUE)                            \
     }
 
 #define OPTIONAL_IDENTIFIER(a)                                                 \
     {                                                                          \
-        if (true == input.has_##a()) {                                         \
-            if ((MIN_PLAUSIBLE_IDENTIFIER > input.a().size()) ||               \
-                (MAX_PLAUSIBLE_IDENTIFIER < input.a().size())) {               \
+        _CHECK_STRING(a, MIN_PLAUSIBLE_IDENTIFIER, MAX_PLAUSIBLE_IDENTIFIER);  \
+    }
+
+#define CHECK_IDENTIFIER(a)                                                    \
+    {                                                                          \
+        CHECK_EXISTS_STRING(a);                                                \
+        OPTIONAL_IDENTIFIER(a);                                                \
+    }
+
+#define OPTIONAL_IDENTIFIERS(a)                                                \
+    {                                                                          \
+        for (const auto& it : input.a()) {                                     \
+            if ((MIN_PLAUSIBLE_IDENTIFIER > it.size()) ||                      \
+                (MAX_PLAUSIBLE_IDENTIFIER < it.size())) {                      \
                 const auto fail = std::string("invalid ") + #a + " size";      \
-                                                                               \
-                if (0 != input.a().size()) { FAIL5(fail, input.a().size()) }   \
+                FAIL_2(fail, it.size())                                        \
             }                                                                  \
         }                                                                      \
     }
 
 #define CHECK_IDENTIFIERS(a)                                                   \
     {                                                                          \
-        for (const auto& it : input.a()) {                                     \
-            if ((MIN_PLAUSIBLE_IDENTIFIER > it.size()) ||                      \
-                (MAX_PLAUSIBLE_IDENTIFIER < it.size())) {                      \
-                const auto fail = std::string("invalid ") + #a + " size";      \
-                FAIL5(fail, it.size())                                         \
-            }                                                                  \
-        }                                                                      \
+        /* CHECK_EXISTS(a) */                                                  \
+        OPTIONAL_IDENTIFIERS(a)                                                \
     }
 
-#define CHECK_SUBOBJECT0(a, b, c)                                              \
+#define OPTIONAL_KEY(a)                                                        \
     {                                                                          \
-        CHECK_EXISTS(a)                                                        \
-                                                                               \
-        try {                                                                  \
-            const bool valid##a = Check(                                       \
-                input.a(),                                                     \
-                b.at(input.version()).first,                                   \
-                b.at(input.version()).second,                                  \
-                c);                                                            \
-                                                                               \
-            if (false == valid##a) {                                           \
-                const auto fail = std::string("invalid ") + #a;                \
-                FAIL4(fail)                                                    \
-            }                                                                  \
-        } catch (const std::out_of_range&) {                                   \
-            const auto fail = std::string("allowed ") + #a +                   \
-                              " version not defined for version";              \
-            FAIL5(fail, input.version())                                       \
-        }                                                                      \
+        _CHECK_STRING(a, MIN_PLAUSIBLE_KEYSIZE, MAX_PLAUSIBLE_KEYSIZE);        \
     }
 
-#define CHECK_SUBOBJECT(a, b)                                                  \
+#define CHECK_KEY(a)                                                           \
     {                                                                          \
-        CHECK_SUBOBJECT0(a, b, silent)                                         \
+        CHECK_EXISTS_STRING(a);                                                \
+        OPTIONAL_KEY(a);                                                       \
     }
 
-#define CHECK_SUBOBJECT2(a, b, c)                                              \
+#define OPTIONAL_NAME(a)                                                       \
     {                                                                          \
-        CHECK_SUBOBJECT0(a, b, "silent##c")                                    \
+        _CHECK_STRING(a, 1, MAX_VALID_CONTACT_VALUE);                          \
     }
 
-#define CHECK_SUBOBJECTS0(a, b, c)                                             \
+#define CHECK_NAME(a)                                                          \
     {                                                                          \
-        for (const auto& it : input.a()) {                                     \
-            try {                                                              \
-                const bool valid##a = Check(                                   \
-                    it,                                                        \
-                    b.at(input.version()).first,                               \
-                    b.at(input.version()).second,                              \
-                    c);                                                        \
-                                                                               \
-                if (false == valid##a) {                                       \
-                    const auto fail = std::string("invalid ") + #a;            \
-                    FAIL4(fail)                                                \
-                }                                                              \
-            } catch (const std::out_of_range&) {                               \
-                const auto fail = std::string("allowed ") + #a +               \
-                                  " version not defined for version";          \
-                FAIL5(fail, input.version())                                   \
-            }                                                                  \
-        }                                                                      \
+        CHECK_EXISTS_STRING(a);                                                \
+        OPTIONAL_NAME(a);                                                      \
     }
 
-#define CHECK_SUBOBJECTS(a, b)                                                 \
-    {                                                                          \
-        CHECK_SUBOBJECTS0(a, b, silent)                                        \
-    }
-
-#define CHECK_SUBOBJECTS_CUSTOM(a, b, c)                                       \
-    {                                                                          \
-        CHECK_SUBOBJECTS0(a, b, "silent##c")                                   \
-    }
-
-#define OPTIONAL_SUBOBJECT0(a, b, c)                                           \
+#define _CHECK_SUBOBJECT(a, b, ...)                                            \
     {                                                                          \
         if (input.has_##a()) {                                                 \
             try {                                                              \
@@ -276,28 +207,84 @@
                     input.a(),                                                 \
                     b.at(input.version()).first,                               \
                     b.at(input.version()).second,                              \
-                    c);                                                        \
+                    __VA_ARGS__);                                              \
                                                                                \
                 if (false == valid##a) {                                       \
                     const auto fail = std::string("invalid ") + #a;            \
-                    FAIL4(fail)                                                \
+                    FAIL_1(fail)                                               \
                 }                                                              \
             } catch (const std::out_of_range&) {                               \
                 const auto fail = std::string("allowed ") + #a +               \
                                   " version not defined for version";          \
-                FAIL5(fail, input.version())                                   \
+                FAIL_2(fail, input.version())                                  \
             }                                                                  \
         }                                                                      \
     }
 
 #define OPTIONAL_SUBOBJECT(a, b)                                               \
     {                                                                          \
-        OPTIONAL_SUBOBJECT0(a, b, silent)                                      \
+        _CHECK_SUBOBJECT(a, b, silent);                                        \
+    }
+
+#define CHECK_SUBOBJECT(a, b)                                                  \
+    {                                                                          \
+        CHECK_EXISTS(a);                                                       \
+        OPTIONAL_SUBOBJECT(a, b);                                              \
+    }
+
+#define OPTIONAL_SUBOBJECT_VA(a, b, ...)                                       \
+    {                                                                          \
+        _CHECK_SUBOBJECT(a, b, silent, __VA_ARGS__);                           \
+    }
+
+#define CHECK_SUBOBJECT_VA(a, b, ...)                                          \
+    {                                                                          \
+        CHECK_EXISTS(a);                                                       \
+        OPTIONAL_SUBOBJECT_VA(a, b, __VA_ARGS__);                              \
+    }
+
+#define _CHECK_SUBOBJECTS(a, b, ...)                                           \
+    {                                                                          \
+        for (const auto& it : input.a()) {                                     \
+            try {                                                              \
+                const bool valid##a = Check(                                   \
+                    it,                                                        \
+                    b.at(input.version()).first,                               \
+                    b.at(input.version()).second,                              \
+                    __VA_ARGS__);                                              \
+                                                                               \
+                if (false == valid##a) {                                       \
+                    const auto fail = std::string("invalid ") + #a;            \
+                    FAIL_1(fail)                                               \
+                }                                                              \
+            } catch (const std::out_of_range&) {                               \
+                const auto fail = std::string("allowed ") + #a +               \
+                                  " version not defined for version";          \
+                FAIL_2(fail, input.version())                                  \
+            }                                                                  \
+        }                                                                      \
     }
 
 #define OPTIONAL_SUBOBJECTS(a, b)                                              \
     {                                                                          \
-        CHECK_SUBOBJECTS0(a, b, silent)                                        \
+        _CHECK_SUBOBJECTS(a, b, silent);                                       \
+    }
+
+#define CHECK_SUBOBJECTS(a, b)                                                 \
+    {                                                                          \
+        /* CHECK_HAVE(a); */                                                   \
+        OPTIONAL_SUBOBJECTS(a, b);                                             \
+    }
+
+#define OPTIONAL_SUBOBJECTS_VA(a, b, ...)                                      \
+    {                                                                          \
+        _CHECK_SUBOBJECTS(a, b, silent, __VA_ARGS__);                          \
+    }
+
+#define CHECK_SUBOBJECTS_VA(a, b, ...)                                         \
+    {                                                                          \
+        CHECK_HAVE(a);                                                         \
+        OPTIONAL_SUBOBJECTS_VA(a, b, __VA_ARGS__);                             \
     }
 
 namespace opentxs
@@ -312,12 +299,12 @@ bool Check(
     const bool silent,
     Args&&... params)
 {
-    if (!input.has_version()) { FAIL("protobuf", "missing version.") }
+    if (!input.has_version()) { _FAIL_1("protobuf", "missing version.") }
 
     const std::uint32_t version = input.version();
 
     if ((version < minVersion) || (version > maxVersion)) {
-        FAIL2("protobuf", "incorrect version", input.version())
+        _FAIL_2("protobuf", "incorrect version", input.version());
     }
 
     switch (version) {
@@ -382,7 +369,7 @@ bool Check(
             return CheckProto_20(input, silent, params...);
         }
         default: {
-            FAIL2("protobuf", "unknown version", input.version())
+            _FAIL_2("protobuf", "unknown version", input.version());
         }
     }
 
@@ -393,7 +380,7 @@ template <typename T, typename... Args>
 bool Validate(const T& input, const bool silent, Args&&... params)
 {
 
-    if (!input.has_version()) { FAIL("protobuf", "missing version") }
+    if (!input.has_version()) { _FAIL_1("protobuf", "missing version"); }
 
     const std::uint32_t version = input.version();
 
