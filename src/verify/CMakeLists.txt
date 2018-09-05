@@ -64,6 +64,7 @@ set(cxx-sources
   paymentcode/PaymentCode_1.cpp
   paymentevent/PaymentEvent_1.cpp
   paymentworkflow/PaymentWorkflow_1.cpp
+  paymentworkflow/PaymentWorkflow_2.cpp
   peerobject/PeerObject_1.cpp
   peerobject/PeerObject_2.cpp
   peerreply/PeerReply_1.cpp
@@ -135,6 +136,7 @@ set(cxx-sources
   storageunits/StorageUnits_1.cpp
   storageworkflowindex/StorageWorkflowIndex_1.cpp
   storageworkflowtype/StorageWorkflowType_1.cpp
+  storageworkflowtype/StorageWorkflowType_2.cpp
   storesecret/StoreSecret_1.cpp
   taskcomplete/TaskComplete_1.cpp
   symmetrickey/SymmetricKey_1.cpp

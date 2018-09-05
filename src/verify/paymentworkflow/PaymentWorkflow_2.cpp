@@ -21,7 +21,7 @@
 
 namespace opentxs::proto
 {
-bool CheckProto_1(const PaymentWorkflow& input, const bool silent)
+bool CheckProto_2(const PaymentWorkflow& input, const bool silent)
 {
     CHECK_IDENTIFIER(id)
 
@@ -40,7 +40,9 @@ bool CheckProto_1(const PaymentWorkflow& input, const bool silent)
         case PAYMENTWORKFLOWTYPE_OUTGOINGCHEQUE:
         case PAYMENTWORKFLOWTYPE_INCOMINGCHEQUE:
         case PAYMENTWORKFLOWTYPE_OUTGOINGINVOICE:
-        case PAYMENTWORKFLOWTYPE_INCOMINGINVOICE: {
+        case PAYMENTWORKFLOWTYPE_INCOMINGINVOICE:
+        case PAYMENTWORKFLOWTYPE_OUTGOINGTRANSFER:
+        case PAYMENTWORKFLOWTYPE_INCOMINGTRANSFER: {
             if (1 != input.source().size()) {
                 FAIL_2(
                     "Incorrect number of source objects", input.source().size())
@@ -50,9 +52,16 @@ bool CheckProto_1(const PaymentWorkflow& input, const bool silent)
                 FAIL_2("Incorrect number of parties", input.party().size())
             }
         } break;
-        case PAYMENTWORKFLOWTYPE_OUTGOINGTRANSFER:
-        case PAYMENTWORKFLOWTYPE_INCOMINGTRANSFER:
-        case PAYMENTWORKFLOWTYPE_INTERNALTRANSFER:
+        case PAYMENTWORKFLOWTYPE_INTERNALTRANSFER: {
+            if (1 != input.source().size()) {
+                FAIL_2(
+                    "Incorrect number of source objects", input.source().size())
+            }
+
+            if (0 != input.party().size()) {
+                FAIL_2("Incorrect number of parties", input.party().size())
+            }
+        } break;
         default: {
             FAIL_1("Invalid type")
         }
@@ -339,8 +348,219 @@ bool CheckProto_1(const PaymentWorkflow& input, const bool silent)
             }
         } break;
         case PAYMENTWORKFLOWTYPE_OUTGOINGTRANSFER:
+        {
+            if (1 != accounts) { FAIL_2("Wrong number of accounts", accounts) }
+
+            switch (input.state()) {
+                case PAYMENTWORKFLOWSTATE_INITIATED: {
+                    if (1 != createEvents) {
+                        BAD_EVENTS(
+                            "Wrong number of create events", createEvents)
+                    }
+
+                    if (0 < cancelEvents) {
+                        BAD_EVENTS(
+                            "Wrong number of cancel events", cancelEvents)
+                    }
+
+                    if (0 < acceptEvents) {
+                        BAD_EVENTS(
+                            "Wrong number of accept events", acceptEvents)
+                    }
+
+                    if (0 < completeEvents) {
+                        BAD_EVENTS(
+                            "Wrong number of complete events", completeEvents)
+                    }
+                } break;
+                case PAYMENTWORKFLOWSTATE_ACCEPTED: {
+                    if (1 != createEvents) {
+                        BAD_EVENTS(
+                            "Wrong number of create events", createEvents)
+                    }
+
+                    if (0 == conveyEvents) {
+                        BAD_EVENTS(
+                            "Wrong number of convey events", conveyEvents)
+                    }
+
+                    if (0 == acceptEvents) {
+                        BAD_EVENTS(
+                            "Wrong number of accept events", acceptEvents)
+                    }
+                } break;
+                case PAYMENTWORKFLOWSTATE_COMPLETED: {
+                    if (1 != createEvents) {
+                        BAD_EVENTS(
+                            "Wrong number of create events", createEvents)
+                    }
+
+                    if (0 == conveyEvents) {
+                        BAD_EVENTS(
+                            "Wrong number of convey events", conveyEvents)
+                    }
+
+                    if (0 == acceptEvents) {
+                        BAD_EVENTS(
+                            "Wrong number of accept events", acceptEvents)
+                    }
+
+                    if (0 == completeEvents) {
+                        BAD_EVENTS(
+                            "Wrong number of complete events", completeEvents)
+                    }
+                } break;
+                case PAYMENTWORKFLOWSTATE_UNSENT:
+                case PAYMENTWORKFLOWSTATE_CONVEYED:
+                case PAYMENTWORKFLOWSTATE_CANCELLED:
+                case PAYMENTWORKFLOWSTATE_EXPIRED:
+                case PAYMENTWORKFLOWSTATE_ERROR:
+                default: {
+                    FAIL_1("Invalid state")
+                }
+            }
+        } break;
         case PAYMENTWORKFLOWTYPE_INCOMINGTRANSFER:
+        {
+            if (1 != accounts) { FAIL_2("Wrong number of accounts", accounts) }
+
+            switch (input.state()) {
+                case PAYMENTWORKFLOWSTATE_CONVEYED: {
+                    if (1 != createEvents) {
+                        BAD_EVENTS(
+                            "Wrong number of create events", createEvents)
+                    }
+
+                    if (0 == conveyEvents) {
+                        BAD_EVENTS(
+                            "Wrong number of convey events", conveyEvents)
+                    }
+
+                    if (0 < completeEvents) {
+                        BAD_EVENTS(
+                            "Wrong number of complete events", completeEvents)
+                    }
+                } break;
+                case PAYMENTWORKFLOWSTATE_COMPLETED: {
+                    if (1 != createEvents) {
+                        BAD_EVENTS(
+                            "Wrong number of create events", createEvents)
+                    }
+
+                    if (0 == conveyEvents) {
+                        BAD_EVENTS(
+                            "Wrong number of convey events", conveyEvents)
+                    }
+
+                    if (0 == acceptEvents) {
+                        BAD_EVENTS(
+                            "Wrong number of accept events", acceptEvents)
+                    }
+
+                    if (0 == completeEvents) {
+                        BAD_EVENTS(
+                            "Wrong number of complete events", completeEvents)
+                    }
+                } break;
+                case PAYMENTWORKFLOWSTATE_UNSENT:
+                case PAYMENTWORKFLOWSTATE_CANCELLED:
+                case PAYMENTWORKFLOWSTATE_ACCEPTED:
+                case PAYMENTWORKFLOWSTATE_EXPIRED:
+                case PAYMENTWORKFLOWSTATE_INITIATED:
+                case PAYMENTWORKFLOWSTATE_ERROR:
+                default: {
+                    FAIL_1("Invalid state")
+                }
+            }
+        } break;
         case PAYMENTWORKFLOWTYPE_INTERNALTRANSFER:
+        {
+            if (2 != accounts) { FAIL_2("Wrong number of accounts", accounts) }
+
+            switch (input.state()) {
+                case PAYMENTWORKFLOWSTATE_INITIATED: {
+                    if (1 != createEvents) {
+                        BAD_EVENTS(
+                            "Wrong number of create events", createEvents)
+                    }
+
+                    if (0 < cancelEvents) {
+                        BAD_EVENTS(
+                            "Wrong number of cancel events", cancelEvents)
+                    }
+
+                    if (0 < acceptEvents) {
+                        BAD_EVENTS(
+                            "Wrong number of accept events", acceptEvents)
+                    }
+
+                    if (0 < completeEvents) {
+                        BAD_EVENTS(
+                            "Wrong number of complete events", completeEvents)
+                    }
+                } break;
+                case PAYMENTWORKFLOWSTATE_CONVEYED: {
+                    if (1 != createEvents) {
+                        BAD_EVENTS(
+                            "Wrong number of create events", createEvents)
+                    }
+
+                    if (0 == conveyEvents) {
+                        BAD_EVENTS(
+                            "Wrong number of convey events", conveyEvents)
+                    }
+
+                    if (0 < completeEvents) {
+                        BAD_EVENTS(
+                            "Wrong number of complete events", completeEvents)
+                    }
+                } break;
+                case PAYMENTWORKFLOWSTATE_ACCEPTED: {
+                    if (1 != createEvents) {
+                        BAD_EVENTS(
+                            "Wrong number of create events", createEvents)
+                    }
+
+                    if (0 == conveyEvents) {
+                        BAD_EVENTS(
+                            "Wrong number of convey events", conveyEvents)
+                    }
+
+                    if (0 == acceptEvents) {
+                        BAD_EVENTS(
+                            "Wrong number of accept events", acceptEvents)
+                    }
+                } break;
+                case PAYMENTWORKFLOWSTATE_COMPLETED: {
+                    if (1 != createEvents) {
+                        BAD_EVENTS(
+                            "Wrong number of create events", createEvents)
+                    }
+
+                    if (0 == conveyEvents) {
+                        BAD_EVENTS(
+                            "Wrong number of convey events", conveyEvents)
+                    }
+
+                    if (0 == acceptEvents) {
+                        BAD_EVENTS(
+                            "Wrong number of accept events", acceptEvents)
+                    }
+
+                    if (0 == completeEvents) {
+                        BAD_EVENTS(
+                            "Wrong number of complete events", completeEvents)
+                    }
+                } break;
+                case PAYMENTWORKFLOWSTATE_UNSENT:
+                case PAYMENTWORKFLOWSTATE_CANCELLED:
+                case PAYMENTWORKFLOWSTATE_EXPIRED:
+                case PAYMENTWORKFLOWSTATE_ERROR:
+                default: {
+                    FAIL_1("Invalid state")
+                }
+            }
+        } break;
         default: {
             FAIL_1("Invalid type")
         }
@@ -351,16 +571,106 @@ bool CheckProto_1(const PaymentWorkflow& input, const bool silent)
         case PAYMENTWORKFLOWTYPE_INCOMINGCHEQUE:
         case PAYMENTWORKFLOWTYPE_OUTGOINGINVOICE:
         case PAYMENTWORKFLOWTYPE_INCOMINGINVOICE:
-        {
-            if (1 != input.unit().size()) { FAIL_1("Missing unit") }
-        } break;
         case PAYMENTWORKFLOWTYPE_OUTGOINGTRANSFER:
         case PAYMENTWORKFLOWTYPE_INCOMINGTRANSFER:
         case PAYMENTWORKFLOWTYPE_INTERNALTRANSFER:
+        {
+            if (1 != input.unit().size()) { FAIL_1("Missing unit") }
+        } break;
         default: {
         }
     }
 
     return true;
+}
+
+bool CheckProto_3(const PaymentWorkflow& input, const bool silent)
+{
+    UNDEFINED_VERSION(3)
+}
+
+bool CheckProto_4(const PaymentWorkflow& input, const bool silent)
+{
+    UNDEFINED_VERSION(4)
+}
+
+bool CheckProto_5(const PaymentWorkflow& input, const bool silent)
+{
+    UNDEFINED_VERSION(5)
+}
+
+bool CheckProto_6(const PaymentWorkflow& input, const bool silent)
+{
+    UNDEFINED_VERSION(6)
+}
+
+bool CheckProto_7(const PaymentWorkflow& input, const bool silent)
+{
+    UNDEFINED_VERSION(7)
+}
+
+bool CheckProto_8(const PaymentWorkflow& input, const bool silent)
+{
+    UNDEFINED_VERSION(8)
+}
+
+bool CheckProto_9(const PaymentWorkflow& input, const bool silent)
+{
+    UNDEFINED_VERSION(9)
+}
+
+bool CheckProto_10(const PaymentWorkflow& input, const bool silent)
+{
+    UNDEFINED_VERSION(10)
+}
+
+bool CheckProto_11(const PaymentWorkflow& input, const bool silent)
+{
+    UNDEFINED_VERSION(11)
+}
+
+bool CheckProto_12(const PaymentWorkflow& input, const bool silent)
+{
+    UNDEFINED_VERSION(12)
+}
+
+bool CheckProto_13(const PaymentWorkflow& input, const bool silent)
+{
+    UNDEFINED_VERSION(13)
+}
+
+bool CheckProto_14(const PaymentWorkflow& input, const bool silent)
+{
+    UNDEFINED_VERSION(14)
+}
+
+bool CheckProto_15(const PaymentWorkflow& input, const bool silent)
+{
+    UNDEFINED_VERSION(15)
+}
+
+bool CheckProto_16(const PaymentWorkflow& input, const bool silent)
+{
+    UNDEFINED_VERSION(16)
+}
+
+bool CheckProto_17(const PaymentWorkflow& input, const bool silent)
+{
+    UNDEFINED_VERSION(17)
+}
+
+bool CheckProto_18(const PaymentWorkflow& input, const bool silent)
+{
+    UNDEFINED_VERSION(18)
+}
+
+bool CheckProto_19(const PaymentWorkflow& input, const bool silent)
+{
+    UNDEFINED_VERSION(19)
+}
+
+bool CheckProto_20(const PaymentWorkflow& input, const bool silent)
+{
+    UNDEFINED_VERSION(20)
 }
 }  // namespace opentxs::proto
