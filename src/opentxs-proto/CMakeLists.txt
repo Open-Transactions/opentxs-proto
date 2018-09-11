@@ -6,6 +6,11 @@
 set(MODULE_NAME generated)
 
 set(PROTO_SOURCES
+    ${CMAKE_CURRENT_SOURCE_DIR}/AccountData.proto
+    ${CMAKE_CURRENT_SOURCE_DIR}/AccountEvent.proto
+    ${CMAKE_CURRENT_SOURCE_DIR}/AddClaim.proto
+    ${CMAKE_CURRENT_SOURCE_DIR}/AddContact.proto
+    ${CMAKE_CURRENT_SOURCE_DIR}/APIArgument.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/AsymmetricKey.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/Bailment.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/BailmentReply.proto
@@ -29,10 +34,13 @@ set(PROTO_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/Contact.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/ContactData.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/ContactEnums.proto
+    ${CMAKE_CURRENT_SOURCE_DIR}/ContactEvent.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/ContactItem.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/ContactSection.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/Context.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/ContractEnums.proto
+    ${CMAKE_CURRENT_SOURCE_DIR}/CreateInstrumentDefinition.proto
+    ${CMAKE_CURRENT_SOURCE_DIR}/CreateNym.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/Credential.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/CredentialIndex.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/CredentialSet.proto
@@ -42,11 +50,13 @@ set(PROTO_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/EquityParams.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/Faucet.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/HDPath.proto
+    ${CMAKE_CURRENT_SOURCE_DIR}/HDSeed.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/InstrumentRevision.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/Issuer.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/KeyCredential.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/ListenAddress.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/MasterCredentialParameters.proto
+    ${CMAKE_CURRENT_SOURCE_DIR}/MoveFunds.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/NoticeAcknowledgement.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/NymIDSource.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/OTXEnums.proto
@@ -64,11 +74,18 @@ set(PROTO_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/PeerRequestHistory.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/PeerRequestWorkflow.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/PendingBailment.proto
+    ${CMAKE_CURRENT_SOURCE_DIR}/RPCCommand.proto
+    ${CMAKE_CURRENT_SOURCE_DIR}/RPCPush.proto
+    ${CMAKE_CURRENT_SOURCE_DIR}/RPCResponse.proto
+    ${CMAKE_CURRENT_SOURCE_DIR}/RPCEnums.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/Seed.proto
+    ${CMAKE_CURRENT_SOURCE_DIR}/SendMessage.proto
+    ${CMAKE_CURRENT_SOURCE_DIR}/SendPayment.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/ServerContext.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/ServerContract.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/ServerReply.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/ServerRequest.proto
+    ${CMAKE_CURRENT_SOURCE_DIR}/SessionData.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/Signature.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/SourceProof.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/StorageAccountIndex.proto
@@ -101,6 +118,7 @@ set(PROTO_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/StorageWorkflowType.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/StoreSecret.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/SymmetricKey.proto
+    ${CMAKE_CURRENT_SOURCE_DIR}/TaskComplete.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/UnitAccountMap.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/UnitDefinition.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/Verification.proto
@@ -108,6 +126,7 @@ set(PROTO_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/VerificationIdentity.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/VerificationOffer.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/VerificationSet.proto
+    ${CMAKE_CURRENT_SOURCE_DIR}/VerifyClaim.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/ZMQEnums.proto
 )
 

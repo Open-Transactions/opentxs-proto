@@ -1,0 +1,22 @@
+// Copyright (c) 2018 The Open-Transactions developers
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+syntax = "proto2";
+
+package opentxs.proto;
+option java_package = "org.opentransactions.proto";
+option java_outer_classname = "OTAccountData";
+option optimize_for = LITE_RUNTIME;
+
+message AccountData {
+    optional uint32 version = 1;
+    optional string id = 2;
+    optional string label = 3;
+    optional string unit = 4;
+    optional string owner = 5;
+    optional string issuer = 6;
+    optional uint64 balance = 7;
+    optional uint64 pendingbalance = 8;
+}

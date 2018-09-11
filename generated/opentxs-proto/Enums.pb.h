@@ -61,11 +61,13 @@ enum SignatureRole {
   SIGROLE_PEERREQUEST = 7,
   SIGROLE_PEERREPLY = 8,
   SIGROLE_CONTEXT = 9,
-  SIGROLE_ACCOUNT = 10
+  SIGROLE_ACCOUNT = 10,
+  SIGROLE_SERVERREQUEST = 11,
+  SIGROLE_SERVERREPLY = 12
 };
 bool SignatureRole_IsValid(int value);
 const SignatureRole SignatureRole_MIN = SIGROLE_ERROR;
-const SignatureRole SignatureRole_MAX = SIGROLE_ACCOUNT;
+const SignatureRole SignatureRole_MAX = SIGROLE_SERVERREPLY;
 const int SignatureRole_ARRAYSIZE = SignatureRole_MAX + 1;
 
 enum CredentialType {

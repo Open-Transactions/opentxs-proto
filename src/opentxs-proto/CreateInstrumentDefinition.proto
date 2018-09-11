@@ -1,0 +1,25 @@
+// Copyright (c) 2018 The Open-Transactions developers
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+syntax = "proto2";
+
+package opentxs.proto;
+option java_package = "org.opentransactions.proto";
+option java_outer_classname = "OTCreateInstrumentDefinition";
+option optimize_for = LITE_RUNTIME;
+
+import public "ContactEnums.proto";
+
+message CreateInstrumentDefinition {
+    optional uint32 version = 1;
+    optional string name = 2;
+    optional string symbol = 3;
+    optional string primaryunitname = 4;
+    optional string fractionalunitname = 5;
+    optional string tla = 6;
+    optional uint32 power = 7;
+    optional string terms = 8;
+    optional ContactItemType unitofaccount = 9;
+}
