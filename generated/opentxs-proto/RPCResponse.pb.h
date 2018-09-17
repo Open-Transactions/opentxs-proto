@@ -37,6 +37,7 @@
 #include "CredentialIndex.pb.h"  // IWYU pragma: export
 #include "HDSeed.pb.h"  // IWYU pragma: export
 #include "RPCEnums.pb.h"  // IWYU pragma: export
+#include "ServerContract.pb.h"  // IWYU pragma: export
 #include "SessionData.pb.h"  // IWYU pragma: export
 // @@protoc_insertion_point(includes)
 
@@ -261,6 +262,18 @@ class RPCResponse : public ::google::protobuf::MessageLite /* @@protoc_insertion
   const ::google::protobuf::RepeatedPtrField< ::opentxs::proto::ContactEvent >&
       contactevent() const;
 
+  // repeated .opentxs.proto.ServerContract notary = 15;
+  int notary_size() const;
+  void clear_notary();
+  static const int kNotaryFieldNumber = 15;
+  const ::opentxs::proto::ServerContract& notary(int index) const;
+  ::opentxs::proto::ServerContract* mutable_notary(int index);
+  ::opentxs::proto::ServerContract* add_notary();
+  ::google::protobuf::RepeatedPtrField< ::opentxs::proto::ServerContract >*
+      mutable_notary();
+  const ::google::protobuf::RepeatedPtrField< ::opentxs::proto::ServerContract >&
+      notary() const;
+
   // optional string cookie = 2;
   bool has_cookie() const;
   void clear_cookie();
@@ -275,6 +288,21 @@ class RPCResponse : public ::google::protobuf::MessageLite /* @@protoc_insertion
   ::std::string* mutable_cookie();
   ::std::string* release_cookie();
   void set_allocated_cookie(::std::string* cookie);
+
+  // optional string task = 14;
+  bool has_task() const;
+  void clear_task();
+  static const int kTaskFieldNumber = 14;
+  const ::std::string& task() const;
+  void set_task(const ::std::string& value);
+  #if LANG_CXX11
+  void set_task(::std::string&& value);
+  #endif
+  void set_task(const char* value);
+  void set_task(const char* value, size_t size);
+  ::std::string* mutable_task();
+  ::std::string* release_task();
+  void set_allocated_task(::std::string* task);
 
   // optional uint32 version = 1;
   bool has_version() const;
@@ -316,6 +344,8 @@ class RPCResponse : public ::google::protobuf::MessageLite /* @@protoc_insertion
   void clear_has_success();
   void set_has_session();
   void clear_has_session();
+  void set_has_task();
+  void clear_has_task();
 
   ::google::protobuf::internal::InternalMetadataWithArenaLite _internal_metadata_;
   ::google::protobuf::internal::HasBits<1> _has_bits_;
@@ -328,7 +358,9 @@ class RPCResponse : public ::google::protobuf::MessageLite /* @@protoc_insertion
   ::google::protobuf::RepeatedPtrField< ::opentxs::proto::Contact > contact_;
   ::google::protobuf::RepeatedPtrField< ::opentxs::proto::AccountEvent > accountevent_;
   ::google::protobuf::RepeatedPtrField< ::opentxs::proto::ContactEvent > contactevent_;
+  ::google::protobuf::RepeatedPtrField< ::opentxs::proto::ServerContract > notary_;
   ::google::protobuf::internal::ArenaStringPtr cookie_;
+  ::google::protobuf::internal::ArenaStringPtr task_;
   ::google::protobuf::uint32 version_;
   int type_;
   int success_;
@@ -349,13 +381,13 @@ class RPCResponse : public ::google::protobuf::MessageLite /* @@protoc_insertion
 
 // optional uint32 version = 1;
 inline bool RPCResponse::has_version() const {
-  return (_has_bits_[0] & 0x00000002u) != 0;
+  return (_has_bits_[0] & 0x00000004u) != 0;
 }
 inline void RPCResponse::set_has_version() {
-  _has_bits_[0] |= 0x00000002u;
+  _has_bits_[0] |= 0x00000004u;
 }
 inline void RPCResponse::clear_has_version() {
-  _has_bits_[0] &= ~0x00000002u;
+  _has_bits_[0] &= ~0x00000004u;
 }
 inline void RPCResponse::clear_version() {
   version_ = 0u;
@@ -436,13 +468,13 @@ inline void RPCResponse::set_allocated_cookie(::std::string* cookie) {
 
 // optional .opentxs.proto.RPCCommandType type = 3;
 inline bool RPCResponse::has_type() const {
-  return (_has_bits_[0] & 0x00000004u) != 0;
+  return (_has_bits_[0] & 0x00000008u) != 0;
 }
 inline void RPCResponse::set_has_type() {
-  _has_bits_[0] |= 0x00000004u;
+  _has_bits_[0] |= 0x00000008u;
 }
 inline void RPCResponse::clear_has_type() {
-  _has_bits_[0] &= ~0x00000004u;
+  _has_bits_[0] &= ~0x00000008u;
 }
 inline void RPCResponse::clear_type() {
   type_ = 0;
@@ -461,13 +493,13 @@ inline void RPCResponse::set_type(::opentxs::proto::RPCCommandType value) {
 
 // optional .opentxs.proto.RPCResponseCode success = 4;
 inline bool RPCResponse::has_success() const {
-  return (_has_bits_[0] & 0x00000008u) != 0;
+  return (_has_bits_[0] & 0x00000010u) != 0;
 }
 inline void RPCResponse::set_has_success() {
-  _has_bits_[0] |= 0x00000008u;
+  _has_bits_[0] |= 0x00000010u;
 }
 inline void RPCResponse::clear_has_success() {
-  _has_bits_[0] &= ~0x00000008u;
+  _has_bits_[0] &= ~0x00000010u;
 }
 inline void RPCResponse::clear_success() {
   success_ = 0;
@@ -486,13 +518,13 @@ inline void RPCResponse::set_success(::opentxs::proto::RPCResponseCode value) {
 
 // optional uint32 session = 5;
 inline bool RPCResponse::has_session() const {
-  return (_has_bits_[0] & 0x00000010u) != 0;
+  return (_has_bits_[0] & 0x00000020u) != 0;
 }
 inline void RPCResponse::set_has_session() {
-  _has_bits_[0] |= 0x00000010u;
+  _has_bits_[0] |= 0x00000020u;
 }
 inline void RPCResponse::clear_has_session() {
-  _has_bits_[0] &= ~0x00000010u;
+  _has_bits_[0] &= ~0x00000020u;
 }
 inline void RPCResponse::clear_session() {
   session_ = 0u;
@@ -764,6 +796,96 @@ inline const ::google::protobuf::RepeatedPtrField< ::opentxs::proto::ContactEven
 RPCResponse::contactevent() const {
   // @@protoc_insertion_point(field_list:opentxs.proto.RPCResponse.contactevent)
   return contactevent_;
+}
+
+// optional string task = 14;
+inline bool RPCResponse::has_task() const {
+  return (_has_bits_[0] & 0x00000002u) != 0;
+}
+inline void RPCResponse::set_has_task() {
+  _has_bits_[0] |= 0x00000002u;
+}
+inline void RPCResponse::clear_has_task() {
+  _has_bits_[0] &= ~0x00000002u;
+}
+inline void RPCResponse::clear_task() {
+  task_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  clear_has_task();
+}
+inline const ::std::string& RPCResponse::task() const {
+  // @@protoc_insertion_point(field_get:opentxs.proto.RPCResponse.task)
+  return task_.GetNoArena();
+}
+inline void RPCResponse::set_task(const ::std::string& value) {
+  set_has_task();
+  task_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:opentxs.proto.RPCResponse.task)
+}
+#if LANG_CXX11
+inline void RPCResponse::set_task(::std::string&& value) {
+  set_has_task();
+  task_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:opentxs.proto.RPCResponse.task)
+}
+#endif
+inline void RPCResponse::set_task(const char* value) {
+  GOOGLE_DCHECK(value != NULL);
+  set_has_task();
+  task_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:opentxs.proto.RPCResponse.task)
+}
+inline void RPCResponse::set_task(const char* value, size_t size) {
+  set_has_task();
+  task_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:opentxs.proto.RPCResponse.task)
+}
+inline ::std::string* RPCResponse::mutable_task() {
+  set_has_task();
+  // @@protoc_insertion_point(field_mutable:opentxs.proto.RPCResponse.task)
+  return task_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* RPCResponse::release_task() {
+  // @@protoc_insertion_point(field_release:opentxs.proto.RPCResponse.task)
+  clear_has_task();
+  return task_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void RPCResponse::set_allocated_task(::std::string* task) {
+  if (task != NULL) {
+    set_has_task();
+  } else {
+    clear_has_task();
+  }
+  task_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), task);
+  // @@protoc_insertion_point(field_set_allocated:opentxs.proto.RPCResponse.task)
+}
+
+// repeated .opentxs.proto.ServerContract notary = 15;
+inline int RPCResponse::notary_size() const {
+  return notary_.size();
+}
+inline const ::opentxs::proto::ServerContract& RPCResponse::notary(int index) const {
+  // @@protoc_insertion_point(field_get:opentxs.proto.RPCResponse.notary)
+  return notary_.Get(index);
+}
+inline ::opentxs::proto::ServerContract* RPCResponse::mutable_notary(int index) {
+  // @@protoc_insertion_point(field_mutable:opentxs.proto.RPCResponse.notary)
+  return notary_.Mutable(index);
+}
+inline ::opentxs::proto::ServerContract* RPCResponse::add_notary() {
+  // @@protoc_insertion_point(field_add:opentxs.proto.RPCResponse.notary)
+  return notary_.Add();
+}
+inline ::google::protobuf::RepeatedPtrField< ::opentxs::proto::ServerContract >*
+RPCResponse::mutable_notary() {
+  // @@protoc_insertion_point(field_mutable_list:opentxs.proto.RPCResponse.notary)
+  return &notary_;
+}
+inline const ::google::protobuf::RepeatedPtrField< ::opentxs::proto::ServerContract >&
+RPCResponse::notary() const {
+  // @@protoc_insertion_point(field_list:opentxs.proto.RPCResponse.notary)
+  return notary_;
 }
 
 #ifdef __GNUC__

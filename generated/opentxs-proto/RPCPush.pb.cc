@@ -36,6 +36,7 @@ void InitDefaultsRPCPushImpl() {
 #endif  // GOOGLE_PROTOBUF_ENFORCE_UNIQUENESS
   protobuf_AccountEvent_2eproto::InitDefaultsAccountEvent();
   protobuf_ContactEvent_2eproto::InitDefaultsContactEvent();
+  protobuf_TaskComplete_2eproto::InitDefaultsTaskComplete();
   {
     void* ptr = &::opentxs::proto::_RPCPush_default_instance_;
     new (ptr) ::opentxs::proto::RPCPush();
@@ -60,6 +61,8 @@ void RPCPush::InitAsDefaultInstance() {
       ::opentxs::proto::AccountEvent::internal_default_instance());
   ::opentxs::proto::_RPCPush_default_instance_._instance.get_mutable()->contactevent_ = const_cast< ::opentxs::proto::ContactEvent*>(
       ::opentxs::proto::ContactEvent::internal_default_instance());
+  ::opentxs::proto::_RPCPush_default_instance_._instance.get_mutable()->taskcomplete_ = const_cast< ::opentxs::proto::TaskComplete*>(
+      ::opentxs::proto::TaskComplete::internal_default_instance());
 }
 void RPCPush::clear_accountevent() {
   if (accountevent_ != NULL) accountevent_->Clear();
@@ -69,12 +72,17 @@ void RPCPush::clear_contactevent() {
   if (contactevent_ != NULL) contactevent_->Clear();
   clear_has_contactevent();
 }
+void RPCPush::clear_taskcomplete() {
+  if (taskcomplete_ != NULL) taskcomplete_->Clear();
+  clear_has_taskcomplete();
+}
 #if !defined(_MSC_VER) || _MSC_VER >= 1900
 const int RPCPush::kVersionFieldNumber;
 const int RPCPush::kTypeFieldNumber;
 const int RPCPush::kIdFieldNumber;
 const int RPCPush::kAccounteventFieldNumber;
 const int RPCPush::kContacteventFieldNumber;
+const int RPCPush::kTaskcompleteFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 RPCPush::RPCPush()
@@ -105,6 +113,11 @@ RPCPush::RPCPush(const RPCPush& from)
   } else {
     contactevent_ = NULL;
   }
+  if (from.has_taskcomplete()) {
+    taskcomplete_ = new ::opentxs::proto::TaskComplete(*from.taskcomplete_);
+  } else {
+    taskcomplete_ = NULL;
+  }
   ::memcpy(&version_, &from.version_,
     static_cast<size_t>(reinterpret_cast<char*>(&type_) -
     reinterpret_cast<char*>(&version_)) + sizeof(type_));
@@ -128,6 +141,7 @@ void RPCPush::SharedDtor() {
   id_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   if (this != internal_default_instance()) delete accountevent_;
   if (this != internal_default_instance()) delete contactevent_;
+  if (this != internal_default_instance()) delete taskcomplete_;
 }
 
 void RPCPush::SetCachedSize(int size) const {
@@ -155,7 +169,7 @@ void RPCPush::Clear() {
   (void) cached_has_bits;
 
   cached_has_bits = _has_bits_[0];
-  if (cached_has_bits & 7u) {
+  if (cached_has_bits & 15u) {
     if (cached_has_bits & 0x00000001u) {
       GOOGLE_DCHECK(!id_.IsDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited()));
       (*id_.UnsafeRawStringPointer())->clear();
@@ -168,8 +182,12 @@ void RPCPush::Clear() {
       GOOGLE_DCHECK(contactevent_ != NULL);
       contactevent_->Clear();
     }
+    if (cached_has_bits & 0x00000008u) {
+      GOOGLE_DCHECK(taskcomplete_ != NULL);
+      taskcomplete_->Clear();
+    }
   }
-  if (cached_has_bits & 24u) {
+  if (cached_has_bits & 48u) {
     ::memset(&version_, 0, static_cast<size_t>(
         reinterpret_cast<char*>(&type_) -
         reinterpret_cast<char*>(&version_)) + sizeof(type_));
@@ -265,6 +283,18 @@ bool RPCPush::MergePartialFromCodedStream(
         break;
       }
 
+      // optional .opentxs.proto.TaskComplete taskcomplete = 6;
+      case 6: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(50u /* 50 & 0xFF */)) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessage(
+               input, mutable_taskcomplete()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
       default: {
       handle_unusual:
         if (tag == 0) {
@@ -293,12 +323,12 @@ void RPCPush::SerializeWithCachedSizes(
 
   cached_has_bits = _has_bits_[0];
   // optional uint32 version = 1;
-  if (cached_has_bits & 0x00000008u) {
+  if (cached_has_bits & 0x00000010u) {
     ::google::protobuf::internal::WireFormatLite::WriteUInt32(1, this->version(), output);
   }
 
   // optional .opentxs.proto.RPCPushType type = 2;
-  if (cached_has_bits & 0x00000010u) {
+  if (cached_has_bits & 0x00000020u) {
     ::google::protobuf::internal::WireFormatLite::WriteEnum(
       2, this->type(), output);
   }
@@ -321,6 +351,12 @@ void RPCPush::SerializeWithCachedSizes(
       5, *this->contactevent_, output);
   }
 
+  // optional .opentxs.proto.TaskComplete taskcomplete = 6;
+  if (cached_has_bits & 0x00000008u) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessage(
+      6, *this->taskcomplete_, output);
+  }
+
   output->WriteRaw(_internal_metadata_.unknown_fields().data(),
                    static_cast<int>(_internal_metadata_.unknown_fields().size()));
   // @@protoc_insertion_point(serialize_end:opentxs.proto.RPCPush)
@@ -332,7 +368,7 @@ size_t RPCPush::ByteSizeLong() const {
 
   total_size += _internal_metadata_.unknown_fields().size();
 
-  if (_has_bits_[0 / 32] & 31u) {
+  if (_has_bits_[0 / 32] & 63u) {
     // optional string id = 3;
     if (has_id()) {
       total_size += 1 +
@@ -352,6 +388,13 @@ size_t RPCPush::ByteSizeLong() const {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::MessageSize(
           *this->contactevent_);
+    }
+
+    // optional .opentxs.proto.TaskComplete taskcomplete = 6;
+    if (has_taskcomplete()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::MessageSize(
+          *this->taskcomplete_);
     }
 
     // optional uint32 version = 1;
@@ -388,7 +431,7 @@ void RPCPush::MergeFrom(const RPCPush& from) {
   (void) cached_has_bits;
 
   cached_has_bits = from._has_bits_[0];
-  if (cached_has_bits & 31u) {
+  if (cached_has_bits & 63u) {
     if (cached_has_bits & 0x00000001u) {
       set_has_id();
       id_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.id_);
@@ -400,9 +443,12 @@ void RPCPush::MergeFrom(const RPCPush& from) {
       mutable_contactevent()->::opentxs::proto::ContactEvent::MergeFrom(from.contactevent());
     }
     if (cached_has_bits & 0x00000008u) {
-      version_ = from.version_;
+      mutable_taskcomplete()->::opentxs::proto::TaskComplete::MergeFrom(from.taskcomplete());
     }
     if (cached_has_bits & 0x00000010u) {
+      version_ = from.version_;
+    }
+    if (cached_has_bits & 0x00000020u) {
       type_ = from.type_;
     }
     _has_bits_[0] |= cached_has_bits;
@@ -429,6 +475,7 @@ void RPCPush::InternalSwap(RPCPush* other) {
   id_.Swap(&other->id_);
   swap(accountevent_, other->accountevent_);
   swap(contactevent_, other->contactevent_);
+  swap(taskcomplete_, other->taskcomplete_);
   swap(version_, other->version_);
   swap(type_, other->type_);
   swap(_has_bits_[0], other->_has_bits_[0]);

@@ -31,6 +31,7 @@
 #include "AccountEvent.pb.h"  // IWYU pragma: export
 #include "ContactEvent.pb.h"  // IWYU pragma: export
 #include "RPCEnums.pb.h"  // IWYU pragma: export
+#include "TaskComplete.pb.h"  // IWYU pragma: export
 // @@protoc_insertion_point(includes)
 
 namespace protobuf_RPCPush_2eproto {
@@ -181,6 +182,15 @@ class RPCPush : public ::google::protobuf::MessageLite /* @@protoc_insertion_poi
   ::opentxs::proto::ContactEvent* mutable_contactevent();
   void set_allocated_contactevent(::opentxs::proto::ContactEvent* contactevent);
 
+  // optional .opentxs.proto.TaskComplete taskcomplete = 6;
+  bool has_taskcomplete() const;
+  void clear_taskcomplete();
+  static const int kTaskcompleteFieldNumber = 6;
+  const ::opentxs::proto::TaskComplete& taskcomplete() const;
+  ::opentxs::proto::TaskComplete* release_taskcomplete();
+  ::opentxs::proto::TaskComplete* mutable_taskcomplete();
+  void set_allocated_taskcomplete(::opentxs::proto::TaskComplete* taskcomplete);
+
   // optional uint32 version = 1;
   bool has_version() const;
   void clear_version();
@@ -207,6 +217,8 @@ class RPCPush : public ::google::protobuf::MessageLite /* @@protoc_insertion_poi
   void clear_has_accountevent();
   void set_has_contactevent();
   void clear_has_contactevent();
+  void set_has_taskcomplete();
+  void clear_has_taskcomplete();
 
   ::google::protobuf::internal::InternalMetadataWithArenaLite _internal_metadata_;
   ::google::protobuf::internal::HasBits<1> _has_bits_;
@@ -214,6 +226,7 @@ class RPCPush : public ::google::protobuf::MessageLite /* @@protoc_insertion_poi
   ::google::protobuf::internal::ArenaStringPtr id_;
   ::opentxs::proto::AccountEvent* accountevent_;
   ::opentxs::proto::ContactEvent* contactevent_;
+  ::opentxs::proto::TaskComplete* taskcomplete_;
   ::google::protobuf::uint32 version_;
   int type_;
   friend struct ::protobuf_RPCPush_2eproto::TableStruct;
@@ -232,13 +245,13 @@ class RPCPush : public ::google::protobuf::MessageLite /* @@protoc_insertion_poi
 
 // optional uint32 version = 1;
 inline bool RPCPush::has_version() const {
-  return (_has_bits_[0] & 0x00000008u) != 0;
+  return (_has_bits_[0] & 0x00000010u) != 0;
 }
 inline void RPCPush::set_has_version() {
-  _has_bits_[0] |= 0x00000008u;
+  _has_bits_[0] |= 0x00000010u;
 }
 inline void RPCPush::clear_has_version() {
-  _has_bits_[0] &= ~0x00000008u;
+  _has_bits_[0] &= ~0x00000010u;
 }
 inline void RPCPush::clear_version() {
   version_ = 0u;
@@ -256,13 +269,13 @@ inline void RPCPush::set_version(::google::protobuf::uint32 value) {
 
 // optional .opentxs.proto.RPCPushType type = 2;
 inline bool RPCPush::has_type() const {
-  return (_has_bits_[0] & 0x00000010u) != 0;
+  return (_has_bits_[0] & 0x00000020u) != 0;
 }
 inline void RPCPush::set_has_type() {
-  _has_bits_[0] |= 0x00000010u;
+  _has_bits_[0] |= 0x00000020u;
 }
 inline void RPCPush::clear_has_type() {
-  _has_bits_[0] &= ~0x00000010u;
+  _has_bits_[0] &= ~0x00000020u;
 }
 inline void RPCPush::clear_type() {
   type_ = 0;
@@ -440,6 +453,56 @@ inline void RPCPush::set_allocated_contactevent(::opentxs::proto::ContactEvent* 
   }
   contactevent_ = contactevent;
   // @@protoc_insertion_point(field_set_allocated:opentxs.proto.RPCPush.contactevent)
+}
+
+// optional .opentxs.proto.TaskComplete taskcomplete = 6;
+inline bool RPCPush::has_taskcomplete() const {
+  return (_has_bits_[0] & 0x00000008u) != 0;
+}
+inline void RPCPush::set_has_taskcomplete() {
+  _has_bits_[0] |= 0x00000008u;
+}
+inline void RPCPush::clear_has_taskcomplete() {
+  _has_bits_[0] &= ~0x00000008u;
+}
+inline const ::opentxs::proto::TaskComplete& RPCPush::taskcomplete() const {
+  const ::opentxs::proto::TaskComplete* p = taskcomplete_;
+  // @@protoc_insertion_point(field_get:opentxs.proto.RPCPush.taskcomplete)
+  return p != NULL ? *p : *reinterpret_cast<const ::opentxs::proto::TaskComplete*>(
+      &::opentxs::proto::_TaskComplete_default_instance_);
+}
+inline ::opentxs::proto::TaskComplete* RPCPush::release_taskcomplete() {
+  // @@protoc_insertion_point(field_release:opentxs.proto.RPCPush.taskcomplete)
+  clear_has_taskcomplete();
+  ::opentxs::proto::TaskComplete* temp = taskcomplete_;
+  taskcomplete_ = NULL;
+  return temp;
+}
+inline ::opentxs::proto::TaskComplete* RPCPush::mutable_taskcomplete() {
+  set_has_taskcomplete();
+  if (taskcomplete_ == NULL) {
+    taskcomplete_ = new ::opentxs::proto::TaskComplete;
+  }
+  // @@protoc_insertion_point(field_mutable:opentxs.proto.RPCPush.taskcomplete)
+  return taskcomplete_;
+}
+inline void RPCPush::set_allocated_taskcomplete(::opentxs::proto::TaskComplete* taskcomplete) {
+  ::google::protobuf::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == NULL) {
+    delete reinterpret_cast< ::google::protobuf::MessageLite*>(taskcomplete_);
+  }
+  if (taskcomplete) {
+    ::google::protobuf::Arena* submessage_arena = NULL;
+    if (message_arena != submessage_arena) {
+      taskcomplete = ::google::protobuf::internal::GetOwnedMessage(
+          message_arena, taskcomplete, submessage_arena);
+    }
+    set_has_taskcomplete();
+  } else {
+    clear_has_taskcomplete();
+  }
+  taskcomplete_ = taskcomplete;
+  // @@protoc_insertion_point(field_set_allocated:opentxs.proto.RPCPush.taskcomplete)
 }
 
 #ifdef __GNUC__
