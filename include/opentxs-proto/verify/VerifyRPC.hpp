@@ -81,6 +81,9 @@ static const VersionMap RPCResponseAllowedCredentialIndex = {
 static const VersionMap RPCResponseAllowedHDSeed = {
     {1, {1, 1}},
 };
+static const VersionMap RPCResponseAllowedServerContract = {
+    {1, {1, 2}},
+};
 static const VersionMap RPCResponseAllowedSessionData = {
     {1, {1, 1}},
 };

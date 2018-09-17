@@ -19,6 +19,7 @@ import public "CreateNym.proto";
 import public "CredentialIndex.proto";
 import public "HDSeed.proto";
 import public "RPCEnums.proto";
+import public "ServerContract.proto";
 import public "SessionData.proto";
 
 message RPCResponse {
@@ -36,4 +37,5 @@ message RPCResponse {
     repeated AccountEvent accountevent = 12;
     repeated ContactEvent contactevent = 13;
     optional string task = 14;
+    repeated ServerContract notary = 15;
 }

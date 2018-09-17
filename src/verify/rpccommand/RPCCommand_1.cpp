@@ -58,7 +58,7 @@ bool CheckProto_1(const RPCCommand& input, const bool silent)
             CHECK_NONE(sendmessage);
             CHECK_NONE(acceptverification);
         } break;
-        case RPCCOMMAND_LISTCLIENTSSESSIONS: {
+        case RPCCOMMAND_LISTCLIENTSESSIONS: {
             if (-1 != input.session()) { FAIL_1("invalid session"); }
 
             OPTIONAL_IDENTIFIER(nym);
@@ -79,7 +79,7 @@ bool CheckProto_1(const RPCCommand& input, const bool silent)
             CHECK_NONE(sendmessage);
             CHECK_NONE(acceptverification);
         } break;
-        case RPCCOMMAND_LISTSERVERSSESSIONS: {
+        case RPCCOMMAND_LISTSERVERSESSIONS: {
             if (-1 != input.session()) { FAIL_1("invalid session"); }
 
             OPTIONAL_IDENTIFIER(nym);
@@ -698,6 +698,28 @@ bool CheckProto_1(const RPCCommand& input, const bool silent)
             CHECK_NONE(acceptverification);
         } break;
         case RPCCOMMAND_GETCONTACTACTIVITY: {
+            if (0 > input.session()) { FAIL_1("invalid session"); }
+
+            OPTIONAL_IDENTIFIER(nym);
+            CHECK_EXCLUDED(owner);
+            CHECK_EXCLUDED(notary);
+            CHECK_EXCLUDED(unit);
+            CHECK_HAVE(identifier);
+            CHECK_IDENTIFIERS(identifier);
+            CHECK_NONE(arg);
+            CHECK_EXCLUDED(hdseed);
+            CHECK_EXCLUDED(createnym);
+            CHECK_NONE(claim);
+            CHECK_NONE(server);
+            CHECK_EXCLUDED(createunit);
+            CHECK_EXCLUDED(sendpayment);
+            CHECK_EXCLUDED(movefunds);
+            CHECK_NONE(addcontact);
+            CHECK_NONE(verifyclaim);
+            CHECK_NONE(sendmessage);
+            CHECK_NONE(acceptverification);
+        } break;
+        case RPCCOMMAND_GETSERVERCONTRACT: {
             if (0 > input.session()) { FAIL_1("invalid session"); }
 
             OPTIONAL_IDENTIFIER(nym);
