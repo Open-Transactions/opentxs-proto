@@ -69,6 +69,17 @@ const ServerReplyType ServerReplyType_MIN = SERVERREPLY_ERROR;
 const ServerReplyType ServerReplyType_MAX = SERVERREPLY_PUSH;
 const int ServerReplyType_ARRAYSIZE = ServerReplyType_MAX + 1;
 
+enum OTXPushType {
+  OTXPUSH_ERROR = 0,
+  OTXPUSH_NYMBOX = 1,
+  OTXPUSH_INBOX = 2,
+  OTXPUSH_OUTBOX = 3
+};
+bool OTXPushType_IsValid(int value);
+const OTXPushType OTXPushType_MIN = OTXPUSH_ERROR;
+const OTXPushType OTXPushType_MAX = OTXPUSH_OUTBOX;
+const int OTXPushType_ARRAYSIZE = OTXPushType_MAX + 1;
+
 // ===================================================================
 
 
@@ -95,6 +106,7 @@ namespace protobuf {
 
 template <> struct is_proto_enum< ::opentxs::proto::ServerRequestType> : ::google::protobuf::internal::true_type {};
 template <> struct is_proto_enum< ::opentxs::proto::ServerReplyType> : ::google::protobuf::internal::true_type {};
+template <> struct is_proto_enum< ::opentxs::proto::OTXPushType> : ::google::protobuf::internal::true_type {};
 
 }  // namespace protobuf
 }  // namespace google

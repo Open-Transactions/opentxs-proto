@@ -57,6 +57,7 @@ set(cxx-sources
   nymidsource/NymIDSource_1.cpp
   noticeacknowledgement/NoticeAcknowledgement_1.cpp
   outbailment/OutBailment_1.cpp
+  otxpush/OTXPush_1.cpp
   outbailmentreply/OutBailmentReply_1.cpp
   pairevent/PairEvent_1.cpp
   paymentcode/PaymentCode_1.cpp

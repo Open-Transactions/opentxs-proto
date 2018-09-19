@@ -20,3 +20,10 @@ enum ServerReplyType {
     SERVERREPLY_ACTIVATE = 1;
     SERVERREPLY_PUSH = 255;
 }
+
+enum OTXPushType {
+    OTXPUSH_ERROR = 0;
+    OTXPUSH_NYMBOX = 1;
+    OTXPUSH_INBOX = 2;
+    OTXPUSH_OUTBOX = 3;
+}
