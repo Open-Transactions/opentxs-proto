@@ -541,7 +541,6 @@ bool CheckProto_1(const RPCResponse& input, const bool silent)
             CHECK_NONE(accountevent);
             CHECK_NONE(contactevent);
             CHECK_EXCLUDED(task);
-            CHECK_NONE(notary);
 
             if (atLeastOne) {
                 OPTIONAL_SUBOBJECTS(notary, RPCResponseAllowedServerContract);
