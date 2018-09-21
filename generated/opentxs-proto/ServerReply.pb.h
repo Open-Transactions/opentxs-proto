@@ -29,6 +29,7 @@
 #include <google/protobuf/repeated_field.h>  // IWYU pragma: export
 #include <google/protobuf/extension_set.h>  // IWYU pragma: export
 #include "OTXEnums.pb.h"  // IWYU pragma: export
+#include "OTXPush.pb.h"  // IWYU pragma: export
 #include "Signature.pb.h"  // IWYU pragma: export
 // @@protoc_insertion_point(includes)
 
@@ -192,20 +193,14 @@ class ServerReply : public ::google::protobuf::MessageLite /* @@protoc_insertion
   ::std::string* release_server();
   void set_allocated_server(::std::string* server);
 
-  // optional string legacypayload = 14;
-  bool has_legacypayload() const;
-  void clear_legacypayload();
-  static const int kLegacypayloadFieldNumber = 14;
-  const ::std::string& legacypayload() const;
-  void set_legacypayload(const ::std::string& value);
-  #if LANG_CXX11
-  void set_legacypayload(::std::string&& value);
-  #endif
-  void set_legacypayload(const char* value);
-  void set_legacypayload(const char* value, size_t size);
-  ::std::string* mutable_legacypayload();
-  ::std::string* release_legacypayload();
-  void set_allocated_legacypayload(::std::string* legacypayload);
+  // optional .opentxs.proto.OTXPush push = 8;
+  bool has_push() const;
+  void clear_push();
+  static const int kPushFieldNumber = 8;
+  const ::opentxs::proto::OTXPush& push() const;
+  ::opentxs::proto::OTXPush* release_push();
+  ::opentxs::proto::OTXPush* mutable_push();
+  void set_allocated_push(::opentxs::proto::OTXPush* push);
 
   // optional .opentxs.proto.Signature signature = 15;
   bool has_signature() const;
@@ -260,8 +255,8 @@ class ServerReply : public ::google::protobuf::MessageLite /* @@protoc_insertion
   void clear_has_request();
   void set_has_success();
   void clear_has_success();
-  void set_has_legacypayload();
-  void clear_has_legacypayload();
+  void set_has_push();
+  void clear_has_push();
   void set_has_signature();
   void clear_has_signature();
 
@@ -271,7 +266,7 @@ class ServerReply : public ::google::protobuf::MessageLite /* @@protoc_insertion
   ::google::protobuf::internal::ArenaStringPtr id_;
   ::google::protobuf::internal::ArenaStringPtr nym_;
   ::google::protobuf::internal::ArenaStringPtr server_;
-  ::google::protobuf::internal::ArenaStringPtr legacypayload_;
+  ::opentxs::proto::OTXPush* push_;
   ::opentxs::proto::Signature* signature_;
   ::google::protobuf::uint32 version_;
   int type_;
@@ -577,67 +572,54 @@ inline void ServerReply::set_success(bool value) {
   // @@protoc_insertion_point(field_set:opentxs.proto.ServerReply.success)
 }
 
-// optional string legacypayload = 14;
-inline bool ServerReply::has_legacypayload() const {
+// optional .opentxs.proto.OTXPush push = 8;
+inline bool ServerReply::has_push() const {
   return (_has_bits_[0] & 0x00000008u) != 0;
 }
-inline void ServerReply::set_has_legacypayload() {
+inline void ServerReply::set_has_push() {
   _has_bits_[0] |= 0x00000008u;
 }
-inline void ServerReply::clear_has_legacypayload() {
+inline void ServerReply::clear_has_push() {
   _has_bits_[0] &= ~0x00000008u;
 }
-inline void ServerReply::clear_legacypayload() {
-  legacypayload_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  clear_has_legacypayload();
+inline const ::opentxs::proto::OTXPush& ServerReply::push() const {
+  const ::opentxs::proto::OTXPush* p = push_;
+  // @@protoc_insertion_point(field_get:opentxs.proto.ServerReply.push)
+  return p != NULL ? *p : *reinterpret_cast<const ::opentxs::proto::OTXPush*>(
+      &::opentxs::proto::_OTXPush_default_instance_);
 }
-inline const ::std::string& ServerReply::legacypayload() const {
-  // @@protoc_insertion_point(field_get:opentxs.proto.ServerReply.legacypayload)
-  return legacypayload_.GetNoArena();
+inline ::opentxs::proto::OTXPush* ServerReply::release_push() {
+  // @@protoc_insertion_point(field_release:opentxs.proto.ServerReply.push)
+  clear_has_push();
+  ::opentxs::proto::OTXPush* temp = push_;
+  push_ = NULL;
+  return temp;
 }
-inline void ServerReply::set_legacypayload(const ::std::string& value) {
-  set_has_legacypayload();
-  legacypayload_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
-  // @@protoc_insertion_point(field_set:opentxs.proto.ServerReply.legacypayload)
-}
-#if LANG_CXX11
-inline void ServerReply::set_legacypayload(::std::string&& value) {
-  set_has_legacypayload();
-  legacypayload_.SetNoArena(
-    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:opentxs.proto.ServerReply.legacypayload)
-}
-#endif
-inline void ServerReply::set_legacypayload(const char* value) {
-  GOOGLE_DCHECK(value != NULL);
-  set_has_legacypayload();
-  legacypayload_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:opentxs.proto.ServerReply.legacypayload)
-}
-inline void ServerReply::set_legacypayload(const char* value, size_t size) {
-  set_has_legacypayload();
-  legacypayload_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
-      ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:opentxs.proto.ServerReply.legacypayload)
-}
-inline ::std::string* ServerReply::mutable_legacypayload() {
-  set_has_legacypayload();
-  // @@protoc_insertion_point(field_mutable:opentxs.proto.ServerReply.legacypayload)
-  return legacypayload_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-}
-inline ::std::string* ServerReply::release_legacypayload() {
-  // @@protoc_insertion_point(field_release:opentxs.proto.ServerReply.legacypayload)
-  clear_has_legacypayload();
-  return legacypayload_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-}
-inline void ServerReply::set_allocated_legacypayload(::std::string* legacypayload) {
-  if (legacypayload != NULL) {
-    set_has_legacypayload();
-  } else {
-    clear_has_legacypayload();
+inline ::opentxs::proto::OTXPush* ServerReply::mutable_push() {
+  set_has_push();
+  if (push_ == NULL) {
+    push_ = new ::opentxs::proto::OTXPush;
   }
-  legacypayload_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), legacypayload);
-  // @@protoc_insertion_point(field_set_allocated:opentxs.proto.ServerReply.legacypayload)
+  // @@protoc_insertion_point(field_mutable:opentxs.proto.ServerReply.push)
+  return push_;
+}
+inline void ServerReply::set_allocated_push(::opentxs::proto::OTXPush* push) {
+  ::google::protobuf::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == NULL) {
+    delete reinterpret_cast< ::google::protobuf::MessageLite*>(push_);
+  }
+  if (push) {
+    ::google::protobuf::Arena* submessage_arena = NULL;
+    if (message_arena != submessage_arena) {
+      push = ::google::protobuf::internal::GetOwnedMessage(
+          message_arena, push, submessage_arena);
+    }
+    set_has_push();
+  } else {
+    clear_has_push();
+  }
+  push_ = push;
+  // @@protoc_insertion_point(field_set_allocated:opentxs.proto.ServerReply.push)
 }
 
 // optional .opentxs.proto.Signature signature = 15;

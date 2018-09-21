@@ -60,6 +60,7 @@ set(PROTO_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/NoticeAcknowledgement.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/NymIDSource.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/OTXEnums.proto
+    ${CMAKE_CURRENT_SOURCE_DIR}/OTXPush.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/OutBailment.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/OutBailmentReply.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/PairEvent.proto

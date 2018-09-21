@@ -80,6 +80,7 @@
 #include <opentxs-proto/NoticeAcknowledgement.pb.h>
 #include <opentxs-proto/NymIDSource.pb.h>
 #include <opentxs-proto/OTXEnums.pb.h>
+#include <opentxs-proto/OTXPush.pb.h>
 #include <opentxs-proto/OutBailment.pb.h>
 #include <opentxs-proto/OutBailmentReply.pb.h>
 #include <opentxs-proto/PairEvent.pb.h>
@@ -197,6 +198,7 @@
 #include <opentxs-proto/verify/MoveFunds.hpp>
 #include <opentxs-proto/verify/NoticeAcknowledgement.hpp>
 #include <opentxs-proto/verify/NymIDSource.hpp>
+#include <opentxs-proto/verify/OTXPush.hpp>
 #include <opentxs-proto/verify/OutBailment.hpp>
 #include <opentxs-proto/verify/OutBailmentReply.hpp>
 #include <opentxs-proto/verify/PairEvent.hpp>

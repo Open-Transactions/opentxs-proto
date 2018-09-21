@@ -34,6 +34,7 @@ void InitDefaultsServerReplyImpl() {
 #else
   ::google::protobuf::internal::InitProtobufDefaults();
 #endif  // GOOGLE_PROTOBUF_ENFORCE_UNIQUENESS
+  protobuf_OTXPush_2eproto::InitDefaultsOTXPush();
   protobuf_Signature_2eproto::InitDefaultsSignature();
   {
     void* ptr = &::opentxs::proto::_ServerReply_default_instance_;
@@ -55,8 +56,14 @@ namespace proto {
 // ===================================================================
 
 void ServerReply::InitAsDefaultInstance() {
+  ::opentxs::proto::_ServerReply_default_instance_._instance.get_mutable()->push_ = const_cast< ::opentxs::proto::OTXPush*>(
+      ::opentxs::proto::OTXPush::internal_default_instance());
   ::opentxs::proto::_ServerReply_default_instance_._instance.get_mutable()->signature_ = const_cast< ::opentxs::proto::Signature*>(
       ::opentxs::proto::Signature::internal_default_instance());
+}
+void ServerReply::clear_push() {
+  if (push_ != NULL) push_->Clear();
+  clear_has_push();
 }
 void ServerReply::clear_signature() {
   if (signature_ != NULL) signature_->Clear();
@@ -70,7 +77,7 @@ const int ServerReply::kNymFieldNumber;
 const int ServerReply::kServerFieldNumber;
 const int ServerReply::kRequestFieldNumber;
 const int ServerReply::kSuccessFieldNumber;
-const int ServerReply::kLegacypayloadFieldNumber;
+const int ServerReply::kPushFieldNumber;
 const int ServerReply::kSignatureFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
@@ -100,9 +107,10 @@ ServerReply::ServerReply(const ServerReply& from)
   if (from.has_server()) {
     server_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.server_);
   }
-  legacypayload_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (from.has_legacypayload()) {
-    legacypayload_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.legacypayload_);
+  if (from.has_push()) {
+    push_ = new ::opentxs::proto::OTXPush(*from.push_);
+  } else {
+    push_ = NULL;
   }
   if (from.has_signature()) {
     signature_ = new ::opentxs::proto::Signature(*from.signature_);
@@ -120,10 +128,9 @@ void ServerReply::SharedCtor() {
   id_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   nym_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   server_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  legacypayload_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  ::memset(&signature_, 0, static_cast<size_t>(
+  ::memset(&push_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&success_) -
-      reinterpret_cast<char*>(&signature_)) + sizeof(success_));
+      reinterpret_cast<char*>(&push_)) + sizeof(success_));
 }
 
 ServerReply::~ServerReply() {
@@ -135,7 +142,7 @@ void ServerReply::SharedDtor() {
   id_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   nym_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   server_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  legacypayload_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (this != internal_default_instance()) delete push_;
   if (this != internal_default_instance()) delete signature_;
 }
 
@@ -178,8 +185,8 @@ void ServerReply::Clear() {
       (*server_.UnsafeRawStringPointer())->clear();
     }
     if (cached_has_bits & 0x00000008u) {
-      GOOGLE_DCHECK(!legacypayload_.IsDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited()));
-      (*legacypayload_.UnsafeRawStringPointer())->clear();
+      GOOGLE_DCHECK(push_ != NULL);
+      push_->Clear();
     }
     if (cached_has_bits & 0x00000010u) {
       GOOGLE_DCHECK(signature_ != NULL);
@@ -311,12 +318,12 @@ bool ServerReply::MergePartialFromCodedStream(
         break;
       }
 
-      // optional string legacypayload = 14;
-      case 14: {
+      // optional .opentxs.proto.OTXPush push = 8;
+      case 8: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(114u /* 114 & 0xFF */)) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->mutable_legacypayload()));
+            static_cast< ::google::protobuf::uint8>(66u /* 66 & 0xFF */)) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessage(
+               input, mutable_push()));
         } else {
           goto handle_unusual;
         }
@@ -401,10 +408,10 @@ void ServerReply::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteBool(7, this->success(), output);
   }
 
-  // optional string legacypayload = 14;
+  // optional .opentxs.proto.OTXPush push = 8;
   if (cached_has_bits & 0x00000008u) {
-    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      14, this->legacypayload(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteMessage(
+      8, *this->push_, output);
   }
 
   // optional .opentxs.proto.Signature signature = 15;
@@ -446,11 +453,11 @@ size_t ServerReply::ByteSizeLong() const {
           this->server());
     }
 
-    // optional string legacypayload = 14;
-    if (has_legacypayload()) {
+    // optional .opentxs.proto.OTXPush push = 8;
+    if (has_push()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::StringSize(
-          this->legacypayload());
+        ::google::protobuf::internal::WireFormatLite::MessageSize(
+          *this->push_);
     }
 
     // optional .opentxs.proto.Signature signature = 15;
@@ -520,8 +527,7 @@ void ServerReply::MergeFrom(const ServerReply& from) {
       server_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.server_);
     }
     if (cached_has_bits & 0x00000008u) {
-      set_has_legacypayload();
-      legacypayload_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.legacypayload_);
+      mutable_push()->::opentxs::proto::OTXPush::MergeFrom(from.push());
     }
     if (cached_has_bits & 0x00000010u) {
       mutable_signature()->::opentxs::proto::Signature::MergeFrom(from.signature());
@@ -562,7 +568,7 @@ void ServerReply::InternalSwap(ServerReply* other) {
   id_.Swap(&other->id_);
   nym_.Swap(&other->nym_);
   server_.Swap(&other->server_);
-  legacypayload_.Swap(&other->legacypayload_);
+  swap(push_, other->push_);
   swap(signature_, other->signature_);
   swap(version_, other->version_);
   swap(type_, other->type_);

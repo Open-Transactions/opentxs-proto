@@ -12,6 +12,9 @@ namespace opentxs
 {
 namespace proto
 {
+static const VersionMap ServerReplyAllowedOTXPush = {
+    {1, {1, 1}},
+};
 static const VersionMap ServerReplyAllowedSignature = {
     {1, {3, 3}},
 };

@@ -20,10 +20,10 @@ bool CheckProto_1(const ServerReply& input, const bool silent)
 
     switch (input.type()) {
         case SERVERREPLY_ACTIVATE: {
-            CHECK_EXCLUDED(legacypayload);
+            CHECK_EXCLUDED(push);
         } break;
         case SERVERREPLY_PUSH: {
-            CHECK_EXISTS(legacypayload);
+            CHECK_SUBOBJECT(push, ServerReplyAllowedOTXPush);
             break;
         } break;
         case SERVERREPLY_ERROR:

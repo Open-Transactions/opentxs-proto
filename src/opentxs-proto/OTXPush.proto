@@ -7,22 +7,21 @@ syntax = "proto2";
 
 package opentxs.proto;
 option java_package = "org.opentransactions.proto";
-option java_outer_classname = "OTServerReply";
+option java_outer_classname = "OTOTXPush";
 option optimize_for = LITE_RUNTIME;
 
 import public "OTXEnums.proto";
-import public "OTXPush.proto";
-import public "Signature.proto";
 
-message ServerReply
+message OTXPush
 {
     optional uint32 version = 1;
-    optional string id = 2;
-    optional ServerReplyType type = 3;
-    optional string nym = 4;
-    optional string server = 5;
-    optional uint64 request = 6;
-    optional bool success = 7;
-    optional OTXPush push = 8;
-    optional Signature signature = 15;
+    optional OTXPushType type = 2;
+    optional string accountid = 3;
+    optional int64 itemid = 4;
+    optional bytes account = 5;
+    optional bytes inbox = 6;
+    optional string inboxhash = 7;
+    optional bytes outbox = 8;
+    optional string outboxhash = 9;
+    optional bytes item = 10;
 }
