@@ -267,7 +267,6 @@ bool CheckProto_1(const RPCResponse& input, const bool silent)
                 CHECK_NONE(identifier);
             }
 
-            CHECK_NONE(identifier);
             CHECK_NONE(seed);
             CHECK_NONE(nym);
             CHECK_NONE(balance);
