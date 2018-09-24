@@ -22,6 +22,8 @@ bool CheckProto_1(const RPCResponse& input, const bool silent)
         case RPCRESPONSE_PARTIAL:
         case RPCRESPONSE_QUEUED:
         case RPCRESPONSE_UNNECESSARY:
+        case RPCRESPONSE_RETRY:
+        case RPCRESPONSE_NO_PATH_TO_RECIPIENT:
         case RPCRESPONSE_ERROR:
             break;
         default: {
