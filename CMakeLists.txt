@@ -52,6 +52,7 @@ option(JAVASCRIPT          "Build with Javascript binding" OFF)
 option(PYTHON3             "Build with Python3 binding" OFF)
 option(PYTHON2             "Build with Python2 binding" OFF)
 option(PYTHON              "Build with default Python binding" OFF)
+set(PYTHON_DIST         "/usr/local/src" CACHE STRING "foo")
 
 set(PACKAGE_CONTACT        ""                             CACHE <TYPE>  "Package Maintainer")
 set(PACKAGE_VENDOR         "Open Transactions Developers" CACHE <TYPE>  "Package Vendor")
