@@ -15,7 +15,7 @@ namespace proto
 bool CheckProto_1(const AddContact& input, const bool silent)
 {
     OPTIONAL_NAME(label);
-    OPTIONAL_IDENTIFIER(paymentcode);
+    OPTIONAL_NAME(paymentcode);
     OPTIONAL_IDENTIFIER(nymid);
 
     return true;
