@@ -14,7 +14,7 @@ namespace proto
 {
 bool CheckProto_1(const AccountEvent& input, const bool silent)
 {
-    CHECK_IDENTIFIER(id);
+    OPTIONAL_IDENTIFIER(id);
 
     switch (input.type()) {
         case ACCOUNTEVENT_INCOMINGCHEQUE: {
