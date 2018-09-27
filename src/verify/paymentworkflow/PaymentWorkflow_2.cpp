@@ -41,7 +41,6 @@ bool CheckProto_2(const PaymentWorkflow& input, const bool silent)
         case PAYMENTWORKFLOWTYPE_INCOMINGCHEQUE:
         case PAYMENTWORKFLOWTYPE_OUTGOINGINVOICE:
         case PAYMENTWORKFLOWTYPE_INCOMINGINVOICE:
-        case PAYMENTWORKFLOWTYPE_OUTGOINGTRANSFER:
         case PAYMENTWORKFLOWTYPE_INCOMINGTRANSFER: {
             if (1 != input.source().size()) {
                 FAIL_2(
@@ -50,6 +49,28 @@ bool CheckProto_2(const PaymentWorkflow& input, const bool silent)
 
             if (1 != input.party().size()) {
                 FAIL_2("Incorrect number of parties", input.party().size())
+            }
+        } break;
+        case PAYMENTWORKFLOWTYPE_OUTGOINGTRANSFER: {
+            if (1 != input.source().size()) {
+                FAIL_2(
+                    "Incorrect number of source objects", input.source().size())
+            }
+
+            if (1 < input.party().size()) {
+                FAIL_2("Incorrect number of parties", input.party().size())
+            }
+
+            switch (input.state()) {
+                case PAYMENTWORKFLOWSTATE_ACCEPTED:
+                case PAYMENTWORKFLOWSTATE_COMPLETED: {
+                    if (1 != input.party().size()) {
+                        FAIL_2(
+                            "Incorrect number of parties", input.party().size())
+                    }
+                }
+                default: {
+                }
             }
         } break;
         case PAYMENTWORKFLOWTYPE_INTERNALTRANSFER: {
@@ -68,7 +89,6 @@ bool CheckProto_2(const PaymentWorkflow& input, const bool silent)
     }
 
     CHECK_SUBOBJECTS(source, PaymentWorkflowAllowedInstrumentRevision)
-    CHECK_IDENTIFIER(notary)
     CHECK_IDENTIFIERS(party)
     std::map<PaymentEventType, std::size_t> events{};
 
@@ -102,18 +122,22 @@ bool CheckProto_2(const PaymentWorkflow& input, const bool silent)
     const auto& cancelEvents = events[PAYMENTEVENTTYPE_CANCEL];
     const auto& acceptEvents = events[PAYMENTEVENTTYPE_ACCEPT];
     const auto& completeEvents = events[PAYMENTEVENTTYPE_COMPLETE];
+    const auto& abortEvents = events[PAYMENTEVENTTYPE_ABORT];
+    const auto& acknowledgeEvents = events[PAYMENTEVENTTYPE_ACKNOWLEDGE];
     const auto accounts = input.account().size();
 
     switch (input.type()) {
         case PAYMENTWORKFLOWTYPE_OUTGOINGCHEQUE:
         case PAYMENTWORKFLOWTYPE_OUTGOINGINVOICE: {
-            if (1 != accounts) { FAIL_2("Wrong number of accounts", accounts) }
+            CHECK_IDENTIFIER(notary);
+
+            if (1 != accounts) { FAIL_2("Wrong number of accounts ", accounts) }
 
             switch (input.state()) {
                 case PAYMENTWORKFLOWSTATE_UNSENT: {
                     if (1 != createEvents) {
                         BAD_EVENTS(
-                            "Wrong number of create events", createEvents)
+                            "Wrong number of create events ", createEvents)
                     }
 
                     // TODO: convey events are allowed only if they are
@@ -121,28 +145,38 @@ bool CheckProto_2(const PaymentWorkflow& input, const bool silent)
 
                     if (0 < cancelEvents) {
                         BAD_EVENTS(
-                            "Wrong number of cancel events", cancelEvents)
+                            "Wrong number of cancel events ", cancelEvents)
                     }
 
                     if (0 < acceptEvents) {
                         BAD_EVENTS(
-                            "Wrong number of accept events", acceptEvents)
+                            "Wrong number of accept events ", acceptEvents)
                     }
 
                     if (0 < completeEvents) {
                         BAD_EVENTS(
-                            "Wrong number of complete events", completeEvents)
+                            "Wrong number of complete events ", completeEvents)
+                    }
+
+                    if (0 < abortEvents) {
+                        BAD_EVENTS("Wrong number of abort events ", abortEvents)
+                    }
+
+                    if (0 < acknowledgeEvents) {
+                        BAD_EVENTS(
+                            "Wrong number of acknowledge events ",
+                            acknowledgeEvents)
                     }
                 } break;
                 case PAYMENTWORKFLOWSTATE_CONVEYED: {
                     if (1 != createEvents) {
                         BAD_EVENTS(
-                            "Wrong number of create events", createEvents)
+                            "Wrong number of create events ", createEvents)
                     }
 
                     if (0 == conveyEvents) {
                         BAD_EVENTS(
-                            "Wrong number of convey events", conveyEvents)
+                            "Wrong number of convey events ", conveyEvents)
                     }
 
                     // TODO: cancel events are allowed only if they are
@@ -153,41 +187,61 @@ bool CheckProto_2(const PaymentWorkflow& input, const bool silent)
 
                     if (0 < completeEvents) {
                         BAD_EVENTS(
-                            "Wrong number of complete events", completeEvents)
+                            "Wrong number of complete events ", completeEvents)
+                    }
+
+                    if (0 < abortEvents) {
+                        BAD_EVENTS("Wrong number of abort events ", abortEvents)
+                    }
+
+                    if (0 < acknowledgeEvents) {
+                        BAD_EVENTS(
+                            "Wrong number of acknowledge events ",
+                            acknowledgeEvents)
                     }
                 } break;
                 case PAYMENTWORKFLOWSTATE_CANCELLED: {
                     if (1 != createEvents) {
                         BAD_EVENTS(
-                            "Wrong number of create events", createEvents)
+                            "Wrong number of create events ", createEvents)
                     }
 
                     // Any number of convey events are allowed
 
                     if (0 == cancelEvents) {
                         BAD_EVENTS(
-                            "Wrong number of cancel events", cancelEvents)
+                            "Wrong number of cancel events ", cancelEvents)
                     }
 
                     if (0 < acceptEvents) {
                         BAD_EVENTS(
-                            "Wrong number of accept events", acceptEvents)
+                            "Wrong number of accept events ", acceptEvents)
                     }
 
                     if (0 < completeEvents) {
                         BAD_EVENTS(
-                            "Wrong number of complete events", completeEvents)
+                            "Wrong number of complete events ", completeEvents)
+                    }
+
+                    if (0 < abortEvents) {
+                        BAD_EVENTS("Wrong number of abort events ", abortEvents)
+                    }
+
+                    if (0 < acknowledgeEvents) {
+                        BAD_EVENTS(
+                            "Wrong number of acknowledge events ",
+                            acknowledgeEvents)
                     }
                 } break;
                 case PAYMENTWORKFLOWSTATE_ACCEPTED: {
                     if (1 != createEvents) {
                         BAD_EVENTS(
-                            "Wrong number of create events", createEvents)
+                            "Wrong number of create events ", createEvents)
                     }
 
                     if (0 == conveyEvents) {
                         BAD_EVENTS(
-                            "Wrong number of convey events", conveyEvents)
+                            "Wrong number of convey events ", conveyEvents)
                     }
 
                     // TODO: cancel events are allowed only if they are
@@ -195,21 +249,31 @@ bool CheckProto_2(const PaymentWorkflow& input, const bool silent)
 
                     if (0 == acceptEvents) {
                         BAD_EVENTS(
-                            "Wrong number of accept events", acceptEvents)
+                            "Wrong number of accept events ", acceptEvents)
                     }
 
                     // TODO: complete events are allowed only if they are
                     //       all failed
+
+                    if (0 < abortEvents) {
+                        BAD_EVENTS("Wrong number of abort events ", abortEvents)
+                    }
+
+                    if (0 < acknowledgeEvents) {
+                        BAD_EVENTS(
+                            "Wrong number of acknowledge events ",
+                            acknowledgeEvents)
+                    }
                 } break;
                 case PAYMENTWORKFLOWSTATE_COMPLETED: {
                     if (1 != createEvents) {
                         BAD_EVENTS(
-                            "Wrong number of create events", createEvents)
+                            "Wrong number of create events ", createEvents)
                     }
 
                     if (0 == conveyEvents) {
                         BAD_EVENTS(
-                            "Wrong number of convey events", conveyEvents)
+                            "Wrong number of convey events ", conveyEvents)
                     }
 
                     // TODO: cancel events are allowed only if they are
@@ -217,18 +281,28 @@ bool CheckProto_2(const PaymentWorkflow& input, const bool silent)
 
                     if (0 == acceptEvents) {
                         BAD_EVENTS(
-                            "Wrong number of accept events", acceptEvents)
+                            "Wrong number of accept events ", acceptEvents)
                     }
 
                     if (0 == completeEvents) {
                         BAD_EVENTS(
-                            "Wrong number of complete events", completeEvents)
+                            "Wrong number of complete events ", completeEvents)
+                    }
+
+                    if (0 < abortEvents) {
+                        BAD_EVENTS("Wrong number of abort events ", abortEvents)
+                    }
+
+                    if (0 < acknowledgeEvents) {
+                        BAD_EVENTS(
+                            "Wrong number of acknowledge events ",
+                            acknowledgeEvents)
                     }
                 } break;
                 case PAYMENTWORKFLOWSTATE_EXPIRED: {
                     if (1 != createEvents) {
                         BAD_EVENTS(
-                            "Wrong number of create events", createEvents)
+                            "Wrong number of create events ", createEvents)
                     }
 
                     // Any number of convey events are allowed
@@ -238,15 +312,27 @@ bool CheckProto_2(const PaymentWorkflow& input, const bool silent)
 
                     if (0 < acceptEvents) {
                         BAD_EVENTS(
-                            "Wrong number of accept events", acceptEvents)
+                            "Wrong number of accept events ", acceptEvents)
                     }
 
                     if (0 < completeEvents) {
                         BAD_EVENTS(
-                            "Wrong number of complete events", completeEvents)
+                            "Wrong number of complete events ", completeEvents)
+                    }
+
+                    if (0 < abortEvents) {
+                        BAD_EVENTS("Wrong number of abort events ", abortEvents)
+                    }
+
+                    if (0 < acknowledgeEvents) {
+                        BAD_EVENTS(
+                            "Wrong number of acknowledge events ",
+                            acknowledgeEvents)
                     }
                 } break;
                 case PAYMENTWORKFLOWSTATE_INITIATED:
+                case PAYMENTWORKFLOWSTATE_ABORTED:
+                case PAYMENTWORKFLOWSTATE_ACKNOWLEDGED:
                 default: {
                     FAIL_1("Invalid state")
                 }
@@ -254,25 +340,27 @@ bool CheckProto_2(const PaymentWorkflow& input, const bool silent)
         } break;
         case PAYMENTWORKFLOWTYPE_INCOMINGCHEQUE:
         case PAYMENTWORKFLOWTYPE_INCOMINGINVOICE: {
+            OPTIONAL_IDENTIFIER(notary);
+
             switch (input.state()) {
                 case PAYMENTWORKFLOWSTATE_CONVEYED: {
                     if (0 != accounts) {
-                        BAD_EVENTS("Wrong number of accounts", accounts)
+                        BAD_EVENTS("Wrong number of accounts ", accounts)
                     }
 
                     if (0 < createEvents) {
                         BAD_EVENTS(
-                            "Wrong number of create events", createEvents)
+                            "Wrong number of create events ", createEvents)
                     }
 
                     if (1 != conveyEvents) {
                         BAD_EVENTS(
-                            "Wrong number of convey events", conveyEvents)
+                            "Wrong number of convey events ", conveyEvents)
                     }
 
                     if (0 < cancelEvents) {
                         BAD_EVENTS(
-                            "Wrong number of cancel events", cancelEvents)
+                            "Wrong number of cancel events ", cancelEvents)
                     }
 
                     // TODO: accept events are allowed only if they are
@@ -280,57 +368,79 @@ bool CheckProto_2(const PaymentWorkflow& input, const bool silent)
 
                     if (0 < completeEvents) {
                         BAD_EVENTS(
-                            "Wrong number of complete events", completeEvents)
+                            "Wrong number of complete events ", completeEvents)
+                    }
+
+                    if (0 < abortEvents) {
+                        BAD_EVENTS("Wrong number of abort events ", abortEvents)
+                    }
+
+                    if (0 < acknowledgeEvents) {
+                        BAD_EVENTS(
+                            "Wrong number of acknowledge events ",
+                            acknowledgeEvents)
                     }
                 } break;
                 case PAYMENTWORKFLOWSTATE_COMPLETED: {
+                    CHECK_IDENTIFIER(notary);
+
                     if (1 != accounts) {
-                        BAD_EVENTS("Wrong number of accounts", accounts)
+                        BAD_EVENTS("Wrong number of accounts ", accounts)
                     }
 
                     if (0 < createEvents) {
                         BAD_EVENTS(
-                            "Wrong number of create events", createEvents)
+                            "Wrong number of create events ", createEvents)
                     }
 
                     if (1 != conveyEvents) {
                         BAD_EVENTS(
-                            "Wrong number of convey events", conveyEvents)
+                            "Wrong number of convey events ", conveyEvents)
                     }
 
                     if (0 < cancelEvents) {
                         BAD_EVENTS(
-                            "Wrong number of cancel events", cancelEvents)
+                            "Wrong number of cancel events ", cancelEvents)
                     }
 
                     if (0 == acceptEvents) {
                         BAD_EVENTS(
-                            "Wrong number of accept events", acceptEvents)
+                            "Wrong number of accept events ", acceptEvents)
                     }
 
                     if (0 < completeEvents) {
                         BAD_EVENTS(
-                            "Wrong number of complete events", completeEvents)
+                            "Wrong number of complete events ", completeEvents)
+                    }
+
+                    if (0 < abortEvents) {
+                        BAD_EVENTS("Wrong number of abort events ", abortEvents)
+                    }
+
+                    if (0 < acknowledgeEvents) {
+                        BAD_EVENTS(
+                            "Wrong number of acknowledge events ",
+                            acknowledgeEvents)
                     }
                 } break;
                 case PAYMENTWORKFLOWSTATE_EXPIRED: {
                     if (1 < accounts) {
-                        BAD_EVENTS("Wrong number of accounts", accounts)
+                        BAD_EVENTS("Wrong number of accounts ", accounts)
                     }
 
                     if (0 < createEvents) {
                         BAD_EVENTS(
-                            "Wrong number of create events", createEvents)
+                            "Wrong number of create events ", createEvents)
                     }
 
                     if (1 != conveyEvents) {
                         BAD_EVENTS(
-                            "Wrong number of convey events", conveyEvents)
+                            "Wrong number of convey events ", conveyEvents)
                     }
 
                     if (0 < cancelEvents) {
                         BAD_EVENTS(
-                            "Wrong number of cancel events", cancelEvents)
+                            "Wrong number of cancel events ", cancelEvents)
                     }
 
                     // TODO: accept events are allowed only if they are
@@ -338,76 +448,211 @@ bool CheckProto_2(const PaymentWorkflow& input, const bool silent)
 
                     if (0 < completeEvents) {
                         BAD_EVENTS(
-                            "Wrong number of complete events", completeEvents)
+                            "Wrong number of complete events ", completeEvents)
+                    }
+
+                    if (0 < abortEvents) {
+                        BAD_EVENTS("Wrong number of abort events ", abortEvents)
+                    }
+
+                    if (0 < acknowledgeEvents) {
+                        BAD_EVENTS(
+                            "Wrong number of acknowledge events ",
+                            acknowledgeEvents)
                     }
                 } break;
                 case PAYMENTWORKFLOWSTATE_INITIATED:
+                case PAYMENTWORKFLOWSTATE_ABORTED:
+                case PAYMENTWORKFLOWSTATE_ACKNOWLEDGED:
                 default: {
                     FAIL_1("Invalid state")
                 }
             }
         } break;
-        case PAYMENTWORKFLOWTYPE_OUTGOINGTRANSFER:
-        {
-            if (1 != accounts) { FAIL_2("Wrong number of accounts", accounts) }
+        case PAYMENTWORKFLOWTYPE_OUTGOINGTRANSFER: {
+            CHECK_IDENTIFIER(notary);
+
+            if (1 != accounts) { FAIL_2("Wrong number of accounts ", accounts) }
 
             switch (input.state()) {
                 case PAYMENTWORKFLOWSTATE_INITIATED: {
                     if (1 != createEvents) {
                         BAD_EVENTS(
-                            "Wrong number of create events", createEvents)
+                            "Wrong number of create events ", createEvents)
+                    }
+
+                    if (0 < conveyEvents) {
+                        BAD_EVENTS(
+                            "Wrong number of create events ", conveyEvents)
                     }
 
                     if (0 < cancelEvents) {
                         BAD_EVENTS(
-                            "Wrong number of cancel events", cancelEvents)
+                            "Wrong number of cancel events ", cancelEvents)
                     }
 
                     if (0 < acceptEvents) {
                         BAD_EVENTS(
-                            "Wrong number of accept events", acceptEvents)
+                            "Wrong number of accept events ", acceptEvents)
                     }
 
                     if (0 < completeEvents) {
                         BAD_EVENTS(
-                            "Wrong number of complete events", completeEvents)
+                            "Wrong number of complete events ", completeEvents)
+                    }
+
+                    if (0 < abortEvents) {
+                        BAD_EVENTS("Wrong number of abort events ", abortEvents)
+                    }
+
+                    if (0 < acknowledgeEvents) {
+                        BAD_EVENTS(
+                            "Wrong number of acknowledge events ",
+                            acknowledgeEvents)
+                    }
+                } break;
+                case PAYMENTWORKFLOWSTATE_ACKNOWLEDGED: {
+                    if (1 != createEvents) {
+                        BAD_EVENTS(
+                            "Wrong number of create events ", createEvents)
+                    }
+
+                    if (0 < conveyEvents) {
+                        BAD_EVENTS(
+                            "Wrong number of create events ", conveyEvents)
+                    }
+
+                    if (0 < cancelEvents) {
+                        BAD_EVENTS(
+                            "Wrong number of cancel events ", cancelEvents)
+                    }
+
+                    if (0 < acceptEvents) {
+                        BAD_EVENTS(
+                            "Wrong number of accept events ", acceptEvents)
+                    }
+
+                    if (0 < completeEvents) {
+                        BAD_EVENTS(
+                            "Wrong number of complete events ", completeEvents)
+                    }
+
+                    if (0 < abortEvents) {
+                        BAD_EVENTS("Wrong number of abort events ", abortEvents)
+                    }
+
+                    if (1 != acknowledgeEvents) {
+                        BAD_EVENTS(
+                            "Wrong number of acknowledge events ",
+                            acknowledgeEvents)
+                    }
+                } break;
+                case PAYMENTWORKFLOWSTATE_ABORTED: {
+                    if (1 != createEvents) {
+                        BAD_EVENTS(
+                            "Wrong number of create events ", createEvents)
+                    }
+
+                    if (0 < conveyEvents) {
+                        BAD_EVENTS(
+                            "Wrong number of create events ", conveyEvents)
+                    }
+
+                    if (0 < cancelEvents) {
+                        BAD_EVENTS(
+                            "Wrong number of cancel events ", cancelEvents)
+                    }
+
+                    if (0 < acceptEvents) {
+                        BAD_EVENTS(
+                            "Wrong number of accept events ", acceptEvents)
+                    }
+
+                    if (0 < completeEvents) {
+                        BAD_EVENTS(
+                            "Wrong number of complete events ", completeEvents)
+                    }
+
+                    if (1 != abortEvents) {
+                        BAD_EVENTS("Wrong number of abort events ", abortEvents)
+                    }
+
+                    if (0 < acknowledgeEvents) {
+                        BAD_EVENTS(
+                            "Wrong number of acknowledge events ",
+                            acknowledgeEvents)
                     }
                 } break;
                 case PAYMENTWORKFLOWSTATE_ACCEPTED: {
                     if (1 != createEvents) {
                         BAD_EVENTS(
-                            "Wrong number of create events", createEvents)
+                            "Wrong number of create events ", createEvents)
                     }
 
-                    if (0 == conveyEvents) {
+                    if (0 < conveyEvents) {
                         BAD_EVENTS(
-                            "Wrong number of convey events", conveyEvents)
+                            "Wrong number of create events ", conveyEvents)
                     }
 
-                    if (0 == acceptEvents) {
+                    if (0 < cancelEvents) {
                         BAD_EVENTS(
-                            "Wrong number of accept events", acceptEvents)
+                            "Wrong number of cancel events ", cancelEvents)
+                    }
+
+                    if (1 != acceptEvents) {
+                        BAD_EVENTS(
+                            "Wrong number of accept events ", acceptEvents)
+                    }
+
+                    if (0 < completeEvents) {
+                        BAD_EVENTS(
+                            "Wrong number of complete events ", completeEvents)
+                    }
+
+                    if (0 < abortEvents) {
+                        BAD_EVENTS("Wrong number of abort events ", abortEvents)
+                    }
+
+                    if (1 < acknowledgeEvents) {
+                        BAD_EVENTS(
+                            "Wrong number of acknowledge events ",
+                            acknowledgeEvents)
                     }
                 } break;
                 case PAYMENTWORKFLOWSTATE_COMPLETED: {
                     if (1 != createEvents) {
                         BAD_EVENTS(
-                            "Wrong number of create events", createEvents)
+                            "Wrong number of create events ", createEvents)
                     }
 
-                    if (0 == conveyEvents) {
+                    if (0 < conveyEvents) {
                         BAD_EVENTS(
-                            "Wrong number of convey events", conveyEvents)
+                            "Wrong number of create events ", conveyEvents)
                     }
 
-                    if (0 == acceptEvents) {
+                    if (0 < cancelEvents) {
                         BAD_EVENTS(
-                            "Wrong number of accept events", acceptEvents)
+                            "Wrong number of cancel events ", cancelEvents)
                     }
 
-                    if (0 == completeEvents) {
+                    if (1 != acceptEvents) {
                         BAD_EVENTS(
-                            "Wrong number of complete events", completeEvents)
+                            "Wrong number of accept events ", acceptEvents)
+                    }
+
+                    if (1 > completeEvents) {
+                        BAD_EVENTS(
+                            "Wrong number of complete events ", completeEvents)
+                    }
+
+                    if (0 < abortEvents) {
+                        BAD_EVENTS("Wrong number of abort events ", abortEvents)
+                    }
+
+                    if (1 < acknowledgeEvents) {
+                        BAD_EVENTS(
+                            "Wrong number of acknowledge events ",
+                            acknowledgeEvents)
                     }
                 } break;
                 case PAYMENTWORKFLOWSTATE_UNSENT:
@@ -420,46 +665,82 @@ bool CheckProto_2(const PaymentWorkflow& input, const bool silent)
                 }
             }
         } break;
-        case PAYMENTWORKFLOWTYPE_INCOMINGTRANSFER:
-        {
-            if (1 != accounts) { FAIL_2("Wrong number of accounts", accounts) }
+        case PAYMENTWORKFLOWTYPE_INCOMINGTRANSFER: {
+            CHECK_IDENTIFIER(notary);
+
+            if (1 != accounts) { FAIL_2("Wrong number of accounts ", accounts) }
 
             switch (input.state()) {
                 case PAYMENTWORKFLOWSTATE_CONVEYED: {
-                    if (1 != createEvents) {
+                    if (0 < createEvents) {
                         BAD_EVENTS(
-                            "Wrong number of create events", createEvents)
+                            "Wrong number of create events ", createEvents)
                     }
 
-                    if (0 == conveyEvents) {
+                    if (1 != conveyEvents) {
                         BAD_EVENTS(
-                            "Wrong number of convey events", conveyEvents)
+                            "Wrong number of create events ", conveyEvents)
+                    }
+
+                    if (0 < cancelEvents) {
+                        BAD_EVENTS(
+                            "Wrong number of cancel events ", cancelEvents)
+                    }
+
+                    if (0 < acceptEvents) {
+                        BAD_EVENTS(
+                            "Wrong number of accept events ", acceptEvents)
                     }
 
                     if (0 < completeEvents) {
                         BAD_EVENTS(
-                            "Wrong number of complete events", completeEvents)
+                            "Wrong number of complete events ", completeEvents)
+                    }
+
+                    if (0 < abortEvents) {
+                        BAD_EVENTS("Wrong number of abort events ", abortEvents)
+                    }
+
+                    if (0 < acknowledgeEvents) {
+                        BAD_EVENTS(
+                            "Wrong number of acknowledge events ",
+                            acknowledgeEvents)
                     }
                 } break;
                 case PAYMENTWORKFLOWSTATE_COMPLETED: {
-                    if (1 != createEvents) {
+                    if (0 < createEvents) {
                         BAD_EVENTS(
-                            "Wrong number of create events", createEvents)
+                            "Wrong number of create events ", createEvents)
                     }
 
-                    if (0 == conveyEvents) {
+                    if (1 != conveyEvents) {
                         BAD_EVENTS(
-                            "Wrong number of convey events", conveyEvents)
+                            "Wrong number of create events ", conveyEvents)
                     }
 
-                    if (0 == acceptEvents) {
+                    if (0 < cancelEvents) {
                         BAD_EVENTS(
-                            "Wrong number of accept events", acceptEvents)
+                            "Wrong number of cancel events ", cancelEvents)
                     }
 
-                    if (0 == completeEvents) {
+                    if (1 != acceptEvents) {
                         BAD_EVENTS(
-                            "Wrong number of complete events", completeEvents)
+                            "Wrong number of accept events ", acceptEvents)
+                    }
+
+                    if (0 < completeEvents) {
+                        BAD_EVENTS(
+                            "Wrong number of complete events ", completeEvents)
+                    }
+
+                    if (0 < abortEvents) {
+                        BAD_EVENTS("Wrong number of abort events ", abortEvents)
+                    }
+
+                    if (0 < acknowledgeEvents) {
+                        BAD_EVENTS(
+                            "Wrong number of acknowledge events ",
+                            acknowledgeEvents)
                     }
                 } break;
                 case PAYMENTWORKFLOWSTATE_UNSENT:
@@ -467,89 +748,238 @@ bool CheckProto_2(const PaymentWorkflow& input, const bool silent)
                 case PAYMENTWORKFLOWSTATE_ACCEPTED:
                 case PAYMENTWORKFLOWSTATE_EXPIRED:
                 case PAYMENTWORKFLOWSTATE_INITIATED:
+                case PAYMENTWORKFLOWSTATE_ABORTED:
+                case PAYMENTWORKFLOWSTATE_ACKNOWLEDGED:
                 case PAYMENTWORKFLOWSTATE_ERROR:
                 default: {
                     FAIL_1("Invalid state")
                 }
             }
         } break;
-        case PAYMENTWORKFLOWTYPE_INTERNALTRANSFER:
-        {
-            if (2 != accounts) { FAIL_2("Wrong number of accounts", accounts) }
+        case PAYMENTWORKFLOWTYPE_INTERNALTRANSFER: {
+            CHECK_IDENTIFIER(notary);
+
+            if (2 != accounts) { FAIL_2("Wrong number of accounts ", accounts) }
 
             switch (input.state()) {
                 case PAYMENTWORKFLOWSTATE_INITIATED: {
                     if (1 != createEvents) {
                         BAD_EVENTS(
-                            "Wrong number of create events", createEvents)
+                            "Wrong number of create events ", createEvents)
+                    }
+
+                    if (0 < conveyEvents) {
+                        BAD_EVENTS(
+                            "Wrong number of create events ", conveyEvents)
                     }
 
                     if (0 < cancelEvents) {
                         BAD_EVENTS(
-                            "Wrong number of cancel events", cancelEvents)
+                            "Wrong number of cancel events ", cancelEvents)
                     }
 
                     if (0 < acceptEvents) {
                         BAD_EVENTS(
-                            "Wrong number of accept events", acceptEvents)
+                            "Wrong number of accept events ", acceptEvents)
                     }
 
                     if (0 < completeEvents) {
                         BAD_EVENTS(
-                            "Wrong number of complete events", completeEvents)
+                            "Wrong number of complete events ", completeEvents)
+                    }
+
+                    if (0 < abortEvents) {
+                        BAD_EVENTS("Wrong number of abort events ", abortEvents)
+                    }
+
+                    if (0 < acknowledgeEvents) {
+                        BAD_EVENTS(
+                            "Wrong number of acknowledge events ",
+                            acknowledgeEvents)
+                    }
+                } break;
+                case PAYMENTWORKFLOWSTATE_ACKNOWLEDGED: {
+                    if (1 != createEvents) {
+                        BAD_EVENTS(
+                            "Wrong number of create events ", createEvents)
+                    }
+
+                    // NOTE: The expected ordering of acknowledge events vs
+                    // convey events is not defined.
+                    if (1 < conveyEvents) {
+                        BAD_EVENTS(
+                            "Wrong number of create events ", conveyEvents)
+                    }
+
+                    if (0 < cancelEvents) {
+                        BAD_EVENTS(
+                            "Wrong number of cancel events ", cancelEvents)
+                    }
+
+                    if (0 < acceptEvents) {
+                        BAD_EVENTS(
+                            "Wrong number of accept events ", acceptEvents)
+                    }
+
+                    if (0 < completeEvents) {
+                        BAD_EVENTS(
+                            "Wrong number of complete events ", completeEvents)
+                    }
+
+                    if (0 < abortEvents) {
+                        BAD_EVENTS("Wrong number of abort events ", abortEvents)
+                    }
+
+                    if (1 != acknowledgeEvents) {
+                        BAD_EVENTS(
+                            "Wrong number of acknowledge events ",
+                            acknowledgeEvents)
+                    }
+                } break;
+                case PAYMENTWORKFLOWSTATE_ABORTED: {
+                    if (1 != createEvents) {
+                        BAD_EVENTS(
+                            "Wrong number of create events ", createEvents)
+                    }
+
+                    if (0 < conveyEvents) {
+                        BAD_EVENTS(
+                            "Wrong number of create events ", conveyEvents)
+                    }
+
+                    if (0 < cancelEvents) {
+                        BAD_EVENTS(
+                            "Wrong number of cancel events ", cancelEvents)
+                    }
+
+                    if (0 < acceptEvents) {
+                        BAD_EVENTS(
+                            "Wrong number of accept events ", acceptEvents)
+                    }
+
+                    if (0 < completeEvents) {
+                        BAD_EVENTS(
+                            "Wrong number of complete events ", completeEvents)
+                    }
+
+                    if (1 != abortEvents) {
+                        BAD_EVENTS("Wrong number of abort events ", abortEvents)
+                    }
+
+                    if (0 < acknowledgeEvents) {
+                        BAD_EVENTS(
+                            "Wrong number of acknowledge events ",
+                            acknowledgeEvents)
                     }
                 } break;
                 case PAYMENTWORKFLOWSTATE_CONVEYED: {
                     if (1 != createEvents) {
                         BAD_EVENTS(
-                            "Wrong number of create events", createEvents)
+                            "Wrong number of create events ", createEvents)
                     }
 
-                    if (0 == conveyEvents) {
+                    if (1 != conveyEvents) {
                         BAD_EVENTS(
-                            "Wrong number of convey events", conveyEvents)
+                            "Wrong number of create events ", conveyEvents)
+                    }
+
+                    if (0 < cancelEvents) {
+                        BAD_EVENTS(
+                            "Wrong number of cancel events ", cancelEvents)
+                    }
+
+                    if (0 < acceptEvents) {
+                        BAD_EVENTS(
+                            "Wrong number of accept events ", acceptEvents)
                     }
 
                     if (0 < completeEvents) {
                         BAD_EVENTS(
-                            "Wrong number of complete events", completeEvents)
+                            "Wrong number of complete events ", completeEvents)
+                    }
+
+                    if (0 < abortEvents) {
+                        BAD_EVENTS("Wrong number of abort events ", abortEvents)
+                    }
+
+                    // NOTE: The expected ordering of acknowledge events vs
+                    // convey events is not defined.
+                    if (1 < acknowledgeEvents) {
+                        BAD_EVENTS(
+                            "Wrong number of acknowledge events ",
+                            acknowledgeEvents)
                     }
                 } break;
                 case PAYMENTWORKFLOWSTATE_ACCEPTED: {
                     if (1 != createEvents) {
                         BAD_EVENTS(
-                            "Wrong number of create events", createEvents)
+                            "Wrong number of create events ", createEvents)
                     }
 
-                    if (0 == conveyEvents) {
+                    if (1 != conveyEvents) {
                         BAD_EVENTS(
-                            "Wrong number of convey events", conveyEvents)
+                            "Wrong number of create events ", conveyEvents)
                     }
 
-                    if (0 == acceptEvents) {
+                    if (0 < cancelEvents) {
                         BAD_EVENTS(
-                            "Wrong number of accept events", acceptEvents)
+                            "Wrong number of cancel events ", cancelEvents)
+                    }
+
+                    if (1 != acceptEvents) {
+                        BAD_EVENTS(
+                            "Wrong number of accept events ", acceptEvents)
+                    }
+
+                    if (0 < completeEvents) {
+                        BAD_EVENTS(
+                            "Wrong number of complete events ", completeEvents)
+                    }
+
+                    if (0 < abortEvents) {
+                        BAD_EVENTS("Wrong number of abort events ", abortEvents)
+                    }
+
+                    if (1 != acknowledgeEvents) {
+                        BAD_EVENTS(
+                            "Wrong number of acknowledge events ",
+                            acknowledgeEvents)
                     }
                 } break;
                 case PAYMENTWORKFLOWSTATE_COMPLETED: {
                     if (1 != createEvents) {
                         BAD_EVENTS(
-                            "Wrong number of create events", createEvents)
+                            "Wrong number of create events ", createEvents)
                     }
 
-                    if (0 == conveyEvents) {
+                    if (1 != conveyEvents) {
                         BAD_EVENTS(
-                            "Wrong number of convey events", conveyEvents)
+                            "Wrong number of create events ", conveyEvents)
                     }
 
-                    if (0 == acceptEvents) {
+                    if (0 < cancelEvents) {
                         BAD_EVENTS(
-                            "Wrong number of accept events", acceptEvents)
+                            "Wrong number of cancel events ", cancelEvents)
                     }
 
-                    if (0 == completeEvents) {
+                    if (1 != acceptEvents) {
                         BAD_EVENTS(
-                            "Wrong number of complete events", completeEvents)
+                            "Wrong number of accept events ", acceptEvents)
+                    }
+
+                    if (1 != completeEvents) {
+                        BAD_EVENTS(
+                            "Wrong number of complete events ", completeEvents)
+                    }
+
+                    if (0 < abortEvents) {
+                        BAD_EVENTS("Wrong number of abort events ", abortEvents)
+                    }
+
+                    if (1 != acknowledgeEvents) {
+                        BAD_EVENTS(
+                            "Wrong number of acknowledge events ",
+                            acknowledgeEvents)
                     }
                 } break;
                 case PAYMENTWORKFLOWSTATE_UNSENT:
@@ -573,8 +1003,7 @@ bool CheckProto_2(const PaymentWorkflow& input, const bool silent)
         case PAYMENTWORKFLOWTYPE_INCOMINGINVOICE:
         case PAYMENTWORKFLOWTYPE_OUTGOINGTRANSFER:
         case PAYMENTWORKFLOWTYPE_INCOMINGTRANSFER:
-        case PAYMENTWORKFLOWTYPE_INTERNALTRANSFER:
-        {
+        case PAYMENTWORKFLOWTYPE_INTERNALTRANSFER: {
             if (1 != input.unit().size()) { FAIL_1("Missing unit") }
         } break;
         default: {

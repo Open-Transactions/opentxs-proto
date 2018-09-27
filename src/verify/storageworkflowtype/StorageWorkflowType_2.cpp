@@ -28,7 +28,7 @@ bool CheckProto_2(const StorageWorkflowType& input, const bool silent)
                 case PAYMENTWORKFLOWSTATE_ERROR:
                 default: {
                     FAIL_2(
-                        "invalid state",
+                        "invalid outgoing cheque state",
                         static_cast<std::uint32_t>(input.state()))
                 }
             }
@@ -43,10 +43,12 @@ bool CheckProto_2(const StorageWorkflowType& input, const bool silent)
                 case PAYMENTWORKFLOWSTATE_UNSENT:
                 case PAYMENTWORKFLOWSTATE_CANCELLED:
                 case PAYMENTWORKFLOWSTATE_ACCEPTED:
+                case PAYMENTWORKFLOWSTATE_ACKNOWLEDGED:
+                case PAYMENTWORKFLOWSTATE_ABORTED:
                 case PAYMENTWORKFLOWSTATE_ERROR:
                 default: {
                     FAIL_2(
-                        "invalid state",
+                        "invalid incoming cheque state",
                         static_cast<std::uint32_t>(input.state()))
                 }
             }
@@ -61,10 +63,12 @@ bool CheckProto_2(const StorageWorkflowType& input, const bool silent)
                 case PAYMENTWORKFLOWSTATE_EXPIRED: {
                 } break;
                 case PAYMENTWORKFLOWSTATE_INITIATED:
+                case PAYMENTWORKFLOWSTATE_ACKNOWLEDGED:
+                case PAYMENTWORKFLOWSTATE_ABORTED:
                 case PAYMENTWORKFLOWSTATE_ERROR:
                 default: {
                     FAIL_2(
-                        "invalid state",
+                        "invalid outgoing invoice state",
                         static_cast<std::uint32_t>(input.state()))
                 }
             }
@@ -79,10 +83,12 @@ bool CheckProto_2(const StorageWorkflowType& input, const bool silent)
                 case PAYMENTWORKFLOWSTATE_UNSENT:
                 case PAYMENTWORKFLOWSTATE_CANCELLED:
                 case PAYMENTWORKFLOWSTATE_ACCEPTED:
+                case PAYMENTWORKFLOWSTATE_ACKNOWLEDGED:
+                case PAYMENTWORKFLOWSTATE_ABORTED:
                 case PAYMENTWORKFLOWSTATE_ERROR:
                 default: {
                     FAIL_2(
-                        "invalid state",
+                        "invalid incoming invoice state",
                         static_cast<std::uint32_t>(input.state()))
                 }
             }
@@ -90,8 +96,10 @@ bool CheckProto_2(const StorageWorkflowType& input, const bool silent)
         case PAYMENTWORKFLOWTYPE_OUTGOINGTRANSFER: {
             switch (input.state()) {
                 case PAYMENTWORKFLOWSTATE_INITIATED:
+                case PAYMENTWORKFLOWSTATE_ACKNOWLEDGED:
                 case PAYMENTWORKFLOWSTATE_ACCEPTED:
-                case PAYMENTWORKFLOWSTATE_COMPLETED: {
+                case PAYMENTWORKFLOWSTATE_COMPLETED:
+                case PAYMENTWORKFLOWSTATE_ABORTED: {
                 } break;
                 case PAYMENTWORKFLOWSTATE_UNSENT:
                 case PAYMENTWORKFLOWSTATE_CONVEYED:
@@ -100,7 +108,7 @@ bool CheckProto_2(const StorageWorkflowType& input, const bool silent)
                 case PAYMENTWORKFLOWSTATE_ERROR:
                 default: {
                     FAIL_2(
-                        "invalid state",
+                        "invalid outgoing transfer state",
                         static_cast<std::uint32_t>(input.state()))
                 }
             }
@@ -115,10 +123,12 @@ bool CheckProto_2(const StorageWorkflowType& input, const bool silent)
                 case PAYMENTWORKFLOWSTATE_ACCEPTED:
                 case PAYMENTWORKFLOWSTATE_EXPIRED:
                 case PAYMENTWORKFLOWSTATE_INITIATED:
+                case PAYMENTWORKFLOWSTATE_ACKNOWLEDGED:
+                case PAYMENTWORKFLOWSTATE_ABORTED:
                 case PAYMENTWORKFLOWSTATE_ERROR:
                 default: {
                     FAIL_2(
-                        "invalid state",
+                        "invalid incoming transfer state",
                         static_cast<std::uint32_t>(input.state()))
                 }
             }
@@ -126,9 +136,11 @@ bool CheckProto_2(const StorageWorkflowType& input, const bool silent)
         case PAYMENTWORKFLOWTYPE_INTERNALTRANSFER: {
             switch (input.state()) {
                 case PAYMENTWORKFLOWSTATE_INITIATED:
+                case PAYMENTWORKFLOWSTATE_ACKNOWLEDGED:
                 case PAYMENTWORKFLOWSTATE_CONVEYED:
                 case PAYMENTWORKFLOWSTATE_ACCEPTED:
-                case PAYMENTWORKFLOWSTATE_COMPLETED: {
+                case PAYMENTWORKFLOWSTATE_COMPLETED:
+                case PAYMENTWORKFLOWSTATE_ABORTED: {
                 } break;
                 case PAYMENTWORKFLOWSTATE_UNSENT:
                 case PAYMENTWORKFLOWSTATE_CANCELLED:
@@ -136,7 +148,7 @@ bool CheckProto_2(const StorageWorkflowType& input, const bool silent)
                 case PAYMENTWORKFLOWSTATE_ERROR:
                 default: {
                     FAIL_2(
-                        "invalid state",
+                        "invalid internal transfer state",
                         static_cast<std::uint32_t>(input.state()))
                 }
             }

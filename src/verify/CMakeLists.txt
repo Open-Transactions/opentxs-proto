@@ -63,6 +63,7 @@ set(cxx-sources
   pairevent/PairEvent_1.cpp
   paymentcode/PaymentCode_1.cpp
   paymentevent/PaymentEvent_1.cpp
+  paymentevent/PaymentEvent_2.cpp
   paymentworkflow/PaymentWorkflow_1.cpp
   paymentworkflow/PaymentWorkflow_2.cpp
   peerobject/PeerObject_1.cpp

@@ -59,7 +59,6 @@ bool CheckProto_1(const PaymentWorkflow& input, const bool silent)
     }
 
     CHECK_SUBOBJECTS(source, PaymentWorkflowAllowedInstrumentRevision)
-    CHECK_IDENTIFIER(notary)
     CHECK_IDENTIFIERS(party)
     std::map<PaymentEventType, std::size_t> events{};
 
@@ -98,6 +97,8 @@ bool CheckProto_1(const PaymentWorkflow& input, const bool silent)
     switch (input.type()) {
         case PAYMENTWORKFLOWTYPE_OUTGOINGCHEQUE:
         case PAYMENTWORKFLOWTYPE_OUTGOINGINVOICE: {
+            CHECK_IDENTIFIER(notary);
+
             if (1 != accounts) { FAIL_2("Wrong number of accounts", accounts) }
 
             switch (input.state()) {
@@ -238,6 +239,8 @@ bool CheckProto_1(const PaymentWorkflow& input, const bool silent)
                     }
                 } break;
                 case PAYMENTWORKFLOWSTATE_INITIATED:
+                case PAYMENTWORKFLOWSTATE_ABORTED:
+                case PAYMENTWORKFLOWSTATE_ACKNOWLEDGED:
                 default: {
                     FAIL_1("Invalid state")
                 }
@@ -245,6 +248,8 @@ bool CheckProto_1(const PaymentWorkflow& input, const bool silent)
         } break;
         case PAYMENTWORKFLOWTYPE_INCOMINGCHEQUE:
         case PAYMENTWORKFLOWTYPE_INCOMINGINVOICE: {
+            OPTIONAL_IDENTIFIER(notary);
+
             switch (input.state()) {
                 case PAYMENTWORKFLOWSTATE_CONVEYED: {
                     if (0 != accounts) {
@@ -275,6 +280,8 @@ bool CheckProto_1(const PaymentWorkflow& input, const bool silent)
                     }
                 } break;
                 case PAYMENTWORKFLOWSTATE_COMPLETED: {
+                    CHECK_IDENTIFIER(notary);
+
                     if (1 != accounts) {
                         BAD_EVENTS("Wrong number of accounts", accounts)
                     }
@@ -333,6 +340,8 @@ bool CheckProto_1(const PaymentWorkflow& input, const bool silent)
                     }
                 } break;
                 case PAYMENTWORKFLOWSTATE_INITIATED:
+                case PAYMENTWORKFLOWSTATE_ABORTED:
+                case PAYMENTWORKFLOWSTATE_ACKNOWLEDGED:
                 default: {
                     FAIL_1("Invalid state")
                 }
@@ -350,8 +359,7 @@ bool CheckProto_1(const PaymentWorkflow& input, const bool silent)
         case PAYMENTWORKFLOWTYPE_OUTGOINGCHEQUE:
         case PAYMENTWORKFLOWTYPE_INCOMINGCHEQUE:
         case PAYMENTWORKFLOWTYPE_OUTGOINGINVOICE:
-        case PAYMENTWORKFLOWTYPE_INCOMINGINVOICE:
-        {
+        case PAYMENTWORKFLOWTYPE_INCOMINGINVOICE: {
             if (1 != input.unit().size()) { FAIL_1("Missing unit") }
         } break;
         case PAYMENTWORKFLOWTYPE_OUTGOINGTRANSFER:
