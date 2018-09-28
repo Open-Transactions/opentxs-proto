@@ -19,6 +19,8 @@ import public "CreateNym.proto";
 import public "CredentialIndex.proto";
 import public "HDSeed.proto";
 import public "RPCEnums.proto";
+import public "RPCStatus.proto";
+import public "RPCTask.proto";
 import public "ServerContract.proto";
 import public "SessionData.proto";
 
@@ -26,7 +28,7 @@ message RPCResponse {
     optional uint32 version = 1;
     optional string cookie = 2;
     optional RPCCommandType type = 3;
-    optional RPCResponseCode success = 4;
+    repeated RPCStatus status = 4;
     optional uint32 session = 5;
     repeated SessionData sessions = 6;
     repeated string identifier = 7;
@@ -36,6 +38,6 @@ message RPCResponse {
     repeated Contact contact = 11;
     repeated AccountEvent accountevent = 12;
     repeated ContactEvent contactevent = 13;
-    optional string task = 14;
+    repeated RPCTask task = 14;
     repeated ServerContract notary = 15;
 }

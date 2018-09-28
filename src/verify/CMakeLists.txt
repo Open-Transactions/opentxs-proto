@@ -7,6 +7,7 @@ set(MODULE_NAME verify)
 
 set(cxx-sources
   VerifyContacts.cpp
+  acceptpendingpayment/AcceptPendingPayment_1.cpp
   accountdata/AccountData_1.cpp
   accountevent/AccountEvent_1.cpp
   addclaim/AddClaim_1.cpp
@@ -79,6 +80,8 @@ set(cxx-sources
   rpccommand/RPCCommand_1.cpp
   rpcpush/RPCPush_1.cpp
   rpcresponse/RPCResponse_1.cpp
+  rpcstatus/RPCStatus_1.cpp
+  rpctask/RPCTask_1.cpp
   seed/Seed_1.cpp
   seed/Seed_2.cpp
   sendmessage/SendMessage_1.cpp

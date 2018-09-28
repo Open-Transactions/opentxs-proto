@@ -10,6 +10,7 @@ option java_package = "org.opentransactions.proto";
 option java_outer_classname = "OTRPCCommand";
 option optimize_for = LITE_RUNTIME;
 
+import public "AcceptPendingPayment.proto";
 import public "AddClaim.proto";
 import public "AddContact.proto";
 import public "APIArgument.proto";
@@ -46,4 +47,5 @@ message RPCCommand {
     repeated VerifyClaim verifyclaim = 19;
     repeated SendMessage sendmessage = 20;
     repeated Verification acceptverification = 21;
+    repeated AcceptPendingPayment acceptpendingpayment = 22;
 }
