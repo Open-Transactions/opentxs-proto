@@ -5,7 +5,7 @@
 
 #!/usr/bin/env python
 
-from distutils.core import setup
+from setuptools import setup
 
 setup(name='opentxsproto',
       version='0.1',
@@ -14,4 +14,5 @@ setup(name='opentxsproto',
       author_email='justus@opentransactions.org',
       url='https://github.com/Open-Transactions/opentxs-proto',
       packages=['opentxsproto'],
+      install_requires=['protobuf'],
      )
