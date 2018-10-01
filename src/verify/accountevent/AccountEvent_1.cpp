@@ -15,14 +15,19 @@ namespace proto
 bool CheckProto_1(const AccountEvent& input, const bool silent)
 {
     OPTIONAL_IDENTIFIER(id);
+    CHECK_IDENTIFIER(workflow);
 
     switch (input.type()) {
+        case ACCOUNTEVENT_INCOMINGTRANSFER:
+        case ACCOUNTEVENT_INCOMINGINVOICE:
+        case ACCOUNTEVENT_INCOMINGVOUCHER:
         case ACCOUNTEVENT_INCOMINGCHEQUE: {
             CHECK_IDENTIFIER(contact);
         } break;
-        case ACCOUNTEVENT_INCOMINGTRANSFER:
+        case ACCOUNTEVENT_OUTGOINGCHEQUE:
         case ACCOUNTEVENT_OUTGOINGTRANSFER:
-        case ACCOUNTEVENT_OUTGOINGCHEQUE: {
+        case ACCOUNTEVENT_OUTGOINGINVOICE:
+        case ACCOUNTEVENT_OUTGOINGVOUCHER: {
             OPTIONAL_IDENTIFIER(contact);
         } break;
         case ACCOUNTEVENT_ERROR:

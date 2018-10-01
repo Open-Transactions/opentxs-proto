@@ -21,6 +21,9 @@ static const VersionMap ContactEventAllowedAccountEvent = {
 static const VersionMap CreateNymAllowedAddClaim = {
     {1, {1, 1}},
 };
+static const VersionMap RPCCommandAllowedAcceptPendingPayment = {
+    {1, {1, 1}},
+};
 static const VersionMap RPCCommandAllowedAddContact = {
     {1, {1, 1}},
 };
@@ -79,6 +82,12 @@ static const VersionMap RPCResponseAllowedCredentialIndex = {
     {1, {1, 5}},
 };
 static const VersionMap RPCResponseAllowedHDSeed = {
+    {1, {1, 1}},
+};
+static const VersionMap RPCResponseAllowedRPCStatus = {
+    {1, {1, 1}},
+};
+static const VersionMap RPCResponseAllowedRPCTask = {
     {1, {1, 1}},
 };
 static const VersionMap RPCResponseAllowedServerContract = {

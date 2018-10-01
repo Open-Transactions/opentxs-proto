@@ -26,6 +26,7 @@
 #endif
 
 // IWYU pragma: begin_exports
+#include <opentxs-proto/AcceptPendingPayment.pb.h>
 #include <opentxs-proto/AccountData.pb.h>
 #include <opentxs-proto/AccountEvent.pb.h>
 #include <opentxs-proto/AddClaim.pb.h>
@@ -99,6 +100,8 @@
 #include <opentxs-proto/RPCEnums.pb.h>
 #include <opentxs-proto/RPCPush.pb.h>
 #include <opentxs-proto/RPCResponse.pb.h>
+#include <opentxs-proto/RPCStatus.pb.h>
+#include <opentxs-proto/RPCTask.pb.h>
 #include <opentxs-proto/Seed.pb.h>
 #include <opentxs-proto/SendMessage.pb.h>
 #include <opentxs-proto/SendPayment.pb.h>
@@ -149,6 +152,7 @@
 #include <opentxs-proto/VerificationSet.pb.h>
 #include <opentxs-proto/VerifyClaim.pb.h>
 #include <opentxs-proto/ZMQEnums.pb.h>
+#include <opentxs-proto/verify/AcceptPendingPayment.hpp>
 #include <opentxs-proto/verify/AccountData.hpp>
 #include <opentxs-proto/verify/AccountEvent.hpp>
 #include <opentxs-proto/verify/AddClaim.hpp>
@@ -214,6 +218,8 @@
 #include <opentxs-proto/verify/RPCCommand.hpp>
 #include <opentxs-proto/verify/RPCPush.hpp>
 #include <opentxs-proto/verify/RPCResponse.hpp>
+#include <opentxs-proto/verify/RPCStatus.hpp>
+#include <opentxs-proto/verify/RPCTask.hpp>
 #include <opentxs-proto/verify/Seed.hpp>
 #include <opentxs-proto/verify/SendMessage.hpp>
 #include <opentxs-proto/verify/SendPayment.hpp>

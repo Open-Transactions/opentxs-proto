@@ -7,16 +7,11 @@ syntax = "proto2";
 
 package opentxs.proto;
 option java_package = "org.opentransactions.proto";
-option java_outer_classname = "OTAccountData";
+option java_outer_classname = "OTRPCTask";
 option optimize_for = LITE_RUNTIME;
 
-message AccountData {
+message RPCTask {
     optional uint32 version = 1;
-    optional string id = 2;
-    optional string label = 3;
-    optional string unit = 4;
-    optional string owner = 5;
-    optional string issuer = 6;
-    optional int64 balance = 7;
-    optional int64 pendingbalance = 8;
+    optional uint32 index = 2;
+    optional string id = 3;
 }

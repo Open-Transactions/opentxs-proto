@@ -14,28 +14,18 @@ bool CheckProto_1(const RPCResponse& input, const bool silent)
 {
     CHECK_IDENTIFIER(cookie)
 
-    switch (input.success()) {
-        case RPCRESPONSE_INVALID:
-        case RPCRESPONSE_SUCCESS:
-        case RPCRESPONSE_BAD_SESSION:
-        case RPCRESPONSE_NONE:
-        case RPCRESPONSE_PARTIAL:
-        case RPCRESPONSE_QUEUED:
-        case RPCRESPONSE_UNNECESSARY:
-        case RPCRESPONSE_RETRY:
-        case RPCRESPONSE_NO_PATH_TO_RECIPIENT:
-        case RPCRESPONSE_ERROR:
+    bool atLeastOne = false;
+    for (auto status : input.status()) {
+        if (RPCRESPONSE_SUCCESS == status.code()) {
+            atLeastOne = true;
             break;
-        default: {
-            FAIL_1("invalid success code")
         }
     }
 
-    const bool atLeastOne = (RPCRESPONSE_SUCCESS == input.success()) ||
-                            (RPCRESPONSE_PARTIAL == input.success());
-
     switch (input.type()) {
         case RPCCOMMAND_ADDCLIENTSESSION: {
+            CHECK_SIZE(status, 1);
+            CHECK_SUBOBJECTS(status, RPCResponseAllowedRPCStatus);
             CHECK_NONE(sessions);
             CHECK_NONE(identifier);
             CHECK_NONE(seed);
@@ -44,10 +34,12 @@ bool CheckProto_1(const RPCResponse& input, const bool silent)
             CHECK_NONE(contact);
             CHECK_NONE(accountevent);
             CHECK_NONE(contactevent);
-            CHECK_EXCLUDED(task);
+            CHECK_NONE(task);
             CHECK_NONE(notary);
         } break;
         case RPCCOMMAND_ADDSERVERSESSION: {
+            CHECK_SIZE(status, 1);
+            CHECK_SUBOBJECTS(status, RPCResponseAllowedRPCStatus);
             CHECK_NONE(sessions);
             CHECK_NONE(identifier);
             CHECK_NONE(seed);
@@ -56,10 +48,12 @@ bool CheckProto_1(const RPCResponse& input, const bool silent)
             CHECK_NONE(contact);
             CHECK_NONE(accountevent);
             CHECK_NONE(contactevent);
-            CHECK_EXCLUDED(task);
+            CHECK_NONE(task);
             CHECK_NONE(notary);
         } break;
         case RPCCOMMAND_LISTCLIENTSESSIONS: {
+            CHECK_SIZE(status, 1);
+            CHECK_SUBOBJECTS(status, RPCResponseAllowedRPCStatus);
             CHECK_SUBOBJECTS(sessions, RPCResponseAllowedSessionData);
             CHECK_NONE(identifier);
             CHECK_NONE(seed);
@@ -68,10 +62,12 @@ bool CheckProto_1(const RPCResponse& input, const bool silent)
             CHECK_NONE(contact);
             CHECK_NONE(accountevent);
             CHECK_NONE(contactevent);
-            CHECK_EXCLUDED(task);
+            CHECK_NONE(task);
             CHECK_NONE(notary);
         } break;
         case RPCCOMMAND_LISTSERVERSESSIONS: {
+            CHECK_SIZE(status, 1);
+            CHECK_SUBOBJECTS(status, RPCResponseAllowedRPCStatus);
             CHECK_SUBOBJECTS(sessions, RPCResponseAllowedSessionData);
             CHECK_NONE(identifier);
             CHECK_NONE(seed);
@@ -80,13 +76,15 @@ bool CheckProto_1(const RPCResponse& input, const bool silent)
             CHECK_NONE(contact);
             CHECK_NONE(accountevent);
             CHECK_NONE(contactevent);
-            CHECK_EXCLUDED(task);
+            CHECK_NONE(task);
             CHECK_NONE(notary);
         } break;
         case RPCCOMMAND_IMPORTHDSEED: {
+            CHECK_SIZE(status, 1);
+            CHECK_SUBOBJECTS(status, RPCResponseAllowedRPCStatus);
             CHECK_NONE(sessions);
 
-            if (RPCRESPONSE_SUCCESS == input.success()) {
+            if (atLeastOne) {
                 CHECK_SIZE(identifier, 1);
                 CHECK_IDENTIFIERS(identifier);
             } else {
@@ -99,13 +97,15 @@ bool CheckProto_1(const RPCResponse& input, const bool silent)
             CHECK_NONE(contact);
             CHECK_NONE(accountevent);
             CHECK_NONE(contactevent);
-            CHECK_EXCLUDED(task);
+            CHECK_NONE(task);
             CHECK_NONE(notary);
         } break;
         case RPCCOMMAND_LISTHDSEEDS: {
+            CHECK_SIZE(status, 1);
+            CHECK_SUBOBJECTS(status, RPCResponseAllowedRPCStatus);
             CHECK_NONE(sessions);
 
-            if (RPCRESPONSE_SUCCESS == input.success()) {
+            if (atLeastOne) {
                 CHECK_IDENTIFIERS(identifier);
             } else {
                 CHECK_NONE(identifier);
@@ -117,10 +117,12 @@ bool CheckProto_1(const RPCResponse& input, const bool silent)
             CHECK_NONE(contact);
             CHECK_NONE(accountevent);
             CHECK_NONE(contactevent);
-            CHECK_EXCLUDED(task);
+            CHECK_NONE(task);
             CHECK_NONE(notary);
         } break;
         case RPCCOMMAND_GETHDSEED: {
+            CHECK_SIZE(status, 1);
+            CHECK_SUBOBJECTS(status, RPCResponseAllowedRPCStatus);
             CHECK_NONE(sessions);
             CHECK_NONE(identifier);
 
@@ -135,13 +137,15 @@ bool CheckProto_1(const RPCResponse& input, const bool silent)
             CHECK_NONE(contact);
             CHECK_NONE(accountevent);
             CHECK_NONE(contactevent);
-            CHECK_EXCLUDED(task);
+            CHECK_NONE(task);
             CHECK_NONE(notary);
         } break;
         case RPCCOMMAND_CREATENYM: {
+            CHECK_SIZE(status, 1);
+            CHECK_SUBOBJECTS(status, RPCResponseAllowedRPCStatus);
             CHECK_NONE(sessions);
 
-            if (RPCRESPONSE_SUCCESS == input.success()) {
+            if (atLeastOne) {
                 CHECK_SIZE(identifier, 1);
                 CHECK_IDENTIFIERS(identifier);
             } else {
@@ -154,13 +158,15 @@ bool CheckProto_1(const RPCResponse& input, const bool silent)
             CHECK_NONE(contact);
             CHECK_NONE(accountevent);
             CHECK_NONE(contactevent);
-            CHECK_EXCLUDED(task);
+            CHECK_NONE(task);
             CHECK_NONE(notary);
         } break;
         case RPCCOMMAND_LISTNYMS: {
+            CHECK_SIZE(status, 1);
+            CHECK_SUBOBJECTS(status, RPCResponseAllowedRPCStatus);
             CHECK_NONE(sessions);
 
-            if (RPCRESPONSE_SUCCESS == input.success()) {
+            if (atLeastOne) {
                 CHECK_IDENTIFIERS(identifier);
             } else {
                 CHECK_NONE(identifier);
@@ -172,10 +178,12 @@ bool CheckProto_1(const RPCResponse& input, const bool silent)
             CHECK_NONE(contact);
             CHECK_NONE(accountevent);
             CHECK_NONE(contactevent);
-            CHECK_EXCLUDED(task);
+            CHECK_NONE(task);
             CHECK_NONE(notary);
         } break;
         case RPCCOMMAND_GETNYM: {
+            CHECK_SIZE(status, 1);
+            CHECK_SUBOBJECTS(status, RPCResponseAllowedRPCStatus);
             CHECK_NONE(sessions);
             CHECK_NONE(identifier);
             CHECK_NONE(seed);
@@ -190,10 +198,12 @@ bool CheckProto_1(const RPCResponse& input, const bool silent)
             CHECK_NONE(contact);
             CHECK_NONE(accountevent);
             CHECK_NONE(contactevent);
-            CHECK_EXCLUDED(task);
+            CHECK_NONE(task);
             CHECK_NONE(notary);
         } break;
         case RPCCOMMAND_ADDCLAIM: {
+            CHECK_SIZE(status, 1);
+            CHECK_SUBOBJECTS(status, RPCResponseAllowedRPCStatus);
             CHECK_NONE(sessions);
             CHECK_NONE(identifier);
             CHECK_NONE(seed);
@@ -202,10 +212,12 @@ bool CheckProto_1(const RPCResponse& input, const bool silent)
             CHECK_NONE(contact);
             CHECK_NONE(accountevent);
             CHECK_NONE(contactevent);
-            CHECK_EXCLUDED(task);
+            CHECK_NONE(task);
             CHECK_NONE(notary);
         } break;
         case RPCCOMMAND_DELETECLAIM: {
+            CHECK_SIZE(status, 1);
+            CHECK_SUBOBJECTS(status, RPCResponseAllowedRPCStatus);
             CHECK_NONE(sessions);
             CHECK_NONE(identifier);
             CHECK_NONE(seed);
@@ -214,10 +226,11 @@ bool CheckProto_1(const RPCResponse& input, const bool silent)
             CHECK_NONE(contact);
             CHECK_NONE(accountevent);
             CHECK_NONE(contactevent);
-            CHECK_EXCLUDED(task);
+            CHECK_NONE(task);
             CHECK_NONE(notary);
         } break;
         case RPCCOMMAND_IMPORTSERVERCONTRACT: {
+            CHECK_SUBOBJECTS(status, RPCResponseAllowedRPCStatus);
             CHECK_NONE(sessions);
             CHECK_NONE(identifier);
             CHECK_NONE(seed);
@@ -226,13 +239,14 @@ bool CheckProto_1(const RPCResponse& input, const bool silent)
             CHECK_NONE(contact);
             CHECK_NONE(accountevent);
             CHECK_NONE(contactevent);
-            CHECK_EXCLUDED(task);
+            CHECK_NONE(task);
             CHECK_NONE(notary);
         } break;
         case RPCCOMMAND_LISTSERVERCONTRACTS: {
+            CHECK_SUBOBJECTS(status, RPCResponseAllowedRPCStatus);
             CHECK_NONE(sessions);
 
-            if (RPCRESPONSE_SUCCESS == input.success()) {
+            if (atLeastOne) {
                 CHECK_IDENTIFIERS(identifier);
             } else {
                 CHECK_NONE(identifier);
@@ -244,10 +258,12 @@ bool CheckProto_1(const RPCResponse& input, const bool silent)
             CHECK_NONE(contact);
             CHECK_NONE(accountevent);
             CHECK_NONE(contactevent);
-            CHECK_EXCLUDED(task);
+            CHECK_NONE(task);
             CHECK_NONE(notary);
         } break;
         case RPCCOMMAND_REGISTERNYM: {
+            CHECK_SIZE(status, 1);
+            CHECK_SUBOBJECTS(status, RPCResponseAllowedRPCStatus);
             CHECK_NONE(sessions);
             CHECK_NONE(identifier);
             CHECK_NONE(seed);
@@ -256,13 +272,15 @@ bool CheckProto_1(const RPCResponse& input, const bool silent)
             CHECK_NONE(contact);
             CHECK_NONE(accountevent);
             CHECK_NONE(contactevent);
-            OPTIONAL_IDENTIFIER(task);
+            CHECK_SUBOBJECTS(task, RPCResponseAllowedRPCTask);
             CHECK_NONE(notary);
         } break;
         case RPCCOMMAND_CREATEUNITDEFINITION: {
+            CHECK_SIZE(status, 1);
+            CHECK_SUBOBJECTS(status, RPCResponseAllowedRPCStatus);
             CHECK_NONE(sessions);
 
-            if (RPCRESPONSE_SUCCESS == input.success()) {
+            if (atLeastOne) {
                 CHECK_SIZE(identifier, 1);
                 CHECK_IDENTIFIERS(identifier);
             } else {
@@ -275,13 +293,15 @@ bool CheckProto_1(const RPCResponse& input, const bool silent)
             CHECK_NONE(contact);
             CHECK_NONE(accountevent);
             CHECK_NONE(contactevent);
-            CHECK_EXCLUDED(task);
+            CHECK_NONE(task);
             CHECK_NONE(notary);
         } break;
         case RPCCOMMAND_LISTUNITDEFINITIONS: {
+            CHECK_SIZE(status, 1);
+            CHECK_SUBOBJECTS(status, RPCResponseAllowedRPCStatus);
             CHECK_NONE(sessions);
 
-            if (RPCRESPONSE_SUCCESS == input.success()) {
+            if (atLeastOne) {
                 CHECK_IDENTIFIERS(identifier);
             } else {
                 CHECK_NONE(identifier);
@@ -293,51 +313,44 @@ bool CheckProto_1(const RPCResponse& input, const bool silent)
             CHECK_NONE(contact);
             CHECK_NONE(accountevent);
             CHECK_NONE(contactevent);
-            CHECK_EXCLUDED(task);
+            CHECK_NONE(task);
             CHECK_NONE(notary);
         } break;
         case RPCCOMMAND_ISSUEUNITDEFINITION: {
+            CHECK_SIZE(status, 1);
+            CHECK_SUBOBJECTS(status, RPCResponseAllowedRPCStatus);
             CHECK_NONE(sessions);
-
-            if (RPCRESPONSE_SUCCESS == input.success()) {
-                CHECK_SIZE(identifier, 1);
-                CHECK_IDENTIFIERS(identifier);
-            } else {
-                CHECK_NONE(identifier);
-            }
-
+            CHECK_IDENTIFIERS(identifier);
             CHECK_NONE(seed);
             CHECK_NONE(nym);
             CHECK_NONE(balance);
             CHECK_NONE(contact);
             CHECK_NONE(accountevent);
             CHECK_NONE(contactevent);
-            OPTIONAL_IDENTIFIER(task);
+            CHECK_SUBOBJECTS(task, RPCResponseAllowedRPCTask);
             CHECK_NONE(notary);
         } break;
         case RPCCOMMAND_CREATEACCOUNT: {
+            CHECK_SIZE(status, 1);
+            CHECK_SUBOBJECTS(status, RPCResponseAllowedRPCStatus);
             CHECK_NONE(sessions);
-
-            if (RPCRESPONSE_SUCCESS == input.success()) {
-                CHECK_SIZE(identifier, 1);
-                CHECK_IDENTIFIERS(identifier);
-            } else {
-                CHECK_NONE(identifier);
-            }
-
+            CHECK_SIZE(identifier, 1);
+            CHECK_IDENTIFIERS(identifier);
             CHECK_NONE(seed);
             CHECK_NONE(nym);
             CHECK_NONE(balance);
             CHECK_NONE(contact);
             CHECK_NONE(accountevent);
             CHECK_NONE(contactevent);
-            OPTIONAL_IDENTIFIER(task);
+            CHECK_SUBOBJECTS(task, RPCResponseAllowedRPCTask);
             CHECK_NONE(notary);
         } break;
         case RPCCOMMAND_LISTACCOUNTS: {
+            CHECK_SIZE(status, 1);
+            CHECK_SUBOBJECTS(status, RPCResponseAllowedRPCStatus);
             CHECK_NONE(sessions);
 
-            if (RPCRESPONSE_SUCCESS == input.success()) {
+            if (atLeastOne) {
                 CHECK_IDENTIFIERS(identifier);
             } else {
                 CHECK_NONE(identifier);
@@ -349,10 +362,12 @@ bool CheckProto_1(const RPCResponse& input, const bool silent)
             CHECK_NONE(contact);
             CHECK_NONE(accountevent);
             CHECK_NONE(contactevent);
-            CHECK_EXCLUDED(task);
+            CHECK_NONE(task);
             CHECK_NONE(notary);
         } break;
         case RPCCOMMAND_GETACCOUNTBALANCE: {
+            CHECK_SIZE(status, 1);
+            CHECK_SUBOBJECTS(status, RPCResponseAllowedRPCStatus);
             CHECK_NONE(sessions);
             CHECK_NONE(identifier);
             CHECK_NONE(seed);
@@ -367,10 +382,12 @@ bool CheckProto_1(const RPCResponse& input, const bool silent)
             CHECK_NONE(contact);
             CHECK_NONE(accountevent);
             CHECK_NONE(contactevent);
-            CHECK_EXCLUDED(task);
+            CHECK_NONE(task);
             CHECK_NONE(notary);
         } break;
         case RPCCOMMAND_GETACCOUNTACTIVITY: {
+            CHECK_SIZE(status, 1);
+            CHECK_SUBOBJECTS(status, RPCResponseAllowedRPCStatus);
             CHECK_NONE(sessions);
             CHECK_NONE(identifier);
             CHECK_NONE(seed);
@@ -379,10 +396,12 @@ bool CheckProto_1(const RPCResponse& input, const bool silent)
             CHECK_NONE(contact);
             OPTIONAL_SUBOBJECTS(accountevent, RPCResponseAllowedAccountEvent);
             CHECK_NONE(contactevent);
-            CHECK_EXCLUDED(task);
+            CHECK_NONE(task);
             CHECK_NONE(notary);
         } break;
         case RPCCOMMAND_SENDPAYMENT: {
+            CHECK_SIZE(status, 1);
+            CHECK_SUBOBJECTS(status, RPCResponseAllowedRPCStatus);
             CHECK_NONE(sessions);
             CHECK_NONE(identifier);
             CHECK_NONE(seed);
@@ -391,10 +410,12 @@ bool CheckProto_1(const RPCResponse& input, const bool silent)
             CHECK_NONE(contact);
             CHECK_NONE(accountevent);
             CHECK_NONE(contactevent);
-            OPTIONAL_IDENTIFIER(task);
+            CHECK_SUBOBJECTS(task, RPCResponseAllowedRPCTask);
             CHECK_NONE(notary);
         } break;
         case RPCCOMMAND_MOVEFUNDS: {
+            CHECK_SIZE(status, 1);
+            CHECK_SUBOBJECTS(status, RPCResponseAllowedRPCStatus);
             CHECK_NONE(sessions);
             CHECK_NONE(identifier);
             CHECK_NONE(seed);
@@ -403,10 +424,12 @@ bool CheckProto_1(const RPCResponse& input, const bool silent)
             CHECK_NONE(contact);
             CHECK_NONE(accountevent);
             CHECK_NONE(contactevent);
-            CHECK_EXCLUDED(task);
+            CHECK_NONE(task);
             CHECK_NONE(notary);
         } break;
         case RPCCOMMAND_ADDCONTACT: {
+            CHECK_SIZE(status, 1);
+            CHECK_SUBOBJECTS(status, RPCResponseAllowedRPCStatus);
             CHECK_NONE(sessions);
 
             if (atLeastOne) {
@@ -421,13 +444,15 @@ bool CheckProto_1(const RPCResponse& input, const bool silent)
             CHECK_NONE(contact);
             CHECK_NONE(accountevent);
             CHECK_NONE(contactevent);
-            CHECK_EXCLUDED(task);
+            CHECK_NONE(task);
             CHECK_NONE(notary);
         } break;
         case RPCCOMMAND_LISTCONTACTS: {
+            CHECK_SIZE(status, 1);
+            CHECK_SUBOBJECTS(status, RPCResponseAllowedRPCStatus);
             CHECK_NONE(sessions);
 
-            if (RPCRESPONSE_SUCCESS == input.success()) {
+            if (atLeastOne) {
                 CHECK_IDENTIFIERS(identifier);
             } else {
                 CHECK_NONE(identifier);
@@ -439,10 +464,12 @@ bool CheckProto_1(const RPCResponse& input, const bool silent)
             CHECK_NONE(contact);
             CHECK_NONE(accountevent);
             CHECK_NONE(contactevent);
-            CHECK_EXCLUDED(task);
+            CHECK_NONE(task);
             CHECK_NONE(notary);
         } break;
         case RPCCOMMAND_GETCONTACT: {
+            CHECK_SIZE(status, 1);
+            CHECK_SUBOBJECTS(status, RPCResponseAllowedRPCStatus);
             CHECK_NONE(sessions);
             CHECK_NONE(identifier);
             CHECK_NONE(seed);
@@ -457,10 +484,12 @@ bool CheckProto_1(const RPCResponse& input, const bool silent)
 
             CHECK_NONE(accountevent);
             CHECK_NONE(contactevent);
-            CHECK_EXCLUDED(task);
+            CHECK_NONE(task);
             CHECK_NONE(notary);
         } break;
         case RPCCOMMAND_ADDCONTACTCLAIM: {
+            CHECK_SIZE(status, 1);
+            CHECK_SUBOBJECTS(status, RPCResponseAllowedRPCStatus);
             CHECK_NONE(sessions);
             CHECK_NONE(identifier);
             CHECK_NONE(seed);
@@ -469,10 +498,12 @@ bool CheckProto_1(const RPCResponse& input, const bool silent)
             CHECK_NONE(contact);
             CHECK_NONE(accountevent);
             CHECK_NONE(contactevent);
-            CHECK_EXCLUDED(task);
+            CHECK_NONE(task);
             CHECK_NONE(notary);
         } break;
         case RPCCOMMAND_DELETECONTACTCLAIM: {
+            CHECK_SIZE(status, 1);
+            CHECK_SUBOBJECTS(status, RPCResponseAllowedRPCStatus);
             CHECK_NONE(sessions);
             CHECK_NONE(identifier);
             CHECK_NONE(seed);
@@ -481,10 +512,12 @@ bool CheckProto_1(const RPCResponse& input, const bool silent)
             CHECK_NONE(contact);
             CHECK_NONE(accountevent);
             CHECK_NONE(contactevent);
-            CHECK_EXCLUDED(task);
+            CHECK_NONE(task);
             CHECK_NONE(notary);
         } break;
         case RPCCOMMAND_VERIFYCLAIM: {
+            CHECK_SIZE(status, 1);
+            CHECK_SUBOBJECTS(status, RPCResponseAllowedRPCStatus);
             CHECK_NONE(sessions);
             CHECK_NONE(identifier);
             CHECK_NONE(seed);
@@ -493,10 +526,12 @@ bool CheckProto_1(const RPCResponse& input, const bool silent)
             CHECK_NONE(contact);
             CHECK_NONE(accountevent);
             CHECK_NONE(contactevent);
-            CHECK_EXCLUDED(task);
+            CHECK_NONE(task);
             CHECK_NONE(notary);
         } break;
         case RPCCOMMAND_ACCEPTVERIFICATION: {
+            CHECK_SIZE(status, 1);
+            CHECK_SUBOBJECTS(status, RPCResponseAllowedRPCStatus);
             CHECK_NONE(sessions);
             CHECK_NONE(identifier);
             CHECK_NONE(seed);
@@ -505,10 +540,12 @@ bool CheckProto_1(const RPCResponse& input, const bool silent)
             CHECK_NONE(contact);
             CHECK_NONE(accountevent);
             CHECK_NONE(contactevent);
-            CHECK_EXCLUDED(task);
+            CHECK_NONE(task);
             CHECK_NONE(notary);
         } break;
         case RPCCOMMAND_SENDCONTACTMESSAGE: {
+            CHECK_SIZE(status, 1);
+            CHECK_SUBOBJECTS(status, RPCResponseAllowedRPCStatus);
             CHECK_NONE(sessions);
             CHECK_NONE(identifier);
             CHECK_NONE(seed);
@@ -517,10 +554,12 @@ bool CheckProto_1(const RPCResponse& input, const bool silent)
             CHECK_NONE(contact);
             CHECK_NONE(accountevent);
             CHECK_NONE(contactevent);
-            CHECK_EXCLUDED(task);
+            CHECK_NONE(task);
             CHECK_NONE(notary);
         } break;
         case RPCCOMMAND_GETCONTACTACTIVITY: {
+            CHECK_SIZE(status, 1);
+            CHECK_SUBOBJECTS(status, RPCResponseAllowedRPCStatus);
             CHECK_NONE(sessions);
             CHECK_NONE(identifier);
             CHECK_NONE(seed);
@@ -529,10 +568,12 @@ bool CheckProto_1(const RPCResponse& input, const bool silent)
             CHECK_NONE(contact);
             CHECK_NONE(accountevent);
             OPTIONAL_SUBOBJECTS(contactevent, RPCResponseAllowedContactEvent);
-            CHECK_EXCLUDED(task);
+            CHECK_NONE(task);
             CHECK_NONE(notary);
         } break;
         case RPCCOMMAND_GETSERVERCONTRACT: {
+            CHECK_SIZE(status, 1);
+            CHECK_SUBOBJECTS(status, RPCResponseAllowedRPCStatus);
             CHECK_NONE(sessions);
             CHECK_NONE(identifier);
             CHECK_NONE(seed);
@@ -541,13 +582,47 @@ bool CheckProto_1(const RPCResponse& input, const bool silent)
             CHECK_NONE(contact);
             CHECK_NONE(accountevent);
             CHECK_NONE(contactevent);
-            CHECK_EXCLUDED(task);
+            CHECK_NONE(task);
 
             if (atLeastOne) {
                 OPTIONAL_SUBOBJECTS(notary, RPCResponseAllowedServerContract);
             } else {
                 CHECK_NONE(notary);
             }
+        } break;
+        case RPCCOMMAND_GETPENDINGPAYMENTS: {
+            CHECK_SIZE(status, 1);
+            CHECK_SUBOBJECTS(status, RPCResponseAllowedRPCStatus);
+            CHECK_NONE(sessions);
+            CHECK_NONE(identifier);
+            CHECK_NONE(seed);
+            CHECK_NONE(nym);
+            CHECK_NONE(balance);
+            CHECK_NONE(contact);
+
+            if (atLeastOne) {
+                OPTIONAL_SUBOBJECTS(
+                    accountevent, RPCResponseAllowedAccountEvent);
+            } else {
+                CHECK_NONE(accountevent);
+            }
+
+            CHECK_NONE(contactevent);
+            CHECK_NONE(task);
+            CHECK_NONE(notary);
+        } break;
+        case RPCCOMMAND_ACCEPTPENDINGPAYMENTS: {
+            CHECK_SUBOBJECTS(status, RPCResponseAllowedRPCStatus);
+            CHECK_NONE(sessions);
+            CHECK_NONE(identifier);
+            CHECK_NONE(seed);
+            CHECK_NONE(nym);
+            CHECK_NONE(balance);
+            CHECK_NONE(contact);
+            CHECK_NONE(accountevent);
+            CHECK_NONE(contactevent);
+            CHECK_SUBOBJECTS(task, RPCResponseAllowedRPCTask);
+            CHECK_NONE(notary);
         } break;
         case RPCCOMMAND_ERROR:
         default: {

@@ -6,6 +6,7 @@
 set(MODULE_NAME generated)
 
 set(PROTO_SOURCES
+    ${CMAKE_CURRENT_SOURCE_DIR}/AcceptPendingPayment.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/AccountData.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/AccountEvent.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/AddClaim.proto
@@ -78,6 +79,8 @@ set(PROTO_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/RPCCommand.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/RPCPush.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/RPCResponse.proto
+    ${CMAKE_CURRENT_SOURCE_DIR}/RPCStatus.proto
+    ${CMAKE_CURRENT_SOURCE_DIR}/RPCTask.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/RPCEnums.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/Seed.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/SendMessage.proto
