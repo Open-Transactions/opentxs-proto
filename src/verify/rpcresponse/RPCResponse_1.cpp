@@ -334,8 +334,14 @@ bool CheckProto_1(const RPCResponse& input, const bool silent)
             CHECK_SIZE(status, 1);
             CHECK_SUBOBJECTS(status, RPCResponseAllowedRPCStatus);
             CHECK_NONE(sessions);
-            CHECK_SIZE(identifier, 1);
-            CHECK_IDENTIFIERS(identifier);
+
+            if (atLeastOne) {
+                CHECK_SIZE(identifier, 1);
+                CHECK_IDENTIFIERS(identifier);
+            } else {
+                CHECK_NONE(identifier);
+            }
+
             CHECK_NONE(seed);
             CHECK_NONE(nym);
             CHECK_NONE(balance);
