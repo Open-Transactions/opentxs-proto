@@ -820,6 +820,30 @@ bool CheckProto_1(const RPCCommand& input, const bool silent)
             CHECK_SUBOBJECTS(
                 acceptpendingpayment, RPCCommandAllowedAcceptPendingPayment);
         } break;
+        case RPCCOMMAND_CREATECOMPATIBLEACCOUNT:
+        case RPCCOMMAND_GETCOMPATIBLEACCOUNTS: {
+            if (0 > input.session()) { FAIL_1("invalid session"); }
+
+            OPTIONAL_IDENTIFIER(nym);
+            CHECK_HAVE(owner);
+            CHECK_EXCLUDED(notary);
+            CHECK_EXCLUDED(unit);
+            CHECK_HAVE(identifier);
+            CHECK_IDENTIFIERS(identifier);
+            CHECK_NONE(arg);
+            CHECK_EXCLUDED(hdseed);
+            CHECK_EXCLUDED(createnym);
+            CHECK_NONE(claim);
+            CHECK_NONE(server);
+            CHECK_EXCLUDED(createunit);
+            CHECK_EXCLUDED(sendpayment);
+            CHECK_EXCLUDED(movefunds);
+            CHECK_NONE(addcontact);
+            CHECK_NONE(verifyclaim);
+            CHECK_NONE(sendmessage);
+            CHECK_NONE(acceptverification);
+            CHECK_NONE(acceptpendingpayment);
+        } break;
         case RPCCOMMAND_ERROR:
         default: {
             FAIL_1("invalid type")
