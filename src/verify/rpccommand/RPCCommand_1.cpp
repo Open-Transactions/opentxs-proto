@@ -19,7 +19,7 @@ bool CheckProto_1(const RPCCommand& input, const bool silent)
         case RPCCOMMAND_ADDCLIENTSESSION: {
             if (-1 != input.session()) { FAIL_1("invalid session"); }
 
-            OPTIONAL_IDENTIFIER(nym);
+            OPTIONAL_IDENTIFIERS(associatenym);
             CHECK_EXCLUDED(owner);
             CHECK_EXCLUDED(notary);
             CHECK_EXCLUDED(unit);
@@ -41,7 +41,7 @@ bool CheckProto_1(const RPCCommand& input, const bool silent)
         case RPCCOMMAND_ADDSERVERSESSION: {
             if (-1 != input.session()) { FAIL_1("invalid session"); }
 
-            OPTIONAL_IDENTIFIER(nym);
+            OPTIONAL_IDENTIFIERS(associatenym);
             CHECK_EXCLUDED(owner);
             CHECK_EXCLUDED(notary);
             CHECK_EXCLUDED(unit);
@@ -63,7 +63,7 @@ bool CheckProto_1(const RPCCommand& input, const bool silent)
         case RPCCOMMAND_LISTCLIENTSESSIONS: {
             if (-1 != input.session()) { FAIL_1("invalid session"); }
 
-            OPTIONAL_IDENTIFIER(nym);
+            OPTIONAL_IDENTIFIERS(associatenym);
             CHECK_EXCLUDED(owner);
             CHECK_EXCLUDED(notary);
             CHECK_EXCLUDED(unit);
@@ -85,7 +85,7 @@ bool CheckProto_1(const RPCCommand& input, const bool silent)
         case RPCCOMMAND_LISTSERVERSESSIONS: {
             if (-1 != input.session()) { FAIL_1("invalid session"); }
 
-            OPTIONAL_IDENTIFIER(nym);
+            OPTIONAL_IDENTIFIERS(associatenym);
             CHECK_EXCLUDED(owner);
             CHECK_EXCLUDED(notary);
             CHECK_EXCLUDED(unit);
@@ -107,7 +107,7 @@ bool CheckProto_1(const RPCCommand& input, const bool silent)
         case RPCCOMMAND_IMPORTHDSEED: {
             if (0 > input.session()) { FAIL_1("invalid session"); }
 
-            OPTIONAL_IDENTIFIER(nym);
+            OPTIONAL_IDENTIFIERS(associatenym);
             CHECK_EXCLUDED(owner);
             CHECK_EXCLUDED(notary);
             CHECK_EXCLUDED(unit);
@@ -129,7 +129,7 @@ bool CheckProto_1(const RPCCommand& input, const bool silent)
         case RPCCOMMAND_LISTHDSEEDS: {
             if (0 > input.session()) { FAIL_1("invalid session"); }
 
-            OPTIONAL_IDENTIFIER(nym);
+            OPTIONAL_IDENTIFIERS(associatenym);
             CHECK_EXCLUDED(owner);
             CHECK_EXCLUDED(notary);
             CHECK_EXCLUDED(unit);
@@ -151,7 +151,7 @@ bool CheckProto_1(const RPCCommand& input, const bool silent)
         case RPCCOMMAND_GETHDSEED: {
             if (0 > input.session()) { FAIL_1("invalid session"); }
 
-            OPTIONAL_IDENTIFIER(nym);
+            OPTIONAL_IDENTIFIERS(associatenym);
             CHECK_EXCLUDED(owner);
             CHECK_EXCLUDED(notary);
             CHECK_EXCLUDED(unit);
@@ -174,7 +174,7 @@ bool CheckProto_1(const RPCCommand& input, const bool silent)
         case RPCCOMMAND_CREATENYM: {
             if (0 > input.session()) { FAIL_1("invalid session"); }
 
-            OPTIONAL_IDENTIFIER(nym);
+            OPTIONAL_IDENTIFIERS(associatenym);
             CHECK_EXCLUDED(owner);
             CHECK_EXCLUDED(notary);
             CHECK_EXCLUDED(unit);
@@ -196,7 +196,7 @@ bool CheckProto_1(const RPCCommand& input, const bool silent)
         case RPCCOMMAND_LISTNYMS: {
             if (0 > input.session()) { FAIL_1("invalid session"); }
 
-            OPTIONAL_IDENTIFIER(nym);
+            OPTIONAL_IDENTIFIERS(associatenym);
             CHECK_EXCLUDED(owner);
             CHECK_EXCLUDED(notary);
             CHECK_EXCLUDED(unit);
@@ -218,7 +218,7 @@ bool CheckProto_1(const RPCCommand& input, const bool silent)
         case RPCCOMMAND_GETNYM: {
             if (0 > input.session()) { FAIL_1("invalid session"); }
 
-            OPTIONAL_IDENTIFIER(nym);
+            OPTIONAL_IDENTIFIERS(associatenym);
             CHECK_EXCLUDED(owner);
             CHECK_EXCLUDED(notary);
             CHECK_EXCLUDED(unit);
@@ -241,7 +241,7 @@ bool CheckProto_1(const RPCCommand& input, const bool silent)
         case RPCCOMMAND_ADDCLAIM: {
             if (0 > input.session()) { FAIL_1("invalid session"); }
 
-            OPTIONAL_IDENTIFIER(nym);
+            OPTIONAL_IDENTIFIERS(associatenym);
             CHECK_IDENTIFIER(owner);
             CHECK_EXCLUDED(notary);
             CHECK_EXCLUDED(unit);
@@ -263,7 +263,7 @@ bool CheckProto_1(const RPCCommand& input, const bool silent)
         case RPCCOMMAND_DELETECLAIM: {
             if (0 > input.session()) { FAIL_1("invalid session"); }
 
-            OPTIONAL_IDENTIFIER(nym);
+            OPTIONAL_IDENTIFIERS(associatenym);
             CHECK_IDENTIFIER(owner);
             CHECK_EXCLUDED(notary);
             CHECK_EXCLUDED(unit);
@@ -286,7 +286,7 @@ bool CheckProto_1(const RPCCommand& input, const bool silent)
         case RPCCOMMAND_IMPORTSERVERCONTRACT: {
             if (0 > input.session()) { FAIL_1("invalid session"); }
 
-            OPTIONAL_IDENTIFIER(nym);
+            OPTIONAL_IDENTIFIERS(associatenym);
             CHECK_EXCLUDED(owner);
             CHECK_EXCLUDED(notary);
             CHECK_EXCLUDED(unit);
@@ -309,7 +309,7 @@ bool CheckProto_1(const RPCCommand& input, const bool silent)
         case RPCCOMMAND_LISTSERVERCONTRACTS: {
             if (0 > input.session()) { FAIL_1("invalid session"); }
 
-            OPTIONAL_IDENTIFIER(nym);
+            OPTIONAL_IDENTIFIERS(associatenym);
             CHECK_EXCLUDED(owner);
             CHECK_EXCLUDED(notary);
             CHECK_EXCLUDED(unit);
@@ -331,7 +331,7 @@ bool CheckProto_1(const RPCCommand& input, const bool silent)
         case RPCCOMMAND_REGISTERNYM: {
             if (0 > input.session()) { FAIL_1("invalid session"); }
 
-            OPTIONAL_IDENTIFIER(nym);
+            OPTIONAL_IDENTIFIERS(associatenym);
             CHECK_IDENTIFIER(owner);
             CHECK_IDENTIFIER(notary);
             CHECK_EXCLUDED(unit);
@@ -353,7 +353,7 @@ bool CheckProto_1(const RPCCommand& input, const bool silent)
         case RPCCOMMAND_CREATEUNITDEFINITION: {
             if (0 > input.session()) { FAIL_1("invalid session"); }
 
-            OPTIONAL_IDENTIFIER(nym);
+            OPTIONAL_IDENTIFIERS(associatenym);
             CHECK_IDENTIFIER(owner);
             CHECK_EXCLUDED(notary);
             CHECK_EXCLUDED(unit);
@@ -376,7 +376,7 @@ bool CheckProto_1(const RPCCommand& input, const bool silent)
         case RPCCOMMAND_LISTUNITDEFINITIONS: {
             if (0 > input.session()) { FAIL_1("invalid session"); }
 
-            OPTIONAL_IDENTIFIER(nym);
+            OPTIONAL_IDENTIFIERS(associatenym);
             CHECK_EXCLUDED(owner);
             CHECK_EXCLUDED(notary);
             CHECK_EXCLUDED(unit);
@@ -398,7 +398,7 @@ bool CheckProto_1(const RPCCommand& input, const bool silent)
         case RPCCOMMAND_ISSUEUNITDEFINITION: {
             if (0 > input.session()) { FAIL_1("invalid session"); }
 
-            OPTIONAL_IDENTIFIER(nym);
+            OPTIONAL_IDENTIFIERS(associatenym);
             CHECK_IDENTIFIER(owner);
             CHECK_IDENTIFIER(notary);
             CHECK_IDENTIFIER(unit);
@@ -420,7 +420,7 @@ bool CheckProto_1(const RPCCommand& input, const bool silent)
         case RPCCOMMAND_CREATEACCOUNT: {
             if (0 > input.session()) { FAIL_1("invalid session"); }
 
-            OPTIONAL_IDENTIFIER(nym);
+            OPTIONAL_IDENTIFIERS(associatenym);
             CHECK_IDENTIFIER(owner);
             CHECK_IDENTIFIER(notary);
             CHECK_IDENTIFIER(unit);
@@ -442,7 +442,7 @@ bool CheckProto_1(const RPCCommand& input, const bool silent)
         case RPCCOMMAND_LISTACCOUNTS: {
             if (0 > input.session()) { FAIL_1("invalid session"); }
 
-            OPTIONAL_IDENTIFIER(nym);
+            OPTIONAL_IDENTIFIERS(associatenym);
             CHECK_EXCLUDED(owner);
             OPTIONAL_IDENTIFIER(notary);
             OPTIONAL_IDENTIFIER(unit);
@@ -464,10 +464,11 @@ bool CheckProto_1(const RPCCommand& input, const bool silent)
         case RPCCOMMAND_GETACCOUNTBALANCE: {
             if (0 > input.session()) { FAIL_1("invalid session"); }
 
-            OPTIONAL_IDENTIFIER(nym);
+            OPTIONAL_IDENTIFIERS(associatenym);
             CHECK_EXCLUDED(owner);
             CHECK_EXCLUDED(notary);
             CHECK_EXCLUDED(unit);
+            CHECK_HAVE(identifier);
             CHECK_IDENTIFIERS(identifier);
             CHECK_NONE(arg);
             CHECK_EXCLUDED(hdseed);
@@ -486,11 +487,11 @@ bool CheckProto_1(const RPCCommand& input, const bool silent)
         case RPCCOMMAND_GETACCOUNTACTIVITY: {
             if (0 > input.session()) { FAIL_1("invalid session"); }
 
-            OPTIONAL_IDENTIFIER(nym);
+            OPTIONAL_IDENTIFIERS(associatenym);
             CHECK_EXCLUDED(owner);
             CHECK_EXCLUDED(notary);
             CHECK_EXCLUDED(unit);
-            CHECK_SIZE(identifier, 1);
+            CHECK_HAVE(identifier);
             CHECK_IDENTIFIERS(identifier);
             CHECK_NONE(arg);
             CHECK_EXCLUDED(hdseed);
@@ -509,7 +510,7 @@ bool CheckProto_1(const RPCCommand& input, const bool silent)
         case RPCCOMMAND_SENDPAYMENT: {
             if (0 > input.session()) { FAIL_1("invalid session"); }
 
-            OPTIONAL_IDENTIFIER(nym);
+            OPTIONAL_IDENTIFIERS(associatenym);
             CHECK_EXCLUDED(owner);
             CHECK_EXCLUDED(notary);
             CHECK_EXCLUDED(unit);
@@ -531,7 +532,7 @@ bool CheckProto_1(const RPCCommand& input, const bool silent)
         case RPCCOMMAND_MOVEFUNDS: {
             if (0 > input.session()) { FAIL_1("invalid session"); }
 
-            OPTIONAL_IDENTIFIER(nym);
+            OPTIONAL_IDENTIFIERS(associatenym);
             CHECK_EXCLUDED(owner);
             CHECK_EXCLUDED(notary);
             CHECK_EXCLUDED(unit);
@@ -553,7 +554,7 @@ bool CheckProto_1(const RPCCommand& input, const bool silent)
         case RPCCOMMAND_ADDCONTACT: {
             if (0 > input.session()) { FAIL_1("invalid session"); }
 
-            OPTIONAL_IDENTIFIER(nym);
+            OPTIONAL_IDENTIFIERS(associatenym);
             CHECK_EXCLUDED(owner);
             CHECK_EXCLUDED(notary);
             CHECK_EXCLUDED(unit);
@@ -575,7 +576,7 @@ bool CheckProto_1(const RPCCommand& input, const bool silent)
         case RPCCOMMAND_LISTCONTACTS: {
             if (0 > input.session()) { FAIL_1("invalid session"); }
 
-            OPTIONAL_IDENTIFIER(nym);
+            OPTIONAL_IDENTIFIERS(associatenym);
             CHECK_EXCLUDED(owner);
             CHECK_EXCLUDED(notary);
             CHECK_EXCLUDED(unit);
@@ -597,7 +598,7 @@ bool CheckProto_1(const RPCCommand& input, const bool silent)
         case RPCCOMMAND_GETCONTACT: {
             if (0 > input.session()) { FAIL_1("invalid session"); }
 
-            OPTIONAL_IDENTIFIER(nym);
+            OPTIONAL_IDENTIFIERS(associatenym);
             CHECK_EXCLUDED(owner);
             CHECK_EXCLUDED(notary);
             CHECK_EXCLUDED(unit);
@@ -620,7 +621,7 @@ bool CheckProto_1(const RPCCommand& input, const bool silent)
         case RPCCOMMAND_ADDCONTACTCLAIM: {
             if (0 > input.session()) { FAIL_1("invalid session"); }
 
-            OPTIONAL_IDENTIFIER(nym);
+            OPTIONAL_IDENTIFIERS(associatenym);
             CHECK_IDENTIFIER(owner);
             CHECK_EXCLUDED(notary);
             CHECK_EXCLUDED(unit);
@@ -642,7 +643,7 @@ bool CheckProto_1(const RPCCommand& input, const bool silent)
         case RPCCOMMAND_DELETECONTACTCLAIM: {
             if (0 > input.session()) { FAIL_1("invalid session"); }
 
-            OPTIONAL_IDENTIFIER(nym);
+            OPTIONAL_IDENTIFIERS(associatenym);
             CHECK_IDENTIFIER(owner);
             CHECK_EXCLUDED(notary);
             CHECK_EXCLUDED(unit);
@@ -665,7 +666,7 @@ bool CheckProto_1(const RPCCommand& input, const bool silent)
         case RPCCOMMAND_VERIFYCLAIM: {
             if (0 > input.session()) { FAIL_1("invalid session"); }
 
-            OPTIONAL_IDENTIFIER(nym);
+            OPTIONAL_IDENTIFIERS(associatenym);
             CHECK_EXCLUDED(owner);
             CHECK_EXCLUDED(notary);
             CHECK_EXCLUDED(unit);
@@ -687,7 +688,7 @@ bool CheckProto_1(const RPCCommand& input, const bool silent)
         case RPCCOMMAND_ACCEPTVERIFICATION: {
             if (0 > input.session()) { FAIL_1("invalid session"); }
 
-            OPTIONAL_IDENTIFIER(nym);
+            OPTIONAL_IDENTIFIERS(associatenym);
             CHECK_IDENTIFIER(owner);
             CHECK_EXCLUDED(notary);
             CHECK_EXCLUDED(unit);
@@ -710,7 +711,7 @@ bool CheckProto_1(const RPCCommand& input, const bool silent)
         case RPCCOMMAND_SENDCONTACTMESSAGE: {
             if (0 > input.session()) { FAIL_1("invalid session"); }
 
-            OPTIONAL_IDENTIFIER(nym);
+            OPTIONAL_IDENTIFIERS(associatenym);
             CHECK_EXCLUDED(owner);
             CHECK_EXCLUDED(notary);
             CHECK_EXCLUDED(unit);
@@ -732,7 +733,7 @@ bool CheckProto_1(const RPCCommand& input, const bool silent)
         case RPCCOMMAND_GETCONTACTACTIVITY: {
             if (0 > input.session()) { FAIL_1("invalid session"); }
 
-            OPTIONAL_IDENTIFIER(nym);
+            OPTIONAL_IDENTIFIERS(associatenym);
             CHECK_EXCLUDED(owner);
             CHECK_EXCLUDED(notary);
             CHECK_EXCLUDED(unit);
@@ -755,7 +756,7 @@ bool CheckProto_1(const RPCCommand& input, const bool silent)
         case RPCCOMMAND_GETSERVERCONTRACT: {
             if (0 > input.session()) { FAIL_1("invalid session"); }
 
-            OPTIONAL_IDENTIFIER(nym);
+            OPTIONAL_IDENTIFIERS(associatenym);
             CHECK_EXCLUDED(owner);
             CHECK_EXCLUDED(notary);
             CHECK_EXCLUDED(unit);
@@ -778,7 +779,7 @@ bool CheckProto_1(const RPCCommand& input, const bool silent)
         case RPCCOMMAND_GETPENDINGPAYMENTS: {
             if (0 > input.session()) { FAIL_1("invalid session"); }
 
-            OPTIONAL_IDENTIFIER(nym);
+            OPTIONAL_IDENTIFIERS(associatenym);
             CHECK_HAVE(owner);
             CHECK_EXCLUDED(notary);
             CHECK_EXCLUDED(unit);
@@ -800,7 +801,7 @@ bool CheckProto_1(const RPCCommand& input, const bool silent)
         case RPCCOMMAND_ACCEPTPENDINGPAYMENTS: {
             if (0 > input.session()) { FAIL_1("invalid session"); }
 
-            OPTIONAL_IDENTIFIER(nym);
+            OPTIONAL_IDENTIFIERS(associatenym);
             CHECK_EXCLUDED(owner);
             CHECK_EXCLUDED(notary);
             CHECK_EXCLUDED(unit);
@@ -824,7 +825,7 @@ bool CheckProto_1(const RPCCommand& input, const bool silent)
         case RPCCOMMAND_GETCOMPATIBLEACCOUNTS: {
             if (0 > input.session()) { FAIL_1("invalid session"); }
 
-            OPTIONAL_IDENTIFIER(nym);
+            OPTIONAL_IDENTIFIERS(associatenym);
             CHECK_HAVE(owner);
             CHECK_EXCLUDED(notary);
             CHECK_EXCLUDED(unit);

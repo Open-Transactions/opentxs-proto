@@ -30,7 +30,7 @@ message RPCCommand {
     optional string cookie = 2;
     optional RPCCommandType type = 3;
     optional int32 session = 4;
-    optional string nym = 5;
+    repeated string associatenym = 5;
     optional string owner = 6;
     optional string notary = 7;
     optional string unit = 8;
