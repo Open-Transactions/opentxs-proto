@@ -220,19 +220,19 @@ class AccountData : public ::google::protobuf::MessageLite /* @@protoc_insertion
   ::std::string* release_issuer();
   void set_allocated_issuer(::std::string* issuer);
 
-  // optional uint64 balance = 7;
+  // optional int64 balance = 7;
   bool has_balance() const;
   void clear_balance();
   static const int kBalanceFieldNumber = 7;
-  ::google::protobuf::uint64 balance() const;
-  void set_balance(::google::protobuf::uint64 value);
+  ::google::protobuf::int64 balance() const;
+  void set_balance(::google::protobuf::int64 value);
 
-  // optional uint64 pendingbalance = 8;
+  // optional int64 pendingbalance = 8;
   bool has_pendingbalance() const;
   void clear_pendingbalance();
   static const int kPendingbalanceFieldNumber = 8;
-  ::google::protobuf::uint64 pendingbalance() const;
-  void set_pendingbalance(::google::protobuf::uint64 value);
+  ::google::protobuf::int64 pendingbalance() const;
+  void set_pendingbalance(::google::protobuf::int64 value);
 
   // optional uint32 version = 1;
   bool has_version() const;
@@ -268,8 +268,8 @@ class AccountData : public ::google::protobuf::MessageLite /* @@protoc_insertion
   ::google::protobuf::internal::ArenaStringPtr unit_;
   ::google::protobuf::internal::ArenaStringPtr owner_;
   ::google::protobuf::internal::ArenaStringPtr issuer_;
-  ::google::protobuf::uint64 balance_;
-  ::google::protobuf::uint64 pendingbalance_;
+  ::google::protobuf::int64 balance_;
+  ::google::protobuf::int64 pendingbalance_;
   ::google::protobuf::uint32 version_;
   friend struct ::protobuf_AccountData_2eproto::TableStruct;
   friend void ::protobuf_AccountData_2eproto::InitDefaultsAccountDataImpl();
@@ -624,7 +624,7 @@ inline void AccountData::set_allocated_issuer(::std::string* issuer) {
   // @@protoc_insertion_point(field_set_allocated:opentxs.proto.AccountData.issuer)
 }
 
-// optional uint64 balance = 7;
+// optional int64 balance = 7;
 inline bool AccountData::has_balance() const {
   return (_has_bits_[0] & 0x00000020u) != 0;
 }
@@ -635,20 +635,20 @@ inline void AccountData::clear_has_balance() {
   _has_bits_[0] &= ~0x00000020u;
 }
 inline void AccountData::clear_balance() {
-  balance_ = GOOGLE_ULONGLONG(0);
+  balance_ = GOOGLE_LONGLONG(0);
   clear_has_balance();
 }
-inline ::google::protobuf::uint64 AccountData::balance() const {
+inline ::google::protobuf::int64 AccountData::balance() const {
   // @@protoc_insertion_point(field_get:opentxs.proto.AccountData.balance)
   return balance_;
 }
-inline void AccountData::set_balance(::google::protobuf::uint64 value) {
+inline void AccountData::set_balance(::google::protobuf::int64 value) {
   set_has_balance();
   balance_ = value;
   // @@protoc_insertion_point(field_set:opentxs.proto.AccountData.balance)
 }
 
-// optional uint64 pendingbalance = 8;
+// optional int64 pendingbalance = 8;
 inline bool AccountData::has_pendingbalance() const {
   return (_has_bits_[0] & 0x00000040u) != 0;
 }
@@ -659,14 +659,14 @@ inline void AccountData::clear_has_pendingbalance() {
   _has_bits_[0] &= ~0x00000040u;
 }
 inline void AccountData::clear_pendingbalance() {
-  pendingbalance_ = GOOGLE_ULONGLONG(0);
+  pendingbalance_ = GOOGLE_LONGLONG(0);
   clear_has_pendingbalance();
 }
-inline ::google::protobuf::uint64 AccountData::pendingbalance() const {
+inline ::google::protobuf::int64 AccountData::pendingbalance() const {
   // @@protoc_insertion_point(field_get:opentxs.proto.AccountData.pendingbalance)
   return pendingbalance_;
 }
-inline void AccountData::set_pendingbalance(::google::protobuf::uint64 value) {
+inline void AccountData::set_pendingbalance(::google::protobuf::int64 value) {
   set_has_pendingbalance();
   pendingbalance_ = value;
   // @@protoc_insertion_point(field_set:opentxs.proto.AccountData.pendingbalance)

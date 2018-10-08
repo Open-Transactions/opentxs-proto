@@ -28,6 +28,7 @@
 #include <google/protobuf/message_lite.h>
 #include <google/protobuf/repeated_field.h>  // IWYU pragma: export
 #include <google/protobuf/extension_set.h>  // IWYU pragma: export
+#include "AcceptPendingPayment.pb.h"  // IWYU pragma: export
 #include "AddClaim.pb.h"  // IWYU pragma: export
 #include "AddContact.pb.h"  // IWYU pragma: export
 #include "APIArgument.pb.h"  // IWYU pragma: export
@@ -158,6 +159,28 @@ class RPCCommand : public ::google::protobuf::MessageLite /* @@protoc_insertion_
 
   // accessors -------------------------------------------------------
 
+  // repeated string associatenym = 5;
+  int associatenym_size() const;
+  void clear_associatenym();
+  static const int kAssociatenymFieldNumber = 5;
+  const ::std::string& associatenym(int index) const;
+  ::std::string* mutable_associatenym(int index);
+  void set_associatenym(int index, const ::std::string& value);
+  #if LANG_CXX11
+  void set_associatenym(int index, ::std::string&& value);
+  #endif
+  void set_associatenym(int index, const char* value);
+  void set_associatenym(int index, const char* value, size_t size);
+  ::std::string* add_associatenym();
+  void add_associatenym(const ::std::string& value);
+  #if LANG_CXX11
+  void add_associatenym(::std::string&& value);
+  #endif
+  void add_associatenym(const char* value);
+  void add_associatenym(const char* value, size_t size);
+  const ::google::protobuf::RepeatedPtrField< ::std::string>& associatenym() const;
+  ::google::protobuf::RepeatedPtrField< ::std::string>* mutable_associatenym();
+
   // repeated string identifier = 9;
   int identifier_size() const;
   void clear_identifier();
@@ -264,6 +287,18 @@ class RPCCommand : public ::google::protobuf::MessageLite /* @@protoc_insertion_
   const ::google::protobuf::RepeatedPtrField< ::opentxs::proto::Verification >&
       acceptverification() const;
 
+  // repeated .opentxs.proto.AcceptPendingPayment acceptpendingpayment = 22;
+  int acceptpendingpayment_size() const;
+  void clear_acceptpendingpayment();
+  static const int kAcceptpendingpaymentFieldNumber = 22;
+  const ::opentxs::proto::AcceptPendingPayment& acceptpendingpayment(int index) const;
+  ::opentxs::proto::AcceptPendingPayment* mutable_acceptpendingpayment(int index);
+  ::opentxs::proto::AcceptPendingPayment* add_acceptpendingpayment();
+  ::google::protobuf::RepeatedPtrField< ::opentxs::proto::AcceptPendingPayment >*
+      mutable_acceptpendingpayment();
+  const ::google::protobuf::RepeatedPtrField< ::opentxs::proto::AcceptPendingPayment >&
+      acceptpendingpayment() const;
+
   // optional string cookie = 2;
   bool has_cookie() const;
   void clear_cookie();
@@ -278,21 +313,6 @@ class RPCCommand : public ::google::protobuf::MessageLite /* @@protoc_insertion_
   ::std::string* mutable_cookie();
   ::std::string* release_cookie();
   void set_allocated_cookie(::std::string* cookie);
-
-  // optional string nym = 5;
-  bool has_nym() const;
-  void clear_nym();
-  static const int kNymFieldNumber = 5;
-  const ::std::string& nym() const;
-  void set_nym(const ::std::string& value);
-  #if LANG_CXX11
-  void set_nym(::std::string&& value);
-  #endif
-  void set_nym(const char* value);
-  void set_nym(const char* value, size_t size);
-  ::std::string* mutable_nym();
-  ::std::string* release_nym();
-  void set_allocated_nym(::std::string* nym);
 
   // optional string owner = 6;
   bool has_owner() const;
@@ -415,8 +435,6 @@ class RPCCommand : public ::google::protobuf::MessageLite /* @@protoc_insertion_
   void clear_has_type();
   void set_has_session();
   void clear_has_session();
-  void set_has_nym();
-  void clear_has_nym();
   void set_has_owner();
   void clear_has_owner();
   void set_has_notary();
@@ -437,6 +455,7 @@ class RPCCommand : public ::google::protobuf::MessageLite /* @@protoc_insertion_
   ::google::protobuf::internal::InternalMetadataWithArenaLite _internal_metadata_;
   ::google::protobuf::internal::HasBits<1> _has_bits_;
   mutable int _cached_size_;
+  ::google::protobuf::RepeatedPtrField< ::std::string> associatenym_;
   ::google::protobuf::RepeatedPtrField< ::std::string> identifier_;
   ::google::protobuf::RepeatedPtrField< ::opentxs::proto::APIArgument > arg_;
   ::google::protobuf::RepeatedPtrField< ::opentxs::proto::AddClaim > claim_;
@@ -445,8 +464,8 @@ class RPCCommand : public ::google::protobuf::MessageLite /* @@protoc_insertion_
   ::google::protobuf::RepeatedPtrField< ::opentxs::proto::VerifyClaim > verifyclaim_;
   ::google::protobuf::RepeatedPtrField< ::opentxs::proto::SendMessage > sendmessage_;
   ::google::protobuf::RepeatedPtrField< ::opentxs::proto::Verification > acceptverification_;
+  ::google::protobuf::RepeatedPtrField< ::opentxs::proto::AcceptPendingPayment > acceptpendingpayment_;
   ::google::protobuf::internal::ArenaStringPtr cookie_;
-  ::google::protobuf::internal::ArenaStringPtr nym_;
   ::google::protobuf::internal::ArenaStringPtr owner_;
   ::google::protobuf::internal::ArenaStringPtr notary_;
   ::google::protobuf::internal::ArenaStringPtr unit_;
@@ -474,13 +493,13 @@ class RPCCommand : public ::google::protobuf::MessageLite /* @@protoc_insertion_
 
 // optional uint32 version = 1;
 inline bool RPCCommand::has_version() const {
-  return (_has_bits_[0] & 0x00000400u) != 0;
+  return (_has_bits_[0] & 0x00000200u) != 0;
 }
 inline void RPCCommand::set_has_version() {
-  _has_bits_[0] |= 0x00000400u;
+  _has_bits_[0] |= 0x00000200u;
 }
 inline void RPCCommand::clear_has_version() {
-  _has_bits_[0] &= ~0x00000400u;
+  _has_bits_[0] &= ~0x00000200u;
 }
 inline void RPCCommand::clear_version() {
   version_ = 0u;
@@ -561,13 +580,13 @@ inline void RPCCommand::set_allocated_cookie(::std::string* cookie) {
 
 // optional .opentxs.proto.RPCCommandType type = 3;
 inline bool RPCCommand::has_type() const {
-  return (_has_bits_[0] & 0x00000800u) != 0;
+  return (_has_bits_[0] & 0x00000400u) != 0;
 }
 inline void RPCCommand::set_has_type() {
-  _has_bits_[0] |= 0x00000800u;
+  _has_bits_[0] |= 0x00000400u;
 }
 inline void RPCCommand::clear_has_type() {
-  _has_bits_[0] &= ~0x00000800u;
+  _has_bits_[0] &= ~0x00000400u;
 }
 inline void RPCCommand::clear_type() {
   type_ = 0;
@@ -586,13 +605,13 @@ inline void RPCCommand::set_type(::opentxs::proto::RPCCommandType value) {
 
 // optional int32 session = 4;
 inline bool RPCCommand::has_session() const {
-  return (_has_bits_[0] & 0x00001000u) != 0;
+  return (_has_bits_[0] & 0x00000800u) != 0;
 }
 inline void RPCCommand::set_has_session() {
-  _has_bits_[0] |= 0x00001000u;
+  _has_bits_[0] |= 0x00000800u;
 }
 inline void RPCCommand::clear_has_session() {
-  _has_bits_[0] &= ~0x00001000u;
+  _has_bits_[0] &= ~0x00000800u;
 }
 inline void RPCCommand::clear_session() {
   session_ = 0;
@@ -608,78 +627,84 @@ inline void RPCCommand::set_session(::google::protobuf::int32 value) {
   // @@protoc_insertion_point(field_set:opentxs.proto.RPCCommand.session)
 }
 
-// optional string nym = 5;
-inline bool RPCCommand::has_nym() const {
-  return (_has_bits_[0] & 0x00000002u) != 0;
+// repeated string associatenym = 5;
+inline int RPCCommand::associatenym_size() const {
+  return associatenym_.size();
 }
-inline void RPCCommand::set_has_nym() {
-  _has_bits_[0] |= 0x00000002u;
+inline void RPCCommand::clear_associatenym() {
+  associatenym_.Clear();
 }
-inline void RPCCommand::clear_has_nym() {
-  _has_bits_[0] &= ~0x00000002u;
+inline const ::std::string& RPCCommand::associatenym(int index) const {
+  // @@protoc_insertion_point(field_get:opentxs.proto.RPCCommand.associatenym)
+  return associatenym_.Get(index);
 }
-inline void RPCCommand::clear_nym() {
-  nym_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  clear_has_nym();
+inline ::std::string* RPCCommand::mutable_associatenym(int index) {
+  // @@protoc_insertion_point(field_mutable:opentxs.proto.RPCCommand.associatenym)
+  return associatenym_.Mutable(index);
 }
-inline const ::std::string& RPCCommand::nym() const {
-  // @@protoc_insertion_point(field_get:opentxs.proto.RPCCommand.nym)
-  return nym_.GetNoArena();
-}
-inline void RPCCommand::set_nym(const ::std::string& value) {
-  set_has_nym();
-  nym_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
-  // @@protoc_insertion_point(field_set:opentxs.proto.RPCCommand.nym)
+inline void RPCCommand::set_associatenym(int index, const ::std::string& value) {
+  // @@protoc_insertion_point(field_set:opentxs.proto.RPCCommand.associatenym)
+  associatenym_.Mutable(index)->assign(value);
 }
 #if LANG_CXX11
-inline void RPCCommand::set_nym(::std::string&& value) {
-  set_has_nym();
-  nym_.SetNoArena(
-    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:opentxs.proto.RPCCommand.nym)
+inline void RPCCommand::set_associatenym(int index, ::std::string&& value) {
+  // @@protoc_insertion_point(field_set:opentxs.proto.RPCCommand.associatenym)
+  associatenym_.Mutable(index)->assign(std::move(value));
 }
 #endif
-inline void RPCCommand::set_nym(const char* value) {
+inline void RPCCommand::set_associatenym(int index, const char* value) {
   GOOGLE_DCHECK(value != NULL);
-  set_has_nym();
-  nym_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:opentxs.proto.RPCCommand.nym)
+  associatenym_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set_char:opentxs.proto.RPCCommand.associatenym)
 }
-inline void RPCCommand::set_nym(const char* value, size_t size) {
-  set_has_nym();
-  nym_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
-      ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:opentxs.proto.RPCCommand.nym)
+inline void RPCCommand::set_associatenym(int index, const char* value, size_t size) {
+  associatenym_.Mutable(index)->assign(
+    reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:opentxs.proto.RPCCommand.associatenym)
 }
-inline ::std::string* RPCCommand::mutable_nym() {
-  set_has_nym();
-  // @@protoc_insertion_point(field_mutable:opentxs.proto.RPCCommand.nym)
-  return nym_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+inline ::std::string* RPCCommand::add_associatenym() {
+  // @@protoc_insertion_point(field_add_mutable:opentxs.proto.RPCCommand.associatenym)
+  return associatenym_.Add();
 }
-inline ::std::string* RPCCommand::release_nym() {
-  // @@protoc_insertion_point(field_release:opentxs.proto.RPCCommand.nym)
-  clear_has_nym();
-  return nym_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+inline void RPCCommand::add_associatenym(const ::std::string& value) {
+  associatenym_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add:opentxs.proto.RPCCommand.associatenym)
 }
-inline void RPCCommand::set_allocated_nym(::std::string* nym) {
-  if (nym != NULL) {
-    set_has_nym();
-  } else {
-    clear_has_nym();
-  }
-  nym_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), nym);
-  // @@protoc_insertion_point(field_set_allocated:opentxs.proto.RPCCommand.nym)
+#if LANG_CXX11
+inline void RPCCommand::add_associatenym(::std::string&& value) {
+  associatenym_.Add(std::move(value));
+  // @@protoc_insertion_point(field_add:opentxs.proto.RPCCommand.associatenym)
+}
+#endif
+inline void RPCCommand::add_associatenym(const char* value) {
+  GOOGLE_DCHECK(value != NULL);
+  associatenym_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add_char:opentxs.proto.RPCCommand.associatenym)
+}
+inline void RPCCommand::add_associatenym(const char* value, size_t size) {
+  associatenym_.Add()->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_add_pointer:opentxs.proto.RPCCommand.associatenym)
+}
+inline const ::google::protobuf::RepeatedPtrField< ::std::string>&
+RPCCommand::associatenym() const {
+  // @@protoc_insertion_point(field_list:opentxs.proto.RPCCommand.associatenym)
+  return associatenym_;
+}
+inline ::google::protobuf::RepeatedPtrField< ::std::string>*
+RPCCommand::mutable_associatenym() {
+  // @@protoc_insertion_point(field_mutable_list:opentxs.proto.RPCCommand.associatenym)
+  return &associatenym_;
 }
 
 // optional string owner = 6;
 inline bool RPCCommand::has_owner() const {
-  return (_has_bits_[0] & 0x00000004u) != 0;
+  return (_has_bits_[0] & 0x00000002u) != 0;
 }
 inline void RPCCommand::set_has_owner() {
-  _has_bits_[0] |= 0x00000004u;
+  _has_bits_[0] |= 0x00000002u;
 }
 inline void RPCCommand::clear_has_owner() {
-  _has_bits_[0] &= ~0x00000004u;
+  _has_bits_[0] &= ~0x00000002u;
 }
 inline void RPCCommand::clear_owner() {
   owner_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
@@ -736,13 +761,13 @@ inline void RPCCommand::set_allocated_owner(::std::string* owner) {
 
 // optional string notary = 7;
 inline bool RPCCommand::has_notary() const {
-  return (_has_bits_[0] & 0x00000008u) != 0;
+  return (_has_bits_[0] & 0x00000004u) != 0;
 }
 inline void RPCCommand::set_has_notary() {
-  _has_bits_[0] |= 0x00000008u;
+  _has_bits_[0] |= 0x00000004u;
 }
 inline void RPCCommand::clear_has_notary() {
-  _has_bits_[0] &= ~0x00000008u;
+  _has_bits_[0] &= ~0x00000004u;
 }
 inline void RPCCommand::clear_notary() {
   notary_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
@@ -799,13 +824,13 @@ inline void RPCCommand::set_allocated_notary(::std::string* notary) {
 
 // optional string unit = 8;
 inline bool RPCCommand::has_unit() const {
-  return (_has_bits_[0] & 0x00000010u) != 0;
+  return (_has_bits_[0] & 0x00000008u) != 0;
 }
 inline void RPCCommand::set_has_unit() {
-  _has_bits_[0] |= 0x00000010u;
+  _has_bits_[0] |= 0x00000008u;
 }
 inline void RPCCommand::clear_has_unit() {
-  _has_bits_[0] &= ~0x00000010u;
+  _has_bits_[0] &= ~0x00000008u;
 }
 inline void RPCCommand::clear_unit() {
   unit_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
@@ -958,13 +983,13 @@ RPCCommand::arg() const {
 
 // optional .opentxs.proto.HDSeed hdseed = 11;
 inline bool RPCCommand::has_hdseed() const {
-  return (_has_bits_[0] & 0x00000020u) != 0;
+  return (_has_bits_[0] & 0x00000010u) != 0;
 }
 inline void RPCCommand::set_has_hdseed() {
-  _has_bits_[0] |= 0x00000020u;
+  _has_bits_[0] |= 0x00000010u;
 }
 inline void RPCCommand::clear_has_hdseed() {
-  _has_bits_[0] &= ~0x00000020u;
+  _has_bits_[0] &= ~0x00000010u;
 }
 inline const ::opentxs::proto::HDSeed& RPCCommand::hdseed() const {
   const ::opentxs::proto::HDSeed* p = hdseed_;
@@ -1008,13 +1033,13 @@ inline void RPCCommand::set_allocated_hdseed(::opentxs::proto::HDSeed* hdseed) {
 
 // optional .opentxs.proto.CreateNym createnym = 12;
 inline bool RPCCommand::has_createnym() const {
-  return (_has_bits_[0] & 0x00000040u) != 0;
+  return (_has_bits_[0] & 0x00000020u) != 0;
 }
 inline void RPCCommand::set_has_createnym() {
-  _has_bits_[0] |= 0x00000040u;
+  _has_bits_[0] |= 0x00000020u;
 }
 inline void RPCCommand::clear_has_createnym() {
-  _has_bits_[0] &= ~0x00000040u;
+  _has_bits_[0] &= ~0x00000020u;
 }
 inline const ::opentxs::proto::CreateNym& RPCCommand::createnym() const {
   const ::opentxs::proto::CreateNym* p = createnym_;
@@ -1112,13 +1137,13 @@ RPCCommand::server() const {
 
 // optional .opentxs.proto.CreateInstrumentDefinition createunit = 15;
 inline bool RPCCommand::has_createunit() const {
-  return (_has_bits_[0] & 0x00000080u) != 0;
+  return (_has_bits_[0] & 0x00000040u) != 0;
 }
 inline void RPCCommand::set_has_createunit() {
-  _has_bits_[0] |= 0x00000080u;
+  _has_bits_[0] |= 0x00000040u;
 }
 inline void RPCCommand::clear_has_createunit() {
-  _has_bits_[0] &= ~0x00000080u;
+  _has_bits_[0] &= ~0x00000040u;
 }
 inline const ::opentxs::proto::CreateInstrumentDefinition& RPCCommand::createunit() const {
   const ::opentxs::proto::CreateInstrumentDefinition* p = createunit_;
@@ -1162,13 +1187,13 @@ inline void RPCCommand::set_allocated_createunit(::opentxs::proto::CreateInstrum
 
 // optional .opentxs.proto.SendPayment sendpayment = 16;
 inline bool RPCCommand::has_sendpayment() const {
-  return (_has_bits_[0] & 0x00000100u) != 0;
+  return (_has_bits_[0] & 0x00000080u) != 0;
 }
 inline void RPCCommand::set_has_sendpayment() {
-  _has_bits_[0] |= 0x00000100u;
+  _has_bits_[0] |= 0x00000080u;
 }
 inline void RPCCommand::clear_has_sendpayment() {
-  _has_bits_[0] &= ~0x00000100u;
+  _has_bits_[0] &= ~0x00000080u;
 }
 inline const ::opentxs::proto::SendPayment& RPCCommand::sendpayment() const {
   const ::opentxs::proto::SendPayment* p = sendpayment_;
@@ -1212,13 +1237,13 @@ inline void RPCCommand::set_allocated_sendpayment(::opentxs::proto::SendPayment*
 
 // optional .opentxs.proto.MoveFunds movefunds = 17;
 inline bool RPCCommand::has_movefunds() const {
-  return (_has_bits_[0] & 0x00000200u) != 0;
+  return (_has_bits_[0] & 0x00000100u) != 0;
 }
 inline void RPCCommand::set_has_movefunds() {
-  _has_bits_[0] |= 0x00000200u;
+  _has_bits_[0] |= 0x00000100u;
 }
 inline void RPCCommand::clear_has_movefunds() {
-  _has_bits_[0] &= ~0x00000200u;
+  _has_bits_[0] &= ~0x00000100u;
 }
 inline const ::opentxs::proto::MoveFunds& RPCCommand::movefunds() const {
   const ::opentxs::proto::MoveFunds* p = movefunds_;
@@ -1366,6 +1391,33 @@ inline const ::google::protobuf::RepeatedPtrField< ::opentxs::proto::Verificatio
 RPCCommand::acceptverification() const {
   // @@protoc_insertion_point(field_list:opentxs.proto.RPCCommand.acceptverification)
   return acceptverification_;
+}
+
+// repeated .opentxs.proto.AcceptPendingPayment acceptpendingpayment = 22;
+inline int RPCCommand::acceptpendingpayment_size() const {
+  return acceptpendingpayment_.size();
+}
+inline const ::opentxs::proto::AcceptPendingPayment& RPCCommand::acceptpendingpayment(int index) const {
+  // @@protoc_insertion_point(field_get:opentxs.proto.RPCCommand.acceptpendingpayment)
+  return acceptpendingpayment_.Get(index);
+}
+inline ::opentxs::proto::AcceptPendingPayment* RPCCommand::mutable_acceptpendingpayment(int index) {
+  // @@protoc_insertion_point(field_mutable:opentxs.proto.RPCCommand.acceptpendingpayment)
+  return acceptpendingpayment_.Mutable(index);
+}
+inline ::opentxs::proto::AcceptPendingPayment* RPCCommand::add_acceptpendingpayment() {
+  // @@protoc_insertion_point(field_add:opentxs.proto.RPCCommand.acceptpendingpayment)
+  return acceptpendingpayment_.Add();
+}
+inline ::google::protobuf::RepeatedPtrField< ::opentxs::proto::AcceptPendingPayment >*
+RPCCommand::mutable_acceptpendingpayment() {
+  // @@protoc_insertion_point(field_mutable_list:opentxs.proto.RPCCommand.acceptpendingpayment)
+  return &acceptpendingpayment_;
+}
+inline const ::google::protobuf::RepeatedPtrField< ::opentxs::proto::AcceptPendingPayment >&
+RPCCommand::acceptpendingpayment() const {
+  // @@protoc_insertion_point(field_list:opentxs.proto.RPCCommand.acceptpendingpayment)
+  return acceptpendingpayment_;
 }
 
 #ifdef __GNUC__

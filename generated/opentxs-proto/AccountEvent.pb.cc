@@ -60,7 +60,7 @@ const int AccountEvent::kVersionFieldNumber;
 const int AccountEvent::kIdFieldNumber;
 const int AccountEvent::kTypeFieldNumber;
 const int AccountEvent::kContactFieldNumber;
-const int AccountEvent::kNumberFieldNumber;
+const int AccountEvent::kWorkflowFieldNumber;
 const int AccountEvent::kAmountFieldNumber;
 const int AccountEvent::kPendingamountFieldNumber;
 const int AccountEvent::kTimestampFieldNumber;
@@ -89,6 +89,10 @@ AccountEvent::AccountEvent(const AccountEvent& from)
   if (from.has_contact()) {
     contact_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.contact_);
   }
+  workflow_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.has_workflow()) {
+    workflow_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.workflow_);
+  }
   memo_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   if (from.has_memo()) {
     memo_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.memo_);
@@ -103,6 +107,7 @@ void AccountEvent::SharedCtor() {
   _cached_size_ = 0;
   id_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   contact_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  workflow_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   memo_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   ::memset(&version_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&timestamp_) -
@@ -117,6 +122,7 @@ AccountEvent::~AccountEvent() {
 void AccountEvent::SharedDtor() {
   id_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   contact_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  workflow_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   memo_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 
@@ -145,7 +151,7 @@ void AccountEvent::Clear() {
   (void) cached_has_bits;
 
   cached_has_bits = _has_bits_[0];
-  if (cached_has_bits & 7u) {
+  if (cached_has_bits & 15u) {
     if (cached_has_bits & 0x00000001u) {
       GOOGLE_DCHECK(!id_.IsDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited()));
       (*id_.UnsafeRawStringPointer())->clear();
@@ -155,11 +161,15 @@ void AccountEvent::Clear() {
       (*contact_.UnsafeRawStringPointer())->clear();
     }
     if (cached_has_bits & 0x00000004u) {
+      GOOGLE_DCHECK(!workflow_.IsDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited()));
+      (*workflow_.UnsafeRawStringPointer())->clear();
+    }
+    if (cached_has_bits & 0x00000008u) {
       GOOGLE_DCHECK(!memo_.IsDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited()));
       (*memo_.UnsafeRawStringPointer())->clear();
     }
   }
-  if (cached_has_bits & 248u) {
+  if (cached_has_bits & 240u) {
     ::memset(&version_, 0, static_cast<size_t>(
         reinterpret_cast<char*>(&pendingamount_) -
         reinterpret_cast<char*>(&version_)) + sizeof(pendingamount_));
@@ -244,27 +254,25 @@ bool AccountEvent::MergePartialFromCodedStream(
         break;
       }
 
-      // optional uint64 number = 5;
+      // optional string workflow = 5;
       case 5: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(40u /* 40 & 0xFF */)) {
-          set_has_number();
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::uint64, ::google::protobuf::internal::WireFormatLite::TYPE_UINT64>(
-                 input, &number_)));
+            static_cast< ::google::protobuf::uint8>(42u /* 42 & 0xFF */)) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+                input, this->mutable_workflow()));
         } else {
           goto handle_unusual;
         }
         break;
       }
 
-      // optional uint64 amount = 6;
+      // optional int64 amount = 6;
       case 6: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
             static_cast< ::google::protobuf::uint8>(48u /* 48 & 0xFF */)) {
           set_has_amount();
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::uint64, ::google::protobuf::internal::WireFormatLite::TYPE_UINT64>(
+                   ::google::protobuf::int64, ::google::protobuf::internal::WireFormatLite::TYPE_INT64>(
                  input, &amount_)));
         } else {
           goto handle_unusual;
@@ -272,13 +280,13 @@ bool AccountEvent::MergePartialFromCodedStream(
         break;
       }
 
-      // optional uint64 pendingamount = 7;
+      // optional int64 pendingamount = 7;
       case 7: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
             static_cast< ::google::protobuf::uint8>(56u /* 56 & 0xFF */)) {
           set_has_pendingamount();
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::uint64, ::google::protobuf::internal::WireFormatLite::TYPE_UINT64>(
+                   ::google::protobuf::int64, ::google::protobuf::internal::WireFormatLite::TYPE_INT64>(
                  input, &pendingamount_)));
         } else {
           goto handle_unusual;
@@ -340,7 +348,7 @@ void AccountEvent::SerializeWithCachedSizes(
 
   cached_has_bits = _has_bits_[0];
   // optional uint32 version = 1;
-  if (cached_has_bits & 0x00000008u) {
+  if (cached_has_bits & 0x00000010u) {
     ::google::protobuf::internal::WireFormatLite::WriteUInt32(1, this->version(), output);
   }
 
@@ -351,7 +359,7 @@ void AccountEvent::SerializeWithCachedSizes(
   }
 
   // optional .opentxs.proto.AccountEventType type = 3;
-  if (cached_has_bits & 0x00000010u) {
+  if (cached_has_bits & 0x00000020u) {
     ::google::protobuf::internal::WireFormatLite::WriteEnum(
       3, this->type(), output);
   }
@@ -362,19 +370,20 @@ void AccountEvent::SerializeWithCachedSizes(
       4, this->contact(), output);
   }
 
-  // optional uint64 number = 5;
-  if (cached_has_bits & 0x00000020u) {
-    ::google::protobuf::internal::WireFormatLite::WriteUInt64(5, this->number(), output);
+  // optional string workflow = 5;
+  if (cached_has_bits & 0x00000004u) {
+    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
+      5, this->workflow(), output);
   }
 
-  // optional uint64 amount = 6;
+  // optional int64 amount = 6;
   if (cached_has_bits & 0x00000040u) {
-    ::google::protobuf::internal::WireFormatLite::WriteUInt64(6, this->amount(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteInt64(6, this->amount(), output);
   }
 
-  // optional uint64 pendingamount = 7;
+  // optional int64 pendingamount = 7;
   if (cached_has_bits & 0x00000080u) {
-    ::google::protobuf::internal::WireFormatLite::WriteUInt64(7, this->pendingamount(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteInt64(7, this->pendingamount(), output);
   }
 
   // optional int64 timestamp = 8;
@@ -383,7 +392,7 @@ void AccountEvent::SerializeWithCachedSizes(
   }
 
   // optional string memo = 9;
-  if (cached_has_bits & 0x00000004u) {
+  if (cached_has_bits & 0x00000008u) {
     ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
       9, this->memo(), output);
   }
@@ -414,6 +423,13 @@ size_t AccountEvent::ByteSizeLong() const {
           this->contact());
     }
 
+    // optional string workflow = 5;
+    if (has_workflow()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::StringSize(
+          this->workflow());
+    }
+
     // optional string memo = 9;
     if (has_memo()) {
       total_size += 1 +
@@ -434,24 +450,17 @@ size_t AccountEvent::ByteSizeLong() const {
         ::google::protobuf::internal::WireFormatLite::EnumSize(this->type());
     }
 
-    // optional uint64 number = 5;
-    if (has_number()) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::UInt64Size(
-          this->number());
-    }
-
-    // optional uint64 amount = 6;
+    // optional int64 amount = 6;
     if (has_amount()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::UInt64Size(
+        ::google::protobuf::internal::WireFormatLite::Int64Size(
           this->amount());
     }
 
-    // optional uint64 pendingamount = 7;
+    // optional int64 pendingamount = 7;
     if (has_pendingamount()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::UInt64Size(
+        ::google::protobuf::internal::WireFormatLite::Int64Size(
           this->pendingamount());
     }
 
@@ -493,17 +502,18 @@ void AccountEvent::MergeFrom(const AccountEvent& from) {
       contact_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.contact_);
     }
     if (cached_has_bits & 0x00000004u) {
+      set_has_workflow();
+      workflow_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.workflow_);
+    }
+    if (cached_has_bits & 0x00000008u) {
       set_has_memo();
       memo_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.memo_);
     }
-    if (cached_has_bits & 0x00000008u) {
+    if (cached_has_bits & 0x00000010u) {
       version_ = from.version_;
     }
-    if (cached_has_bits & 0x00000010u) {
-      type_ = from.type_;
-    }
     if (cached_has_bits & 0x00000020u) {
-      number_ = from.number_;
+      type_ = from.type_;
     }
     if (cached_has_bits & 0x00000040u) {
       amount_ = from.amount_;
@@ -537,10 +547,10 @@ void AccountEvent::InternalSwap(AccountEvent* other) {
   using std::swap;
   id_.Swap(&other->id_);
   contact_.Swap(&other->contact_);
+  workflow_.Swap(&other->workflow_);
   memo_.Swap(&other->memo_);
   swap(version_, other->version_);
   swap(type_, other->type_);
-  swap(number_, other->number_);
   swap(amount_, other->amount_);
   swap(pendingamount_, other->pendingamount_);
   swap(timestamp_, other->timestamp_);

@@ -277,13 +277,13 @@ bool AccountData::MergePartialFromCodedStream(
         break;
       }
 
-      // optional uint64 balance = 7;
+      // optional int64 balance = 7;
       case 7: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
             static_cast< ::google::protobuf::uint8>(56u /* 56 & 0xFF */)) {
           set_has_balance();
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::uint64, ::google::protobuf::internal::WireFormatLite::TYPE_UINT64>(
+                   ::google::protobuf::int64, ::google::protobuf::internal::WireFormatLite::TYPE_INT64>(
                  input, &balance_)));
         } else {
           goto handle_unusual;
@@ -291,13 +291,13 @@ bool AccountData::MergePartialFromCodedStream(
         break;
       }
 
-      // optional uint64 pendingbalance = 8;
+      // optional int64 pendingbalance = 8;
       case 8: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
             static_cast< ::google::protobuf::uint8>(64u /* 64 & 0xFF */)) {
           set_has_pendingbalance();
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::uint64, ::google::protobuf::internal::WireFormatLite::TYPE_UINT64>(
+                   ::google::protobuf::int64, ::google::protobuf::internal::WireFormatLite::TYPE_INT64>(
                  input, &pendingbalance_)));
         } else {
           goto handle_unusual;
@@ -367,14 +367,14 @@ void AccountData::SerializeWithCachedSizes(
       6, this->issuer(), output);
   }
 
-  // optional uint64 balance = 7;
+  // optional int64 balance = 7;
   if (cached_has_bits & 0x00000020u) {
-    ::google::protobuf::internal::WireFormatLite::WriteUInt64(7, this->balance(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteInt64(7, this->balance(), output);
   }
 
-  // optional uint64 pendingbalance = 8;
+  // optional int64 pendingbalance = 8;
   if (cached_has_bits & 0x00000040u) {
-    ::google::protobuf::internal::WireFormatLite::WriteUInt64(8, this->pendingbalance(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteInt64(8, this->pendingbalance(), output);
   }
 
   output->WriteRaw(_internal_metadata_.unknown_fields().data(),
@@ -424,17 +424,17 @@ size_t AccountData::ByteSizeLong() const {
           this->issuer());
     }
 
-    // optional uint64 balance = 7;
+    // optional int64 balance = 7;
     if (has_balance()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::UInt64Size(
+        ::google::protobuf::internal::WireFormatLite::Int64Size(
           this->balance());
     }
 
-    // optional uint64 pendingbalance = 8;
+    // optional int64 pendingbalance = 8;
     if (has_pendingbalance()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::UInt64Size(
+        ::google::protobuf::internal::WireFormatLite::Int64Size(
           this->pendingbalance());
     }
 
