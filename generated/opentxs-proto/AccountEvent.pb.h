@@ -176,6 +176,21 @@ class AccountEvent : public ::google::protobuf::MessageLite /* @@protoc_insertio
   ::std::string* release_contact();
   void set_allocated_contact(::std::string* contact);
 
+  // optional string workflow = 5;
+  bool has_workflow() const;
+  void clear_workflow();
+  static const int kWorkflowFieldNumber = 5;
+  const ::std::string& workflow() const;
+  void set_workflow(const ::std::string& value);
+  #if LANG_CXX11
+  void set_workflow(::std::string&& value);
+  #endif
+  void set_workflow(const char* value);
+  void set_workflow(const char* value, size_t size);
+  ::std::string* mutable_workflow();
+  ::std::string* release_workflow();
+  void set_allocated_workflow(::std::string* workflow);
+
   // optional string memo = 9;
   bool has_memo() const;
   void clear_memo();
@@ -205,26 +220,19 @@ class AccountEvent : public ::google::protobuf::MessageLite /* @@protoc_insertio
   ::opentxs::proto::AccountEventType type() const;
   void set_type(::opentxs::proto::AccountEventType value);
 
-  // optional uint64 number = 5;
-  bool has_number() const;
-  void clear_number();
-  static const int kNumberFieldNumber = 5;
-  ::google::protobuf::uint64 number() const;
-  void set_number(::google::protobuf::uint64 value);
-
-  // optional uint64 amount = 6;
+  // optional int64 amount = 6;
   bool has_amount() const;
   void clear_amount();
   static const int kAmountFieldNumber = 6;
-  ::google::protobuf::uint64 amount() const;
-  void set_amount(::google::protobuf::uint64 value);
+  ::google::protobuf::int64 amount() const;
+  void set_amount(::google::protobuf::int64 value);
 
-  // optional uint64 pendingamount = 7;
+  // optional int64 pendingamount = 7;
   bool has_pendingamount() const;
   void clear_pendingamount();
   static const int kPendingamountFieldNumber = 7;
-  ::google::protobuf::uint64 pendingamount() const;
-  void set_pendingamount(::google::protobuf::uint64 value);
+  ::google::protobuf::int64 pendingamount() const;
+  void set_pendingamount(::google::protobuf::int64 value);
 
   // optional int64 timestamp = 8;
   bool has_timestamp() const;
@@ -243,8 +251,8 @@ class AccountEvent : public ::google::protobuf::MessageLite /* @@protoc_insertio
   void clear_has_type();
   void set_has_contact();
   void clear_has_contact();
-  void set_has_number();
-  void clear_has_number();
+  void set_has_workflow();
+  void clear_has_workflow();
   void set_has_amount();
   void clear_has_amount();
   void set_has_pendingamount();
@@ -259,12 +267,12 @@ class AccountEvent : public ::google::protobuf::MessageLite /* @@protoc_insertio
   mutable int _cached_size_;
   ::google::protobuf::internal::ArenaStringPtr id_;
   ::google::protobuf::internal::ArenaStringPtr contact_;
+  ::google::protobuf::internal::ArenaStringPtr workflow_;
   ::google::protobuf::internal::ArenaStringPtr memo_;
   ::google::protobuf::uint32 version_;
   int type_;
-  ::google::protobuf::uint64 number_;
-  ::google::protobuf::uint64 amount_;
-  ::google::protobuf::uint64 pendingamount_;
+  ::google::protobuf::int64 amount_;
+  ::google::protobuf::int64 pendingamount_;
   ::google::protobuf::int64 timestamp_;
   friend struct ::protobuf_AccountEvent_2eproto::TableStruct;
   friend void ::protobuf_AccountEvent_2eproto::InitDefaultsAccountEventImpl();
@@ -282,13 +290,13 @@ class AccountEvent : public ::google::protobuf::MessageLite /* @@protoc_insertio
 
 // optional uint32 version = 1;
 inline bool AccountEvent::has_version() const {
-  return (_has_bits_[0] & 0x00000008u) != 0;
+  return (_has_bits_[0] & 0x00000010u) != 0;
 }
 inline void AccountEvent::set_has_version() {
-  _has_bits_[0] |= 0x00000008u;
+  _has_bits_[0] |= 0x00000010u;
 }
 inline void AccountEvent::clear_has_version() {
-  _has_bits_[0] &= ~0x00000008u;
+  _has_bits_[0] &= ~0x00000010u;
 }
 inline void AccountEvent::clear_version() {
   version_ = 0u;
@@ -369,13 +377,13 @@ inline void AccountEvent::set_allocated_id(::std::string* id) {
 
 // optional .opentxs.proto.AccountEventType type = 3;
 inline bool AccountEvent::has_type() const {
-  return (_has_bits_[0] & 0x00000010u) != 0;
+  return (_has_bits_[0] & 0x00000020u) != 0;
 }
 inline void AccountEvent::set_has_type() {
-  _has_bits_[0] |= 0x00000010u;
+  _has_bits_[0] |= 0x00000020u;
 }
 inline void AccountEvent::clear_has_type() {
-  _has_bits_[0] &= ~0x00000010u;
+  _has_bits_[0] &= ~0x00000020u;
 }
 inline void AccountEvent::clear_type() {
   type_ = 0;
@@ -455,31 +463,70 @@ inline void AccountEvent::set_allocated_contact(::std::string* contact) {
   // @@protoc_insertion_point(field_set_allocated:opentxs.proto.AccountEvent.contact)
 }
 
-// optional uint64 number = 5;
-inline bool AccountEvent::has_number() const {
-  return (_has_bits_[0] & 0x00000020u) != 0;
+// optional string workflow = 5;
+inline bool AccountEvent::has_workflow() const {
+  return (_has_bits_[0] & 0x00000004u) != 0;
 }
-inline void AccountEvent::set_has_number() {
-  _has_bits_[0] |= 0x00000020u;
+inline void AccountEvent::set_has_workflow() {
+  _has_bits_[0] |= 0x00000004u;
 }
-inline void AccountEvent::clear_has_number() {
-  _has_bits_[0] &= ~0x00000020u;
+inline void AccountEvent::clear_has_workflow() {
+  _has_bits_[0] &= ~0x00000004u;
 }
-inline void AccountEvent::clear_number() {
-  number_ = GOOGLE_ULONGLONG(0);
-  clear_has_number();
+inline void AccountEvent::clear_workflow() {
+  workflow_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  clear_has_workflow();
 }
-inline ::google::protobuf::uint64 AccountEvent::number() const {
-  // @@protoc_insertion_point(field_get:opentxs.proto.AccountEvent.number)
-  return number_;
+inline const ::std::string& AccountEvent::workflow() const {
+  // @@protoc_insertion_point(field_get:opentxs.proto.AccountEvent.workflow)
+  return workflow_.GetNoArena();
 }
-inline void AccountEvent::set_number(::google::protobuf::uint64 value) {
-  set_has_number();
-  number_ = value;
-  // @@protoc_insertion_point(field_set:opentxs.proto.AccountEvent.number)
+inline void AccountEvent::set_workflow(const ::std::string& value) {
+  set_has_workflow();
+  workflow_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:opentxs.proto.AccountEvent.workflow)
+}
+#if LANG_CXX11
+inline void AccountEvent::set_workflow(::std::string&& value) {
+  set_has_workflow();
+  workflow_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:opentxs.proto.AccountEvent.workflow)
+}
+#endif
+inline void AccountEvent::set_workflow(const char* value) {
+  GOOGLE_DCHECK(value != NULL);
+  set_has_workflow();
+  workflow_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:opentxs.proto.AccountEvent.workflow)
+}
+inline void AccountEvent::set_workflow(const char* value, size_t size) {
+  set_has_workflow();
+  workflow_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:opentxs.proto.AccountEvent.workflow)
+}
+inline ::std::string* AccountEvent::mutable_workflow() {
+  set_has_workflow();
+  // @@protoc_insertion_point(field_mutable:opentxs.proto.AccountEvent.workflow)
+  return workflow_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* AccountEvent::release_workflow() {
+  // @@protoc_insertion_point(field_release:opentxs.proto.AccountEvent.workflow)
+  clear_has_workflow();
+  return workflow_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void AccountEvent::set_allocated_workflow(::std::string* workflow) {
+  if (workflow != NULL) {
+    set_has_workflow();
+  } else {
+    clear_has_workflow();
+  }
+  workflow_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), workflow);
+  // @@protoc_insertion_point(field_set_allocated:opentxs.proto.AccountEvent.workflow)
 }
 
-// optional uint64 amount = 6;
+// optional int64 amount = 6;
 inline bool AccountEvent::has_amount() const {
   return (_has_bits_[0] & 0x00000040u) != 0;
 }
@@ -490,20 +537,20 @@ inline void AccountEvent::clear_has_amount() {
   _has_bits_[0] &= ~0x00000040u;
 }
 inline void AccountEvent::clear_amount() {
-  amount_ = GOOGLE_ULONGLONG(0);
+  amount_ = GOOGLE_LONGLONG(0);
   clear_has_amount();
 }
-inline ::google::protobuf::uint64 AccountEvent::amount() const {
+inline ::google::protobuf::int64 AccountEvent::amount() const {
   // @@protoc_insertion_point(field_get:opentxs.proto.AccountEvent.amount)
   return amount_;
 }
-inline void AccountEvent::set_amount(::google::protobuf::uint64 value) {
+inline void AccountEvent::set_amount(::google::protobuf::int64 value) {
   set_has_amount();
   amount_ = value;
   // @@protoc_insertion_point(field_set:opentxs.proto.AccountEvent.amount)
 }
 
-// optional uint64 pendingamount = 7;
+// optional int64 pendingamount = 7;
 inline bool AccountEvent::has_pendingamount() const {
   return (_has_bits_[0] & 0x00000080u) != 0;
 }
@@ -514,14 +561,14 @@ inline void AccountEvent::clear_has_pendingamount() {
   _has_bits_[0] &= ~0x00000080u;
 }
 inline void AccountEvent::clear_pendingamount() {
-  pendingamount_ = GOOGLE_ULONGLONG(0);
+  pendingamount_ = GOOGLE_LONGLONG(0);
   clear_has_pendingamount();
 }
-inline ::google::protobuf::uint64 AccountEvent::pendingamount() const {
+inline ::google::protobuf::int64 AccountEvent::pendingamount() const {
   // @@protoc_insertion_point(field_get:opentxs.proto.AccountEvent.pendingamount)
   return pendingamount_;
 }
-inline void AccountEvent::set_pendingamount(::google::protobuf::uint64 value) {
+inline void AccountEvent::set_pendingamount(::google::protobuf::int64 value) {
   set_has_pendingamount();
   pendingamount_ = value;
   // @@protoc_insertion_point(field_set:opentxs.proto.AccountEvent.pendingamount)
@@ -553,13 +600,13 @@ inline void AccountEvent::set_timestamp(::google::protobuf::int64 value) {
 
 // optional string memo = 9;
 inline bool AccountEvent::has_memo() const {
-  return (_has_bits_[0] & 0x00000004u) != 0;
+  return (_has_bits_[0] & 0x00000008u) != 0;
 }
 inline void AccountEvent::set_has_memo() {
-  _has_bits_[0] |= 0x00000004u;
+  _has_bits_[0] |= 0x00000008u;
 }
 inline void AccountEvent::clear_has_memo() {
-  _has_bits_[0] &= ~0x00000004u;
+  _has_bits_[0] &= ~0x00000008u;
 }
 inline void AccountEvent::clear_memo() {
   memo_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
