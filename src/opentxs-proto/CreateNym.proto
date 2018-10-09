@@ -16,8 +16,8 @@ import public "ContactEnums.proto";
 message CreateNym {
     optional uint32 version = 1;
     optional ContactItemType type = 2;
-    optional string name = 3;
-    optional string seedid = 4;
-    optional int32 index = 5;
+    optional string name = 3;			// nym alias
+    optional string seedid = 4;			// seed id
+    optional int32 index = 5;			// derivation path (-1 for next index)
     repeated AddClaim claims = 6;
 }

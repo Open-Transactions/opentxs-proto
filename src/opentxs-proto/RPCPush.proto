@@ -17,8 +17,8 @@ import public "TaskComplete.proto";
 
 message RPCPush {
     optional uint32 version = 1;
-    optional RPCPushType type = 2;
-    optional string id = 3;
+    optional RPCPushType type = 2;			// see RPCEnums.proto
+    optional string id = 3;					// nym id
     optional AccountEvent accountevent = 4;
     optional ContactEvent contactevent = 5;
     optional TaskComplete taskcomplete = 6;

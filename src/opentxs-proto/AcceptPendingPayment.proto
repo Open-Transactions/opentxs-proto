@@ -14,6 +14,6 @@ import public "RPCEnums.proto";
 
 message AcceptPendingPayment {
     optional uint32 version = 1;
-    optional string destinationaccount = 2;
-    optional string workflow = 3;
+    optional string destinationaccount = 2;	// destination account id
+    optional string workflow = 3;			// workflow id
 }
