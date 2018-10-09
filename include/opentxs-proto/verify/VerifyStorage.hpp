@@ -81,12 +81,15 @@ static const VersionMap StorageNymListAllowedHash = {
 };
 static const VersionMap StoragePaymentWorkflowsAllowedHash = {
     {1, {1, 2}},
+    {2, {1, 2}},
 };
 static const VersionMap StoragePaymentWorkflowsAllowedIndex = {
     {1, {1, 1}},
+    {2, {1, 1}},
 };
 static const VersionMap StoragePaymentWorkflowsAllowedType = {
     {1, {1, 1}},
+    {2, {1, 2}},
 };
 static const VersionMap StorageServersAllowedHash = {
     {1, {1, 1}},
