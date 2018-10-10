@@ -46,6 +46,7 @@ void InitDefaultsRPCCommandImpl() {
   protobuf_VerifyClaim_2eproto::InitDefaultsVerifyClaim();
   protobuf_SendMessage_2eproto::InitDefaultsSendMessage();
   protobuf_Verification_2eproto::InitDefaultsVerification();
+  protobuf_AcceptPendingPayment_2eproto::InitDefaultsAcceptPendingPayment();
   {
     void* ptr = &::opentxs::proto::_RPCCommand_default_instance_;
     new (ptr) ::opentxs::proto::RPCCommand();
@@ -118,12 +119,15 @@ void RPCCommand::clear_sendmessage() {
 void RPCCommand::clear_acceptverification() {
   acceptverification_.Clear();
 }
+void RPCCommand::clear_acceptpendingpayment() {
+  acceptpendingpayment_.Clear();
+}
 #if !defined(_MSC_VER) || _MSC_VER >= 1900
 const int RPCCommand::kVersionFieldNumber;
 const int RPCCommand::kCookieFieldNumber;
 const int RPCCommand::kTypeFieldNumber;
 const int RPCCommand::kSessionFieldNumber;
-const int RPCCommand::kNymFieldNumber;
+const int RPCCommand::kAssociatenymFieldNumber;
 const int RPCCommand::kOwnerFieldNumber;
 const int RPCCommand::kNotaryFieldNumber;
 const int RPCCommand::kUnitFieldNumber;
@@ -140,6 +144,7 @@ const int RPCCommand::kAddcontactFieldNumber;
 const int RPCCommand::kVerifyclaimFieldNumber;
 const int RPCCommand::kSendmessageFieldNumber;
 const int RPCCommand::kAcceptverificationFieldNumber;
+const int RPCCommand::kAcceptpendingpaymentFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 RPCCommand::RPCCommand()
@@ -155,6 +160,7 @@ RPCCommand::RPCCommand(const RPCCommand& from)
       _internal_metadata_(NULL),
       _has_bits_(from._has_bits_),
       _cached_size_(0),
+      associatenym_(from.associatenym_),
       identifier_(from.identifier_),
       arg_(from.arg_),
       claim_(from.claim_),
@@ -162,15 +168,12 @@ RPCCommand::RPCCommand(const RPCCommand& from)
       addcontact_(from.addcontact_),
       verifyclaim_(from.verifyclaim_),
       sendmessage_(from.sendmessage_),
-      acceptverification_(from.acceptverification_) {
+      acceptverification_(from.acceptverification_),
+      acceptpendingpayment_(from.acceptpendingpayment_) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   cookie_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   if (from.has_cookie()) {
     cookie_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.cookie_);
-  }
-  nym_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (from.has_nym()) {
-    nym_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.nym_);
   }
   owner_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   if (from.has_owner()) {
@@ -218,7 +221,6 @@ RPCCommand::RPCCommand(const RPCCommand& from)
 void RPCCommand::SharedCtor() {
   _cached_size_ = 0;
   cookie_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  nym_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   owner_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   notary_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   unit_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
@@ -234,7 +236,6 @@ RPCCommand::~RPCCommand() {
 
 void RPCCommand::SharedDtor() {
   cookie_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  nym_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   owner_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   notary_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   unit_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
@@ -269,6 +270,7 @@ void RPCCommand::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
+  associatenym_.Clear();
   identifier_.Clear();
   arg_.Clear();
   claim_.Clear();
@@ -277,6 +279,7 @@ void RPCCommand::Clear() {
   verifyclaim_.Clear();
   sendmessage_.Clear();
   acceptverification_.Clear();
+  acceptpendingpayment_.Clear();
   cached_has_bits = _has_bits_[0];
   if (cached_has_bits & 255u) {
     if (cached_has_bits & 0x00000001u) {
@@ -284,45 +287,39 @@ void RPCCommand::Clear() {
       (*cookie_.UnsafeRawStringPointer())->clear();
     }
     if (cached_has_bits & 0x00000002u) {
-      GOOGLE_DCHECK(!nym_.IsDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited()));
-      (*nym_.UnsafeRawStringPointer())->clear();
-    }
-    if (cached_has_bits & 0x00000004u) {
       GOOGLE_DCHECK(!owner_.IsDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited()));
       (*owner_.UnsafeRawStringPointer())->clear();
     }
-    if (cached_has_bits & 0x00000008u) {
+    if (cached_has_bits & 0x00000004u) {
       GOOGLE_DCHECK(!notary_.IsDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited()));
       (*notary_.UnsafeRawStringPointer())->clear();
     }
-    if (cached_has_bits & 0x00000010u) {
+    if (cached_has_bits & 0x00000008u) {
       GOOGLE_DCHECK(!unit_.IsDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited()));
       (*unit_.UnsafeRawStringPointer())->clear();
     }
-    if (cached_has_bits & 0x00000020u) {
+    if (cached_has_bits & 0x00000010u) {
       GOOGLE_DCHECK(hdseed_ != NULL);
       hdseed_->Clear();
     }
-    if (cached_has_bits & 0x00000040u) {
+    if (cached_has_bits & 0x00000020u) {
       GOOGLE_DCHECK(createnym_ != NULL);
       createnym_->Clear();
     }
-    if (cached_has_bits & 0x00000080u) {
+    if (cached_has_bits & 0x00000040u) {
       GOOGLE_DCHECK(createunit_ != NULL);
       createunit_->Clear();
     }
-  }
-  if (cached_has_bits & 768u) {
-    if (cached_has_bits & 0x00000100u) {
+    if (cached_has_bits & 0x00000080u) {
       GOOGLE_DCHECK(sendpayment_ != NULL);
       sendpayment_->Clear();
     }
-    if (cached_has_bits & 0x00000200u) {
-      GOOGLE_DCHECK(movefunds_ != NULL);
-      movefunds_->Clear();
-    }
   }
-  if (cached_has_bits & 7168u) {
+  if (cached_has_bits & 0x00000100u) {
+    GOOGLE_DCHECK(movefunds_ != NULL);
+    movefunds_->Clear();
+  }
+  if (cached_has_bits & 3584u) {
     ::memset(&version_, 0, static_cast<size_t>(
         reinterpret_cast<char*>(&session_) -
         reinterpret_cast<char*>(&version_)) + sizeof(session_));
@@ -408,12 +405,12 @@ bool RPCCommand::MergePartialFromCodedStream(
         break;
       }
 
-      // optional string nym = 5;
+      // repeated string associatenym = 5;
       case 5: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
             static_cast< ::google::protobuf::uint8>(42u /* 42 & 0xFF */)) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->mutable_nym()));
+                input, this->add_associatenym()));
         } else {
           goto handle_unusual;
         }
@@ -605,6 +602,17 @@ bool RPCCommand::MergePartialFromCodedStream(
         break;
       }
 
+      // repeated .opentxs.proto.AcceptPendingPayment acceptpendingpayment = 22;
+      case 22: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(178u /* 178 & 0xFF */)) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessage(input, add_acceptpendingpayment()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
       default: {
       handle_unusual:
         if (tag == 0) {
@@ -633,7 +641,7 @@ void RPCCommand::SerializeWithCachedSizes(
 
   cached_has_bits = _has_bits_[0];
   // optional uint32 version = 1;
-  if (cached_has_bits & 0x00000400u) {
+  if (cached_has_bits & 0x00000200u) {
     ::google::protobuf::internal::WireFormatLite::WriteUInt32(1, this->version(), output);
   }
 
@@ -644,36 +652,36 @@ void RPCCommand::SerializeWithCachedSizes(
   }
 
   // optional .opentxs.proto.RPCCommandType type = 3;
-  if (cached_has_bits & 0x00000800u) {
+  if (cached_has_bits & 0x00000400u) {
     ::google::protobuf::internal::WireFormatLite::WriteEnum(
       3, this->type(), output);
   }
 
   // optional int32 session = 4;
-  if (cached_has_bits & 0x00001000u) {
+  if (cached_has_bits & 0x00000800u) {
     ::google::protobuf::internal::WireFormatLite::WriteInt32(4, this->session(), output);
   }
 
-  // optional string nym = 5;
-  if (cached_has_bits & 0x00000002u) {
-    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      5, this->nym(), output);
+  // repeated string associatenym = 5;
+  for (int i = 0, n = this->associatenym_size(); i < n; i++) {
+    ::google::protobuf::internal::WireFormatLite::WriteString(
+      5, this->associatenym(i), output);
   }
 
   // optional string owner = 6;
-  if (cached_has_bits & 0x00000004u) {
+  if (cached_has_bits & 0x00000002u) {
     ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
       6, this->owner(), output);
   }
 
   // optional string notary = 7;
-  if (cached_has_bits & 0x00000008u) {
+  if (cached_has_bits & 0x00000004u) {
     ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
       7, this->notary(), output);
   }
 
   // optional string unit = 8;
-  if (cached_has_bits & 0x00000010u) {
+  if (cached_has_bits & 0x00000008u) {
     ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
       8, this->unit(), output);
   }
@@ -692,13 +700,13 @@ void RPCCommand::SerializeWithCachedSizes(
   }
 
   // optional .opentxs.proto.HDSeed hdseed = 11;
-  if (cached_has_bits & 0x00000020u) {
+  if (cached_has_bits & 0x00000010u) {
     ::google::protobuf::internal::WireFormatLite::WriteMessage(
       11, *this->hdseed_, output);
   }
 
   // optional .opentxs.proto.CreateNym createnym = 12;
-  if (cached_has_bits & 0x00000040u) {
+  if (cached_has_bits & 0x00000020u) {
     ::google::protobuf::internal::WireFormatLite::WriteMessage(
       12, *this->createnym_, output);
   }
@@ -718,19 +726,19 @@ void RPCCommand::SerializeWithCachedSizes(
   }
 
   // optional .opentxs.proto.CreateInstrumentDefinition createunit = 15;
-  if (cached_has_bits & 0x00000080u) {
+  if (cached_has_bits & 0x00000040u) {
     ::google::protobuf::internal::WireFormatLite::WriteMessage(
       15, *this->createunit_, output);
   }
 
   // optional .opentxs.proto.SendPayment sendpayment = 16;
-  if (cached_has_bits & 0x00000100u) {
+  if (cached_has_bits & 0x00000080u) {
     ::google::protobuf::internal::WireFormatLite::WriteMessage(
       16, *this->sendpayment_, output);
   }
 
   // optional .opentxs.proto.MoveFunds movefunds = 17;
-  if (cached_has_bits & 0x00000200u) {
+  if (cached_has_bits & 0x00000100u) {
     ::google::protobuf::internal::WireFormatLite::WriteMessage(
       17, *this->movefunds_, output);
   }
@@ -763,6 +771,13 @@ void RPCCommand::SerializeWithCachedSizes(
       21, this->acceptverification(static_cast<int>(i)), output);
   }
 
+  // repeated .opentxs.proto.AcceptPendingPayment acceptpendingpayment = 22;
+  for (unsigned int i = 0,
+      n = static_cast<unsigned int>(this->acceptpendingpayment_size()); i < n; i++) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessage(
+      22, this->acceptpendingpayment(static_cast<int>(i)), output);
+  }
+
   output->WriteRaw(_internal_metadata_.unknown_fields().data(),
                    static_cast<int>(_internal_metadata_.unknown_fields().size()));
   // @@protoc_insertion_point(serialize_end:opentxs.proto.RPCCommand)
@@ -773,6 +788,14 @@ size_t RPCCommand::ByteSizeLong() const {
   size_t total_size = 0;
 
   total_size += _internal_metadata_.unknown_fields().size();
+
+  // repeated string associatenym = 5;
+  total_size += 1 *
+      ::google::protobuf::internal::FromIntSize(this->associatenym_size());
+  for (int i = 0, n = this->associatenym_size(); i < n; i++) {
+    total_size += ::google::protobuf::internal::WireFormatLite::StringSize(
+      this->associatenym(i));
+  }
 
   // repeated string identifier = 9;
   total_size += 1 *
@@ -859,19 +882,23 @@ size_t RPCCommand::ByteSizeLong() const {
     }
   }
 
+  // repeated .opentxs.proto.AcceptPendingPayment acceptpendingpayment = 22;
+  {
+    unsigned int count = static_cast<unsigned int>(this->acceptpendingpayment_size());
+    total_size += 2UL * count;
+    for (unsigned int i = 0; i < count; i++) {
+      total_size +=
+        ::google::protobuf::internal::WireFormatLite::MessageSize(
+          this->acceptpendingpayment(static_cast<int>(i)));
+    }
+  }
+
   if (_has_bits_[0 / 32] & 255u) {
     // optional string cookie = 2;
     if (has_cookie()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::StringSize(
           this->cookie());
-    }
-
-    // optional string nym = 5;
-    if (has_nym()) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::StringSize(
-          this->nym());
     }
 
     // optional string owner = 6;
@@ -916,8 +943,6 @@ size_t RPCCommand::ByteSizeLong() const {
           *this->createunit_);
     }
 
-  }
-  if (_has_bits_[8 / 32] & 7936u) {
     // optional .opentxs.proto.SendPayment sendpayment = 16;
     if (has_sendpayment()) {
       total_size += 2 +
@@ -925,6 +950,8 @@ size_t RPCCommand::ByteSizeLong() const {
           *this->sendpayment_);
     }
 
+  }
+  if (_has_bits_[8 / 32] & 3840u) {
     // optional .opentxs.proto.MoveFunds movefunds = 17;
     if (has_movefunds()) {
       total_size += 2 +
@@ -972,6 +999,7 @@ void RPCCommand::MergeFrom(const RPCCommand& from) {
   ::google::protobuf::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
+  associatenym_.MergeFrom(from.associatenym_);
   identifier_.MergeFrom(from.identifier_);
   arg_.MergeFrom(from.arg_);
   claim_.MergeFrom(from.claim_);
@@ -980,6 +1008,7 @@ void RPCCommand::MergeFrom(const RPCCommand& from) {
   verifyclaim_.MergeFrom(from.verifyclaim_);
   sendmessage_.MergeFrom(from.sendmessage_);
   acceptverification_.MergeFrom(from.acceptverification_);
+  acceptpendingpayment_.MergeFrom(from.acceptpendingpayment_);
   cached_has_bits = from._has_bits_[0];
   if (cached_has_bits & 255u) {
     if (cached_has_bits & 0x00000001u) {
@@ -987,45 +1016,41 @@ void RPCCommand::MergeFrom(const RPCCommand& from) {
       cookie_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.cookie_);
     }
     if (cached_has_bits & 0x00000002u) {
-      set_has_nym();
-      nym_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.nym_);
-    }
-    if (cached_has_bits & 0x00000004u) {
       set_has_owner();
       owner_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.owner_);
     }
-    if (cached_has_bits & 0x00000008u) {
+    if (cached_has_bits & 0x00000004u) {
       set_has_notary();
       notary_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.notary_);
     }
-    if (cached_has_bits & 0x00000010u) {
+    if (cached_has_bits & 0x00000008u) {
       set_has_unit();
       unit_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.unit_);
     }
-    if (cached_has_bits & 0x00000020u) {
+    if (cached_has_bits & 0x00000010u) {
       mutable_hdseed()->::opentxs::proto::HDSeed::MergeFrom(from.hdseed());
     }
-    if (cached_has_bits & 0x00000040u) {
+    if (cached_has_bits & 0x00000020u) {
       mutable_createnym()->::opentxs::proto::CreateNym::MergeFrom(from.createnym());
     }
-    if (cached_has_bits & 0x00000080u) {
+    if (cached_has_bits & 0x00000040u) {
       mutable_createunit()->::opentxs::proto::CreateInstrumentDefinition::MergeFrom(from.createunit());
     }
-  }
-  if (cached_has_bits & 7936u) {
-    if (cached_has_bits & 0x00000100u) {
+    if (cached_has_bits & 0x00000080u) {
       mutable_sendpayment()->::opentxs::proto::SendPayment::MergeFrom(from.sendpayment());
     }
-    if (cached_has_bits & 0x00000200u) {
+  }
+  if (cached_has_bits & 3840u) {
+    if (cached_has_bits & 0x00000100u) {
       mutable_movefunds()->::opentxs::proto::MoveFunds::MergeFrom(from.movefunds());
     }
-    if (cached_has_bits & 0x00000400u) {
+    if (cached_has_bits & 0x00000200u) {
       version_ = from.version_;
     }
-    if (cached_has_bits & 0x00000800u) {
+    if (cached_has_bits & 0x00000400u) {
       type_ = from.type_;
     }
-    if (cached_has_bits & 0x00001000u) {
+    if (cached_has_bits & 0x00000800u) {
       session_ = from.session_;
     }
     _has_bits_[0] |= cached_has_bits;
@@ -1049,6 +1074,7 @@ void RPCCommand::Swap(RPCCommand* other) {
 }
 void RPCCommand::InternalSwap(RPCCommand* other) {
   using std::swap;
+  associatenym_.InternalSwap(&other->associatenym_);
   identifier_.InternalSwap(&other->identifier_);
   arg_.InternalSwap(&other->arg_);
   claim_.InternalSwap(&other->claim_);
@@ -1057,8 +1083,8 @@ void RPCCommand::InternalSwap(RPCCommand* other) {
   verifyclaim_.InternalSwap(&other->verifyclaim_);
   sendmessage_.InternalSwap(&other->sendmessage_);
   acceptverification_.InternalSwap(&other->acceptverification_);
+  acceptpendingpayment_.InternalSwap(&other->acceptpendingpayment_);
   cookie_.Swap(&other->cookie_);
-  nym_.Swap(&other->nym_);
   owner_.Swap(&other->owner_);
   notary_.Swap(&other->notary_);
   unit_.Swap(&other->unit_);

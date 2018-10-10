@@ -55,11 +55,14 @@ enum PaymentWorkflowType {
   PAYMENTWORKFLOWTYPE_OUTGOINGCHEQUE = 1,
   PAYMENTWORKFLOWTYPE_INCOMINGCHEQUE = 2,
   PAYMENTWORKFLOWTYPE_OUTGOINGINVOICE = 3,
-  PAYMENTWORKFLOWTYPE_INCOMINGINVOICE = 4
+  PAYMENTWORKFLOWTYPE_INCOMINGINVOICE = 4,
+  PAYMENTWORKFLOWTYPE_OUTGOINGTRANSFER = 5,
+  PAYMENTWORKFLOWTYPE_INCOMINGTRANSFER = 6,
+  PAYMENTWORKFLOWTYPE_INTERNALTRANSFER = 7
 };
 bool PaymentWorkflowType_IsValid(int value);
 const PaymentWorkflowType PaymentWorkflowType_MIN = PAYMENTWORKFLOWTYPE_ERROR;
-const PaymentWorkflowType PaymentWorkflowType_MAX = PAYMENTWORKFLOWTYPE_INCOMINGINVOICE;
+const PaymentWorkflowType PaymentWorkflowType_MAX = PAYMENTWORKFLOWTYPE_INTERNALTRANSFER;
 const int PaymentWorkflowType_ARRAYSIZE = PaymentWorkflowType_MAX + 1;
 
 enum PaymentWorkflowState {
@@ -69,11 +72,14 @@ enum PaymentWorkflowState {
   PAYMENTWORKFLOWSTATE_CANCELLED = 3,
   PAYMENTWORKFLOWSTATE_ACCEPTED = 4,
   PAYMENTWORKFLOWSTATE_COMPLETED = 5,
-  PAYMENTWORKFLOWSTATE_EXPIRED = 6
+  PAYMENTWORKFLOWSTATE_EXPIRED = 6,
+  PAYMENTWORKFLOWSTATE_INITIATED = 7,
+  PAYMENTWORKFLOWSTATE_ABORTED = 8,
+  PAYMENTWORKFLOWSTATE_ACKNOWLEDGED = 9
 };
 bool PaymentWorkflowState_IsValid(int value);
 const PaymentWorkflowState PaymentWorkflowState_MIN = PAYMENTWORKFLOWSTATE_ERROR;
-const PaymentWorkflowState PaymentWorkflowState_MAX = PAYMENTWORKFLOWSTATE_EXPIRED;
+const PaymentWorkflowState PaymentWorkflowState_MAX = PAYMENTWORKFLOWSTATE_ACKNOWLEDGED;
 const int PaymentWorkflowState_ARRAYSIZE = PaymentWorkflowState_MAX + 1;
 
 enum EventTransportMethod {
@@ -93,11 +99,13 @@ enum PaymentEventType {
   PAYMENTEVENTTYPE_CONVEY = 2,
   PAYMENTEVENTTYPE_CANCEL = 3,
   PAYMENTEVENTTYPE_ACCEPT = 4,
-  PAYMENTEVENTTYPE_COMPLETE = 5
+  PAYMENTEVENTTYPE_COMPLETE = 5,
+  PAYMENTEVENTTYPE_ABORT = 6,
+  PAYMENTEVENTTYPE_ACKNOWLEDGE = 7
 };
 bool PaymentEventType_IsValid(int value);
 const PaymentEventType PaymentEventType_MIN = PAYMENTEVENTTYPE_ERROR;
-const PaymentEventType PaymentEventType_MAX = PAYMENTEVENTTYPE_COMPLETE;
+const PaymentEventType PaymentEventType_MAX = PAYMENTEVENTTYPE_ACKNOWLEDGE;
 const int PaymentEventType_ARRAYSIZE = PaymentEventType_MAX + 1;
 
 // ===================================================================

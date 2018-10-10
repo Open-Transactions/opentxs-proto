@@ -34,6 +34,7 @@ void InitDefaultsRPCResponseImpl() {
 #else
   ::google::protobuf::internal::InitProtobufDefaults();
 #endif  // GOOGLE_PROTOBUF_ENFORCE_UNIQUENESS
+  protobuf_RPCStatus_2eproto::InitDefaultsRPCStatus();
   protobuf_SessionData_2eproto::InitDefaultsSessionData();
   protobuf_HDSeed_2eproto::InitDefaultsHDSeed();
   protobuf_CredentialIndex_2eproto::InitDefaultsCredentialIndex();
@@ -41,6 +42,7 @@ void InitDefaultsRPCResponseImpl() {
   protobuf_Contact_2eproto::InitDefaultsContact();
   protobuf_AccountEvent_2eproto::InitDefaultsAccountEvent();
   protobuf_ContactEvent_2eproto::InitDefaultsContactEvent();
+  protobuf_RPCTask_2eproto::InitDefaultsRPCTask();
   protobuf_ServerContract_2eproto::InitDefaultsServerContract();
   {
     void* ptr = &::opentxs::proto::_RPCResponse_default_instance_;
@@ -63,6 +65,9 @@ namespace proto {
 
 void RPCResponse::InitAsDefaultInstance() {
 }
+void RPCResponse::clear_status() {
+  status_.Clear();
+}
 void RPCResponse::clear_sessions() {
   sessions_.Clear();
 }
@@ -84,6 +89,9 @@ void RPCResponse::clear_accountevent() {
 void RPCResponse::clear_contactevent() {
   contactevent_.Clear();
 }
+void RPCResponse::clear_task() {
+  task_.Clear();
+}
 void RPCResponse::clear_notary() {
   notary_.Clear();
 }
@@ -91,7 +99,7 @@ void RPCResponse::clear_notary() {
 const int RPCResponse::kVersionFieldNumber;
 const int RPCResponse::kCookieFieldNumber;
 const int RPCResponse::kTypeFieldNumber;
-const int RPCResponse::kSuccessFieldNumber;
+const int RPCResponse::kStatusFieldNumber;
 const int RPCResponse::kSessionFieldNumber;
 const int RPCResponse::kSessionsFieldNumber;
 const int RPCResponse::kIdentifierFieldNumber;
@@ -118,6 +126,7 @@ RPCResponse::RPCResponse(const RPCResponse& from)
       _internal_metadata_(NULL),
       _has_bits_(from._has_bits_),
       _cached_size_(0),
+      status_(from.status_),
       sessions_(from.sessions_),
       identifier_(from.identifier_),
       seed_(from.seed_),
@@ -126,15 +135,12 @@ RPCResponse::RPCResponse(const RPCResponse& from)
       contact_(from.contact_),
       accountevent_(from.accountevent_),
       contactevent_(from.contactevent_),
+      task_(from.task_),
       notary_(from.notary_) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   cookie_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   if (from.has_cookie()) {
     cookie_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.cookie_);
-  }
-  task_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (from.has_task()) {
-    task_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.task_);
   }
   ::memcpy(&version_, &from.version_,
     static_cast<size_t>(reinterpret_cast<char*>(&session_) -
@@ -145,7 +151,6 @@ RPCResponse::RPCResponse(const RPCResponse& from)
 void RPCResponse::SharedCtor() {
   _cached_size_ = 0;
   cookie_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  task_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   ::memset(&version_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&session_) -
       reinterpret_cast<char*>(&version_)) + sizeof(session_));
@@ -158,7 +163,6 @@ RPCResponse::~RPCResponse() {
 
 void RPCResponse::SharedDtor() {
   cookie_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  task_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 
 void RPCResponse::SetCachedSize(int size) const {
@@ -185,6 +189,7 @@ void RPCResponse::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
+  status_.Clear();
   sessions_.Clear();
   identifier_.Clear();
   seed_.Clear();
@@ -193,19 +198,14 @@ void RPCResponse::Clear() {
   contact_.Clear();
   accountevent_.Clear();
   contactevent_.Clear();
+  task_.Clear();
   notary_.Clear();
   cached_has_bits = _has_bits_[0];
-  if (cached_has_bits & 3u) {
-    if (cached_has_bits & 0x00000001u) {
-      GOOGLE_DCHECK(!cookie_.IsDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited()));
-      (*cookie_.UnsafeRawStringPointer())->clear();
-    }
-    if (cached_has_bits & 0x00000002u) {
-      GOOGLE_DCHECK(!task_.IsDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited()));
-      (*task_.UnsafeRawStringPointer())->clear();
-    }
+  if (cached_has_bits & 0x00000001u) {
+    GOOGLE_DCHECK(!cookie_.IsDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited()));
+    (*cookie_.UnsafeRawStringPointer())->clear();
   }
-  if (cached_has_bits & 60u) {
+  if (cached_has_bits & 14u) {
     ::memset(&version_, 0, static_cast<size_t>(
         reinterpret_cast<char*>(&session_) -
         reinterpret_cast<char*>(&version_)) + sizeof(session_));
@@ -277,21 +277,11 @@ bool RPCResponse::MergePartialFromCodedStream(
         break;
       }
 
-      // optional .opentxs.proto.RPCResponseCode success = 4;
+      // repeated .opentxs.proto.RPCStatus status = 4;
       case 4: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(32u /* 32 & 0xFF */)) {
-          int value;
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   int, ::google::protobuf::internal::WireFormatLite::TYPE_ENUM>(
-                 input, &value)));
-          if (::opentxs::proto::RPCResponseCode_IsValid(value)) {
-            set_success(static_cast< ::opentxs::proto::RPCResponseCode >(value));
-          } else {
-            unknown_fields_stream.WriteVarint32(32u);
-            unknown_fields_stream.WriteVarint32(
-                static_cast< ::google::protobuf::uint32>(value));
-          }
+            static_cast< ::google::protobuf::uint8>(34u /* 34 & 0xFF */)) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessage(input, add_status()));
         } else {
           goto handle_unusual;
         }
@@ -401,12 +391,11 @@ bool RPCResponse::MergePartialFromCodedStream(
         break;
       }
 
-      // optional string task = 14;
+      // repeated .opentxs.proto.RPCTask task = 14;
       case 14: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
             static_cast< ::google::protobuf::uint8>(114u /* 114 & 0xFF */)) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->mutable_task()));
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessage(input, add_task()));
         } else {
           goto handle_unusual;
         }
@@ -452,7 +441,7 @@ void RPCResponse::SerializeWithCachedSizes(
 
   cached_has_bits = _has_bits_[0];
   // optional uint32 version = 1;
-  if (cached_has_bits & 0x00000004u) {
+  if (cached_has_bits & 0x00000002u) {
     ::google::protobuf::internal::WireFormatLite::WriteUInt32(1, this->version(), output);
   }
 
@@ -463,19 +452,20 @@ void RPCResponse::SerializeWithCachedSizes(
   }
 
   // optional .opentxs.proto.RPCCommandType type = 3;
-  if (cached_has_bits & 0x00000008u) {
+  if (cached_has_bits & 0x00000004u) {
     ::google::protobuf::internal::WireFormatLite::WriteEnum(
       3, this->type(), output);
   }
 
-  // optional .opentxs.proto.RPCResponseCode success = 4;
-  if (cached_has_bits & 0x00000010u) {
-    ::google::protobuf::internal::WireFormatLite::WriteEnum(
-      4, this->success(), output);
+  // repeated .opentxs.proto.RPCStatus status = 4;
+  for (unsigned int i = 0,
+      n = static_cast<unsigned int>(this->status_size()); i < n; i++) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessage(
+      4, this->status(static_cast<int>(i)), output);
   }
 
   // optional uint32 session = 5;
-  if (cached_has_bits & 0x00000020u) {
+  if (cached_has_bits & 0x00000008u) {
     ::google::protobuf::internal::WireFormatLite::WriteUInt32(5, this->session(), output);
   }
 
@@ -534,10 +524,11 @@ void RPCResponse::SerializeWithCachedSizes(
       13, this->contactevent(static_cast<int>(i)), output);
   }
 
-  // optional string task = 14;
-  if (cached_has_bits & 0x00000002u) {
-    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      14, this->task(), output);
+  // repeated .opentxs.proto.RPCTask task = 14;
+  for (unsigned int i = 0,
+      n = static_cast<unsigned int>(this->task_size()); i < n; i++) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessage(
+      14, this->task(static_cast<int>(i)), output);
   }
 
   // repeated .opentxs.proto.ServerContract notary = 15;
@@ -557,6 +548,17 @@ size_t RPCResponse::ByteSizeLong() const {
   size_t total_size = 0;
 
   total_size += _internal_metadata_.unknown_fields().size();
+
+  // repeated .opentxs.proto.RPCStatus status = 4;
+  {
+    unsigned int count = static_cast<unsigned int>(this->status_size());
+    total_size += 1UL * count;
+    for (unsigned int i = 0; i < count; i++) {
+      total_size +=
+        ::google::protobuf::internal::WireFormatLite::MessageSize(
+          this->status(static_cast<int>(i)));
+    }
+  }
 
   // repeated .opentxs.proto.SessionData sessions = 6;
   {
@@ -643,6 +645,17 @@ size_t RPCResponse::ByteSizeLong() const {
     }
   }
 
+  // repeated .opentxs.proto.RPCTask task = 14;
+  {
+    unsigned int count = static_cast<unsigned int>(this->task_size());
+    total_size += 1UL * count;
+    for (unsigned int i = 0; i < count; i++) {
+      total_size +=
+        ::google::protobuf::internal::WireFormatLite::MessageSize(
+          this->task(static_cast<int>(i)));
+    }
+  }
+
   // repeated .opentxs.proto.ServerContract notary = 15;
   {
     unsigned int count = static_cast<unsigned int>(this->notary_size());
@@ -654,19 +667,12 @@ size_t RPCResponse::ByteSizeLong() const {
     }
   }
 
-  if (_has_bits_[0 / 32] & 63u) {
+  if (_has_bits_[0 / 32] & 15u) {
     // optional string cookie = 2;
     if (has_cookie()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::StringSize(
           this->cookie());
-    }
-
-    // optional string task = 14;
-    if (has_task()) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::StringSize(
-          this->task());
     }
 
     // optional uint32 version = 1;
@@ -680,12 +686,6 @@ size_t RPCResponse::ByteSizeLong() const {
     if (has_type()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::EnumSize(this->type());
-    }
-
-    // optional .opentxs.proto.RPCResponseCode success = 4;
-    if (has_success()) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::EnumSize(this->success());
     }
 
     // optional uint32 session = 5;
@@ -715,6 +715,7 @@ void RPCResponse::MergeFrom(const RPCResponse& from) {
   ::google::protobuf::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
+  status_.MergeFrom(from.status_);
   sessions_.MergeFrom(from.sessions_);
   identifier_.MergeFrom(from.identifier_);
   seed_.MergeFrom(from.seed_);
@@ -723,27 +724,21 @@ void RPCResponse::MergeFrom(const RPCResponse& from) {
   contact_.MergeFrom(from.contact_);
   accountevent_.MergeFrom(from.accountevent_);
   contactevent_.MergeFrom(from.contactevent_);
+  task_.MergeFrom(from.task_);
   notary_.MergeFrom(from.notary_);
   cached_has_bits = from._has_bits_[0];
-  if (cached_has_bits & 63u) {
+  if (cached_has_bits & 15u) {
     if (cached_has_bits & 0x00000001u) {
       set_has_cookie();
       cookie_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.cookie_);
     }
     if (cached_has_bits & 0x00000002u) {
-      set_has_task();
-      task_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.task_);
-    }
-    if (cached_has_bits & 0x00000004u) {
       version_ = from.version_;
     }
-    if (cached_has_bits & 0x00000008u) {
+    if (cached_has_bits & 0x00000004u) {
       type_ = from.type_;
     }
-    if (cached_has_bits & 0x00000010u) {
-      success_ = from.success_;
-    }
-    if (cached_has_bits & 0x00000020u) {
+    if (cached_has_bits & 0x00000008u) {
       session_ = from.session_;
     }
     _has_bits_[0] |= cached_has_bits;
@@ -767,6 +762,7 @@ void RPCResponse::Swap(RPCResponse* other) {
 }
 void RPCResponse::InternalSwap(RPCResponse* other) {
   using std::swap;
+  status_.InternalSwap(&other->status_);
   sessions_.InternalSwap(&other->sessions_);
   identifier_.InternalSwap(&other->identifier_);
   seed_.InternalSwap(&other->seed_);
@@ -775,12 +771,11 @@ void RPCResponse::InternalSwap(RPCResponse* other) {
   contact_.InternalSwap(&other->contact_);
   accountevent_.InternalSwap(&other->accountevent_);
   contactevent_.InternalSwap(&other->contactevent_);
+  task_.InternalSwap(&other->task_);
   notary_.InternalSwap(&other->notary_);
   cookie_.Swap(&other->cookie_);
-  task_.Swap(&other->task_);
   swap(version_, other->version_);
   swap(type_, other->type_);
-  swap(success_, other->success_);
   swap(session_, other->session_);
   swap(_has_bits_[0], other->_has_bits_[0]);
   _internal_metadata_.Swap(&other->_internal_metadata_);
