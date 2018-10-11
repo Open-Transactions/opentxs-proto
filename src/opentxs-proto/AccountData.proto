@@ -12,11 +12,11 @@ option optimize_for = LITE_RUNTIME;
 
 message AccountData {
     optional uint32 version = 1;
-    optional string id = 2;
-    optional string label = 3;
-    optional string unit = 4;
-    optional string owner = 5;
-    optional string issuer = 6;
-    optional int64 balance = 7;
-    optional int64 pendingbalance = 8;
+    optional string id = 2;				// account id
+    optional string label = 3;			// account name
+    optional string unit = 4;			// unit definition id
+    optional string owner = 5;			// account owner nym id
+    optional string issuer = 6;			// issuer nym id
+    optional int64 balance = 7;			// current balance
+    optional int64 pendingbalance = 8;	// balance after pending transactions are processed
 }

@@ -12,6 +12,6 @@ option optimize_for = LITE_RUNTIME;
 
 message APIArgument {
     optional uint32 version = 1;
-    optional string key = 2;
+    optional string key = 2;		// defined in opentxs/OT.hpp
     repeated string value = 3;
 }

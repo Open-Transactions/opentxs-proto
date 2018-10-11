@@ -12,7 +12,7 @@ option optimize_for = LITE_RUNTIME;
 
 message HDSeed {
     optional uint32 version = 1;
-    optional string id = 2;
+    optional string id = 2;			// seed id
     optional string words = 3;
     optional string passphrase = 4;
 }
