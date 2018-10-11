@@ -12,5 +12,5 @@ option optimize_for = LITE_RUNTIME;
 
 message SessionData {
     optional uint32 version = 1;
-    optional uint32 instance = 2;
+    optional uint32 instance = 2;	// client or server session instance
 }

@@ -60,6 +60,10 @@ bool RPCCommandType_IsValid(int value) {
     case 32:
     case 33:
     case 34:
+    case 35:
+    case 36:
+    case 37:
+    case 38:
       return true;
     default:
       return false;
@@ -75,6 +79,7 @@ bool RPCResponseCode_IsValid(int value) {
     case 4:
     case 5:
     case 6:
+    case 7:
     case 255:
       return true;
     default:
@@ -115,6 +120,10 @@ bool AccountEventType_IsValid(int value) {
     case 2:
     case 3:
     case 4:
+    case 5:
+    case 6:
+    case 7:
+    case 8:
       return true;
     default:
       return false;

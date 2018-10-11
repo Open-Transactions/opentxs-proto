@@ -14,10 +14,10 @@ import public "RPCEnums.proto";
 
 message AccountEvent {
     optional uint32 version = 1;
-    optional string id = 2;
-    optional AccountEventType type = 3;
-    optional string contact = 4;
-    optional string workflow = 5;
+    optional string id = 2;				// account id
+    optional AccountEventType type = 3;	// see RPCEnums.proto
+    optional string contact = 4;		// contact id
+    optional string workflow = 5;		// workflow id
     optional int64 amount = 6;
     optional int64 pendingamount = 7;
     optional int64 timestamp = 8;

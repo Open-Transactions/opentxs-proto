@@ -16,7 +16,7 @@ import public "PaymentCode.proto";
 
 message NymIDSource {
     optional uint32 version = 1;
-    optional SourceType type = 2;
+    optional SourceType type = 2;		// see Enums.proto
     oneof source {
         AsymmetricKey key = 3;
         PaymentCode paymentcode = 4;
