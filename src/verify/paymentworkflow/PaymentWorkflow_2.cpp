@@ -483,7 +483,7 @@ bool CheckProto_2(const PaymentWorkflow& input, const bool silent)
 
                     if (0 < conveyEvents) {
                         BAD_EVENTS(
-                            "Wrong number of create events ", conveyEvents)
+                            "Wrong number of convey events ", conveyEvents)
                     }
 
                     if (0 < cancelEvents) {
@@ -519,7 +519,7 @@ bool CheckProto_2(const PaymentWorkflow& input, const bool silent)
 
                     if (0 < conveyEvents) {
                         BAD_EVENTS(
-                            "Wrong number of create events ", conveyEvents)
+                            "Wrong number of convey events ", conveyEvents)
                     }
 
                     if (0 < cancelEvents) {
@@ -555,7 +555,7 @@ bool CheckProto_2(const PaymentWorkflow& input, const bool silent)
 
                     if (0 < conveyEvents) {
                         BAD_EVENTS(
-                            "Wrong number of create events ", conveyEvents)
+                            "Wrong number of convey events ", conveyEvents)
                     }
 
                     if (0 < cancelEvents) {
@@ -591,7 +591,7 @@ bool CheckProto_2(const PaymentWorkflow& input, const bool silent)
 
                     if (0 < conveyEvents) {
                         BAD_EVENTS(
-                            "Wrong number of create events ", conveyEvents)
+                            "Wrong number of convey events ", conveyEvents)
                     }
 
                     if (0 < cancelEvents) {
@@ -627,7 +627,7 @@ bool CheckProto_2(const PaymentWorkflow& input, const bool silent)
 
                     if (0 < conveyEvents) {
                         BAD_EVENTS(
-                            "Wrong number of create events ", conveyEvents)
+                            "Wrong number of convey events ", conveyEvents)
                     }
 
                     if (0 < cancelEvents) {
@@ -679,7 +679,7 @@ bool CheckProto_2(const PaymentWorkflow& input, const bool silent)
 
                     if (1 != conveyEvents) {
                         BAD_EVENTS(
-                            "Wrong number of create events ", conveyEvents)
+                            "Wrong number of convey events ", conveyEvents)
                     }
 
                     if (0 < cancelEvents) {
@@ -715,7 +715,7 @@ bool CheckProto_2(const PaymentWorkflow& input, const bool silent)
 
                     if (1 != conveyEvents) {
                         BAD_EVENTS(
-                            "Wrong number of create events ", conveyEvents)
+                            "Wrong number of convey events ", conveyEvents)
                     }
 
                     if (0 < cancelEvents) {
@@ -770,7 +770,7 @@ bool CheckProto_2(const PaymentWorkflow& input, const bool silent)
 
                     if (0 < conveyEvents) {
                         BAD_EVENTS(
-                            "Wrong number of create events ", conveyEvents)
+                            "Wrong number of convey events ", conveyEvents)
                     }
 
                     if (0 < cancelEvents) {
@@ -808,7 +808,7 @@ bool CheckProto_2(const PaymentWorkflow& input, const bool silent)
                     // convey events is not defined.
                     if (1 < conveyEvents) {
                         BAD_EVENTS(
-                            "Wrong number of create events ", conveyEvents)
+                            "Wrong number of convey events ", conveyEvents)
                     }
 
                     if (0 < cancelEvents) {
@@ -844,7 +844,7 @@ bool CheckProto_2(const PaymentWorkflow& input, const bool silent)
 
                     if (0 < conveyEvents) {
                         BAD_EVENTS(
-                            "Wrong number of create events ", conveyEvents)
+                            "Wrong number of convey events ", conveyEvents)
                     }
 
                     if (0 < cancelEvents) {
@@ -880,7 +880,7 @@ bool CheckProto_2(const PaymentWorkflow& input, const bool silent)
 
                     if (1 != conveyEvents) {
                         BAD_EVENTS(
-                            "Wrong number of create events ", conveyEvents)
+                            "Wrong number of convey events ", conveyEvents)
                     }
 
                     if (0 < cancelEvents) {
@@ -918,7 +918,7 @@ bool CheckProto_2(const PaymentWorkflow& input, const bool silent)
 
                     if (1 != conveyEvents) {
                         BAD_EVENTS(
-                            "Wrong number of create events ", conveyEvents)
+                            "Wrong number of convey events ", conveyEvents)
                     }
 
                     if (0 < cancelEvents) {
@@ -954,7 +954,7 @@ bool CheckProto_2(const PaymentWorkflow& input, const bool silent)
 
                     if (1 != conveyEvents) {
                         BAD_EVENTS(
-                            "Wrong number of create events ", conveyEvents)
+                            "Wrong number of convey events ", conveyEvents)
                     }
 
                     if (0 < cancelEvents) {
