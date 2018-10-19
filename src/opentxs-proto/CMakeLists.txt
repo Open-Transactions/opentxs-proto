@@ -50,6 +50,7 @@ set(PROTO_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/Envelope.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/EquityParams.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/Faucet.proto
+    ${CMAKE_CURRENT_SOURCE_DIR}/GetWorkflow.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/HDPath.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/HDSeed.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/InstrumentRevision.proto

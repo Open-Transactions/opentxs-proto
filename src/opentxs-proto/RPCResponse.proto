@@ -18,6 +18,7 @@ import public "ContactEvent.proto";
 import public "CreateNym.proto";
 import public "CredentialIndex.proto";
 import public "HDSeed.proto";
+import public "PaymentWorkflow.proto";
 import public "RPCEnums.proto";
 import public "RPCStatus.proto";
 import public "RPCTask.proto";
@@ -40,4 +41,5 @@ message RPCResponse {
     repeated ContactEvent contactevent = 13;
     repeated RPCTask task = 14;
     repeated ServerContract notary = 15;
+    repeated PaymentWorkflow workflow = 16;
 }

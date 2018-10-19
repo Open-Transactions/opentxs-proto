@@ -70,6 +70,7 @@
 #include <opentxs-proto/Envelope.pb.h>
 #include <opentxs-proto/EquityParams.pb.h>
 #include <opentxs-proto/Faucet.pb.h>
+#include <opentxs-proto/GetWorkflow.pb.h>
 #include <opentxs-proto/HDPath.pb.h>
 #include <opentxs-proto/HDSeed.pb.h>
 #include <opentxs-proto/InstrumentRevision.pb.h>
@@ -192,6 +193,7 @@
 #include <opentxs-proto/verify/Faucet.hpp>
 #include <opentxs-proto/verify/Envelope.hpp>
 #include <opentxs-proto/verify/EquityParams.hpp>
+#include <opentxs-proto/verify/GetWorkflow.hpp>
 #include <opentxs-proto/verify/HDPath.hpp>
 #include <opentxs-proto/verify/HDSeed.hpp>
 #include <opentxs-proto/verify/InstrumentRevision.hpp>

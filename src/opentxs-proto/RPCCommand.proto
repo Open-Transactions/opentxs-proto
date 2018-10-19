@@ -16,6 +16,7 @@ import public "AddContact.proto";
 import public "APIArgument.proto";
 import public "CreateInstrumentDefinition.proto";
 import public "CreateNym.proto";
+import public "GetWorkflow.proto";
 import public "HDSeed.proto";
 import public "MoveFunds.proto";
 import public "RPCEnums.proto";
@@ -48,4 +49,5 @@ message RPCCommand {
     repeated SendMessage sendmessage = 20;
     repeated Verification acceptverification = 21;
     repeated AcceptPendingPayment acceptpendingpayment = 22;
+    repeated GetWorkflow getworkflow = 23;
 }

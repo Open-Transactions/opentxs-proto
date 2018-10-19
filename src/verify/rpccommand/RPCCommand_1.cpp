@@ -37,6 +37,7 @@ bool CheckProto_1(const RPCCommand& input, const bool silent)
             CHECK_NONE(sendmessage);
             CHECK_NONE(acceptverification);
             CHECK_NONE(acceptpendingpayment);
+            CHECK_NONE(getworkflow);
         } break;
         case RPCCOMMAND_ADDSERVERSESSION: {
             if (-1 != input.session()) { FAIL_1("invalid session"); }
@@ -59,6 +60,7 @@ bool CheckProto_1(const RPCCommand& input, const bool silent)
             CHECK_NONE(sendmessage);
             CHECK_NONE(acceptverification);
             CHECK_NONE(acceptpendingpayment);
+            CHECK_NONE(getworkflow);
         } break;
         case RPCCOMMAND_LISTCLIENTSESSIONS: {
             if (-1 != input.session()) { FAIL_1("invalid session"); }
@@ -81,6 +83,7 @@ bool CheckProto_1(const RPCCommand& input, const bool silent)
             CHECK_NONE(sendmessage);
             CHECK_NONE(acceptverification);
             CHECK_NONE(acceptpendingpayment);
+            CHECK_NONE(getworkflow);
         } break;
         case RPCCOMMAND_LISTSERVERSESSIONS: {
             if (-1 != input.session()) { FAIL_1("invalid session"); }
@@ -103,6 +106,7 @@ bool CheckProto_1(const RPCCommand& input, const bool silent)
             CHECK_NONE(sendmessage);
             CHECK_NONE(acceptverification);
             CHECK_NONE(acceptpendingpayment);
+            CHECK_NONE(getworkflow);
         } break;
         case RPCCOMMAND_IMPORTHDSEED: {
             if (0 > input.session()) { FAIL_1("invalid session"); }
@@ -125,6 +129,7 @@ bool CheckProto_1(const RPCCommand& input, const bool silent)
             CHECK_NONE(sendmessage);
             CHECK_NONE(acceptverification);
             CHECK_NONE(acceptpendingpayment);
+            CHECK_NONE(getworkflow);
         } break;
         case RPCCOMMAND_LISTHDSEEDS: {
             if (0 > input.session()) { FAIL_1("invalid session"); }
@@ -147,6 +152,7 @@ bool CheckProto_1(const RPCCommand& input, const bool silent)
             CHECK_NONE(sendmessage);
             CHECK_NONE(acceptverification);
             CHECK_NONE(acceptpendingpayment);
+            CHECK_NONE(getworkflow);
         } break;
         case RPCCOMMAND_GETHDSEED: {
             if (0 > input.session()) { FAIL_1("invalid session"); }
@@ -170,6 +176,7 @@ bool CheckProto_1(const RPCCommand& input, const bool silent)
             CHECK_NONE(sendmessage);
             CHECK_NONE(acceptverification);
             CHECK_NONE(acceptpendingpayment);
+            CHECK_NONE(getworkflow);
         } break;
         case RPCCOMMAND_CREATENYM: {
             if (0 > input.session()) { FAIL_1("invalid session"); }
@@ -192,6 +199,7 @@ bool CheckProto_1(const RPCCommand& input, const bool silent)
             CHECK_NONE(sendmessage);
             CHECK_NONE(acceptverification);
             CHECK_NONE(acceptpendingpayment);
+            CHECK_NONE(getworkflow);
         } break;
         case RPCCOMMAND_LISTNYMS: {
             if (0 > input.session()) { FAIL_1("invalid session"); }
@@ -214,6 +222,7 @@ bool CheckProto_1(const RPCCommand& input, const bool silent)
             CHECK_NONE(sendmessage);
             CHECK_NONE(acceptverification);
             CHECK_NONE(acceptpendingpayment);
+            CHECK_NONE(getworkflow);
         } break;
         case RPCCOMMAND_GETNYM: {
             if (0 > input.session()) { FAIL_1("invalid session"); }
@@ -237,6 +246,7 @@ bool CheckProto_1(const RPCCommand& input, const bool silent)
             CHECK_NONE(sendmessage);
             CHECK_NONE(acceptverification);
             CHECK_NONE(acceptpendingpayment);
+            CHECK_NONE(getworkflow);
         } break;
         case RPCCOMMAND_ADDCLAIM: {
             if (0 > input.session()) { FAIL_1("invalid session"); }
@@ -259,6 +269,7 @@ bool CheckProto_1(const RPCCommand& input, const bool silent)
             CHECK_NONE(sendmessage);
             CHECK_NONE(acceptverification);
             CHECK_NONE(acceptpendingpayment);
+            CHECK_NONE(getworkflow);
         } break;
         case RPCCOMMAND_DELETECLAIM: {
             if (0 > input.session()) { FAIL_1("invalid session"); }
@@ -282,6 +293,7 @@ bool CheckProto_1(const RPCCommand& input, const bool silent)
             CHECK_NONE(sendmessage);
             CHECK_NONE(acceptverification);
             CHECK_NONE(acceptpendingpayment);
+            CHECK_NONE(getworkflow);
         } break;
         case RPCCOMMAND_IMPORTSERVERCONTRACT: {
             if (0 > input.session()) { FAIL_1("invalid session"); }
@@ -305,6 +317,7 @@ bool CheckProto_1(const RPCCommand& input, const bool silent)
             CHECK_NONE(sendmessage);
             CHECK_NONE(acceptverification);
             CHECK_NONE(acceptpendingpayment);
+            CHECK_NONE(getworkflow);
         } break;
         case RPCCOMMAND_LISTSERVERCONTRACTS: {
             if (0 > input.session()) { FAIL_1("invalid session"); }
@@ -327,6 +340,7 @@ bool CheckProto_1(const RPCCommand& input, const bool silent)
             CHECK_NONE(sendmessage);
             CHECK_NONE(acceptverification);
             CHECK_NONE(acceptpendingpayment);
+            CHECK_NONE(getworkflow);
         } break;
         case RPCCOMMAND_REGISTERNYM: {
             if (0 > input.session()) { FAIL_1("invalid session"); }
@@ -349,6 +363,7 @@ bool CheckProto_1(const RPCCommand& input, const bool silent)
             CHECK_NONE(sendmessage);
             CHECK_NONE(acceptverification);
             CHECK_NONE(acceptpendingpayment);
+            CHECK_NONE(getworkflow);
         } break;
         case RPCCOMMAND_CREATEUNITDEFINITION: {
             if (0 > input.session()) { FAIL_1("invalid session"); }
@@ -372,6 +387,7 @@ bool CheckProto_1(const RPCCommand& input, const bool silent)
             CHECK_NONE(sendmessage);
             CHECK_NONE(acceptverification);
             CHECK_NONE(acceptpendingpayment);
+            CHECK_NONE(getworkflow);
         } break;
         case RPCCOMMAND_LISTUNITDEFINITIONS: {
             if (0 > input.session()) { FAIL_1("invalid session"); }
@@ -394,6 +410,7 @@ bool CheckProto_1(const RPCCommand& input, const bool silent)
             CHECK_NONE(sendmessage);
             CHECK_NONE(acceptverification);
             CHECK_NONE(acceptpendingpayment);
+            CHECK_NONE(getworkflow);
         } break;
         case RPCCOMMAND_ISSUEUNITDEFINITION: {
             if (0 > input.session()) { FAIL_1("invalid session"); }
@@ -416,6 +433,7 @@ bool CheckProto_1(const RPCCommand& input, const bool silent)
             CHECK_NONE(sendmessage);
             CHECK_NONE(acceptverification);
             CHECK_NONE(acceptpendingpayment);
+            CHECK_NONE(getworkflow);
         } break;
         case RPCCOMMAND_CREATEACCOUNT: {
             if (0 > input.session()) { FAIL_1("invalid session"); }
@@ -438,6 +456,7 @@ bool CheckProto_1(const RPCCommand& input, const bool silent)
             CHECK_NONE(sendmessage);
             CHECK_NONE(acceptverification);
             CHECK_NONE(acceptpendingpayment);
+            CHECK_NONE(getworkflow);
         } break;
         case RPCCOMMAND_LISTACCOUNTS: {
             if (0 > input.session()) { FAIL_1("invalid session"); }
@@ -460,6 +479,7 @@ bool CheckProto_1(const RPCCommand& input, const bool silent)
             CHECK_NONE(sendmessage);
             CHECK_NONE(acceptverification);
             CHECK_NONE(acceptpendingpayment);
+            CHECK_NONE(getworkflow);
         } break;
         case RPCCOMMAND_GETACCOUNTBALANCE: {
             if (0 > input.session()) { FAIL_1("invalid session"); }
@@ -483,6 +503,7 @@ bool CheckProto_1(const RPCCommand& input, const bool silent)
             CHECK_NONE(sendmessage);
             CHECK_NONE(acceptverification);
             CHECK_NONE(acceptpendingpayment);
+            CHECK_NONE(getworkflow);
         } break;
         case RPCCOMMAND_GETACCOUNTACTIVITY: {
             if (0 > input.session()) { FAIL_1("invalid session"); }
@@ -506,6 +527,7 @@ bool CheckProto_1(const RPCCommand& input, const bool silent)
             CHECK_NONE(sendmessage);
             CHECK_NONE(acceptverification);
             CHECK_NONE(acceptpendingpayment);
+            CHECK_NONE(getworkflow);
         } break;
         case RPCCOMMAND_SENDPAYMENT: {
             if (0 > input.session()) { FAIL_1("invalid session"); }
@@ -528,6 +550,7 @@ bool CheckProto_1(const RPCCommand& input, const bool silent)
             CHECK_NONE(sendmessage);
             CHECK_NONE(acceptverification);
             CHECK_NONE(acceptpendingpayment);
+            CHECK_NONE(getworkflow);
         } break;
         case RPCCOMMAND_MOVEFUNDS: {
             if (0 > input.session()) { FAIL_1("invalid session"); }
@@ -550,6 +573,7 @@ bool CheckProto_1(const RPCCommand& input, const bool silent)
             CHECK_NONE(sendmessage);
             CHECK_NONE(acceptverification);
             CHECK_NONE(acceptpendingpayment);
+            CHECK_NONE(getworkflow);
         } break;
         case RPCCOMMAND_ADDCONTACT: {
             if (0 > input.session()) { FAIL_1("invalid session"); }
@@ -572,6 +596,7 @@ bool CheckProto_1(const RPCCommand& input, const bool silent)
             CHECK_NONE(sendmessage);
             CHECK_NONE(acceptverification);
             CHECK_NONE(acceptpendingpayment);
+            CHECK_NONE(getworkflow);
         } break;
         case RPCCOMMAND_LISTCONTACTS: {
             if (0 > input.session()) { FAIL_1("invalid session"); }
@@ -594,6 +619,7 @@ bool CheckProto_1(const RPCCommand& input, const bool silent)
             CHECK_NONE(sendmessage);
             CHECK_NONE(acceptverification);
             CHECK_NONE(acceptpendingpayment);
+            CHECK_NONE(getworkflow);
         } break;
         case RPCCOMMAND_GETCONTACT: {
             if (0 > input.session()) { FAIL_1("invalid session"); }
@@ -617,6 +643,7 @@ bool CheckProto_1(const RPCCommand& input, const bool silent)
             CHECK_NONE(sendmessage);
             CHECK_NONE(acceptverification);
             CHECK_NONE(acceptpendingpayment);
+            CHECK_NONE(getworkflow);
         } break;
         case RPCCOMMAND_ADDCONTACTCLAIM: {
             if (0 > input.session()) { FAIL_1("invalid session"); }
@@ -639,6 +666,7 @@ bool CheckProto_1(const RPCCommand& input, const bool silent)
             CHECK_NONE(sendmessage);
             CHECK_NONE(acceptverification);
             CHECK_NONE(acceptpendingpayment);
+            CHECK_NONE(getworkflow);
         } break;
         case RPCCOMMAND_DELETECONTACTCLAIM: {
             if (0 > input.session()) { FAIL_1("invalid session"); }
@@ -662,6 +690,7 @@ bool CheckProto_1(const RPCCommand& input, const bool silent)
             CHECK_NONE(sendmessage);
             CHECK_NONE(acceptverification);
             CHECK_NONE(acceptpendingpayment);
+            CHECK_NONE(getworkflow);
         } break;
         case RPCCOMMAND_VERIFYCLAIM: {
             if (0 > input.session()) { FAIL_1("invalid session"); }
@@ -684,6 +713,7 @@ bool CheckProto_1(const RPCCommand& input, const bool silent)
             CHECK_NONE(sendmessage);
             CHECK_NONE(acceptverification);
             CHECK_NONE(acceptpendingpayment);
+            CHECK_NONE(getworkflow);
         } break;
         case RPCCOMMAND_ACCEPTVERIFICATION: {
             if (0 > input.session()) { FAIL_1("invalid session"); }
@@ -707,6 +737,7 @@ bool CheckProto_1(const RPCCommand& input, const bool silent)
             CHECK_SUBOBJECTS_VA(
                 acceptverification, RPCCommandAllowedVerification, true);
             CHECK_NONE(acceptpendingpayment);
+            CHECK_NONE(getworkflow);
         } break;
         case RPCCOMMAND_SENDCONTACTMESSAGE: {
             if (0 > input.session()) { FAIL_1("invalid session"); }
@@ -729,6 +760,7 @@ bool CheckProto_1(const RPCCommand& input, const bool silent)
             CHECK_SUBOBJECTS(sendmessage, RPCCommandAllowedSendMessage);
             CHECK_NONE(acceptverification);
             CHECK_NONE(acceptpendingpayment);
+            CHECK_NONE(getworkflow);
         } break;
         case RPCCOMMAND_GETCONTACTACTIVITY: {
             if (0 > input.session()) { FAIL_1("invalid session"); }
@@ -752,6 +784,7 @@ bool CheckProto_1(const RPCCommand& input, const bool silent)
             CHECK_NONE(sendmessage);
             CHECK_NONE(acceptverification);
             CHECK_NONE(acceptpendingpayment);
+            CHECK_NONE(getworkflow);
         } break;
         case RPCCOMMAND_GETSERVERCONTRACT: {
             if (0 > input.session()) { FAIL_1("invalid session"); }
@@ -775,6 +808,7 @@ bool CheckProto_1(const RPCCommand& input, const bool silent)
             CHECK_NONE(sendmessage);
             CHECK_NONE(acceptverification);
             CHECK_NONE(acceptpendingpayment);
+            CHECK_NONE(getworkflow);
         } break;
         case RPCCOMMAND_GETPENDINGPAYMENTS: {
             if (0 > input.session()) { FAIL_1("invalid session"); }
@@ -797,6 +831,7 @@ bool CheckProto_1(const RPCCommand& input, const bool silent)
             CHECK_NONE(sendmessage);
             CHECK_NONE(acceptverification);
             CHECK_NONE(acceptpendingpayment);
+            CHECK_NONE(getworkflow);
         } break;
         case RPCCOMMAND_ACCEPTPENDINGPAYMENTS: {
             if (0 > input.session()) { FAIL_1("invalid session"); }
@@ -820,6 +855,7 @@ bool CheckProto_1(const RPCCommand& input, const bool silent)
             CHECK_NONE(acceptverification);
             CHECK_SUBOBJECTS(
                 acceptpendingpayment, RPCCommandAllowedAcceptPendingPayment);
+            CHECK_NONE(getworkflow);
         } break;
         case RPCCOMMAND_CREATECOMPATIBLEACCOUNT:
         case RPCCOMMAND_GETCOMPATIBLEACCOUNTS: {
@@ -844,6 +880,30 @@ bool CheckProto_1(const RPCCommand& input, const bool silent)
             CHECK_NONE(sendmessage);
             CHECK_NONE(acceptverification);
             CHECK_NONE(acceptpendingpayment);
+            CHECK_NONE(getworkflow);
+        } break;
+        case RPCCOMMAND_GETWORKFLOW: {
+            if (0 > input.session()) { FAIL_1("invalid session"); }
+
+            OPTIONAL_IDENTIFIERS(associatenym);
+            CHECK_EXCLUDED(owner);
+            CHECK_EXCLUDED(notary);
+            CHECK_EXCLUDED(unit);
+            CHECK_NONE(identifier);
+            CHECK_SUBOBJECTS(arg, RPCCommandAllowedAPIArgument);
+            CHECK_EXCLUDED(hdseed);
+            CHECK_EXCLUDED(createnym);
+            CHECK_NONE(claim);
+            CHECK_NONE(server);
+            CHECK_EXCLUDED(createunit);
+            CHECK_EXCLUDED(sendpayment);
+            CHECK_EXCLUDED(movefunds);
+            CHECK_NONE(addcontact);
+            CHECK_NONE(verifyclaim);
+            CHECK_NONE(sendmessage);
+            CHECK_NONE(acceptverification);
+            CHECK_NONE(acceptpendingpayment);
+            CHECK_SUBOBJECTS(getworkflow, RPCCommandAllowedGetWorkflow);
         } break;
         case RPCCOMMAND_ERROR:
         default: {
