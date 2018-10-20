@@ -47,6 +47,7 @@ void InitDefaultsRPCCommandImpl() {
   protobuf_SendMessage_2eproto::InitDefaultsSendMessage();
   protobuf_Verification_2eproto::InitDefaultsVerification();
   protobuf_AcceptPendingPayment_2eproto::InitDefaultsAcceptPendingPayment();
+  protobuf_GetWorkflow_2eproto::InitDefaultsGetWorkflow();
   {
     void* ptr = &::opentxs::proto::_RPCCommand_default_instance_;
     new (ptr) ::opentxs::proto::RPCCommand();
@@ -122,6 +123,9 @@ void RPCCommand::clear_acceptverification() {
 void RPCCommand::clear_acceptpendingpayment() {
   acceptpendingpayment_.Clear();
 }
+void RPCCommand::clear_getworkflow() {
+  getworkflow_.Clear();
+}
 #if !defined(_MSC_VER) || _MSC_VER >= 1900
 const int RPCCommand::kVersionFieldNumber;
 const int RPCCommand::kCookieFieldNumber;
@@ -145,6 +149,7 @@ const int RPCCommand::kVerifyclaimFieldNumber;
 const int RPCCommand::kSendmessageFieldNumber;
 const int RPCCommand::kAcceptverificationFieldNumber;
 const int RPCCommand::kAcceptpendingpaymentFieldNumber;
+const int RPCCommand::kGetworkflowFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 RPCCommand::RPCCommand()
@@ -169,7 +174,8 @@ RPCCommand::RPCCommand(const RPCCommand& from)
       verifyclaim_(from.verifyclaim_),
       sendmessage_(from.sendmessage_),
       acceptverification_(from.acceptverification_),
-      acceptpendingpayment_(from.acceptpendingpayment_) {
+      acceptpendingpayment_(from.acceptpendingpayment_),
+      getworkflow_(from.getworkflow_) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   cookie_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   if (from.has_cookie()) {
@@ -280,6 +286,7 @@ void RPCCommand::Clear() {
   sendmessage_.Clear();
   acceptverification_.Clear();
   acceptpendingpayment_.Clear();
+  getworkflow_.Clear();
   cached_has_bits = _has_bits_[0];
   if (cached_has_bits & 255u) {
     if (cached_has_bits & 0x00000001u) {
@@ -613,6 +620,17 @@ bool RPCCommand::MergePartialFromCodedStream(
         break;
       }
 
+      // repeated .opentxs.proto.GetWorkflow getworkflow = 23;
+      case 23: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(186u /* 186 & 0xFF */)) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessage(input, add_getworkflow()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
       default: {
       handle_unusual:
         if (tag == 0) {
@@ -778,6 +796,13 @@ void RPCCommand::SerializeWithCachedSizes(
       22, this->acceptpendingpayment(static_cast<int>(i)), output);
   }
 
+  // repeated .opentxs.proto.GetWorkflow getworkflow = 23;
+  for (unsigned int i = 0,
+      n = static_cast<unsigned int>(this->getworkflow_size()); i < n; i++) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessage(
+      23, this->getworkflow(static_cast<int>(i)), output);
+  }
+
   output->WriteRaw(_internal_metadata_.unknown_fields().data(),
                    static_cast<int>(_internal_metadata_.unknown_fields().size()));
   // @@protoc_insertion_point(serialize_end:opentxs.proto.RPCCommand)
@@ -890,6 +915,17 @@ size_t RPCCommand::ByteSizeLong() const {
       total_size +=
         ::google::protobuf::internal::WireFormatLite::MessageSize(
           this->acceptpendingpayment(static_cast<int>(i)));
+    }
+  }
+
+  // repeated .opentxs.proto.GetWorkflow getworkflow = 23;
+  {
+    unsigned int count = static_cast<unsigned int>(this->getworkflow_size());
+    total_size += 2UL * count;
+    for (unsigned int i = 0; i < count; i++) {
+      total_size +=
+        ::google::protobuf::internal::WireFormatLite::MessageSize(
+          this->getworkflow(static_cast<int>(i)));
     }
   }
 
@@ -1009,6 +1045,7 @@ void RPCCommand::MergeFrom(const RPCCommand& from) {
   sendmessage_.MergeFrom(from.sendmessage_);
   acceptverification_.MergeFrom(from.acceptverification_);
   acceptpendingpayment_.MergeFrom(from.acceptpendingpayment_);
+  getworkflow_.MergeFrom(from.getworkflow_);
   cached_has_bits = from._has_bits_[0];
   if (cached_has_bits & 255u) {
     if (cached_has_bits & 0x00000001u) {
@@ -1084,6 +1121,7 @@ void RPCCommand::InternalSwap(RPCCommand* other) {
   sendmessage_.InternalSwap(&other->sendmessage_);
   acceptverification_.InternalSwap(&other->acceptverification_);
   acceptpendingpayment_.InternalSwap(&other->acceptpendingpayment_);
+  getworkflow_.InternalSwap(&other->getworkflow_);
   cookie_.Swap(&other->cookie_);
   owner_.Swap(&other->owner_);
   notary_.Swap(&other->notary_);

@@ -44,6 +44,7 @@ void InitDefaultsRPCResponseImpl() {
   protobuf_ContactEvent_2eproto::InitDefaultsContactEvent();
   protobuf_RPCTask_2eproto::InitDefaultsRPCTask();
   protobuf_ServerContract_2eproto::InitDefaultsServerContract();
+  protobuf_PaymentWorkflow_2eproto::InitDefaultsPaymentWorkflow();
   {
     void* ptr = &::opentxs::proto::_RPCResponse_default_instance_;
     new (ptr) ::opentxs::proto::RPCResponse();
@@ -95,6 +96,9 @@ void RPCResponse::clear_task() {
 void RPCResponse::clear_notary() {
   notary_.Clear();
 }
+void RPCResponse::clear_workflow() {
+  workflow_.Clear();
+}
 #if !defined(_MSC_VER) || _MSC_VER >= 1900
 const int RPCResponse::kVersionFieldNumber;
 const int RPCResponse::kCookieFieldNumber;
@@ -111,6 +115,7 @@ const int RPCResponse::kAccounteventFieldNumber;
 const int RPCResponse::kContacteventFieldNumber;
 const int RPCResponse::kTaskFieldNumber;
 const int RPCResponse::kNotaryFieldNumber;
+const int RPCResponse::kWorkflowFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 RPCResponse::RPCResponse()
@@ -136,7 +141,8 @@ RPCResponse::RPCResponse(const RPCResponse& from)
       accountevent_(from.accountevent_),
       contactevent_(from.contactevent_),
       task_(from.task_),
-      notary_(from.notary_) {
+      notary_(from.notary_),
+      workflow_(from.workflow_) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   cookie_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   if (from.has_cookie()) {
@@ -200,6 +206,7 @@ void RPCResponse::Clear() {
   contactevent_.Clear();
   task_.Clear();
   notary_.Clear();
+  workflow_.Clear();
   cached_has_bits = _has_bits_[0];
   if (cached_has_bits & 0x00000001u) {
     GOOGLE_DCHECK(!cookie_.IsDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited()));
@@ -226,7 +233,7 @@ bool RPCResponse::MergePartialFromCodedStream(
       &unknown_fields_output, false);
   // @@protoc_insertion_point(parse_start:opentxs.proto.RPCResponse)
   for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(16383u);
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
@@ -413,6 +420,17 @@ bool RPCResponse::MergePartialFromCodedStream(
         break;
       }
 
+      // repeated .opentxs.proto.PaymentWorkflow workflow = 16;
+      case 16: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(130u /* 130 & 0xFF */)) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessage(input, add_workflow()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
       default: {
       handle_unusual:
         if (tag == 0) {
@@ -536,6 +554,13 @@ void RPCResponse::SerializeWithCachedSizes(
       n = static_cast<unsigned int>(this->notary_size()); i < n; i++) {
     ::google::protobuf::internal::WireFormatLite::WriteMessage(
       15, this->notary(static_cast<int>(i)), output);
+  }
+
+  // repeated .opentxs.proto.PaymentWorkflow workflow = 16;
+  for (unsigned int i = 0,
+      n = static_cast<unsigned int>(this->workflow_size()); i < n; i++) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessage(
+      16, this->workflow(static_cast<int>(i)), output);
   }
 
   output->WriteRaw(_internal_metadata_.unknown_fields().data(),
@@ -667,6 +692,17 @@ size_t RPCResponse::ByteSizeLong() const {
     }
   }
 
+  // repeated .opentxs.proto.PaymentWorkflow workflow = 16;
+  {
+    unsigned int count = static_cast<unsigned int>(this->workflow_size());
+    total_size += 2UL * count;
+    for (unsigned int i = 0; i < count; i++) {
+      total_size +=
+        ::google::protobuf::internal::WireFormatLite::MessageSize(
+          this->workflow(static_cast<int>(i)));
+    }
+  }
+
   if (_has_bits_[0 / 32] & 15u) {
     // optional string cookie = 2;
     if (has_cookie()) {
@@ -726,6 +762,7 @@ void RPCResponse::MergeFrom(const RPCResponse& from) {
   contactevent_.MergeFrom(from.contactevent_);
   task_.MergeFrom(from.task_);
   notary_.MergeFrom(from.notary_);
+  workflow_.MergeFrom(from.workflow_);
   cached_has_bits = from._has_bits_[0];
   if (cached_has_bits & 15u) {
     if (cached_has_bits & 0x00000001u) {
@@ -773,6 +810,7 @@ void RPCResponse::InternalSwap(RPCResponse* other) {
   contactevent_.InternalSwap(&other->contactevent_);
   task_.InternalSwap(&other->task_);
   notary_.InternalSwap(&other->notary_);
+  workflow_.InternalSwap(&other->workflow_);
   cookie_.Swap(&other->cookie_);
   swap(version_, other->version_);
   swap(type_, other->type_);

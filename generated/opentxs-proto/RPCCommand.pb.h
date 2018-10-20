@@ -34,6 +34,7 @@
 #include "APIArgument.pb.h"  // IWYU pragma: export
 #include "CreateInstrumentDefinition.pb.h"  // IWYU pragma: export
 #include "CreateNym.pb.h"  // IWYU pragma: export
+#include "GetWorkflow.pb.h"  // IWYU pragma: export
 #include "HDSeed.pb.h"  // IWYU pragma: export
 #include "MoveFunds.pb.h"  // IWYU pragma: export
 #include "RPCEnums.pb.h"  // IWYU pragma: export
@@ -299,6 +300,18 @@ class RPCCommand : public ::google::protobuf::MessageLite /* @@protoc_insertion_
   const ::google::protobuf::RepeatedPtrField< ::opentxs::proto::AcceptPendingPayment >&
       acceptpendingpayment() const;
 
+  // repeated .opentxs.proto.GetWorkflow getworkflow = 23;
+  int getworkflow_size() const;
+  void clear_getworkflow();
+  static const int kGetworkflowFieldNumber = 23;
+  const ::opentxs::proto::GetWorkflow& getworkflow(int index) const;
+  ::opentxs::proto::GetWorkflow* mutable_getworkflow(int index);
+  ::opentxs::proto::GetWorkflow* add_getworkflow();
+  ::google::protobuf::RepeatedPtrField< ::opentxs::proto::GetWorkflow >*
+      mutable_getworkflow();
+  const ::google::protobuf::RepeatedPtrField< ::opentxs::proto::GetWorkflow >&
+      getworkflow() const;
+
   // optional string cookie = 2;
   bool has_cookie() const;
   void clear_cookie();
@@ -465,6 +478,7 @@ class RPCCommand : public ::google::protobuf::MessageLite /* @@protoc_insertion_
   ::google::protobuf::RepeatedPtrField< ::opentxs::proto::SendMessage > sendmessage_;
   ::google::protobuf::RepeatedPtrField< ::opentxs::proto::Verification > acceptverification_;
   ::google::protobuf::RepeatedPtrField< ::opentxs::proto::AcceptPendingPayment > acceptpendingpayment_;
+  ::google::protobuf::RepeatedPtrField< ::opentxs::proto::GetWorkflow > getworkflow_;
   ::google::protobuf::internal::ArenaStringPtr cookie_;
   ::google::protobuf::internal::ArenaStringPtr owner_;
   ::google::protobuf::internal::ArenaStringPtr notary_;
@@ -1418,6 +1432,33 @@ inline const ::google::protobuf::RepeatedPtrField< ::opentxs::proto::AcceptPendi
 RPCCommand::acceptpendingpayment() const {
   // @@protoc_insertion_point(field_list:opentxs.proto.RPCCommand.acceptpendingpayment)
   return acceptpendingpayment_;
+}
+
+// repeated .opentxs.proto.GetWorkflow getworkflow = 23;
+inline int RPCCommand::getworkflow_size() const {
+  return getworkflow_.size();
+}
+inline const ::opentxs::proto::GetWorkflow& RPCCommand::getworkflow(int index) const {
+  // @@protoc_insertion_point(field_get:opentxs.proto.RPCCommand.getworkflow)
+  return getworkflow_.Get(index);
+}
+inline ::opentxs::proto::GetWorkflow* RPCCommand::mutable_getworkflow(int index) {
+  // @@protoc_insertion_point(field_mutable:opentxs.proto.RPCCommand.getworkflow)
+  return getworkflow_.Mutable(index);
+}
+inline ::opentxs::proto::GetWorkflow* RPCCommand::add_getworkflow() {
+  // @@protoc_insertion_point(field_add:opentxs.proto.RPCCommand.getworkflow)
+  return getworkflow_.Add();
+}
+inline ::google::protobuf::RepeatedPtrField< ::opentxs::proto::GetWorkflow >*
+RPCCommand::mutable_getworkflow() {
+  // @@protoc_insertion_point(field_mutable_list:opentxs.proto.RPCCommand.getworkflow)
+  return &getworkflow_;
+}
+inline const ::google::protobuf::RepeatedPtrField< ::opentxs::proto::GetWorkflow >&
+RPCCommand::getworkflow() const {
+  // @@protoc_insertion_point(field_list:opentxs.proto.RPCCommand.getworkflow)
+  return getworkflow_;
 }
 
 #ifdef __GNUC__

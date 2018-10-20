@@ -64,6 +64,7 @@ bool RPCCommandType_IsValid(int value) {
     case 36:
     case 37:
     case 38:
+    case 39:
       return true;
     default:
       return false;
