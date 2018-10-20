@@ -36,6 +36,7 @@
 #include "CreateNym.pb.h"  // IWYU pragma: export
 #include "CredentialIndex.pb.h"  // IWYU pragma: export
 #include "HDSeed.pb.h"  // IWYU pragma: export
+#include "PaymentWorkflow.pb.h"  // IWYU pragma: export
 #include "RPCEnums.pb.h"  // IWYU pragma: export
 #include "RPCStatus.pb.h"  // IWYU pragma: export
 #include "RPCTask.pb.h"  // IWYU pragma: export
@@ -300,6 +301,18 @@ class RPCResponse : public ::google::protobuf::MessageLite /* @@protoc_insertion
   const ::google::protobuf::RepeatedPtrField< ::opentxs::proto::ServerContract >&
       notary() const;
 
+  // repeated .opentxs.proto.PaymentWorkflow workflow = 16;
+  int workflow_size() const;
+  void clear_workflow();
+  static const int kWorkflowFieldNumber = 16;
+  const ::opentxs::proto::PaymentWorkflow& workflow(int index) const;
+  ::opentxs::proto::PaymentWorkflow* mutable_workflow(int index);
+  ::opentxs::proto::PaymentWorkflow* add_workflow();
+  ::google::protobuf::RepeatedPtrField< ::opentxs::proto::PaymentWorkflow >*
+      mutable_workflow();
+  const ::google::protobuf::RepeatedPtrField< ::opentxs::proto::PaymentWorkflow >&
+      workflow() const;
+
   // optional string cookie = 2;
   bool has_cookie() const;
   void clear_cookie();
@@ -361,6 +374,7 @@ class RPCResponse : public ::google::protobuf::MessageLite /* @@protoc_insertion
   ::google::protobuf::RepeatedPtrField< ::opentxs::proto::ContactEvent > contactevent_;
   ::google::protobuf::RepeatedPtrField< ::opentxs::proto::RPCTask > task_;
   ::google::protobuf::RepeatedPtrField< ::opentxs::proto::ServerContract > notary_;
+  ::google::protobuf::RepeatedPtrField< ::opentxs::proto::PaymentWorkflow > workflow_;
   ::google::protobuf::internal::ArenaStringPtr cookie_;
   ::google::protobuf::uint32 version_;
   int type_;
@@ -852,6 +866,33 @@ inline const ::google::protobuf::RepeatedPtrField< ::opentxs::proto::ServerContr
 RPCResponse::notary() const {
   // @@protoc_insertion_point(field_list:opentxs.proto.RPCResponse.notary)
   return notary_;
+}
+
+// repeated .opentxs.proto.PaymentWorkflow workflow = 16;
+inline int RPCResponse::workflow_size() const {
+  return workflow_.size();
+}
+inline const ::opentxs::proto::PaymentWorkflow& RPCResponse::workflow(int index) const {
+  // @@protoc_insertion_point(field_get:opentxs.proto.RPCResponse.workflow)
+  return workflow_.Get(index);
+}
+inline ::opentxs::proto::PaymentWorkflow* RPCResponse::mutable_workflow(int index) {
+  // @@protoc_insertion_point(field_mutable:opentxs.proto.RPCResponse.workflow)
+  return workflow_.Mutable(index);
+}
+inline ::opentxs::proto::PaymentWorkflow* RPCResponse::add_workflow() {
+  // @@protoc_insertion_point(field_add:opentxs.proto.RPCResponse.workflow)
+  return workflow_.Add();
+}
+inline ::google::protobuf::RepeatedPtrField< ::opentxs::proto::PaymentWorkflow >*
+RPCResponse::mutable_workflow() {
+  // @@protoc_insertion_point(field_mutable_list:opentxs.proto.RPCResponse.workflow)
+  return &workflow_;
+}
+inline const ::google::protobuf::RepeatedPtrField< ::opentxs::proto::PaymentWorkflow >&
+RPCResponse::workflow() const {
+  // @@protoc_insertion_point(field_list:opentxs.proto.RPCResponse.workflow)
+  return workflow_;
 }
 
 #ifdef __GNUC__
