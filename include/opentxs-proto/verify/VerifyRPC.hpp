@@ -39,6 +39,9 @@ static const VersionMap RPCCommandAllowedCreateInstrumentDefinition = {
 static const VersionMap RPCCommandAllowedCreateNym = {
     {1, {1, 1}},
 };
+static const VersionMap RPCCommandAllowedGetWorkflow = {
+    {1, {1, 1}},
+};
 static const VersionMap RPCCommandAllowedHDSeed = {
     {1, {1, 1}},
 };
@@ -95,6 +98,9 @@ static const VersionMap RPCResponseAllowedServerContract = {
 };
 static const VersionMap RPCResponseAllowedSessionData = {
     {1, {1, 1}},
+};
+static const VersionMap RPCResponseAllowedWorkflow = {
+    {1, {1, 2}},
 };
 }  // namespace proto
 }  // namespace opentxs

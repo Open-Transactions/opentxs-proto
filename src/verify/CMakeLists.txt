@@ -47,6 +47,7 @@ set(cxx-sources
   equityparams/EquityParams_1.cpp
   envelope/Envelope_1.cpp
   faucet/Faucet_1.cpp
+  getworkflow/GetWorkflow_1.cpp
   hdpath/HDPath_1.cpp
   hdseed/HDSeed_1.cpp
   instrumentrevision/InstrumentRevision_1.cpp
