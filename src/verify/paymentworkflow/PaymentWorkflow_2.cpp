@@ -723,7 +723,7 @@ bool CheckProto_2(const PaymentWorkflow& input, const bool silent)
                             "Wrong number of cancel events ", cancelEvents)
                     }
 
-                    if (1 != acceptEvents) {
+                    if (1 > acceptEvents) {
                         BAD_EVENTS(
                             "Wrong number of accept events ", acceptEvents)
                     }
@@ -967,7 +967,7 @@ bool CheckProto_2(const PaymentWorkflow& input, const bool silent)
                             "Wrong number of accept events ", acceptEvents)
                     }
 
-                    if (1 != completeEvents) {
+                    if (1 > completeEvents) {
                         BAD_EVENTS(
                             "Wrong number of complete events ", completeEvents)
                     }
