@@ -10,7 +10,7 @@
 
 namespace opentxs::proto
 {
-bool CheckProto_1(const RPCCommand& input, const bool silent)
+bool CheckProto_2(const RPCCommand& input, const bool silent)
 {
     CHECK_IDENTIFIER(cookie)
     CHECK_EXISTS(type)
@@ -905,7 +905,29 @@ bool CheckProto_1(const RPCCommand& input, const bool silent)
             CHECK_NONE(acceptpendingpayment);
             CHECK_SUBOBJECTS(getworkflow, RPCCommandAllowedGetWorkflow);
         } break;
-        case RPCCOMMAND_GETSERVERPASSWORD:
+        case RPCCOMMAND_GETSERVERPASSWORD: {
+            if (0 > input.session()) { FAIL_1("invalid session"); }
+
+            OPTIONAL_IDENTIFIERS(associatenym);
+            CHECK_EXCLUDED(owner);
+            CHECK_EXCLUDED(notary);
+            CHECK_EXCLUDED(unit);
+            CHECK_NONE(identifier);
+            CHECK_NONE(arg);
+            CHECK_EXCLUDED(hdseed);
+            CHECK_EXCLUDED(createnym);
+            CHECK_NONE(claim);
+            CHECK_NONE(server);
+            CHECK_EXCLUDED(createunit);
+            CHECK_EXCLUDED(sendpayment);
+            CHECK_EXCLUDED(movefunds);
+            CHECK_NONE(addcontact);
+            CHECK_NONE(verifyclaim);
+            CHECK_NONE(sendmessage);
+            CHECK_NONE(acceptverification);
+            CHECK_NONE(acceptpendingpayment);
+            CHECK_NONE(getworkflow);
+        } break;
         case RPCCOMMAND_ERROR:
         default: {
             FAIL_1("invalid type")
@@ -913,5 +935,95 @@ bool CheckProto_1(const RPCCommand& input, const bool silent)
     }
 
     return true;
+}
+
+bool CheckProto_3(const RPCCommand& input, const bool silent)
+{
+    UNDEFINED_VERSION(3)
+}
+
+bool CheckProto_4(const RPCCommand& input, const bool silent)
+{
+    UNDEFINED_VERSION(4)
+}
+
+bool CheckProto_5(const RPCCommand& input, const bool silent)
+{
+    UNDEFINED_VERSION(5)
+}
+
+bool CheckProto_6(const RPCCommand& input, const bool silent)
+{
+    UNDEFINED_VERSION(6)
+}
+
+bool CheckProto_7(const RPCCommand& input, const bool silent)
+{
+    UNDEFINED_VERSION(7)
+}
+
+bool CheckProto_8(const RPCCommand& input, const bool silent)
+{
+    UNDEFINED_VERSION(8)
+}
+
+bool CheckProto_9(const RPCCommand& input, const bool silent)
+{
+    UNDEFINED_VERSION(9)
+}
+
+bool CheckProto_10(const RPCCommand& input, const bool silent)
+{
+    UNDEFINED_VERSION(10)
+}
+
+bool CheckProto_11(const RPCCommand& input, const bool silent)
+{
+    UNDEFINED_VERSION(11)
+}
+
+bool CheckProto_12(const RPCCommand& input, const bool silent)
+{
+    UNDEFINED_VERSION(12)
+}
+
+bool CheckProto_13(const RPCCommand& input, const bool silent)
+{
+    UNDEFINED_VERSION(13)
+}
+
+bool CheckProto_14(const RPCCommand& input, const bool silent)
+{
+    UNDEFINED_VERSION(14)
+}
+
+bool CheckProto_15(const RPCCommand& input, const bool silent)
+{
+    UNDEFINED_VERSION(15)
+}
+
+bool CheckProto_16(const RPCCommand& input, const bool silent)
+{
+    UNDEFINED_VERSION(16)
+}
+
+bool CheckProto_17(const RPCCommand& input, const bool silent)
+{
+    UNDEFINED_VERSION(17)
+}
+
+bool CheckProto_18(const RPCCommand& input, const bool silent)
+{
+    UNDEFINED_VERSION(18)
+}
+
+bool CheckProto_19(const RPCCommand& input, const bool silent)
+{
+    UNDEFINED_VERSION(19)
+}
+
+bool CheckProto_20(const RPCCommand& input, const bool silent)
+{
+    UNDEFINED_VERSION(20)
 }
 }  // namespace opentxs::proto

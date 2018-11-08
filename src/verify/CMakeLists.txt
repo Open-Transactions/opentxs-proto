@@ -81,8 +81,10 @@ set(cxx-sources
   peerrequestworkflow/PeerRequestWorkflow_1.cpp
   pendingbailment/PendingBailment_1.cpp
   rpccommand/RPCCommand_1.cpp
+  rpccommand/RPCCommand_2.cpp
   rpcpush/RPCPush_1.cpp
   rpcresponse/RPCResponse_1.cpp
+  rpcresponse/RPCResponse_2.cpp
   rpcstatus/RPCStatus_1.cpp
   rpctask/RPCTask_1.cpp
   seed/Seed_1.cpp
