@@ -32,10 +32,15 @@ else()
 endif()
 endif() # NOT ANDROID
 
+if(IOS_PLATFORM)
+  set(CMAKE_MACOSX_RPATH 1)
+  add_definitions(-DIOS)
+endif()
+
 #-----------------------------------------------------------------------------
 # Options for building
 
-if(ANDROID)
+if(ANDROID OR IOS)
   option(BUILD_TESTS         "Build the unit tests." OFF)
 else()
   option(BUILD_TESTS         "Build the unit tests." ON)
@@ -161,8 +166,39 @@ message(STATUS "Default Python binding: ${PYTHON}")
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 
 if(NOT OT_BUNDLED_OPENTXS_PROTO)
+  if (IOS)    
+     set(Protobuf_IOS ${CMAKE_CURRENT_SOURCE_DIR}/deps/protobuf-ios)
+     if (NOT EXISTS ${Protobuf_IOS}/protobuf/platform/universal)
+       execute_process(COMMAND bash ${Protobuf_IOS}/build-protobuf.sh WORKING_DIRECTORY ${Protobuf_IOS})
+     endif()
+     if (IOS_PLATFORM MATCHES "SIMULATOR64")
+     	set(Protobuf_IOS_PLATFORM iossim_x86_64)
+     elseif(IOS_PLATFORM MATCHES "SIMULATOR")
+        set(Protobuf_IOS_PLATFORM iossim_386)
+     elseif(IOS_PLATFORM MATCHES "OS64")
+        set(Protobuf_IOS_PLATFORM ios_arm64)
+     elseif(IOS_PLATFORM MATCHES "OS")
+        set(Protobuf_IOS_PLATFORM ios_arm7)
+     endif()
+     
+     set(Protobuf_INCLUDE_DIR ${Protobuf_IOS}/protobuf/platform/${Protobuf_IOS_PLATFORM}/include)
+     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -I${Protobuf_INCLUDE_DIR}")
+     set(PROTOBUF_LITE_LIBRARY ${Protobuf_IOS}/protobuf/platform/universal/libprotobuf-lite.a)
+     set(PROTOBUF_LITE_LIBRARIES ${Protobuf_IOS}/protobuf/platform/universal/libprotobuf-lite.a)
+  endif()
   find_package(Protobuf REQUIRED)
 endif()
+
+if (IOS) 
+  message(STATUS "IOS ------------------------------------")
+  message(STATUS "Platform:               ${IOS_PLATFORM}")
+  message(STATUS "OSX SYSROOT:            ${CMAKE_OSX_SYSROOT}")
+endif()
+
+message(STATUS "Dependencies---------------------------------")
+message(STATUS "Protobuf Lite Libraries:${PROTOBUF_LITE_LIBRARIES}")
+message(STATUS "Bundled protobuf: ${OT_BUNDLED_PROTOBUF}")
+message(STATUS "Opentxs System Libraries: ${OPENTXS_SYSTEM_LIBRARIES}")
 
 if(BUILD_TESTS AND NOT OT_BUNDLED_OPENTXS_PROTO)
   find_package(GTest REQUIRED)

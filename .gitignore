@@ -1,5 +1,6 @@
 # build noise
 build/*
+ios-cmake
 
 # osx noise
 .DS_Store

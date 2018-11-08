@@ -1,0 +1,3 @@
+[submodule "deps/protobuf-ios"]
+	path = deps/protobuf-ios
+	url = https://gist.github.com/kmels/1ea01b45b133f3f0166068200295cccb

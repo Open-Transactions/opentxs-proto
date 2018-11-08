@@ -25,6 +25,15 @@ Open-Transactions uses the CMake build system. The basic steps are:
     make
     make install
 
+#### Building for IOS:
+
+    git submodule update --init
+    git clone git@github.com:leetal/ios-cmake.git
+    mkdir build; cd build
+    cmake -DCMAKE_TOOLCHAIN_FILE=../ios-cmake/ios.toolchain.cmake -DIOS_PLATFORM=OS64 -DENABLE_BITCODE=1 -DIOS_DEPLOYMENT_TARGET=10.0.1 ..
+    make
+    make install
+
 ### Contributing
 
 #### CppCheck and clang-format Git hooks
