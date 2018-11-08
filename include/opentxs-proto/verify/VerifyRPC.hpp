@@ -23,42 +23,55 @@ static const VersionMap CreateNymAllowedAddClaim = {
 };
 static const VersionMap RPCCommandAllowedAcceptPendingPayment = {
     {1, {1, 1}},
+    {2, {1, 1}},
 };
 static const VersionMap RPCCommandAllowedAddContact = {
     {1, {1, 1}},
+    {2, {1, 1}},
 };
 static const VersionMap RPCCommandAllowedAPIArgument = {
     {1, {1, 1}},
+    {2, {1, 1}},
 };
 static const VersionMap RPCCommandAllowedAddClaim = {
     {1, {1, 1}},
+    {2, {1, 1}},
 };
 static const VersionMap RPCCommandAllowedCreateInstrumentDefinition = {
     {1, {1, 1}},
+    {2, {1, 1}},
 };
 static const VersionMap RPCCommandAllowedCreateNym = {
     {1, {1, 1}},
+    {2, {1, 1}},
 };
 static const VersionMap RPCCommandAllowedGetWorkflow = {
     {1, {1, 1}},
+    {2, {1, 1}},
 };
 static const VersionMap RPCCommandAllowedHDSeed = {
     {1, {1, 1}},
+    {2, {1, 1}},
 };
 static const VersionMap RPCCommandAllowedSendMessage = {
     {1, {1, 1}},
+    {2, {1, 1}},
 };
 static const VersionMap RPCCommandAllowedSendPayment = {
     {1, {1, 1}},
+    {2, {1, 1}},
 };
 static const VersionMap RPCCommandAllowedServerContract = {
     {1, {1, 2}},
+    {2, {1, 2}},
 };
 static const VersionMap RPCCommandAllowedVerification = {
     {1, {1, 1}},
+    {2, {1, 1}},
 };
 static const VersionMap RPCCommandAllowedVerifyClaim = {
     {1, {1, 1}},
+    {2, {1, 1}},
 };
 static const VersionMap RPCPushAllowedAccountEvent = {
     {1, {1, 1}},
@@ -71,36 +84,47 @@ static const VersionMap RPCPushAllowedTaskStatus = {
 };
 static const VersionMap RPCResponseAllowedAccountData = {
     {1, {1, 1}},
+    {2, {1, 1}},
 };
 static const VersionMap RPCResponseAllowedAccountEvent = {
     {1, {1, 1}},
+    {2, {1, 1}},
 };
 static const VersionMap RPCResponseAllowedContact = {
     {1, {1, 2}},
+    {2, {1, 2}},
 };
 static const VersionMap RPCResponseAllowedContactEvent = {
     {1, {1, 2}},
+    {2, {1, 2}},
 };
 static const VersionMap RPCResponseAllowedCredentialIndex = {
     {1, {1, 5}},
+    {2, {1, 5}},
 };
 static const VersionMap RPCResponseAllowedHDSeed = {
     {1, {1, 1}},
+    {2, {1, 1}},
 };
 static const VersionMap RPCResponseAllowedRPCStatus = {
     {1, {1, 1}},
+    {2, {1, 1}},
 };
 static const VersionMap RPCResponseAllowedRPCTask = {
     {1, {1, 1}},
+    {2, {1, 1}},
 };
 static const VersionMap RPCResponseAllowedServerContract = {
     {1, {1, 2}},
+    {2, {1, 2}},
 };
 static const VersionMap RPCResponseAllowedSessionData = {
     {1, {1, 1}},
+    {2, {1, 1}},
 };
 static const VersionMap RPCResponseAllowedWorkflow = {
     {1, {1, 2}},
+    {2, {1, 2}},
 };
 }  // namespace proto
 }  // namespace opentxs
