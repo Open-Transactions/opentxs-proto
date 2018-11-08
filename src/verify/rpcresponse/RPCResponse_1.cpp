@@ -708,6 +708,7 @@ bool CheckProto_1(const RPCResponse& input, const bool silent)
             }
         } break;
         case RPCCOMMAND_GETSERVERPASSWORD:
+        case RPCCOMMAND_GETADMINNYM:
         case RPCCOMMAND_ERROR:
         default: {
             FAIL_1("invalid type")

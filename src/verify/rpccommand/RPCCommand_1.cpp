@@ -906,6 +906,7 @@ bool CheckProto_1(const RPCCommand& input, const bool silent)
             CHECK_SUBOBJECTS(getworkflow, RPCCommandAllowedGetWorkflow);
         } break;
         case RPCCOMMAND_GETSERVERPASSWORD:
+        case RPCCOMMAND_GETADMINNYM:
         case RPCCOMMAND_ERROR:
         default: {
             FAIL_1("invalid type")
