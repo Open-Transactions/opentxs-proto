@@ -951,6 +951,30 @@ bool CheckProto_2(const RPCCommand& input, const bool silent)
             CHECK_NONE(acceptpendingpayment);
             CHECK_NONE(getworkflow);
         } break;
+        case RPCCOMMAND_GETUNITDEFINITION: {
+            if (0 > input.session()) { FAIL_1("invalid session"); }
+
+            OPTIONAL_IDENTIFIERS(associatenym);
+            CHECK_EXCLUDED(owner);
+            CHECK_EXCLUDED(notary);
+            CHECK_EXCLUDED(unit);
+            CHECK_HAVE(identifier);
+            CHECK_IDENTIFIERS(identifier);
+            CHECK_NONE(arg);
+            CHECK_EXCLUDED(hdseed);
+            CHECK_EXCLUDED(createnym);
+            CHECK_NONE(claim);
+            CHECK_NONE(server);
+            CHECK_EXCLUDED(createunit);
+            CHECK_EXCLUDED(sendpayment);
+            CHECK_EXCLUDED(movefunds);
+            CHECK_NONE(addcontact);
+            CHECK_NONE(verifyclaim);
+            CHECK_NONE(sendmessage);
+            CHECK_NONE(acceptverification);
+            CHECK_NONE(acceptpendingpayment);
+            CHECK_NONE(getworkflow);
+        } break;
         case RPCCOMMAND_ERROR:
         default: {
             FAIL_1("invalid type")
