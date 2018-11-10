@@ -24,6 +24,7 @@ import public "RPCStatus.proto";
 import public "RPCTask.proto";
 import public "ServerContract.proto";
 import public "SessionData.proto";
+import public "UnitDefinition.proto";
 
 message RPCResponse {
     optional uint32 version = 1;
@@ -42,4 +43,5 @@ message RPCResponse {
     repeated RPCTask task = 14;
     repeated ServerContract notary = 15;
     repeated PaymentWorkflow workflow = 16;
+    repeated UnitDefinition unit = 17;
 }

@@ -419,7 +419,17 @@ bool CheckProto_2(const RPCCommand& input, const bool silent)
             CHECK_IDENTIFIER(owner);
             CHECK_IDENTIFIER(notary);
             CHECK_IDENTIFIER(unit);
-            CHECK_NONE(identifier);
+
+            if (0 != input.identifier().size()) {
+                CHECK_SIZE(identifier, 1);
+                const auto size = input.identifier(0).size();
+
+                if (MAX_VALID_CONTACT_VALUE < size) {
+                    const auto fail = std::string("invalid alias size");
+                    FAIL_2(fail, size);
+                }
+            }
+
             CHECK_NONE(arg);
             CHECK_EXCLUDED(hdseed);
             CHECK_EXCLUDED(createnym);
@@ -442,7 +452,17 @@ bool CheckProto_2(const RPCCommand& input, const bool silent)
             CHECK_IDENTIFIER(owner);
             CHECK_IDENTIFIER(notary);
             CHECK_IDENTIFIER(unit);
-            CHECK_NONE(identifier);
+
+            if (0 != input.identifier().size()) {
+                CHECK_SIZE(identifier, 1);
+                const auto size = input.identifier(0).size();
+
+                if (MAX_VALID_CONTACT_VALUE < size) {
+                    const auto fail = std::string("invalid alias size");
+                    FAIL_2(fail, size);
+                }
+            }
+
             CHECK_NONE(arg);
             CHECK_EXCLUDED(hdseed);
             CHECK_EXCLUDED(createnym);
@@ -936,6 +956,30 @@ bool CheckProto_2(const RPCCommand& input, const bool silent)
             CHECK_EXCLUDED(notary);
             CHECK_EXCLUDED(unit);
             CHECK_NONE(identifier);
+            CHECK_NONE(arg);
+            CHECK_EXCLUDED(hdseed);
+            CHECK_EXCLUDED(createnym);
+            CHECK_NONE(claim);
+            CHECK_NONE(server);
+            CHECK_EXCLUDED(createunit);
+            CHECK_EXCLUDED(sendpayment);
+            CHECK_EXCLUDED(movefunds);
+            CHECK_NONE(addcontact);
+            CHECK_NONE(verifyclaim);
+            CHECK_NONE(sendmessage);
+            CHECK_NONE(acceptverification);
+            CHECK_NONE(acceptpendingpayment);
+            CHECK_NONE(getworkflow);
+        } break;
+        case RPCCOMMAND_GETUNITDEFINITION: {
+            if (0 > input.session()) { FAIL_1("invalid session"); }
+
+            OPTIONAL_IDENTIFIERS(associatenym);
+            CHECK_EXCLUDED(owner);
+            CHECK_EXCLUDED(notary);
+            CHECK_EXCLUDED(unit);
+            CHECK_HAVE(identifier);
+            CHECK_IDENTIFIERS(identifier);
             CHECK_NONE(arg);
             CHECK_EXCLUDED(hdseed);
             CHECK_EXCLUDED(createnym);
