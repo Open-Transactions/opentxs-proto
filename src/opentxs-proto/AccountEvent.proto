@@ -11,6 +11,7 @@ option java_outer_classname = "OTAccountEvent";
 option optimize_for = LITE_RUNTIME;
 
 import public "RPCEnums.proto";
+import public "PaymentWorkflowEnums.proto";
 
 message AccountEvent {
     optional uint32 version = 1;
@@ -22,4 +23,6 @@ message AccountEvent {
     optional int64 pendingamount = 7;
     optional int64 timestamp = 8;
     optional string memo = 9;
+    optional string uuid = 10;
+    optional PaymentWorkflowState state = 11;
 }

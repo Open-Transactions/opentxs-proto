@@ -36,12 +36,38 @@ bool CheckProto_1(const AccountEvent& input, const bool silent)
         }
     }
 
+    CHECK_EXCLUDED(uuid);
+
     return true;
 }
 
 bool CheckProto_2(const AccountEvent& input, const bool silent)
 {
-    UNDEFINED_VERSION(2)
+    OPTIONAL_IDENTIFIER(id);
+    CHECK_IDENTIFIER(workflow);
+
+    switch (input.type()) {
+        case ACCOUNTEVENT_INCOMINGTRANSFER:
+        case ACCOUNTEVENT_INCOMINGINVOICE:
+        case ACCOUNTEVENT_INCOMINGVOUCHER:
+        case ACCOUNTEVENT_INCOMINGCHEQUE: {
+            CHECK_IDENTIFIER(contact);
+        } break;
+        case ACCOUNTEVENT_OUTGOINGCHEQUE:
+        case ACCOUNTEVENT_OUTGOINGTRANSFER:
+        case ACCOUNTEVENT_OUTGOINGINVOICE:
+        case ACCOUNTEVENT_OUTGOINGVOUCHER: {
+            OPTIONAL_IDENTIFIER(contact);
+        } break;
+        case ACCOUNTEVENT_ERROR:
+        default: {
+            FAIL_2("Invalid type", input.type());
+        }
+    }
+
+    OPTIONAL_IDENTIFIER(uuid);
+
+    return true;
 }
 
 bool CheckProto_3(const AccountEvent& input, const bool silent)
