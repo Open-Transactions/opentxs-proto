@@ -17,6 +17,7 @@ static const VersionMap AddClaimAllowedContactItem = {
 };
 static const VersionMap ContactEventAllowedAccountEvent = {
     {1, {1, 1}},
+    {2, {1, 2}},
 };
 static const VersionMap CreateNymAllowedAddClaim = {
     {1, {1, 1}},
@@ -75,12 +76,15 @@ static const VersionMap RPCCommandAllowedVerifyClaim = {
 };
 static const VersionMap RPCPushAllowedAccountEvent = {
     {1, {1, 1}},
+    {2, {1, 2}},
 };
 static const VersionMap RPCPushAllowedContactEvent = {
     {1, {1, 1}},
+    {2, {1, 2}},
 };
 static const VersionMap RPCPushAllowedTaskStatus = {
     {1, {1, 1}},
+    {2, {1, 1}},
 };
 static const VersionMap RPCResponseAllowedAccountData = {
     {1, {1, 1}},
@@ -88,7 +92,7 @@ static const VersionMap RPCResponseAllowedAccountData = {
 };
 static const VersionMap RPCResponseAllowedAccountEvent = {
     {1, {1, 1}},
-    {2, {1, 1}},
+    {2, {1, 2}},
 };
 static const VersionMap RPCResponseAllowedContact = {
     {1, {1, 2}},
