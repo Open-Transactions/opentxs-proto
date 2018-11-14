@@ -65,7 +65,7 @@ with open("opentxsproto/__init__.py", "w") as f:
         f.write(f"from {PREFIX}.{module}_pb2 import *\n")
 
 setup(name='opentxsproto',
-      version='0.2',
+      version='0.3',
       description='Open-Transactions Canonical Protbuf Definition Library',
       author='Justus Ranvier',
       author_email='justus@opentransactions.org',
