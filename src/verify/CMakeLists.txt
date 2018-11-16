@@ -143,6 +143,7 @@ set(cxx-sources
   storageworkflowtype/StorageWorkflowType_2.cpp
   storesecret/StoreSecret_1.cpp
   taskcomplete/TaskComplete_1.cpp
+  transactiondata/TransactionData_1.cpp
   symmetrickey/SymmetricKey_1.cpp
   unitaccountmap/UnitAccountMap_1.cpp
   unitdefinition/UnitDefinition_1.cpp

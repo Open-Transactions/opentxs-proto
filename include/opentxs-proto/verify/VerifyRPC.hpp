@@ -112,7 +112,7 @@ static const VersionMap RPCResponseAllowedHDSeed = {
 };
 static const VersionMap RPCResponseAllowedRPCStatus = {
     {1, {1, 1}},
-    {2, {1, 1}},
+    {2, {1, 2}},
 };
 static const VersionMap RPCResponseAllowedRPCTask = {
     {1, {1, 1}},
@@ -124,6 +124,9 @@ static const VersionMap RPCResponseAllowedServerContract = {
 };
 static const VersionMap RPCResponseAllowedSessionData = {
     {1, {1, 1}},
+    {2, {1, 1}},
+};
+static const VersionMap RPCResponseAllowedTransactionData = {
     {2, {1, 1}},
 };
 static const VersionMap RPCResponseAllowedUnitDefinition = {
