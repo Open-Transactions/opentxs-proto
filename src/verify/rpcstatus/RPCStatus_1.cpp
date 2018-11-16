@@ -25,6 +25,7 @@ bool CheckProto_1(const RPCStatus& input, const bool silent)
         case RPCRESPONSE_NO_PATH_TO_RECIPIENT:
         case RPCRESPONSE_ERROR:
             break;
+        case RPCRESPONSE_UNIMPLEMENTED:
         default: {
             FAIL_1("invalid success code")
         }
@@ -35,7 +36,24 @@ bool CheckProto_1(const RPCStatus& input, const bool silent)
 
 bool CheckProto_2(const RPCStatus& input, const bool silent)
 {
-    UNDEFINED_VERSION(2)
+    switch (input.code()) {
+        case RPCRESPONSE_INVALID:
+        case RPCRESPONSE_SUCCESS:
+        case RPCRESPONSE_BAD_SESSION:
+        case RPCRESPONSE_NONE:
+        case RPCRESPONSE_QUEUED:
+        case RPCRESPONSE_UNNECESSARY:
+        case RPCRESPONSE_RETRY:
+        case RPCRESPONSE_NO_PATH_TO_RECIPIENT:
+        case RPCRESPONSE_ERROR:
+        case RPCRESPONSE_UNIMPLEMENTED:
+            break;
+        default: {
+            FAIL_1("invalid success code")
+        }
+    }
+
+    return true;
 }
 
 bool CheckProto_3(const RPCStatus& input, const bool silent)

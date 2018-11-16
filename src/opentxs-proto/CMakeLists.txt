@@ -124,6 +124,7 @@ set(PROTO_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/StoreSecret.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/SymmetricKey.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/TaskComplete.proto
+    ${CMAKE_CURRENT_SOURCE_DIR}/TransactionData.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/UnitAccountMap.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/UnitDefinition.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/Verification.proto

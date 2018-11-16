@@ -38,6 +38,7 @@ bool CheckProto_1(const RPCResponse& input, const bool silent)
             CHECK_NONE(notary);
             CHECK_NONE(workflow);
             CHECK_NONE(unit);
+            CHECK_NONE(transactiondata);
         } break;
         case RPCCOMMAND_ADDSERVERSESSION: {
             CHECK_SIZE(status, 1);
@@ -54,6 +55,7 @@ bool CheckProto_1(const RPCResponse& input, const bool silent)
             CHECK_NONE(notary);
             CHECK_NONE(workflow);
             CHECK_NONE(unit);
+            CHECK_NONE(transactiondata);
         } break;
         case RPCCOMMAND_LISTCLIENTSESSIONS: {
             CHECK_SIZE(status, 1);
@@ -70,6 +72,7 @@ bool CheckProto_1(const RPCResponse& input, const bool silent)
             CHECK_NONE(notary);
             CHECK_NONE(workflow);
             CHECK_NONE(unit);
+            CHECK_NONE(transactiondata);
         } break;
         case RPCCOMMAND_LISTSERVERSESSIONS: {
             CHECK_SIZE(status, 1);
@@ -86,6 +89,7 @@ bool CheckProto_1(const RPCResponse& input, const bool silent)
             CHECK_NONE(notary);
             CHECK_NONE(workflow);
             CHECK_NONE(unit);
+            CHECK_NONE(transactiondata);
         } break;
         case RPCCOMMAND_IMPORTHDSEED: {
             CHECK_SIZE(status, 1);
@@ -109,6 +113,7 @@ bool CheckProto_1(const RPCResponse& input, const bool silent)
             CHECK_NONE(notary);
             CHECK_NONE(workflow);
             CHECK_NONE(unit);
+            CHECK_NONE(transactiondata);
         } break;
         case RPCCOMMAND_LISTHDSEEDS: {
             CHECK_SIZE(status, 1);
@@ -131,6 +136,7 @@ bool CheckProto_1(const RPCResponse& input, const bool silent)
             CHECK_NONE(notary);
             CHECK_NONE(workflow);
             CHECK_NONE(unit);
+            CHECK_NONE(transactiondata);
         } break;
         case RPCCOMMAND_GETHDSEED: {
             CHECK_SIZE(status, 1);
@@ -153,6 +159,7 @@ bool CheckProto_1(const RPCResponse& input, const bool silent)
             CHECK_NONE(notary);
             CHECK_NONE(workflow);
             CHECK_NONE(unit);
+            CHECK_NONE(transactiondata);
         } break;
         case RPCCOMMAND_CREATENYM: {
             CHECK_SIZE(status, 1);
@@ -176,6 +183,7 @@ bool CheckProto_1(const RPCResponse& input, const bool silent)
             CHECK_NONE(notary);
             CHECK_NONE(workflow);
             CHECK_NONE(unit);
+            CHECK_NONE(transactiondata);
         } break;
         case RPCCOMMAND_LISTNYMS: {
             CHECK_SIZE(status, 1);
@@ -198,6 +206,7 @@ bool CheckProto_1(const RPCResponse& input, const bool silent)
             CHECK_NONE(notary);
             CHECK_NONE(workflow);
             CHECK_NONE(unit);
+            CHECK_NONE(transactiondata);
         } break;
         case RPCCOMMAND_GETNYM: {
             CHECK_SIZE(status, 1);
@@ -220,6 +229,7 @@ bool CheckProto_1(const RPCResponse& input, const bool silent)
             CHECK_NONE(notary);
             CHECK_NONE(workflow);
             CHECK_NONE(unit);
+            CHECK_NONE(transactiondata);
         } break;
         case RPCCOMMAND_ADDCLAIM: {
             CHECK_SIZE(status, 1);
@@ -236,6 +246,7 @@ bool CheckProto_1(const RPCResponse& input, const bool silent)
             CHECK_NONE(notary);
             CHECK_NONE(workflow);
             CHECK_NONE(unit);
+            CHECK_NONE(transactiondata);
         } break;
         case RPCCOMMAND_DELETECLAIM: {
             CHECK_SIZE(status, 1);
@@ -252,6 +263,7 @@ bool CheckProto_1(const RPCResponse& input, const bool silent)
             CHECK_NONE(notary);
             CHECK_NONE(workflow);
             CHECK_NONE(unit);
+            CHECK_NONE(transactiondata);
         } break;
         case RPCCOMMAND_IMPORTSERVERCONTRACT: {
             CHECK_SUBOBJECTS(status, RPCResponseAllowedRPCStatus);
@@ -267,6 +279,7 @@ bool CheckProto_1(const RPCResponse& input, const bool silent)
             CHECK_NONE(notary);
             CHECK_NONE(workflow);
             CHECK_NONE(unit);
+            CHECK_NONE(transactiondata);
         } break;
         case RPCCOMMAND_LISTSERVERCONTRACTS: {
             CHECK_SUBOBJECTS(status, RPCResponseAllowedRPCStatus);
@@ -288,6 +301,7 @@ bool CheckProto_1(const RPCResponse& input, const bool silent)
             CHECK_NONE(notary);
             CHECK_NONE(workflow);
             CHECK_NONE(unit);
+            CHECK_NONE(transactiondata);
         } break;
         case RPCCOMMAND_REGISTERNYM: {
             CHECK_SIZE(status, 1);
@@ -304,6 +318,7 @@ bool CheckProto_1(const RPCResponse& input, const bool silent)
             CHECK_NONE(notary);
             CHECK_NONE(workflow);
             CHECK_NONE(unit);
+            CHECK_NONE(transactiondata);
         } break;
         case RPCCOMMAND_CREATEUNITDEFINITION: {
             CHECK_SIZE(status, 1);
@@ -327,6 +342,7 @@ bool CheckProto_1(const RPCResponse& input, const bool silent)
             CHECK_NONE(notary);
             CHECK_NONE(workflow);
             CHECK_NONE(unit);
+            CHECK_NONE(transactiondata);
         } break;
         case RPCCOMMAND_LISTUNITDEFINITIONS: {
             CHECK_SIZE(status, 1);
@@ -349,6 +365,7 @@ bool CheckProto_1(const RPCResponse& input, const bool silent)
             CHECK_NONE(notary);
             CHECK_NONE(workflow);
             CHECK_NONE(unit);
+            CHECK_NONE(transactiondata);
         } break;
         case RPCCOMMAND_ISSUEUNITDEFINITION: {
             CHECK_SIZE(status, 1);
@@ -365,6 +382,7 @@ bool CheckProto_1(const RPCResponse& input, const bool silent)
             CHECK_NONE(notary);
             CHECK_NONE(workflow);
             CHECK_NONE(unit);
+            CHECK_NONE(transactiondata);
         } break;
         case RPCCOMMAND_CREATECOMPATIBLEACCOUNT:
         case RPCCOMMAND_CREATEACCOUNT: {
@@ -389,6 +407,7 @@ bool CheckProto_1(const RPCResponse& input, const bool silent)
             CHECK_NONE(notary);
             CHECK_NONE(workflow);
             CHECK_NONE(unit);
+            CHECK_NONE(transactiondata);
         } break;
         case RPCCOMMAND_LISTACCOUNTS: {
             CHECK_SIZE(status, 1);
@@ -411,6 +430,7 @@ bool CheckProto_1(const RPCResponse& input, const bool silent)
             CHECK_NONE(notary);
             CHECK_NONE(workflow);
             CHECK_NONE(unit);
+            CHECK_NONE(transactiondata);
         } break;
         case RPCCOMMAND_GETACCOUNTBALANCE: {
             CHECK_SIZE(status, 1);
@@ -433,6 +453,7 @@ bool CheckProto_1(const RPCResponse& input, const bool silent)
             CHECK_NONE(notary);
             CHECK_NONE(workflow);
             CHECK_NONE(unit);
+            CHECK_NONE(transactiondata);
         } break;
         case RPCCOMMAND_GETACCOUNTACTIVITY: {
             CHECK_SIZE(status, 1);
@@ -449,6 +470,7 @@ bool CheckProto_1(const RPCResponse& input, const bool silent)
             CHECK_NONE(notary);
             CHECK_NONE(workflow);
             CHECK_NONE(unit);
+            CHECK_NONE(transactiondata);
         } break;
         case RPCCOMMAND_SENDPAYMENT: {
             CHECK_SIZE(status, 1);
@@ -465,6 +487,7 @@ bool CheckProto_1(const RPCResponse& input, const bool silent)
             CHECK_NONE(notary);
             CHECK_NONE(workflow);
             CHECK_NONE(unit);
+            CHECK_NONE(transactiondata);
         } break;
         case RPCCOMMAND_MOVEFUNDS: {
             CHECK_SIZE(status, 1);
@@ -481,6 +504,7 @@ bool CheckProto_1(const RPCResponse& input, const bool silent)
             CHECK_NONE(notary);
             CHECK_NONE(workflow);
             CHECK_NONE(unit);
+            CHECK_NONE(transactiondata);
         } break;
         case RPCCOMMAND_ADDCONTACT: {
             CHECK_SIZE(status, 1);
@@ -503,6 +527,7 @@ bool CheckProto_1(const RPCResponse& input, const bool silent)
             CHECK_NONE(notary);
             CHECK_NONE(workflow);
             CHECK_NONE(unit);
+            CHECK_NONE(transactiondata);
         } break;
         case RPCCOMMAND_LISTCONTACTS: {
             CHECK_SIZE(status, 1);
@@ -525,6 +550,7 @@ bool CheckProto_1(const RPCResponse& input, const bool silent)
             CHECK_NONE(notary);
             CHECK_NONE(workflow);
             CHECK_NONE(unit);
+            CHECK_NONE(transactiondata);
         } break;
         case RPCCOMMAND_GETCONTACT: {
             CHECK_SIZE(status, 1);
@@ -547,6 +573,7 @@ bool CheckProto_1(const RPCResponse& input, const bool silent)
             CHECK_NONE(notary);
             CHECK_NONE(workflow);
             CHECK_NONE(unit);
+            CHECK_NONE(transactiondata);
         } break;
         case RPCCOMMAND_ADDCONTACTCLAIM: {
             CHECK_SIZE(status, 1);
@@ -563,6 +590,7 @@ bool CheckProto_1(const RPCResponse& input, const bool silent)
             CHECK_NONE(notary);
             CHECK_NONE(workflow);
             CHECK_NONE(unit);
+            CHECK_NONE(transactiondata);
         } break;
         case RPCCOMMAND_DELETECONTACTCLAIM: {
             CHECK_SIZE(status, 1);
@@ -579,6 +607,7 @@ bool CheckProto_1(const RPCResponse& input, const bool silent)
             CHECK_NONE(notary);
             CHECK_NONE(workflow);
             CHECK_NONE(unit);
+            CHECK_NONE(transactiondata);
         } break;
         case RPCCOMMAND_VERIFYCLAIM: {
             CHECK_SIZE(status, 1);
@@ -595,6 +624,7 @@ bool CheckProto_1(const RPCResponse& input, const bool silent)
             CHECK_NONE(notary);
             CHECK_NONE(workflow);
             CHECK_NONE(unit);
+            CHECK_NONE(transactiondata);
         } break;
         case RPCCOMMAND_ACCEPTVERIFICATION: {
             CHECK_SIZE(status, 1);
@@ -611,6 +641,7 @@ bool CheckProto_1(const RPCResponse& input, const bool silent)
             CHECK_NONE(notary);
             CHECK_NONE(workflow);
             CHECK_NONE(unit);
+            CHECK_NONE(transactiondata);
         } break;
         case RPCCOMMAND_SENDCONTACTMESSAGE: {
             CHECK_SIZE(status, 1);
@@ -627,6 +658,7 @@ bool CheckProto_1(const RPCResponse& input, const bool silent)
             CHECK_NONE(notary);
             CHECK_NONE(workflow);
             CHECK_NONE(unit);
+            CHECK_NONE(transactiondata);
         } break;
         case RPCCOMMAND_GETCONTACTACTIVITY: {
             CHECK_SIZE(status, 1);
@@ -643,6 +675,7 @@ bool CheckProto_1(const RPCResponse& input, const bool silent)
             CHECK_NONE(notary);
             CHECK_NONE(workflow);
             CHECK_NONE(unit);
+            CHECK_NONE(transactiondata);
         } break;
         case RPCCOMMAND_GETSERVERCONTRACT: {
             CHECK_SIZE(status, 1);
@@ -665,6 +698,7 @@ bool CheckProto_1(const RPCResponse& input, const bool silent)
 
             CHECK_NONE(workflow);
             CHECK_NONE(unit);
+            CHECK_NONE(transactiondata);
         } break;
         case RPCCOMMAND_GETPENDINGPAYMENTS: {
             CHECK_SIZE(status, 1);
@@ -688,6 +722,7 @@ bool CheckProto_1(const RPCResponse& input, const bool silent)
             CHECK_NONE(notary);
             CHECK_NONE(workflow);
             CHECK_NONE(unit);
+            CHECK_NONE(transactiondata);
         } break;
         case RPCCOMMAND_ACCEPTPENDINGPAYMENTS: {
             CHECK_SUBOBJECTS(status, RPCResponseAllowedRPCStatus);
@@ -703,6 +738,7 @@ bool CheckProto_1(const RPCResponse& input, const bool silent)
             CHECK_NONE(notary);
             CHECK_NONE(workflow);
             CHECK_NONE(unit);
+            CHECK_NONE(transactiondata);
         } break;
         case RPCCOMMAND_GETCOMPATIBLEACCOUNTS: {
             CHECK_SUBOBJECTS(status, RPCResponseAllowedRPCStatus);
@@ -724,6 +760,7 @@ bool CheckProto_1(const RPCResponse& input, const bool silent)
             CHECK_NONE(notary);
             CHECK_NONE(workflow);
             CHECK_NONE(unit);
+            CHECK_NONE(transactiondata);
         } break;
         case RPCCOMMAND_GETWORKFLOW: {
             CHECK_SUBOBJECTS(status, RPCResponseAllowedRPCStatus);
@@ -745,9 +782,12 @@ bool CheckProto_1(const RPCResponse& input, const bool silent)
             }
 
             CHECK_NONE(unit);
+            CHECK_NONE(transactiondata);
         } break;
         case RPCCOMMAND_GETSERVERPASSWORD:
         case RPCCOMMAND_GETADMINNYM:
+        case RPCCOMMAND_GETUNITDEFINITION:
+        case RPCCOMMAND_GETTRANSACTIONDATA:
         case RPCCOMMAND_ERROR:
         default: {
             FAIL_1("invalid type")

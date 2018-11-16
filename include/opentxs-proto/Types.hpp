@@ -144,6 +144,7 @@
 #include <opentxs-proto/StoreSecret.pb.h>
 #include <opentxs-proto/SymmetricKey.pb.h>
 #include <opentxs-proto/TaskComplete.pb.h>
+#include <opentxs-proto/TransactionData.pb.h>
 #include <opentxs-proto/UnitAccountMap.pb.h>
 #include <opentxs-proto/UnitDefinition.pb.h>
 #include <opentxs-proto/Verification.pb.h>
@@ -263,6 +264,7 @@
 #include <opentxs-proto/verify/StoreSecret.hpp>
 #include <opentxs-proto/verify/SymmetricKey.hpp>
 #include <opentxs-proto/verify/TaskComplete.hpp>
+#include <opentxs-proto/verify/TransactionData.hpp>
 #include <opentxs-proto/verify/UnitAccountMap.hpp>
 #include <opentxs-proto/verify/UnitDefinition.hpp>
 #include <opentxs-proto/verify/Verification.hpp>
