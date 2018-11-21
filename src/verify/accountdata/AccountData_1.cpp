@@ -20,13 +20,30 @@ bool CheckProto_1(const AccountData& input, const bool silent)
     CHECK_IDENTIFIER(unit);
     CHECK_IDENTIFIER(owner);
     CHECK_IDENTIFIER(issuer);
+    CHECK_EXCLUDED(type);
 
     return true;
 }
 
 bool CheckProto_2(const AccountData& input, const bool silent)
 {
-    UNDEFINED_VERSION(2)
+    CHECK_IDENTIFIER(id);
+    OPTIONAL_NAME(label);
+    CHECK_IDENTIFIER(unit);
+    CHECK_IDENTIFIER(owner);
+    CHECK_IDENTIFIER(issuer);
+
+    switch (input.type()) {
+        case ACCOUNTTYPE_NORMAL:
+        case ACCOUNTTYPE_ISSUER:
+            break;
+        case ACCOUNTTYPE_ERROR:
+        default: {
+            FAIL_1("Invalid type");
+        }
+    }
+
+    return true;
 }
 
 bool CheckProto_3(const AccountData& input, const bool silent)
