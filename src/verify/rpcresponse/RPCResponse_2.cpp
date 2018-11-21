@@ -139,7 +139,7 @@ bool CheckProto_2(const RPCResponse& input, const bool silent)
             CHECK_NONE(transactiondata);
         } break;
         case RPCCOMMAND_GETHDSEED: {
-            CHECK_SIZE(status, 1);
+            CHECK_HAVE(status);
             CHECK_SUBOBJECTS(status, RPCResponseAllowedRPCStatus);
             CHECK_NONE(sessions);
             CHECK_NONE(identifier);
@@ -209,7 +209,7 @@ bool CheckProto_2(const RPCResponse& input, const bool silent)
             CHECK_NONE(transactiondata);
         } break;
         case RPCCOMMAND_GETNYM: {
-            CHECK_SIZE(status, 1);
+            CHECK_HAVE(status);
             CHECK_SUBOBJECTS(status, RPCResponseAllowedRPCStatus);
             CHECK_NONE(sessions);
             CHECK_NONE(identifier);
@@ -232,7 +232,7 @@ bool CheckProto_2(const RPCResponse& input, const bool silent)
             CHECK_NONE(transactiondata);
         } break;
         case RPCCOMMAND_ADDCLAIM: {
-            CHECK_SIZE(status, 1);
+            CHECK_HAVE(status);
             CHECK_SUBOBJECTS(status, RPCResponseAllowedRPCStatus);
             CHECK_NONE(sessions);
             CHECK_NONE(identifier);
@@ -249,7 +249,7 @@ bool CheckProto_2(const RPCResponse& input, const bool silent)
             CHECK_NONE(transactiondata);
         } break;
         case RPCCOMMAND_DELETECLAIM: {
-            CHECK_SIZE(status, 1);
+            CHECK_HAVE(status);
             CHECK_SUBOBJECTS(status, RPCResponseAllowedRPCStatus);
             CHECK_NONE(sessions);
             CHECK_NONE(identifier);
@@ -266,6 +266,7 @@ bool CheckProto_2(const RPCResponse& input, const bool silent)
             CHECK_NONE(transactiondata);
         } break;
         case RPCCOMMAND_IMPORTSERVERCONTRACT: {
+            CHECK_HAVE(status);
             CHECK_SUBOBJECTS(status, RPCResponseAllowedRPCStatus);
             CHECK_NONE(sessions);
             CHECK_NONE(identifier);
@@ -282,6 +283,7 @@ bool CheckProto_2(const RPCResponse& input, const bool silent)
             CHECK_NONE(transactiondata);
         } break;
         case RPCCOMMAND_LISTSERVERCONTRACTS: {
+            CHECK_SIZE(status, 1);
             CHECK_SUBOBJECTS(status, RPCResponseAllowedRPCStatus);
             CHECK_NONE(sessions);
 
@@ -433,7 +435,7 @@ bool CheckProto_2(const RPCResponse& input, const bool silent)
             CHECK_NONE(transactiondata);
         } break;
         case RPCCOMMAND_GETACCOUNTBALANCE: {
-            CHECK_SIZE(status, 1);
+            CHECK_HAVE(status);
             CHECK_SUBOBJECTS(status, RPCResponseAllowedRPCStatus);
             CHECK_NONE(sessions);
             CHECK_NONE(identifier);
@@ -456,7 +458,7 @@ bool CheckProto_2(const RPCResponse& input, const bool silent)
             CHECK_NONE(transactiondata);
         } break;
         case RPCCOMMAND_GETACCOUNTACTIVITY: {
-            CHECK_SIZE(status, 1);
+            CHECK_HAVE(status);
             CHECK_SUBOBJECTS(status, RPCResponseAllowedRPCStatus);
             CHECK_NONE(sessions);
             CHECK_NONE(identifier);
@@ -507,7 +509,7 @@ bool CheckProto_2(const RPCResponse& input, const bool silent)
             CHECK_NONE(transactiondata);
         } break;
         case RPCCOMMAND_ADDCONTACT: {
-            CHECK_SIZE(status, 1);
+            CHECK_HAVE(status);
             CHECK_SUBOBJECTS(status, RPCResponseAllowedRPCStatus);
             CHECK_NONE(sessions);
 
@@ -678,7 +680,7 @@ bool CheckProto_2(const RPCResponse& input, const bool silent)
             CHECK_NONE(transactiondata);
         } break;
         case RPCCOMMAND_GETSERVERCONTRACT: {
-            CHECK_SIZE(status, 1);
+            CHECK_HAVE(status);
             CHECK_SUBOBJECTS(status, RPCResponseAllowedRPCStatus);
             CHECK_NONE(sessions);
             CHECK_NONE(identifier);
@@ -725,6 +727,7 @@ bool CheckProto_2(const RPCResponse& input, const bool silent)
             CHECK_NONE(transactiondata);
         } break;
         case RPCCOMMAND_ACCEPTPENDINGPAYMENTS: {
+            CHECK_HAVE(status);
             CHECK_SUBOBJECTS(status, RPCResponseAllowedRPCStatus);
             CHECK_NONE(sessions);
             CHECK_NONE(identifier);
@@ -741,6 +744,7 @@ bool CheckProto_2(const RPCResponse& input, const bool silent)
             CHECK_NONE(transactiondata);
         } break;
         case RPCCOMMAND_GETCOMPATIBLEACCOUNTS: {
+            CHECK_SIZE(status, 1);
             CHECK_SUBOBJECTS(status, RPCResponseAllowedRPCStatus);
             CHECK_NONE(sessions);
 
@@ -763,6 +767,7 @@ bool CheckProto_2(const RPCResponse& input, const bool silent)
             CHECK_NONE(transactiondata);
         } break;
         case RPCCOMMAND_GETWORKFLOW: {
+            CHECK_SIZE(status, 1);
             CHECK_SUBOBJECTS(status, RPCResponseAllowedRPCStatus);
             CHECK_NONE(sessions);
             CHECK_NONE(identifier);
