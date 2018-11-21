@@ -88,7 +88,7 @@ static const VersionMap RPCPushAllowedTaskStatus = {
 };
 static const VersionMap RPCResponseAllowedAccountData = {
     {1, {1, 1}},
-    {2, {1, 1}},
+    {2, {1, 2}},
 };
 static const VersionMap RPCResponseAllowedAccountEvent = {
     {1, {1, 1}},

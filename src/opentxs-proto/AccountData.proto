@@ -10,6 +10,8 @@ option java_package = "org.opentransactions.proto";
 option java_outer_classname = "OTAccountData";
 option optimize_for = LITE_RUNTIME;
 
+import public "RPCEnums.proto";
+
 message AccountData {
     optional uint32 version = 1;
     optional string id = 2;				// account id
@@ -19,4 +21,5 @@ message AccountData {
     optional string issuer = 6;			// issuer nym id
     optional int64 balance = 7;			// current balance
     optional int64 pendingbalance = 8;	// balance after pending transactions are processed
+    optional AccountType type = 9;
 }
