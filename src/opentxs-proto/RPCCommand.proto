@@ -50,4 +50,5 @@ message RPCCommand {
     repeated Verification acceptverification = 21;
     repeated AcceptPendingPayment acceptpendingpayment = 22;
     repeated GetWorkflow getworkflow = 23;
+    optional string param = 24;
 }

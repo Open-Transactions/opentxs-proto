@@ -876,6 +876,29 @@ bool CheckProto_2(const RPCResponse& input, const bool silent)
                 CHECK_NONE(transactiondata);
             }
         } break;
+        case RPCCOMMAND_LOOKUPACCOUNTID: {
+            CHECK_SIZE(status, 1);
+            CHECK_SUBOBJECTS(status, RPCResponseAllowedRPCStatus);
+            CHECK_NONE(sessions);
+
+            if (atLeastOne) {
+                CHECK_IDENTIFIERS(identifier);
+            } else {
+                CHECK_NONE(identifier);
+            }
+
+            CHECK_NONE(seed);
+            CHECK_NONE(nym);
+            CHECK_NONE(balance);
+            CHECK_NONE(contact);
+            CHECK_NONE(accountevent);
+            CHECK_NONE(contactevent);
+            CHECK_NONE(task);
+            CHECK_NONE(notary);
+            CHECK_NONE(workflow);
+            CHECK_NONE(unit);
+            CHECK_NONE(transactiondata);
+        } break;
         case RPCCOMMAND_ERROR:
         default: {
             FAIL_1("invalid type")
