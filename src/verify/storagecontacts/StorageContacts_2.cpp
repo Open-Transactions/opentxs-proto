@@ -64,8 +64,10 @@ bool CheckProto_2(const StorageContacts& input, const bool silent)
         try {
             const bool valid = Check(
                 index,
-                StorageContactsAllowedNym.at(input.version()).first,
-                StorageContactsAllowedNym.at(input.version()).second,
+                StorageContactsAllowedStorageContactNymIndex.at(input.version())
+                    .first,
+                StorageContactsAllowedStorageContactNymIndex.at(input.version())
+                    .second,
                 silent);
 
             if (!valid) { FAIL_1("invalid nym index") }

@@ -28,7 +28,7 @@ static const VerificationType VERIFICATIONS_NORMAL = false;
 #include "opentxs-proto/Basic.hpp"
 #include "opentxs-proto/Contact.hpp"
 
-#define MAX_CONTACT_VERSION 5
+#define MAX_CONTACT_VERSION 6
 
 namespace opentxs
 {
@@ -37,13 +37,15 @@ namespace proto
 static const VersionMap ContactAllowedContactData = {
     {1, {1, 4}},
     {2, {5, 5}},
+    {3, {6, 6}},
 };
-static const VersionMap ContactDataAllowedSection = {
+static const VersionMap ContactDataAllowedContactSection = {
     {1, {1, 1}},
     {2, {1, 2}},
     {3, {1, 3}},
     {4, {4, 4}},
     {5, {5, 5}},
+    {6, {6, 6}},
 };
 static const VersionMap ContactSectionAllowedItem = {
     {1, {1, 1}},
@@ -51,6 +53,7 @@ static const VersionMap ContactSectionAllowedItem = {
     {3, {1, 3}},
     {4, {4, 4}},
     {5, {5, 5}},
+    {6, {6, 6}},
 };
 static const VersionMap VerificationSetAllowedGroup = {
     {1, {1, 1}},

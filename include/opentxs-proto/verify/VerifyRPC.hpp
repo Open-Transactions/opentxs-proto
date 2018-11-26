@@ -13,7 +13,8 @@ namespace opentxs
 namespace proto
 {
 static const VersionMap AddClaimAllowedContactItem = {
-    {1, {1, 1}},
+    {1, {1, 5}},
+    {2, {1, 6}},
 };
 static const VersionMap ContactEventAllowedAccountEvent = {
     {1, {1, 1}},
@@ -21,6 +22,7 @@ static const VersionMap ContactEventAllowedAccountEvent = {
 };
 static const VersionMap CreateNymAllowedAddClaim = {
     {1, {1, 1}},
+    {2, {1, 2}},
 };
 static const VersionMap RPCCommandAllowedAcceptPendingPayment = {
     {1, {1, 1}},
@@ -36,7 +38,7 @@ static const VersionMap RPCCommandAllowedAPIArgument = {
 };
 static const VersionMap RPCCommandAllowedAddClaim = {
     {1, {1, 1}},
-    {2, {1, 1}},
+    {2, {1, 2}},
 };
 static const VersionMap RPCCommandAllowedCreateInstrumentDefinition = {
     {1, {1, 1}},
@@ -44,7 +46,7 @@ static const VersionMap RPCCommandAllowedCreateInstrumentDefinition = {
 };
 static const VersionMap RPCCommandAllowedCreateNym = {
     {1, {1, 1}},
-    {2, {1, 1}},
+    {2, {1, 2}},
 };
 static const VersionMap RPCCommandAllowedGetWorkflow = {
     {1, {1, 1}},
@@ -96,7 +98,7 @@ static const VersionMap RPCResponseAllowedAccountEvent = {
 };
 static const VersionMap RPCResponseAllowedContact = {
     {1, {1, 2}},
-    {2, {1, 2}},
+    {2, {1, 3}},
 };
 static const VersionMap RPCResponseAllowedContactEvent = {
     {1, {1, 2}},
@@ -104,7 +106,7 @@ static const VersionMap RPCResponseAllowedContactEvent = {
 };
 static const VersionMap RPCResponseAllowedCredentialIndex = {
     {1, {1, 5}},
-    {2, {1, 5}},
+    {2, {1, 6}},
 };
 static const VersionMap RPCResponseAllowedHDSeed = {
     {1, {1, 1}},

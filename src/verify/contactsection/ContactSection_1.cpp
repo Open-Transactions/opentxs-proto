@@ -88,9 +88,6 @@ bool CheckProto_6(
     const ClaimType indexed,
     const uint32_t parentVersion)
 {
-    // TODO: Remove the next line when version 6 is added.
-    UNDEFINED_VERSION(6)
-
     if (!input.has_name()) { FAIL_1("missing name") }
 
     if (!ValidContactSectionName(parentVersion, input.name())) {

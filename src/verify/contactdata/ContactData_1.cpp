@@ -24,8 +24,8 @@ bool CheckProto_1(
         try {
             bool validSection = Check(
                 it,
-                ContactDataAllowedSection.at(input.version()).first,
-                ContactDataAllowedSection.at(input.version()).second,
+                ContactDataAllowedContactSection.at(input.version()).first,
+                ContactDataAllowedContactSection.at(input.version()).second,
                 silent,
                 indexed,
                 input.version());
@@ -86,7 +86,7 @@ bool CheckProto_6(
     const bool silent,
     const ClaimType indexed)
 {
-    UNDEFINED_VERSION(6)
+    return CheckProto_1(input, silent, indexed);
 }
 
 bool CheckProto_7(

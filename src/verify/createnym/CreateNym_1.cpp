@@ -29,7 +29,7 @@ bool CheckProto_1(const CreateNym& input, const bool silent)
 
 bool CheckProto_2(const CreateNym& input, const bool silent)
 {
-    UNDEFINED_VERSION(2)
+    return CheckProto_1(input, silent);
 }
 
 bool CheckProto_3(const CreateNym& input, const bool silent)

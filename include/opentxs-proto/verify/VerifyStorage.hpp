@@ -39,7 +39,7 @@ static const VersionMap StorageContactsAllowedList = {
     {1, {1, 1}},
     {2, {1, 1}},
 };
-static const VersionMap StorageContactsAllowedNym = {
+static const VersionMap StorageContactsAllowedStorageContactNymIndex = {
     {2, {1, 1}},
 };
 static const VersionMap StorageCredentialAllowedHash = {

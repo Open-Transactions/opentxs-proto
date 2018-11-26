@@ -35,6 +35,7 @@ static const VersionMap PeerObjectAllowedCredentialIndex = {
     {4, {1, 4}},
     {5, {1, 4}},
     {6, {1, 5}},
+    {7, {1, 6}},
 };
 static const VersionMap PeerReplyAllowedSignature = {
     {1, {1, 1}},

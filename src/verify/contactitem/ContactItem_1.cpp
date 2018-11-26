@@ -103,7 +103,7 @@ bool CheckProto_6(
     const ClaimType indexed,
     const ContactSectionVersion parentVersion)
 {
-    UNDEFINED_VERSION(6)
+    return CheckProto_1(input, silent, indexed, parentVersion);
 }
 
 bool CheckProto_7(
