@@ -88,8 +88,8 @@ bool CheckProto_1(
 
             if (!Check(
                     input.mastercredential(),
-                    CredentialSetAllowedCredentials.at(input.version()).first,
-                    CredentialSetAllowedCredentials.at(input.version()).second,
+                    CredentialSetAllowedCredential.at(input.version()).first,
+                    CredentialSetAllowedCredential.at(input.version()).second,
                     silent,
                     key,
                     CREDROLE_MASTERKEY,
@@ -120,9 +120,9 @@ bool CheckProto_1(
             for (auto& it : input.activechildren()) {
                 if (!Check(
                         it,
-                        CredentialSetAllowedCredentials.at(input.version())
+                        CredentialSetAllowedCredential.at(input.version())
                             .first,
-                        CredentialSetAllowedCredentials.at(input.version())
+                        CredentialSetAllowedCredential.at(input.version())
                             .second,
                         silent,
                         key,
@@ -141,9 +141,9 @@ bool CheckProto_1(
             for (auto& it : input.revokedchildren()) {
                 if (!Check(
                         it,
-                        CredentialSetAllowedCredentials.at(input.version())
+                        CredentialSetAllowedCredential.at(input.version())
                             .first,
-                        CredentialSetAllowedCredentials.at(input.version())
+                        CredentialSetAllowedCredential.at(input.version())
                             .second,
                         silent,
                         key,
@@ -224,12 +224,12 @@ bool CheckProto_5(
 bool CheckProto_6(
     const CredentialSet& input,
     const bool silent,
-    const std::string&,
-    const KeyMode&,
-    bool&,
-    const CredentialSetMode&)
+    const std::string& nymID,
+    const KeyMode& key,
+    bool& haveHD,
+    const CredentialSetMode& mode)
 {
-    UNDEFINED_VERSION(6)
+    return CheckProto_1(input, silent, nymID, key, haveHD, mode);
 }
 
 bool CheckProto_7(

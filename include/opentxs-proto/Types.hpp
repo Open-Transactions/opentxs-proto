@@ -6,7 +6,7 @@
 #ifndef OPENTXS_PROTO_TYPES_HPP
 #define OPENTXS_PROTO_TYPES_HPP
 
-#define CONTACT_VERSION 5
+#define CONTACT_VERSION 6
 
 #ifdef _WIN32
 #pragma warning(push)

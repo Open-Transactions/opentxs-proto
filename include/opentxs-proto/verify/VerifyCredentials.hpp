@@ -18,6 +18,7 @@ static const VersionMap CredentialAllowedKeyCredentials = {
     {3, {1, 1}},
     {4, {1, 1}},
     {5, {1, 1}},
+    {6, {1, 1}},
 };
 static const VersionMap CredentialAllowedContactData = {
     {1, {1, 1}},
@@ -25,6 +26,7 @@ static const VersionMap CredentialAllowedContactData = {
     {3, {3, 3}},
     {4, {4, 4}},
     {5, {5, 5}},
+    {6, {6, 6}},
 };
 static const VersionMap CredentialAllowedVerification = {
     {1, {1, 1}},
@@ -32,6 +34,7 @@ static const VersionMap CredentialAllowedVerification = {
     {3, {1, 1}},
     {4, {1, 1}},
     {5, {1, 1}},
+    {6, {1, 1}},
 };
 static const VersionMap CredentialAllowedSignatures = {
     {1, {1, 1}},
@@ -39,6 +42,7 @@ static const VersionMap CredentialAllowedSignatures = {
     {3, {1, 1}},
     {4, {1, 1}},
     {5, {1, 1}},
+    {6, {1, 1}},
 };
 static const VersionMap CredentialAllowedMasterParams = {
     {1, {1, 1}},
@@ -46,6 +50,7 @@ static const VersionMap CredentialAllowedMasterParams = {
     {3, {1, 1}},
     {4, {1, 1}},
     {5, {1, 1}},
+    {6, {1, 1}},
 };
 static const VersionMap CredentialAllowedChildParams = {
     {1, {1, 1}},
@@ -53,6 +58,7 @@ static const VersionMap CredentialAllowedChildParams = {
     {3, {1, 1}},
     {4, {1, 1}},
     {5, {1, 1}},
+    {6, {1, 1}},
 };
 static const VersionMap KeyCredentialAllowedAsymmetricKey = {
     {1, {1, 1}},
@@ -75,20 +81,23 @@ static const VersionMap CredentialIndexAllowedNymIDSource = {
     {3, {1, 1}},
     {4, {1, 1}},
     {5, {1, 1}},
+    {6, {1, 1}},
 };
-static const VersionMap CredentialIndexAllowedCredentialSets = {
+static const VersionMap CredentialIndexAllowedCredentialSet = {
     {1, {1, 1}},
     {2, {1, 2}},
     {3, {1, 3}},
     {4, {1, 4}},
     {5, {1, 5}},
+    {6, {1, 6}},
 };
-static const VersionMap CredentialSetAllowedCredentials = {
+static const VersionMap CredentialSetAllowedCredential = {
     {1, {1, 1}},
     {2, {1, 2}},
     {3, {1, 3}},
     {4, {1, 4}},
     {5, {1, 5}},
+    {6, {1, 6}},
 };
 static const VersionMap AsymmetricKeyAllowedHDPath = {
     {1, {1, 1}},

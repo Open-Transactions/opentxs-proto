@@ -64,9 +64,7 @@ std::string TranslateSectionName(
     EnumLang langPair{enumValue, lang};
 
     for (auto& it : ContactSectionNames) {
-        if (langPair == it.first) {
-            return it.second;
-        }
+        if (langPair == it.first) { return it.second; }
     }
 
     return "";
@@ -78,9 +76,7 @@ std::string TranslateItemType(
     EnumLang langPair{enumValue, lang};
 
     for (auto& it : ContactItemTypes) {
-        if (langPair == it.first) {
-            return it.second;
-        }
+        if (langPair == it.first) { return it.second; }
     }
 
     return "";
@@ -92,9 +88,7 @@ std::string TranslateItemAttributes(
     EnumLang langPair{enumValue, lang};
 
     for (auto& it : ContactItemAttributes) {
-        if (langPair == it.first) {
-            return it.second;
-        }
+        if (langPair == it.first) { return it.second; }
     }
 
     return "";
@@ -127,10 +121,7 @@ bool CheckCombination(
 
     if (keyExists) {
         for (const auto& allowedType : it->second) {
-            if (type == allowedType) {
-
-                return true;
-            }
+            if (type == allowedType) { return true; }
         }
     }
 
@@ -147,10 +138,7 @@ std::uint32_t RequiredVersion(
         try {
             const auto exists = AllowedItemTypes.at({n, section}).count(type);
 
-            if (1 == exists) {
-
-                return n;
-            }
+            if (1 == exists) { return n; }
         } catch (const std::out_of_range&) {
         }
     }
@@ -165,16 +153,13 @@ std::uint32_t NymRequiredVersion(
     for (std::uint32_t n = hint; n <= MAX_CONTACT_VERSION; ++n) {
         try {
             const auto maxCredentialSet =
-                CredentialIndexAllowedCredentialSets.at(n).second;
+                CredentialIndexAllowedCredentialSet.at(n).second;
             const auto maxCredential =
-                CredentialSetAllowedCredentials.at(maxCredentialSet).second;
+                CredentialSetAllowedCredential.at(maxCredentialSet).second;
             const auto maxContactData =
                 CredentialAllowedContactData.at(maxCredential).second;
 
-            if (maxContactData >= contactDataVersion) {
-
-                return n;
-            }
+            if (maxContactData >= contactDataVersion) { return n; }
         } catch (const std::out_of_range&) {
 
             return 0;
@@ -191,14 +176,11 @@ std::uint32_t RequiredCredentialSetVersion(
     for (std::uint32_t n = hint; n <= MAX_CONTACT_VERSION; ++n) {
         try {
             const auto maxCredential =
-                CredentialSetAllowedCredentials.at(n).second;
+                CredentialSetAllowedCredential.at(n).second;
             const auto maxContactData =
                 CredentialAllowedContactData.at(maxCredential).second;
 
-            if (maxContactData >= contactDataVersion) {
-
-                return n;
-            }
+            if (maxContactData >= contactDataVersion) { return n; }
         } catch (const std::out_of_range&) {
         }
     }

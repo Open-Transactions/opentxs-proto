@@ -56,8 +56,8 @@ bool CheckProto_1(const CredentialIndex& input, const bool silent)
                                      : KEYMODE_PUBLIC;
             const bool validSet = Check(
                 it,
-                CredentialIndexAllowedCredentialSets.at(input.version()).first,
-                CredentialIndexAllowedCredentialSets.at(input.version()).second,
+                CredentialIndexAllowedCredentialSet.at(input.version()).first,
+                CredentialIndexAllowedCredentialSet.at(input.version()).second,
                 silent,
                 input.nymid(),
                 mode,
@@ -78,8 +78,8 @@ bool CheckProto_1(const CredentialIndex& input, const bool silent)
                                      : KEYMODE_PUBLIC;
             const bool validSet = Check(
                 it,
-                CredentialIndexAllowedCredentialSets.at(input.version()).first,
-                CredentialIndexAllowedCredentialSets.at(input.version()).second,
+                CredentialIndexAllowedCredentialSet.at(input.version()).first,
+                CredentialIndexAllowedCredentialSet.at(input.version()).second,
                 silent,
                 input.nymid(),
                 mode,
@@ -136,7 +136,7 @@ bool CheckProto_5(const CredentialIndex& input, const bool silent)
 
 bool CheckProto_6(const CredentialIndex& input, const bool silent)
 {
-    UNDEFINED_VERSION(6)
+    return CheckProto_1(input, silent);
 }
 
 bool CheckProto_7(const CredentialIndex& input, const bool silent)
