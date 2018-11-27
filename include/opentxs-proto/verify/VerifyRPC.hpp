@@ -56,6 +56,9 @@ static const VersionMap RPCCommandAllowedHDSeed = {
     {1, {1, 1}},
     {2, {1, 1}},
 };
+static const VersionMap RPCCommandAllowedModifyAccount = {
+    {2, {1, 1}},
+};
 static const VersionMap RPCCommandAllowedSendMessage = {
     {1, {1, 1}},
     {2, {1, 1}},

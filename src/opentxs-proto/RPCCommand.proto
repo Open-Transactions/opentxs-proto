@@ -18,6 +18,7 @@ import public "CreateInstrumentDefinition.proto";
 import public "CreateNym.proto";
 import public "GetWorkflow.proto";
 import public "HDSeed.proto";
+import public "ModifyAccount.proto";
 import public "MoveFunds.proto";
 import public "RPCEnums.proto";
 import public "SendMessage.proto";
@@ -51,4 +52,5 @@ message RPCCommand {
     repeated AcceptPendingPayment acceptpendingpayment = 22;
     repeated GetWorkflow getworkflow = 23;
     optional string param = 24;
+    repeated ModifyAccount modifyaccount = 25;
 }
