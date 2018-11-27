@@ -78,6 +78,7 @@
 #include <opentxs-proto/KeyCredential.pb.h>
 #include <opentxs-proto/ListenAddress.pb.h>
 #include <opentxs-proto/MasterCredentialParameters.pb.h>
+#include <opentxs-proto/ModifyAccount.pb.h>
 #include <opentxs-proto/MoveFunds.pb.h>
 #include <opentxs-proto/NoticeAcknowledgement.pb.h>
 #include <opentxs-proto/NymIDSource.pb.h>
@@ -202,6 +203,7 @@
 #include <opentxs-proto/verify/KeyCredential.hpp>
 #include <opentxs-proto/verify/ListenAddress.hpp>
 #include <opentxs-proto/verify/MasterCredentialParameters.hpp>
+#include <opentxs-proto/verify/ModifyAccount.hpp>
 #include <opentxs-proto/verify/MoveFunds.hpp>
 #include <opentxs-proto/verify/NoticeAcknowledgement.hpp>
 #include <opentxs-proto/verify/NymIDSource.hpp>

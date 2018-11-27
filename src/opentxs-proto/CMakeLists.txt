@@ -58,6 +58,7 @@ set(PROTO_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/KeyCredential.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/ListenAddress.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/MasterCredentialParameters.proto
+    ${CMAKE_CURRENT_SOURCE_DIR}/ModifyAccount.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/MoveFunds.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/NoticeAcknowledgement.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/NymIDSource.proto

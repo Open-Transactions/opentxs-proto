@@ -55,6 +55,7 @@ set(cxx-sources
   keycredential/KeyCredential_1.cpp
   listenaddress/ListenAddress_1.cpp
   mastercredentialparameters/MasterCredentialParameters_1.cpp
+  modifyaccount/ModifyAccount_1.cpp
   movefunds/MoveFunds_1.cpp
   nymidsource/NymIDSource_1.cpp
   noticeacknowledgement/NoticeAcknowledgement_1.cpp
