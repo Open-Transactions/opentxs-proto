@@ -165,12 +165,12 @@ if (PYTHON OR PYTHON2 OR PYTHON3)
     set(WRAPPER_DIR ${CMAKE_CURRENT_BINARY_DIR}/opentxsproto)
     set(STAGING_DIR ${CMAKE_CURRENT_BINARY_DIR}/${WRAPPER_TYPE}_stage)
     set(SITE_PACKAGES_PATH ${STAGING_DIR}/lib/python${PYTHON_VERSION_MAJOR}.${PYTHON_VERSION_MINOR}/site-packages)
+    configure_file("setup.py.in" "${CMAKE_CURRENT_BINARY_DIR}/setup.py" @ONLY)
 
     ExternalProject_Add(
         proto-${WRAPPER_TYPE}
         EXCLUDE_FROM_ALL 0
         DOWNLOAD_COMMAND mkdir -p ${WRAPPER_DIR}
-        PATCH_COMMAND cp ${CMAKE_CURRENT_SOURCE_DIR}/setup.py ${CMAKE_CURRENT_BINARY_DIR}
         CONFIGURE_COMMAND touch ${WRAPPER_DIR}/__init__.py
         BINARY_DIR ${CMAKE_CURRENT_BINARY_DIR}
         BUILD_COMMAND protoc --proto_path=${CMAKE_CURRENT_SOURCE_DIR} --${WRAPPER_TYPE}_out=${WRAPPER_DIR} ${PROTO_SOURCES}
