@@ -61,6 +61,32 @@ const ConsensusType ConsensusType_MIN = CONSENSUSTYPE_ERROR;
 const ConsensusType ConsensusType_MAX = CONSENSUSTYPE_PEER;
 const int ConsensusType_ARRAYSIZE = ConsensusType_MAX + 1;
 
+enum DeliveryState {
+  DELIVERTYSTATE_ERROR = 0,
+  DELIVERTYSTATE_IDLE = 1,
+  DELIVERTYSTATE_PENDINGSEND = 2,
+  DELIVERTYSTATE_NEEDNYMBOX = 3,
+  DELIVERTYSTATE_NEEDBOXITEMS = 4,
+  DELIVERTYSTATE_NEEDPROCESSNYMBOX = 5
+};
+bool DeliveryState_IsValid(int value);
+const DeliveryState DeliveryState_MIN = DELIVERTYSTATE_ERROR;
+const DeliveryState DeliveryState_MAX = DELIVERTYSTATE_NEEDPROCESSNYMBOX;
+const int DeliveryState_ARRAYSIZE = DeliveryState_MAX + 1;
+
+enum LastReplyStatus {
+  LASTREPLYSTATUS_INVALID = 0,
+  LASTREPLYSTATUS_NONE = 1,
+  LASTREPLYSTATUS_MESSAGESUCCESS = 2,
+  LASTREPLYSTATUS_MESSAGEFAILED = 3,
+  LASTREPLYSTATUS_UNKNOWN = 4,
+  LASTREPLYSTATUS_NOTSENT = 5
+};
+bool LastReplyStatus_IsValid(int value);
+const LastReplyStatus LastReplyStatus_MIN = LASTREPLYSTATUS_INVALID;
+const LastReplyStatus LastReplyStatus_MAX = LASTREPLYSTATUS_NOTSENT;
+const int LastReplyStatus_ARRAYSIZE = LastReplyStatus_MAX + 1;
+
 // ===================================================================
 
 
@@ -86,6 +112,8 @@ namespace google {
 namespace protobuf {
 
 template <> struct is_proto_enum< ::opentxs::proto::ConsensusType> : ::google::protobuf::internal::true_type {};
+template <> struct is_proto_enum< ::opentxs::proto::DeliveryState> : ::google::protobuf::internal::true_type {};
+template <> struct is_proto_enum< ::opentxs::proto::LastReplyStatus> : ::google::protobuf::internal::true_type {};
 
 }  // namespace protobuf
 }  // namespace google

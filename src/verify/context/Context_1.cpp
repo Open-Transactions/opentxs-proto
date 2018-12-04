@@ -44,7 +44,7 @@ bool CheckProto_2(const Context& input, const bool silent)
 
 bool CheckProto_3(const Context& input, const bool silent)
 {
-    UNDEFINED_VERSION(3)
+    return CheckProto_1(input, silent);
 }
 
 bool CheckProto_4(const Context& input, const bool silent)

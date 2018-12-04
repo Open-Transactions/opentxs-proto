@@ -34,6 +34,7 @@ void InitDefaultsServerContextImpl() {
 #else
   ::google::protobuf::internal::InitProtobufDefaults();
 #endif  // GOOGLE_PROTOBUF_ENFORCE_UNIQUENESS
+  protobuf_PendingCommand_2eproto::InitDefaultsPendingCommand();
   {
     void* ptr = &::opentxs::proto::_ServerContext_default_instance_;
     new (ptr) ::opentxs::proto::ServerContext();
@@ -54,6 +55,12 @@ namespace proto {
 // ===================================================================
 
 void ServerContext::InitAsDefaultInstance() {
+  ::opentxs::proto::_ServerContext_default_instance_._instance.get_mutable()->pending_ = const_cast< ::opentxs::proto::PendingCommand*>(
+      ::opentxs::proto::PendingCommand::internal_default_instance());
+}
+void ServerContext::clear_pending() {
+  if (pending_ != NULL) pending_->Clear();
+  clear_has_pending();
 }
 #if !defined(_MSC_VER) || _MSC_VER >= 1900
 const int ServerContext::kVersionFieldNumber;
@@ -64,6 +71,9 @@ const int ServerContext::kRevisionFieldNumber;
 const int ServerContext::kAdminpasswordFieldNumber;
 const int ServerContext::kAdminattemptedFieldNumber;
 const int ServerContext::kAdminsuccessFieldNumber;
+const int ServerContext::kStateFieldNumber;
+const int ServerContext::kLaststatusFieldNumber;
+const int ServerContext::kPendingFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 ServerContext::ServerContext()
@@ -89,9 +99,14 @@ ServerContext::ServerContext(const ServerContext& from)
   if (from.has_adminpassword()) {
     adminpassword_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.adminpassword_);
   }
+  if (from.has_pending()) {
+    pending_ = new ::opentxs::proto::PendingCommand(*from.pending_);
+  } else {
+    pending_ = NULL;
+  }
   ::memcpy(&highesttransactionnumber_, &from.highesttransactionnumber_,
-    static_cast<size_t>(reinterpret_cast<char*>(&adminsuccess_) -
-    reinterpret_cast<char*>(&highesttransactionnumber_)) + sizeof(adminsuccess_));
+    static_cast<size_t>(reinterpret_cast<char*>(&laststatus_) -
+    reinterpret_cast<char*>(&highesttransactionnumber_)) + sizeof(laststatus_));
   // @@protoc_insertion_point(copy_constructor:opentxs.proto.ServerContext)
 }
 
@@ -99,9 +114,9 @@ void ServerContext::SharedCtor() {
   _cached_size_ = 0;
   serverid_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   adminpassword_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  ::memset(&highesttransactionnumber_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&adminsuccess_) -
-      reinterpret_cast<char*>(&highesttransactionnumber_)) + sizeof(adminsuccess_));
+  ::memset(&pending_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&laststatus_) -
+      reinterpret_cast<char*>(&pending_)) + sizeof(laststatus_));
 }
 
 ServerContext::~ServerContext() {
@@ -112,6 +127,7 @@ ServerContext::~ServerContext() {
 void ServerContext::SharedDtor() {
   serverid_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   adminpassword_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (this != internal_default_instance()) delete pending_;
 }
 
 void ServerContext::SetCachedSize(int size) const {
@@ -140,7 +156,7 @@ void ServerContext::Clear() {
 
   tentativerequestnumber_.Clear();
   cached_has_bits = _has_bits_[0];
-  if (cached_has_bits & 3u) {
+  if (cached_has_bits & 7u) {
     if (cached_has_bits & 0x00000001u) {
       GOOGLE_DCHECK(!serverid_.IsDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited()));
       (*serverid_.UnsafeRawStringPointer())->clear();
@@ -149,11 +165,20 @@ void ServerContext::Clear() {
       GOOGLE_DCHECK(!adminpassword_.IsDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited()));
       (*adminpassword_.UnsafeRawStringPointer())->clear();
     }
+    if (cached_has_bits & 0x00000004u) {
+      GOOGLE_DCHECK(pending_ != NULL);
+      pending_->Clear();
+    }
   }
-  if (cached_has_bits & 124u) {
+  if (cached_has_bits & 248u) {
     ::memset(&highesttransactionnumber_, 0, static_cast<size_t>(
         reinterpret_cast<char*>(&adminsuccess_) -
         reinterpret_cast<char*>(&highesttransactionnumber_)) + sizeof(adminsuccess_));
+  }
+  if (cached_has_bits & 768u) {
+    ::memset(&state_, 0, static_cast<size_t>(
+        reinterpret_cast<char*>(&laststatus_) -
+        reinterpret_cast<char*>(&state_)) + sizeof(laststatus_));
   }
   _has_bits_.Clear();
   _internal_metadata_.Clear();
@@ -288,6 +313,60 @@ bool ServerContext::MergePartialFromCodedStream(
         break;
       }
 
+      // optional .opentxs.proto.DeliveryState state = 9;
+      case 9: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(72u /* 72 & 0xFF */)) {
+          int value;
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   int, ::google::protobuf::internal::WireFormatLite::TYPE_ENUM>(
+                 input, &value)));
+          if (::opentxs::proto::DeliveryState_IsValid(value)) {
+            set_state(static_cast< ::opentxs::proto::DeliveryState >(value));
+          } else {
+            unknown_fields_stream.WriteVarint32(72u);
+            unknown_fields_stream.WriteVarint32(
+                static_cast< ::google::protobuf::uint32>(value));
+          }
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // optional .opentxs.proto.LastReplyStatus laststatus = 10;
+      case 10: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(80u /* 80 & 0xFF */)) {
+          int value;
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   int, ::google::protobuf::internal::WireFormatLite::TYPE_ENUM>(
+                 input, &value)));
+          if (::opentxs::proto::LastReplyStatus_IsValid(value)) {
+            set_laststatus(static_cast< ::opentxs::proto::LastReplyStatus >(value));
+          } else {
+            unknown_fields_stream.WriteVarint32(80u);
+            unknown_fields_stream.WriteVarint32(
+                static_cast< ::google::protobuf::uint32>(value));
+          }
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // optional .opentxs.proto.PendingCommand pending = 11;
+      case 11: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(90u /* 90 & 0xFF */)) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessage(
+               input, mutable_pending()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
       default: {
       handle_unusual:
         if (tag == 0) {
@@ -316,7 +395,7 @@ void ServerContext::SerializeWithCachedSizes(
 
   cached_has_bits = _has_bits_[0];
   // optional uint32 version = 1;
-  if (cached_has_bits & 0x00000010u) {
+  if (cached_has_bits & 0x00000020u) {
     ::google::protobuf::internal::WireFormatLite::WriteUInt32(1, this->version(), output);
   }
 
@@ -327,7 +406,7 @@ void ServerContext::SerializeWithCachedSizes(
   }
 
   // optional uint64 highesttransactionnumber = 3;
-  if (cached_has_bits & 0x00000004u) {
+  if (cached_has_bits & 0x00000008u) {
     ::google::protobuf::internal::WireFormatLite::WriteUInt64(3, this->highesttransactionnumber(), output);
   }
 
@@ -338,7 +417,7 @@ void ServerContext::SerializeWithCachedSizes(
   }
 
   // optional uint64 revision = 5;
-  if (cached_has_bits & 0x00000008u) {
+  if (cached_has_bits & 0x00000010u) {
     ::google::protobuf::internal::WireFormatLite::WriteUInt64(5, this->revision(), output);
   }
 
@@ -349,13 +428,31 @@ void ServerContext::SerializeWithCachedSizes(
   }
 
   // optional bool adminattempted = 7;
-  if (cached_has_bits & 0x00000020u) {
+  if (cached_has_bits & 0x00000040u) {
     ::google::protobuf::internal::WireFormatLite::WriteBool(7, this->adminattempted(), output);
   }
 
   // optional bool adminsuccess = 8;
-  if (cached_has_bits & 0x00000040u) {
+  if (cached_has_bits & 0x00000080u) {
     ::google::protobuf::internal::WireFormatLite::WriteBool(8, this->adminsuccess(), output);
+  }
+
+  // optional .opentxs.proto.DeliveryState state = 9;
+  if (cached_has_bits & 0x00000100u) {
+    ::google::protobuf::internal::WireFormatLite::WriteEnum(
+      9, this->state(), output);
+  }
+
+  // optional .opentxs.proto.LastReplyStatus laststatus = 10;
+  if (cached_has_bits & 0x00000200u) {
+    ::google::protobuf::internal::WireFormatLite::WriteEnum(
+      10, this->laststatus(), output);
+  }
+
+  // optional .opentxs.proto.PendingCommand pending = 11;
+  if (cached_has_bits & 0x00000004u) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessage(
+      11, *this->pending_, output);
   }
 
   output->WriteRaw(_internal_metadata_.unknown_fields().data(),
@@ -378,7 +475,7 @@ size_t ServerContext::ByteSizeLong() const {
     total_size += data_size;
   }
 
-  if (_has_bits_[0 / 32] & 127u) {
+  if (_has_bits_[0 / 32] & 255u) {
     // optional string serverid = 2;
     if (has_serverid()) {
       total_size += 1 +
@@ -391,6 +488,13 @@ size_t ServerContext::ByteSizeLong() const {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::StringSize(
           this->adminpassword());
+    }
+
+    // optional .opentxs.proto.PendingCommand pending = 11;
+    if (has_pending()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::MessageSize(
+          *this->pending_);
     }
 
     // optional uint64 highesttransactionnumber = 3;
@@ -425,6 +529,20 @@ size_t ServerContext::ByteSizeLong() const {
     }
 
   }
+  if (_has_bits_[8 / 32] & 768u) {
+    // optional .opentxs.proto.DeliveryState state = 9;
+    if (has_state()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::EnumSize(this->state());
+    }
+
+    // optional .opentxs.proto.LastReplyStatus laststatus = 10;
+    if (has_laststatus()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::EnumSize(this->laststatus());
+    }
+
+  }
   int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
   GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
   _cached_size_ = cached_size;
@@ -446,7 +564,7 @@ void ServerContext::MergeFrom(const ServerContext& from) {
 
   tentativerequestnumber_.MergeFrom(from.tentativerequestnumber_);
   cached_has_bits = from._has_bits_[0];
-  if (cached_has_bits & 127u) {
+  if (cached_has_bits & 255u) {
     if (cached_has_bits & 0x00000001u) {
       set_has_serverid();
       serverid_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.serverid_);
@@ -456,19 +574,31 @@ void ServerContext::MergeFrom(const ServerContext& from) {
       adminpassword_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.adminpassword_);
     }
     if (cached_has_bits & 0x00000004u) {
-      highesttransactionnumber_ = from.highesttransactionnumber_;
+      mutable_pending()->::opentxs::proto::PendingCommand::MergeFrom(from.pending());
     }
     if (cached_has_bits & 0x00000008u) {
-      revision_ = from.revision_;
+      highesttransactionnumber_ = from.highesttransactionnumber_;
     }
     if (cached_has_bits & 0x00000010u) {
-      version_ = from.version_;
+      revision_ = from.revision_;
     }
     if (cached_has_bits & 0x00000020u) {
-      adminattempted_ = from.adminattempted_;
+      version_ = from.version_;
     }
     if (cached_has_bits & 0x00000040u) {
+      adminattempted_ = from.adminattempted_;
+    }
+    if (cached_has_bits & 0x00000080u) {
       adminsuccess_ = from.adminsuccess_;
+    }
+    _has_bits_[0] |= cached_has_bits;
+  }
+  if (cached_has_bits & 768u) {
+    if (cached_has_bits & 0x00000100u) {
+      state_ = from.state_;
+    }
+    if (cached_has_bits & 0x00000200u) {
+      laststatus_ = from.laststatus_;
     }
     _has_bits_[0] |= cached_has_bits;
   }
@@ -494,11 +624,14 @@ void ServerContext::InternalSwap(ServerContext* other) {
   tentativerequestnumber_.InternalSwap(&other->tentativerequestnumber_);
   serverid_.Swap(&other->serverid_);
   adminpassword_.Swap(&other->adminpassword_);
+  swap(pending_, other->pending_);
   swap(highesttransactionnumber_, other->highesttransactionnumber_);
   swap(revision_, other->revision_);
   swap(version_, other->version_);
   swap(adminattempted_, other->adminattempted_);
   swap(adminsuccess_, other->adminsuccess_);
+  swap(state_, other->state_);
+  swap(laststatus_, other->laststatus_);
   swap(_has_bits_[0], other->_has_bits_[0]);
   _internal_metadata_.Swap(&other->_internal_metadata_);
   swap(_cached_size_, other->_cached_size_);

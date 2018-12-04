@@ -14,24 +14,14 @@ namespace proto
 {
 bool CheckProto_1(const ServerContext& input, const bool silent)
 {
-    if (!input.has_serverid()) { FAIL_1("missing server id") }
-
-    if ((MIN_PLAUSIBLE_IDENTIFIER > input.serverid().size()) ||
-        (MAX_PLAUSIBLE_IDENTIFIER < input.serverid().size())) {
-        FAIL_1("invalid server id")
-    }
-
-    if (0 < input.revision()) { FAIL_1("unexpected revision field found"); }
-
-    if (0 < input.adminpassword().size()) {
-        FAIL_1("unexpected adminpassword field found");
-    }
-
-    if (input.adminattempted()) {
-        FAIL_1("unexpected adminattempted field found");
-    }
-
-    if (input.adminsuccess()) { FAIL_1("unexpected adminsuccess field found"); }
+    CHECK_IDENTIFIER(serverid);
+    CHECK_EXCLUDED(revision);
+    CHECK_EXCLUDED(adminpassword);
+    CHECK_EXCLUDED(adminattempted);
+    CHECK_EXCLUDED(adminsuccess);
+    CHECK_EXCLUDED(state);
+    CHECK_EXCLUDED(laststatus);
+    CHECK_EXCLUDED(pending);
 
     return true;
 }

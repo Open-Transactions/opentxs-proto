@@ -10,6 +10,9 @@ option java_package = "org.opentransactions.proto";
 option java_outer_classname = "OTServerContext";
 option optimize_for = LITE_RUNTIME;
 
+import public "ConsensusEnums.proto";
+import public "PendingCommand.proto";
+
 message ServerContext {
     optional uint32 version = 1;
     optional string serverid = 2;
@@ -19,4 +22,7 @@ message ServerContext {
     optional string adminpassword = 6;
     optional bool adminattempted = 7;
     optional bool adminsuccess = 8;
+    optional DeliveryState state = 9;
+    optional LastReplyStatus laststatus = 10;
+    optional PendingCommand pending = 11;
 }

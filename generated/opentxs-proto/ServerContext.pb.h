@@ -28,6 +28,8 @@
 #include <google/protobuf/message_lite.h>
 #include <google/protobuf/repeated_field.h>  // IWYU pragma: export
 #include <google/protobuf/extension_set.h>  // IWYU pragma: export
+#include "ConsensusEnums.pb.h"  // IWYU pragma: export
+#include "PendingCommand.pb.h"  // IWYU pragma: export
 // @@protoc_insertion_point(includes)
 
 namespace protobuf_ServerContext_2eproto {
@@ -187,6 +189,15 @@ class ServerContext : public ::google::protobuf::MessageLite /* @@protoc_inserti
   ::std::string* release_adminpassword();
   void set_allocated_adminpassword(::std::string* adminpassword);
 
+  // optional .opentxs.proto.PendingCommand pending = 11;
+  bool has_pending() const;
+  void clear_pending();
+  static const int kPendingFieldNumber = 11;
+  const ::opentxs::proto::PendingCommand& pending() const;
+  ::opentxs::proto::PendingCommand* release_pending();
+  ::opentxs::proto::PendingCommand* mutable_pending();
+  void set_allocated_pending(::opentxs::proto::PendingCommand* pending);
+
   // optional uint64 highesttransactionnumber = 3;
   bool has_highesttransactionnumber() const;
   void clear_highesttransactionnumber();
@@ -222,6 +233,20 @@ class ServerContext : public ::google::protobuf::MessageLite /* @@protoc_inserti
   bool adminsuccess() const;
   void set_adminsuccess(bool value);
 
+  // optional .opentxs.proto.DeliveryState state = 9;
+  bool has_state() const;
+  void clear_state();
+  static const int kStateFieldNumber = 9;
+  ::opentxs::proto::DeliveryState state() const;
+  void set_state(::opentxs::proto::DeliveryState value);
+
+  // optional .opentxs.proto.LastReplyStatus laststatus = 10;
+  bool has_laststatus() const;
+  void clear_laststatus();
+  static const int kLaststatusFieldNumber = 10;
+  ::opentxs::proto::LastReplyStatus laststatus() const;
+  void set_laststatus(::opentxs::proto::LastReplyStatus value);
+
   // @@protoc_insertion_point(class_scope:opentxs.proto.ServerContext)
  private:
   void set_has_version();
@@ -238,6 +263,12 @@ class ServerContext : public ::google::protobuf::MessageLite /* @@protoc_inserti
   void clear_has_adminattempted();
   void set_has_adminsuccess();
   void clear_has_adminsuccess();
+  void set_has_state();
+  void clear_has_state();
+  void set_has_laststatus();
+  void clear_has_laststatus();
+  void set_has_pending();
+  void clear_has_pending();
 
   ::google::protobuf::internal::InternalMetadataWithArenaLite _internal_metadata_;
   ::google::protobuf::internal::HasBits<1> _has_bits_;
@@ -245,11 +276,14 @@ class ServerContext : public ::google::protobuf::MessageLite /* @@protoc_inserti
   ::google::protobuf::RepeatedField< ::google::protobuf::uint64 > tentativerequestnumber_;
   ::google::protobuf::internal::ArenaStringPtr serverid_;
   ::google::protobuf::internal::ArenaStringPtr adminpassword_;
+  ::opentxs::proto::PendingCommand* pending_;
   ::google::protobuf::uint64 highesttransactionnumber_;
   ::google::protobuf::uint64 revision_;
   ::google::protobuf::uint32 version_;
   bool adminattempted_;
   bool adminsuccess_;
+  int state_;
+  int laststatus_;
   friend struct ::protobuf_ServerContext_2eproto::TableStruct;
   friend void ::protobuf_ServerContext_2eproto::InitDefaultsServerContextImpl();
 };
@@ -266,13 +300,13 @@ class ServerContext : public ::google::protobuf::MessageLite /* @@protoc_inserti
 
 // optional uint32 version = 1;
 inline bool ServerContext::has_version() const {
-  return (_has_bits_[0] & 0x00000010u) != 0;
+  return (_has_bits_[0] & 0x00000020u) != 0;
 }
 inline void ServerContext::set_has_version() {
-  _has_bits_[0] |= 0x00000010u;
+  _has_bits_[0] |= 0x00000020u;
 }
 inline void ServerContext::clear_has_version() {
-  _has_bits_[0] &= ~0x00000010u;
+  _has_bits_[0] &= ~0x00000020u;
 }
 inline void ServerContext::clear_version() {
   version_ = 0u;
@@ -353,13 +387,13 @@ inline void ServerContext::set_allocated_serverid(::std::string* serverid) {
 
 // optional uint64 highesttransactionnumber = 3;
 inline bool ServerContext::has_highesttransactionnumber() const {
-  return (_has_bits_[0] & 0x00000004u) != 0;
+  return (_has_bits_[0] & 0x00000008u) != 0;
 }
 inline void ServerContext::set_has_highesttransactionnumber() {
-  _has_bits_[0] |= 0x00000004u;
+  _has_bits_[0] |= 0x00000008u;
 }
 inline void ServerContext::clear_has_highesttransactionnumber() {
-  _has_bits_[0] &= ~0x00000004u;
+  _has_bits_[0] &= ~0x00000008u;
 }
 inline void ServerContext::clear_highesttransactionnumber() {
   highesttransactionnumber_ = GOOGLE_ULONGLONG(0);
@@ -407,13 +441,13 @@ ServerContext::mutable_tentativerequestnumber() {
 
 // optional uint64 revision = 5;
 inline bool ServerContext::has_revision() const {
-  return (_has_bits_[0] & 0x00000008u) != 0;
+  return (_has_bits_[0] & 0x00000010u) != 0;
 }
 inline void ServerContext::set_has_revision() {
-  _has_bits_[0] |= 0x00000008u;
+  _has_bits_[0] |= 0x00000010u;
 }
 inline void ServerContext::clear_has_revision() {
-  _has_bits_[0] &= ~0x00000008u;
+  _has_bits_[0] &= ~0x00000010u;
 }
 inline void ServerContext::clear_revision() {
   revision_ = GOOGLE_ULONGLONG(0);
@@ -494,13 +528,13 @@ inline void ServerContext::set_allocated_adminpassword(::std::string* adminpassw
 
 // optional bool adminattempted = 7;
 inline bool ServerContext::has_adminattempted() const {
-  return (_has_bits_[0] & 0x00000020u) != 0;
+  return (_has_bits_[0] & 0x00000040u) != 0;
 }
 inline void ServerContext::set_has_adminattempted() {
-  _has_bits_[0] |= 0x00000020u;
+  _has_bits_[0] |= 0x00000040u;
 }
 inline void ServerContext::clear_has_adminattempted() {
-  _has_bits_[0] &= ~0x00000020u;
+  _has_bits_[0] &= ~0x00000040u;
 }
 inline void ServerContext::clear_adminattempted() {
   adminattempted_ = false;
@@ -518,13 +552,13 @@ inline void ServerContext::set_adminattempted(bool value) {
 
 // optional bool adminsuccess = 8;
 inline bool ServerContext::has_adminsuccess() const {
-  return (_has_bits_[0] & 0x00000040u) != 0;
+  return (_has_bits_[0] & 0x00000080u) != 0;
 }
 inline void ServerContext::set_has_adminsuccess() {
-  _has_bits_[0] |= 0x00000040u;
+  _has_bits_[0] |= 0x00000080u;
 }
 inline void ServerContext::clear_has_adminsuccess() {
-  _has_bits_[0] &= ~0x00000040u;
+  _has_bits_[0] &= ~0x00000080u;
 }
 inline void ServerContext::clear_adminsuccess() {
   adminsuccess_ = false;
@@ -538,6 +572,106 @@ inline void ServerContext::set_adminsuccess(bool value) {
   set_has_adminsuccess();
   adminsuccess_ = value;
   // @@protoc_insertion_point(field_set:opentxs.proto.ServerContext.adminsuccess)
+}
+
+// optional .opentxs.proto.DeliveryState state = 9;
+inline bool ServerContext::has_state() const {
+  return (_has_bits_[0] & 0x00000100u) != 0;
+}
+inline void ServerContext::set_has_state() {
+  _has_bits_[0] |= 0x00000100u;
+}
+inline void ServerContext::clear_has_state() {
+  _has_bits_[0] &= ~0x00000100u;
+}
+inline void ServerContext::clear_state() {
+  state_ = 0;
+  clear_has_state();
+}
+inline ::opentxs::proto::DeliveryState ServerContext::state() const {
+  // @@protoc_insertion_point(field_get:opentxs.proto.ServerContext.state)
+  return static_cast< ::opentxs::proto::DeliveryState >(state_);
+}
+inline void ServerContext::set_state(::opentxs::proto::DeliveryState value) {
+  assert(::opentxs::proto::DeliveryState_IsValid(value));
+  set_has_state();
+  state_ = value;
+  // @@protoc_insertion_point(field_set:opentxs.proto.ServerContext.state)
+}
+
+// optional .opentxs.proto.LastReplyStatus laststatus = 10;
+inline bool ServerContext::has_laststatus() const {
+  return (_has_bits_[0] & 0x00000200u) != 0;
+}
+inline void ServerContext::set_has_laststatus() {
+  _has_bits_[0] |= 0x00000200u;
+}
+inline void ServerContext::clear_has_laststatus() {
+  _has_bits_[0] &= ~0x00000200u;
+}
+inline void ServerContext::clear_laststatus() {
+  laststatus_ = 0;
+  clear_has_laststatus();
+}
+inline ::opentxs::proto::LastReplyStatus ServerContext::laststatus() const {
+  // @@protoc_insertion_point(field_get:opentxs.proto.ServerContext.laststatus)
+  return static_cast< ::opentxs::proto::LastReplyStatus >(laststatus_);
+}
+inline void ServerContext::set_laststatus(::opentxs::proto::LastReplyStatus value) {
+  assert(::opentxs::proto::LastReplyStatus_IsValid(value));
+  set_has_laststatus();
+  laststatus_ = value;
+  // @@protoc_insertion_point(field_set:opentxs.proto.ServerContext.laststatus)
+}
+
+// optional .opentxs.proto.PendingCommand pending = 11;
+inline bool ServerContext::has_pending() const {
+  return (_has_bits_[0] & 0x00000004u) != 0;
+}
+inline void ServerContext::set_has_pending() {
+  _has_bits_[0] |= 0x00000004u;
+}
+inline void ServerContext::clear_has_pending() {
+  _has_bits_[0] &= ~0x00000004u;
+}
+inline const ::opentxs::proto::PendingCommand& ServerContext::pending() const {
+  const ::opentxs::proto::PendingCommand* p = pending_;
+  // @@protoc_insertion_point(field_get:opentxs.proto.ServerContext.pending)
+  return p != NULL ? *p : *reinterpret_cast<const ::opentxs::proto::PendingCommand*>(
+      &::opentxs::proto::_PendingCommand_default_instance_);
+}
+inline ::opentxs::proto::PendingCommand* ServerContext::release_pending() {
+  // @@protoc_insertion_point(field_release:opentxs.proto.ServerContext.pending)
+  clear_has_pending();
+  ::opentxs::proto::PendingCommand* temp = pending_;
+  pending_ = NULL;
+  return temp;
+}
+inline ::opentxs::proto::PendingCommand* ServerContext::mutable_pending() {
+  set_has_pending();
+  if (pending_ == NULL) {
+    pending_ = new ::opentxs::proto::PendingCommand;
+  }
+  // @@protoc_insertion_point(field_mutable:opentxs.proto.ServerContext.pending)
+  return pending_;
+}
+inline void ServerContext::set_allocated_pending(::opentxs::proto::PendingCommand* pending) {
+  ::google::protobuf::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == NULL) {
+    delete reinterpret_cast< ::google::protobuf::MessageLite*>(pending_);
+  }
+  if (pending) {
+    ::google::protobuf::Arena* submessage_arena = NULL;
+    if (message_arena != submessage_arena) {
+      pending = ::google::protobuf::internal::GetOwnedMessage(
+          message_arena, pending, submessage_arena);
+    }
+    set_has_pending();
+  } else {
+    clear_has_pending();
+  }
+  pending_ = pending;
+  // @@protoc_insertion_point(field_set_allocated:opentxs.proto.ServerContext.pending)
 }
 
 #ifdef __GNUC__

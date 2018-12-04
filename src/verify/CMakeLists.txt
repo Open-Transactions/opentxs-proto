@@ -86,6 +86,7 @@ set(cxx-sources
   peerrequesthistory/PeerRequestHistory_1.cpp
   peerrequestworkflow/PeerRequestWorkflow_1.cpp
   pendingbailment/PendingBailment_1.cpp
+  pendingcommand/PendingCommand_1.cpp
   purse/Purse_1.cpp
   purseexchange/PurseExchange_1.cpp
   rpccommand/RPCCommand_1.cpp

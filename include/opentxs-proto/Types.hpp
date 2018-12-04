@@ -100,6 +100,7 @@
 #include <opentxs-proto/PeerRequestHistory.pb.h>
 #include <opentxs-proto/PeerRequestWorkflow.pb.h>
 #include <opentxs-proto/PendingBailment.pb.h>
+#include <opentxs-proto/PendingCommand.pb.h>
 #include <opentxs-proto/Purse.pb.h>
 #include <opentxs-proto/PurseExchange.pb.h>
 #include <opentxs-proto/RPCCommand.pb.h>
@@ -231,6 +232,7 @@
 #include <opentxs-proto/verify/PeerRequestHistory.hpp>
 #include <opentxs-proto/verify/PeerRequestWorkflow.hpp>
 #include <opentxs-proto/verify/PendingBailment.hpp>
+#include <opentxs-proto/verify/PendingCommand.hpp>
 #include <opentxs-proto/verify/Purse.hpp>
 #include <opentxs-proto/verify/PurseExchange.hpp>
 #include <opentxs-proto/verify/RPCCommand.hpp>
