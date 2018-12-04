@@ -45,6 +45,8 @@ void InitDefaultsRPCResponseImpl() {
   protobuf_RPCTask_2eproto::InitDefaultsRPCTask();
   protobuf_ServerContract_2eproto::InitDefaultsServerContract();
   protobuf_PaymentWorkflow_2eproto::InitDefaultsPaymentWorkflow();
+  protobuf_UnitDefinition_2eproto::InitDefaultsUnitDefinition();
+  protobuf_TransactionData_2eproto::InitDefaultsTransactionData();
   {
     void* ptr = &::opentxs::proto::_RPCResponse_default_instance_;
     new (ptr) ::opentxs::proto::RPCResponse();
@@ -99,6 +101,12 @@ void RPCResponse::clear_notary() {
 void RPCResponse::clear_workflow() {
   workflow_.Clear();
 }
+void RPCResponse::clear_unit() {
+  unit_.Clear();
+}
+void RPCResponse::clear_transactiondata() {
+  transactiondata_.Clear();
+}
 #if !defined(_MSC_VER) || _MSC_VER >= 1900
 const int RPCResponse::kVersionFieldNumber;
 const int RPCResponse::kCookieFieldNumber;
@@ -116,6 +124,8 @@ const int RPCResponse::kContacteventFieldNumber;
 const int RPCResponse::kTaskFieldNumber;
 const int RPCResponse::kNotaryFieldNumber;
 const int RPCResponse::kWorkflowFieldNumber;
+const int RPCResponse::kUnitFieldNumber;
+const int RPCResponse::kTransactiondataFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 RPCResponse::RPCResponse()
@@ -142,7 +152,9 @@ RPCResponse::RPCResponse(const RPCResponse& from)
       contactevent_(from.contactevent_),
       task_(from.task_),
       notary_(from.notary_),
-      workflow_(from.workflow_) {
+      workflow_(from.workflow_),
+      unit_(from.unit_),
+      transactiondata_(from.transactiondata_) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   cookie_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   if (from.has_cookie()) {
@@ -207,6 +219,8 @@ void RPCResponse::Clear() {
   task_.Clear();
   notary_.Clear();
   workflow_.Clear();
+  unit_.Clear();
+  transactiondata_.Clear();
   cached_has_bits = _has_bits_[0];
   if (cached_has_bits & 0x00000001u) {
     GOOGLE_DCHECK(!cookie_.IsDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited()));
@@ -431,6 +445,28 @@ bool RPCResponse::MergePartialFromCodedStream(
         break;
       }
 
+      // repeated .opentxs.proto.UnitDefinition unit = 17;
+      case 17: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(138u /* 138 & 0xFF */)) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessage(input, add_unit()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // repeated .opentxs.proto.TransactionData transactiondata = 18;
+      case 18: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(146u /* 146 & 0xFF */)) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessage(input, add_transactiondata()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
       default: {
       handle_unusual:
         if (tag == 0) {
@@ -561,6 +597,20 @@ void RPCResponse::SerializeWithCachedSizes(
       n = static_cast<unsigned int>(this->workflow_size()); i < n; i++) {
     ::google::protobuf::internal::WireFormatLite::WriteMessage(
       16, this->workflow(static_cast<int>(i)), output);
+  }
+
+  // repeated .opentxs.proto.UnitDefinition unit = 17;
+  for (unsigned int i = 0,
+      n = static_cast<unsigned int>(this->unit_size()); i < n; i++) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessage(
+      17, this->unit(static_cast<int>(i)), output);
+  }
+
+  // repeated .opentxs.proto.TransactionData transactiondata = 18;
+  for (unsigned int i = 0,
+      n = static_cast<unsigned int>(this->transactiondata_size()); i < n; i++) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessage(
+      18, this->transactiondata(static_cast<int>(i)), output);
   }
 
   output->WriteRaw(_internal_metadata_.unknown_fields().data(),
@@ -703,6 +753,28 @@ size_t RPCResponse::ByteSizeLong() const {
     }
   }
 
+  // repeated .opentxs.proto.UnitDefinition unit = 17;
+  {
+    unsigned int count = static_cast<unsigned int>(this->unit_size());
+    total_size += 2UL * count;
+    for (unsigned int i = 0; i < count; i++) {
+      total_size +=
+        ::google::protobuf::internal::WireFormatLite::MessageSize(
+          this->unit(static_cast<int>(i)));
+    }
+  }
+
+  // repeated .opentxs.proto.TransactionData transactiondata = 18;
+  {
+    unsigned int count = static_cast<unsigned int>(this->transactiondata_size());
+    total_size += 2UL * count;
+    for (unsigned int i = 0; i < count; i++) {
+      total_size +=
+        ::google::protobuf::internal::WireFormatLite::MessageSize(
+          this->transactiondata(static_cast<int>(i)));
+    }
+  }
+
   if (_has_bits_[0 / 32] & 15u) {
     // optional string cookie = 2;
     if (has_cookie()) {
@@ -763,6 +835,8 @@ void RPCResponse::MergeFrom(const RPCResponse& from) {
   task_.MergeFrom(from.task_);
   notary_.MergeFrom(from.notary_);
   workflow_.MergeFrom(from.workflow_);
+  unit_.MergeFrom(from.unit_);
+  transactiondata_.MergeFrom(from.transactiondata_);
   cached_has_bits = from._has_bits_[0];
   if (cached_has_bits & 15u) {
     if (cached_has_bits & 0x00000001u) {
@@ -811,6 +885,8 @@ void RPCResponse::InternalSwap(RPCResponse* other) {
   task_.InternalSwap(&other->task_);
   notary_.InternalSwap(&other->notary_);
   workflow_.InternalSwap(&other->workflow_);
+  unit_.InternalSwap(&other->unit_);
+  transactiondata_.InternalSwap(&other->transactiondata_);
   cookie_.Swap(&other->cookie_);
   swap(version_, other->version_);
   swap(type_, other->type_);

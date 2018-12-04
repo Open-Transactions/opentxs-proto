@@ -36,6 +36,7 @@
 #include "CreateNym.pb.h"  // IWYU pragma: export
 #include "GetWorkflow.pb.h"  // IWYU pragma: export
 #include "HDSeed.pb.h"  // IWYU pragma: export
+#include "ModifyAccount.pb.h"  // IWYU pragma: export
 #include "MoveFunds.pb.h"  // IWYU pragma: export
 #include "RPCEnums.pb.h"  // IWYU pragma: export
 #include "SendMessage.pb.h"  // IWYU pragma: export
@@ -312,6 +313,18 @@ class RPCCommand : public ::google::protobuf::MessageLite /* @@protoc_insertion_
   const ::google::protobuf::RepeatedPtrField< ::opentxs::proto::GetWorkflow >&
       getworkflow() const;
 
+  // repeated .opentxs.proto.ModifyAccount modifyaccount = 25;
+  int modifyaccount_size() const;
+  void clear_modifyaccount();
+  static const int kModifyaccountFieldNumber = 25;
+  const ::opentxs::proto::ModifyAccount& modifyaccount(int index) const;
+  ::opentxs::proto::ModifyAccount* mutable_modifyaccount(int index);
+  ::opentxs::proto::ModifyAccount* add_modifyaccount();
+  ::google::protobuf::RepeatedPtrField< ::opentxs::proto::ModifyAccount >*
+      mutable_modifyaccount();
+  const ::google::protobuf::RepeatedPtrField< ::opentxs::proto::ModifyAccount >&
+      modifyaccount() const;
+
   // optional string cookie = 2;
   bool has_cookie() const;
   void clear_cookie();
@@ -371,6 +384,21 @@ class RPCCommand : public ::google::protobuf::MessageLite /* @@protoc_insertion_
   ::std::string* mutable_unit();
   ::std::string* release_unit();
   void set_allocated_unit(::std::string* unit);
+
+  // optional string param = 24;
+  bool has_param() const;
+  void clear_param();
+  static const int kParamFieldNumber = 24;
+  const ::std::string& param() const;
+  void set_param(const ::std::string& value);
+  #if LANG_CXX11
+  void set_param(::std::string&& value);
+  #endif
+  void set_param(const char* value);
+  void set_param(const char* value, size_t size);
+  ::std::string* mutable_param();
+  ::std::string* release_param();
+  void set_allocated_param(::std::string* param);
 
   // optional .opentxs.proto.HDSeed hdseed = 11;
   bool has_hdseed() const;
@@ -464,6 +492,8 @@ class RPCCommand : public ::google::protobuf::MessageLite /* @@protoc_insertion_
   void clear_has_sendpayment();
   void set_has_movefunds();
   void clear_has_movefunds();
+  void set_has_param();
+  void clear_has_param();
 
   ::google::protobuf::internal::InternalMetadataWithArenaLite _internal_metadata_;
   ::google::protobuf::internal::HasBits<1> _has_bits_;
@@ -479,10 +509,12 @@ class RPCCommand : public ::google::protobuf::MessageLite /* @@protoc_insertion_
   ::google::protobuf::RepeatedPtrField< ::opentxs::proto::Verification > acceptverification_;
   ::google::protobuf::RepeatedPtrField< ::opentxs::proto::AcceptPendingPayment > acceptpendingpayment_;
   ::google::protobuf::RepeatedPtrField< ::opentxs::proto::GetWorkflow > getworkflow_;
+  ::google::protobuf::RepeatedPtrField< ::opentxs::proto::ModifyAccount > modifyaccount_;
   ::google::protobuf::internal::ArenaStringPtr cookie_;
   ::google::protobuf::internal::ArenaStringPtr owner_;
   ::google::protobuf::internal::ArenaStringPtr notary_;
   ::google::protobuf::internal::ArenaStringPtr unit_;
+  ::google::protobuf::internal::ArenaStringPtr param_;
   ::opentxs::proto::HDSeed* hdseed_;
   ::opentxs::proto::CreateNym* createnym_;
   ::opentxs::proto::CreateInstrumentDefinition* createunit_;
@@ -507,13 +539,13 @@ class RPCCommand : public ::google::protobuf::MessageLite /* @@protoc_insertion_
 
 // optional uint32 version = 1;
 inline bool RPCCommand::has_version() const {
-  return (_has_bits_[0] & 0x00000200u) != 0;
+  return (_has_bits_[0] & 0x00000400u) != 0;
 }
 inline void RPCCommand::set_has_version() {
-  _has_bits_[0] |= 0x00000200u;
+  _has_bits_[0] |= 0x00000400u;
 }
 inline void RPCCommand::clear_has_version() {
-  _has_bits_[0] &= ~0x00000200u;
+  _has_bits_[0] &= ~0x00000400u;
 }
 inline void RPCCommand::clear_version() {
   version_ = 0u;
@@ -594,13 +626,13 @@ inline void RPCCommand::set_allocated_cookie(::std::string* cookie) {
 
 // optional .opentxs.proto.RPCCommandType type = 3;
 inline bool RPCCommand::has_type() const {
-  return (_has_bits_[0] & 0x00000400u) != 0;
+  return (_has_bits_[0] & 0x00000800u) != 0;
 }
 inline void RPCCommand::set_has_type() {
-  _has_bits_[0] |= 0x00000400u;
+  _has_bits_[0] |= 0x00000800u;
 }
 inline void RPCCommand::clear_has_type() {
-  _has_bits_[0] &= ~0x00000400u;
+  _has_bits_[0] &= ~0x00000800u;
 }
 inline void RPCCommand::clear_type() {
   type_ = 0;
@@ -619,13 +651,13 @@ inline void RPCCommand::set_type(::opentxs::proto::RPCCommandType value) {
 
 // optional int32 session = 4;
 inline bool RPCCommand::has_session() const {
-  return (_has_bits_[0] & 0x00000800u) != 0;
+  return (_has_bits_[0] & 0x00001000u) != 0;
 }
 inline void RPCCommand::set_has_session() {
-  _has_bits_[0] |= 0x00000800u;
+  _has_bits_[0] |= 0x00001000u;
 }
 inline void RPCCommand::clear_has_session() {
-  _has_bits_[0] &= ~0x00000800u;
+  _has_bits_[0] &= ~0x00001000u;
 }
 inline void RPCCommand::clear_session() {
   session_ = 0;
@@ -997,13 +1029,13 @@ RPCCommand::arg() const {
 
 // optional .opentxs.proto.HDSeed hdseed = 11;
 inline bool RPCCommand::has_hdseed() const {
-  return (_has_bits_[0] & 0x00000010u) != 0;
+  return (_has_bits_[0] & 0x00000020u) != 0;
 }
 inline void RPCCommand::set_has_hdseed() {
-  _has_bits_[0] |= 0x00000010u;
+  _has_bits_[0] |= 0x00000020u;
 }
 inline void RPCCommand::clear_has_hdseed() {
-  _has_bits_[0] &= ~0x00000010u;
+  _has_bits_[0] &= ~0x00000020u;
 }
 inline const ::opentxs::proto::HDSeed& RPCCommand::hdseed() const {
   const ::opentxs::proto::HDSeed* p = hdseed_;
@@ -1047,13 +1079,13 @@ inline void RPCCommand::set_allocated_hdseed(::opentxs::proto::HDSeed* hdseed) {
 
 // optional .opentxs.proto.CreateNym createnym = 12;
 inline bool RPCCommand::has_createnym() const {
-  return (_has_bits_[0] & 0x00000020u) != 0;
+  return (_has_bits_[0] & 0x00000040u) != 0;
 }
 inline void RPCCommand::set_has_createnym() {
-  _has_bits_[0] |= 0x00000020u;
+  _has_bits_[0] |= 0x00000040u;
 }
 inline void RPCCommand::clear_has_createnym() {
-  _has_bits_[0] &= ~0x00000020u;
+  _has_bits_[0] &= ~0x00000040u;
 }
 inline const ::opentxs::proto::CreateNym& RPCCommand::createnym() const {
   const ::opentxs::proto::CreateNym* p = createnym_;
@@ -1151,13 +1183,13 @@ RPCCommand::server() const {
 
 // optional .opentxs.proto.CreateInstrumentDefinition createunit = 15;
 inline bool RPCCommand::has_createunit() const {
-  return (_has_bits_[0] & 0x00000040u) != 0;
+  return (_has_bits_[0] & 0x00000080u) != 0;
 }
 inline void RPCCommand::set_has_createunit() {
-  _has_bits_[0] |= 0x00000040u;
+  _has_bits_[0] |= 0x00000080u;
 }
 inline void RPCCommand::clear_has_createunit() {
-  _has_bits_[0] &= ~0x00000040u;
+  _has_bits_[0] &= ~0x00000080u;
 }
 inline const ::opentxs::proto::CreateInstrumentDefinition& RPCCommand::createunit() const {
   const ::opentxs::proto::CreateInstrumentDefinition* p = createunit_;
@@ -1201,13 +1233,13 @@ inline void RPCCommand::set_allocated_createunit(::opentxs::proto::CreateInstrum
 
 // optional .opentxs.proto.SendPayment sendpayment = 16;
 inline bool RPCCommand::has_sendpayment() const {
-  return (_has_bits_[0] & 0x00000080u) != 0;
+  return (_has_bits_[0] & 0x00000100u) != 0;
 }
 inline void RPCCommand::set_has_sendpayment() {
-  _has_bits_[0] |= 0x00000080u;
+  _has_bits_[0] |= 0x00000100u;
 }
 inline void RPCCommand::clear_has_sendpayment() {
-  _has_bits_[0] &= ~0x00000080u;
+  _has_bits_[0] &= ~0x00000100u;
 }
 inline const ::opentxs::proto::SendPayment& RPCCommand::sendpayment() const {
   const ::opentxs::proto::SendPayment* p = sendpayment_;
@@ -1251,13 +1283,13 @@ inline void RPCCommand::set_allocated_sendpayment(::opentxs::proto::SendPayment*
 
 // optional .opentxs.proto.MoveFunds movefunds = 17;
 inline bool RPCCommand::has_movefunds() const {
-  return (_has_bits_[0] & 0x00000100u) != 0;
+  return (_has_bits_[0] & 0x00000200u) != 0;
 }
 inline void RPCCommand::set_has_movefunds() {
-  _has_bits_[0] |= 0x00000100u;
+  _has_bits_[0] |= 0x00000200u;
 }
 inline void RPCCommand::clear_has_movefunds() {
-  _has_bits_[0] &= ~0x00000100u;
+  _has_bits_[0] &= ~0x00000200u;
 }
 inline const ::opentxs::proto::MoveFunds& RPCCommand::movefunds() const {
   const ::opentxs::proto::MoveFunds* p = movefunds_;
@@ -1459,6 +1491,96 @@ inline const ::google::protobuf::RepeatedPtrField< ::opentxs::proto::GetWorkflow
 RPCCommand::getworkflow() const {
   // @@protoc_insertion_point(field_list:opentxs.proto.RPCCommand.getworkflow)
   return getworkflow_;
+}
+
+// optional string param = 24;
+inline bool RPCCommand::has_param() const {
+  return (_has_bits_[0] & 0x00000010u) != 0;
+}
+inline void RPCCommand::set_has_param() {
+  _has_bits_[0] |= 0x00000010u;
+}
+inline void RPCCommand::clear_has_param() {
+  _has_bits_[0] &= ~0x00000010u;
+}
+inline void RPCCommand::clear_param() {
+  param_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  clear_has_param();
+}
+inline const ::std::string& RPCCommand::param() const {
+  // @@protoc_insertion_point(field_get:opentxs.proto.RPCCommand.param)
+  return param_.GetNoArena();
+}
+inline void RPCCommand::set_param(const ::std::string& value) {
+  set_has_param();
+  param_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:opentxs.proto.RPCCommand.param)
+}
+#if LANG_CXX11
+inline void RPCCommand::set_param(::std::string&& value) {
+  set_has_param();
+  param_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:opentxs.proto.RPCCommand.param)
+}
+#endif
+inline void RPCCommand::set_param(const char* value) {
+  GOOGLE_DCHECK(value != NULL);
+  set_has_param();
+  param_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:opentxs.proto.RPCCommand.param)
+}
+inline void RPCCommand::set_param(const char* value, size_t size) {
+  set_has_param();
+  param_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:opentxs.proto.RPCCommand.param)
+}
+inline ::std::string* RPCCommand::mutable_param() {
+  set_has_param();
+  // @@protoc_insertion_point(field_mutable:opentxs.proto.RPCCommand.param)
+  return param_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* RPCCommand::release_param() {
+  // @@protoc_insertion_point(field_release:opentxs.proto.RPCCommand.param)
+  clear_has_param();
+  return param_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void RPCCommand::set_allocated_param(::std::string* param) {
+  if (param != NULL) {
+    set_has_param();
+  } else {
+    clear_has_param();
+  }
+  param_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), param);
+  // @@protoc_insertion_point(field_set_allocated:opentxs.proto.RPCCommand.param)
+}
+
+// repeated .opentxs.proto.ModifyAccount modifyaccount = 25;
+inline int RPCCommand::modifyaccount_size() const {
+  return modifyaccount_.size();
+}
+inline const ::opentxs::proto::ModifyAccount& RPCCommand::modifyaccount(int index) const {
+  // @@protoc_insertion_point(field_get:opentxs.proto.RPCCommand.modifyaccount)
+  return modifyaccount_.Get(index);
+}
+inline ::opentxs::proto::ModifyAccount* RPCCommand::mutable_modifyaccount(int index) {
+  // @@protoc_insertion_point(field_mutable:opentxs.proto.RPCCommand.modifyaccount)
+  return modifyaccount_.Mutable(index);
+}
+inline ::opentxs::proto::ModifyAccount* RPCCommand::add_modifyaccount() {
+  // @@protoc_insertion_point(field_add:opentxs.proto.RPCCommand.modifyaccount)
+  return modifyaccount_.Add();
+}
+inline ::google::protobuf::RepeatedPtrField< ::opentxs::proto::ModifyAccount >*
+RPCCommand::mutable_modifyaccount() {
+  // @@protoc_insertion_point(field_mutable_list:opentxs.proto.RPCCommand.modifyaccount)
+  return &modifyaccount_;
+}
+inline const ::google::protobuf::RepeatedPtrField< ::opentxs::proto::ModifyAccount >&
+RPCCommand::modifyaccount() const {
+  // @@protoc_insertion_point(field_list:opentxs.proto.RPCCommand.modifyaccount)
+  return modifyaccount_;
 }
 
 #ifdef __GNUC__

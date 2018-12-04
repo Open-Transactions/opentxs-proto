@@ -225,6 +225,15 @@ bool ContactItemType_IsValid(int value) {
     case 178:
     case 179:
     case 180:
+    case 181:
+    case 182:
+    case 183:
+    case 184:
+    case 185:
+    case 186:
+    case 187:
+    case 188:
+    case 189:
       return true;
     default:
       return false;

@@ -42,6 +42,8 @@
 #include "RPCTask.pb.h"  // IWYU pragma: export
 #include "ServerContract.pb.h"  // IWYU pragma: export
 #include "SessionData.pb.h"  // IWYU pragma: export
+#include "TransactionData.pb.h"  // IWYU pragma: export
+#include "UnitDefinition.pb.h"  // IWYU pragma: export
 // @@protoc_insertion_point(includes)
 
 namespace protobuf_RPCResponse_2eproto {
@@ -313,6 +315,30 @@ class RPCResponse : public ::google::protobuf::MessageLite /* @@protoc_insertion
   const ::google::protobuf::RepeatedPtrField< ::opentxs::proto::PaymentWorkflow >&
       workflow() const;
 
+  // repeated .opentxs.proto.UnitDefinition unit = 17;
+  int unit_size() const;
+  void clear_unit();
+  static const int kUnitFieldNumber = 17;
+  const ::opentxs::proto::UnitDefinition& unit(int index) const;
+  ::opentxs::proto::UnitDefinition* mutable_unit(int index);
+  ::opentxs::proto::UnitDefinition* add_unit();
+  ::google::protobuf::RepeatedPtrField< ::opentxs::proto::UnitDefinition >*
+      mutable_unit();
+  const ::google::protobuf::RepeatedPtrField< ::opentxs::proto::UnitDefinition >&
+      unit() const;
+
+  // repeated .opentxs.proto.TransactionData transactiondata = 18;
+  int transactiondata_size() const;
+  void clear_transactiondata();
+  static const int kTransactiondataFieldNumber = 18;
+  const ::opentxs::proto::TransactionData& transactiondata(int index) const;
+  ::opentxs::proto::TransactionData* mutable_transactiondata(int index);
+  ::opentxs::proto::TransactionData* add_transactiondata();
+  ::google::protobuf::RepeatedPtrField< ::opentxs::proto::TransactionData >*
+      mutable_transactiondata();
+  const ::google::protobuf::RepeatedPtrField< ::opentxs::proto::TransactionData >&
+      transactiondata() const;
+
   // optional string cookie = 2;
   bool has_cookie() const;
   void clear_cookie();
@@ -375,6 +401,8 @@ class RPCResponse : public ::google::protobuf::MessageLite /* @@protoc_insertion
   ::google::protobuf::RepeatedPtrField< ::opentxs::proto::RPCTask > task_;
   ::google::protobuf::RepeatedPtrField< ::opentxs::proto::ServerContract > notary_;
   ::google::protobuf::RepeatedPtrField< ::opentxs::proto::PaymentWorkflow > workflow_;
+  ::google::protobuf::RepeatedPtrField< ::opentxs::proto::UnitDefinition > unit_;
+  ::google::protobuf::RepeatedPtrField< ::opentxs::proto::TransactionData > transactiondata_;
   ::google::protobuf::internal::ArenaStringPtr cookie_;
   ::google::protobuf::uint32 version_;
   int type_;
@@ -893,6 +921,60 @@ inline const ::google::protobuf::RepeatedPtrField< ::opentxs::proto::PaymentWork
 RPCResponse::workflow() const {
   // @@protoc_insertion_point(field_list:opentxs.proto.RPCResponse.workflow)
   return workflow_;
+}
+
+// repeated .opentxs.proto.UnitDefinition unit = 17;
+inline int RPCResponse::unit_size() const {
+  return unit_.size();
+}
+inline const ::opentxs::proto::UnitDefinition& RPCResponse::unit(int index) const {
+  // @@protoc_insertion_point(field_get:opentxs.proto.RPCResponse.unit)
+  return unit_.Get(index);
+}
+inline ::opentxs::proto::UnitDefinition* RPCResponse::mutable_unit(int index) {
+  // @@protoc_insertion_point(field_mutable:opentxs.proto.RPCResponse.unit)
+  return unit_.Mutable(index);
+}
+inline ::opentxs::proto::UnitDefinition* RPCResponse::add_unit() {
+  // @@protoc_insertion_point(field_add:opentxs.proto.RPCResponse.unit)
+  return unit_.Add();
+}
+inline ::google::protobuf::RepeatedPtrField< ::opentxs::proto::UnitDefinition >*
+RPCResponse::mutable_unit() {
+  // @@protoc_insertion_point(field_mutable_list:opentxs.proto.RPCResponse.unit)
+  return &unit_;
+}
+inline const ::google::protobuf::RepeatedPtrField< ::opentxs::proto::UnitDefinition >&
+RPCResponse::unit() const {
+  // @@protoc_insertion_point(field_list:opentxs.proto.RPCResponse.unit)
+  return unit_;
+}
+
+// repeated .opentxs.proto.TransactionData transactiondata = 18;
+inline int RPCResponse::transactiondata_size() const {
+  return transactiondata_.size();
+}
+inline const ::opentxs::proto::TransactionData& RPCResponse::transactiondata(int index) const {
+  // @@protoc_insertion_point(field_get:opentxs.proto.RPCResponse.transactiondata)
+  return transactiondata_.Get(index);
+}
+inline ::opentxs::proto::TransactionData* RPCResponse::mutable_transactiondata(int index) {
+  // @@protoc_insertion_point(field_mutable:opentxs.proto.RPCResponse.transactiondata)
+  return transactiondata_.Mutable(index);
+}
+inline ::opentxs::proto::TransactionData* RPCResponse::add_transactiondata() {
+  // @@protoc_insertion_point(field_add:opentxs.proto.RPCResponse.transactiondata)
+  return transactiondata_.Add();
+}
+inline ::google::protobuf::RepeatedPtrField< ::opentxs::proto::TransactionData >*
+RPCResponse::mutable_transactiondata() {
+  // @@protoc_insertion_point(field_mutable_list:opentxs.proto.RPCResponse.transactiondata)
+  return &transactiondata_;
+}
+inline const ::google::protobuf::RepeatedPtrField< ::opentxs::proto::TransactionData >&
+RPCResponse::transactiondata() const {
+  // @@protoc_insertion_point(field_list:opentxs.proto.RPCResponse.transactiondata)
+  return transactiondata_;
 }
 
 #ifdef __GNUC__

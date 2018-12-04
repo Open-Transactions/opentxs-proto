@@ -64,6 +64,7 @@ const int AccountData::kOwnerFieldNumber;
 const int AccountData::kIssuerFieldNumber;
 const int AccountData::kBalanceFieldNumber;
 const int AccountData::kPendingbalanceFieldNumber;
+const int AccountData::kTypeFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 AccountData::AccountData()
@@ -100,9 +101,9 @@ AccountData::AccountData(const AccountData& from)
   if (from.has_issuer()) {
     issuer_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.issuer_);
   }
-  ::memcpy(&balance_, &from.balance_,
-    static_cast<size_t>(reinterpret_cast<char*>(&version_) -
-    reinterpret_cast<char*>(&balance_)) + sizeof(version_));
+  ::memcpy(&version_, &from.version_,
+    static_cast<size_t>(reinterpret_cast<char*>(&pendingbalance_) -
+    reinterpret_cast<char*>(&version_)) + sizeof(pendingbalance_));
   // @@protoc_insertion_point(copy_constructor:opentxs.proto.AccountData)
 }
 
@@ -113,9 +114,9 @@ void AccountData::SharedCtor() {
   unit_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   owner_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   issuer_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  ::memset(&balance_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&version_) -
-      reinterpret_cast<char*>(&balance_)) + sizeof(version_));
+  ::memset(&version_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&pendingbalance_) -
+      reinterpret_cast<char*>(&version_)) + sizeof(pendingbalance_));
 }
 
 AccountData::~AccountData() {
@@ -179,10 +180,11 @@ void AccountData::Clear() {
     }
   }
   if (cached_has_bits & 224u) {
-    ::memset(&balance_, 0, static_cast<size_t>(
-        reinterpret_cast<char*>(&version_) -
-        reinterpret_cast<char*>(&balance_)) + sizeof(version_));
+    ::memset(&version_, 0, static_cast<size_t>(
+        reinterpret_cast<char*>(&balance_) -
+        reinterpret_cast<char*>(&version_)) + sizeof(balance_));
   }
+  pendingbalance_ = GOOGLE_LONGLONG(0);
   _has_bits_.Clear();
   _internal_metadata_.Clear();
 }
@@ -305,6 +307,27 @@ bool AccountData::MergePartialFromCodedStream(
         break;
       }
 
+      // optional .opentxs.proto.AccountType type = 9;
+      case 9: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(72u /* 72 & 0xFF */)) {
+          int value;
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   int, ::google::protobuf::internal::WireFormatLite::TYPE_ENUM>(
+                 input, &value)));
+          if (::opentxs::proto::AccountType_IsValid(value)) {
+            set_type(static_cast< ::opentxs::proto::AccountType >(value));
+          } else {
+            unknown_fields_stream.WriteVarint32(72u);
+            unknown_fields_stream.WriteVarint32(
+                static_cast< ::google::protobuf::uint32>(value));
+          }
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
       default: {
       handle_unusual:
         if (tag == 0) {
@@ -333,7 +356,7 @@ void AccountData::SerializeWithCachedSizes(
 
   cached_has_bits = _has_bits_[0];
   // optional uint32 version = 1;
-  if (cached_has_bits & 0x00000080u) {
+  if (cached_has_bits & 0x00000020u) {
     ::google::protobuf::internal::WireFormatLite::WriteUInt32(1, this->version(), output);
   }
 
@@ -368,13 +391,19 @@ void AccountData::SerializeWithCachedSizes(
   }
 
   // optional int64 balance = 7;
-  if (cached_has_bits & 0x00000020u) {
+  if (cached_has_bits & 0x00000080u) {
     ::google::protobuf::internal::WireFormatLite::WriteInt64(7, this->balance(), output);
   }
 
   // optional int64 pendingbalance = 8;
-  if (cached_has_bits & 0x00000040u) {
+  if (cached_has_bits & 0x00000100u) {
     ::google::protobuf::internal::WireFormatLite::WriteInt64(8, this->pendingbalance(), output);
+  }
+
+  // optional .opentxs.proto.AccountType type = 9;
+  if (cached_has_bits & 0x00000040u) {
+    ::google::protobuf::internal::WireFormatLite::WriteEnum(
+      9, this->type(), output);
   }
 
   output->WriteRaw(_internal_metadata_.unknown_fields().data(),
@@ -424,20 +453,6 @@ size_t AccountData::ByteSizeLong() const {
           this->issuer());
     }
 
-    // optional int64 balance = 7;
-    if (has_balance()) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::Int64Size(
-          this->balance());
-    }
-
-    // optional int64 pendingbalance = 8;
-    if (has_pendingbalance()) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::Int64Size(
-          this->pendingbalance());
-    }
-
     // optional uint32 version = 1;
     if (has_version()) {
       total_size += 1 +
@@ -445,7 +460,27 @@ size_t AccountData::ByteSizeLong() const {
           this->version());
     }
 
+    // optional .opentxs.proto.AccountType type = 9;
+    if (has_type()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::EnumSize(this->type());
+    }
+
+    // optional int64 balance = 7;
+    if (has_balance()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int64Size(
+          this->balance());
+    }
+
   }
+  // optional int64 pendingbalance = 8;
+  if (has_pendingbalance()) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::Int64Size(
+        this->pendingbalance());
+  }
+
   int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
   GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
   _cached_size_ = cached_size;
@@ -488,15 +523,18 @@ void AccountData::MergeFrom(const AccountData& from) {
       issuer_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.issuer_);
     }
     if (cached_has_bits & 0x00000020u) {
-      balance_ = from.balance_;
-    }
-    if (cached_has_bits & 0x00000040u) {
-      pendingbalance_ = from.pendingbalance_;
-    }
-    if (cached_has_bits & 0x00000080u) {
       version_ = from.version_;
     }
+    if (cached_has_bits & 0x00000040u) {
+      type_ = from.type_;
+    }
+    if (cached_has_bits & 0x00000080u) {
+      balance_ = from.balance_;
+    }
     _has_bits_[0] |= cached_has_bits;
+  }
+  if (cached_has_bits & 0x00000100u) {
+    set_pendingbalance(from.pendingbalance());
   }
 }
 
@@ -522,9 +560,10 @@ void AccountData::InternalSwap(AccountData* other) {
   unit_.Swap(&other->unit_);
   owner_.Swap(&other->owner_);
   issuer_.Swap(&other->issuer_);
+  swap(version_, other->version_);
+  swap(type_, other->type_);
   swap(balance_, other->balance_);
   swap(pendingbalance_, other->pendingbalance_);
-  swap(version_, other->version_);
   swap(_has_bits_[0], other->_has_bits_[0]);
   _internal_metadata_.Swap(&other->_internal_metadata_);
   swap(_cached_size_, other->_cached_size_);

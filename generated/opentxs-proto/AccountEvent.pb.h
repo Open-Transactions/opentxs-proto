@@ -29,6 +29,7 @@
 #include <google/protobuf/repeated_field.h>  // IWYU pragma: export
 #include <google/protobuf/extension_set.h>  // IWYU pragma: export
 #include "RPCEnums.pb.h"  // IWYU pragma: export
+#include "PaymentWorkflowEnums.pb.h"  // IWYU pragma: export
 // @@protoc_insertion_point(includes)
 
 namespace protobuf_AccountEvent_2eproto {
@@ -206,6 +207,21 @@ class AccountEvent : public ::google::protobuf::MessageLite /* @@protoc_insertio
   ::std::string* release_memo();
   void set_allocated_memo(::std::string* memo);
 
+  // optional string uuid = 10;
+  bool has_uuid() const;
+  void clear_uuid();
+  static const int kUuidFieldNumber = 10;
+  const ::std::string& uuid() const;
+  void set_uuid(const ::std::string& value);
+  #if LANG_CXX11
+  void set_uuid(::std::string&& value);
+  #endif
+  void set_uuid(const char* value);
+  void set_uuid(const char* value, size_t size);
+  ::std::string* mutable_uuid();
+  ::std::string* release_uuid();
+  void set_allocated_uuid(::std::string* uuid);
+
   // optional uint32 version = 1;
   bool has_version() const;
   void clear_version();
@@ -241,6 +257,13 @@ class AccountEvent : public ::google::protobuf::MessageLite /* @@protoc_insertio
   ::google::protobuf::int64 timestamp() const;
   void set_timestamp(::google::protobuf::int64 value);
 
+  // optional .opentxs.proto.PaymentWorkflowState state = 11;
+  bool has_state() const;
+  void clear_state();
+  static const int kStateFieldNumber = 11;
+  ::opentxs::proto::PaymentWorkflowState state() const;
+  void set_state(::opentxs::proto::PaymentWorkflowState value);
+
   // @@protoc_insertion_point(class_scope:opentxs.proto.AccountEvent)
  private:
   void set_has_version();
@@ -261,6 +284,10 @@ class AccountEvent : public ::google::protobuf::MessageLite /* @@protoc_insertio
   void clear_has_timestamp();
   void set_has_memo();
   void clear_has_memo();
+  void set_has_uuid();
+  void clear_has_uuid();
+  void set_has_state();
+  void clear_has_state();
 
   ::google::protobuf::internal::InternalMetadataWithArenaLite _internal_metadata_;
   ::google::protobuf::internal::HasBits<1> _has_bits_;
@@ -269,11 +296,13 @@ class AccountEvent : public ::google::protobuf::MessageLite /* @@protoc_insertio
   ::google::protobuf::internal::ArenaStringPtr contact_;
   ::google::protobuf::internal::ArenaStringPtr workflow_;
   ::google::protobuf::internal::ArenaStringPtr memo_;
+  ::google::protobuf::internal::ArenaStringPtr uuid_;
   ::google::protobuf::uint32 version_;
   int type_;
   ::google::protobuf::int64 amount_;
   ::google::protobuf::int64 pendingamount_;
   ::google::protobuf::int64 timestamp_;
+  int state_;
   friend struct ::protobuf_AccountEvent_2eproto::TableStruct;
   friend void ::protobuf_AccountEvent_2eproto::InitDefaultsAccountEventImpl();
 };
@@ -290,13 +319,13 @@ class AccountEvent : public ::google::protobuf::MessageLite /* @@protoc_insertio
 
 // optional uint32 version = 1;
 inline bool AccountEvent::has_version() const {
-  return (_has_bits_[0] & 0x00000010u) != 0;
+  return (_has_bits_[0] & 0x00000020u) != 0;
 }
 inline void AccountEvent::set_has_version() {
-  _has_bits_[0] |= 0x00000010u;
+  _has_bits_[0] |= 0x00000020u;
 }
 inline void AccountEvent::clear_has_version() {
-  _has_bits_[0] &= ~0x00000010u;
+  _has_bits_[0] &= ~0x00000020u;
 }
 inline void AccountEvent::clear_version() {
   version_ = 0u;
@@ -377,13 +406,13 @@ inline void AccountEvent::set_allocated_id(::std::string* id) {
 
 // optional .opentxs.proto.AccountEventType type = 3;
 inline bool AccountEvent::has_type() const {
-  return (_has_bits_[0] & 0x00000020u) != 0;
+  return (_has_bits_[0] & 0x00000040u) != 0;
 }
 inline void AccountEvent::set_has_type() {
-  _has_bits_[0] |= 0x00000020u;
+  _has_bits_[0] |= 0x00000040u;
 }
 inline void AccountEvent::clear_has_type() {
-  _has_bits_[0] &= ~0x00000020u;
+  _has_bits_[0] &= ~0x00000040u;
 }
 inline void AccountEvent::clear_type() {
   type_ = 0;
@@ -528,13 +557,13 @@ inline void AccountEvent::set_allocated_workflow(::std::string* workflow) {
 
 // optional int64 amount = 6;
 inline bool AccountEvent::has_amount() const {
-  return (_has_bits_[0] & 0x00000040u) != 0;
+  return (_has_bits_[0] & 0x00000080u) != 0;
 }
 inline void AccountEvent::set_has_amount() {
-  _has_bits_[0] |= 0x00000040u;
+  _has_bits_[0] |= 0x00000080u;
 }
 inline void AccountEvent::clear_has_amount() {
-  _has_bits_[0] &= ~0x00000040u;
+  _has_bits_[0] &= ~0x00000080u;
 }
 inline void AccountEvent::clear_amount() {
   amount_ = GOOGLE_LONGLONG(0);
@@ -552,13 +581,13 @@ inline void AccountEvent::set_amount(::google::protobuf::int64 value) {
 
 // optional int64 pendingamount = 7;
 inline bool AccountEvent::has_pendingamount() const {
-  return (_has_bits_[0] & 0x00000080u) != 0;
+  return (_has_bits_[0] & 0x00000100u) != 0;
 }
 inline void AccountEvent::set_has_pendingamount() {
-  _has_bits_[0] |= 0x00000080u;
+  _has_bits_[0] |= 0x00000100u;
 }
 inline void AccountEvent::clear_has_pendingamount() {
-  _has_bits_[0] &= ~0x00000080u;
+  _has_bits_[0] &= ~0x00000100u;
 }
 inline void AccountEvent::clear_pendingamount() {
   pendingamount_ = GOOGLE_LONGLONG(0);
@@ -576,13 +605,13 @@ inline void AccountEvent::set_pendingamount(::google::protobuf::int64 value) {
 
 // optional int64 timestamp = 8;
 inline bool AccountEvent::has_timestamp() const {
-  return (_has_bits_[0] & 0x00000100u) != 0;
+  return (_has_bits_[0] & 0x00000200u) != 0;
 }
 inline void AccountEvent::set_has_timestamp() {
-  _has_bits_[0] |= 0x00000100u;
+  _has_bits_[0] |= 0x00000200u;
 }
 inline void AccountEvent::clear_has_timestamp() {
-  _has_bits_[0] &= ~0x00000100u;
+  _has_bits_[0] &= ~0x00000200u;
 }
 inline void AccountEvent::clear_timestamp() {
   timestamp_ = GOOGLE_LONGLONG(0);
@@ -659,6 +688,94 @@ inline void AccountEvent::set_allocated_memo(::std::string* memo) {
   }
   memo_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), memo);
   // @@protoc_insertion_point(field_set_allocated:opentxs.proto.AccountEvent.memo)
+}
+
+// optional string uuid = 10;
+inline bool AccountEvent::has_uuid() const {
+  return (_has_bits_[0] & 0x00000010u) != 0;
+}
+inline void AccountEvent::set_has_uuid() {
+  _has_bits_[0] |= 0x00000010u;
+}
+inline void AccountEvent::clear_has_uuid() {
+  _has_bits_[0] &= ~0x00000010u;
+}
+inline void AccountEvent::clear_uuid() {
+  uuid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  clear_has_uuid();
+}
+inline const ::std::string& AccountEvent::uuid() const {
+  // @@protoc_insertion_point(field_get:opentxs.proto.AccountEvent.uuid)
+  return uuid_.GetNoArena();
+}
+inline void AccountEvent::set_uuid(const ::std::string& value) {
+  set_has_uuid();
+  uuid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:opentxs.proto.AccountEvent.uuid)
+}
+#if LANG_CXX11
+inline void AccountEvent::set_uuid(::std::string&& value) {
+  set_has_uuid();
+  uuid_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:opentxs.proto.AccountEvent.uuid)
+}
+#endif
+inline void AccountEvent::set_uuid(const char* value) {
+  GOOGLE_DCHECK(value != NULL);
+  set_has_uuid();
+  uuid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:opentxs.proto.AccountEvent.uuid)
+}
+inline void AccountEvent::set_uuid(const char* value, size_t size) {
+  set_has_uuid();
+  uuid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:opentxs.proto.AccountEvent.uuid)
+}
+inline ::std::string* AccountEvent::mutable_uuid() {
+  set_has_uuid();
+  // @@protoc_insertion_point(field_mutable:opentxs.proto.AccountEvent.uuid)
+  return uuid_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* AccountEvent::release_uuid() {
+  // @@protoc_insertion_point(field_release:opentxs.proto.AccountEvent.uuid)
+  clear_has_uuid();
+  return uuid_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void AccountEvent::set_allocated_uuid(::std::string* uuid) {
+  if (uuid != NULL) {
+    set_has_uuid();
+  } else {
+    clear_has_uuid();
+  }
+  uuid_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), uuid);
+  // @@protoc_insertion_point(field_set_allocated:opentxs.proto.AccountEvent.uuid)
+}
+
+// optional .opentxs.proto.PaymentWorkflowState state = 11;
+inline bool AccountEvent::has_state() const {
+  return (_has_bits_[0] & 0x00000400u) != 0;
+}
+inline void AccountEvent::set_has_state() {
+  _has_bits_[0] |= 0x00000400u;
+}
+inline void AccountEvent::clear_has_state() {
+  _has_bits_[0] &= ~0x00000400u;
+}
+inline void AccountEvent::clear_state() {
+  state_ = 0;
+  clear_has_state();
+}
+inline ::opentxs::proto::PaymentWorkflowState AccountEvent::state() const {
+  // @@protoc_insertion_point(field_get:opentxs.proto.AccountEvent.state)
+  return static_cast< ::opentxs::proto::PaymentWorkflowState >(state_);
+}
+inline void AccountEvent::set_state(::opentxs::proto::PaymentWorkflowState value) {
+  assert(::opentxs::proto::PaymentWorkflowState_IsValid(value));
+  set_has_state();
+  state_ = value;
+  // @@protoc_insertion_point(field_set:opentxs.proto.AccountEvent.state)
 }
 
 #ifdef __GNUC__
