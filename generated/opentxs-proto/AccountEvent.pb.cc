@@ -65,6 +65,8 @@ const int AccountEvent::kAmountFieldNumber;
 const int AccountEvent::kPendingamountFieldNumber;
 const int AccountEvent::kTimestampFieldNumber;
 const int AccountEvent::kMemoFieldNumber;
+const int AccountEvent::kUuidFieldNumber;
+const int AccountEvent::kStateFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 AccountEvent::AccountEvent()
@@ -97,9 +99,13 @@ AccountEvent::AccountEvent(const AccountEvent& from)
   if (from.has_memo()) {
     memo_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.memo_);
   }
+  uuid_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.has_uuid()) {
+    uuid_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.uuid_);
+  }
   ::memcpy(&version_, &from.version_,
-    static_cast<size_t>(reinterpret_cast<char*>(&timestamp_) -
-    reinterpret_cast<char*>(&version_)) + sizeof(timestamp_));
+    static_cast<size_t>(reinterpret_cast<char*>(&state_) -
+    reinterpret_cast<char*>(&version_)) + sizeof(state_));
   // @@protoc_insertion_point(copy_constructor:opentxs.proto.AccountEvent)
 }
 
@@ -109,9 +115,10 @@ void AccountEvent::SharedCtor() {
   contact_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   workflow_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   memo_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  uuid_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   ::memset(&version_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&timestamp_) -
-      reinterpret_cast<char*>(&version_)) + sizeof(timestamp_));
+      reinterpret_cast<char*>(&state_) -
+      reinterpret_cast<char*>(&version_)) + sizeof(state_));
 }
 
 AccountEvent::~AccountEvent() {
@@ -124,6 +131,7 @@ void AccountEvent::SharedDtor() {
   contact_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   workflow_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   memo_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  uuid_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 
 void AccountEvent::SetCachedSize(int size) const {
@@ -151,7 +159,7 @@ void AccountEvent::Clear() {
   (void) cached_has_bits;
 
   cached_has_bits = _has_bits_[0];
-  if (cached_has_bits & 15u) {
+  if (cached_has_bits & 31u) {
     if (cached_has_bits & 0x00000001u) {
       GOOGLE_DCHECK(!id_.IsDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited()));
       (*id_.UnsafeRawStringPointer())->clear();
@@ -168,13 +176,21 @@ void AccountEvent::Clear() {
       GOOGLE_DCHECK(!memo_.IsDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited()));
       (*memo_.UnsafeRawStringPointer())->clear();
     }
+    if (cached_has_bits & 0x00000010u) {
+      GOOGLE_DCHECK(!uuid_.IsDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited()));
+      (*uuid_.UnsafeRawStringPointer())->clear();
+    }
   }
-  if (cached_has_bits & 240u) {
+  if (cached_has_bits & 224u) {
     ::memset(&version_, 0, static_cast<size_t>(
-        reinterpret_cast<char*>(&pendingamount_) -
-        reinterpret_cast<char*>(&version_)) + sizeof(pendingamount_));
+        reinterpret_cast<char*>(&amount_) -
+        reinterpret_cast<char*>(&version_)) + sizeof(amount_));
   }
-  timestamp_ = GOOGLE_LONGLONG(0);
+  if (cached_has_bits & 1792u) {
+    ::memset(&pendingamount_, 0, static_cast<size_t>(
+        reinterpret_cast<char*>(&state_) -
+        reinterpret_cast<char*>(&pendingamount_)) + sizeof(state_));
+  }
   _has_bits_.Clear();
   _internal_metadata_.Clear();
 }
@@ -320,6 +336,39 @@ bool AccountEvent::MergePartialFromCodedStream(
         break;
       }
 
+      // optional string uuid = 10;
+      case 10: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(82u /* 82 & 0xFF */)) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+                input, this->mutable_uuid()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // optional .opentxs.proto.PaymentWorkflowState state = 11;
+      case 11: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(88u /* 88 & 0xFF */)) {
+          int value;
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   int, ::google::protobuf::internal::WireFormatLite::TYPE_ENUM>(
+                 input, &value)));
+          if (::opentxs::proto::PaymentWorkflowState_IsValid(value)) {
+            set_state(static_cast< ::opentxs::proto::PaymentWorkflowState >(value));
+          } else {
+            unknown_fields_stream.WriteVarint32(88u);
+            unknown_fields_stream.WriteVarint32(
+                static_cast< ::google::protobuf::uint32>(value));
+          }
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
       default: {
       handle_unusual:
         if (tag == 0) {
@@ -348,7 +397,7 @@ void AccountEvent::SerializeWithCachedSizes(
 
   cached_has_bits = _has_bits_[0];
   // optional uint32 version = 1;
-  if (cached_has_bits & 0x00000010u) {
+  if (cached_has_bits & 0x00000020u) {
     ::google::protobuf::internal::WireFormatLite::WriteUInt32(1, this->version(), output);
   }
 
@@ -359,7 +408,7 @@ void AccountEvent::SerializeWithCachedSizes(
   }
 
   // optional .opentxs.proto.AccountEventType type = 3;
-  if (cached_has_bits & 0x00000020u) {
+  if (cached_has_bits & 0x00000040u) {
     ::google::protobuf::internal::WireFormatLite::WriteEnum(
       3, this->type(), output);
   }
@@ -377,17 +426,17 @@ void AccountEvent::SerializeWithCachedSizes(
   }
 
   // optional int64 amount = 6;
-  if (cached_has_bits & 0x00000040u) {
+  if (cached_has_bits & 0x00000080u) {
     ::google::protobuf::internal::WireFormatLite::WriteInt64(6, this->amount(), output);
   }
 
   // optional int64 pendingamount = 7;
-  if (cached_has_bits & 0x00000080u) {
+  if (cached_has_bits & 0x00000100u) {
     ::google::protobuf::internal::WireFormatLite::WriteInt64(7, this->pendingamount(), output);
   }
 
   // optional int64 timestamp = 8;
-  if (cached_has_bits & 0x00000100u) {
+  if (cached_has_bits & 0x00000200u) {
     ::google::protobuf::internal::WireFormatLite::WriteInt64(8, this->timestamp(), output);
   }
 
@@ -395,6 +444,18 @@ void AccountEvent::SerializeWithCachedSizes(
   if (cached_has_bits & 0x00000008u) {
     ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
       9, this->memo(), output);
+  }
+
+  // optional string uuid = 10;
+  if (cached_has_bits & 0x00000010u) {
+    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
+      10, this->uuid(), output);
+  }
+
+  // optional .opentxs.proto.PaymentWorkflowState state = 11;
+  if (cached_has_bits & 0x00000400u) {
+    ::google::protobuf::internal::WireFormatLite::WriteEnum(
+      11, this->state(), output);
   }
 
   output->WriteRaw(_internal_metadata_.unknown_fields().data(),
@@ -437,6 +498,13 @@ size_t AccountEvent::ByteSizeLong() const {
           this->memo());
     }
 
+    // optional string uuid = 10;
+    if (has_uuid()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::StringSize(
+          this->uuid());
+    }
+
     // optional uint32 version = 1;
     if (has_version()) {
       total_size += 1 +
@@ -457,6 +525,8 @@ size_t AccountEvent::ByteSizeLong() const {
           this->amount());
     }
 
+  }
+  if (_has_bits_[8 / 32] & 1792u) {
     // optional int64 pendingamount = 7;
     if (has_pendingamount()) {
       total_size += 1 +
@@ -464,14 +534,20 @@ size_t AccountEvent::ByteSizeLong() const {
           this->pendingamount());
     }
 
-  }
-  // optional int64 timestamp = 8;
-  if (has_timestamp()) {
-    total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::Int64Size(
-        this->timestamp());
-  }
+    // optional int64 timestamp = 8;
+    if (has_timestamp()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int64Size(
+          this->timestamp());
+    }
 
+    // optional .opentxs.proto.PaymentWorkflowState state = 11;
+    if (has_state()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::EnumSize(this->state());
+    }
+
+  }
   int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
   GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
   _cached_size_ = cached_size;
@@ -510,21 +586,31 @@ void AccountEvent::MergeFrom(const AccountEvent& from) {
       memo_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.memo_);
     }
     if (cached_has_bits & 0x00000010u) {
-      version_ = from.version_;
+      set_has_uuid();
+      uuid_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.uuid_);
     }
     if (cached_has_bits & 0x00000020u) {
-      type_ = from.type_;
+      version_ = from.version_;
     }
     if (cached_has_bits & 0x00000040u) {
-      amount_ = from.amount_;
+      type_ = from.type_;
     }
     if (cached_has_bits & 0x00000080u) {
-      pendingamount_ = from.pendingamount_;
+      amount_ = from.amount_;
     }
     _has_bits_[0] |= cached_has_bits;
   }
-  if (cached_has_bits & 0x00000100u) {
-    set_timestamp(from.timestamp());
+  if (cached_has_bits & 1792u) {
+    if (cached_has_bits & 0x00000100u) {
+      pendingamount_ = from.pendingamount_;
+    }
+    if (cached_has_bits & 0x00000200u) {
+      timestamp_ = from.timestamp_;
+    }
+    if (cached_has_bits & 0x00000400u) {
+      state_ = from.state_;
+    }
+    _has_bits_[0] |= cached_has_bits;
   }
 }
 
@@ -549,11 +635,13 @@ void AccountEvent::InternalSwap(AccountEvent* other) {
   contact_.Swap(&other->contact_);
   workflow_.Swap(&other->workflow_);
   memo_.Swap(&other->memo_);
+  uuid_.Swap(&other->uuid_);
   swap(version_, other->version_);
   swap(type_, other->type_);
   swap(amount_, other->amount_);
   swap(pendingamount_, other->pendingamount_);
   swap(timestamp_, other->timestamp_);
+  swap(state_, other->state_);
   swap(_has_bits_[0], other->_has_bits_[0]);
   _internal_metadata_.Swap(&other->_internal_metadata_);
   swap(_cached_size_, other->_cached_size_);

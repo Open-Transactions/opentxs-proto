@@ -28,6 +28,7 @@
 #include <google/protobuf/message_lite.h>
 #include <google/protobuf/repeated_field.h>  // IWYU pragma: export
 #include <google/protobuf/extension_set.h>  // IWYU pragma: export
+#include "RPCEnums.pb.h"  // IWYU pragma: export
 // @@protoc_insertion_point(includes)
 
 namespace protobuf_AccountData_2eproto {
@@ -220,6 +221,20 @@ class AccountData : public ::google::protobuf::MessageLite /* @@protoc_insertion
   ::std::string* release_issuer();
   void set_allocated_issuer(::std::string* issuer);
 
+  // optional uint32 version = 1;
+  bool has_version() const;
+  void clear_version();
+  static const int kVersionFieldNumber = 1;
+  ::google::protobuf::uint32 version() const;
+  void set_version(::google::protobuf::uint32 value);
+
+  // optional .opentxs.proto.AccountType type = 9;
+  bool has_type() const;
+  void clear_type();
+  static const int kTypeFieldNumber = 9;
+  ::opentxs::proto::AccountType type() const;
+  void set_type(::opentxs::proto::AccountType value);
+
   // optional int64 balance = 7;
   bool has_balance() const;
   void clear_balance();
@@ -233,13 +248,6 @@ class AccountData : public ::google::protobuf::MessageLite /* @@protoc_insertion
   static const int kPendingbalanceFieldNumber = 8;
   ::google::protobuf::int64 pendingbalance() const;
   void set_pendingbalance(::google::protobuf::int64 value);
-
-  // optional uint32 version = 1;
-  bool has_version() const;
-  void clear_version();
-  static const int kVersionFieldNumber = 1;
-  ::google::protobuf::uint32 version() const;
-  void set_version(::google::protobuf::uint32 value);
 
   // @@protoc_insertion_point(class_scope:opentxs.proto.AccountData)
  private:
@@ -259,6 +267,8 @@ class AccountData : public ::google::protobuf::MessageLite /* @@protoc_insertion
   void clear_has_balance();
   void set_has_pendingbalance();
   void clear_has_pendingbalance();
+  void set_has_type();
+  void clear_has_type();
 
   ::google::protobuf::internal::InternalMetadataWithArenaLite _internal_metadata_;
   ::google::protobuf::internal::HasBits<1> _has_bits_;
@@ -268,9 +278,10 @@ class AccountData : public ::google::protobuf::MessageLite /* @@protoc_insertion
   ::google::protobuf::internal::ArenaStringPtr unit_;
   ::google::protobuf::internal::ArenaStringPtr owner_;
   ::google::protobuf::internal::ArenaStringPtr issuer_;
+  ::google::protobuf::uint32 version_;
+  int type_;
   ::google::protobuf::int64 balance_;
   ::google::protobuf::int64 pendingbalance_;
-  ::google::protobuf::uint32 version_;
   friend struct ::protobuf_AccountData_2eproto::TableStruct;
   friend void ::protobuf_AccountData_2eproto::InitDefaultsAccountDataImpl();
 };
@@ -287,13 +298,13 @@ class AccountData : public ::google::protobuf::MessageLite /* @@protoc_insertion
 
 // optional uint32 version = 1;
 inline bool AccountData::has_version() const {
-  return (_has_bits_[0] & 0x00000080u) != 0;
+  return (_has_bits_[0] & 0x00000020u) != 0;
 }
 inline void AccountData::set_has_version() {
-  _has_bits_[0] |= 0x00000080u;
+  _has_bits_[0] |= 0x00000020u;
 }
 inline void AccountData::clear_has_version() {
-  _has_bits_[0] &= ~0x00000080u;
+  _has_bits_[0] &= ~0x00000020u;
 }
 inline void AccountData::clear_version() {
   version_ = 0u;
@@ -626,13 +637,13 @@ inline void AccountData::set_allocated_issuer(::std::string* issuer) {
 
 // optional int64 balance = 7;
 inline bool AccountData::has_balance() const {
-  return (_has_bits_[0] & 0x00000020u) != 0;
+  return (_has_bits_[0] & 0x00000080u) != 0;
 }
 inline void AccountData::set_has_balance() {
-  _has_bits_[0] |= 0x00000020u;
+  _has_bits_[0] |= 0x00000080u;
 }
 inline void AccountData::clear_has_balance() {
-  _has_bits_[0] &= ~0x00000020u;
+  _has_bits_[0] &= ~0x00000080u;
 }
 inline void AccountData::clear_balance() {
   balance_ = GOOGLE_LONGLONG(0);
@@ -650,13 +661,13 @@ inline void AccountData::set_balance(::google::protobuf::int64 value) {
 
 // optional int64 pendingbalance = 8;
 inline bool AccountData::has_pendingbalance() const {
-  return (_has_bits_[0] & 0x00000040u) != 0;
+  return (_has_bits_[0] & 0x00000100u) != 0;
 }
 inline void AccountData::set_has_pendingbalance() {
-  _has_bits_[0] |= 0x00000040u;
+  _has_bits_[0] |= 0x00000100u;
 }
 inline void AccountData::clear_has_pendingbalance() {
-  _has_bits_[0] &= ~0x00000040u;
+  _has_bits_[0] &= ~0x00000100u;
 }
 inline void AccountData::clear_pendingbalance() {
   pendingbalance_ = GOOGLE_LONGLONG(0);
@@ -670,6 +681,31 @@ inline void AccountData::set_pendingbalance(::google::protobuf::int64 value) {
   set_has_pendingbalance();
   pendingbalance_ = value;
   // @@protoc_insertion_point(field_set:opentxs.proto.AccountData.pendingbalance)
+}
+
+// optional .opentxs.proto.AccountType type = 9;
+inline bool AccountData::has_type() const {
+  return (_has_bits_[0] & 0x00000040u) != 0;
+}
+inline void AccountData::set_has_type() {
+  _has_bits_[0] |= 0x00000040u;
+}
+inline void AccountData::clear_has_type() {
+  _has_bits_[0] &= ~0x00000040u;
+}
+inline void AccountData::clear_type() {
+  type_ = 0;
+  clear_has_type();
+}
+inline ::opentxs::proto::AccountType AccountData::type() const {
+  // @@protoc_insertion_point(field_get:opentxs.proto.AccountData.type)
+  return static_cast< ::opentxs::proto::AccountType >(type_);
+}
+inline void AccountData::set_type(::opentxs::proto::AccountType value) {
+  assert(::opentxs::proto::AccountType_IsValid(value));
+  set_has_type();
+  type_ = value;
+  // @@protoc_insertion_point(field_set:opentxs.proto.AccountData.type)
 }
 
 #ifdef __GNUC__

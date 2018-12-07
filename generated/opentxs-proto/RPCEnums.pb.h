@@ -90,11 +90,17 @@ enum RPCCommandType {
   RPCCOMMAND_ACCEPTPENDINGPAYMENTS = 36,
   RPCCOMMAND_GETCOMPATIBLEACCOUNTS = 37,
   RPCCOMMAND_CREATECOMPATIBLEACCOUNT = 38,
-  RPCCOMMAND_GETWORKFLOW = 39
+  RPCCOMMAND_GETWORKFLOW = 39,
+  RPCCOMMAND_GETSERVERPASSWORD = 40,
+  RPCCOMMAND_GETADMINNYM = 41,
+  RPCCOMMAND_GETUNITDEFINITION = 42,
+  RPCCOMMAND_GETTRANSACTIONDATA = 43,
+  RPCCOMMAND_LOOKUPACCOUNTID = 44,
+  RPCCOMMAND_RENAMEACCOUNT = 45
 };
 bool RPCCommandType_IsValid(int value);
 const RPCCommandType RPCCommandType_MIN = RPCCOMMAND_ERROR;
-const RPCCommandType RPCCommandType_MAX = RPCCOMMAND_GETWORKFLOW;
+const RPCCommandType RPCCommandType_MAX = RPCCOMMAND_RENAMEACCOUNT;
 const int RPCCommandType_ARRAYSIZE = RPCCommandType_MAX + 1;
 
 enum RPCResponseCode {
@@ -106,6 +112,29 @@ enum RPCResponseCode {
   RPCRESPONSE_UNNECESSARY = 5,
   RPCRESPONSE_RETRY = 6,
   RPCRESPONSE_NO_PATH_TO_RECIPIENT = 7,
+  RPCRESPONSE_BAD_SERVER_ARGUMENT = 8,
+  RPCRESPONSE_CHEQUE_NOT_FOUND = 9,
+  RPCRESPONSE_PAYMENT_NOT_FOUND = 10,
+  RPCRESPONSE_START_TASK_FAILED = 11,
+  RPCRESPONSE_NYM_NOT_FOUND = 12,
+  RPCRESPONSE_ADD_CLAIM_FAILED = 13,
+  RPCRESPONSE_ADD_CONTACT_FAILED = 14,
+  RPCRESPONSE_REGISTER_ACCOUNT_FAILED = 15,
+  RPCRESPONSE_BAD_SERVER_RESPONSE = 16,
+  RPCRESPONSE_WORKFLOW_NOT_FOUND = 17,
+  RPCRESPONSE_UNITDEFINITION_NOT_FOUND = 18,
+  RPCRESPONSE_SESSION_NOT_FOUND = 19,
+  RPCRESPONSE_CREATE_NYM_FAILED = 20,
+  RPCRESPONSE_CREATE_UNITDEFINITION_FAILED = 21,
+  RPCRESPONSE_DELETE_CLAIM_FAILED = 22,
+  RPCRESPONSE_ACCOUNT_NOT_FOUND = 23,
+  RPCRESPONSE_MOVE_FUNDS_FAILED = 24,
+  RPCRESPONSE_REGISTER_NYM_FAILED = 25,
+  RPCRESPONSE_CONTACT_NOT_FOUND = 26,
+  RPCRESPONSE_ACCOUNT_OWNER_NOT_FOUND = 27,
+  RPCRESPONSE_SEND_PAYMENT_FAILED = 28,
+  RPCRESPONSE_TRANSACTION_FAILED = 29,
+  RPCRESPONSE_UNIMPLEMENTED = 254,
   RPCRESPONSE_ERROR = 255
 };
 bool RPCResponseCode_IsValid(int value);
@@ -165,6 +194,16 @@ const ContactEventType ContactEventType_MIN = CONTACTEVENT_ERROR;
 const ContactEventType ContactEventType_MAX = CONTACTEVENT_OUTGOINGPAYMENT;
 const int ContactEventType_ARRAYSIZE = ContactEventType_MAX + 1;
 
+enum AccountType {
+  ACCOUNTTYPE_ERROR = 0,
+  ACCOUNTTYPE_NORMAL = 1,
+  ACCOUNTTYPE_ISSUER = 2
+};
+bool AccountType_IsValid(int value);
+const AccountType AccountType_MIN = ACCOUNTTYPE_ERROR;
+const AccountType AccountType_MAX = ACCOUNTTYPE_ISSUER;
+const int AccountType_ARRAYSIZE = AccountType_MAX + 1;
+
 // ===================================================================
 
 
@@ -195,6 +234,7 @@ template <> struct is_proto_enum< ::opentxs::proto::RPCPushType> : ::google::pro
 template <> struct is_proto_enum< ::opentxs::proto::RPCPaymentType> : ::google::protobuf::internal::true_type {};
 template <> struct is_proto_enum< ::opentxs::proto::AccountEventType> : ::google::protobuf::internal::true_type {};
 template <> struct is_proto_enum< ::opentxs::proto::ContactEventType> : ::google::protobuf::internal::true_type {};
+template <> struct is_proto_enum< ::opentxs::proto::AccountType> : ::google::protobuf::internal::true_type {};
 
 }  // namespace protobuf
 }  // namespace google
