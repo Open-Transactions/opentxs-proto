@@ -16,6 +16,7 @@ enum PeerObjectType {
     PEEROBJECT_REQUEST = 2;
     PEEROBJECT_RESPONSE = 3;
     PEEROBJECT_PAYMENT = 4;
+    PEEROBJECT_CASH = 5;
 }
 
 enum PeerRequestType {

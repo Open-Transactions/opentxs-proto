@@ -32,8 +32,9 @@ bool CheckProto_1(const StorageContacts& input, const bool silent)
         try {
             const bool valid = Check(
                 hash,
-                StorageContactsAllowedHash.at(input.version()).first,
-                StorageContactsAllowedHash.at(input.version()).second,
+                StorageContactsAllowedStorageItemHash.at(input.version()).first,
+                StorageContactsAllowedStorageItemHash.at(input.version())
+                    .second,
                 silent);
 
             if (!valid) { FAIL_1("invalid hash") }

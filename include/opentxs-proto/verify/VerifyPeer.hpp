@@ -12,7 +12,10 @@ namespace opentxs
 {
 namespace proto
 {
-static const VersionMap PeerObjectAllowedReply = {
+static const VersionMap PeerObjectAllowedPurse = {
+    {7, {1, 1}},
+};
+static const VersionMap PeerObjectAllowedPeerReply = {
     {1, {1, 1}},
     {2, {2, 2}},
     {3, {3, 3}},
@@ -21,7 +24,7 @@ static const VersionMap PeerObjectAllowedReply = {
     {6, {4, 5}},
     {7, {4, 5}},
 };
-static const VersionMap PeerObjectAllowedRequest = {
+static const VersionMap PeerObjectAllowedPeerRequest = {
     {1, {1, 2}},
     {2, {2, 2}},
     {3, {3, 3}},

@@ -42,6 +42,7 @@
 #include <opentxs-proto/Bip47Address.pb.h>
 #include <opentxs-proto/Bip47Channel.pb.h>
 #include <opentxs-proto/Bip47Direction.pb.h>
+#include <opentxs-proto/BlindedSeriesList.pb.h>
 #include <opentxs-proto/BlockchainTransaction.pb.h>
 #include <opentxs-proto/BlockchainTransactionInput.pb.h>
 #include <opentxs-proto/BlockchainTransactionOutput.pb.h>
@@ -77,6 +78,7 @@
 #include <opentxs-proto/Issuer.pb.h>
 #include <opentxs-proto/KeyCredential.pb.h>
 #include <opentxs-proto/ListenAddress.pb.h>
+#include <opentxs-proto/LucreTokenData.pb.h>
 #include <opentxs-proto/MasterCredentialParameters.pb.h>
 #include <opentxs-proto/ModifyAccount.pb.h>
 #include <opentxs-proto/MoveFunds.pb.h>
@@ -98,6 +100,8 @@
 #include <opentxs-proto/PeerRequestHistory.pb.h>
 #include <opentxs-proto/PeerRequestWorkflow.pb.h>
 #include <opentxs-proto/PendingBailment.pb.h>
+#include <opentxs-proto/Purse.pb.h>
+#include <opentxs-proto/PurseExchange.pb.h>
 #include <opentxs-proto/RPCCommand.pb.h>
 #include <opentxs-proto/RPCEnums.pb.h>
 #include <opentxs-proto/RPCPush.pb.h>
@@ -112,8 +116,10 @@
 #include <opentxs-proto/ServerReply.pb.h>
 #include <opentxs-proto/ServerRequest.pb.h>
 #include <opentxs-proto/SessionData.pb.h>
+#include <opentxs-proto/SessionKey.pb.h>
 #include <opentxs-proto/Signature.pb.h>
 #include <opentxs-proto/SourceProof.pb.h>
+#include <opentxs-proto/SpentTokenList.pb.h>
 #include <opentxs-proto/StorageAccountIndex.pb.h>
 #include <opentxs-proto/StorageAccounts.pb.h>
 #include <opentxs-proto/StorageBip47AddressIndex.pb.h>
@@ -131,9 +137,11 @@
 #include <opentxs-proto/StorageIssuers.pb.h>
 #include <opentxs-proto/StorageItemHash.pb.h>
 #include <opentxs-proto/StorageItems.pb.h>
+#include <opentxs-proto/StorageNotary.pb.h>
 #include <opentxs-proto/StorageNym.pb.h>
 #include <opentxs-proto/StorageNymList.pb.h>
 #include <opentxs-proto/StoragePaymentWorkflows.pb.h>
+#include <opentxs-proto/StoragePurse.pb.h>
 #include <opentxs-proto/StorageRoot.pb.h>
 #include <opentxs-proto/StorageSeeds.pb.h>
 #include <opentxs-proto/StorageServers.pb.h>
@@ -144,6 +152,7 @@
 #include <opentxs-proto/StorageWorkflowType.pb.h>
 #include <opentxs-proto/StoreSecret.pb.h>
 #include <opentxs-proto/SymmetricKey.pb.h>
+#include <opentxs-proto/Token.pb.h>
 #include <opentxs-proto/TaskComplete.pb.h>
 #include <opentxs-proto/TransactionData.pb.h>
 #include <opentxs-proto/UnitAccountMap.pb.h>
@@ -171,6 +180,7 @@
 #include <opentxs-proto/verify/Bip47Address.hpp>
 #include <opentxs-proto/verify/Bip47Channel.hpp>
 #include <opentxs-proto/verify/Bip47Direction.hpp>
+#include <opentxs-proto/verify/BlindedSeriesList.hpp>
 #include <opentxs-proto/verify/BlockchainTransaction.hpp>
 #include <opentxs-proto/verify/BlockchainTransactionInput.hpp>
 #include <opentxs-proto/verify/BlockchainTransactionOutput.hpp>
@@ -202,6 +212,7 @@
 #include <opentxs-proto/verify/Issuer.hpp>
 #include <opentxs-proto/verify/KeyCredential.hpp>
 #include <opentxs-proto/verify/ListenAddress.hpp>
+#include <opentxs-proto/verify/LucreTokenData.hpp>
 #include <opentxs-proto/verify/MasterCredentialParameters.hpp>
 #include <opentxs-proto/verify/ModifyAccount.hpp>
 #include <opentxs-proto/verify/MoveFunds.hpp>
@@ -220,6 +231,8 @@
 #include <opentxs-proto/verify/PeerRequestHistory.hpp>
 #include <opentxs-proto/verify/PeerRequestWorkflow.hpp>
 #include <opentxs-proto/verify/PendingBailment.hpp>
+#include <opentxs-proto/verify/Purse.hpp>
+#include <opentxs-proto/verify/PurseExchange.hpp>
 #include <opentxs-proto/verify/RPCCommand.hpp>
 #include <opentxs-proto/verify/RPCPush.hpp>
 #include <opentxs-proto/verify/RPCResponse.hpp>
@@ -233,9 +246,11 @@
 #include <opentxs-proto/verify/ServerReply.hpp>
 #include <opentxs-proto/verify/ServerRequest.hpp>
 #include <opentxs-proto/verify/SessionData.hpp>
+#include <opentxs-proto/verify/SessionKey.hpp>
 #include <opentxs-proto/verify/Signature.hpp>
 #include <opentxs-proto/verify/Signature.hpp>
 #include <opentxs-proto/verify/SourceProof.hpp>
+#include <opentxs-proto/verify/SpentTokenList.hpp>
 #include <opentxs-proto/verify/StorageAccountIndex.hpp>
 #include <opentxs-proto/verify/StorageAccounts.hpp>
 #include <opentxs-proto/verify/StorageBip47AddressIndex.hpp>
@@ -252,9 +267,11 @@
 #include <opentxs-proto/verify/StorageIssuers.hpp>
 #include <opentxs-proto/verify/StorageItemHash.hpp>
 #include <opentxs-proto/verify/StorageItems.hpp>
+#include <opentxs-proto/verify/StorageNotary.hpp>
 #include <opentxs-proto/verify/StorageNym.hpp>
 #include <opentxs-proto/verify/StorageNymList.hpp>
 #include <opentxs-proto/verify/StoragePaymentWorkflows.hpp>
+#include <opentxs-proto/verify/StoragePurse.hpp>
 #include <opentxs-proto/verify/StorageRoot.hpp>
 #include <opentxs-proto/verify/StorageSeeds.hpp>
 #include <opentxs-proto/verify/StorageServers.hpp>
@@ -266,6 +283,7 @@
 #include <opentxs-proto/verify/StoreSecret.hpp>
 #include <opentxs-proto/verify/SymmetricKey.hpp>
 #include <opentxs-proto/verify/TaskComplete.hpp>
+#include <opentxs-proto/verify/Token.hpp>
 #include <opentxs-proto/verify/TransactionData.hpp>
 #include <opentxs-proto/verify/UnitAccountMap.hpp>
 #include <opentxs-proto/verify/UnitDefinition.hpp>

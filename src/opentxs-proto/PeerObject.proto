@@ -14,6 +14,7 @@ import public "CredentialIndex.proto";
 import public "PeerEnums.proto";
 import public "PeerReply.proto";
 import public "PeerRequest.proto";
+import public "Purse.proto";
 
 message PeerObject
 {
@@ -24,4 +25,5 @@ message PeerObject
     optional PeerReply otreply = 5;
     optional CredentialIndex nym = 6;
     optional string otpayment = 7;
+    optional Purse purse = 8;
 }

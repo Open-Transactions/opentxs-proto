@@ -15,7 +15,8 @@ namespace proto
 
 bool CheckProto_1(const StorageBlockchainTransactions& input, const bool silent)
 {
-    CHECK_SUBOBJECTS(transaction, StorageBlockchainTransactionsAllowedHash)
+    CHECK_SUBOBJECTS(
+        transaction, StorageBlockchainTransactionsAllowedStorageItemHash)
 
     return true;
 }

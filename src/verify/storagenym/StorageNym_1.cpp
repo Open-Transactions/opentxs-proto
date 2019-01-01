@@ -12,15 +12,15 @@ namespace opentxs::proto
 {
 bool CheckProto_1(const StorageNym& input, const bool silent)
 {
-    OPTIONAL_SUBOBJECT(credlist, StorageNymAllowedHash)
-    OPTIONAL_SUBOBJECT(sentpeerrequests, StorageNymAllowedHash)
-    OPTIONAL_SUBOBJECT(incomingpeerrequests, StorageNymAllowedHash)
-    OPTIONAL_SUBOBJECT(sentpeerreply, StorageNymAllowedHash)
-    OPTIONAL_SUBOBJECT(incomingpeerreply, StorageNymAllowedHash)
-    OPTIONAL_SUBOBJECT(finishedpeerrequest, StorageNymAllowedHash)
-    OPTIONAL_SUBOBJECT(finishedpeerreply, StorageNymAllowedHash)
-    OPTIONAL_SUBOBJECT(processedpeerrequest, StorageNymAllowedHash)
-    OPTIONAL_SUBOBJECT(processedpeerreply, StorageNymAllowedHash)
+    OPTIONAL_SUBOBJECT(credlist, StorageNymAllowedStorageItemHash)
+    OPTIONAL_SUBOBJECT(sentpeerrequests, StorageNymAllowedStorageItemHash)
+    OPTIONAL_SUBOBJECT(incomingpeerrequests, StorageNymAllowedStorageItemHash)
+    OPTIONAL_SUBOBJECT(sentpeerreply, StorageNymAllowedStorageItemHash)
+    OPTIONAL_SUBOBJECT(incomingpeerreply, StorageNymAllowedStorageItemHash)
+    OPTIONAL_SUBOBJECT(finishedpeerrequest, StorageNymAllowedStorageItemHash)
+    OPTIONAL_SUBOBJECT(finishedpeerreply, StorageNymAllowedStorageItemHash)
+    OPTIONAL_SUBOBJECT(processedpeerrequest, StorageNymAllowedStorageItemHash)
+    OPTIONAL_SUBOBJECT(processedpeerreply, StorageNymAllowedStorageItemHash)
     CHECK_EXCLUDED(mailinbox)
     CHECK_EXCLUDED(mailoutbox)
     CHECK_EXCLUDED(threads)
@@ -31,6 +31,7 @@ bool CheckProto_1(const StorageNym& input, const bool silent)
     CHECK_EXCLUDED(issuers)
     CHECK_EXCLUDED(paymentworkflow)
     CHECK_EXCLUDED(bip47)
+    CHECK_NONE(purse);
 
     return true;
 }

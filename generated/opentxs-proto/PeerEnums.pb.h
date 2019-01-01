@@ -55,11 +55,12 @@ enum PeerObjectType {
   PEEROBJECT_MESSAGE = 1,
   PEEROBJECT_REQUEST = 2,
   PEEROBJECT_RESPONSE = 3,
-  PEEROBJECT_PAYMENT = 4
+  PEEROBJECT_PAYMENT = 4,
+  PEEROBJECT_CASH = 5
 };
 bool PeerObjectType_IsValid(int value);
 const PeerObjectType PeerObjectType_MIN = PEEROBJECT_ERROR;
-const PeerObjectType PeerObjectType_MAX = PEEROBJECT_PAYMENT;
+const PeerObjectType PeerObjectType_MAX = PEEROBJECT_CASH;
 const int PeerObjectType_ARRAYSIZE = PeerObjectType_MAX + 1;
 
 enum PeerRequestType {

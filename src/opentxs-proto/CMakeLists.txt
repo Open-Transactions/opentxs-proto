@@ -22,9 +22,11 @@ set(PROTO_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/Bip47Address.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/Bip47Channel.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/Bip47Direction.proto
+    BlindedSeriesList.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/BlockchainTransaction.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/BlockchainTransactionInput.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/BlockchainTransactionOutput.proto
+    CashEnums.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/ChildCredentialParameters.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/Ciphertext.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/Claim.proto
@@ -57,6 +59,7 @@ set(PROTO_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/Issuer.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/KeyCredential.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/ListenAddress.proto
+    LucreTokenData.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/MasterCredentialParameters.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/ModifyAccount.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/MoveFunds.proto
@@ -78,6 +81,8 @@ set(PROTO_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/PeerRequestHistory.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/PeerRequestWorkflow.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/PendingBailment.proto
+    Purse.proto
+    PurseExchange.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/RPCCommand.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/RPCPush.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/RPCResponse.proto
@@ -92,8 +97,10 @@ set(PROTO_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/ServerReply.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/ServerRequest.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/SessionData.proto
+    SessionKey.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/Signature.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/SourceProof.proto
+    SpentTokenList.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/StorageAccountIndex.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/StorageAccounts.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/StorageBip47AddressIndex.proto
@@ -111,9 +118,11 @@ set(PROTO_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/StorageItemHash.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/StorageItems.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/StorageIssuers.proto
+    StorageNotary.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/StorageNym.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/StorageNymList.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/StoragePaymentWorkflows.proto
+    StoragePurse.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/StorageRoot.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/StorageSeeds.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/StorageServers.proto
@@ -125,6 +134,7 @@ set(PROTO_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/StoreSecret.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/SymmetricKey.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/TaskComplete.proto
+    Token.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/TransactionData.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/UnitAccountMap.proto
     ${CMAKE_CURRENT_SOURCE_DIR}/UnitDefinition.proto

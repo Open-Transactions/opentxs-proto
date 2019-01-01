@@ -21,4 +21,5 @@ message StorageItems
     optional string contacts = 7;
     optional string blockchaintransactions = 8;
     optional string accounts = 9;
+    optional string notary = 10;
 }
