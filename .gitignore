@@ -31,3 +31,4 @@ opentxs-proto.kdev4
 *.rej
 *.orig
 
+/build/

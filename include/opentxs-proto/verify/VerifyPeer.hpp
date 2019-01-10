@@ -19,6 +19,7 @@ static const VersionMap PeerObjectAllowedReply = {
     {4, {4, 4}},
     {5, {4, 5}},
     {6, {4, 5}},
+    {7, {4, 5}},
 };
 static const VersionMap PeerObjectAllowedRequest = {
     {1, {1, 2}},
@@ -27,6 +28,7 @@ static const VersionMap PeerObjectAllowedRequest = {
     {4, {4, 4}},
     {5, {4, 5}},
     {6, {4, 6}},
+    {7, {4, 6}},
 };
 static const VersionMap PeerObjectAllowedCredentialIndex = {
     {1, {1, 3}},
