@@ -25,8 +25,8 @@ bool CheckProto_1(const StorageSeeds& input, const bool silent)
         try {
             const bool valid = Check(
                 hash,
-                StorageSeedsAllowedHash.at(input.version()).first,
-                StorageSeedsAllowedHash.at(input.version()).second,
+                StorageSeedsAllowedStorageItemHash.at(input.version()).first,
+                StorageSeedsAllowedStorageItemHash.at(input.version()).second,
                 silent);
 
             if (!valid) { FAIL_1("invalid has") }

@@ -23,6 +23,7 @@ set(cxx-sources
   bip47address/Bip47Address_1.cpp
   bip47channel/Bip47Channel_1.cpp
   bip47direction/Bip47Direction_1.cpp
+  blindedserieslist/BlindedSeriesList.cpp
   blockchaintransaction/BlockchainTransaction_1.cpp
   blockchaintransactioninput/BlockchainTransactionInput_1.cpp
   blockchaintransactionoutput/BlockchainTransactionOutput_1.cpp
@@ -54,6 +55,7 @@ set(cxx-sources
   issuer/Issuer_1.cpp
   keycredential/KeyCredential_1.cpp
   listenaddress/ListenAddress_1.cpp
+  lucretokendata/LucreTokenData_1.cpp
   mastercredentialparameters/MasterCredentialParameters_1.cpp
   modifyaccount/ModifyAccount_1.cpp
   movefunds/MoveFunds_1.cpp
@@ -66,10 +68,13 @@ set(cxx-sources
   paymentcode/PaymentCode_1.cpp
   paymentevent/PaymentEvent_1.cpp
   paymentevent/PaymentEvent_2.cpp
+  paymentevent/PaymentEvent_3.cpp
   paymentworkflow/PaymentWorkflow_1.cpp
   paymentworkflow/PaymentWorkflow_2.cpp
+  paymentworkflow/PaymentWorkflow_3.cpp
   peerobject/PeerObject_1.cpp
   peerobject/PeerObject_2.cpp
+  peerobject/PeerObject_3.cpp
   peerreply/PeerReply_1.cpp
   peerreply/PeerReply_2.cpp
   peerreply/PeerReply_3.cpp
@@ -81,6 +86,8 @@ set(cxx-sources
   peerrequesthistory/PeerRequestHistory_1.cpp
   peerrequestworkflow/PeerRequestWorkflow_1.cpp
   pendingbailment/PendingBailment_1.cpp
+  purse/Purse_1.cpp
+  purseexchange/PurseExchange_1.cpp
   rpccommand/RPCCommand_1.cpp
   rpccommand/RPCCommand_2.cpp
   rpcpush/RPCPush_1.cpp
@@ -98,10 +105,12 @@ set(cxx-sources
   serverreply/ServerReply_1.cpp
   serverrequest/ServerRequest_1.cpp
   sessiondata/SessionData_1.cpp
+  sessionkey/SessionKey_1.cpp
   signature/Signature_1.cpp
   signature/Signature_2.cpp
   signature/Signature_3.cpp
   sourceproof/SourceProof_1.cpp
+  spenttokenlist/SpentTokenList_1.cpp
   storageaccountindex/StorageAccountIndex_1.cpp
   storageaccounts/StorageAccounts_1.cpp
   storagebip47addressindex/StorageBip47AddressIndex_1.cpp
@@ -122,7 +131,9 @@ set(cxx-sources
   storageitems/StorageItems_2.cpp
   storageitems/StorageItems_3.cpp
   storageitems/StorageItems_4.cpp
+  storageitems/StorageItems_5.cpp
   storageissuers/StorageIssuers_1.cpp
+  storagenotary/StorageNotary_1.cpp
   storagenym/StorageNym_1.cpp
   storagenym/StorageNym_2.cpp
   storagenym/StorageNym_3.cpp
@@ -130,8 +141,10 @@ set(cxx-sources
   storagenym/StorageNym_5.cpp
   storagenym/StorageNym_6.cpp
   storagenym/StorageNym_7.cpp
+  storagenym/StorageNym_8.cpp
   storagenymlist/StorageNymList_1.cpp
   storagepaymentworkflows/StoragePaymentWorkflows_1.cpp
+  storagepurse/StoragePurse_1.cpp
   storageroot/StorageRoot_1.cpp
   storageroot/StorageRoot_2.cpp
   storageseeds/StorageSeeds_1.cpp
@@ -142,8 +155,10 @@ set(cxx-sources
   storageworkflowindex/StorageWorkflowIndex_1.cpp
   storageworkflowtype/StorageWorkflowType_1.cpp
   storageworkflowtype/StorageWorkflowType_2.cpp
+  storageworkflowtype/StorageWorkflowType_3.cpp
   storesecret/StoreSecret_1.cpp
   taskcomplete/TaskComplete_1.cpp
+  token/Token_1.cpp
   transactiondata/TransactionData_1.cpp
   symmetrickey/SymmetricKey_1.cpp
   unitaccountmap/UnitAccountMap_1.cpp

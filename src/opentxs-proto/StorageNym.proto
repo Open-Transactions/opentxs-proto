@@ -12,6 +12,7 @@ option optimize_for = LITE_RUNTIME;
 
 import public "Bip44Account.proto";
 import public "StorageBlockchainAccountList.proto";
+import public "StoragePurse.proto";
 import public "StorageItemHash.proto";
 
 message StorageNym {
@@ -36,4 +37,5 @@ message StorageNym {
     optional string issuers = 19;
     optional string PaymentWorkflow = 20;
     optional string bip47 = 21;
+    repeated StoragePurse purse = 22;
 }

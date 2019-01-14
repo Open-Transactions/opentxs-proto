@@ -19,8 +19,8 @@ bool CheckProto_1(const StorageUnits& input, const bool silent)
         try {
             const bool valid = Check(
                 hash,
-                StorageUnitsAllowedHash.at(input.version()).first,
-                StorageUnitsAllowedHash.at(input.version()).second,
+                StorageUnitsAllowedStorageItemHash.at(input.version()).first,
+                StorageUnitsAllowedStorageItemHash.at(input.version()).second,
                 silent);
 
             if (!valid) { FAIL_1("invalid hash") }

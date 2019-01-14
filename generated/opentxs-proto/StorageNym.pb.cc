@@ -37,6 +37,7 @@ void InitDefaultsStorageNymImpl() {
   protobuf_StorageItemHash_2eproto::InitDefaultsStorageItemHash();
   protobuf_StorageBlockchainAccountList_2eproto::InitDefaultsStorageBlockchainAccountList();
   protobuf_Bip44Account_2eproto::InitDefaultsBip44Account();
+  protobuf_StoragePurse_2eproto::InitDefaultsStoragePurse();
   {
     void* ptr = &::opentxs::proto::_StorageNym_default_instance_;
     new (ptr) ::opentxs::proto::StorageNym();
@@ -148,6 +149,9 @@ void StorageNym::clear_blockchainaccountindex() {
 void StorageNym::clear_blockchainaccount() {
   blockchainaccount_.Clear();
 }
+void StorageNym::clear_purse() {
+  purse_.Clear();
+}
 #if !defined(_MSC_VER) || _MSC_VER >= 1900
 const int StorageNym::kVersionFieldNumber;
 const int StorageNym::kNymidFieldNumber;
@@ -170,6 +174,7 @@ const int StorageNym::kBlockchainAccountFieldNumber;
 const int StorageNym::kIssuersFieldNumber;
 const int StorageNym::kPaymentWorkflowFieldNumber;
 const int StorageNym::kBip47FieldNumber;
+const int StorageNym::kPurseFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 StorageNym::StorageNym()
@@ -186,7 +191,8 @@ StorageNym::StorageNym(const StorageNym& from)
       _has_bits_(from._has_bits_),
       _cached_size_(0),
       blockchainaccountindex_(from.blockchainaccountindex_),
-      blockchainaccount_(from.blockchainaccount_) {
+      blockchainaccount_(from.blockchainaccount_),
+      purse_(from.purse_) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   nymid_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   if (from.has_nymid()) {
@@ -341,6 +347,7 @@ void StorageNym::Clear() {
 
   blockchainaccountindex_.Clear();
   blockchainaccount_.Clear();
+  purse_.Clear();
   cached_has_bits = _has_bits_[0];
   if (cached_has_bits & 255u) {
     if (cached_has_bits & 0x00000001u) {
@@ -693,6 +700,17 @@ bool StorageNym::MergePartialFromCodedStream(
         break;
       }
 
+      // repeated .opentxs.proto.StoragePurse purse = 22;
+      case 22: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(178u /* 178 & 0xFF */)) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessage(input, add_purse()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
       default: {
       handle_unusual:
         if (tag == 0) {
@@ -847,6 +865,13 @@ void StorageNym::SerializeWithCachedSizes(
       21, this->bip47(), output);
   }
 
+  // repeated .opentxs.proto.StoragePurse purse = 22;
+  for (unsigned int i = 0,
+      n = static_cast<unsigned int>(this->purse_size()); i < n; i++) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessage(
+      22, this->purse(static_cast<int>(i)), output);
+  }
+
   output->WriteRaw(_internal_metadata_.unknown_fields().data(),
                    static_cast<int>(_internal_metadata_.unknown_fields().size()));
   // @@protoc_insertion_point(serialize_end:opentxs.proto.StorageNym)
@@ -877,6 +902,17 @@ size_t StorageNym::ByteSizeLong() const {
       total_size +=
         ::google::protobuf::internal::WireFormatLite::MessageSize(
           this->blockchainaccount(static_cast<int>(i)));
+    }
+  }
+
+  // repeated .opentxs.proto.StoragePurse purse = 22;
+  {
+    unsigned int count = static_cast<unsigned int>(this->purse_size());
+    total_size += 2UL * count;
+    for (unsigned int i = 0; i < count; i++) {
+      total_size +=
+        ::google::protobuf::internal::WireFormatLite::MessageSize(
+          this->purse(static_cast<int>(i)));
     }
   }
 
@@ -1040,6 +1076,7 @@ void StorageNym::MergeFrom(const StorageNym& from) {
 
   blockchainaccountindex_.MergeFrom(from.blockchainaccountindex_);
   blockchainaccount_.MergeFrom(from.blockchainaccount_);
+  purse_.MergeFrom(from.purse_);
   cached_has_bits = from._has_bits_[0];
   if (cached_has_bits & 255u) {
     if (cached_has_bits & 0x00000001u) {
@@ -1130,6 +1167,7 @@ void StorageNym::InternalSwap(StorageNym* other) {
   using std::swap;
   blockchainaccountindex_.InternalSwap(&other->blockchainaccountindex_);
   blockchainaccount_.InternalSwap(&other->blockchainaccount_);
+  purse_.InternalSwap(&other->purse_);
   nymid_.Swap(&other->nymid_);
   issuers_.Swap(&other->issuers_);
   paymentworkflow_.Swap(&other->paymentworkflow_);

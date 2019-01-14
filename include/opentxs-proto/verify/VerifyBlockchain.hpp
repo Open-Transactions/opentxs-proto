@@ -36,7 +36,7 @@ static const VersionMap BlockchainTransactionAllowedInput = {
 static const VersionMap BlockchainTransactionAllowedOutput = {
     {1, {1, 1}},
 };
-static const VersionMap StorageBlockchainTransactionsAllowedHash = {
+static const VersionMap StorageBlockchainTransactionsAllowedStorageItemHash = {
     {1, {1, 2}},
 };
 }  // namespace proto

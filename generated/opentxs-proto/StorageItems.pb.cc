@@ -65,6 +65,7 @@ const int StorageItems::kSeedsFieldNumber;
 const int StorageItems::kContactsFieldNumber;
 const int StorageItems::kBlockchaintransactionsFieldNumber;
 const int StorageItems::kAccountsFieldNumber;
+const int StorageItems::kNotaryFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 StorageItems::StorageItems()
@@ -113,6 +114,10 @@ StorageItems::StorageItems(const StorageItems& from)
   if (from.has_accounts()) {
     accounts_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.accounts_);
   }
+  notary_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.has_notary()) {
+    notary_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.notary_);
+  }
   version_ = from.version_;
   // @@protoc_insertion_point(copy_constructor:opentxs.proto.StorageItems)
 }
@@ -127,6 +132,7 @@ void StorageItems::SharedCtor() {
   contacts_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   blockchaintransactions_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   accounts_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  notary_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   version_ = 0u;
 }
 
@@ -144,6 +150,7 @@ void StorageItems::SharedDtor() {
   contacts_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   blockchaintransactions_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   accounts_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  notary_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 
 void StorageItems::SetCachedSize(int size) const {
@@ -204,6 +211,10 @@ void StorageItems::Clear() {
       GOOGLE_DCHECK(!accounts_.IsDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited()));
       (*accounts_.UnsafeRawStringPointer())->clear();
     }
+  }
+  if (cached_has_bits & 0x00000100u) {
+    GOOGLE_DCHECK(!notary_.IsDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited()));
+    (*notary_.UnsafeRawStringPointer())->clear();
   }
   version_ = 0u;
   _has_bits_.Clear();
@@ -336,6 +347,18 @@ bool StorageItems::MergePartialFromCodedStream(
         break;
       }
 
+      // optional string notary = 10;
+      case 10: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(82u /* 82 & 0xFF */)) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+                input, this->mutable_notary()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
       default: {
       handle_unusual:
         if (tag == 0) {
@@ -364,7 +387,7 @@ void StorageItems::SerializeWithCachedSizes(
 
   cached_has_bits = _has_bits_[0];
   // optional uint32 version = 1;
-  if (cached_has_bits & 0x00000100u) {
+  if (cached_has_bits & 0x00000200u) {
     ::google::protobuf::internal::WireFormatLite::WriteUInt32(1, this->version(), output);
   }
 
@@ -414,6 +437,12 @@ void StorageItems::SerializeWithCachedSizes(
   if (cached_has_bits & 0x00000080u) {
     ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
       9, this->accounts(), output);
+  }
+
+  // optional string notary = 10;
+  if (cached_has_bits & 0x00000100u) {
+    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
+      10, this->notary(), output);
   }
 
   output->WriteRaw(_internal_metadata_.unknown_fields().data(),
@@ -485,13 +514,22 @@ size_t StorageItems::ByteSizeLong() const {
     }
 
   }
-  // optional uint32 version = 1;
-  if (has_version()) {
-    total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::UInt32Size(
-        this->version());
-  }
+  if (_has_bits_[8 / 32] & 768u) {
+    // optional string notary = 10;
+    if (has_notary()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::StringSize(
+          this->notary());
+    }
 
+    // optional uint32 version = 1;
+    if (has_version()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::UInt32Size(
+          this->version());
+    }
+
+  }
   int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
   GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
   _cached_size_ = cached_size;
@@ -546,8 +584,15 @@ void StorageItems::MergeFrom(const StorageItems& from) {
       accounts_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.accounts_);
     }
   }
-  if (cached_has_bits & 0x00000100u) {
-    set_version(from.version());
+  if (cached_has_bits & 768u) {
+    if (cached_has_bits & 0x00000100u) {
+      set_has_notary();
+      notary_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.notary_);
+    }
+    if (cached_has_bits & 0x00000200u) {
+      version_ = from.version_;
+    }
+    _has_bits_[0] |= cached_has_bits;
   }
 }
 
@@ -576,6 +621,7 @@ void StorageItems::InternalSwap(StorageItems* other) {
   contacts_.Swap(&other->contacts_);
   blockchaintransactions_.Swap(&other->blockchaintransactions_);
   accounts_.Swap(&other->accounts_);
+  notary_.Swap(&other->notary_);
   swap(version_, other->version_);
   swap(_has_bits_[0], other->_has_bits_[0]);
   _internal_metadata_.Swap(&other->_internal_metadata_);

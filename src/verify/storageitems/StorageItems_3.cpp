@@ -12,14 +12,15 @@ namespace opentxs::proto
 {
 bool CheckProto_3(const StorageItems& input, const bool silent)
 {
-    OPTIONAL_IDENTIFIER(creds)
-    OPTIONAL_IDENTIFIER(nyms)
-    OPTIONAL_IDENTIFIER(servers)
-    OPTIONAL_IDENTIFIER(units)
-    OPTIONAL_IDENTIFIER(seeds)
-    OPTIONAL_IDENTIFIER(contacts)
-    OPTIONAL_IDENTIFIER(blockchaintransactions)
-    CHECK_EXCLUDED(accounts)
+    OPTIONAL_IDENTIFIER(creds);
+    OPTIONAL_IDENTIFIER(nyms);
+    OPTIONAL_IDENTIFIER(servers);
+    OPTIONAL_IDENTIFIER(units);
+    OPTIONAL_IDENTIFIER(seeds);
+    OPTIONAL_IDENTIFIER(contacts);
+    OPTIONAL_IDENTIFIER(blockchaintransactions);
+    CHECK_EXCLUDED(accounts);
+    CHECK_EXCLUDED(notary);
 
     return true;
 }

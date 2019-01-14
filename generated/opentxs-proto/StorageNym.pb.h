@@ -30,6 +30,7 @@
 #include <google/protobuf/extension_set.h>  // IWYU pragma: export
 #include "Bip44Account.pb.h"  // IWYU pragma: export
 #include "StorageBlockchainAccountList.pb.h"  // IWYU pragma: export
+#include "StoragePurse.pb.h"  // IWYU pragma: export
 #include "StorageItemHash.pb.h"  // IWYU pragma: export
 // @@protoc_insertion_point(includes)
 
@@ -171,6 +172,18 @@ class StorageNym : public ::google::protobuf::MessageLite /* @@protoc_insertion_
       mutable_blockchainaccount();
   const ::google::protobuf::RepeatedPtrField< ::opentxs::proto::Bip44Account >&
       blockchainaccount() const;
+
+  // repeated .opentxs.proto.StoragePurse purse = 22;
+  int purse_size() const;
+  void clear_purse();
+  static const int kPurseFieldNumber = 22;
+  const ::opentxs::proto::StoragePurse& purse(int index) const;
+  ::opentxs::proto::StoragePurse* mutable_purse(int index);
+  ::opentxs::proto::StoragePurse* add_purse();
+  ::google::protobuf::RepeatedPtrField< ::opentxs::proto::StoragePurse >*
+      mutable_purse();
+  const ::google::protobuf::RepeatedPtrField< ::opentxs::proto::StoragePurse >&
+      purse() const;
 
   // optional string nymid = 2;
   bool has_nymid() const;
@@ -411,6 +424,7 @@ class StorageNym : public ::google::protobuf::MessageLite /* @@protoc_insertion_
   mutable int _cached_size_;
   ::google::protobuf::RepeatedPtrField< ::opentxs::proto::StorageBlockchainAccountList > blockchainaccountindex_;
   ::google::protobuf::RepeatedPtrField< ::opentxs::proto::Bip44Account > blockchainaccount_;
+  ::google::protobuf::RepeatedPtrField< ::opentxs::proto::StoragePurse > purse_;
   ::google::protobuf::internal::ArenaStringPtr nymid_;
   ::google::protobuf::internal::ArenaStringPtr issuers_;
   ::google::protobuf::internal::ArenaStringPtr paymentworkflow_;
@@ -1472,6 +1486,33 @@ inline void StorageNym::set_allocated_bip47(::std::string* bip47) {
   }
   bip47_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), bip47);
   // @@protoc_insertion_point(field_set_allocated:opentxs.proto.StorageNym.bip47)
+}
+
+// repeated .opentxs.proto.StoragePurse purse = 22;
+inline int StorageNym::purse_size() const {
+  return purse_.size();
+}
+inline const ::opentxs::proto::StoragePurse& StorageNym::purse(int index) const {
+  // @@protoc_insertion_point(field_get:opentxs.proto.StorageNym.purse)
+  return purse_.Get(index);
+}
+inline ::opentxs::proto::StoragePurse* StorageNym::mutable_purse(int index) {
+  // @@protoc_insertion_point(field_mutable:opentxs.proto.StorageNym.purse)
+  return purse_.Mutable(index);
+}
+inline ::opentxs::proto::StoragePurse* StorageNym::add_purse() {
+  // @@protoc_insertion_point(field_add:opentxs.proto.StorageNym.purse)
+  return purse_.Add();
+}
+inline ::google::protobuf::RepeatedPtrField< ::opentxs::proto::StoragePurse >*
+StorageNym::mutable_purse() {
+  // @@protoc_insertion_point(field_mutable_list:opentxs.proto.StorageNym.purse)
+  return &purse_;
+}
+inline const ::google::protobuf::RepeatedPtrField< ::opentxs::proto::StoragePurse >&
+StorageNym::purse() const {
+  // @@protoc_insertion_point(field_list:opentxs.proto.StorageNym.purse)
+  return purse_;
 }
 
 #ifdef __GNUC__

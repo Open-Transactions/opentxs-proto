@@ -8,9 +8,7 @@
 
 #define PROTO_NAME "peer object"
 
-namespace opentxs
-{
-namespace proto
+namespace opentxs::proto
 {
 bool CheckProto_1(const PeerObject& input, const bool silent)
 {
@@ -32,8 +30,8 @@ bool CheckProto_1(const PeerObject& input, const bool silent)
             try {
                 const bool validrequest = Check(
                     input.otrequest(),
-                    PeerObjectAllowedRequest.at(input.version()).first,
-                    PeerObjectAllowedRequest.at(input.version()).second,
+                    PeerObjectAllowedPeerRequest.at(input.version()).first,
+                    PeerObjectAllowedPeerRequest.at(input.version()).second,
                     silent);
 
                 if (!validrequest) { FAIL_1("invalid otrequest") }
@@ -69,8 +67,8 @@ bool CheckProto_1(const PeerObject& input, const bool silent)
             try {
                 const bool validrequest = Check(
                     input.otrequest(),
-                    PeerObjectAllowedRequest.at(input.version()).first,
-                    PeerObjectAllowedRequest.at(input.version()).second,
+                    PeerObjectAllowedPeerRequest.at(input.version()).first,
+                    PeerObjectAllowedPeerRequest.at(input.version()).second,
                     silent);
 
                 if (!validrequest) { FAIL_1("invalid otrequest") }
@@ -85,8 +83,8 @@ bool CheckProto_1(const PeerObject& input, const bool silent)
             try {
                 const bool validreply = Check(
                     input.otreply(),
-                    PeerObjectAllowedReply.at(input.version()).first,
-                    PeerObjectAllowedReply.at(input.version()).second,
+                    PeerObjectAllowedPeerReply.at(input.version()).first,
+                    PeerObjectAllowedPeerReply.at(input.version()).second,
                     silent);
 
                 if (!validreply) { FAIL_1("invalid otreply") }
@@ -131,6 +129,9 @@ bool CheckProto_1(const PeerObject& input, const bool silent)
         }
     }
 
+    CHECK_EXCLUDED(otpayment);
+    CHECK_EXCLUDED(purse);
+
     return true;
 }
 bool CheckProto_2(const PeerObject& input, const bool silent)
@@ -146,5 +147,4 @@ bool CheckProto_4(const PeerObject& input, const bool silent)
     return CheckProto_1(input, silent);
 }
 
-}  // namespace proto
-}  // namespace opentxs
+}  // namespace opentxs::proto

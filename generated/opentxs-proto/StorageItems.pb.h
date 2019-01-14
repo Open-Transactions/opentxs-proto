@@ -265,6 +265,21 @@ class StorageItems : public ::google::protobuf::MessageLite /* @@protoc_insertio
   ::std::string* release_accounts();
   void set_allocated_accounts(::std::string* accounts);
 
+  // optional string notary = 10;
+  bool has_notary() const;
+  void clear_notary();
+  static const int kNotaryFieldNumber = 10;
+  const ::std::string& notary() const;
+  void set_notary(const ::std::string& value);
+  #if LANG_CXX11
+  void set_notary(::std::string&& value);
+  #endif
+  void set_notary(const char* value);
+  void set_notary(const char* value, size_t size);
+  ::std::string* mutable_notary();
+  ::std::string* release_notary();
+  void set_allocated_notary(::std::string* notary);
+
   // optional uint32 version = 1;
   bool has_version() const;
   void clear_version();
@@ -292,6 +307,8 @@ class StorageItems : public ::google::protobuf::MessageLite /* @@protoc_insertio
   void clear_has_blockchaintransactions();
   void set_has_accounts();
   void clear_has_accounts();
+  void set_has_notary();
+  void clear_has_notary();
 
   ::google::protobuf::internal::InternalMetadataWithArenaLite _internal_metadata_;
   ::google::protobuf::internal::HasBits<1> _has_bits_;
@@ -304,6 +321,7 @@ class StorageItems : public ::google::protobuf::MessageLite /* @@protoc_insertio
   ::google::protobuf::internal::ArenaStringPtr contacts_;
   ::google::protobuf::internal::ArenaStringPtr blockchaintransactions_;
   ::google::protobuf::internal::ArenaStringPtr accounts_;
+  ::google::protobuf::internal::ArenaStringPtr notary_;
   ::google::protobuf::uint32 version_;
   friend struct ::protobuf_StorageItems_2eproto::TableStruct;
   friend void ::protobuf_StorageItems_2eproto::InitDefaultsStorageItemsImpl();
@@ -321,13 +339,13 @@ class StorageItems : public ::google::protobuf::MessageLite /* @@protoc_insertio
 
 // optional uint32 version = 1;
 inline bool StorageItems::has_version() const {
-  return (_has_bits_[0] & 0x00000100u) != 0;
+  return (_has_bits_[0] & 0x00000200u) != 0;
 }
 inline void StorageItems::set_has_version() {
-  _has_bits_[0] |= 0x00000100u;
+  _has_bits_[0] |= 0x00000200u;
 }
 inline void StorageItems::clear_has_version() {
-  _has_bits_[0] &= ~0x00000100u;
+  _has_bits_[0] &= ~0x00000200u;
 }
 inline void StorageItems::clear_version() {
   version_ = 0u;
@@ -845,6 +863,69 @@ inline void StorageItems::set_allocated_accounts(::std::string* accounts) {
   }
   accounts_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), accounts);
   // @@protoc_insertion_point(field_set_allocated:opentxs.proto.StorageItems.accounts)
+}
+
+// optional string notary = 10;
+inline bool StorageItems::has_notary() const {
+  return (_has_bits_[0] & 0x00000100u) != 0;
+}
+inline void StorageItems::set_has_notary() {
+  _has_bits_[0] |= 0x00000100u;
+}
+inline void StorageItems::clear_has_notary() {
+  _has_bits_[0] &= ~0x00000100u;
+}
+inline void StorageItems::clear_notary() {
+  notary_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  clear_has_notary();
+}
+inline const ::std::string& StorageItems::notary() const {
+  // @@protoc_insertion_point(field_get:opentxs.proto.StorageItems.notary)
+  return notary_.GetNoArena();
+}
+inline void StorageItems::set_notary(const ::std::string& value) {
+  set_has_notary();
+  notary_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:opentxs.proto.StorageItems.notary)
+}
+#if LANG_CXX11
+inline void StorageItems::set_notary(::std::string&& value) {
+  set_has_notary();
+  notary_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:opentxs.proto.StorageItems.notary)
+}
+#endif
+inline void StorageItems::set_notary(const char* value) {
+  GOOGLE_DCHECK(value != NULL);
+  set_has_notary();
+  notary_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:opentxs.proto.StorageItems.notary)
+}
+inline void StorageItems::set_notary(const char* value, size_t size) {
+  set_has_notary();
+  notary_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:opentxs.proto.StorageItems.notary)
+}
+inline ::std::string* StorageItems::mutable_notary() {
+  set_has_notary();
+  // @@protoc_insertion_point(field_mutable:opentxs.proto.StorageItems.notary)
+  return notary_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* StorageItems::release_notary() {
+  // @@protoc_insertion_point(field_release:opentxs.proto.StorageItems.notary)
+  clear_has_notary();
+  return notary_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void StorageItems::set_allocated_notary(::std::string* notary) {
+  if (notary != NULL) {
+    set_has_notary();
+  } else {
+    clear_has_notary();
+  }
+  notary_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), notary);
+  // @@protoc_insertion_point(field_set_allocated:opentxs.proto.StorageItems.notary)
 }
 
 #ifdef __GNUC__

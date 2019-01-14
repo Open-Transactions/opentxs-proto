@@ -32,6 +32,7 @@
 #include "PeerEnums.pb.h"  // IWYU pragma: export
 #include "PeerReply.pb.h"  // IWYU pragma: export
 #include "PeerRequest.pb.h"  // IWYU pragma: export
+#include "Purse.pb.h"  // IWYU pragma: export
 // @@protoc_insertion_point(includes)
 
 namespace protobuf_PeerObject_2eproto {
@@ -206,6 +207,15 @@ class PeerObject : public ::google::protobuf::MessageLite /* @@protoc_insertion_
   ::opentxs::proto::CredentialIndex* mutable_nym();
   void set_allocated_nym(::opentxs::proto::CredentialIndex* nym);
 
+  // optional .opentxs.proto.Purse purse = 8;
+  bool has_purse() const;
+  void clear_purse();
+  static const int kPurseFieldNumber = 8;
+  const ::opentxs::proto::Purse& purse() const;
+  ::opentxs::proto::Purse* release_purse();
+  ::opentxs::proto::Purse* mutable_purse();
+  void set_allocated_purse(::opentxs::proto::Purse* purse);
+
   // optional uint32 version = 1;
   bool has_version() const;
   void clear_version();
@@ -236,6 +246,8 @@ class PeerObject : public ::google::protobuf::MessageLite /* @@protoc_insertion_
   void clear_has_nym();
   void set_has_otpayment();
   void clear_has_otpayment();
+  void set_has_purse();
+  void clear_has_purse();
 
   ::google::protobuf::internal::InternalMetadataWithArenaLite _internal_metadata_;
   ::google::protobuf::internal::HasBits<1> _has_bits_;
@@ -245,6 +257,7 @@ class PeerObject : public ::google::protobuf::MessageLite /* @@protoc_insertion_
   ::opentxs::proto::PeerRequest* otrequest_;
   ::opentxs::proto::PeerReply* otreply_;
   ::opentxs::proto::CredentialIndex* nym_;
+  ::opentxs::proto::Purse* purse_;
   ::google::protobuf::uint32 version_;
   int type_;
   friend struct ::protobuf_PeerObject_2eproto::TableStruct;
@@ -263,13 +276,13 @@ class PeerObject : public ::google::protobuf::MessageLite /* @@protoc_insertion_
 
 // optional uint32 version = 1;
 inline bool PeerObject::has_version() const {
-  return (_has_bits_[0] & 0x00000020u) != 0;
+  return (_has_bits_[0] & 0x00000040u) != 0;
 }
 inline void PeerObject::set_has_version() {
-  _has_bits_[0] |= 0x00000020u;
+  _has_bits_[0] |= 0x00000040u;
 }
 inline void PeerObject::clear_has_version() {
-  _has_bits_[0] &= ~0x00000020u;
+  _has_bits_[0] &= ~0x00000040u;
 }
 inline void PeerObject::clear_version() {
   version_ = 0u;
@@ -287,13 +300,13 @@ inline void PeerObject::set_version(::google::protobuf::uint32 value) {
 
 // optional .opentxs.proto.PeerObjectType type = 2;
 inline bool PeerObject::has_type() const {
-  return (_has_bits_[0] & 0x00000040u) != 0;
+  return (_has_bits_[0] & 0x00000080u) != 0;
 }
 inline void PeerObject::set_has_type() {
-  _has_bits_[0] |= 0x00000040u;
+  _has_bits_[0] |= 0x00000080u;
 }
 inline void PeerObject::clear_has_type() {
-  _has_bits_[0] &= ~0x00000040u;
+  _has_bits_[0] &= ~0x00000080u;
 }
 inline void PeerObject::clear_type() {
   type_ = 0;
@@ -584,6 +597,56 @@ inline void PeerObject::set_allocated_otpayment(::std::string* otpayment) {
   }
   otpayment_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), otpayment);
   // @@protoc_insertion_point(field_set_allocated:opentxs.proto.PeerObject.otpayment)
+}
+
+// optional .opentxs.proto.Purse purse = 8;
+inline bool PeerObject::has_purse() const {
+  return (_has_bits_[0] & 0x00000020u) != 0;
+}
+inline void PeerObject::set_has_purse() {
+  _has_bits_[0] |= 0x00000020u;
+}
+inline void PeerObject::clear_has_purse() {
+  _has_bits_[0] &= ~0x00000020u;
+}
+inline const ::opentxs::proto::Purse& PeerObject::purse() const {
+  const ::opentxs::proto::Purse* p = purse_;
+  // @@protoc_insertion_point(field_get:opentxs.proto.PeerObject.purse)
+  return p != NULL ? *p : *reinterpret_cast<const ::opentxs::proto::Purse*>(
+      &::opentxs::proto::_Purse_default_instance_);
+}
+inline ::opentxs::proto::Purse* PeerObject::release_purse() {
+  // @@protoc_insertion_point(field_release:opentxs.proto.PeerObject.purse)
+  clear_has_purse();
+  ::opentxs::proto::Purse* temp = purse_;
+  purse_ = NULL;
+  return temp;
+}
+inline ::opentxs::proto::Purse* PeerObject::mutable_purse() {
+  set_has_purse();
+  if (purse_ == NULL) {
+    purse_ = new ::opentxs::proto::Purse;
+  }
+  // @@protoc_insertion_point(field_mutable:opentxs.proto.PeerObject.purse)
+  return purse_;
+}
+inline void PeerObject::set_allocated_purse(::opentxs::proto::Purse* purse) {
+  ::google::protobuf::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == NULL) {
+    delete reinterpret_cast< ::google::protobuf::MessageLite*>(purse_);
+  }
+  if (purse) {
+    ::google::protobuf::Arena* submessage_arena = NULL;
+    if (message_arena != submessage_arena) {
+      purse = ::google::protobuf::internal::GetOwnedMessage(
+          message_arena, purse, submessage_arena);
+    }
+    set_has_purse();
+  } else {
+    clear_has_purse();
+  }
+  purse_ = purse;
+  // @@protoc_insertion_point(field_set_allocated:opentxs.proto.PeerObject.purse)
 }
 
 #ifdef __GNUC__

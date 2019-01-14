@@ -37,6 +37,7 @@ void InitDefaultsPeerObjectImpl() {
   protobuf_PeerRequest_2eproto::InitDefaultsPeerRequest();
   protobuf_PeerReply_2eproto::InitDefaultsPeerReply();
   protobuf_CredentialIndex_2eproto::InitDefaultsCredentialIndex();
+  protobuf_Purse_2eproto::InitDefaultsPurse();
   {
     void* ptr = &::opentxs::proto::_PeerObject_default_instance_;
     new (ptr) ::opentxs::proto::PeerObject();
@@ -63,6 +64,8 @@ void PeerObject::InitAsDefaultInstance() {
       ::opentxs::proto::PeerReply::internal_default_instance());
   ::opentxs::proto::_PeerObject_default_instance_._instance.get_mutable()->nym_ = const_cast< ::opentxs::proto::CredentialIndex*>(
       ::opentxs::proto::CredentialIndex::internal_default_instance());
+  ::opentxs::proto::_PeerObject_default_instance_._instance.get_mutable()->purse_ = const_cast< ::opentxs::proto::Purse*>(
+      ::opentxs::proto::Purse::internal_default_instance());
 }
 void PeerObject::clear_otrequest() {
   if (otrequest_ != NULL) otrequest_->Clear();
@@ -76,6 +79,10 @@ void PeerObject::clear_nym() {
   if (nym_ != NULL) nym_->Clear();
   clear_has_nym();
 }
+void PeerObject::clear_purse() {
+  if (purse_ != NULL) purse_->Clear();
+  clear_has_purse();
+}
 #if !defined(_MSC_VER) || _MSC_VER >= 1900
 const int PeerObject::kVersionFieldNumber;
 const int PeerObject::kTypeFieldNumber;
@@ -84,6 +91,7 @@ const int PeerObject::kOtrequestFieldNumber;
 const int PeerObject::kOtreplyFieldNumber;
 const int PeerObject::kNymFieldNumber;
 const int PeerObject::kOtpaymentFieldNumber;
+const int PeerObject::kPurseFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 PeerObject::PeerObject()
@@ -123,6 +131,11 @@ PeerObject::PeerObject(const PeerObject& from)
   } else {
     nym_ = NULL;
   }
+  if (from.has_purse()) {
+    purse_ = new ::opentxs::proto::Purse(*from.purse_);
+  } else {
+    purse_ = NULL;
+  }
   ::memcpy(&version_, &from.version_,
     static_cast<size_t>(reinterpret_cast<char*>(&type_) -
     reinterpret_cast<char*>(&version_)) + sizeof(type_));
@@ -149,6 +162,7 @@ void PeerObject::SharedDtor() {
   if (this != internal_default_instance()) delete otrequest_;
   if (this != internal_default_instance()) delete otreply_;
   if (this != internal_default_instance()) delete nym_;
+  if (this != internal_default_instance()) delete purse_;
 }
 
 void PeerObject::SetCachedSize(int size) const {
@@ -176,7 +190,7 @@ void PeerObject::Clear() {
   (void) cached_has_bits;
 
   cached_has_bits = _has_bits_[0];
-  if (cached_has_bits & 31u) {
+  if (cached_has_bits & 63u) {
     if (cached_has_bits & 0x00000001u) {
       GOOGLE_DCHECK(!otmessage_.IsDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited()));
       (*otmessage_.UnsafeRawStringPointer())->clear();
@@ -197,8 +211,12 @@ void PeerObject::Clear() {
       GOOGLE_DCHECK(nym_ != NULL);
       nym_->Clear();
     }
+    if (cached_has_bits & 0x00000020u) {
+      GOOGLE_DCHECK(purse_ != NULL);
+      purse_->Clear();
+    }
   }
-  if (cached_has_bits & 96u) {
+  if (cached_has_bits & 192u) {
     ::memset(&version_, 0, static_cast<size_t>(
         reinterpret_cast<char*>(&type_) -
         reinterpret_cast<char*>(&version_)) + sizeof(type_));
@@ -318,6 +336,18 @@ bool PeerObject::MergePartialFromCodedStream(
         break;
       }
 
+      // optional .opentxs.proto.Purse purse = 8;
+      case 8: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(66u /* 66 & 0xFF */)) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessage(
+               input, mutable_purse()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
       default: {
       handle_unusual:
         if (tag == 0) {
@@ -346,12 +376,12 @@ void PeerObject::SerializeWithCachedSizes(
 
   cached_has_bits = _has_bits_[0];
   // optional uint32 version = 1;
-  if (cached_has_bits & 0x00000020u) {
+  if (cached_has_bits & 0x00000040u) {
     ::google::protobuf::internal::WireFormatLite::WriteUInt32(1, this->version(), output);
   }
 
   // optional .opentxs.proto.PeerObjectType type = 2;
-  if (cached_has_bits & 0x00000040u) {
+  if (cached_has_bits & 0x00000080u) {
     ::google::protobuf::internal::WireFormatLite::WriteEnum(
       2, this->type(), output);
   }
@@ -386,6 +416,12 @@ void PeerObject::SerializeWithCachedSizes(
       7, this->otpayment(), output);
   }
 
+  // optional .opentxs.proto.Purse purse = 8;
+  if (cached_has_bits & 0x00000020u) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessage(
+      8, *this->purse_, output);
+  }
+
   output->WriteRaw(_internal_metadata_.unknown_fields().data(),
                    static_cast<int>(_internal_metadata_.unknown_fields().size()));
   // @@protoc_insertion_point(serialize_end:opentxs.proto.PeerObject)
@@ -397,7 +433,7 @@ size_t PeerObject::ByteSizeLong() const {
 
   total_size += _internal_metadata_.unknown_fields().size();
 
-  if (_has_bits_[0 / 32] & 127u) {
+  if (_has_bits_[0 / 32] & 255u) {
     // optional string otmessage = 3;
     if (has_otmessage()) {
       total_size += 1 +
@@ -431,6 +467,13 @@ size_t PeerObject::ByteSizeLong() const {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::MessageSize(
           *this->nym_);
+    }
+
+    // optional .opentxs.proto.Purse purse = 8;
+    if (has_purse()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::MessageSize(
+          *this->purse_);
     }
 
     // optional uint32 version = 1;
@@ -467,7 +510,7 @@ void PeerObject::MergeFrom(const PeerObject& from) {
   (void) cached_has_bits;
 
   cached_has_bits = from._has_bits_[0];
-  if (cached_has_bits & 127u) {
+  if (cached_has_bits & 255u) {
     if (cached_has_bits & 0x00000001u) {
       set_has_otmessage();
       otmessage_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.otmessage_);
@@ -486,9 +529,12 @@ void PeerObject::MergeFrom(const PeerObject& from) {
       mutable_nym()->::opentxs::proto::CredentialIndex::MergeFrom(from.nym());
     }
     if (cached_has_bits & 0x00000020u) {
-      version_ = from.version_;
+      mutable_purse()->::opentxs::proto::Purse::MergeFrom(from.purse());
     }
     if (cached_has_bits & 0x00000040u) {
+      version_ = from.version_;
+    }
+    if (cached_has_bits & 0x00000080u) {
       type_ = from.type_;
     }
     _has_bits_[0] |= cached_has_bits;
@@ -517,6 +563,7 @@ void PeerObject::InternalSwap(PeerObject* other) {
   swap(otrequest_, other->otrequest_);
   swap(otreply_, other->otreply_);
   swap(nym_, other->nym_);
+  swap(purse_, other->purse_);
   swap(version_, other->version_);
   swap(type_, other->type_);
   swap(_has_bits_[0], other->_has_bits_[0]);

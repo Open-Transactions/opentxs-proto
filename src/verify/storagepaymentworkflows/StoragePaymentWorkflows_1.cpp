@@ -12,12 +12,14 @@ namespace opentxs::proto
 {
 bool CheckProto_1(const StoragePaymentWorkflows& input, const bool silent)
 {
-    CHECK_SUBOBJECTS(workflow, StoragePaymentWorkflowsAllowedHash)
-    CHECK_SUBOBJECTS(items, StoragePaymentWorkflowsAllowedIndex)
-    CHECK_SUBOBJECTS(accounts, StoragePaymentWorkflowsAllowedIndex)
-    CHECK_SUBOBJECTS(units, StoragePaymentWorkflowsAllowedIndex)
+    CHECK_SUBOBJECTS(workflow, StoragePaymentWorkflowsAllowedStorageItemHash)
+    CHECK_SUBOBJECTS(items, StoragePaymentWorkflowsAllowedStorageWorkflowIndex)
+    CHECK_SUBOBJECTS(
+        accounts, StoragePaymentWorkflowsAllowedStorageWorkflowIndex)
+    CHECK_SUBOBJECTS(units, StoragePaymentWorkflowsAllowedStorageWorkflowIndex)
     CHECK_IDENTIFIERS(archived)
-    CHECK_SUBOBJECTS(types, StoragePaymentWorkflowsAllowedType)
+    CHECK_SUBOBJECTS(
+        types, StoragePaymentWorkflowsAllowedStoragePaymentWorkflowType)
 
     if (input.workflow_size() != input.types_size()) {
         FAIL_4(
@@ -37,7 +39,7 @@ bool CheckProto_2(const StoragePaymentWorkflows& input, const bool silent)
 
 bool CheckProto_3(const StoragePaymentWorkflows& input, const bool silent)
 {
-    UNDEFINED_VERSION(3)
+    return CheckProto_1(input, silent);
 }
 
 bool CheckProto_4(const StoragePaymentWorkflows& input, const bool silent)
