@@ -28,6 +28,7 @@
 #include <google/protobuf/message_lite.h>
 #include <google/protobuf/repeated_field.h>  // IWYU pragma: export
 #include <google/protobuf/extension_set.h>  // IWYU pragma: export
+#include "RPCEnums.pb.h"  // IWYU pragma: export
 // @@protoc_insertion_point(includes)
 
 namespace protobuf_TaskComplete_2eproto {
@@ -160,6 +161,21 @@ class TaskComplete : public ::google::protobuf::MessageLite /* @@protoc_insertio
   ::std::string* release_id();
   void set_allocated_id(::std::string* id);
 
+  // optional string identifier = 5;
+  bool has_identifier() const;
+  void clear_identifier();
+  static const int kIdentifierFieldNumber = 5;
+  const ::std::string& identifier() const;
+  void set_identifier(const ::std::string& value);
+  #if LANG_CXX11
+  void set_identifier(::std::string&& value);
+  #endif
+  void set_identifier(const char* value);
+  void set_identifier(const char* value, size_t size);
+  ::std::string* mutable_identifier();
+  ::std::string* release_identifier();
+  void set_allocated_identifier(::std::string* identifier);
+
   // optional uint32 version = 1;
   bool has_version() const;
   void clear_version();
@@ -174,6 +190,13 @@ class TaskComplete : public ::google::protobuf::MessageLite /* @@protoc_insertio
   bool result() const;
   void set_result(bool value);
 
+  // optional .opentxs.proto.RPCResponseCode code = 4;
+  bool has_code() const;
+  void clear_code();
+  static const int kCodeFieldNumber = 4;
+  ::opentxs::proto::RPCResponseCode code() const;
+  void set_code(::opentxs::proto::RPCResponseCode value);
+
   // @@protoc_insertion_point(class_scope:opentxs.proto.TaskComplete)
  private:
   void set_has_version();
@@ -182,13 +205,19 @@ class TaskComplete : public ::google::protobuf::MessageLite /* @@protoc_insertio
   void clear_has_id();
   void set_has_result();
   void clear_has_result();
+  void set_has_code();
+  void clear_has_code();
+  void set_has_identifier();
+  void clear_has_identifier();
 
   ::google::protobuf::internal::InternalMetadataWithArenaLite _internal_metadata_;
   ::google::protobuf::internal::HasBits<1> _has_bits_;
   mutable int _cached_size_;
   ::google::protobuf::internal::ArenaStringPtr id_;
+  ::google::protobuf::internal::ArenaStringPtr identifier_;
   ::google::protobuf::uint32 version_;
   bool result_;
+  int code_;
   friend struct ::protobuf_TaskComplete_2eproto::TableStruct;
   friend void ::protobuf_TaskComplete_2eproto::InitDefaultsTaskCompleteImpl();
 };
@@ -205,13 +234,13 @@ class TaskComplete : public ::google::protobuf::MessageLite /* @@protoc_insertio
 
 // optional uint32 version = 1;
 inline bool TaskComplete::has_version() const {
-  return (_has_bits_[0] & 0x00000002u) != 0;
+  return (_has_bits_[0] & 0x00000004u) != 0;
 }
 inline void TaskComplete::set_has_version() {
-  _has_bits_[0] |= 0x00000002u;
+  _has_bits_[0] |= 0x00000004u;
 }
 inline void TaskComplete::clear_has_version() {
-  _has_bits_[0] &= ~0x00000002u;
+  _has_bits_[0] &= ~0x00000004u;
 }
 inline void TaskComplete::clear_version() {
   version_ = 0u;
@@ -292,13 +321,13 @@ inline void TaskComplete::set_allocated_id(::std::string* id) {
 
 // optional bool result = 3;
 inline bool TaskComplete::has_result() const {
-  return (_has_bits_[0] & 0x00000004u) != 0;
+  return (_has_bits_[0] & 0x00000008u) != 0;
 }
 inline void TaskComplete::set_has_result() {
-  _has_bits_[0] |= 0x00000004u;
+  _has_bits_[0] |= 0x00000008u;
 }
 inline void TaskComplete::clear_has_result() {
-  _has_bits_[0] &= ~0x00000004u;
+  _has_bits_[0] &= ~0x00000008u;
 }
 inline void TaskComplete::clear_result() {
   result_ = false;
@@ -312,6 +341,94 @@ inline void TaskComplete::set_result(bool value) {
   set_has_result();
   result_ = value;
   // @@protoc_insertion_point(field_set:opentxs.proto.TaskComplete.result)
+}
+
+// optional .opentxs.proto.RPCResponseCode code = 4;
+inline bool TaskComplete::has_code() const {
+  return (_has_bits_[0] & 0x00000010u) != 0;
+}
+inline void TaskComplete::set_has_code() {
+  _has_bits_[0] |= 0x00000010u;
+}
+inline void TaskComplete::clear_has_code() {
+  _has_bits_[0] &= ~0x00000010u;
+}
+inline void TaskComplete::clear_code() {
+  code_ = 0;
+  clear_has_code();
+}
+inline ::opentxs::proto::RPCResponseCode TaskComplete::code() const {
+  // @@protoc_insertion_point(field_get:opentxs.proto.TaskComplete.code)
+  return static_cast< ::opentxs::proto::RPCResponseCode >(code_);
+}
+inline void TaskComplete::set_code(::opentxs::proto::RPCResponseCode value) {
+  assert(::opentxs::proto::RPCResponseCode_IsValid(value));
+  set_has_code();
+  code_ = value;
+  // @@protoc_insertion_point(field_set:opentxs.proto.TaskComplete.code)
+}
+
+// optional string identifier = 5;
+inline bool TaskComplete::has_identifier() const {
+  return (_has_bits_[0] & 0x00000002u) != 0;
+}
+inline void TaskComplete::set_has_identifier() {
+  _has_bits_[0] |= 0x00000002u;
+}
+inline void TaskComplete::clear_has_identifier() {
+  _has_bits_[0] &= ~0x00000002u;
+}
+inline void TaskComplete::clear_identifier() {
+  identifier_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  clear_has_identifier();
+}
+inline const ::std::string& TaskComplete::identifier() const {
+  // @@protoc_insertion_point(field_get:opentxs.proto.TaskComplete.identifier)
+  return identifier_.GetNoArena();
+}
+inline void TaskComplete::set_identifier(const ::std::string& value) {
+  set_has_identifier();
+  identifier_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:opentxs.proto.TaskComplete.identifier)
+}
+#if LANG_CXX11
+inline void TaskComplete::set_identifier(::std::string&& value) {
+  set_has_identifier();
+  identifier_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:opentxs.proto.TaskComplete.identifier)
+}
+#endif
+inline void TaskComplete::set_identifier(const char* value) {
+  GOOGLE_DCHECK(value != NULL);
+  set_has_identifier();
+  identifier_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:opentxs.proto.TaskComplete.identifier)
+}
+inline void TaskComplete::set_identifier(const char* value, size_t size) {
+  set_has_identifier();
+  identifier_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:opentxs.proto.TaskComplete.identifier)
+}
+inline ::std::string* TaskComplete::mutable_identifier() {
+  set_has_identifier();
+  // @@protoc_insertion_point(field_mutable:opentxs.proto.TaskComplete.identifier)
+  return identifier_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* TaskComplete::release_identifier() {
+  // @@protoc_insertion_point(field_release:opentxs.proto.TaskComplete.identifier)
+  clear_has_identifier();
+  return identifier_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void TaskComplete::set_allocated_identifier(::std::string* identifier) {
+  if (identifier != NULL) {
+    set_has_identifier();
+  } else {
+    clear_has_identifier();
+  }
+  identifier_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), identifier);
+  // @@protoc_insertion_point(field_set_allocated:opentxs.proto.TaskComplete.identifier)
 }
 
 #ifdef __GNUC__

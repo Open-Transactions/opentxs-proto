@@ -30,7 +30,7 @@ bool CheckProto_1(const RPCPush& input, const bool silent)
         case RPCPUSH_TASK: {
             CHECK_EXCLUDED(accountevent);
             CHECK_EXCLUDED(contactevent);
-            CHECK_SUBOBJECT(taskcomplete, RPCPushAllowedTaskStatus);
+            CHECK_SUBOBJECT(taskcomplete, RPCPushAllowedTaskComplete);
         } break;
         case RPCPUSH_ERROR:
         default: {
@@ -48,7 +48,7 @@ bool CheckProto_2(const RPCPush& input, const bool silent)
 
 bool CheckProto_3(const RPCPush& input, const bool silent)
 {
-    UNDEFINED_VERSION(3)
+    return CheckProto_1(input, silent);
 }
 
 bool CheckProto_4(const RPCPush& input, const bool silent)

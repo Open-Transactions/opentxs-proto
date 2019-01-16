@@ -10,8 +10,12 @@ option java_package = "org.opentransactions.proto";
 option java_outer_classname = "OTTaskComplete";
 option optimize_for = LITE_RUNTIME;
 
+import public "RPCEnums.proto";
+
 message TaskComplete {
     optional uint32 version = 1;
     optional string id = 2;
     optional bool result = 3;
+    optional RPCResponseCode code = 4;
+    optional string identifier = 5;
 }
