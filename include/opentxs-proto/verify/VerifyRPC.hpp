@@ -82,14 +82,17 @@ static const VersionMap RPCCommandAllowedVerifyClaim = {
 static const VersionMap RPCPushAllowedAccountEvent = {
     {1, {1, 1}},
     {2, {1, 2}},
+    {3, {1, 2}},
 };
 static const VersionMap RPCPushAllowedContactEvent = {
     {1, {1, 1}},
     {2, {1, 2}},
+    {3, {1, 2}},
 };
-static const VersionMap RPCPushAllowedTaskStatus = {
+static const VersionMap RPCPushAllowedTaskComplete = {
     {1, {1, 1}},
     {2, {1, 1}},
+    {3, {1, 2}},
 };
 static const VersionMap RPCResponseAllowedAccountData = {
     {1, {1, 1}},

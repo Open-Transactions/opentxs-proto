@@ -14,19 +14,38 @@ namespace proto
 {
 bool CheckProto_2(const ServerContext& input, const bool silent)
 {
-    if (!input.has_serverid()) { FAIL_1("missing server id") }
-
-    if ((MIN_PLAUSIBLE_IDENTIFIER > input.serverid().size()) ||
-        (MAX_PLAUSIBLE_IDENTIFIER < input.serverid().size())) {
-        FAIL_1("invalid server id")
-    }
+    CHECK_IDENTIFIER(serverid);
+    CHECK_EXCLUDED(state);
+    CHECK_EXCLUDED(laststatus);
+    CHECK_EXCLUDED(pending);
 
     return true;
 }
 
 bool CheckProto_3(const ServerContext& input, const bool silent)
 {
-    UNDEFINED_VERSION(3)
+    CHECK_IDENTIFIER(serverid);
+    CHECK_MEMBERSHIP(state, ServerContextAllowedState);
+
+    switch (input.state()) {
+        case DELIVERTYSTATE_PENDINGSEND: {
+            CHECK_SUBOBJECT(pending, ServerContextAllowedPendingCommand);
+        } break;
+        case DELIVERTYSTATE_NEEDNYMBOX:
+        case DELIVERTYSTATE_NEEDBOXITEMS:
+        case DELIVERTYSTATE_NEEDPROCESSNYMBOX: {
+            OPTIONAL_SUBOBJECT(pending, ServerContextAllowedPendingCommand);
+        } break;
+        case DELIVERTYSTATE_IDLE:
+        case DELIVERTYSTATE_ERROR:
+        default: {
+            CHECK_EXCLUDED(pending);
+        }
+    }
+
+    CHECK_MEMBERSHIP(laststatus, ServerContextAllowedStatus);
+
+    return true;
 }
 
 bool CheckProto_4(const ServerContext& input, const bool silent)

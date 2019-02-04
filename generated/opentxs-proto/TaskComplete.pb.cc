@@ -59,6 +59,8 @@ void TaskComplete::InitAsDefaultInstance() {
 const int TaskComplete::kVersionFieldNumber;
 const int TaskComplete::kIdFieldNumber;
 const int TaskComplete::kResultFieldNumber;
+const int TaskComplete::kCodeFieldNumber;
+const int TaskComplete::kIdentifierFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 TaskComplete::TaskComplete()
@@ -79,18 +81,23 @@ TaskComplete::TaskComplete(const TaskComplete& from)
   if (from.has_id()) {
     id_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.id_);
   }
+  identifier_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.has_identifier()) {
+    identifier_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.identifier_);
+  }
   ::memcpy(&version_, &from.version_,
-    static_cast<size_t>(reinterpret_cast<char*>(&result_) -
-    reinterpret_cast<char*>(&version_)) + sizeof(result_));
+    static_cast<size_t>(reinterpret_cast<char*>(&code_) -
+    reinterpret_cast<char*>(&version_)) + sizeof(code_));
   // @@protoc_insertion_point(copy_constructor:opentxs.proto.TaskComplete)
 }
 
 void TaskComplete::SharedCtor() {
   _cached_size_ = 0;
   id_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  identifier_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   ::memset(&version_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&result_) -
-      reinterpret_cast<char*>(&version_)) + sizeof(result_));
+      reinterpret_cast<char*>(&code_) -
+      reinterpret_cast<char*>(&version_)) + sizeof(code_));
 }
 
 TaskComplete::~TaskComplete() {
@@ -100,6 +107,7 @@ TaskComplete::~TaskComplete() {
 
 void TaskComplete::SharedDtor() {
   id_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  identifier_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 
 void TaskComplete::SetCachedSize(int size) const {
@@ -127,14 +135,20 @@ void TaskComplete::Clear() {
   (void) cached_has_bits;
 
   cached_has_bits = _has_bits_[0];
-  if (cached_has_bits & 0x00000001u) {
-    GOOGLE_DCHECK(!id_.IsDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited()));
-    (*id_.UnsafeRawStringPointer())->clear();
+  if (cached_has_bits & 3u) {
+    if (cached_has_bits & 0x00000001u) {
+      GOOGLE_DCHECK(!id_.IsDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited()));
+      (*id_.UnsafeRawStringPointer())->clear();
+    }
+    if (cached_has_bits & 0x00000002u) {
+      GOOGLE_DCHECK(!identifier_.IsDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited()));
+      (*identifier_.UnsafeRawStringPointer())->clear();
+    }
   }
-  if (cached_has_bits & 6u) {
+  if (cached_has_bits & 28u) {
     ::memset(&version_, 0, static_cast<size_t>(
-        reinterpret_cast<char*>(&result_) -
-        reinterpret_cast<char*>(&version_)) + sizeof(result_));
+        reinterpret_cast<char*>(&code_) -
+        reinterpret_cast<char*>(&version_)) + sizeof(code_));
   }
   _has_bits_.Clear();
   _internal_metadata_.Clear();
@@ -196,6 +210,39 @@ bool TaskComplete::MergePartialFromCodedStream(
         break;
       }
 
+      // optional .opentxs.proto.RPCResponseCode code = 4;
+      case 4: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(32u /* 32 & 0xFF */)) {
+          int value;
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   int, ::google::protobuf::internal::WireFormatLite::TYPE_ENUM>(
+                 input, &value)));
+          if (::opentxs::proto::RPCResponseCode_IsValid(value)) {
+            set_code(static_cast< ::opentxs::proto::RPCResponseCode >(value));
+          } else {
+            unknown_fields_stream.WriteVarint32(32u);
+            unknown_fields_stream.WriteVarint32(
+                static_cast< ::google::protobuf::uint32>(value));
+          }
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // optional string identifier = 5;
+      case 5: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(42u /* 42 & 0xFF */)) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+                input, this->mutable_identifier()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
       default: {
       handle_unusual:
         if (tag == 0) {
@@ -224,7 +271,7 @@ void TaskComplete::SerializeWithCachedSizes(
 
   cached_has_bits = _has_bits_[0];
   // optional uint32 version = 1;
-  if (cached_has_bits & 0x00000002u) {
+  if (cached_has_bits & 0x00000004u) {
     ::google::protobuf::internal::WireFormatLite::WriteUInt32(1, this->version(), output);
   }
 
@@ -235,8 +282,20 @@ void TaskComplete::SerializeWithCachedSizes(
   }
 
   // optional bool result = 3;
-  if (cached_has_bits & 0x00000004u) {
+  if (cached_has_bits & 0x00000008u) {
     ::google::protobuf::internal::WireFormatLite::WriteBool(3, this->result(), output);
+  }
+
+  // optional .opentxs.proto.RPCResponseCode code = 4;
+  if (cached_has_bits & 0x00000010u) {
+    ::google::protobuf::internal::WireFormatLite::WriteEnum(
+      4, this->code(), output);
+  }
+
+  // optional string identifier = 5;
+  if (cached_has_bits & 0x00000002u) {
+    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
+      5, this->identifier(), output);
   }
 
   output->WriteRaw(_internal_metadata_.unknown_fields().data(),
@@ -250,12 +309,19 @@ size_t TaskComplete::ByteSizeLong() const {
 
   total_size += _internal_metadata_.unknown_fields().size();
 
-  if (_has_bits_[0 / 32] & 7u) {
+  if (_has_bits_[0 / 32] & 31u) {
     // optional string id = 2;
     if (has_id()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::StringSize(
           this->id());
+    }
+
+    // optional string identifier = 5;
+    if (has_identifier()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::StringSize(
+          this->identifier());
     }
 
     // optional uint32 version = 1;
@@ -268,6 +334,12 @@ size_t TaskComplete::ByteSizeLong() const {
     // optional bool result = 3;
     if (has_result()) {
       total_size += 1 + 1;
+    }
+
+    // optional .opentxs.proto.RPCResponseCode code = 4;
+    if (has_code()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::EnumSize(this->code());
     }
 
   }
@@ -291,16 +363,23 @@ void TaskComplete::MergeFrom(const TaskComplete& from) {
   (void) cached_has_bits;
 
   cached_has_bits = from._has_bits_[0];
-  if (cached_has_bits & 7u) {
+  if (cached_has_bits & 31u) {
     if (cached_has_bits & 0x00000001u) {
       set_has_id();
       id_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.id_);
     }
     if (cached_has_bits & 0x00000002u) {
-      version_ = from.version_;
+      set_has_identifier();
+      identifier_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.identifier_);
     }
     if (cached_has_bits & 0x00000004u) {
+      version_ = from.version_;
+    }
+    if (cached_has_bits & 0x00000008u) {
       result_ = from.result_;
+    }
+    if (cached_has_bits & 0x00000010u) {
+      code_ = from.code_;
     }
     _has_bits_[0] |= cached_has_bits;
   }
@@ -324,8 +403,10 @@ void TaskComplete::Swap(TaskComplete* other) {
 void TaskComplete::InternalSwap(TaskComplete* other) {
   using std::swap;
   id_.Swap(&other->id_);
+  identifier_.Swap(&other->identifier_);
   swap(version_, other->version_);
   swap(result_, other->result_);
+  swap(code_, other->code_);
   swap(_has_bits_[0], other->_has_bits_[0]);
   _internal_metadata_.Swap(&other->_internal_metadata_);
   swap(_cached_size_, other->_cached_size_);

@@ -312,6 +312,22 @@
         OPTIONAL_SUBOBJECTS_VA(a, b, __VA_ARGS__);                             \
     }
 
+#define CHECK_MEMBERSHIP(a, b)                                                 \
+    {                                                                          \
+        try {                                                                  \
+            const bool valid##a = 1 == b.at(input.version()).count(input.a()); \
+                                                                               \
+            if (false == valid##a) {                                           \
+                const auto fail = std::string("invalid ") + #a;                \
+                FAIL_2(fail, input.a())                                        \
+            }                                                                  \
+        } catch (const std::out_of_range&) {                                   \
+            const auto fail =                                                  \
+                std::string("allowed ") + #a + " not defined for version";     \
+            FAIL_2(fail, input.version())                                      \
+        }                                                                      \
+    }
+
 namespace opentxs
 {
 namespace proto

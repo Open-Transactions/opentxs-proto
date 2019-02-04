@@ -35,6 +35,34 @@ bool ConsensusType_IsValid(int value) {
   }
 }
 
+bool DeliveryState_IsValid(int value) {
+  switch (value) {
+    case 0:
+    case 1:
+    case 2:
+    case 3:
+    case 4:
+    case 5:
+      return true;
+    default:
+      return false;
+  }
+}
+
+bool LastReplyStatus_IsValid(int value) {
+  switch (value) {
+    case 0:
+    case 1:
+    case 2:
+    case 3:
+    case 4:
+    case 5:
+      return true;
+    default:
+      return false;
+  }
+}
+
 
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace proto

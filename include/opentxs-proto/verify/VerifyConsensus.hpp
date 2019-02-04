@@ -15,6 +15,7 @@ namespace proto
 static const VersionMap ContextAllowedServer = {
     {1, {1, 1}},
     {2, {2, 2}},
+    {3, {3, 3}},
 };
 static const VersionMap ContextAllowedClient = {
     {1, {1, 1}},
@@ -23,6 +24,19 @@ static const VersionMap ContextAllowedClient = {
 static const VersionMap ContextAllowedSignature = {
     {1, {2, 2}},
     {2, {2, 2}},
+    {3, {2, 2}},
+};
+
+static const VersionMap ServerContextAllowedPendingCommand = {
+    {3, {1, 1}},
+};
+
+static const std::map<std::uint32_t, std::set<int>> ServerContextAllowedState{
+    {3, {1, 2, 3, 4, 5}},
+};
+
+static const std::map<std::uint32_t, std::set<int>> ServerContextAllowedStatus{
+    {3, {1, 2, 3, 4, 5}},
 };
 }  // namespace proto
 }  // namespace opentxs
