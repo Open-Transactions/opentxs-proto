@@ -80,7 +80,9 @@ set(LIBRARY_OUTPUT_PATH  ${CMAKE_CURRENT_BINARY_DIR}/lib)
 INCLUDE(CheckCXXCompilerFlag)
 CHECK_CXX_COMPILER_FLAG(-std=c++17 HAVE_STD17)
 
-if(HAVE_STD17)
+if (MSVC)
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /std:c++17")
+elseif(HAVE_STD17)
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17")
 else()
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++1z")
@@ -281,6 +283,13 @@ endfunction(set_lib_property)
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 include_directories(SYSTEM ${CMAKE_CURRENT_BINARY_DIR}/src)
+
+# Fix for vcpkg: add the include directory
+
+if (VCPKG_TOOLCHAIN)
+  find_path(PROTOBUF_INCLUDES google/protobuf/stubs/common.h)
+  include_directories(${PROTOBUF_INCLUDES})
+endif()
 
 add_subdirectory(src)
 

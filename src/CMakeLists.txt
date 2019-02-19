@@ -23,19 +23,33 @@ if(NOT OT_BUNDLED_OPENTXS_PROTO)
     $<TARGET_OBJECTS:verify>
   )
 
-  target_link_libraries(${MODULE_NAME}
-    PUBLIC
-    ${PROTOBUF_LITE_LIBRARIES}
-    PRIVATE
-    ${OPENTXS_SYSTEM_LIBRARIES}
-  )
-
-  target_link_libraries(${MODULE_NAME}_static
-    PUBLIC
-    ${PROTOBUF_LITE_LIBRARIES}
-    PRIVATE
-    ${OPENTXS_SYSTEM_LIBRARIES}
-  )
+  if (NOT PROTOBUF_LITE_LIBRARIES)
+    target_link_libraries(${MODULE_NAME}
+      PUBLIC
+      ${PROTOBUF_LIBRARIES}
+      PRIVATE
+      ${OPENTXS_SYSTEM_LIBRARIES}
+    )
+    target_link_libraries(${MODULE_NAME}_static
+      PUBLIC
+      ${PROTOBUF_LIBRARIES}
+      PRIVATE
+      ${OPENTXS_SYSTEM_LIBRARIES}
+    )
+  else()
+    target_link_libraries(${MODULE_NAME}
+      PUBLIC
+      ${PROTOBUF_LITE_LIBRARIES}
+      PRIVATE
+      ${OPENTXS_SYSTEM_LIBRARIES}
+    )
+    target_link_libraries(${MODULE_NAME}_static
+      PUBLIC
+      ${PROTOBUF_LITE_LIBRARIES}
+      PRIVATE
+      ${OPENTXS_SYSTEM_LIBRARIES}
+    )
+  endif()
 
   set_target_properties(${MODULE_NAME} PROPERTIES OUTPUT_NAME ${MODULE_NAME})
   set_target_properties(${MODULE_NAME}_static PROPERTIES OUTPUT_NAME ${MODULE_NAME})

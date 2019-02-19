@@ -158,7 +158,9 @@ add_library(${MODULE_NAME} OBJECT
   ${PROTO_HEADER}
 )
 
-target_compile_options(${MODULE_NAME} PRIVATE -Wno-error -Wno-unused-macros -Wno-undef -Wno-switch-default)
+if(NOT MSVC)
+  target_compile_options(${MODULE_NAME} PRIVATE -Wno-unused-macros -Wno-undef -Wno-switch-default)
+endif()
 
 if (PYTHON OR PYTHON2 OR PYTHON3)
     # why doesn't this work?  For some reason it doesn't actually generate .py files'
