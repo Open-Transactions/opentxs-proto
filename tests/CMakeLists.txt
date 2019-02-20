@@ -3,6 +3,10 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+if(${CMAKE_CXX_COMPILER_ID} MATCHES Clang)
+	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-undef -Wno-sign-compare")
+endif()
+
 include_directories(${GTEST_INCLUDE_DIRS})
 
 add_subdirectory(bip47)
