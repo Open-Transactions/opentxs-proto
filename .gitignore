@@ -31,4 +31,7 @@ opentxs-proto.kdev4
 *.rej
 *.orig
 
+# Visual Studio Code noise
+.vs
+
 /build/
