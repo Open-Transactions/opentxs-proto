@@ -255,8 +255,8 @@ bool CheckProto_1(
         try {
             validPublicData = Check(
                 input.publiccredential(),
-                CredentialAllowedKeyCredentials.at(input.version()).first,
-                CredentialAllowedKeyCredentials.at(input.version()).second,
+                CredentialAllowedKeyCredential.at(input.version()).first,
+                CredentialAllowedKeyCredential.at(input.version()).second,
                 silent,
                 input.type(),
                 KEYMODE_PUBLIC);
@@ -272,8 +272,8 @@ bool CheckProto_1(
             try {
                 validPrivateData = Check(
                     input.privatecredential(),
-                    CredentialAllowedKeyCredentials.at(input.version()).first,
-                    CredentialAllowedKeyCredentials.at(input.version()).second,
+                    CredentialAllowedKeyCredential.at(input.version()).first,
+                    CredentialAllowedKeyCredential.at(input.version()).second,
                     silent,
                     input.type(),
                     KEYMODE_PRIVATE);

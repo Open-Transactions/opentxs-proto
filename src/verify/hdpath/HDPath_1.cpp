@@ -15,9 +15,9 @@ namespace proto
 
 bool CheckProto_1(const HDPath& input, const bool silent)
 {
-    if (!input.has_root()) { FAIL_1("missing fingerprint") }
+    CHECK_EXISTS_STRING(root);
 
-    if (1 > input.child_size()) { FAIL_1("missing child index") }
+    if (0xff < input.child_size()) { FAIL_1("path too long") }
 
     return true;
 }

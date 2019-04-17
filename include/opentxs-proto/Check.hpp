@@ -93,61 +93,6 @@
                                                                                \
         return false;                                                          \
     }
-
-#define UNDEFINED_VERSION(b)                                                   \
-    {                                                                          \
-        _FAIL_2(PROTO_NAME, "undefined version", b)                            \
-    }
-
-#define CHECK_EXISTS(a)                                                        \
-    {                                                                          \
-        if (false == input.has_##a()) {                                        \
-            const auto fail = std::string("missing ") + #a;                    \
-            FAIL_1(fail)                                                       \
-        }                                                                      \
-    }
-
-#define CHECK_EXISTS_STRING(a)                                                 \
-    {                                                                          \
-        if ((false == input.has_##a()) || (0 == input.a().size())) {           \
-            const auto fail = std::string("missing ") + #a;                    \
-            FAIL_1(fail)                                                       \
-        }                                                                      \
-    }
-
-#define CHECK_EXCLUDED(a)                                                      \
-    {                                                                          \
-        if (true == input.has_##a()) {                                         \
-            const auto fail = std::string("unexpected ") + #a + " present";    \
-            FAIL_1(fail)                                                       \
-        }                                                                      \
-    }
-
-#define CHECK_HAVE(a)                                                          \
-    {                                                                          \
-        if (0 == input.a().size()) {                                           \
-            const auto fail = std::string("missing ") + #a;                    \
-            FAIL_1(fail)                                                       \
-        }                                                                      \
-    }
-
-#define CHECK_NONE(a)                                                          \
-    {                                                                          \
-        if (0 < input.a().size()) {                                            \
-            const auto fail = std::string("unexpected ") + #a + " present";    \
-            FAIL_1(fail)                                                       \
-        }                                                                      \
-    }
-
-#define CHECK_SIZE(a, b)                                                       \
-    {                                                                          \
-        if (b != input.a().size()) {                                           \
-            const auto fail =                                                  \
-                std::string("Wrong number of ") + #a + " present ";            \
-            FAIL_2(fail, input.a().size());                                    \
-        }                                                                      \
-    }
-
 #define _CHECK_STRING(a, min, max)                                             \
     {                                                                          \
         if (input.has_##a() && (0 < input.a().size())) {                       \
@@ -156,72 +101,6 @@
                 FAIL_2(fail, input.a().size())                                 \
             }                                                                  \
         }                                                                      \
-    }
-
-#define OPTIONAL_IDENTIFIER(a)                                                 \
-    {                                                                          \
-        _CHECK_STRING(a, MIN_PLAUSIBLE_IDENTIFIER, MAX_PLAUSIBLE_IDENTIFIER);  \
-    }
-
-#define CHECK_IDENTIFIER(a)                                                    \
-    {                                                                          \
-        CHECK_EXISTS_STRING(a);                                                \
-        OPTIONAL_IDENTIFIER(a);                                                \
-    }
-
-#define OPTIONAL_IDENTIFIERS(a)                                                \
-    {                                                                          \
-        for (const auto& it : input.a()) {                                     \
-            if ((MIN_PLAUSIBLE_IDENTIFIER > it.size()) ||                      \
-                (MAX_PLAUSIBLE_IDENTIFIER < it.size())) {                      \
-                const auto fail = std::string("invalid ") + #a + " size";      \
-                FAIL_2(fail, it.size())                                        \
-            }                                                                  \
-        }                                                                      \
-    }
-
-#define CHECK_IDENTIFIERS(a)                                                   \
-    {                                                                          \
-        /* CHECK_EXISTS(a); */                                                 \
-        OPTIONAL_IDENTIFIERS(a);                                               \
-    }
-
-#define OPTIONAL_KEY(a)                                                        \
-    {                                                                          \
-        _CHECK_STRING(a, MIN_PLAUSIBLE_KEYSIZE, MAX_PLAUSIBLE_KEYSIZE);        \
-    }
-
-#define CHECK_KEY(a)                                                           \
-    {                                                                          \
-        CHECK_EXISTS_STRING(a);                                                \
-        OPTIONAL_KEY(a);                                                       \
-    }
-
-#define OPTIONAL_NAME(a)                                                       \
-    {                                                                          \
-        _CHECK_STRING(a, 1, MAX_VALID_CONTACT_VALUE);                          \
-    }
-
-#define CHECK_NAME(a)                                                          \
-    {                                                                          \
-        CHECK_EXISTS_STRING(a);                                                \
-        OPTIONAL_NAME(a);                                                      \
-    }
-
-#define OPTIONAL_NAMES(a)                                                      \
-    {                                                                          \
-        for (const auto& it : input.a()) {                                     \
-            if ((1 > it.size()) || (MAX_VALID_CONTACT_VALUE < it.size())) {    \
-                const auto fail = std::string("invalid ") + #a + " size";      \
-                FAIL_2(fail, it.size())                                        \
-            }                                                                  \
-        }                                                                      \
-    }
-
-#define CHECK_NAMES(a)                                                         \
-    {                                                                          \
-        CHECK_EXISTS(a);                                                       \
-        OPTIONAL_IDENTIFIERS(a);                                               \
     }
 
 #define _CHECK_SUBOBJECT(a, b, ...)                                            \
@@ -246,28 +125,6 @@
         }                                                                      \
     }
 
-#define OPTIONAL_SUBOBJECT(a, b)                                               \
-    {                                                                          \
-        _CHECK_SUBOBJECT(a, b, silent);                                        \
-    }
-
-#define CHECK_SUBOBJECT(a, b)                                                  \
-    {                                                                          \
-        CHECK_EXISTS(a);                                                       \
-        OPTIONAL_SUBOBJECT(a, b);                                              \
-    }
-
-#define OPTIONAL_SUBOBJECT_VA(a, b, ...)                                       \
-    {                                                                          \
-        _CHECK_SUBOBJECT(a, b, silent, __VA_ARGS__);                           \
-    }
-
-#define CHECK_SUBOBJECT_VA(a, b, ...)                                          \
-    {                                                                          \
-        CHECK_EXISTS(a);                                                       \
-        OPTIONAL_SUBOBJECT_VA(a, b, __VA_ARGS__);                              \
-    }
-
 #define _CHECK_SUBOBJECTS(a, b, ...)                                           \
     {                                                                          \
         for (const auto& it : input.a()) {                                     \
@@ -290,26 +147,52 @@
         }                                                                      \
     }
 
-#define OPTIONAL_SUBOBJECTS(a, b)                                              \
+#define CHECK_EXCLUDED(a)                                                      \
     {                                                                          \
-        _CHECK_SUBOBJECTS(a, b, silent);                                       \
+        if (true == input.has_##a()) {                                         \
+            const auto fail = std::string("unexpected ") + #a + " present";    \
+            FAIL_1(fail)                                                       \
+        }                                                                      \
+    }
+#define CHECK_EXISTS(a)                                                        \
+    {                                                                          \
+        if (false == input.has_##a()) {                                        \
+            const auto fail = std::string("missing ") + #a;                    \
+            FAIL_1(fail)                                                       \
+        }                                                                      \
     }
 
-#define CHECK_SUBOBJECTS(a, b)                                                 \
+#define CHECK_EXISTS_STRING(a)                                                 \
     {                                                                          \
-        /* CHECK_HAVE(a); */                                                   \
-        OPTIONAL_SUBOBJECTS(a, b);                                             \
+        if ((false == input.has_##a()) || (0 == input.a().size())) {           \
+            const auto fail = std::string("missing ") + #a;                    \
+            FAIL_1(fail)                                                       \
+        }                                                                      \
+    }
+#define CHECK_KEY(a)                                                           \
+    {                                                                          \
+        CHECK_EXISTS_STRING(a);                                                \
+        OPTIONAL_KEY(a);                                                       \
     }
 
-#define OPTIONAL_SUBOBJECTS_VA(a, b, ...)                                      \
+#define CHECK_HAVE(a)                                                          \
     {                                                                          \
-        _CHECK_SUBOBJECTS(a, b, silent, __VA_ARGS__);                          \
+        if (0 == input.a().size()) {                                           \
+            const auto fail = std::string("missing ") + #a;                    \
+            FAIL_1(fail)                                                       \
+        }                                                                      \
     }
 
-#define CHECK_SUBOBJECTS_VA(a, b, ...)                                         \
+#define CHECK_IDENTIFIER(a)                                                    \
     {                                                                          \
-        CHECK_HAVE(a);                                                         \
-        OPTIONAL_SUBOBJECTS_VA(a, b, __VA_ARGS__);                             \
+        CHECK_EXISTS_STRING(a);                                                \
+        OPTIONAL_IDENTIFIER(a);                                                \
+    }
+
+#define CHECK_IDENTIFIERS(a)                                                   \
+    {                                                                          \
+        /* CHECK_EXISTS(a); */                                                 \
+        OPTIONAL_IDENTIFIERS(a);                                               \
     }
 
 #define CHECK_MEMBERSHIP(a, b)                                                 \
@@ -326,6 +209,131 @@
                 std::string("allowed ") + #a + " not defined for version";     \
             FAIL_2(fail, input.version())                                      \
         }                                                                      \
+    }
+
+#define CHECK_NAME(a)                                                          \
+    {                                                                          \
+        CHECK_EXISTS_STRING(a);                                                \
+        OPTIONAL_NAME(a);                                                      \
+    }
+
+#define CHECK_NAMES(a)                                                         \
+    {                                                                          \
+        CHECK_EXISTS(a);                                                       \
+        OPTIONAL_IDENTIFIERS(a);                                               \
+    }
+
+#define CHECK_NONE(a)                                                          \
+    {                                                                          \
+        if (0 < input.a().size()) {                                            \
+            const auto fail = std::string("unexpected ") + #a + " present";    \
+            FAIL_1(fail)                                                       \
+        }                                                                      \
+    }
+
+#define CHECK_SIZE(a, b)                                                       \
+    {                                                                          \
+        if (b != input.a().size()) {                                           \
+            const auto fail =                                                  \
+                std::string("Wrong number of ") + #a + " present ";            \
+            FAIL_2(fail, input.a().size());                                    \
+        }                                                                      \
+    }
+
+#define CHECK_SUBOBJECT(a, b)                                                  \
+    {                                                                          \
+        CHECK_EXISTS(a);                                                       \
+        OPTIONAL_SUBOBJECT(a, b);                                              \
+    }
+
+#define CHECK_SUBOBJECT_VA(a, b, ...)                                          \
+    {                                                                          \
+        CHECK_EXISTS(a);                                                       \
+        OPTIONAL_SUBOBJECT_VA(a, b, __VA_ARGS__);                              \
+    }
+
+#define CHECK_SUBOBJECTS(a, b)                                                 \
+    {                                                                          \
+        /* CHECK_HAVE(a); */                                                   \
+        OPTIONAL_SUBOBJECTS(a, b);                                             \
+    }
+
+#define CHECK_SUBOBJECTS_VA(a, b, ...)                                         \
+    {                                                                          \
+        CHECK_HAVE(a);                                                         \
+        OPTIONAL_SUBOBJECTS_VA(a, b, __VA_ARGS__);                             \
+    }
+
+#define CHECK_VALUE(a, b)                                                      \
+    {                                                                          \
+        CHECK_EXISTS(a);                                                       \
+        const bool valid##a = 1 == (input.a() == b);                           \
+                                                                               \
+        if (false == valid##a) {                                               \
+            const auto fail = std::string("invalid ") + #a;                    \
+            FAIL_4(fail, input.a(), " expected ", b)                           \
+        }                                                                      \
+    }
+
+#define UNDEFINED_VERSION(b)                                                   \
+    {                                                                          \
+        _FAIL_2(PROTO_NAME, "undefined version", b)                            \
+    }
+
+#define OPTIONAL_IDENTIFIER(a)                                                 \
+    {                                                                          \
+        _CHECK_STRING(a, MIN_PLAUSIBLE_IDENTIFIER, MAX_PLAUSIBLE_IDENTIFIER);  \
+    }
+
+#define OPTIONAL_IDENTIFIERS(a)                                                \
+    {                                                                          \
+        for (const auto& it : input.a()) {                                     \
+            if ((MIN_PLAUSIBLE_IDENTIFIER > it.size()) ||                      \
+                (MAX_PLAUSIBLE_IDENTIFIER < it.size())) {                      \
+                const auto fail = std::string("invalid ") + #a + " size";      \
+                FAIL_2(fail, it.size())                                        \
+            }                                                                  \
+        }                                                                      \
+    }
+
+#define OPTIONAL_KEY(a)                                                        \
+    {                                                                          \
+        _CHECK_STRING(a, MIN_PLAUSIBLE_KEYSIZE, MAX_PLAUSIBLE_KEYSIZE);        \
+    }
+
+#define OPTIONAL_NAME(a)                                                       \
+    {                                                                          \
+        _CHECK_STRING(a, 1, MAX_VALID_CONTACT_VALUE);                          \
+    }
+
+#define OPTIONAL_NAMES(a)                                                      \
+    {                                                                          \
+        for (const auto& it : input.a()) {                                     \
+            if ((1 > it.size()) || (MAX_VALID_CONTACT_VALUE < it.size())) {    \
+                const auto fail = std::string("invalid ") + #a + " size";      \
+                FAIL_2(fail, it.size())                                        \
+            }                                                                  \
+        }                                                                      \
+    }
+
+#define OPTIONAL_SUBOBJECT(a, b)                                               \
+    {                                                                          \
+        _CHECK_SUBOBJECT(a, b, silent);                                        \
+    }
+
+#define OPTIONAL_SUBOBJECT_VA(a, b, ...)                                       \
+    {                                                                          \
+        _CHECK_SUBOBJECT(a, b, silent, __VA_ARGS__);                           \
+    }
+
+#define OPTIONAL_SUBOBJECTS(a, b)                                              \
+    {                                                                          \
+        _CHECK_SUBOBJECTS(a, b, silent);                                       \
+    }
+
+#define OPTIONAL_SUBOBJECTS_VA(a, b, ...)                                      \
+    {                                                                          \
+        _CHECK_SUBOBJECTS(a, b, silent, __VA_ARGS__);                          \
     }
 
 namespace opentxs

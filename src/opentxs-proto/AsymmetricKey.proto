@@ -23,4 +23,5 @@ message AsymmetricKey {
     optional Ciphertext encryptedKey = 6;
     optional Ciphertext chaincode = 7;
     optional HDPath path = 8;
+    optional uint32 bip32_parent = 9;
 }

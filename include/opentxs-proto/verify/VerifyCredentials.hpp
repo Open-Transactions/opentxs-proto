@@ -12,13 +12,23 @@ namespace opentxs
 {
 namespace proto
 {
-static const VersionMap CredentialAllowedKeyCredentials = {
+static const VersionMap AsymmetricKeyAllowedCiphertext = {
     {1, {1, 1}},
     {2, {1, 1}},
-    {3, {1, 1}},
-    {4, {1, 1}},
-    {5, {1, 1}},
-    {6, {1, 1}},
+};
+static const VersionMap AsymmetricKeyAllowedHDPath = {
+    {1, {1, 1}},
+    {2, {1, 1}},
+};
+static const VersionMap CiphertextAllowedSymmetricKey = {
+    {1, {1, 1}},
+};
+static const VersionMap EnvelopeAllowedAsymmetricKey = {
+    {1, {1, 1}},
+    {2, {1, 2}},
+};
+static const VersionMap EnvelopeAllowedCiphertext = {
+    {1, {1, 1}},
 };
 static const VersionMap CredentialAllowedContactData = {
     {1, {1, 1}},
@@ -28,13 +38,29 @@ static const VersionMap CredentialAllowedContactData = {
     {5, {5, 5}},
     {6, {6, 6}},
 };
-static const VersionMap CredentialAllowedVerification = {
+static const VersionMap CredentialAllowedChildParams = {
     {1, {1, 1}},
     {2, {1, 1}},
     {3, {1, 1}},
     {4, {1, 1}},
     {5, {1, 1}},
     {6, {1, 1}},
+};
+static const VersionMap CredentialAllowedKeyCredential = {
+    {1, {1, 1}},
+    {2, {1, 1}},
+    {3, {1, 1}},
+    {4, {1, 1}},
+    {5, {1, 1}},
+    {6, {1, 2}},
+};
+static const VersionMap CredentialAllowedMasterParams = {
+    {1, {1, 1}},
+    {2, {1, 1}},
+    {3, {1, 1}},
+    {4, {1, 1}},
+    {5, {1, 1}},
+    {6, {1, 2}},
 };
 static const VersionMap CredentialAllowedSignatures = {
     {1, {1, 1}},
@@ -44,38 +70,7 @@ static const VersionMap CredentialAllowedSignatures = {
     {5, {1, 1}},
     {6, {1, 1}},
 };
-static const VersionMap CredentialAllowedMasterParams = {
-    {1, {1, 1}},
-    {2, {1, 1}},
-    {3, {1, 1}},
-    {4, {1, 1}},
-    {5, {1, 1}},
-    {6, {1, 1}},
-};
-static const VersionMap CredentialAllowedChildParams = {
-    {1, {1, 1}},
-    {2, {1, 1}},
-    {3, {1, 1}},
-    {4, {1, 1}},
-    {5, {1, 1}},
-    {6, {1, 1}},
-};
-static const VersionMap KeyCredentialAllowedAsymmetricKey = {
-    {1, {1, 1}},
-};
-static const VersionMap MasterParamsAllowedNymIDSource = {
-    {1, {1, 1}},
-};
-static const VersionMap MasterParamsAllowedSourceProof = {
-    {1, {1, 1}},
-};
-static const VersionMap NymIDSourceAllowedAsymmetricKey = {
-    {1, {1, 1}},
-};
-static const VersionMap NymIDSourceAllowedPaymentCode = {
-    {1, {1, 1}},
-};
-static const VersionMap CredentialIndexAllowedNymIDSource = {
+static const VersionMap CredentialAllowedVerification = {
     {1, {1, 1}},
     {2, {1, 1}},
     {3, {1, 1}},
@@ -91,6 +86,14 @@ static const VersionMap CredentialIndexAllowedCredentialSet = {
     {5, {1, 5}},
     {6, {1, 6}},
 };
+static const VersionMap CredentialIndexAllowedNymIDSource = {
+    {1, {1, 1}},
+    {2, {1, 1}},
+    {3, {1, 1}},
+    {4, {1, 1}},
+    {5, {1, 1}},
+    {6, {1, 2}},
+};
 static const VersionMap CredentialSetAllowedCredential = {
     {1, {1, 1}},
     {2, {1, 2}},
@@ -99,26 +102,29 @@ static const VersionMap CredentialSetAllowedCredential = {
     {5, {1, 5}},
     {6, {1, 6}},
 };
-static const VersionMap AsymmetricKeyAllowedHDPath = {
+static const VersionMap KeyCredentialAllowedAsymmetricKey = {
+    {1, {1, 1}},
+    {2, {1, 2}},
+};
+static const VersionMap MasterParamsAllowedNymIDSource = {
+    {1, {1, 1}},
+    {2, {1, 2}},
+};
+static const VersionMap MasterParamsAllowedSourceProof = {
     {1, {1, 1}},
 };
-static const VersionMap AsymmetricKeyAllowedCiphertext = {
+static const VersionMap NymIDSourceAllowedAsymmetricKey = {
+    {1, {1, 1}},
+    {2, {1, 2}},
+};
+static const VersionMap NymIDSourceAllowedPaymentCode = {
     {1, {1, 1}},
 };
 static const VersionMap SeedAllowedCiphertext = {
     {1, {1, 1}},
     {2, {1, 1}},
 };
-static const VersionMap CiphertextAllowedSymmetricKey = {
-    {1, {1, 1}},
-};
 static const VersionMap SymmetricKeyAllowedCiphertext = {
-    {1, {1, 1}},
-};
-static const VersionMap EnvelopeAllowedAsymmetricKey = {
-    {1, {1, 1}},
-};
-static const VersionMap EnvelopeAllowedCiphertext = {
     {1, {1, 1}},
 };
 }  // namespace proto

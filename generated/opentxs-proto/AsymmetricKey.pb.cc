@@ -84,6 +84,7 @@ const int AsymmetricKey::kKeyFieldNumber;
 const int AsymmetricKey::kEncryptedKeyFieldNumber;
 const int AsymmetricKey::kChaincodeFieldNumber;
 const int AsymmetricKey::kPathFieldNumber;
+const int AsymmetricKey::kBip32ParentFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 AsymmetricKey::AsymmetricKey()
@@ -120,8 +121,8 @@ AsymmetricKey::AsymmetricKey(const AsymmetricKey& from)
     path_ = NULL;
   }
   ::memcpy(&version_, &from.version_,
-    static_cast<size_t>(reinterpret_cast<char*>(&role_) -
-    reinterpret_cast<char*>(&version_)) + sizeof(role_));
+    static_cast<size_t>(reinterpret_cast<char*>(&bip32_parent_) -
+    reinterpret_cast<char*>(&version_)) + sizeof(bip32_parent_));
   // @@protoc_insertion_point(copy_constructor:opentxs.proto.AsymmetricKey)
 }
 
@@ -129,8 +130,8 @@ void AsymmetricKey::SharedCtor() {
   _cached_size_ = 0;
   key_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   ::memset(&encryptedkey_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&role_) -
-      reinterpret_cast<char*>(&encryptedkey_)) + sizeof(role_));
+      reinterpret_cast<char*>(&bip32_parent_) -
+      reinterpret_cast<char*>(&encryptedkey_)) + sizeof(bip32_parent_));
 }
 
 AsymmetricKey::~AsymmetricKey() {
@@ -193,6 +194,7 @@ void AsymmetricKey::Clear() {
         reinterpret_cast<char*>(&role_) -
         reinterpret_cast<char*>(&version_)) + sizeof(role_));
   }
+  bip32_parent_ = 0u;
   _has_bits_.Clear();
   _internal_metadata_.Clear();
 }
@@ -338,6 +340,20 @@ bool AsymmetricKey::MergePartialFromCodedStream(
         break;
       }
 
+      // optional uint32 bip32_parent = 9;
+      case 9: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(72u /* 72 & 0xFF */)) {
+          set_has_bip32_parent();
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+                 input, &bip32_parent_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
       default: {
       handle_unusual:
         if (tag == 0) {
@@ -412,6 +428,11 @@ void AsymmetricKey::SerializeWithCachedSizes(
       8, *this->path_, output);
   }
 
+  // optional uint32 bip32_parent = 9;
+  if (cached_has_bits & 0x00000100u) {
+    ::google::protobuf::internal::WireFormatLite::WriteUInt32(9, this->bip32_parent(), output);
+  }
+
   output->WriteRaw(_internal_metadata_.unknown_fields().data(),
                    static_cast<int>(_internal_metadata_.unknown_fields().size()));
   // @@protoc_insertion_point(serialize_end:opentxs.proto.AsymmetricKey)
@@ -478,6 +499,13 @@ size_t AsymmetricKey::ByteSizeLong() const {
     }
 
   }
+  // optional uint32 bip32_parent = 9;
+  if (has_bip32_parent()) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::UInt32Size(
+        this->bip32_parent());
+  }
+
   int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
   GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
   _cached_size_ = cached_size;
@@ -526,6 +554,9 @@ void AsymmetricKey::MergeFrom(const AsymmetricKey& from) {
     }
     _has_bits_[0] |= cached_has_bits;
   }
+  if (cached_has_bits & 0x00000100u) {
+    set_bip32_parent(from.bip32_parent());
+  }
 }
 
 void AsymmetricKey::CopyFrom(const AsymmetricKey& from) {
@@ -553,6 +584,7 @@ void AsymmetricKey::InternalSwap(AsymmetricKey* other) {
   swap(type_, other->type_);
   swap(mode_, other->mode_);
   swap(role_, other->role_);
+  swap(bip32_parent_, other->bip32_parent_);
   swap(_has_bits_[0], other->_has_bits_[0]);
   _internal_metadata_.Swap(&other->_internal_metadata_);
   swap(_cached_size_, other->_cached_size_);
