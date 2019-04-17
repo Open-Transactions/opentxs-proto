@@ -10,21 +10,24 @@
 
 using namespace opentxs;
 
-namespace {
+namespace
+{
 
-  class Test_StorageBip47AddressIndex : public :: testing :: Test
-  {
-  public:
+class Test_StorageBip47AddressIndex : public ::testing ::Test
+{
+public:
     proto::StorageBip47AddressIndex* addr_idx;
-    Test_StorageBip47AddressIndex() : addr_idx(new proto::StorageBip47AddressIndex) {
-      addr_idx->set_version(1);
-      addr_idx->set_address("17ywVfCRfcsCxzNT2nEsKE27LkwfDaNotL");
-      addr_idx->set_channelid("ot_identifier_sufficiently_large");
+    Test_StorageBip47AddressIndex()
+        : addr_idx(new proto::StorageBip47AddressIndex)
+    {
+        addr_idx->set_version(1);
+        addr_idx->set_address("17ywVfCRfcsCxzNT2nEsKE27LkwfDaNotL");
+        addr_idx->set_channelid("ot_identifier_sufficiently_large");
     }
-  };
+};
 
 /* Test: version 1 is valid and others aren't
-*/
+ */
 TEST_F(Test_StorageBip47AddressIndex, versions)
 {
     // test version 1 is valid
@@ -39,7 +42,7 @@ TEST_F(Test_StorageBip47AddressIndex, versions)
 }
 
 /* Test: address is validated as id
-*/
+ */
 TEST_F(Test_StorageBip47AddressIndex, addresses)
 {
     // test: empty address is invalid
@@ -51,7 +54,8 @@ TEST_F(Test_StorageBip47AddressIndex, addresses)
 
     // test: BCH address is valid
     // - cashaddr
-    addr_idx->set_address("bitcoincash:qpm2qsznhks23z7629mms6s4cwef74vcwvy22gdx6a");
+    addr_idx->set_address(
+        "bitcoincash:qpm2qsznhks23z7629mms6s4cwef74vcwvy22gdx6a");
     ASSERT_TRUE(proto::Validate(*addr_idx, false));
     // - copay
     addr_idx->set_address("CTH8H8Zj6DSnXFBKQeDG28ogAS92iS16Bp");
@@ -66,7 +70,7 @@ TEST_F(Test_StorageBip47AddressIndex, addresses)
 }
 
 /* Test: channelid is validated as id
-*/
+ */
 TEST_F(Test_StorageBip47AddressIndex, channelids)
 {
     addr_idx->set_channelid("");
@@ -78,4 +82,3 @@ TEST_F(Test_StorageBip47AddressIndex, channelids)
 }
 
 }  // namespace
-
