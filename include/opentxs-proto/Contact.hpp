@@ -16,6 +16,7 @@
 #else
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wshadow"
+#pragma GCC diagnostic ignored "-Wmissing-declarations"
 #ifndef __clang__
 // -Wuseless-cast does not exist in clang
 #pragma GCC diagnostic ignored "-Wuseless-cast"

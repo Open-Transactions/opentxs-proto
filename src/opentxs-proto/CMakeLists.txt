@@ -160,7 +160,7 @@ add_library(${MODULE_NAME} OBJECT
 )
 
 if(NOT MSVC)
-  target_compile_options(${MODULE_NAME} PRIVATE -Wno-unused-macros -Wno-undef -Wno-switch-default)
+  target_compile_options(${MODULE_NAME} PRIVATE -Wno-unused-macros -Wno-undef -Wno-switch-default -Wno-missing-declarations)
 endif()
 
 if (PYTHON OR PYTHON2 OR PYTHON3)
