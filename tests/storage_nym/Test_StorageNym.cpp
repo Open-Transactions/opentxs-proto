@@ -24,18 +24,18 @@ public:
 };
 
 /* Test: version 1 through 6 rejects bip47 field
-*/
+ */
 TEST_F(Test_StorageNym, v6_reject_bip47)
 {
     for (int i = 1; i <= 6; i++) {
-      storeNym->set_version(6);
-      storeNym->set_bip47("ot_bip47_tree_identifier");
-      ASSERT_FALSE(proto::Validate(*storeNym, false));
+        storeNym->set_version(6);
+        storeNym->set_bip47("ot_bip47_tree_identifier");
+        ASSERT_FALSE(proto::Validate(*storeNym, false));
     }
 }
 
 /* Test: version 7 validates bip47 field as an optional id
-*/
+ */
 TEST_F(Test_StorageNym, v7_accept_bip47)
 {
     storeNym->set_version(7);

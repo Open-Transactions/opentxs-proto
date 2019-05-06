@@ -10,22 +10,25 @@
 
 using namespace opentxs;
 
-namespace {
+namespace
+{
 
-  class Test_StorageBip47NymAddressIndex : public :: testing :: Test
-  {
-  public:
+class Test_StorageBip47NymAddressIndex : public ::testing ::Test
+{
+public:
     proto::StorageBip47NymAddressIndex* addr_nym_idx;
-    Test_StorageBip47NymAddressIndex() : addr_nym_idx(new proto::StorageBip47NymAddressIndex) {
-      addr_nym_idx->set_version(1);
-      addr_nym_idx->set_target("ot_identifier_sufficiently_large");
-      addr_nym_idx->set_nymid("ot_identifier_sufficiently_large");
-      addr_nym_idx->set_channelid("ot_identifier_sufficiently_large");
+    Test_StorageBip47NymAddressIndex()
+        : addr_nym_idx(new proto::StorageBip47NymAddressIndex)
+    {
+        addr_nym_idx->set_version(1);
+        addr_nym_idx->set_target("ot_identifier_sufficiently_large");
+        addr_nym_idx->set_nymid("ot_identifier_sufficiently_large");
+        addr_nym_idx->set_channelid("ot_identifier_sufficiently_large");
     }
-  };
+};
 
 /* Test: version 1 is valid and others aren't
-*/
+ */
 TEST_F(Test_StorageBip47NymAddressIndex, versions)
 {
     // test version 1 is valid
@@ -40,7 +43,7 @@ TEST_F(Test_StorageBip47NymAddressIndex, versions)
 }
 
 /* Test: target is validated as id (address or txid)
-*/
+ */
 TEST_F(Test_StorageBip47NymAddressIndex, target)
 {
     // test: empty address is invalid
@@ -50,7 +53,8 @@ TEST_F(Test_StorageBip47NymAddressIndex, target)
     addr_nym_idx->set_target("XxRB5fnF8KpB9jjRRb7M7pq4qtyL8xbUou");
     ASSERT_TRUE(proto::Validate(*addr_nym_idx, false));
 
-    addr_nym_idx->set_target("000000000000000000345aa2f2819a09ced2b73e6727026d47a4b6bd184e519b");
+    addr_nym_idx->set_target(
+        "000000000000000000345aa2f2819a09ced2b73e6727026d47a4b6bd184e519b");
     ASSERT_TRUE(proto::Validate(*addr_nym_idx, false));
 }
 
@@ -78,4 +82,3 @@ TEST_F(Test_StorageBip47NymAddressIndex, nymid)
     ASSERT_TRUE(proto::Validate(*addr_nym_idx, false));
 }
 }  // namespace
-

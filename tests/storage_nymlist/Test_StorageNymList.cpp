@@ -25,7 +25,7 @@ public:
 };
 
 /* Test: version 1 through 3 reject "address" and "transaction" (bip47) field
-*/
+ */
 TEST_F(Test_StorageNymList, v3_reject_bip47)
 {
     ASSERT_EQ(0, nyms->address_size());
@@ -41,7 +41,8 @@ TEST_F(Test_StorageNymList, v3_reject_bip47)
 
     ASSERT_EQ(0, nyms->transaction_size());
     for (int i = 1; i <= 3; i++) {
-        proto::StorageBip47NymAddressIndex* addr_nym_idx = nyms->add_transaction();
+        proto::StorageBip47NymAddressIndex* addr_nym_idx =
+            nyms->add_transaction();
         addr_nym_idx->set_version(1);
         addr_nym_idx->set_target("ot_identifier_sufficiently_large");
         addr_nym_idx->set_nymid("ot_identifier_sufficiently_large");
@@ -52,7 +53,7 @@ TEST_F(Test_StorageNymList, v3_reject_bip47)
 }
 
 /* Test: version 4 accepts version 1 of storagebip47addresdindex in address
-*/
+ */
 TEST_F(Test_StorageNymList, v4_accept_address)
 {
     nyms->set_version(4);
@@ -67,7 +68,7 @@ TEST_F(Test_StorageNymList, v4_accept_address)
 }
 
 /* Test: version 4 accepts version 1 of storagebip47addresdindex in transaction
-*/
+ */
 TEST_F(Test_StorageNymList, v4_accept_transaction)
 {
     nyms->set_version(4);

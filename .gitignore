@@ -1,5 +1,6 @@
 # build noise
 build/*
+compile_commands.json
 
 # osx noise
 .DS_Store

@@ -10,19 +10,22 @@
 
 using namespace opentxs;
 
-namespace {
+namespace
+{
 
-  class Test_StorageBip47Contexts : public :: testing :: Test
-  {
-  public:
+class Test_StorageBip47Contexts : public ::testing ::Test
+{
+public:
     proto::StorageBip47Contexts* ctxs;
-    Test_StorageBip47Contexts() : ctxs(new proto::StorageBip47Contexts) {
-      ctxs->set_version(1);
+    Test_StorageBip47Contexts()
+        : ctxs(new proto::StorageBip47Contexts)
+    {
+        ctxs->set_version(1);
     }
-  };
+};
 
 /* Test: version 1 is valid and others aren't
-*/
+ */
 TEST_F(Test_StorageBip47Contexts, versions)
 {
     // test version 1 is valid
@@ -37,7 +40,7 @@ TEST_F(Test_StorageBip47Contexts, versions)
 }
 
 /* Test: version 1 and 2 of contexts are valid and others aren't
-*/
+ */
 TEST_F(Test_StorageBip47Contexts, contexts)
 {
     ASSERT_EQ(0, ctxs->context_size());
@@ -58,7 +61,7 @@ TEST_F(Test_StorageBip47Contexts, contexts)
 }
 
 /* Test: version 1 of storagebip47channellist is valid and others aren't
-*/
+ */
 TEST_F(Test_StorageBip47Contexts, indexes)
 {
     ASSERT_EQ(0, ctxs->index_size());
@@ -66,11 +69,15 @@ TEST_F(Test_StorageBip47Contexts, indexes)
 
     proto::StorageBip47ChannelList* chans = ctxs->add_index();
     chans->set_version(1);
-    chans->set_localpaymentcode("PM8TJKEj41Q66s6Vqe3JDCAzpo4NSgihP5R4vwRHGE4f26HFQi7guJEvVyFAc9hghNfLHknBcK986Q123cnU266ZD19APzpkgUP8ed7qEh7g2WCpNaAg");
+    chans->set_localpaymentcode(
+        "PM8TJKEj41Q66s6Vqe3JDCAzpo4NSgihP5R4vwRHGE4f26HFQi7guJEvVyFAc9hghNfLHk"
+        "nBcK986Q123cnU266ZD19APzpkgUP8ed7qEh7g2WCpNaAg");
     chans->set_chain(proto::CITEMTYPE_BTC);
     chans->set_contact("contact_id_sufficiently_large");
     chans->set_channelid("channel_id_sufficiently_large");
-    chans->set_remotepaymentcode("PM8TJS2JxQ5ztXUpBBRnpTbcUXbUHy2T1abfrb3KkAAtMEGNbey4oumH7Hc578WgQJhPjBxteQ5GHHToTYHE3A1w6p7tU6KSoFmWBVbFGjKPisZDbP97");
+    chans->set_remotepaymentcode(
+        "PM8TJS2JxQ5ztXUpBBRnpTbcUXbUHy2T1abfrb3KkAAtMEGNbey4oumH7Hc578WgQJhPjB"
+        "xteQ5GHHToTYHE3A1w6p7tU6KSoFmWBVbFGjKPisZDbP97");
     ASSERT_EQ(1, ctxs->index_size());
 
     ASSERT_TRUE(proto::Validate(*ctxs, false));
@@ -79,7 +86,7 @@ TEST_F(Test_StorageBip47Contexts, indexes)
 }
 
 /* Test: version 1 of storagebip47addressindex is valid and others aren't
-*/
+ */
 TEST_F(Test_StorageBip47Contexts, addresses)
 {
     ASSERT_EQ(0, ctxs->address_size());
@@ -97,4 +104,3 @@ TEST_F(Test_StorageBip47Contexts, addresses)
 }
 
 }  // namespace
-

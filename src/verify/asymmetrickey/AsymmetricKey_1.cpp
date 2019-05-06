@@ -12,7 +12,6 @@ namespace opentxs
 {
 namespace proto
 {
-
 bool CheckProto_1(
     const AsymmetricKey& input,
     const bool silent,
