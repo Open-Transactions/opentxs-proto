@@ -31,7 +31,7 @@ static const VersionMap PurseExchangeAllowedPurse = {
     {1, {1, 1}},
 };
 static const VersionMap SessionKeyAllowedAsymmetricKey = {
-    {1, {1, 1}},
+    {1, {1, 2}},
 };
 static const VersionMap SessionKeyAllowedCiphertext = {
     {1, {1, 1}},

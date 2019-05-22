@@ -81,10 +81,10 @@ bool CheckProto_1(
 bool CheckProto_2(
     const KeyCredential& input,
     const bool silent,
-    const CredentialType,
-    const KeyMode)
+    const CredentialType type,
+    const KeyMode mode)
 {
-    UNDEFINED_VERSION(2)
+    return CheckProto_1(input, silent, type, mode);
 }
 
 bool CheckProto_3(

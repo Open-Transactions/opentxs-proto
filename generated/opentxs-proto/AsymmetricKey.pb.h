@@ -218,6 +218,13 @@ class AsymmetricKey : public ::google::protobuf::MessageLite /* @@protoc_inserti
   ::opentxs::proto::KeyRole role() const;
   void set_role(::opentxs::proto::KeyRole value);
 
+  // optional uint32 bip32_parent = 9;
+  bool has_bip32_parent() const;
+  void clear_bip32_parent();
+  static const int kBip32ParentFieldNumber = 9;
+  ::google::protobuf::uint32 bip32_parent() const;
+  void set_bip32_parent(::google::protobuf::uint32 value);
+
   // @@protoc_insertion_point(class_scope:opentxs.proto.AsymmetricKey)
  private:
   void set_has_version();
@@ -236,6 +243,8 @@ class AsymmetricKey : public ::google::protobuf::MessageLite /* @@protoc_inserti
   void clear_has_chaincode();
   void set_has_path();
   void clear_has_path();
+  void set_has_bip32_parent();
+  void clear_has_bip32_parent();
 
   ::google::protobuf::internal::InternalMetadataWithArenaLite _internal_metadata_;
   ::google::protobuf::internal::HasBits<1> _has_bits_;
@@ -248,6 +257,7 @@ class AsymmetricKey : public ::google::protobuf::MessageLite /* @@protoc_inserti
   int type_;
   int mode_;
   int role_;
+  ::google::protobuf::uint32 bip32_parent_;
   friend struct ::protobuf_AsymmetricKey_2eproto::TableStruct;
   friend void ::protobuf_AsymmetricKey_2eproto::InitDefaultsAsymmetricKeyImpl();
 };
@@ -572,6 +582,30 @@ inline void AsymmetricKey::set_allocated_path(::opentxs::proto::HDPath* path) {
   }
   path_ = path;
   // @@protoc_insertion_point(field_set_allocated:opentxs.proto.AsymmetricKey.path)
+}
+
+// optional uint32 bip32_parent = 9;
+inline bool AsymmetricKey::has_bip32_parent() const {
+  return (_has_bits_[0] & 0x00000100u) != 0;
+}
+inline void AsymmetricKey::set_has_bip32_parent() {
+  _has_bits_[0] |= 0x00000100u;
+}
+inline void AsymmetricKey::clear_has_bip32_parent() {
+  _has_bits_[0] &= ~0x00000100u;
+}
+inline void AsymmetricKey::clear_bip32_parent() {
+  bip32_parent_ = 0u;
+  clear_has_bip32_parent();
+}
+inline ::google::protobuf::uint32 AsymmetricKey::bip32_parent() const {
+  // @@protoc_insertion_point(field_get:opentxs.proto.AsymmetricKey.bip32_parent)
+  return bip32_parent_;
+}
+inline void AsymmetricKey::set_bip32_parent(::google::protobuf::uint32 value) {
+  set_has_bip32_parent();
+  bip32_parent_ = value;
+  // @@protoc_insertion_point(field_set:opentxs.proto.AsymmetricKey.bip32_parent)
 }
 
 #ifdef __GNUC__

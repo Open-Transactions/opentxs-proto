@@ -12,6 +12,12 @@ namespace opentxs
 {
 namespace proto
 {
+static const std::map<std::uint32_t, std::set<AsymmetricKeyType>>
+    AsymmetricKeyAllowedTypes{
+        {1, {AKEYTYPE_LEGACY, AKEYTYPE_SECP256K1, AKEYTYPE_ED25519}},
+        {2, {AKEYTYPE_LEGACY, AKEYTYPE_SECP256K1, AKEYTYPE_ED25519}},
+    };
+
 bool CheckProto_1(
     const AsymmetricKey& key,
     const bool silent,

@@ -57,9 +57,9 @@ bool CheckProto_1(
 bool CheckProto_2(
     const MasterCredentialParameters& input,
     const bool silent,
-    bool&)
+    bool& expectSourceSignature)
 {
-    UNDEFINED_VERSION(2)
+    return CheckProto_1(input, silent, expectSourceSignature);
 }
 
 bool CheckProto_3(

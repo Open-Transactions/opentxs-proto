@@ -19,136 +19,44 @@ bool CheckProto_1(
     const KeyMode mode,
     const KeyRole role)
 {
-    if (!input.has_type()) { FAIL_1("missing key type") }
-
-    switch (input.type()) {
-        case (AKEYTYPE_LEGACY): {
-            break;
-        }
-        case (AKEYTYPE_SECP256K1): {
-            break;
-        }
-        case (AKEYTYPE_ED25519): {
-            break;
-        }
-        default: {
-            FAIL_2("incorrect key type", input.type())
-        }
-    }
-
-    if (!input.has_mode()) { FAIL_1("missing key mode") }
-
-    if (input.mode() != mode) { FAIL_2("incorrect key mode", input.mode()) }
-
-    if (!input.has_role()) { FAIL_1("missing key role") }
-
-    if (input.role() != role) { FAIL_2("incorrect key role", input.role()) }
+    CHECK_MEMBERSHIP(type, AsymmetricKeyAllowedTypes);
+    CHECK_VALUE(mode, mode);
+    CHECK_VALUE(role, role);
 
     if (KEYMODE_PUBLIC == mode) {
-        if (!input.has_key()) { FAIL_1("missing key") }
-
-        if (MIN_PLAUSIBLE_KEYSIZE > input.key().size()) {
-            FAIL_2("invalid key", input.key())
-        }
-        if (input.has_encryptedkey()) {
-            FAIL_1("encrypted data present in public key")
-        }
+        CHECK_KEY(key);
+        CHECK_EXCLUDED(encryptedkey);
     } else {
         if (AKEYTYPE_LEGACY == input.type()) {
-            if (!input.has_key()) { FAIL_1("missing key") }
-
-            if (MIN_PLAUSIBLE_KEYSIZE > input.key().size()) {
-                FAIL_2("invalid key", input.key())
-            }
-
-            if (input.has_encryptedkey()) {
-                FAIL_1("encrypted data present in legacy key")
-            }
+            CHECK_KEY(key);
+            CHECK_EXCLUDED(encryptedkey);
         } else {
-            if (!input.has_encryptedkey()) { FAIL_1("missing encrypted key") }
-
-            try {
-                const bool validEncryptedKey = Check(
-                    input.encryptedkey(),
-                    AsymmetricKeyAllowedCiphertext.at(input.version()).first,
-                    AsymmetricKeyAllowedCiphertext.at(input.version()).second,
-                    silent,
-                    false);
-
-                if (!validEncryptedKey) { FAIL_1("invalid encrypted key") }
-            } catch (const std::out_of_range&) {
-                FAIL_2(
-                    "allowed ciphertext version not defined for version",
-                    input.version())
-            }
-
-            if (input.has_key()) {
-                FAIL_1("plaintext data found in private key")
-            }
+            CHECK_SUBOBJECT_VA(
+                encryptedkey, AsymmetricKeyAllowedCiphertext, false);
         }
     }
 
     switch (type) {
-        case CREDTYPE_LEGACY:
-            if (input.has_chaincode()) {
-                FAIL_1("chain code not allowed in legacy credentials")
-            }
-
-            if (input.has_path()) {
-                FAIL_1("HD path not allowed in legacy credentials")
-            }
-
-            break;
-        case CREDTYPE_HD:
+        case CREDTYPE_LEGACY: {
+            CHECK_EXCLUDED(chaincode);
+            CHECK_EXCLUDED(path);
+        } break;
+        case CREDTYPE_HD: {
             if (KEYMODE_PUBLIC == mode) {
-                if (input.has_chaincode()) {
-                    FAIL_1("chain code not allowed in public credentials")
-                }
-
-                if (input.has_path()) {
-                    FAIL_1("HD path not allowed in public credentials")
-                }
+                CHECK_EXCLUDED(chaincode);
+                CHECK_EXCLUDED(path);
             } else {
-                if (!input.has_chaincode()) { FAIL_1("missing chain code") }
-
-                try {
-                    const bool validChainCode = Check(
-                        input.chaincode(),
-                        AsymmetricKeyAllowedCiphertext.at(input.version())
-                            .first,
-                        AsymmetricKeyAllowedCiphertext.at(input.version())
-                            .second,
-                        silent,
-                        false);
-
-                    if (!validChainCode) { FAIL_1("invalid chain code") }
-                } catch (const std::out_of_range&) {
-                    FAIL_2(
-                        "allowed ciphertext version not defined for version",
-                        input.version())
-                }
-
-                if (!input.has_path()) { FAIL_1("missing HD path") }
-
-                try {
-                    bool validPath = Check(
-                        input.path(),
-                        AsymmetricKeyAllowedHDPath.at(input.version()).first,
-                        AsymmetricKeyAllowedHDPath.at(input.version()).second,
-                        silent);
-
-                    if (!validPath) { FAIL_1("invalid HD path") }
-                } catch (const std::out_of_range&) {
-                    FAIL_2(
-                        "allowed HD path version not defined for version",
-                        input.version())
-                }
+                CHECK_SUBOBJECT_VA(
+                    chaincode, AsymmetricKeyAllowedCiphertext, false);
+                CHECK_SUBOBJECT(path, AsymmetricKeyAllowedHDPath);
             }
-
-            break;
-        default:
+        } break;
+        default: {
             FAIL_2("incorrect or unknown type", type)
+        }
     }
+
+    CHECK_EXCLUDED(bip32_parent);
 
     return true;
 }
@@ -156,11 +64,48 @@ bool CheckProto_1(
 bool CheckProto_2(
     const AsymmetricKey& input,
     const bool silent,
-    const CredentialType,
-    const KeyMode,
-    const KeyRole)
+    const CredentialType type,
+    const KeyMode mode,
+    const KeyRole role)
 {
-    UNDEFINED_VERSION(2)
+    CHECK_MEMBERSHIP(type, AsymmetricKeyAllowedTypes);
+    CHECK_VALUE(mode, mode);
+    CHECK_VALUE(role, role);
+
+    if (KEYMODE_PUBLIC == mode) {
+        CHECK_KEY(key);
+        CHECK_EXCLUDED(encryptedkey);
+    } else {
+        if (AKEYTYPE_LEGACY == input.type()) {
+            CHECK_KEY(key);
+            CHECK_EXCLUDED(encryptedkey);
+        } else {
+            CHECK_SUBOBJECT_VA(
+                encryptedkey, AsymmetricKeyAllowedCiphertext, false);
+        }
+    }
+
+    switch (type) {
+        case CREDTYPE_LEGACY: {
+            CHECK_EXCLUDED(chaincode);
+            CHECK_EXCLUDED(path);
+        } break;
+        case CREDTYPE_HD: {
+            if (KEYMODE_PUBLIC == mode) {
+                CHECK_EXCLUDED(chaincode);
+                CHECK_EXCLUDED(path);
+            } else {
+                CHECK_SUBOBJECT_VA(
+                    chaincode, AsymmetricKeyAllowedCiphertext, false);
+                CHECK_SUBOBJECT(path, AsymmetricKeyAllowedHDPath);
+            }
+        } break;
+        default: {
+            FAIL_2("incorrect or unknown type", type)
+        }
+    }
+
+    return true;
 }
 
 bool CheckProto_3(
