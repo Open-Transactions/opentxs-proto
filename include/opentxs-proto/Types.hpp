@@ -34,10 +34,13 @@
 #include <opentxs-proto/BasketParams.pb.h>
 #include <opentxs-proto/Bip47Address.pb.h>
 #include <opentxs-proto/Bip47Channel.pb.h>
+#include <opentxs-proto/BitcoinBlockHeaderFields.pb.h>
 #include <opentxs-proto/Bip47Direction.pb.h>
 #include <opentxs-proto/BlindedSeriesList.pb.h>
 #include <opentxs-proto/BlockchainActivity.pb.h>
 #include <opentxs-proto/BlockchainAddress.pb.h>
+#include <opentxs-proto/BlockchainBlockHeader.pb.h>
+#include <opentxs-proto/BlockchainBlockLocalData.pb.h>
 #include <opentxs-proto/BlockchainEnums.pb.h>
 #include <opentxs-proto/BlockchainExternalAddress.pb.h>
 #include <opentxs-proto/BlockchainPreviousOutput.pb.h>
@@ -67,7 +70,9 @@
 #include <opentxs-proto/Enums.pb.h>
 #include <opentxs-proto/Envelope.pb.h>
 #include <opentxs-proto/EquityParams.pb.h>
+#include <opentxs-proto/EthereumBlockHeaderFields.pb.h>
 #include <opentxs-proto/Faucet.pb.h>
+#include <opentxs-proto/GCS.pb.h>
 #include <opentxs-proto/GetWorkflow.pb.h>
 #include <opentxs-proto/HDAccount.pb.h>
 #include <opentxs-proto/HDPath.pb.h>
@@ -182,9 +187,12 @@
 #include <opentxs-proto/verify/Bip47Address.hpp>
 #include <opentxs-proto/verify/Bip47Channel.hpp>
 #include <opentxs-proto/verify/Bip47Direction.hpp>
+#include <opentxs-proto/verify/BitcoinBlockHeaderFields.hpp>
 #include <opentxs-proto/verify/BlindedSeriesList.hpp>
 #include <opentxs-proto/verify/BlockchainActivity.hpp>
 #include <opentxs-proto/verify/BlockchainAddress.hpp>
+#include <opentxs-proto/verify/BlockchainBlockHeader.hpp>
+#include <opentxs-proto/verify/BlockchainBlockLocalData.hpp>
 #include <opentxs-proto/verify/BlockchainExternalAddress.hpp>
 #include <opentxs-proto/verify/BlockchainPreviousOutput.hpp>
 #include <opentxs-proto/verify/BlockchainTransaction.hpp>
@@ -209,7 +217,9 @@
 #include <opentxs-proto/verify/CurrencyParams.hpp>
 #include <opentxs-proto/verify/Envelope.hpp>
 #include <opentxs-proto/verify/EquityParams.hpp>
+#include <opentxs-proto/verify/EthereumBlockHeaderFields.hpp>
 #include <opentxs-proto/verify/Faucet.hpp>
+#include <opentxs-proto/verify/GCS.hpp>
 #include <opentxs-proto/verify/GetWorkflow.hpp>
 #include <opentxs-proto/verify/HDAccount.hpp>
 #include <opentxs-proto/verify/HDPath.hpp>

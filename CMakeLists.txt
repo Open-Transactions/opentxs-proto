@@ -40,14 +40,23 @@ option(OPENTXS_PROTO_PEDANTIC_BUILD "Treat compiler warnings as errors."
 # Set compiler options
 
 set_compiler_flags(17 ${OPENTXS_PROTO_PEDANTIC_BUILD})
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-sign-conversion")
+
+if(NOT MSVC)
+  set(
+    CMAKE_CXX_FLAGS
+    "${CMAKE_CXX_FLAGS} -Wno-sign-conversion -Wno-type-limits"
+  )
+endif()
 
 # temporarily disabled warnings
 if(${CMAKE_CXX_COMPILER_ID} MATCHES Clang)
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-extra-semi-stmt -Wno-reserved-id-macro -Wno-zero-as-null-pointer-constant")
+  set(
+    CMAKE_CXX_FLAGS
+    "${CMAKE_CXX_FLAGS} -Wno-extra-semi-stmt -Wno-reserved-id-macro -Wno-zero-as-null-pointer-constant"
+  )
 endif()
 
-#-----------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
 # Print system information and build options
 
 print_build_details(OPENTXS_PROTO_PEDANTIC_BUILD OPENTXS_PROTO_BUILD_TESTS)
