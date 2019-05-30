@@ -133,6 +133,7 @@ set(cxx-sources
   storageitems/StorageItems_3.cpp
   storageitems/StorageItems_4.cpp
   storageitems/StorageItems_5.cpp
+  storageitems/StorageItems_6.cpp
   storageissuers/StorageIssuers_1.cpp
   storagenotary/StorageNotary_1.cpp
   storagenym/StorageNym_1.cpp

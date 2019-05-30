@@ -34,6 +34,7 @@ void InitDefaultsStorageItemsImpl() {
 #else
   ::google::protobuf::internal::InitProtobufDefaults();
 #endif  // GOOGLE_PROTOBUF_ENFORCE_UNIQUENESS
+  protobuf_Ciphertext_2eproto::InitDefaultsCiphertext();
   {
     void* ptr = &::opentxs::proto::_StorageItems_default_instance_;
     new (ptr) ::opentxs::proto::StorageItems();
@@ -54,6 +55,12 @@ namespace proto {
 // ===================================================================
 
 void StorageItems::InitAsDefaultInstance() {
+  ::opentxs::proto::_StorageItems_default_instance_._instance.get_mutable()->master_secret_ = const_cast< ::opentxs::proto::Ciphertext*>(
+      ::opentxs::proto::Ciphertext::internal_default_instance());
+}
+void StorageItems::clear_master_secret() {
+  if (master_secret_ != NULL) master_secret_->Clear();
+  clear_has_master_secret();
 }
 #if !defined(_MSC_VER) || _MSC_VER >= 1900
 const int StorageItems::kVersionFieldNumber;
@@ -66,6 +73,7 @@ const int StorageItems::kContactsFieldNumber;
 const int StorageItems::kBlockchaintransactionsFieldNumber;
 const int StorageItems::kAccountsFieldNumber;
 const int StorageItems::kNotaryFieldNumber;
+const int StorageItems::kMasterSecretFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 StorageItems::StorageItems()
@@ -118,6 +126,11 @@ StorageItems::StorageItems(const StorageItems& from)
   if (from.has_notary()) {
     notary_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.notary_);
   }
+  if (from.has_master_secret()) {
+    master_secret_ = new ::opentxs::proto::Ciphertext(*from.master_secret_);
+  } else {
+    master_secret_ = NULL;
+  }
   version_ = from.version_;
   // @@protoc_insertion_point(copy_constructor:opentxs.proto.StorageItems)
 }
@@ -133,7 +146,9 @@ void StorageItems::SharedCtor() {
   blockchaintransactions_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   accounts_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   notary_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  version_ = 0u;
+  ::memset(&master_secret_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&version_) -
+      reinterpret_cast<char*>(&master_secret_)) + sizeof(version_));
 }
 
 StorageItems::~StorageItems() {
@@ -151,6 +166,7 @@ void StorageItems::SharedDtor() {
   blockchaintransactions_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   accounts_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   notary_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (this != internal_default_instance()) delete master_secret_;
 }
 
 void StorageItems::SetCachedSize(int size) const {
@@ -212,9 +228,15 @@ void StorageItems::Clear() {
       (*accounts_.UnsafeRawStringPointer())->clear();
     }
   }
-  if (cached_has_bits & 0x00000100u) {
-    GOOGLE_DCHECK(!notary_.IsDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited()));
-    (*notary_.UnsafeRawStringPointer())->clear();
+  if (cached_has_bits & 768u) {
+    if (cached_has_bits & 0x00000100u) {
+      GOOGLE_DCHECK(!notary_.IsDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited()));
+      (*notary_.UnsafeRawStringPointer())->clear();
+    }
+    if (cached_has_bits & 0x00000200u) {
+      GOOGLE_DCHECK(master_secret_ != NULL);
+      master_secret_->Clear();
+    }
   }
   version_ = 0u;
   _has_bits_.Clear();
@@ -359,6 +381,18 @@ bool StorageItems::MergePartialFromCodedStream(
         break;
       }
 
+      // optional .opentxs.proto.Ciphertext master_secret = 11;
+      case 11: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(90u /* 90 & 0xFF */)) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessage(
+               input, mutable_master_secret()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
       default: {
       handle_unusual:
         if (tag == 0) {
@@ -387,7 +421,7 @@ void StorageItems::SerializeWithCachedSizes(
 
   cached_has_bits = _has_bits_[0];
   // optional uint32 version = 1;
-  if (cached_has_bits & 0x00000200u) {
+  if (cached_has_bits & 0x00000400u) {
     ::google::protobuf::internal::WireFormatLite::WriteUInt32(1, this->version(), output);
   }
 
@@ -443,6 +477,12 @@ void StorageItems::SerializeWithCachedSizes(
   if (cached_has_bits & 0x00000100u) {
     ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
       10, this->notary(), output);
+  }
+
+  // optional .opentxs.proto.Ciphertext master_secret = 11;
+  if (cached_has_bits & 0x00000200u) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessage(
+      11, *this->master_secret_, output);
   }
 
   output->WriteRaw(_internal_metadata_.unknown_fields().data(),
@@ -514,12 +554,19 @@ size_t StorageItems::ByteSizeLong() const {
     }
 
   }
-  if (_has_bits_[8 / 32] & 768u) {
+  if (_has_bits_[8 / 32] & 1792u) {
     // optional string notary = 10;
     if (has_notary()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::StringSize(
           this->notary());
+    }
+
+    // optional .opentxs.proto.Ciphertext master_secret = 11;
+    if (has_master_secret()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::MessageSize(
+          *this->master_secret_);
     }
 
     // optional uint32 version = 1;
@@ -584,12 +631,15 @@ void StorageItems::MergeFrom(const StorageItems& from) {
       accounts_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.accounts_);
     }
   }
-  if (cached_has_bits & 768u) {
+  if (cached_has_bits & 1792u) {
     if (cached_has_bits & 0x00000100u) {
       set_has_notary();
       notary_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.notary_);
     }
     if (cached_has_bits & 0x00000200u) {
+      mutable_master_secret()->::opentxs::proto::Ciphertext::MergeFrom(from.master_secret());
+    }
+    if (cached_has_bits & 0x00000400u) {
       version_ = from.version_;
     }
     _has_bits_[0] |= cached_has_bits;
@@ -622,6 +672,7 @@ void StorageItems::InternalSwap(StorageItems* other) {
   blockchaintransactions_.Swap(&other->blockchaintransactions_);
   accounts_.Swap(&other->accounts_);
   notary_.Swap(&other->notary_);
+  swap(master_secret_, other->master_secret_);
   swap(version_, other->version_);
   swap(_has_bits_[0], other->_has_bits_[0]);
   _internal_metadata_.Swap(&other->_internal_metadata_);
