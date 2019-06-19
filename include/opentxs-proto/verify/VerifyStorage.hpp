@@ -49,6 +49,9 @@ static const VersionMap StorageCredentialAllowedStorageItemHash = {
     {1, {1, 1}},
     {2, {1, 2}},
 };
+static const VersionMap StorageItemsAllowedSymmetricKey = {
+    {6, {1, 1}},
+};
 static const VersionMap StorageNotaryAllowedBlindedSeriesList = {
     {1, {1, 1}},
 };

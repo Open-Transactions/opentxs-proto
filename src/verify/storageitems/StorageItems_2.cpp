@@ -21,6 +21,7 @@ bool CheckProto_2(const StorageItems& input, const bool silent)
     CHECK_EXCLUDED(blockchaintransactions);
     CHECK_EXCLUDED(accounts);
     CHECK_EXCLUDED(notary);
+    CHECK_EXCLUDED(master_secret);
 
     return true;
 }

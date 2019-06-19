@@ -21,6 +21,7 @@ bool CheckProto_4(const StorageItems& input, const bool silent)
     OPTIONAL_IDENTIFIER(blockchaintransactions);
     OPTIONAL_IDENTIFIER(accounts);
     CHECK_EXCLUDED(notary);
+    CHECK_EXCLUDED(master_secret);
 
     return true;
 }
