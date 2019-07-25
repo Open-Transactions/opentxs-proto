@@ -34,6 +34,7 @@ void InitDefaultsBlockchainTransactionInputImpl() {
 #else
   ::google::protobuf::internal::InitProtobufDefaults();
 #endif  // GOOGLE_PROTOBUF_ENFORCE_UNIQUENESS
+  protobuf_BlockchainPreviousOutput_2eproto::InitDefaultsBlockchainPreviousOutput();
   {
     void* ptr = &::opentxs::proto::_BlockchainTransactionInput_default_instance_;
     new (ptr) ::opentxs::proto::BlockchainTransactionInput();
@@ -54,13 +55,19 @@ namespace proto {
 // ===================================================================
 
 void BlockchainTransactionInput::InitAsDefaultInstance() {
+  ::opentxs::proto::_BlockchainTransactionInput_default_instance_._instance.get_mutable()->previous_ = const_cast< ::opentxs::proto::BlockchainPreviousOutput*>(
+      ::opentxs::proto::BlockchainPreviousOutput::internal_default_instance());
+}
+void BlockchainTransactionInput::clear_previous() {
+  if (previous_ != NULL) previous_->Clear();
+  clear_has_previous();
 }
 #if !defined(_MSC_VER) || _MSC_VER >= 1900
 const int BlockchainTransactionInput::kVersionFieldNumber;
 const int BlockchainTransactionInput::kIndexFieldNumber;
-const int BlockchainTransactionInput::kSerializedscriptFieldNumber;
+const int BlockchainTransactionInput::kScriptFieldNumber;
 const int BlockchainTransactionInput::kSequenceFieldNumber;
-const int BlockchainTransactionInput::kAddressFieldNumber;
+const int BlockchainTransactionInput::kPreviousFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 BlockchainTransactionInput::BlockchainTransactionInput()
@@ -75,12 +82,16 @@ BlockchainTransactionInput::BlockchainTransactionInput(const BlockchainTransacti
   : ::google::protobuf::MessageLite(),
       _internal_metadata_(NULL),
       _has_bits_(from._has_bits_),
-      _cached_size_(0),
-      address_(from.address_) {
+      _cached_size_(0) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
-  serializedscript_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (from.has_serializedscript()) {
-    serializedscript_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.serializedscript_);
+  script_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.has_script()) {
+    script_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.script_);
+  }
+  if (from.has_previous()) {
+    previous_ = new ::opentxs::proto::BlockchainPreviousOutput(*from.previous_);
+  } else {
+    previous_ = NULL;
   }
   ::memcpy(&version_, &from.version_,
     static_cast<size_t>(reinterpret_cast<char*>(&sequence_) -
@@ -90,10 +101,10 @@ BlockchainTransactionInput::BlockchainTransactionInput(const BlockchainTransacti
 
 void BlockchainTransactionInput::SharedCtor() {
   _cached_size_ = 0;
-  serializedscript_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  ::memset(&version_, 0, static_cast<size_t>(
+  script_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  ::memset(&previous_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&sequence_) -
-      reinterpret_cast<char*>(&version_)) + sizeof(sequence_));
+      reinterpret_cast<char*>(&previous_)) + sizeof(sequence_));
 }
 
 BlockchainTransactionInput::~BlockchainTransactionInput() {
@@ -102,7 +113,8 @@ BlockchainTransactionInput::~BlockchainTransactionInput() {
 }
 
 void BlockchainTransactionInput::SharedDtor() {
-  serializedscript_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  script_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (this != internal_default_instance()) delete previous_;
 }
 
 void BlockchainTransactionInput::SetCachedSize(int size) const {
@@ -129,13 +141,18 @@ void BlockchainTransactionInput::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  address_.Clear();
   cached_has_bits = _has_bits_[0];
-  if (cached_has_bits & 0x00000001u) {
-    GOOGLE_DCHECK(!serializedscript_.IsDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited()));
-    (*serializedscript_.UnsafeRawStringPointer())->clear();
+  if (cached_has_bits & 3u) {
+    if (cached_has_bits & 0x00000001u) {
+      GOOGLE_DCHECK(!script_.IsDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited()));
+      (*script_.UnsafeRawStringPointer())->clear();
+    }
+    if (cached_has_bits & 0x00000002u) {
+      GOOGLE_DCHECK(previous_ != NULL);
+      previous_->Clear();
+    }
   }
-  if (cached_has_bits & 14u) {
+  if (cached_has_bits & 28u) {
     ::memset(&version_, 0, static_cast<size_t>(
         reinterpret_cast<char*>(&sequence_) -
         reinterpret_cast<char*>(&version_)) + sizeof(sequence_));
@@ -188,12 +205,12 @@ bool BlockchainTransactionInput::MergePartialFromCodedStream(
         break;
       }
 
-      // optional bytes serializedscript = 3;
+      // optional bytes script = 3;
       case 3: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
             static_cast< ::google::protobuf::uint8>(26u /* 26 & 0xFF */)) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadBytes(
-                input, this->mutable_serializedscript()));
+                input, this->mutable_script()));
         } else {
           goto handle_unusual;
         }
@@ -214,12 +231,12 @@ bool BlockchainTransactionInput::MergePartialFromCodedStream(
         break;
       }
 
-      // repeated string address = 5;
+      // optional .opentxs.proto.BlockchainPreviousOutput previous = 5;
       case 5: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
             static_cast< ::google::protobuf::uint8>(42u /* 42 & 0xFF */)) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->add_address()));
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessage(
+               input, mutable_previous()));
         } else {
           goto handle_unusual;
         }
@@ -254,30 +271,30 @@ void BlockchainTransactionInput::SerializeWithCachedSizes(
 
   cached_has_bits = _has_bits_[0];
   // optional uint32 version = 1;
-  if (cached_has_bits & 0x00000002u) {
+  if (cached_has_bits & 0x00000004u) {
     ::google::protobuf::internal::WireFormatLite::WriteUInt32(1, this->version(), output);
   }
 
   // optional uint32 index = 2;
-  if (cached_has_bits & 0x00000004u) {
+  if (cached_has_bits & 0x00000008u) {
     ::google::protobuf::internal::WireFormatLite::WriteUInt32(2, this->index(), output);
   }
 
-  // optional bytes serializedscript = 3;
+  // optional bytes script = 3;
   if (cached_has_bits & 0x00000001u) {
     ::google::protobuf::internal::WireFormatLite::WriteBytesMaybeAliased(
-      3, this->serializedscript(), output);
+      3, this->script(), output);
   }
 
   // optional uint32 sequence = 4;
-  if (cached_has_bits & 0x00000008u) {
+  if (cached_has_bits & 0x00000010u) {
     ::google::protobuf::internal::WireFormatLite::WriteUInt32(4, this->sequence(), output);
   }
 
-  // repeated string address = 5;
-  for (int i = 0, n = this->address_size(); i < n; i++) {
-    ::google::protobuf::internal::WireFormatLite::WriteString(
-      5, this->address(i), output);
+  // optional .opentxs.proto.BlockchainPreviousOutput previous = 5;
+  if (cached_has_bits & 0x00000002u) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessage(
+      5, *this->previous_, output);
   }
 
   output->WriteRaw(_internal_metadata_.unknown_fields().data(),
@@ -291,20 +308,19 @@ size_t BlockchainTransactionInput::ByteSizeLong() const {
 
   total_size += _internal_metadata_.unknown_fields().size();
 
-  // repeated string address = 5;
-  total_size += 1 *
-      ::google::protobuf::internal::FromIntSize(this->address_size());
-  for (int i = 0, n = this->address_size(); i < n; i++) {
-    total_size += ::google::protobuf::internal::WireFormatLite::StringSize(
-      this->address(i));
-  }
-
-  if (_has_bits_[0 / 32] & 15u) {
-    // optional bytes serializedscript = 3;
-    if (has_serializedscript()) {
+  if (_has_bits_[0 / 32] & 31u) {
+    // optional bytes script = 3;
+    if (has_script()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::BytesSize(
-          this->serializedscript());
+          this->script());
+    }
+
+    // optional .opentxs.proto.BlockchainPreviousOutput previous = 5;
+    if (has_previous()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::MessageSize(
+          *this->previous_);
     }
 
     // optional uint32 version = 1;
@@ -348,20 +364,22 @@ void BlockchainTransactionInput::MergeFrom(const BlockchainTransactionInput& fro
   ::google::protobuf::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  address_.MergeFrom(from.address_);
   cached_has_bits = from._has_bits_[0];
-  if (cached_has_bits & 15u) {
+  if (cached_has_bits & 31u) {
     if (cached_has_bits & 0x00000001u) {
-      set_has_serializedscript();
-      serializedscript_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.serializedscript_);
+      set_has_script();
+      script_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.script_);
     }
     if (cached_has_bits & 0x00000002u) {
-      version_ = from.version_;
+      mutable_previous()->::opentxs::proto::BlockchainPreviousOutput::MergeFrom(from.previous());
     }
     if (cached_has_bits & 0x00000004u) {
-      index_ = from.index_;
+      version_ = from.version_;
     }
     if (cached_has_bits & 0x00000008u) {
+      index_ = from.index_;
+    }
+    if (cached_has_bits & 0x00000010u) {
       sequence_ = from.sequence_;
     }
     _has_bits_[0] |= cached_has_bits;
@@ -385,8 +403,8 @@ void BlockchainTransactionInput::Swap(BlockchainTransactionInput* other) {
 }
 void BlockchainTransactionInput::InternalSwap(BlockchainTransactionInput* other) {
   using std::swap;
-  address_.InternalSwap(&other->address_);
-  serializedscript_.Swap(&other->serializedscript_);
+  script_.Swap(&other->script_);
+  swap(previous_, other->previous_);
   swap(version_, other->version_);
   swap(index_, other->index_);
   swap(sequence_, other->sequence_);

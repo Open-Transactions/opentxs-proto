@@ -175,6 +175,21 @@ class Claim : public ::google::protobuf::MessageLite /* @@protoc_insertion_point
   ::std::string* release_value();
   void set_allocated_value(::std::string* value);
 
+  // optional string subtype = 8;
+  bool has_subtype() const;
+  void clear_subtype();
+  static const int kSubtypeFieldNumber = 8;
+  const ::std::string& subtype() const;
+  void set_subtype(const ::std::string& value);
+  #if LANG_CXX11
+  void set_subtype(::std::string&& value);
+  #endif
+  void set_subtype(const char* value);
+  void set_subtype(const char* value, size_t size);
+  ::std::string* mutable_subtype();
+  ::std::string* release_subtype();
+  void set_allocated_subtype(::std::string* subtype);
+
   // optional uint32 version = 1;
   bool has_version() const;
   void clear_version();
@@ -226,12 +241,15 @@ class Claim : public ::google::protobuf::MessageLite /* @@protoc_insertion_point
   void clear_has_end();
   void set_has_value();
   void clear_has_value();
+  void set_has_subtype();
+  void clear_has_subtype();
 
   ::google::protobuf::internal::InternalMetadataWithArenaLite _internal_metadata_;
   ::google::protobuf::internal::HasBits<1> _has_bits_;
   mutable int _cached_size_;
   ::google::protobuf::internal::ArenaStringPtr nymid_;
   ::google::protobuf::internal::ArenaStringPtr value_;
+  ::google::protobuf::internal::ArenaStringPtr subtype_;
   ::google::protobuf::uint32 version_;
   ::google::protobuf::uint32 section_;
   ::google::protobuf::int64 start_;
@@ -253,13 +271,13 @@ class Claim : public ::google::protobuf::MessageLite /* @@protoc_insertion_point
 
 // optional uint32 version = 1;
 inline bool Claim::has_version() const {
-  return (_has_bits_[0] & 0x00000004u) != 0;
+  return (_has_bits_[0] & 0x00000008u) != 0;
 }
 inline void Claim::set_has_version() {
-  _has_bits_[0] |= 0x00000004u;
+  _has_bits_[0] |= 0x00000008u;
 }
 inline void Claim::clear_has_version() {
-  _has_bits_[0] &= ~0x00000004u;
+  _has_bits_[0] &= ~0x00000008u;
 }
 inline void Claim::clear_version() {
   version_ = 0u;
@@ -340,13 +358,13 @@ inline void Claim::set_allocated_nymid(::std::string* nymid) {
 
 // optional uint32 section = 3;
 inline bool Claim::has_section() const {
-  return (_has_bits_[0] & 0x00000008u) != 0;
+  return (_has_bits_[0] & 0x00000010u) != 0;
 }
 inline void Claim::set_has_section() {
-  _has_bits_[0] |= 0x00000008u;
+  _has_bits_[0] |= 0x00000010u;
 }
 inline void Claim::clear_has_section() {
-  _has_bits_[0] &= ~0x00000008u;
+  _has_bits_[0] &= ~0x00000010u;
 }
 inline void Claim::clear_section() {
   section_ = 0u;
@@ -364,13 +382,13 @@ inline void Claim::set_section(::google::protobuf::uint32 value) {
 
 // optional uint32 type = 4;
 inline bool Claim::has_type() const {
-  return (_has_bits_[0] & 0x00000040u) != 0;
+  return (_has_bits_[0] & 0x00000080u) != 0;
 }
 inline void Claim::set_has_type() {
-  _has_bits_[0] |= 0x00000040u;
+  _has_bits_[0] |= 0x00000080u;
 }
 inline void Claim::clear_has_type() {
-  _has_bits_[0] &= ~0x00000040u;
+  _has_bits_[0] &= ~0x00000080u;
 }
 inline void Claim::clear_type() {
   type_ = 0u;
@@ -388,13 +406,13 @@ inline void Claim::set_type(::google::protobuf::uint32 value) {
 
 // optional sint64 start = 5;
 inline bool Claim::has_start() const {
-  return (_has_bits_[0] & 0x00000010u) != 0;
+  return (_has_bits_[0] & 0x00000020u) != 0;
 }
 inline void Claim::set_has_start() {
-  _has_bits_[0] |= 0x00000010u;
+  _has_bits_[0] |= 0x00000020u;
 }
 inline void Claim::clear_has_start() {
-  _has_bits_[0] &= ~0x00000010u;
+  _has_bits_[0] &= ~0x00000020u;
 }
 inline void Claim::clear_start() {
   start_ = GOOGLE_LONGLONG(0);
@@ -412,13 +430,13 @@ inline void Claim::set_start(::google::protobuf::int64 value) {
 
 // optional sint64 end = 6;
 inline bool Claim::has_end() const {
-  return (_has_bits_[0] & 0x00000020u) != 0;
+  return (_has_bits_[0] & 0x00000040u) != 0;
 }
 inline void Claim::set_has_end() {
-  _has_bits_[0] |= 0x00000020u;
+  _has_bits_[0] |= 0x00000040u;
 }
 inline void Claim::clear_has_end() {
-  _has_bits_[0] &= ~0x00000020u;
+  _has_bits_[0] &= ~0x00000040u;
 }
 inline void Claim::clear_end() {
   end_ = GOOGLE_LONGLONG(0);
@@ -495,6 +513,69 @@ inline void Claim::set_allocated_value(::std::string* value) {
   }
   value_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set_allocated:opentxs.proto.Claim.value)
+}
+
+// optional string subtype = 8;
+inline bool Claim::has_subtype() const {
+  return (_has_bits_[0] & 0x00000004u) != 0;
+}
+inline void Claim::set_has_subtype() {
+  _has_bits_[0] |= 0x00000004u;
+}
+inline void Claim::clear_has_subtype() {
+  _has_bits_[0] &= ~0x00000004u;
+}
+inline void Claim::clear_subtype() {
+  subtype_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  clear_has_subtype();
+}
+inline const ::std::string& Claim::subtype() const {
+  // @@protoc_insertion_point(field_get:opentxs.proto.Claim.subtype)
+  return subtype_.GetNoArena();
+}
+inline void Claim::set_subtype(const ::std::string& value) {
+  set_has_subtype();
+  subtype_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:opentxs.proto.Claim.subtype)
+}
+#if LANG_CXX11
+inline void Claim::set_subtype(::std::string&& value) {
+  set_has_subtype();
+  subtype_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:opentxs.proto.Claim.subtype)
+}
+#endif
+inline void Claim::set_subtype(const char* value) {
+  GOOGLE_DCHECK(value != NULL);
+  set_has_subtype();
+  subtype_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:opentxs.proto.Claim.subtype)
+}
+inline void Claim::set_subtype(const char* value, size_t size) {
+  set_has_subtype();
+  subtype_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:opentxs.proto.Claim.subtype)
+}
+inline ::std::string* Claim::mutable_subtype() {
+  set_has_subtype();
+  // @@protoc_insertion_point(field_mutable:opentxs.proto.Claim.subtype)
+  return subtype_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* Claim::release_subtype() {
+  // @@protoc_insertion_point(field_release:opentxs.proto.Claim.subtype)
+  clear_has_subtype();
+  return subtype_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void Claim::set_allocated_subtype(::std::string* subtype) {
+  if (subtype != NULL) {
+    set_has_subtype();
+  } else {
+    clear_has_subtype();
+  }
+  subtype_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), subtype);
+  // @@protoc_insertion_point(field_set_allocated:opentxs.proto.Claim.subtype)
 }
 
 #ifdef __GNUC__

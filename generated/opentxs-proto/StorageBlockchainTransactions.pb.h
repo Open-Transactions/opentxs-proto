@@ -28,6 +28,7 @@
 #include <google/protobuf/message_lite.h>
 #include <google/protobuf/repeated_field.h>  // IWYU pragma: export
 #include <google/protobuf/extension_set.h>  // IWYU pragma: export
+#include "StorageContactNymIndex.pb.h"  // IWYU pragma: export
 #include "StorageItemHash.pb.h"  // IWYU pragma: export
 // @@protoc_insertion_point(includes)
 
@@ -158,6 +159,18 @@ class StorageBlockchainTransactions : public ::google::protobuf::MessageLite /* 
   const ::google::protobuf::RepeatedPtrField< ::opentxs::proto::StorageItemHash >&
       transaction() const;
 
+  // repeated .opentxs.proto.StorageContactNymIndex nymindex = 3;
+  int nymindex_size() const;
+  void clear_nymindex();
+  static const int kNymindexFieldNumber = 3;
+  const ::opentxs::proto::StorageContactNymIndex& nymindex(int index) const;
+  ::opentxs::proto::StorageContactNymIndex* mutable_nymindex(int index);
+  ::opentxs::proto::StorageContactNymIndex* add_nymindex();
+  ::google::protobuf::RepeatedPtrField< ::opentxs::proto::StorageContactNymIndex >*
+      mutable_nymindex();
+  const ::google::protobuf::RepeatedPtrField< ::opentxs::proto::StorageContactNymIndex >&
+      nymindex() const;
+
   // optional uint32 version = 1;
   bool has_version() const;
   void clear_version();
@@ -174,6 +187,7 @@ class StorageBlockchainTransactions : public ::google::protobuf::MessageLite /* 
   ::google::protobuf::internal::HasBits<1> _has_bits_;
   mutable int _cached_size_;
   ::google::protobuf::RepeatedPtrField< ::opentxs::proto::StorageItemHash > transaction_;
+  ::google::protobuf::RepeatedPtrField< ::opentxs::proto::StorageContactNymIndex > nymindex_;
   ::google::protobuf::uint32 version_;
   friend struct ::protobuf_StorageBlockchainTransactions_2eproto::TableStruct;
   friend void ::protobuf_StorageBlockchainTransactions_2eproto::InitDefaultsStorageBlockchainTransactionsImpl();
@@ -238,6 +252,33 @@ inline const ::google::protobuf::RepeatedPtrField< ::opentxs::proto::StorageItem
 StorageBlockchainTransactions::transaction() const {
   // @@protoc_insertion_point(field_list:opentxs.proto.StorageBlockchainTransactions.transaction)
   return transaction_;
+}
+
+// repeated .opentxs.proto.StorageContactNymIndex nymindex = 3;
+inline int StorageBlockchainTransactions::nymindex_size() const {
+  return nymindex_.size();
+}
+inline const ::opentxs::proto::StorageContactNymIndex& StorageBlockchainTransactions::nymindex(int index) const {
+  // @@protoc_insertion_point(field_get:opentxs.proto.StorageBlockchainTransactions.nymindex)
+  return nymindex_.Get(index);
+}
+inline ::opentxs::proto::StorageContactNymIndex* StorageBlockchainTransactions::mutable_nymindex(int index) {
+  // @@protoc_insertion_point(field_mutable:opentxs.proto.StorageBlockchainTransactions.nymindex)
+  return nymindex_.Mutable(index);
+}
+inline ::opentxs::proto::StorageContactNymIndex* StorageBlockchainTransactions::add_nymindex() {
+  // @@protoc_insertion_point(field_add:opentxs.proto.StorageBlockchainTransactions.nymindex)
+  return nymindex_.Add();
+}
+inline ::google::protobuf::RepeatedPtrField< ::opentxs::proto::StorageContactNymIndex >*
+StorageBlockchainTransactions::mutable_nymindex() {
+  // @@protoc_insertion_point(field_mutable_list:opentxs.proto.StorageBlockchainTransactions.nymindex)
+  return &nymindex_;
+}
+inline const ::google::protobuf::RepeatedPtrField< ::opentxs::proto::StorageContactNymIndex >&
+StorageBlockchainTransactions::nymindex() const {
+  // @@protoc_insertion_point(field_list:opentxs.proto.StorageBlockchainTransactions.nymindex)
+  return nymindex_;
 }
 
 #ifdef __GNUC__

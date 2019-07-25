@@ -12,12 +12,6 @@ namespace opentxs
 {
 namespace proto
 {
-static const VersionMap Bip44AccountAllowedBip44Address = {
-    {1, {1, 1}},
-};
-static const VersionMap Bip44AccountAllowedHDPath = {
-    {1, {1, 1}},
-};
 static const VersionMap Bip47ChainAllowedBip47Channel = {
     {1, {1, 1}},
 };
@@ -30,14 +24,35 @@ static const VersionMap Bip47ContextAllowedBip47Chain = {
 static const VersionMap Bip47DirectionAllowedBip47Address = {
     {1, {1, 1}},
 };
+static const VersionMap BlockchainAddressAllowedAsymmetricKey = {
+    {1, {2, 2}},
+};
 static const VersionMap BlockchainTransactionAllowedInput = {
     {1, {1, 1}},
 };
 static const VersionMap BlockchainTransactionAllowedOutput = {
     {1, {1, 1}},
 };
-static const VersionMap StorageBlockchainTransactionsAllowedStorageItemHash = {
-    {1, {1, 2}},
+static const VersionMap
+    BlockchainTransactionInputAllowedBlockchainPreviousOutput = {
+        {1, {1, 1}},
+};
+static const VersionMap BlockchainTransactionOutputAllowedBlockchainWalletKey =
+    {
+        {1, {1, 1}},
+};
+static const VersionMap
+    BlockchainTransactionOutputAllowedBlockchainExternalAddress = {
+        {1, {1, 1}},
+};
+static const VersionMap HDAccountAllowedBlockchainActivity = {
+    {1, {1, 1}},
+};
+static const VersionMap HDAccountAllowedBlockchainAddress = {
+    {1, {1, 1}},
+};
+static const VersionMap HDAccountAllowedHDPath = {
+    {1, {1, 1}},
 };
 }  // namespace proto
 }  // namespace opentxs

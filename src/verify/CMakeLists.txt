@@ -18,15 +18,18 @@ set(cxx-sources
   bailmentreply/BailmentReply_1.cpp
   basketitem/BasketItem_1.cpp
   basketparams/BasketParams_1.cpp
-  bip44account/Bip44Account_1.cpp
-  bip44address/Bip44Address_1.cpp
   bip47address/Bip47Address_1.cpp
   bip47channel/Bip47Channel_1.cpp
   bip47direction/Bip47Direction_1.cpp
   blindedserieslist/BlindedSeriesList.cpp
+  blockchainactivity/BlockchainActivity_1.cpp
+  blockchainaddress/BlockchainAddress_1.cpp
+  blockchainexternaladdress/BlockchainExternalAddress_1.cpp
+  blockchainpreviousoutput/BlockchainPreviousOutput_1.cpp
   blockchaintransaction/BlockchainTransaction_1.cpp
   blockchaintransactioninput/BlockchainTransactionInput_1.cpp
   blockchaintransactionoutput/BlockchainTransactionOutput_1.cpp
+  blockchainwalletkey/BlockchainWalletKey_1.cpp
   childcredentialparameters/ChildCredentialParameters_1.cpp
   ciphertext/Ciphertext_1.cpp
   claim/Claim_1.cpp
@@ -49,6 +52,7 @@ set(cxx-sources
   envelope/Envelope_1.cpp
   faucet/Faucet_1.cpp
   getworkflow/GetWorkflow_1.cpp
+  hdaccount/HDAccount_1.cpp
   hdpath/HDPath_1.cpp
   hdseed/HDSeed_1.cpp
   instrumentrevision/InstrumentRevision_1.cpp
@@ -97,7 +101,6 @@ set(cxx-sources
   rpcstatus/RPCStatus_1.cpp
   rpctask/RPCTask_1.cpp
   seed/Seed_1.cpp
-  seed/Seed_2.cpp
   sendmessage/SendMessage_1.cpp
   sendpayment/SendPayment_1.cpp
   servercontext/ServerContext_1.cpp
@@ -120,6 +123,7 @@ set(cxx-sources
   storagebip47nymaddressindex/StorageBip47NymAddressIndex_1.cpp
   storageblockchainaccountlist/StorageBlockchainAccountList_1.cpp
   storageblockchaintransactions/StorageBlockchainTransactions_1.cpp
+  storageblockchaintxo/StorageBlockchainTxo_1.cpp
   storagecontactaddressindex/StorageContactAddressIndex_1.cpp
   storagecontactnymindex/StorageContactNymIndex_1.cpp
   storagecontacts/StorageContacts_1.cpp
@@ -144,6 +148,7 @@ set(cxx-sources
   storagenym/StorageNym_6.cpp
   storagenym/StorageNym_7.cpp
   storagenym/StorageNym_8.cpp
+  storagenym/StorageNym_9.cpp
   storagenymlist/StorageNymList_1.cpp
   storagepaymentworkflows/StoragePaymentWorkflows_1.cpp
   storagepurse/StoragePurse_1.cpp
@@ -153,6 +158,7 @@ set(cxx-sources
   storageservers/StorageServers_1.cpp
   storagethread/StorageThread_1.cpp
   storagethreaditem/StorageThreadItem_1.cpp
+  storagetxoindex/StorageTxoIndex_1.cpp
   storageunits/StorageUnits_1.cpp
   storageworkflowindex/StorageWorkflowIndex_1.cpp
   storageworkflowtype/StorageWorkflowType_1.cpp

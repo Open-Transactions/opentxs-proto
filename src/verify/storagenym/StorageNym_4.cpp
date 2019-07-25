@@ -28,11 +28,12 @@ bool CheckProto_4(const StorageNym& input, const bool silent)
     OPTIONAL_SUBOBJECT(accounts, StorageNymAllowedStorageItemHash)
     CHECK_SUBOBJECTS(
         blockchainaccountindex, StorageNymAllowedBlockchainAccountList)
-    CHECK_SUBOBJECTS(blockchainaccount, StorageNymAllowedBip44Account)
+    CHECK_SUBOBJECTS(hdaccount, StorageNymAllowedHDAccount)
     CHECK_EXCLUDED(issuers)
     CHECK_EXCLUDED(paymentworkflow)
     CHECK_EXCLUDED(bip47)
     CHECK_NONE(purse);
+    CHECK_EXCLUDED(txo)
 
     return true;
 }

@@ -18,4 +18,5 @@ message Claim {
     optional sint64 start = 5;
     optional sint64 end = 6;
     optional string value = 7;
+    optional string subtype = 8;
 }

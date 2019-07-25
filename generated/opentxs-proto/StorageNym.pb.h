@@ -28,7 +28,7 @@
 #include <google/protobuf/message_lite.h>
 #include <google/protobuf/repeated_field.h>  // IWYU pragma: export
 #include <google/protobuf/extension_set.h>  // IWYU pragma: export
-#include "Bip44Account.pb.h"  // IWYU pragma: export
+#include "HDAccount.pb.h"  // IWYU pragma: export
 #include "StorageBlockchainAccountList.pb.h"  // IWYU pragma: export
 #include "StoragePurse.pb.h"  // IWYU pragma: export
 #include "StorageItemHash.pb.h"  // IWYU pragma: export
@@ -161,17 +161,17 @@ class StorageNym : public ::google::protobuf::MessageLite /* @@protoc_insertion_
   const ::google::protobuf::RepeatedPtrField< ::opentxs::proto::StorageBlockchainAccountList >&
       blockchainaccountindex() const;
 
-  // repeated .opentxs.proto.Bip44Account BlockchainAccount = 18;
-  int blockchainaccount_size() const;
-  void clear_blockchainaccount();
-  static const int kBlockchainAccountFieldNumber = 18;
-  const ::opentxs::proto::Bip44Account& blockchainaccount(int index) const;
-  ::opentxs::proto::Bip44Account* mutable_blockchainaccount(int index);
-  ::opentxs::proto::Bip44Account* add_blockchainaccount();
-  ::google::protobuf::RepeatedPtrField< ::opentxs::proto::Bip44Account >*
-      mutable_blockchainaccount();
-  const ::google::protobuf::RepeatedPtrField< ::opentxs::proto::Bip44Account >&
-      blockchainaccount() const;
+  // repeated .opentxs.proto.HDAccount HDAccount = 18;
+  int hdaccount_size() const;
+  void clear_hdaccount();
+  static const int kHDAccountFieldNumber = 18;
+  const ::opentxs::proto::HDAccount& hdaccount(int index) const;
+  ::opentxs::proto::HDAccount* mutable_hdaccount(int index);
+  ::opentxs::proto::HDAccount* add_hdaccount();
+  ::google::protobuf::RepeatedPtrField< ::opentxs::proto::HDAccount >*
+      mutable_hdaccount();
+  const ::google::protobuf::RepeatedPtrField< ::opentxs::proto::HDAccount >&
+      hdaccount() const;
 
   // repeated .opentxs.proto.StoragePurse purse = 22;
   int purse_size() const;
@@ -371,6 +371,15 @@ class StorageNym : public ::google::protobuf::MessageLite /* @@protoc_insertion_
   ::opentxs::proto::StorageItemHash* mutable_accounts();
   void set_allocated_accounts(::opentxs::proto::StorageItemHash* accounts);
 
+  // optional .opentxs.proto.StorageItemHash txo = 23;
+  bool has_txo() const;
+  void clear_txo();
+  static const int kTxoFieldNumber = 23;
+  const ::opentxs::proto::StorageItemHash& txo() const;
+  ::opentxs::proto::StorageItemHash* release_txo();
+  ::opentxs::proto::StorageItemHash* mutable_txo();
+  void set_allocated_txo(::opentxs::proto::StorageItemHash* txo);
+
   // optional uint32 version = 1;
   bool has_version() const;
   void clear_version();
@@ -418,12 +427,14 @@ class StorageNym : public ::google::protobuf::MessageLite /* @@protoc_insertion_
   void clear_has_paymentworkflow();
   void set_has_bip47();
   void clear_has_bip47();
+  void set_has_txo();
+  void clear_has_txo();
 
   ::google::protobuf::internal::InternalMetadataWithArenaLite _internal_metadata_;
   ::google::protobuf::internal::HasBits<1> _has_bits_;
   mutable int _cached_size_;
   ::google::protobuf::RepeatedPtrField< ::opentxs::proto::StorageBlockchainAccountList > blockchainaccountindex_;
-  ::google::protobuf::RepeatedPtrField< ::opentxs::proto::Bip44Account > blockchainaccount_;
+  ::google::protobuf::RepeatedPtrField< ::opentxs::proto::HDAccount > hdaccount_;
   ::google::protobuf::RepeatedPtrField< ::opentxs::proto::StoragePurse > purse_;
   ::google::protobuf::internal::ArenaStringPtr nymid_;
   ::google::protobuf::internal::ArenaStringPtr issuers_;
@@ -443,6 +454,7 @@ class StorageNym : public ::google::protobuf::MessageLite /* @@protoc_insertion_
   ::opentxs::proto::StorageItemHash* threads_;
   ::opentxs::proto::StorageItemHash* contexts_;
   ::opentxs::proto::StorageItemHash* accounts_;
+  ::opentxs::proto::StorageItemHash* txo_;
   ::google::protobuf::uint32 version_;
   friend struct ::protobuf_StorageNym_2eproto::TableStruct;
   friend void ::protobuf_StorageNym_2eproto::InitDefaultsStorageNymImpl();
@@ -460,13 +472,13 @@ class StorageNym : public ::google::protobuf::MessageLite /* @@protoc_insertion_
 
 // optional uint32 version = 1;
 inline bool StorageNym::has_version() const {
-  return (_has_bits_[0] & 0x00040000u) != 0;
+  return (_has_bits_[0] & 0x00080000u) != 0;
 }
 inline void StorageNym::set_has_version() {
-  _has_bits_[0] |= 0x00040000u;
+  _has_bits_[0] |= 0x00080000u;
 }
 inline void StorageNym::clear_has_version() {
-  _has_bits_[0] &= ~0x00040000u;
+  _has_bits_[0] &= ~0x00080000u;
 }
 inline void StorageNym::clear_version() {
   version_ = 0u;
@@ -1272,31 +1284,31 @@ StorageNym::blockchainaccountindex() const {
   return blockchainaccountindex_;
 }
 
-// repeated .opentxs.proto.Bip44Account BlockchainAccount = 18;
-inline int StorageNym::blockchainaccount_size() const {
-  return blockchainaccount_.size();
+// repeated .opentxs.proto.HDAccount HDAccount = 18;
+inline int StorageNym::hdaccount_size() const {
+  return hdaccount_.size();
 }
-inline const ::opentxs::proto::Bip44Account& StorageNym::blockchainaccount(int index) const {
-  // @@protoc_insertion_point(field_get:opentxs.proto.StorageNym.BlockchainAccount)
-  return blockchainaccount_.Get(index);
+inline const ::opentxs::proto::HDAccount& StorageNym::hdaccount(int index) const {
+  // @@protoc_insertion_point(field_get:opentxs.proto.StorageNym.HDAccount)
+  return hdaccount_.Get(index);
 }
-inline ::opentxs::proto::Bip44Account* StorageNym::mutable_blockchainaccount(int index) {
-  // @@protoc_insertion_point(field_mutable:opentxs.proto.StorageNym.BlockchainAccount)
-  return blockchainaccount_.Mutable(index);
+inline ::opentxs::proto::HDAccount* StorageNym::mutable_hdaccount(int index) {
+  // @@protoc_insertion_point(field_mutable:opentxs.proto.StorageNym.HDAccount)
+  return hdaccount_.Mutable(index);
 }
-inline ::opentxs::proto::Bip44Account* StorageNym::add_blockchainaccount() {
-  // @@protoc_insertion_point(field_add:opentxs.proto.StorageNym.BlockchainAccount)
-  return blockchainaccount_.Add();
+inline ::opentxs::proto::HDAccount* StorageNym::add_hdaccount() {
+  // @@protoc_insertion_point(field_add:opentxs.proto.StorageNym.HDAccount)
+  return hdaccount_.Add();
 }
-inline ::google::protobuf::RepeatedPtrField< ::opentxs::proto::Bip44Account >*
-StorageNym::mutable_blockchainaccount() {
-  // @@protoc_insertion_point(field_mutable_list:opentxs.proto.StorageNym.BlockchainAccount)
-  return &blockchainaccount_;
+inline ::google::protobuf::RepeatedPtrField< ::opentxs::proto::HDAccount >*
+StorageNym::mutable_hdaccount() {
+  // @@protoc_insertion_point(field_mutable_list:opentxs.proto.StorageNym.HDAccount)
+  return &hdaccount_;
 }
-inline const ::google::protobuf::RepeatedPtrField< ::opentxs::proto::Bip44Account >&
-StorageNym::blockchainaccount() const {
-  // @@protoc_insertion_point(field_list:opentxs.proto.StorageNym.BlockchainAccount)
-  return blockchainaccount_;
+inline const ::google::protobuf::RepeatedPtrField< ::opentxs::proto::HDAccount >&
+StorageNym::hdaccount() const {
+  // @@protoc_insertion_point(field_list:opentxs.proto.StorageNym.HDAccount)
+  return hdaccount_;
 }
 
 // optional string issuers = 19;
@@ -1513,6 +1525,56 @@ inline const ::google::protobuf::RepeatedPtrField< ::opentxs::proto::StoragePurs
 StorageNym::purse() const {
   // @@protoc_insertion_point(field_list:opentxs.proto.StorageNym.purse)
   return purse_;
+}
+
+// optional .opentxs.proto.StorageItemHash txo = 23;
+inline bool StorageNym::has_txo() const {
+  return (_has_bits_[0] & 0x00040000u) != 0;
+}
+inline void StorageNym::set_has_txo() {
+  _has_bits_[0] |= 0x00040000u;
+}
+inline void StorageNym::clear_has_txo() {
+  _has_bits_[0] &= ~0x00040000u;
+}
+inline const ::opentxs::proto::StorageItemHash& StorageNym::txo() const {
+  const ::opentxs::proto::StorageItemHash* p = txo_;
+  // @@protoc_insertion_point(field_get:opentxs.proto.StorageNym.txo)
+  return p != NULL ? *p : *reinterpret_cast<const ::opentxs::proto::StorageItemHash*>(
+      &::opentxs::proto::_StorageItemHash_default_instance_);
+}
+inline ::opentxs::proto::StorageItemHash* StorageNym::release_txo() {
+  // @@protoc_insertion_point(field_release:opentxs.proto.StorageNym.txo)
+  clear_has_txo();
+  ::opentxs::proto::StorageItemHash* temp = txo_;
+  txo_ = NULL;
+  return temp;
+}
+inline ::opentxs::proto::StorageItemHash* StorageNym::mutable_txo() {
+  set_has_txo();
+  if (txo_ == NULL) {
+    txo_ = new ::opentxs::proto::StorageItemHash;
+  }
+  // @@protoc_insertion_point(field_mutable:opentxs.proto.StorageNym.txo)
+  return txo_;
+}
+inline void StorageNym::set_allocated_txo(::opentxs::proto::StorageItemHash* txo) {
+  ::google::protobuf::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == NULL) {
+    delete reinterpret_cast< ::google::protobuf::MessageLite*>(txo_);
+  }
+  if (txo) {
+    ::google::protobuf::Arena* submessage_arena = NULL;
+    if (message_arena != submessage_arena) {
+      txo = ::google::protobuf::internal::GetOwnedMessage(
+          message_arena, txo, submessage_arena);
+    }
+    set_has_txo();
+  } else {
+    clear_has_txo();
+  }
+  txo_ = txo;
+  // @@protoc_insertion_point(field_set_allocated:opentxs.proto.StorageNym.txo)
 }
 
 #ifdef __GNUC__

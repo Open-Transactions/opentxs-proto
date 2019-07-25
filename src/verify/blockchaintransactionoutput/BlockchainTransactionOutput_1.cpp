@@ -15,47 +15,21 @@ namespace proto
 
 bool CheckProto_1(const BlockchainTransactionOutput& input, const bool silent)
 {
-    if (false == input.has_index()) { FAIL_1("missing index") }
+    CHECK_SCRIPT(script);
 
-    if (input.has_serializedscript()) {
-        if (MIN_PLAUSIBLE_SCRIPT > input.serializedscript().size()) {
-            FAIL_1("invalid serializedscript")
-        }
-
-        if (MAX_PLAUSIBLE_SCRIPT < input.serializedscript().size()) {
-            FAIL_1("invalid serializedscript")
-        }
+    if (input.has_key()) {
+        CHECK_SUBOBJECT(
+            key, BlockchainTransactionOutputAllowedBlockchainWalletKey);
+    } else if (input.has_external()) {
+        CHECK_SUBOBJECT(
+            external,
+            BlockchainTransactionOutputAllowedBlockchainExternalAddress);
+    } else {
+        FAIL_1("Missing destination");
     }
 
-    if (input.has_address()) {
-        if (MIN_PLAUSIBLE_IDENTIFIER > input.address().size()) {
-            FAIL_1("invalid address")
-        }
-
-        if (MAX_PLAUSIBLE_IDENTIFIER < input.address().size()) {
-            FAIL_1("invalid address")
-        }
-    }
-
-    if (input.has_confirmedspend()) {
-        if (MIN_PLAUSIBLE_IDENTIFIER > input.confirmedspend().size()) {
-            FAIL_1("invalid confirmedspend")
-        }
-
-        if (MAX_PLAUSIBLE_IDENTIFIER < input.confirmedspend().size()) {
-            FAIL_1("invalid confirmedspend")
-        }
-    }
-
-    for (const auto& orphan : input.orphanedspend()) {
-        if (MIN_PLAUSIBLE_IDENTIFIER > orphan.size()) {
-            FAIL_1("invalid orphanedspend")
-        }
-
-        if (MAX_PLAUSIBLE_IDENTIFIER < orphan.size()) {
-            FAIL_1("invalid orphanedspend")
-        }
-    }
+    OPTIONAL_IDENTIFIER(confirmedspend);
+    OPTIONAL_IDENTIFIERS(orphanedspend);
 
     return true;
 }

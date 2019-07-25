@@ -36,7 +36,7 @@ void InitDefaultsStorageNymImpl() {
 #endif  // GOOGLE_PROTOBUF_ENFORCE_UNIQUENESS
   protobuf_StorageItemHash_2eproto::InitDefaultsStorageItemHash();
   protobuf_StorageBlockchainAccountList_2eproto::InitDefaultsStorageBlockchainAccountList();
-  protobuf_Bip44Account_2eproto::InitDefaultsBip44Account();
+  protobuf_HDAccount_2eproto::InitDefaultsHDAccount();
   protobuf_StoragePurse_2eproto::InitDefaultsStoragePurse();
   {
     void* ptr = &::opentxs::proto::_StorageNym_default_instance_;
@@ -85,6 +85,8 @@ void StorageNym::InitAsDefaultInstance() {
   ::opentxs::proto::_StorageNym_default_instance_._instance.get_mutable()->contexts_ = const_cast< ::opentxs::proto::StorageItemHash*>(
       ::opentxs::proto::StorageItemHash::internal_default_instance());
   ::opentxs::proto::_StorageNym_default_instance_._instance.get_mutable()->accounts_ = const_cast< ::opentxs::proto::StorageItemHash*>(
+      ::opentxs::proto::StorageItemHash::internal_default_instance());
+  ::opentxs::proto::_StorageNym_default_instance_._instance.get_mutable()->txo_ = const_cast< ::opentxs::proto::StorageItemHash*>(
       ::opentxs::proto::StorageItemHash::internal_default_instance());
 }
 void StorageNym::clear_credlist() {
@@ -146,11 +148,15 @@ void StorageNym::clear_accounts() {
 void StorageNym::clear_blockchainaccountindex() {
   blockchainaccountindex_.Clear();
 }
-void StorageNym::clear_blockchainaccount() {
-  blockchainaccount_.Clear();
+void StorageNym::clear_hdaccount() {
+  hdaccount_.Clear();
 }
 void StorageNym::clear_purse() {
   purse_.Clear();
+}
+void StorageNym::clear_txo() {
+  if (txo_ != NULL) txo_->Clear();
+  clear_has_txo();
 }
 #if !defined(_MSC_VER) || _MSC_VER >= 1900
 const int StorageNym::kVersionFieldNumber;
@@ -170,11 +176,12 @@ const int StorageNym::kThreadsFieldNumber;
 const int StorageNym::kContextsFieldNumber;
 const int StorageNym::kAccountsFieldNumber;
 const int StorageNym::kBlockchainAccountIndexFieldNumber;
-const int StorageNym::kBlockchainAccountFieldNumber;
+const int StorageNym::kHDAccountFieldNumber;
 const int StorageNym::kIssuersFieldNumber;
 const int StorageNym::kPaymentWorkflowFieldNumber;
 const int StorageNym::kBip47FieldNumber;
 const int StorageNym::kPurseFieldNumber;
+const int StorageNym::kTxoFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 StorageNym::StorageNym()
@@ -191,7 +198,7 @@ StorageNym::StorageNym(const StorageNym& from)
       _has_bits_(from._has_bits_),
       _cached_size_(0),
       blockchainaccountindex_(from.blockchainaccountindex_),
-      blockchainaccount_(from.blockchainaccount_),
+      hdaccount_(from.hdaccount_),
       purse_(from.purse_) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   nymid_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
@@ -280,6 +287,11 @@ StorageNym::StorageNym(const StorageNym& from)
   } else {
     accounts_ = NULL;
   }
+  if (from.has_txo()) {
+    txo_ = new ::opentxs::proto::StorageItemHash(*from.txo_);
+  } else {
+    txo_ = NULL;
+  }
   version_ = from.version_;
   // @@protoc_insertion_point(copy_constructor:opentxs.proto.StorageNym)
 }
@@ -319,6 +331,7 @@ void StorageNym::SharedDtor() {
   if (this != internal_default_instance()) delete threads_;
   if (this != internal_default_instance()) delete contexts_;
   if (this != internal_default_instance()) delete accounts_;
+  if (this != internal_default_instance()) delete txo_;
 }
 
 void StorageNym::SetCachedSize(int size) const {
@@ -346,7 +359,7 @@ void StorageNym::Clear() {
   (void) cached_has_bits;
 
   blockchainaccountindex_.Clear();
-  blockchainaccount_.Clear();
+  hdaccount_.Clear();
   purse_.Clear();
   cached_has_bits = _has_bits_[0];
   if (cached_has_bits & 255u) {
@@ -417,7 +430,7 @@ void StorageNym::Clear() {
       threads_->Clear();
     }
   }
-  if (cached_has_bits & 196608u) {
+  if (cached_has_bits & 458752u) {
     if (cached_has_bits & 0x00010000u) {
       GOOGLE_DCHECK(contexts_ != NULL);
       contexts_->Clear();
@@ -425,6 +438,10 @@ void StorageNym::Clear() {
     if (cached_has_bits & 0x00020000u) {
       GOOGLE_DCHECK(accounts_ != NULL);
       accounts_->Clear();
+    }
+    if (cached_has_bits & 0x00040000u) {
+      GOOGLE_DCHECK(txo_ != NULL);
+      txo_->Clear();
     }
   }
   version_ = 0u;
@@ -653,11 +670,11 @@ bool StorageNym::MergePartialFromCodedStream(
         break;
       }
 
-      // repeated .opentxs.proto.Bip44Account BlockchainAccount = 18;
+      // repeated .opentxs.proto.HDAccount HDAccount = 18;
       case 18: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
             static_cast< ::google::protobuf::uint8>(146u /* 146 & 0xFF */)) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadMessage(input, add_blockchainaccount()));
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessage(input, add_hdaccount()));
         } else {
           goto handle_unusual;
         }
@@ -711,6 +728,18 @@ bool StorageNym::MergePartialFromCodedStream(
         break;
       }
 
+      // optional .opentxs.proto.StorageItemHash txo = 23;
+      case 23: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(186u /* 186 & 0xFF */)) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessage(
+               input, mutable_txo()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
       default: {
       handle_unusual:
         if (tag == 0) {
@@ -739,7 +768,7 @@ void StorageNym::SerializeWithCachedSizes(
 
   cached_has_bits = _has_bits_[0];
   // optional uint32 version = 1;
-  if (cached_has_bits & 0x00040000u) {
+  if (cached_has_bits & 0x00080000u) {
     ::google::protobuf::internal::WireFormatLite::WriteUInt32(1, this->version(), output);
   }
 
@@ -840,11 +869,11 @@ void StorageNym::SerializeWithCachedSizes(
       17, this->blockchainaccountindex(static_cast<int>(i)), output);
   }
 
-  // repeated .opentxs.proto.Bip44Account BlockchainAccount = 18;
+  // repeated .opentxs.proto.HDAccount HDAccount = 18;
   for (unsigned int i = 0,
-      n = static_cast<unsigned int>(this->blockchainaccount_size()); i < n; i++) {
+      n = static_cast<unsigned int>(this->hdaccount_size()); i < n; i++) {
     ::google::protobuf::internal::WireFormatLite::WriteMessage(
-      18, this->blockchainaccount(static_cast<int>(i)), output);
+      18, this->hdaccount(static_cast<int>(i)), output);
   }
 
   // optional string issuers = 19;
@@ -872,6 +901,12 @@ void StorageNym::SerializeWithCachedSizes(
       22, this->purse(static_cast<int>(i)), output);
   }
 
+  // optional .opentxs.proto.StorageItemHash txo = 23;
+  if (cached_has_bits & 0x00040000u) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessage(
+      23, *this->txo_, output);
+  }
+
   output->WriteRaw(_internal_metadata_.unknown_fields().data(),
                    static_cast<int>(_internal_metadata_.unknown_fields().size()));
   // @@protoc_insertion_point(serialize_end:opentxs.proto.StorageNym)
@@ -894,14 +929,14 @@ size_t StorageNym::ByteSizeLong() const {
     }
   }
 
-  // repeated .opentxs.proto.Bip44Account BlockchainAccount = 18;
+  // repeated .opentxs.proto.HDAccount HDAccount = 18;
   {
-    unsigned int count = static_cast<unsigned int>(this->blockchainaccount_size());
+    unsigned int count = static_cast<unsigned int>(this->hdaccount_size());
     total_size += 2UL * count;
     for (unsigned int i = 0; i < count; i++) {
       total_size +=
         ::google::protobuf::internal::WireFormatLite::MessageSize(
-          this->blockchainaccount(static_cast<int>(i)));
+          this->hdaccount(static_cast<int>(i)));
     }
   }
 
@@ -1032,7 +1067,7 @@ size_t StorageNym::ByteSizeLong() const {
     }
 
   }
-  if (_has_bits_[16 / 32] & 458752u) {
+  if (_has_bits_[16 / 32] & 983040u) {
     // optional .opentxs.proto.StorageItemHash Contexts = 15;
     if (has_contexts()) {
       total_size += 1 +
@@ -1045,6 +1080,13 @@ size_t StorageNym::ByteSizeLong() const {
       total_size += 2 +
         ::google::protobuf::internal::WireFormatLite::MessageSize(
           *this->accounts_);
+    }
+
+    // optional .opentxs.proto.StorageItemHash txo = 23;
+    if (has_txo()) {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSize(
+          *this->txo_);
     }
 
     // optional uint32 version = 1;
@@ -1075,7 +1117,7 @@ void StorageNym::MergeFrom(const StorageNym& from) {
   (void) cached_has_bits;
 
   blockchainaccountindex_.MergeFrom(from.blockchainaccountindex_);
-  blockchainaccount_.MergeFrom(from.blockchainaccount_);
+  hdaccount_.MergeFrom(from.hdaccount_);
   purse_.MergeFrom(from.purse_);
   cached_has_bits = from._has_bits_[0];
   if (cached_has_bits & 255u) {
@@ -1134,7 +1176,7 @@ void StorageNym::MergeFrom(const StorageNym& from) {
       mutable_threads()->::opentxs::proto::StorageItemHash::MergeFrom(from.threads());
     }
   }
-  if (cached_has_bits & 458752u) {
+  if (cached_has_bits & 983040u) {
     if (cached_has_bits & 0x00010000u) {
       mutable_contexts()->::opentxs::proto::StorageItemHash::MergeFrom(from.contexts());
     }
@@ -1142,6 +1184,9 @@ void StorageNym::MergeFrom(const StorageNym& from) {
       mutable_accounts()->::opentxs::proto::StorageItemHash::MergeFrom(from.accounts());
     }
     if (cached_has_bits & 0x00040000u) {
+      mutable_txo()->::opentxs::proto::StorageItemHash::MergeFrom(from.txo());
+    }
+    if (cached_has_bits & 0x00080000u) {
       version_ = from.version_;
     }
     _has_bits_[0] |= cached_has_bits;
@@ -1166,7 +1211,7 @@ void StorageNym::Swap(StorageNym* other) {
 void StorageNym::InternalSwap(StorageNym* other) {
   using std::swap;
   blockchainaccountindex_.InternalSwap(&other->blockchainaccountindex_);
-  blockchainaccount_.InternalSwap(&other->blockchainaccount_);
+  hdaccount_.InternalSwap(&other->hdaccount_);
   purse_.InternalSwap(&other->purse_);
   nymid_.Swap(&other->nymid_);
   issuers_.Swap(&other->issuers_);
@@ -1186,6 +1231,7 @@ void StorageNym::InternalSwap(StorageNym* other) {
   swap(threads_, other->threads_);
   swap(contexts_, other->contexts_);
   swap(accounts_, other->accounts_);
+  swap(txo_, other->txo_);
   swap(version_, other->version_);
   swap(_has_bits_[0], other->_has_bits_[0]);
   _internal_metadata_.Swap(&other->_internal_metadata_);

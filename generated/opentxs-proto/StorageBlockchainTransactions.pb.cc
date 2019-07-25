@@ -35,6 +35,7 @@ void InitDefaultsStorageBlockchainTransactionsImpl() {
   ::google::protobuf::internal::InitProtobufDefaults();
 #endif  // GOOGLE_PROTOBUF_ENFORCE_UNIQUENESS
   protobuf_StorageItemHash_2eproto::InitDefaultsStorageItemHash();
+  protobuf_StorageContactNymIndex_2eproto::InitDefaultsStorageContactNymIndex();
   {
     void* ptr = &::opentxs::proto::_StorageBlockchainTransactions_default_instance_;
     new (ptr) ::opentxs::proto::StorageBlockchainTransactions();
@@ -59,9 +60,13 @@ void StorageBlockchainTransactions::InitAsDefaultInstance() {
 void StorageBlockchainTransactions::clear_transaction() {
   transaction_.Clear();
 }
+void StorageBlockchainTransactions::clear_nymindex() {
+  nymindex_.Clear();
+}
 #if !defined(_MSC_VER) || _MSC_VER >= 1900
 const int StorageBlockchainTransactions::kVersionFieldNumber;
 const int StorageBlockchainTransactions::kTransactionFieldNumber;
+const int StorageBlockchainTransactions::kNymindexFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 StorageBlockchainTransactions::StorageBlockchainTransactions()
@@ -77,7 +82,8 @@ StorageBlockchainTransactions::StorageBlockchainTransactions(const StorageBlockc
       _internal_metadata_(NULL),
       _has_bits_(from._has_bits_),
       _cached_size_(0),
-      transaction_(from.transaction_) {
+      transaction_(from.transaction_),
+      nymindex_(from.nymindex_) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   version_ = from.version_;
   // @@protoc_insertion_point(copy_constructor:opentxs.proto.StorageBlockchainTransactions)
@@ -121,6 +127,7 @@ void StorageBlockchainTransactions::Clear() {
   (void) cached_has_bits;
 
   transaction_.Clear();
+  nymindex_.Clear();
   version_ = 0u;
   _has_bits_.Clear();
   _internal_metadata_.Clear();
@@ -167,6 +174,17 @@ bool StorageBlockchainTransactions::MergePartialFromCodedStream(
         break;
       }
 
+      // repeated .opentxs.proto.StorageContactNymIndex nymindex = 3;
+      case 3: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(26u /* 26 & 0xFF */)) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessage(input, add_nymindex()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
       default: {
       handle_unusual:
         if (tag == 0) {
@@ -206,6 +224,13 @@ void StorageBlockchainTransactions::SerializeWithCachedSizes(
       2, this->transaction(static_cast<int>(i)), output);
   }
 
+  // repeated .opentxs.proto.StorageContactNymIndex nymindex = 3;
+  for (unsigned int i = 0,
+      n = static_cast<unsigned int>(this->nymindex_size()); i < n; i++) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessage(
+      3, this->nymindex(static_cast<int>(i)), output);
+  }
+
   output->WriteRaw(_internal_metadata_.unknown_fields().data(),
                    static_cast<int>(_internal_metadata_.unknown_fields().size()));
   // @@protoc_insertion_point(serialize_end:opentxs.proto.StorageBlockchainTransactions)
@@ -225,6 +250,17 @@ size_t StorageBlockchainTransactions::ByteSizeLong() const {
       total_size +=
         ::google::protobuf::internal::WireFormatLite::MessageSize(
           this->transaction(static_cast<int>(i)));
+    }
+  }
+
+  // repeated .opentxs.proto.StorageContactNymIndex nymindex = 3;
+  {
+    unsigned int count = static_cast<unsigned int>(this->nymindex_size());
+    total_size += 1UL * count;
+    for (unsigned int i = 0; i < count; i++) {
+      total_size +=
+        ::google::protobuf::internal::WireFormatLite::MessageSize(
+          this->nymindex(static_cast<int>(i)));
     }
   }
 
@@ -255,6 +291,7 @@ void StorageBlockchainTransactions::MergeFrom(const StorageBlockchainTransaction
   (void) cached_has_bits;
 
   transaction_.MergeFrom(from.transaction_);
+  nymindex_.MergeFrom(from.nymindex_);
   if (from.has_version()) {
     set_version(from.version());
   }
@@ -278,6 +315,7 @@ void StorageBlockchainTransactions::Swap(StorageBlockchainTransactions* other) {
 void StorageBlockchainTransactions::InternalSwap(StorageBlockchainTransactions* other) {
   using std::swap;
   transaction_.InternalSwap(&other->transaction_);
+  nymindex_.InternalSwap(&other->nymindex_);
   swap(version_, other->version_);
   swap(_has_bits_[0], other->_has_bits_[0]);
   _internal_metadata_.Swap(&other->_internal_metadata_);

@@ -7,14 +7,14 @@ syntax = "proto2";
 
 package opentxs.proto;
 option java_package = "org.opentransactions.proto";
-option java_outer_classname = "OTBip44Account";
+option java_outer_classname = "OTHDAccount";
 option optimize_for = LITE_RUNTIME;
 
-import public "Bip44Address.proto";
+import public "BlockchainAddress.proto";
 import public "ContactEnums.proto";
 import public "HDPath.proto";
 
-message Bip44Account {
+message HDAccount {
     optional uint32 version = 1;
     optional string id = 2;
     optional ContactItemType type = 3;
@@ -22,7 +22,8 @@ message Bip44Account {
     optional HDPath path = 5;
     optional uint32 internalindex = 6;
     optional uint32 externalindex = 7;
-    repeated Bip44Address internaladdress = 8;
-    repeated Bip44Address externaladdress = 9;
-    repeated string outgoing = 10;
+    repeated BlockchainAddress internaladdress = 8;
+    repeated BlockchainAddress externaladdress = 9;
+    repeated BlockchainActivity incoming = 10;
+    repeated BlockchainActivity outgoing = 11;
 }
