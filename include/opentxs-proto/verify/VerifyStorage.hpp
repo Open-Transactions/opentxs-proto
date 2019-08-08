@@ -30,6 +30,16 @@ static const VersionMap StorageBip47ContextsAllowedStorageItemHash = {
     {1, {1, 2}}};
 static const VersionMap StorageBip47ContextsAllowedStorageBip47ChannelList = {
     {1, {1, 1}}};
+static const VersionMap StorageBlockchainTransactionsAllowedStorageItemHash = {
+    {1, {1, 2}},
+    {2, {1, 2}},
+};
+static const VersionMap
+    StorageBlockchainTransactionsAllowedStorageContactNymIndex = {
+        {2, {1, 1}},
+};
+static const VersionMap StorageBlockchainTxoAllowedBlockchainPreviousOutput = {
+    {1, {1, 1}}};
 static const VersionMap StorageContactsAllowedAddress = {
     {1, {1, 1}},
     {2, {1, 1}},
@@ -64,17 +74,20 @@ static const VersionMap StorageNymAllowedStorageItemHash = {
     {6, {2, 6}},
     {7, {2, 7}},
     {8, {2, 8}},
+    {9, {2, 9}},
 };
-static const VersionMap StorageNymAllowedBip44Account{
+static const VersionMap StorageNymAllowedHDAccount{
     {4, {1, 1}},
     {5, {1, 1}},
     {6, {1, 1}},
     {7, {1, 1}},
     {8, {1, 1}},
+    {9, {1, 1}},
 };
 static const VersionMap StorageNymAllowedStorageBip47AddressIndex{
     {7, {1, 1}},
     {8, {1, 1}},
+    {9, {1, 1}},
 };
 static const VersionMap StorageNymAllowedBlockchainAccountList{
     {4, {1, 1}},
@@ -82,9 +95,11 @@ static const VersionMap StorageNymAllowedBlockchainAccountList{
     {6, {1, 1}},
     {7, {1, 1}},
     {8, {1, 1}},
+    {9, {1, 1}},
 };
 static const VersionMap StorageNymAllowedStoragePurse{
     {8, {1, 1}},
+    {9, {1, 1}},
 };
 static const VersionMap StorageNymListAllowedStorageBip47NymAddressIndex = {
     {4, {1, 1}},
@@ -119,6 +134,9 @@ static const VersionMap StorageServersAllowedStorageItemHash = {
     {2, {1, 2}},
 };
 static const VersionMap StorageThreadAllowedItem = {
+    {1, {1, 1}},
+};
+static const VersionMap StorageTxoIndexAllowedStorageBlockchainTxo = {
     {1, {1, 1}},
 };
 static const VersionMap StorageUnitsAllowedStorageItemHash = {

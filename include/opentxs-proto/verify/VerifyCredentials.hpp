@@ -123,6 +123,7 @@ static const VersionMap NymIDSourceAllowedPaymentCode = {
 static const VersionMap SeedAllowedCiphertext = {
     {1, {1, 1}},
     {2, {1, 1}},
+    {3, {1, 1}},
 };
 static const VersionMap SymmetricKeyAllowedCiphertext = {
     {1, {1, 1}},

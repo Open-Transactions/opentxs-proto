@@ -22,6 +22,8 @@ class BlockchainTransactionOutputDefaultTypeInternal {
  public:
   ::google::protobuf::internal::ExplicitlyConstructed<BlockchainTransactionOutput>
       _instance;
+  const ::opentxs::proto::BlockchainWalletKey* key_;
+  const ::opentxs::proto::BlockchainExternalAddress* external_;
 } _BlockchainTransactionOutput_default_instance_;
 }  // namespace proto
 }  // namespace opentxs
@@ -34,6 +36,8 @@ void InitDefaultsBlockchainTransactionOutputImpl() {
 #else
   ::google::protobuf::internal::InitProtobufDefaults();
 #endif  // GOOGLE_PROTOBUF_ENFORCE_UNIQUENESS
+  protobuf_BlockchainWalletKey_2eproto::InitDefaultsBlockchainWalletKey();
+  protobuf_BlockchainExternalAddress_2eproto::InitDefaultsBlockchainExternalAddress();
   {
     void* ptr = &::opentxs::proto::_BlockchainTransactionOutput_default_instance_;
     new (ptr) ::opentxs::proto::BlockchainTransactionOutput();
@@ -55,12 +59,53 @@ namespace proto {
 
 void BlockchainTransactionOutput::InitAsDefaultInstance() {
 }
+void BlockchainTransactionOutput::set_allocated_key(::opentxs::proto::BlockchainWalletKey* key) {
+  ::google::protobuf::Arena* message_arena = GetArenaNoVirtual();
+  clear_destination();
+  if (key) {
+    ::google::protobuf::Arena* submessage_arena = NULL;
+    if (message_arena != submessage_arena) {
+      key = ::google::protobuf::internal::GetOwnedMessage(
+          message_arena, key, submessage_arena);
+    }
+    set_has_key();
+    destination_.key_ = key;
+  }
+  // @@protoc_insertion_point(field_set_allocated:opentxs.proto.BlockchainTransactionOutput.key)
+}
+void BlockchainTransactionOutput::clear_key() {
+  if (has_key()) {
+    delete destination_.key_;
+    clear_has_destination();
+  }
+}
+void BlockchainTransactionOutput::set_allocated_external(::opentxs::proto::BlockchainExternalAddress* external) {
+  ::google::protobuf::Arena* message_arena = GetArenaNoVirtual();
+  clear_destination();
+  if (external) {
+    ::google::protobuf::Arena* submessage_arena = NULL;
+    if (message_arena != submessage_arena) {
+      external = ::google::protobuf::internal::GetOwnedMessage(
+          message_arena, external, submessage_arena);
+    }
+    set_has_external();
+    destination_.external_ = external;
+  }
+  // @@protoc_insertion_point(field_set_allocated:opentxs.proto.BlockchainTransactionOutput.external)
+}
+void BlockchainTransactionOutput::clear_external() {
+  if (has_external()) {
+    delete destination_.external_;
+    clear_has_destination();
+  }
+}
 #if !defined(_MSC_VER) || _MSC_VER >= 1900
 const int BlockchainTransactionOutput::kVersionFieldNumber;
 const int BlockchainTransactionOutput::kIndexFieldNumber;
 const int BlockchainTransactionOutput::kValueFieldNumber;
-const int BlockchainTransactionOutput::kSerializedscriptFieldNumber;
-const int BlockchainTransactionOutput::kAddressFieldNumber;
+const int BlockchainTransactionOutput::kScriptFieldNumber;
+const int BlockchainTransactionOutput::kKeyFieldNumber;
+const int BlockchainTransactionOutput::kExternalFieldNumber;
 const int BlockchainTransactionOutput::kConfirmedspendFieldNumber;
 const int BlockchainTransactionOutput::kOrphanedspendFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
@@ -80,13 +125,9 @@ BlockchainTransactionOutput::BlockchainTransactionOutput(const BlockchainTransac
       _cached_size_(0),
       orphanedspend_(from.orphanedspend_) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
-  serializedscript_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (from.has_serializedscript()) {
-    serializedscript_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.serializedscript_);
-  }
-  address_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (from.has_address()) {
-    address_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.address_);
+  script_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.has_script()) {
+    script_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.script_);
   }
   confirmedspend_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   if (from.has_confirmedspend()) {
@@ -95,17 +136,31 @@ BlockchainTransactionOutput::BlockchainTransactionOutput(const BlockchainTransac
   ::memcpy(&version_, &from.version_,
     static_cast<size_t>(reinterpret_cast<char*>(&value_) -
     reinterpret_cast<char*>(&version_)) + sizeof(value_));
+  clear_has_destination();
+  switch (from.destination_case()) {
+    case kKey: {
+      mutable_key()->::opentxs::proto::BlockchainWalletKey::MergeFrom(from.key());
+      break;
+    }
+    case kExternal: {
+      mutable_external()->::opentxs::proto::BlockchainExternalAddress::MergeFrom(from.external());
+      break;
+    }
+    case DESTINATION_NOT_SET: {
+      break;
+    }
+  }
   // @@protoc_insertion_point(copy_constructor:opentxs.proto.BlockchainTransactionOutput)
 }
 
 void BlockchainTransactionOutput::SharedCtor() {
   _cached_size_ = 0;
-  serializedscript_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  address_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  script_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   confirmedspend_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   ::memset(&version_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&value_) -
       reinterpret_cast<char*>(&version_)) + sizeof(value_));
+  clear_has_destination();
 }
 
 BlockchainTransactionOutput::~BlockchainTransactionOutput() {
@@ -114,9 +169,11 @@ BlockchainTransactionOutput::~BlockchainTransactionOutput() {
 }
 
 void BlockchainTransactionOutput::SharedDtor() {
-  serializedscript_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  address_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  script_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   confirmedspend_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (has_destination()) {
+    clear_destination();
+  }
 }
 
 void BlockchainTransactionOutput::SetCachedSize(int size) const {
@@ -137,6 +194,25 @@ BlockchainTransactionOutput* BlockchainTransactionOutput::New(::google::protobuf
   return n;
 }
 
+void BlockchainTransactionOutput::clear_destination() {
+// @@protoc_insertion_point(one_of_clear_start:opentxs.proto.BlockchainTransactionOutput)
+  switch (destination_case()) {
+    case kKey: {
+      delete destination_.key_;
+      break;
+    }
+    case kExternal: {
+      delete destination_.external_;
+      break;
+    }
+    case DESTINATION_NOT_SET: {
+      break;
+    }
+  }
+  _oneof_case_[0] = DESTINATION_NOT_SET;
+}
+
+
 void BlockchainTransactionOutput::Clear() {
 // @@protoc_insertion_point(message_clear_start:opentxs.proto.BlockchainTransactionOutput)
   ::google::protobuf::uint32 cached_has_bits = 0;
@@ -145,25 +221,22 @@ void BlockchainTransactionOutput::Clear() {
 
   orphanedspend_.Clear();
   cached_has_bits = _has_bits_[0];
-  if (cached_has_bits & 7u) {
+  if (cached_has_bits & 3u) {
     if (cached_has_bits & 0x00000001u) {
-      GOOGLE_DCHECK(!serializedscript_.IsDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited()));
-      (*serializedscript_.UnsafeRawStringPointer())->clear();
+      GOOGLE_DCHECK(!script_.IsDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited()));
+      (*script_.UnsafeRawStringPointer())->clear();
     }
     if (cached_has_bits & 0x00000002u) {
-      GOOGLE_DCHECK(!address_.IsDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited()));
-      (*address_.UnsafeRawStringPointer())->clear();
-    }
-    if (cached_has_bits & 0x00000004u) {
       GOOGLE_DCHECK(!confirmedspend_.IsDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited()));
       (*confirmedspend_.UnsafeRawStringPointer())->clear();
     }
   }
-  if (cached_has_bits & 56u) {
+  if (cached_has_bits & 28u) {
     ::memset(&version_, 0, static_cast<size_t>(
         reinterpret_cast<char*>(&value_) -
         reinterpret_cast<char*>(&version_)) + sizeof(value_));
   }
+  clear_destination();
   _has_bits_.Clear();
   _internal_metadata_.Clear();
 }
@@ -226,34 +299,46 @@ bool BlockchainTransactionOutput::MergePartialFromCodedStream(
         break;
       }
 
-      // optional bytes serializedscript = 4;
+      // optional bytes script = 4;
       case 4: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
             static_cast< ::google::protobuf::uint8>(34u /* 34 & 0xFF */)) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadBytes(
-                input, this->mutable_serializedscript()));
+                input, this->mutable_script()));
         } else {
           goto handle_unusual;
         }
         break;
       }
 
-      // optional string address = 5;
+      // optional .opentxs.proto.BlockchainWalletKey key = 5;
       case 5: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
             static_cast< ::google::protobuf::uint8>(42u /* 42 & 0xFF */)) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->mutable_address()));
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessage(
+               input, mutable_key()));
         } else {
           goto handle_unusual;
         }
         break;
       }
 
-      // optional string confirmedspend = 6;
+      // optional .opentxs.proto.BlockchainExternalAddress external = 6;
       case 6: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
             static_cast< ::google::protobuf::uint8>(50u /* 50 & 0xFF */)) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessage(
+               input, mutable_external()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // optional string confirmedspend = 7;
+      case 7: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(58u /* 58 & 0xFF */)) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_confirmedspend()));
         } else {
@@ -262,10 +347,10 @@ bool BlockchainTransactionOutput::MergePartialFromCodedStream(
         break;
       }
 
-      // repeated string orphanedspend = 7;
-      case 7: {
+      // repeated string orphanedspend = 8;
+      case 8: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(58u /* 58 & 0xFF */)) {
+            static_cast< ::google::protobuf::uint8>(66u /* 66 & 0xFF */)) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->add_orphanedspend()));
         } else {
@@ -302,42 +387,47 @@ void BlockchainTransactionOutput::SerializeWithCachedSizes(
 
   cached_has_bits = _has_bits_[0];
   // optional uint32 version = 1;
-  if (cached_has_bits & 0x00000008u) {
+  if (cached_has_bits & 0x00000004u) {
     ::google::protobuf::internal::WireFormatLite::WriteUInt32(1, this->version(), output);
   }
 
   // optional uint32 index = 2;
-  if (cached_has_bits & 0x00000010u) {
+  if (cached_has_bits & 0x00000008u) {
     ::google::protobuf::internal::WireFormatLite::WriteUInt32(2, this->index(), output);
   }
 
   // optional uint64 value = 3;
-  if (cached_has_bits & 0x00000020u) {
+  if (cached_has_bits & 0x00000010u) {
     ::google::protobuf::internal::WireFormatLite::WriteUInt64(3, this->value(), output);
   }
 
-  // optional bytes serializedscript = 4;
+  // optional bytes script = 4;
   if (cached_has_bits & 0x00000001u) {
     ::google::protobuf::internal::WireFormatLite::WriteBytesMaybeAliased(
-      4, this->serializedscript(), output);
+      4, this->script(), output);
   }
 
-  // optional string address = 5;
+  switch (destination_case()) {
+    case kKey:
+      ::google::protobuf::internal::WireFormatLite::WriteMessage(
+        5, *destination_.key_, output);
+      break;
+    case kExternal:
+      ::google::protobuf::internal::WireFormatLite::WriteMessage(
+        6, *destination_.external_, output);
+      break;
+    default: ;
+  }
+  // optional string confirmedspend = 7;
   if (cached_has_bits & 0x00000002u) {
     ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      5, this->address(), output);
+      7, this->confirmedspend(), output);
   }
 
-  // optional string confirmedspend = 6;
-  if (cached_has_bits & 0x00000004u) {
-    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      6, this->confirmedspend(), output);
-  }
-
-  // repeated string orphanedspend = 7;
+  // repeated string orphanedspend = 8;
   for (int i = 0, n = this->orphanedspend_size(); i < n; i++) {
     ::google::protobuf::internal::WireFormatLite::WriteString(
-      7, this->orphanedspend(i), output);
+      8, this->orphanedspend(i), output);
   }
 
   output->WriteRaw(_internal_metadata_.unknown_fields().data(),
@@ -351,7 +441,7 @@ size_t BlockchainTransactionOutput::ByteSizeLong() const {
 
   total_size += _internal_metadata_.unknown_fields().size();
 
-  // repeated string orphanedspend = 7;
+  // repeated string orphanedspend = 8;
   total_size += 1 *
       ::google::protobuf::internal::FromIntSize(this->orphanedspend_size());
   for (int i = 0, n = this->orphanedspend_size(); i < n; i++) {
@@ -359,22 +449,15 @@ size_t BlockchainTransactionOutput::ByteSizeLong() const {
       this->orphanedspend(i));
   }
 
-  if (_has_bits_[0 / 32] & 63u) {
-    // optional bytes serializedscript = 4;
-    if (has_serializedscript()) {
+  if (_has_bits_[0 / 32] & 31u) {
+    // optional bytes script = 4;
+    if (has_script()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::BytesSize(
-          this->serializedscript());
+          this->script());
     }
 
-    // optional string address = 5;
-    if (has_address()) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::StringSize(
-          this->address());
-    }
-
-    // optional string confirmedspend = 6;
+    // optional string confirmedspend = 7;
     if (has_confirmedspend()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::StringSize(
@@ -403,6 +486,25 @@ size_t BlockchainTransactionOutput::ByteSizeLong() const {
     }
 
   }
+  switch (destination_case()) {
+    // optional .opentxs.proto.BlockchainWalletKey key = 5;
+    case kKey: {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::MessageSize(
+          *destination_.key_);
+      break;
+    }
+    // optional .opentxs.proto.BlockchainExternalAddress external = 6;
+    case kExternal: {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::MessageSize(
+          *destination_.external_);
+      break;
+    }
+    case DESTINATION_NOT_SET: {
+      break;
+    }
+  }
   int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
   GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
   _cached_size_ = cached_size;
@@ -424,29 +526,38 @@ void BlockchainTransactionOutput::MergeFrom(const BlockchainTransactionOutput& f
 
   orphanedspend_.MergeFrom(from.orphanedspend_);
   cached_has_bits = from._has_bits_[0];
-  if (cached_has_bits & 63u) {
+  if (cached_has_bits & 31u) {
     if (cached_has_bits & 0x00000001u) {
-      set_has_serializedscript();
-      serializedscript_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.serializedscript_);
+      set_has_script();
+      script_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.script_);
     }
     if (cached_has_bits & 0x00000002u) {
-      set_has_address();
-      address_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.address_);
-    }
-    if (cached_has_bits & 0x00000004u) {
       set_has_confirmedspend();
       confirmedspend_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.confirmedspend_);
     }
-    if (cached_has_bits & 0x00000008u) {
+    if (cached_has_bits & 0x00000004u) {
       version_ = from.version_;
     }
-    if (cached_has_bits & 0x00000010u) {
+    if (cached_has_bits & 0x00000008u) {
       index_ = from.index_;
     }
-    if (cached_has_bits & 0x00000020u) {
+    if (cached_has_bits & 0x00000010u) {
       value_ = from.value_;
     }
     _has_bits_[0] |= cached_has_bits;
+  }
+  switch (from.destination_case()) {
+    case kKey: {
+      mutable_key()->::opentxs::proto::BlockchainWalletKey::MergeFrom(from.key());
+      break;
+    }
+    case kExternal: {
+      mutable_external()->::opentxs::proto::BlockchainExternalAddress::MergeFrom(from.external());
+      break;
+    }
+    case DESTINATION_NOT_SET: {
+      break;
+    }
   }
 }
 
@@ -468,12 +579,13 @@ void BlockchainTransactionOutput::Swap(BlockchainTransactionOutput* other) {
 void BlockchainTransactionOutput::InternalSwap(BlockchainTransactionOutput* other) {
   using std::swap;
   orphanedspend_.InternalSwap(&other->orphanedspend_);
-  serializedscript_.Swap(&other->serializedscript_);
-  address_.Swap(&other->address_);
+  script_.Swap(&other->script_);
   confirmedspend_.Swap(&other->confirmedspend_);
   swap(version_, other->version_);
   swap(index_, other->index_);
   swap(value_, other->value_);
+  swap(destination_, other->destination_);
+  swap(_oneof_case_[0], other->_oneof_case_[0]);
   swap(_has_bits_[0], other->_has_bits_[0]);
   _internal_metadata_.Swap(&other->_internal_metadata_);
   swap(_cached_size_, other->_cached_size_);

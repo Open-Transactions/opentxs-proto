@@ -27,11 +27,12 @@ bool CheckProto_2(const StorageNym& input, const bool silent)
     CHECK_EXCLUDED(contexts)
     CHECK_EXCLUDED(accounts)
     CHECK_NONE(blockchainaccountindex)
-    CHECK_NONE(blockchainaccount)
+    CHECK_NONE(hdaccount)
     CHECK_EXCLUDED(issuers)
     CHECK_EXCLUDED(paymentworkflow)
     CHECK_EXCLUDED(bip47)
     CHECK_NONE(purse);
+    CHECK_EXCLUDED(txo)
 
     return true;
 }

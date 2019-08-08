@@ -20,26 +20,18 @@ bool CheckProto_1(
     const ContactSectionVersion parentVersion)
 {
     if (indexed) {
-        if (!input.has_id()) { FAIL_1("missing id") }
-
-        if (MIN_PLAUSIBLE_IDENTIFIER > input.id().size()) {
-            FAIL_1("invalid id")
-        }
-
-        if (MAX_PLAUSIBLE_IDENTIFIER < input.id().size()) {
-            FAIL_1("invalid id")
-        }
+        CHECK_IDENTIFIER(id);
     } else {
-        if (input.has_id()) { FAIL_1("id not blank") }
+        CHECK_EXCLUDED(id);
     }
 
-    if (!input.has_type()) { FAIL_1("missing type") }
+    CHECK_EXISTS(type);
 
-    if (!ValidContactItemType(parentVersion, input.type())) {
+    if (false == ValidContactItemType(parentVersion, input.type())) {
         FAIL_1("invalid type")
     }
 
-    if (!input.has_value()) { FAIL_1("missing value") }
+    CHECK_EXISTS(value);
 
     for (auto& it : input.attribute()) {
         if (!ValidContactItemAttribute(
@@ -50,12 +42,6 @@ bool CheckProto_1(
 
     if (input.has_subtype()) {
         if (3 > input.version()) { FAIL_1("Subtype present but not allowed") }
-
-        const auto& section = parentVersion.second;
-
-        if (0 == AllowedSubtypes.count(section)) {
-            FAIL_1("Subtype present but not allowed")
-        }
     }
 
     return true;

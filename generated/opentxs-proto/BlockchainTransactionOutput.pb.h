@@ -28,6 +28,8 @@
 #include <google/protobuf/message_lite.h>
 #include <google/protobuf/repeated_field.h>  // IWYU pragma: export
 #include <google/protobuf/extension_set.h>  // IWYU pragma: export
+#include "BlockchainExternalAddress.pb.h"  // IWYU pragma: export
+#include "BlockchainWalletKey.pb.h"  // IWYU pragma: export
 // @@protoc_insertion_point(includes)
 
 namespace protobuf_BlockchainTransactionOutput_2eproto {
@@ -93,6 +95,12 @@ class BlockchainTransactionOutput : public ::google::protobuf::MessageLite /* @@
 
   static const BlockchainTransactionOutput& default_instance();
 
+  enum DestinationCase {
+    kKey = 5,
+    kExternal = 6,
+    DESTINATION_NOT_SET = 0,
+  };
+
   static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
   static inline const BlockchainTransactionOutput* internal_default_instance() {
     return reinterpret_cast<const BlockchainTransactionOutput*>(
@@ -145,10 +153,10 @@ class BlockchainTransactionOutput : public ::google::protobuf::MessageLite /* @@
 
   // accessors -------------------------------------------------------
 
-  // repeated string orphanedspend = 7;
+  // repeated string orphanedspend = 8;
   int orphanedspend_size() const;
   void clear_orphanedspend();
-  static const int kOrphanedspendFieldNumber = 7;
+  static const int kOrphanedspendFieldNumber = 8;
   const ::std::string& orphanedspend(int index) const;
   ::std::string* mutable_orphanedspend(int index);
   void set_orphanedspend(int index, const ::std::string& value);
@@ -167,40 +175,25 @@ class BlockchainTransactionOutput : public ::google::protobuf::MessageLite /* @@
   const ::google::protobuf::RepeatedPtrField< ::std::string>& orphanedspend() const;
   ::google::protobuf::RepeatedPtrField< ::std::string>* mutable_orphanedspend();
 
-  // optional bytes serializedscript = 4;
-  bool has_serializedscript() const;
-  void clear_serializedscript();
-  static const int kSerializedscriptFieldNumber = 4;
-  const ::std::string& serializedscript() const;
-  void set_serializedscript(const ::std::string& value);
+  // optional bytes script = 4;
+  bool has_script() const;
+  void clear_script();
+  static const int kScriptFieldNumber = 4;
+  const ::std::string& script() const;
+  void set_script(const ::std::string& value);
   #if LANG_CXX11
-  void set_serializedscript(::std::string&& value);
+  void set_script(::std::string&& value);
   #endif
-  void set_serializedscript(const char* value);
-  void set_serializedscript(const void* value, size_t size);
-  ::std::string* mutable_serializedscript();
-  ::std::string* release_serializedscript();
-  void set_allocated_serializedscript(::std::string* serializedscript);
+  void set_script(const char* value);
+  void set_script(const void* value, size_t size);
+  ::std::string* mutable_script();
+  ::std::string* release_script();
+  void set_allocated_script(::std::string* script);
 
-  // optional string address = 5;
-  bool has_address() const;
-  void clear_address();
-  static const int kAddressFieldNumber = 5;
-  const ::std::string& address() const;
-  void set_address(const ::std::string& value);
-  #if LANG_CXX11
-  void set_address(::std::string&& value);
-  #endif
-  void set_address(const char* value);
-  void set_address(const char* value, size_t size);
-  ::std::string* mutable_address();
-  ::std::string* release_address();
-  void set_allocated_address(::std::string* address);
-
-  // optional string confirmedspend = 6;
+  // optional string confirmedspend = 7;
   bool has_confirmedspend() const;
   void clear_confirmedspend();
-  static const int kConfirmedspendFieldNumber = 6;
+  static const int kConfirmedspendFieldNumber = 7;
   const ::std::string& confirmedspend() const;
   void set_confirmedspend(const ::std::string& value);
   #if LANG_CXX11
@@ -233,6 +226,25 @@ class BlockchainTransactionOutput : public ::google::protobuf::MessageLite /* @@
   ::google::protobuf::uint64 value() const;
   void set_value(::google::protobuf::uint64 value);
 
+  // optional .opentxs.proto.BlockchainWalletKey key = 5;
+  bool has_key() const;
+  void clear_key();
+  static const int kKeyFieldNumber = 5;
+  const ::opentxs::proto::BlockchainWalletKey& key() const;
+  ::opentxs::proto::BlockchainWalletKey* release_key();
+  ::opentxs::proto::BlockchainWalletKey* mutable_key();
+  void set_allocated_key(::opentxs::proto::BlockchainWalletKey* key);
+
+  // optional .opentxs.proto.BlockchainExternalAddress external = 6;
+  bool has_external() const;
+  void clear_external();
+  static const int kExternalFieldNumber = 6;
+  const ::opentxs::proto::BlockchainExternalAddress& external() const;
+  ::opentxs::proto::BlockchainExternalAddress* release_external();
+  ::opentxs::proto::BlockchainExternalAddress* mutable_external();
+  void set_allocated_external(::opentxs::proto::BlockchainExternalAddress* external);
+
+  DestinationCase destination_case() const;
   // @@protoc_insertion_point(class_scope:opentxs.proto.BlockchainTransactionOutput)
  private:
   void set_has_version();
@@ -241,23 +253,33 @@ class BlockchainTransactionOutput : public ::google::protobuf::MessageLite /* @@
   void clear_has_index();
   void set_has_value();
   void clear_has_value();
-  void set_has_serializedscript();
-  void clear_has_serializedscript();
-  void set_has_address();
-  void clear_has_address();
+  void set_has_script();
+  void clear_has_script();
+  void set_has_key();
+  void set_has_external();
   void set_has_confirmedspend();
   void clear_has_confirmedspend();
+
+  inline bool has_destination() const;
+  void clear_destination();
+  inline void clear_has_destination();
 
   ::google::protobuf::internal::InternalMetadataWithArenaLite _internal_metadata_;
   ::google::protobuf::internal::HasBits<1> _has_bits_;
   mutable int _cached_size_;
   ::google::protobuf::RepeatedPtrField< ::std::string> orphanedspend_;
-  ::google::protobuf::internal::ArenaStringPtr serializedscript_;
-  ::google::protobuf::internal::ArenaStringPtr address_;
+  ::google::protobuf::internal::ArenaStringPtr script_;
   ::google::protobuf::internal::ArenaStringPtr confirmedspend_;
   ::google::protobuf::uint32 version_;
   ::google::protobuf::uint32 index_;
   ::google::protobuf::uint64 value_;
+  union DestinationUnion {
+    DestinationUnion() {}
+    ::opentxs::proto::BlockchainWalletKey* key_;
+    ::opentxs::proto::BlockchainExternalAddress* external_;
+  } destination_;
+  ::google::protobuf::uint32 _oneof_case_[1];
+
   friend struct ::protobuf_BlockchainTransactionOutput_2eproto::TableStruct;
   friend void ::protobuf_BlockchainTransactionOutput_2eproto::InitDefaultsBlockchainTransactionOutputImpl();
 };
@@ -274,13 +296,13 @@ class BlockchainTransactionOutput : public ::google::protobuf::MessageLite /* @@
 
 // optional uint32 version = 1;
 inline bool BlockchainTransactionOutput::has_version() const {
-  return (_has_bits_[0] & 0x00000008u) != 0;
+  return (_has_bits_[0] & 0x00000004u) != 0;
 }
 inline void BlockchainTransactionOutput::set_has_version() {
-  _has_bits_[0] |= 0x00000008u;
+  _has_bits_[0] |= 0x00000004u;
 }
 inline void BlockchainTransactionOutput::clear_has_version() {
-  _has_bits_[0] &= ~0x00000008u;
+  _has_bits_[0] &= ~0x00000004u;
 }
 inline void BlockchainTransactionOutput::clear_version() {
   version_ = 0u;
@@ -298,13 +320,13 @@ inline void BlockchainTransactionOutput::set_version(::google::protobuf::uint32 
 
 // optional uint32 index = 2;
 inline bool BlockchainTransactionOutput::has_index() const {
-  return (_has_bits_[0] & 0x00000010u) != 0;
+  return (_has_bits_[0] & 0x00000008u) != 0;
 }
 inline void BlockchainTransactionOutput::set_has_index() {
-  _has_bits_[0] |= 0x00000010u;
+  _has_bits_[0] |= 0x00000008u;
 }
 inline void BlockchainTransactionOutput::clear_has_index() {
-  _has_bits_[0] &= ~0x00000010u;
+  _has_bits_[0] &= ~0x00000008u;
 }
 inline void BlockchainTransactionOutput::clear_index() {
   index_ = 0u;
@@ -322,13 +344,13 @@ inline void BlockchainTransactionOutput::set_index(::google::protobuf::uint32 va
 
 // optional uint64 value = 3;
 inline bool BlockchainTransactionOutput::has_value() const {
-  return (_has_bits_[0] & 0x00000020u) != 0;
+  return (_has_bits_[0] & 0x00000010u) != 0;
 }
 inline void BlockchainTransactionOutput::set_has_value() {
-  _has_bits_[0] |= 0x00000020u;
+  _has_bits_[0] |= 0x00000010u;
 }
 inline void BlockchainTransactionOutput::clear_has_value() {
-  _has_bits_[0] &= ~0x00000020u;
+  _has_bits_[0] &= ~0x00000010u;
 }
 inline void BlockchainTransactionOutput::clear_value() {
   value_ = GOOGLE_ULONGLONG(0);
@@ -344,141 +366,146 @@ inline void BlockchainTransactionOutput::set_value(::google::protobuf::uint64 va
   // @@protoc_insertion_point(field_set:opentxs.proto.BlockchainTransactionOutput.value)
 }
 
-// optional bytes serializedscript = 4;
-inline bool BlockchainTransactionOutput::has_serializedscript() const {
+// optional bytes script = 4;
+inline bool BlockchainTransactionOutput::has_script() const {
   return (_has_bits_[0] & 0x00000001u) != 0;
 }
-inline void BlockchainTransactionOutput::set_has_serializedscript() {
+inline void BlockchainTransactionOutput::set_has_script() {
   _has_bits_[0] |= 0x00000001u;
 }
-inline void BlockchainTransactionOutput::clear_has_serializedscript() {
+inline void BlockchainTransactionOutput::clear_has_script() {
   _has_bits_[0] &= ~0x00000001u;
 }
-inline void BlockchainTransactionOutput::clear_serializedscript() {
-  serializedscript_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  clear_has_serializedscript();
+inline void BlockchainTransactionOutput::clear_script() {
+  script_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  clear_has_script();
 }
-inline const ::std::string& BlockchainTransactionOutput::serializedscript() const {
-  // @@protoc_insertion_point(field_get:opentxs.proto.BlockchainTransactionOutput.serializedscript)
-  return serializedscript_.GetNoArena();
+inline const ::std::string& BlockchainTransactionOutput::script() const {
+  // @@protoc_insertion_point(field_get:opentxs.proto.BlockchainTransactionOutput.script)
+  return script_.GetNoArena();
 }
-inline void BlockchainTransactionOutput::set_serializedscript(const ::std::string& value) {
-  set_has_serializedscript();
-  serializedscript_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
-  // @@protoc_insertion_point(field_set:opentxs.proto.BlockchainTransactionOutput.serializedscript)
+inline void BlockchainTransactionOutput::set_script(const ::std::string& value) {
+  set_has_script();
+  script_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:opentxs.proto.BlockchainTransactionOutput.script)
 }
 #if LANG_CXX11
-inline void BlockchainTransactionOutput::set_serializedscript(::std::string&& value) {
-  set_has_serializedscript();
-  serializedscript_.SetNoArena(
+inline void BlockchainTransactionOutput::set_script(::std::string&& value) {
+  set_has_script();
+  script_.SetNoArena(
     &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:opentxs.proto.BlockchainTransactionOutput.serializedscript)
+  // @@protoc_insertion_point(field_set_rvalue:opentxs.proto.BlockchainTransactionOutput.script)
 }
 #endif
-inline void BlockchainTransactionOutput::set_serializedscript(const char* value) {
+inline void BlockchainTransactionOutput::set_script(const char* value) {
   GOOGLE_DCHECK(value != NULL);
-  set_has_serializedscript();
-  serializedscript_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:opentxs.proto.BlockchainTransactionOutput.serializedscript)
+  set_has_script();
+  script_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:opentxs.proto.BlockchainTransactionOutput.script)
 }
-inline void BlockchainTransactionOutput::set_serializedscript(const void* value, size_t size) {
-  set_has_serializedscript();
-  serializedscript_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+inline void BlockchainTransactionOutput::set_script(const void* value, size_t size) {
+  set_has_script();
+  script_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:opentxs.proto.BlockchainTransactionOutput.serializedscript)
+  // @@protoc_insertion_point(field_set_pointer:opentxs.proto.BlockchainTransactionOutput.script)
 }
-inline ::std::string* BlockchainTransactionOutput::mutable_serializedscript() {
-  set_has_serializedscript();
-  // @@protoc_insertion_point(field_mutable:opentxs.proto.BlockchainTransactionOutput.serializedscript)
-  return serializedscript_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+inline ::std::string* BlockchainTransactionOutput::mutable_script() {
+  set_has_script();
+  // @@protoc_insertion_point(field_mutable:opentxs.proto.BlockchainTransactionOutput.script)
+  return script_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
-inline ::std::string* BlockchainTransactionOutput::release_serializedscript() {
-  // @@protoc_insertion_point(field_release:opentxs.proto.BlockchainTransactionOutput.serializedscript)
-  clear_has_serializedscript();
-  return serializedscript_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+inline ::std::string* BlockchainTransactionOutput::release_script() {
+  // @@protoc_insertion_point(field_release:opentxs.proto.BlockchainTransactionOutput.script)
+  clear_has_script();
+  return script_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
-inline void BlockchainTransactionOutput::set_allocated_serializedscript(::std::string* serializedscript) {
-  if (serializedscript != NULL) {
-    set_has_serializedscript();
+inline void BlockchainTransactionOutput::set_allocated_script(::std::string* script) {
+  if (script != NULL) {
+    set_has_script();
   } else {
-    clear_has_serializedscript();
+    clear_has_script();
   }
-  serializedscript_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), serializedscript);
-  // @@protoc_insertion_point(field_set_allocated:opentxs.proto.BlockchainTransactionOutput.serializedscript)
+  script_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), script);
+  // @@protoc_insertion_point(field_set_allocated:opentxs.proto.BlockchainTransactionOutput.script)
 }
 
-// optional string address = 5;
-inline bool BlockchainTransactionOutput::has_address() const {
+// optional .opentxs.proto.BlockchainWalletKey key = 5;
+inline bool BlockchainTransactionOutput::has_key() const {
+  return destination_case() == kKey;
+}
+inline void BlockchainTransactionOutput::set_has_key() {
+  _oneof_case_[0] = kKey;
+}
+inline ::opentxs::proto::BlockchainWalletKey* BlockchainTransactionOutput::release_key() {
+  // @@protoc_insertion_point(field_release:opentxs.proto.BlockchainTransactionOutput.key)
+  if (has_key()) {
+    clear_has_destination();
+      ::opentxs::proto::BlockchainWalletKey* temp = destination_.key_;
+    destination_.key_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+inline const ::opentxs::proto::BlockchainWalletKey& BlockchainTransactionOutput::key() const {
+  // @@protoc_insertion_point(field_get:opentxs.proto.BlockchainTransactionOutput.key)
+  return has_key()
+      ? *destination_.key_
+      : *reinterpret_cast< ::opentxs::proto::BlockchainWalletKey*>(&::opentxs::proto::_BlockchainWalletKey_default_instance_);
+}
+inline ::opentxs::proto::BlockchainWalletKey* BlockchainTransactionOutput::mutable_key() {
+  if (!has_key()) {
+    clear_destination();
+    set_has_key();
+    destination_.key_ = new ::opentxs::proto::BlockchainWalletKey;
+  }
+  // @@protoc_insertion_point(field_mutable:opentxs.proto.BlockchainTransactionOutput.key)
+  return destination_.key_;
+}
+
+// optional .opentxs.proto.BlockchainExternalAddress external = 6;
+inline bool BlockchainTransactionOutput::has_external() const {
+  return destination_case() == kExternal;
+}
+inline void BlockchainTransactionOutput::set_has_external() {
+  _oneof_case_[0] = kExternal;
+}
+inline ::opentxs::proto::BlockchainExternalAddress* BlockchainTransactionOutput::release_external() {
+  // @@protoc_insertion_point(field_release:opentxs.proto.BlockchainTransactionOutput.external)
+  if (has_external()) {
+    clear_has_destination();
+      ::opentxs::proto::BlockchainExternalAddress* temp = destination_.external_;
+    destination_.external_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+inline const ::opentxs::proto::BlockchainExternalAddress& BlockchainTransactionOutput::external() const {
+  // @@protoc_insertion_point(field_get:opentxs.proto.BlockchainTransactionOutput.external)
+  return has_external()
+      ? *destination_.external_
+      : *reinterpret_cast< ::opentxs::proto::BlockchainExternalAddress*>(&::opentxs::proto::_BlockchainExternalAddress_default_instance_);
+}
+inline ::opentxs::proto::BlockchainExternalAddress* BlockchainTransactionOutput::mutable_external() {
+  if (!has_external()) {
+    clear_destination();
+    set_has_external();
+    destination_.external_ = new ::opentxs::proto::BlockchainExternalAddress;
+  }
+  // @@protoc_insertion_point(field_mutable:opentxs.proto.BlockchainTransactionOutput.external)
+  return destination_.external_;
+}
+
+// optional string confirmedspend = 7;
+inline bool BlockchainTransactionOutput::has_confirmedspend() const {
   return (_has_bits_[0] & 0x00000002u) != 0;
 }
-inline void BlockchainTransactionOutput::set_has_address() {
+inline void BlockchainTransactionOutput::set_has_confirmedspend() {
   _has_bits_[0] |= 0x00000002u;
 }
-inline void BlockchainTransactionOutput::clear_has_address() {
-  _has_bits_[0] &= ~0x00000002u;
-}
-inline void BlockchainTransactionOutput::clear_address() {
-  address_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  clear_has_address();
-}
-inline const ::std::string& BlockchainTransactionOutput::address() const {
-  // @@protoc_insertion_point(field_get:opentxs.proto.BlockchainTransactionOutput.address)
-  return address_.GetNoArena();
-}
-inline void BlockchainTransactionOutput::set_address(const ::std::string& value) {
-  set_has_address();
-  address_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
-  // @@protoc_insertion_point(field_set:opentxs.proto.BlockchainTransactionOutput.address)
-}
-#if LANG_CXX11
-inline void BlockchainTransactionOutput::set_address(::std::string&& value) {
-  set_has_address();
-  address_.SetNoArena(
-    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:opentxs.proto.BlockchainTransactionOutput.address)
-}
-#endif
-inline void BlockchainTransactionOutput::set_address(const char* value) {
-  GOOGLE_DCHECK(value != NULL);
-  set_has_address();
-  address_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:opentxs.proto.BlockchainTransactionOutput.address)
-}
-inline void BlockchainTransactionOutput::set_address(const char* value, size_t size) {
-  set_has_address();
-  address_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
-      ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:opentxs.proto.BlockchainTransactionOutput.address)
-}
-inline ::std::string* BlockchainTransactionOutput::mutable_address() {
-  set_has_address();
-  // @@protoc_insertion_point(field_mutable:opentxs.proto.BlockchainTransactionOutput.address)
-  return address_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-}
-inline ::std::string* BlockchainTransactionOutput::release_address() {
-  // @@protoc_insertion_point(field_release:opentxs.proto.BlockchainTransactionOutput.address)
-  clear_has_address();
-  return address_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-}
-inline void BlockchainTransactionOutput::set_allocated_address(::std::string* address) {
-  if (address != NULL) {
-    set_has_address();
-  } else {
-    clear_has_address();
-  }
-  address_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), address);
-  // @@protoc_insertion_point(field_set_allocated:opentxs.proto.BlockchainTransactionOutput.address)
-}
-
-// optional string confirmedspend = 6;
-inline bool BlockchainTransactionOutput::has_confirmedspend() const {
-  return (_has_bits_[0] & 0x00000004u) != 0;
-}
-inline void BlockchainTransactionOutput::set_has_confirmedspend() {
-  _has_bits_[0] |= 0x00000004u;
-}
 inline void BlockchainTransactionOutput::clear_has_confirmedspend() {
-  _has_bits_[0] &= ~0x00000004u;
+  _has_bits_[0] &= ~0x00000002u;
 }
 inline void BlockchainTransactionOutput::clear_confirmedspend() {
   confirmedspend_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
@@ -533,7 +560,7 @@ inline void BlockchainTransactionOutput::set_allocated_confirmedspend(::std::str
   // @@protoc_insertion_point(field_set_allocated:opentxs.proto.BlockchainTransactionOutput.confirmedspend)
 }
 
-// repeated string orphanedspend = 7;
+// repeated string orphanedspend = 8;
 inline int BlockchainTransactionOutput::orphanedspend_size() const {
   return orphanedspend_.size();
 }
@@ -602,6 +629,15 @@ BlockchainTransactionOutput::mutable_orphanedspend() {
   return &orphanedspend_;
 }
 
+inline bool BlockchainTransactionOutput::has_destination() const {
+  return destination_case() != DESTINATION_NOT_SET;
+}
+inline void BlockchainTransactionOutput::clear_has_destination() {
+  _oneof_case_[0] = DESTINATION_NOT_SET;
+}
+inline BlockchainTransactionOutput::DestinationCase BlockchainTransactionOutput::destination_case() const {
+  return BlockchainTransactionOutput::DestinationCase(_oneof_case_[0]);
+}
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__

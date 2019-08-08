@@ -15,29 +15,9 @@ namespace proto
 
 bool CheckProto_1(const BlockchainTransactionInput& input, const bool silent)
 {
-    if (false == input.has_index()) { FAIL_1("missing index") }
-
-    if (false == input.has_serializedscript()) {
-        FAIL_1("missing serializedscript")
-    }
-
-    if (MIN_PLAUSIBLE_SCRIPT > input.serializedscript().size()) {
-        FAIL_1("invalid serializedscript")
-    }
-
-    if (MAX_PLAUSIBLE_SCRIPT < input.serializedscript().size()) {
-        FAIL_1("invalid serializedscript")
-    }
-
-    for (const auto& address : input.address()) {
-        if (MIN_PLAUSIBLE_IDENTIFIER > address.size()) {
-            FAIL_1("invalid serializedscript")
-        }
-
-        if (MAX_PLAUSIBLE_IDENTIFIER < address.size()) {
-            FAIL_1("invalid serializedscript")
-        }
-    }
+    CHECK_SCRIPT(script);
+    CHECK_SUBOBJECT(
+        previous, BlockchainTransactionInputAllowedBlockchainPreviousOutput);
 
     return true;
 }

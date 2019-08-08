@@ -17,15 +17,19 @@ set(PROTO_SOURCES
     BailmentReply.proto
     BasketParams.proto
     BasketItem.proto
-    Bip44Account.proto
-    Bip44Address.proto
     Bip47Address.proto
     Bip47Channel.proto
     Bip47Direction.proto
     BlindedSeriesList.proto
+    BlockchainActivity.proto
+    BlockchainAddress.proto
+    BlockchainEnums.proto
+    BlockchainExternalAddress.proto
+    BlockchainPreviousOutput.proto
     BlockchainTransaction.proto
     BlockchainTransactionInput.proto
     BlockchainTransactionOutput.proto
+    BlockchainWalletKey.proto
     CashEnums.proto
     ChildCredentialParameters.proto
     Ciphertext.proto
@@ -53,6 +57,7 @@ set(PROTO_SOURCES
     EquityParams.proto
     Faucet.proto
     GetWorkflow.proto
+    HDAccount.proto
     HDPath.proto
     HDSeed.proto
     InstrumentRevision.proto
@@ -110,6 +115,7 @@ set(PROTO_SOURCES
     StorageBip47NymAddressIndex.proto
     StorageBlockchainAccountList.proto
     StorageBlockchainTransactions.proto
+    StorageBlockchainTxo.proto
     StorageContactAddressIndex.proto
     StorageContactNymIndex.proto
     StorageContacts.proto
@@ -129,6 +135,7 @@ set(PROTO_SOURCES
     StorageServers.proto
     StorageThread.proto
     StorageThreadItem.proto
+    StorageTxoIndex.proto
     StorageUnits.proto
     StorageWorkflowIndex.proto
     StorageWorkflowType.proto

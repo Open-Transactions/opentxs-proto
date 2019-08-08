@@ -240,6 +240,12 @@
         }                                                                      \
     }
 
+#define CHECK_SCRIPT(a)                                                        \
+    {                                                                          \
+        CHECK_EXISTS_STRING(a);                                                \
+        OPTIONAL_SCRIPT(a);                                                    \
+    }
+
 #define CHECK_SUBOBJECT(a, b)                                                  \
     {                                                                          \
         CHECK_EXISTS(a);                                                       \
@@ -314,6 +320,11 @@
                 FAIL_2(fail, it.size())                                        \
             }                                                                  \
         }                                                                      \
+    }
+
+#define OPTIONAL_SCRIPT(a)                                                     \
+    {                                                                          \
+        _CHECK_STRING(a, MIN_PLAUSIBLE_SCRIPT, MAX_PLAUSIBLE_SCRIPT);          \
     }
 
 #define OPTIONAL_SUBOBJECT(a, b)                                               \

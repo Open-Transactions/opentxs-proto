@@ -59,6 +59,8 @@ void Seed::InitAsDefaultInstance() {
       ::opentxs::proto::Ciphertext::internal_default_instance());
   ::opentxs::proto::_Seed_default_instance_._instance.get_mutable()->passphrase_ = const_cast< ::opentxs::proto::Ciphertext*>(
       ::opentxs::proto::Ciphertext::internal_default_instance());
+  ::opentxs::proto::_Seed_default_instance_._instance.get_mutable()->raw_ = const_cast< ::opentxs::proto::Ciphertext*>(
+      ::opentxs::proto::Ciphertext::internal_default_instance());
 }
 void Seed::clear_words() {
   if (words_ != NULL) words_->Clear();
@@ -68,12 +70,17 @@ void Seed::clear_passphrase() {
   if (passphrase_ != NULL) passphrase_->Clear();
   clear_has_passphrase();
 }
+void Seed::clear_raw() {
+  if (raw_ != NULL) raw_->Clear();
+  clear_has_raw();
+}
 #if !defined(_MSC_VER) || _MSC_VER >= 1900
 const int Seed::kVersionFieldNumber;
 const int Seed::kWordsFieldNumber;
 const int Seed::kPassphraseFieldNumber;
 const int Seed::kFingerprintFieldNumber;
 const int Seed::kIndexFieldNumber;
+const int Seed::kRawFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 Seed::Seed()
@@ -104,6 +111,11 @@ Seed::Seed(const Seed& from)
   } else {
     passphrase_ = NULL;
   }
+  if (from.has_raw()) {
+    raw_ = new ::opentxs::proto::Ciphertext(*from.raw_);
+  } else {
+    raw_ = NULL;
+  }
   ::memcpy(&version_, &from.version_,
     static_cast<size_t>(reinterpret_cast<char*>(&index_) -
     reinterpret_cast<char*>(&version_)) + sizeof(index_));
@@ -127,6 +139,7 @@ void Seed::SharedDtor() {
   fingerprint_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   if (this != internal_default_instance()) delete words_;
   if (this != internal_default_instance()) delete passphrase_;
+  if (this != internal_default_instance()) delete raw_;
 }
 
 void Seed::SetCachedSize(int size) const {
@@ -154,7 +167,7 @@ void Seed::Clear() {
   (void) cached_has_bits;
 
   cached_has_bits = _has_bits_[0];
-  if (cached_has_bits & 7u) {
+  if (cached_has_bits & 15u) {
     if (cached_has_bits & 0x00000001u) {
       GOOGLE_DCHECK(!fingerprint_.IsDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited()));
       (*fingerprint_.UnsafeRawStringPointer())->clear();
@@ -167,8 +180,12 @@ void Seed::Clear() {
       GOOGLE_DCHECK(passphrase_ != NULL);
       passphrase_->Clear();
     }
+    if (cached_has_bits & 0x00000008u) {
+      GOOGLE_DCHECK(raw_ != NULL);
+      raw_->Clear();
+    }
   }
-  if (cached_has_bits & 24u) {
+  if (cached_has_bits & 48u) {
     ::memset(&version_, 0, static_cast<size_t>(
         reinterpret_cast<char*>(&index_) -
         reinterpret_cast<char*>(&version_)) + sizeof(index_));
@@ -257,6 +274,18 @@ bool Seed::MergePartialFromCodedStream(
         break;
       }
 
+      // optional .opentxs.proto.Ciphertext raw = 6;
+      case 6: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(50u /* 50 & 0xFF */)) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessage(
+               input, mutable_raw()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
       default: {
       handle_unusual:
         if (tag == 0) {
@@ -285,7 +314,7 @@ void Seed::SerializeWithCachedSizes(
 
   cached_has_bits = _has_bits_[0];
   // optional uint32 version = 1;
-  if (cached_has_bits & 0x00000008u) {
+  if (cached_has_bits & 0x00000010u) {
     ::google::protobuf::internal::WireFormatLite::WriteUInt32(1, this->version(), output);
   }
 
@@ -308,8 +337,14 @@ void Seed::SerializeWithCachedSizes(
   }
 
   // optional uint32 index = 5;
-  if (cached_has_bits & 0x00000010u) {
+  if (cached_has_bits & 0x00000020u) {
     ::google::protobuf::internal::WireFormatLite::WriteUInt32(5, this->index(), output);
+  }
+
+  // optional .opentxs.proto.Ciphertext raw = 6;
+  if (cached_has_bits & 0x00000008u) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessage(
+      6, *this->raw_, output);
   }
 
   output->WriteRaw(_internal_metadata_.unknown_fields().data(),
@@ -323,7 +358,7 @@ size_t Seed::ByteSizeLong() const {
 
   total_size += _internal_metadata_.unknown_fields().size();
 
-  if (_has_bits_[0 / 32] & 31u) {
+  if (_has_bits_[0 / 32] & 63u) {
     // optional string fingerprint = 4;
     if (has_fingerprint()) {
       total_size += 1 +
@@ -343,6 +378,13 @@ size_t Seed::ByteSizeLong() const {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::MessageSize(
           *this->passphrase_);
+    }
+
+    // optional .opentxs.proto.Ciphertext raw = 6;
+    if (has_raw()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::MessageSize(
+          *this->raw_);
     }
 
     // optional uint32 version = 1;
@@ -380,7 +422,7 @@ void Seed::MergeFrom(const Seed& from) {
   (void) cached_has_bits;
 
   cached_has_bits = from._has_bits_[0];
-  if (cached_has_bits & 31u) {
+  if (cached_has_bits & 63u) {
     if (cached_has_bits & 0x00000001u) {
       set_has_fingerprint();
       fingerprint_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.fingerprint_);
@@ -392,9 +434,12 @@ void Seed::MergeFrom(const Seed& from) {
       mutable_passphrase()->::opentxs::proto::Ciphertext::MergeFrom(from.passphrase());
     }
     if (cached_has_bits & 0x00000008u) {
-      version_ = from.version_;
+      mutable_raw()->::opentxs::proto::Ciphertext::MergeFrom(from.raw());
     }
     if (cached_has_bits & 0x00000010u) {
+      version_ = from.version_;
+    }
+    if (cached_has_bits & 0x00000020u) {
       index_ = from.index_;
     }
     _has_bits_[0] |= cached_has_bits;
@@ -421,6 +466,7 @@ void Seed::InternalSwap(Seed* other) {
   fingerprint_.Swap(&other->fingerprint_);
   swap(words_, other->words_);
   swap(passphrase_, other->passphrase_);
+  swap(raw_, other->raw_);
   swap(version_, other->version_);
   swap(index_, other->index_);
   swap(_has_bits_[0], other->_has_bits_[0]);

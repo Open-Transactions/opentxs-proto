@@ -63,6 +63,7 @@ const int Claim::kTypeFieldNumber;
 const int Claim::kStartFieldNumber;
 const int Claim::kEndFieldNumber;
 const int Claim::kValueFieldNumber;
+const int Claim::kSubtypeFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 Claim::Claim()
@@ -87,6 +88,10 @@ Claim::Claim(const Claim& from)
   if (from.has_value()) {
     value_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.value_);
   }
+  subtype_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.has_subtype()) {
+    subtype_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.subtype_);
+  }
   ::memcpy(&version_, &from.version_,
     static_cast<size_t>(reinterpret_cast<char*>(&type_) -
     reinterpret_cast<char*>(&version_)) + sizeof(type_));
@@ -97,6 +102,7 @@ void Claim::SharedCtor() {
   _cached_size_ = 0;
   nymid_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   value_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  subtype_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   ::memset(&version_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&type_) -
       reinterpret_cast<char*>(&version_)) + sizeof(type_));
@@ -110,6 +116,7 @@ Claim::~Claim() {
 void Claim::SharedDtor() {
   nymid_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   value_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  subtype_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 
 void Claim::SetCachedSize(int size) const {
@@ -137,7 +144,7 @@ void Claim::Clear() {
   (void) cached_has_bits;
 
   cached_has_bits = _has_bits_[0];
-  if (cached_has_bits & 3u) {
+  if (cached_has_bits & 7u) {
     if (cached_has_bits & 0x00000001u) {
       GOOGLE_DCHECK(!nymid_.IsDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited()));
       (*nymid_.UnsafeRawStringPointer())->clear();
@@ -146,8 +153,12 @@ void Claim::Clear() {
       GOOGLE_DCHECK(!value_.IsDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited()));
       (*value_.UnsafeRawStringPointer())->clear();
     }
+    if (cached_has_bits & 0x00000004u) {
+      GOOGLE_DCHECK(!subtype_.IsDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited()));
+      (*subtype_.UnsafeRawStringPointer())->clear();
+    }
   }
-  if (cached_has_bits & 124u) {
+  if (cached_has_bits & 248u) {
     ::memset(&version_, 0, static_cast<size_t>(
         reinterpret_cast<char*>(&type_) -
         reinterpret_cast<char*>(&version_)) + sizeof(type_));
@@ -266,6 +277,18 @@ bool Claim::MergePartialFromCodedStream(
         break;
       }
 
+      // optional string subtype = 8;
+      case 8: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(66u /* 66 & 0xFF */)) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+                input, this->mutable_subtype()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
       default: {
       handle_unusual:
         if (tag == 0) {
@@ -294,7 +317,7 @@ void Claim::SerializeWithCachedSizes(
 
   cached_has_bits = _has_bits_[0];
   // optional uint32 version = 1;
-  if (cached_has_bits & 0x00000004u) {
+  if (cached_has_bits & 0x00000008u) {
     ::google::protobuf::internal::WireFormatLite::WriteUInt32(1, this->version(), output);
   }
 
@@ -305,22 +328,22 @@ void Claim::SerializeWithCachedSizes(
   }
 
   // optional uint32 section = 3;
-  if (cached_has_bits & 0x00000008u) {
+  if (cached_has_bits & 0x00000010u) {
     ::google::protobuf::internal::WireFormatLite::WriteUInt32(3, this->section(), output);
   }
 
   // optional uint32 type = 4;
-  if (cached_has_bits & 0x00000040u) {
+  if (cached_has_bits & 0x00000080u) {
     ::google::protobuf::internal::WireFormatLite::WriteUInt32(4, this->type(), output);
   }
 
   // optional sint64 start = 5;
-  if (cached_has_bits & 0x00000010u) {
+  if (cached_has_bits & 0x00000020u) {
     ::google::protobuf::internal::WireFormatLite::WriteSInt64(5, this->start(), output);
   }
 
   // optional sint64 end = 6;
-  if (cached_has_bits & 0x00000020u) {
+  if (cached_has_bits & 0x00000040u) {
     ::google::protobuf::internal::WireFormatLite::WriteSInt64(6, this->end(), output);
   }
 
@@ -328,6 +351,12 @@ void Claim::SerializeWithCachedSizes(
   if (cached_has_bits & 0x00000002u) {
     ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
       7, this->value(), output);
+  }
+
+  // optional string subtype = 8;
+  if (cached_has_bits & 0x00000004u) {
+    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
+      8, this->subtype(), output);
   }
 
   output->WriteRaw(_internal_metadata_.unknown_fields().data(),
@@ -341,7 +370,7 @@ size_t Claim::ByteSizeLong() const {
 
   total_size += _internal_metadata_.unknown_fields().size();
 
-  if (_has_bits_[0 / 32] & 127u) {
+  if (_has_bits_[0 / 32] & 255u) {
     // optional string nymID = 2;
     if (has_nymid()) {
       total_size += 1 +
@@ -354,6 +383,13 @@ size_t Claim::ByteSizeLong() const {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::StringSize(
           this->value());
+    }
+
+    // optional string subtype = 8;
+    if (has_subtype()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::StringSize(
+          this->subtype());
     }
 
     // optional uint32 version = 1;
@@ -412,7 +448,7 @@ void Claim::MergeFrom(const Claim& from) {
   (void) cached_has_bits;
 
   cached_has_bits = from._has_bits_[0];
-  if (cached_has_bits & 127u) {
+  if (cached_has_bits & 255u) {
     if (cached_has_bits & 0x00000001u) {
       set_has_nymid();
       nymid_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.nymid_);
@@ -422,18 +458,22 @@ void Claim::MergeFrom(const Claim& from) {
       value_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.value_);
     }
     if (cached_has_bits & 0x00000004u) {
-      version_ = from.version_;
+      set_has_subtype();
+      subtype_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.subtype_);
     }
     if (cached_has_bits & 0x00000008u) {
-      section_ = from.section_;
+      version_ = from.version_;
     }
     if (cached_has_bits & 0x00000010u) {
-      start_ = from.start_;
+      section_ = from.section_;
     }
     if (cached_has_bits & 0x00000020u) {
-      end_ = from.end_;
+      start_ = from.start_;
     }
     if (cached_has_bits & 0x00000040u) {
+      end_ = from.end_;
+    }
+    if (cached_has_bits & 0x00000080u) {
       type_ = from.type_;
     }
     _has_bits_[0] |= cached_has_bits;
@@ -459,6 +499,7 @@ void Claim::InternalSwap(Claim* other) {
   using std::swap;
   nymid_.Swap(&other->nymid_);
   value_.Swap(&other->value_);
+  subtype_.Swap(&other->subtype_);
   swap(version_, other->version_);
   swap(section_, other->section_);
   swap(start_, other->start_);

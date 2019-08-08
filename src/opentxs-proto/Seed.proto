@@ -18,4 +18,5 @@ message Seed {
     optional Ciphertext passphrase = 3;
     optional string fingerprint = 4;
     optional uint32 index = 5;
+    optional Ciphertext raw = 6;
 }

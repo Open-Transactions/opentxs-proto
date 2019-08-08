@@ -179,6 +179,15 @@ class Seed : public ::google::protobuf::MessageLite /* @@protoc_insertion_point(
   ::opentxs::proto::Ciphertext* mutable_passphrase();
   void set_allocated_passphrase(::opentxs::proto::Ciphertext* passphrase);
 
+  // optional .opentxs.proto.Ciphertext raw = 6;
+  bool has_raw() const;
+  void clear_raw();
+  static const int kRawFieldNumber = 6;
+  const ::opentxs::proto::Ciphertext& raw() const;
+  ::opentxs::proto::Ciphertext* release_raw();
+  ::opentxs::proto::Ciphertext* mutable_raw();
+  void set_allocated_raw(::opentxs::proto::Ciphertext* raw);
+
   // optional uint32 version = 1;
   bool has_version() const;
   void clear_version();
@@ -205,6 +214,8 @@ class Seed : public ::google::protobuf::MessageLite /* @@protoc_insertion_point(
   void clear_has_fingerprint();
   void set_has_index();
   void clear_has_index();
+  void set_has_raw();
+  void clear_has_raw();
 
   ::google::protobuf::internal::InternalMetadataWithArenaLite _internal_metadata_;
   ::google::protobuf::internal::HasBits<1> _has_bits_;
@@ -212,6 +223,7 @@ class Seed : public ::google::protobuf::MessageLite /* @@protoc_insertion_point(
   ::google::protobuf::internal::ArenaStringPtr fingerprint_;
   ::opentxs::proto::Ciphertext* words_;
   ::opentxs::proto::Ciphertext* passphrase_;
+  ::opentxs::proto::Ciphertext* raw_;
   ::google::protobuf::uint32 version_;
   ::google::protobuf::uint32 index_;
   friend struct ::protobuf_Seed_2eproto::TableStruct;
@@ -230,13 +242,13 @@ class Seed : public ::google::protobuf::MessageLite /* @@protoc_insertion_point(
 
 // optional uint32 version = 1;
 inline bool Seed::has_version() const {
-  return (_has_bits_[0] & 0x00000008u) != 0;
+  return (_has_bits_[0] & 0x00000010u) != 0;
 }
 inline void Seed::set_has_version() {
-  _has_bits_[0] |= 0x00000008u;
+  _has_bits_[0] |= 0x00000010u;
 }
 inline void Seed::clear_has_version() {
-  _has_bits_[0] &= ~0x00000008u;
+  _has_bits_[0] &= ~0x00000010u;
 }
 inline void Seed::clear_version() {
   version_ = 0u;
@@ -417,13 +429,13 @@ inline void Seed::set_allocated_fingerprint(::std::string* fingerprint) {
 
 // optional uint32 index = 5;
 inline bool Seed::has_index() const {
-  return (_has_bits_[0] & 0x00000010u) != 0;
+  return (_has_bits_[0] & 0x00000020u) != 0;
 }
 inline void Seed::set_has_index() {
-  _has_bits_[0] |= 0x00000010u;
+  _has_bits_[0] |= 0x00000020u;
 }
 inline void Seed::clear_has_index() {
-  _has_bits_[0] &= ~0x00000010u;
+  _has_bits_[0] &= ~0x00000020u;
 }
 inline void Seed::clear_index() {
   index_ = 0u;
@@ -437,6 +449,56 @@ inline void Seed::set_index(::google::protobuf::uint32 value) {
   set_has_index();
   index_ = value;
   // @@protoc_insertion_point(field_set:opentxs.proto.Seed.index)
+}
+
+// optional .opentxs.proto.Ciphertext raw = 6;
+inline bool Seed::has_raw() const {
+  return (_has_bits_[0] & 0x00000008u) != 0;
+}
+inline void Seed::set_has_raw() {
+  _has_bits_[0] |= 0x00000008u;
+}
+inline void Seed::clear_has_raw() {
+  _has_bits_[0] &= ~0x00000008u;
+}
+inline const ::opentxs::proto::Ciphertext& Seed::raw() const {
+  const ::opentxs::proto::Ciphertext* p = raw_;
+  // @@protoc_insertion_point(field_get:opentxs.proto.Seed.raw)
+  return p != NULL ? *p : *reinterpret_cast<const ::opentxs::proto::Ciphertext*>(
+      &::opentxs::proto::_Ciphertext_default_instance_);
+}
+inline ::opentxs::proto::Ciphertext* Seed::release_raw() {
+  // @@protoc_insertion_point(field_release:opentxs.proto.Seed.raw)
+  clear_has_raw();
+  ::opentxs::proto::Ciphertext* temp = raw_;
+  raw_ = NULL;
+  return temp;
+}
+inline ::opentxs::proto::Ciphertext* Seed::mutable_raw() {
+  set_has_raw();
+  if (raw_ == NULL) {
+    raw_ = new ::opentxs::proto::Ciphertext;
+  }
+  // @@protoc_insertion_point(field_mutable:opentxs.proto.Seed.raw)
+  return raw_;
+}
+inline void Seed::set_allocated_raw(::opentxs::proto::Ciphertext* raw) {
+  ::google::protobuf::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == NULL) {
+    delete reinterpret_cast< ::google::protobuf::MessageLite*>(raw_);
+  }
+  if (raw) {
+    ::google::protobuf::Arena* submessage_arena = NULL;
+    if (message_arena != submessage_arena) {
+      raw = ::google::protobuf::internal::GetOwnedMessage(
+          message_arena, raw, submessage_arena);
+    }
+    set_has_raw();
+  } else {
+    clear_has_raw();
+  }
+  raw_ = raw;
+  // @@protoc_insertion_point(field_set_allocated:opentxs.proto.Seed.raw)
 }
 
 #ifdef __GNUC__
