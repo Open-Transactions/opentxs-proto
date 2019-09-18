@@ -1,4 +1,4 @@
-// Copyright (c) 2018 The Open-Transactions developers
+// Copyright (c) 2019 The Open-Transactions developers
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
@@ -40,6 +40,7 @@ bool CheckProto_3(
         case SIGROLE_SERVERREPLY: {
             break;
         }
+        case SIGROLE_ERROR:
         default: {
             FAIL_2("invalid role", input.role())
         }

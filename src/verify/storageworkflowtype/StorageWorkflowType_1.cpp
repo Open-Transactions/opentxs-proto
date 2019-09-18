@@ -1,4 +1,4 @@
-// Copyright (c) 2018 The Open-Transactions developers
+// Copyright (c) 2019 The Open-Transactions developers
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
@@ -24,6 +24,9 @@ bool CheckProto_1(const StorageWorkflowType& input, const bool silent)
                 case PAYMENTWORKFLOWSTATE_COMPLETED:
                 case PAYMENTWORKFLOWSTATE_EXPIRED: {
                 } break;
+                case PAYMENTWORKFLOWSTATE_ABORTED:
+                case PAYMENTWORKFLOWSTATE_ACKNOWLEDGED:
+                case PAYMENTWORKFLOWSTATE_REJECTED:
                 case PAYMENTWORKFLOWSTATE_INITIATED:
                 case PAYMENTWORKFLOWSTATE_ERROR:
                 default: {
@@ -43,6 +46,9 @@ bool CheckProto_1(const StorageWorkflowType& input, const bool silent)
                 case PAYMENTWORKFLOWSTATE_UNSENT:
                 case PAYMENTWORKFLOWSTATE_CANCELLED:
                 case PAYMENTWORKFLOWSTATE_ACCEPTED:
+                case PAYMENTWORKFLOWSTATE_ABORTED:
+                case PAYMENTWORKFLOWSTATE_ACKNOWLEDGED:
+                case PAYMENTWORKFLOWSTATE_REJECTED:
                 case PAYMENTWORKFLOWSTATE_ERROR:
                 default: {
                     FAIL_2(
@@ -61,6 +67,9 @@ bool CheckProto_1(const StorageWorkflowType& input, const bool silent)
                 case PAYMENTWORKFLOWSTATE_EXPIRED: {
                 } break;
                 case PAYMENTWORKFLOWSTATE_INITIATED:
+                case PAYMENTWORKFLOWSTATE_ABORTED:
+                case PAYMENTWORKFLOWSTATE_ACKNOWLEDGED:
+                case PAYMENTWORKFLOWSTATE_REJECTED:
                 case PAYMENTWORKFLOWSTATE_ERROR:
                 default: {
                     FAIL_2(
@@ -79,6 +88,9 @@ bool CheckProto_1(const StorageWorkflowType& input, const bool silent)
                 case PAYMENTWORKFLOWSTATE_UNSENT:
                 case PAYMENTWORKFLOWSTATE_CANCELLED:
                 case PAYMENTWORKFLOWSTATE_ACCEPTED:
+                case PAYMENTWORKFLOWSTATE_ABORTED:
+                case PAYMENTWORKFLOWSTATE_ACKNOWLEDGED:
+                case PAYMENTWORKFLOWSTATE_REJECTED:
                 case PAYMENTWORKFLOWSTATE_ERROR:
                 default: {
                     FAIL_2(
@@ -87,6 +99,11 @@ bool CheckProto_1(const StorageWorkflowType& input, const bool silent)
                 }
             }
         } break;
+        case PAYMENTWORKFLOWTYPE_OUTGOINGTRANSFER:
+        case PAYMENTWORKFLOWTYPE_INCOMINGTRANSFER:
+        case PAYMENTWORKFLOWTYPE_INTERNALTRANSFER:
+        case PAYMENTWORKFLOWTYPE_OUTGOINGCASH:
+        case PAYMENTWORKFLOWTYPE_INCOMINGCASH:
         case PAYMENTWORKFLOWTYPE_ERROR:
         default: {
             FAIL_2("invalid type", static_cast<std::uint32_t>(input.type()))

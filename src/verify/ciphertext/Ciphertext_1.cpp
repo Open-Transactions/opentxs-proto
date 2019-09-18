@@ -1,4 +1,4 @@
-// Copyright (c) 2018 The Open-Transactions developers
+// Copyright (c) 2019 The Open-Transactions developers
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
@@ -18,9 +18,10 @@ bool CheckProto_1(const Ciphertext& input, const bool silent, const bool nested)
     if (!input.has_mode()) { FAIL_1("missing mode") }
 
     switch (input.mode()) {
-        case (SMODE_CHACHA20POLY1305): {
+        case SMODE_CHACHA20POLY1305: {
             break;
         }
+        case SMODE_ERROR:
         default: {
             FAIL_2("invalid mode", input.mode())
         }

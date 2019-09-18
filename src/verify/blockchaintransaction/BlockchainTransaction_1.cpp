@@ -1,4 +1,4 @@
-// Copyright (c) 2018 The Open-Transactions developers
+// Copyright (c) 2019 The Open-Transactions developers
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
@@ -39,19 +39,18 @@ bool CheckProto_1(const BlockchainTransaction& input, const bool silent)
         }
     }
 
-    for (const auto& input : input.input()) {
+    for (const auto& txin : input.input()) {
         try {
             const bool validInput = Check(
-                input,
-                BlockchainTransactionAllowedInput.at(input.version()).first,
-                BlockchainTransactionAllowedInput.at(input.version()).second,
+                txin,
+                BlockchainTransactionAllowedInput.at(txin.version()).first,
+                BlockchainTransactionAllowedInput.at(txin.version()).second,
                 silent);
 
             if (false == validInput) { FAIL_1("invalid input") }
         } catch (const std::out_of_range&) {
             FAIL_2(
-                "allowed input version not defined for version",
-                input.version())
+                "allowed input version not defined for version", txin.version())
         }
     }
 

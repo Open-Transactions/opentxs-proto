@@ -1,11 +1,10 @@
-# Copyright (c) 2018 The Open-Transactions developers
+# Copyright (c) 2019 The Open-Transactions developers
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-set(MODULE_NAME verify)
-
-set(cxx-sources
+set(
+  cxx-sources
   VerifyContacts.cpp
   acceptpendingpayment/AcceptPendingPayment_1.cpp
   accountdata/AccountData_1.cpp
@@ -179,14 +178,34 @@ set(cxx-sources
   verifyclaim/VerifyClaim_1.cpp
 )
 
-file(GLOB cxx-headers "${CMAKE_CURRENT_SOURCE_DIR}/../../include/opentxs-proto/verify/*.hpp")
+file(GLOB cxx-headers
+     "${CMAKE_CURRENT_SOURCE_DIR}/../../include/opentxs-proto/verify/*.hpp")
 
-add_library(${MODULE_NAME} OBJECT
-  ${cxx-headers}
-  ${cxx-sources}
+add_library(verify OBJECT ${cxx-headers} ${cxx-sources})
+add_library(opentxs-proto::verify ALIAS verify)
+add_dependencies(verify messages)
+
+target_include_directories(verify SYSTEM PUBLIC ${Protobuf_INCLUDE_DIR})
+target_include_directories(
+  verify
+  PUBLIC $<BUILD_INTERFACE:${opentxs-proto_SOURCE_DIR}/include>
+)
+target_include_directories(
+  verify SYSTEM
+  PUBLIC
+    ${Protobuf_INCLUDE_DIR} $<BUILD_INTERFACE:${opentxs-proto_BINARY_DIR}/src>
 )
 
-if(NOT OT_BUNDLED_OPENTXS_PROTO)
-  target_include_directories(${MODULE_NAME} PUBLIC ${PROTOBUF_INCLUDE_DIR})
-  add_dependencies(${MODULE_NAME} generated)
+if(NOT MSVC)
+  target_compile_options(verify PRIVATE -Wno-unused-parameter)
 endif()
+
+set_target_properties(verify PROPERTIES POSITION_INDEPENDENT_CODE ON)
+
+install(
+  DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/../../include/
+  DESTINATION include
+  COMPONENT dev
+  FILES_MATCHING
+  PATTERN "*.hpp"
+)

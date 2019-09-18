@@ -1,4 +1,4 @@
-// Copyright (c) 2018 The Open-Transactions developers
+// Copyright (c) 2019 The Open-Transactions developers
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
@@ -71,7 +71,7 @@ bool CheckProto_1(
     bool goodParams = false;
 
     switch (input.type()) {
-        case (UNITTYPE_CURRENCY): {
+        case UNITTYPE_CURRENCY: {
             if (!input.has_currency()) { FAIL_1("missing currency params") }
 
             try {
@@ -89,9 +89,8 @@ bool CheckProto_1(
             }
 
             if (!goodParams) { FAIL_1("invalid currency params") }
-
         } break;
-        case (UNITTYPE_SECURITY): {
+        case UNITTYPE_SECURITY: {
             if (!input.has_security()) { FAIL_1("missing security params") }
 
             try {
@@ -109,9 +108,8 @@ bool CheckProto_1(
             }
 
             if (!goodParams) { FAIL_1("invalid security params") }
-
         } break;
-        case (UNITTYPE_BASKET): {
+        case UNITTYPE_BASKET: {
             if (!input.has_basket()) { FAIL_1("missing currency params") }
 
             try {
@@ -128,8 +126,8 @@ bool CheckProto_1(
             }
 
             if (!goodParams) { FAIL_1("invalid basket params") }
-
         } break;
+        case UNITTYPE_ERROR:
         default: {
             FAIL_1("invalid type")
         }
