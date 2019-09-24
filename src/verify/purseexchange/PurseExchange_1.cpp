@@ -1,4 +1,4 @@
-// Copyright (c) 2018 The Open-Transactions developers
+// Copyright (c) 2019 The Open-Transactions developers
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
@@ -15,8 +15,8 @@ bool CheckProto_1(const PurseExchange& input, const bool silent)
 {
     std::int64_t inValue{0};
     std::int64_t outValue{0};
-    const auto& in = input.exchange();
-    const auto& out = input.request();
+    const auto& incoming = input.exchange();
+    const auto& outgoing = input.request();
 
     CHECK_SUBOBJECT_VA(exchange, PurseExchangeAllowedPurse, inValue);
     CHECK_SUBOBJECT_VA(request, PurseExchangeAllowedPurse, outValue);
@@ -26,21 +26,23 @@ bool CheckProto_1(const PurseExchange& input, const bool silent)
             "incorrect request purse value", outValue, " expected ", inValue);
     }
 
-    if (in.type() != out.type()) { FAIL_1("incorrect request purse type"); }
+    if (incoming.type() != outgoing.type()) {
+        FAIL_1("incorrect request purse type");
+    }
 
-    if (proto::PURSETYPE_NORMAL != in.state()) {
+    if (proto::PURSETYPE_NORMAL != incoming.state()) {
         FAIL_1("incorrect request purse state");
     }
 
-    if (proto::PURSETYPE_REQUEST != out.state()) {
+    if (proto::PURSETYPE_REQUEST != outgoing.state()) {
         FAIL_1("incorrect request purse state");
     }
 
-    if (in.notary() != out.notary()) {
+    if (incoming.notary() != outgoing.notary()) {
         FAIL_1("incorrect request purse notary");
     }
 
-    if (in.mint() != out.mint()) {
+    if (incoming.mint() != outgoing.mint()) {
         FAIL_1("incorrect request purse unit definition");
     }
 

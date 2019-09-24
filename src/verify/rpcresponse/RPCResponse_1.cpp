@@ -1,4 +1,4 @@
-// Copyright (c) 2018 The Open-Transactions developers
+// Copyright (c) 2019 The Open-Transactions developers
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
@@ -793,6 +793,8 @@ bool CheckProto_1(const RPCResponse& input, const bool silent)
         case RPCCOMMAND_GETADMINNYM:
         case RPCCOMMAND_GETUNITDEFINITION:
         case RPCCOMMAND_GETTRANSACTIONDATA:
+        case RPCCOMMAND_LOOKUPACCOUNTID:
+        case RPCCOMMAND_RENAMEACCOUNT:
         case RPCCOMMAND_ERROR:
         default: {
             FAIL_1("invalid type")

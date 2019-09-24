@@ -1,4 +1,4 @@
-// Copyright (c) 2018 The Open-Transactions developers
+// Copyright (c) 2019 The Open-Transactions developers
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
@@ -42,8 +42,9 @@ bool CheckProto_1(
 
     switch (input.type()) {
         case CREDTYPE_LEGACY:
-        case CREDTYPE_HD:
-            break;
+        case CREDTYPE_HD: {
+        } break;
+        case CREDTYPE_ERROR:
         default: {
             FAIL_2("invalid type", input.type())
         }
@@ -77,16 +78,15 @@ bool CheckProto_1(
     KeyMode requiredMode = KEYMODE_ERROR;
 
     switch (actualRole) {
-        case (CREDROLE_MASTERKEY):
-        case (CREDROLE_CHILDKEY): {
+        case CREDROLE_MASTERKEY:
+        case CREDROLE_CHILDKEY: {
             requiredMode = mode;
-            break;
-        }
-        case (CREDROLE_CONTACT):
-        case (CREDROLE_VERIFY): {
+        } break;
+        case CREDROLE_CONTACT:
+        case CREDROLE_VERIFY: {
             requiredMode = KEYMODE_NULL;
-            break;
-        }
+        } break;
+        case CREDROLE_ERROR:
         default: {
             FAIL_2("incorrect role", input.role())
         }
@@ -102,23 +102,19 @@ bool CheckProto_1(
     }
 
     switch (actualMode) {
-        case (KEYMODE_PUBLIC): {
+        case KEYMODE_PUBLIC: {
             isPublic = true;
-
-            break;
-        }
-        case (KEYMODE_PRIVATE): {
+        } break;
+        case KEYMODE_PRIVATE: {
             isPrivate = true;
 
             if (keyCredential) {
                 expectedSigCount++;  // private self-signature
             }
-
-            break;
-        }
-        case (KEYMODE_NULL): {
-            break;
-        }
+        } break;
+        case KEYMODE_NULL: {
+        } break;
+        case KEYMODE_ERROR:
         default: {
             FAIL_2("invalid mode", actualMode)
         }

@@ -1,4 +1,4 @@
-// Copyright (c) 2018 The Open-Transactions developers
+// Copyright (c) 2019 The Open-Transactions developers
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
@@ -26,6 +26,7 @@ bool CheckProto_1(const Purse& input, const bool silent, std::int64_t& value)
     switch (input.type()) {
         case CASHTYPE_LUCRE: {
         } break;
+        case CASHTYPE_ERROR:
         default: {
             FAIL_2("Invalid type", std::to_string(input.type()));
         }
@@ -60,6 +61,7 @@ bool CheckProto_1(const Purse& input, const bool silent, std::int64_t& value)
             CHECK_EXCLUDED(secondarykey);
             CHECK_EXCLUDED(secondarypassword);
         } break;
+        case PURSETYPE_ERROR:
         default: {
             FAIL_2("Invalid state", std::to_string(input.state()));
         }

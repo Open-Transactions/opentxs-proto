@@ -1,4 +1,4 @@
-// Copyright (c) 2018 The Open-Transactions developers
+// Copyright (c) 2019 The Open-Transactions developers
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
@@ -94,18 +94,19 @@ bool CheckProto_1(const CredentialIndex& input, const bool silent)
     }
 
     switch (actualMode) {
-        case (CREDINDEX_PRIVATE): {
+        case CREDINDEX_PRIVATE: {
             if (haveHD) {
                 if (1 > input.index()) { FAIL_1("missing index") }
             }
 
             break;
         }
-        case (CREDINDEX_PUBLIC): {
+        case CREDINDEX_PUBLIC: {
             if (input.has_index()) { FAIL_1("index present in public mode") }
 
             break;
         }
+        case CREDINDEX_ERROR:
         default: {
             FAIL_2("invalid mode", actualMode)
         }

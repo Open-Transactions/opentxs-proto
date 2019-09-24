@@ -1,4 +1,4 @@
-// Copyright (c) 2018 The Open-Transactions developers
+// Copyright (c) 2019 The Open-Transactions developers
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
@@ -21,7 +21,7 @@ bool CheckProto_1(const NymIDSource& input, const bool silent)
     bool validPaymentCode{false};
 
     switch (input.type()) {
-        case SOURCETYPE_PUBKEY:
+        case SOURCETYPE_PUBKEY: {
             if (!input.has_key()) { FAIL_1("missing key") }
 
             if (input.has_paymentcode()) {
@@ -45,8 +45,8 @@ bool CheckProto_1(const NymIDSource& input, const bool silent)
                     input.version())
             }
 
-            break;
-        case SOURCETYPE_BIP47:
+        } break;
+        case SOURCETYPE_BIP47: {
             if (!input.has_paymentcode()) { FAIL_1("missing payment code") }
 
             if (input.has_key()) { FAIL_1("bip47 source includes public key") }
@@ -65,7 +65,8 @@ bool CheckProto_1(const NymIDSource& input, const bool silent)
                     input.version())
             }
 
-            break;
+        } break;
+        case SOURCETYPE_ERROR:
         default:
             FAIL_2("incorrect or unknown type", input.type())
     }

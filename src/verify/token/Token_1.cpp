@@ -1,4 +1,4 @@
-// Copyright (c) 2018 The Open-Transactions developers
+// Copyright (c) 2019 The Open-Transactions developers
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
@@ -48,6 +48,7 @@ bool CheckProto_1(
         case TOKENSTATE_SPENT:
         case TOKENSTATE_EXPIRED: {
         } break;
+        case TOKENSTATE_ERROR:
         default: {
             FAIL_2("Invalid state", std::to_string(input.state()));
         }
@@ -61,6 +62,7 @@ bool CheckProto_1(
             CHECK_SUBOBJECT_VA(
                 lucre, TokenAllowedLucreTokenData, input.state());
         } break;
+        case CASHTYPE_ERROR:
         default: {
             FAIL_2("Invalid type", std::to_string(input.type()));
         }

@@ -1,4 +1,4 @@
-// Copyright (c) 2018 The Open-Transactions developers
+// Copyright (c) 2019 The Open-Transactions developers
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
@@ -102,7 +102,7 @@ std::uint32_t ReciprocalRelationship(const std::uint32_t relationship)
 
     if (found) {
         try {
-            return RelationshipMap.at(input);
+            return static_cast<std::uint32_t>(RelationshipMap.at(input));
         } catch (const std::out_of_range&) {
         }
     }

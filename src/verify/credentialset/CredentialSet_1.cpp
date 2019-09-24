@@ -1,4 +1,4 @@
-// Copyright (c) 2018 The Open-Transactions developers
+// Copyright (c) 2019 The Open-Transactions developers
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
@@ -44,7 +44,7 @@ bool CheckProto_1(
     }
 
     switch (input.mode()) {
-        case CREDSETMODE_INDEX:
+        case CREDSETMODE_INDEX: {
             if (KEYMODE_PRIVATE == key) {
                 if (1 > input.index()) { FAIL_1("missing index") }
             } else {
@@ -80,8 +80,8 @@ bool CheckProto_1(
                     FAIL_2("invalid revoked child credential identifier", it)
                 }
             }
-            break;
-        case CREDSETMODE_FULL:
+        } break;
+        case CREDSETMODE_FULL: {
             if (!input.has_mastercredential()) {
                 FAIL_1("missing master credential")
             }
@@ -169,7 +169,8 @@ bool CheckProto_1(
                 }
             }
 
-            break;
+        } break;
+        case CREDSETMODE_ERROR:
         default:
             FAIL_2("unknown mode", input.mode())
     }

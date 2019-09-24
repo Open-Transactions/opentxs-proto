@@ -1,4 +1,4 @@
-// Copyright (c) 2018 The Open-Transactions developers
+// Copyright (c) 2019 The Open-Transactions developers
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
@@ -31,9 +31,9 @@ bool CheckProto_2(const PaymentWorkflow& input, const bool silent)
              PaymentWorkflowAllowedState.at({input.version(), input.type()})
                  .count(input.state()));
 
-        if (false == valid) { FAIL_1("Invalid state") }
+        if (false == valid) { FAIL_2("Invalid state", __LINE__) }
     } catch (const std::out_of_range&) {
-        FAIL_1("Invalid type")
+        FAIL_2("Invalid type", __LINE__)
     }
 
     switch (input.type()) {
@@ -68,8 +68,19 @@ bool CheckProto_2(const PaymentWorkflow& input, const bool silent)
                         FAIL_2(
                             "Incorrect number of parties", input.party().size())
                     }
-                }
+                } break;
+                case PAYMENTWORKFLOWSTATE_INITIATED:
+                case PAYMENTWORKFLOWSTATE_CONVEYED:
+                case PAYMENTWORKFLOWSTATE_ACKNOWLEDGED:
+                case PAYMENTWORKFLOWSTATE_ABORTED: {
+                } break;
+                case PAYMENTWORKFLOWSTATE_UNSENT:
+                case PAYMENTWORKFLOWSTATE_CANCELLED:
+                case PAYMENTWORKFLOWSTATE_EXPIRED:
+                case PAYMENTWORKFLOWSTATE_REJECTED:
+                case PAYMENTWORKFLOWSTATE_ERROR:
                 default: {
+                    FAIL_2("Invalid type", __LINE__)
                 }
             }
         } break;
@@ -83,8 +94,11 @@ bool CheckProto_2(const PaymentWorkflow& input, const bool silent)
                 FAIL_2("Incorrect number of parties", input.party().size())
             }
         } break;
+        case PAYMENTWORKFLOWTYPE_OUTGOINGCASH:
+        case PAYMENTWORKFLOWTYPE_INCOMINGCASH:
+        case PAYMENTWORKFLOWTYPE_ERROR:
         default: {
-            FAIL_1("Invalid type")
+            FAIL_2("Invalid type", __LINE__)
         }
     }
 
@@ -333,8 +347,10 @@ bool CheckProto_2(const PaymentWorkflow& input, const bool silent)
                 case PAYMENTWORKFLOWSTATE_INITIATED:
                 case PAYMENTWORKFLOWSTATE_ABORTED:
                 case PAYMENTWORKFLOWSTATE_ACKNOWLEDGED:
+                case PAYMENTWORKFLOWSTATE_REJECTED:
+                case PAYMENTWORKFLOWSTATE_ERROR:
                 default: {
-                    FAIL_1("Invalid state")
+                    FAIL_2("Invalid state", __LINE__)
                 }
             }
         } break;
@@ -461,11 +477,16 @@ bool CheckProto_2(const PaymentWorkflow& input, const bool silent)
                             acknowledgeEvents)
                     }
                 } break;
+                case PAYMENTWORKFLOWSTATE_ACCEPTED:
                 case PAYMENTWORKFLOWSTATE_INITIATED:
                 case PAYMENTWORKFLOWSTATE_ABORTED:
                 case PAYMENTWORKFLOWSTATE_ACKNOWLEDGED:
+                case PAYMENTWORKFLOWSTATE_UNSENT:
+                case PAYMENTWORKFLOWSTATE_CANCELLED:
+                case PAYMENTWORKFLOWSTATE_REJECTED:
+                case PAYMENTWORKFLOWSTATE_ERROR:
                 default: {
-                    FAIL_1("Invalid state")
+                    FAIL_2("Invalid state", __LINE__)
                 }
             }
         } break;
@@ -659,9 +680,10 @@ bool CheckProto_2(const PaymentWorkflow& input, const bool silent)
                 case PAYMENTWORKFLOWSTATE_CONVEYED:
                 case PAYMENTWORKFLOWSTATE_CANCELLED:
                 case PAYMENTWORKFLOWSTATE_EXPIRED:
+                case PAYMENTWORKFLOWSTATE_REJECTED:
                 case PAYMENTWORKFLOWSTATE_ERROR:
                 default: {
-                    FAIL_1("Invalid state")
+                    FAIL_2("Invalid state", __LINE__)
                 }
             }
         } break;
@@ -750,9 +772,10 @@ bool CheckProto_2(const PaymentWorkflow& input, const bool silent)
                 case PAYMENTWORKFLOWSTATE_INITIATED:
                 case PAYMENTWORKFLOWSTATE_ABORTED:
                 case PAYMENTWORKFLOWSTATE_ACKNOWLEDGED:
+                case PAYMENTWORKFLOWSTATE_REJECTED:
                 case PAYMENTWORKFLOWSTATE_ERROR:
                 default: {
-                    FAIL_1("Invalid state")
+                    FAIL_2("Invalid state", __LINE__)
                 }
             }
         } break;
@@ -985,14 +1008,18 @@ bool CheckProto_2(const PaymentWorkflow& input, const bool silent)
                 case PAYMENTWORKFLOWSTATE_UNSENT:
                 case PAYMENTWORKFLOWSTATE_CANCELLED:
                 case PAYMENTWORKFLOWSTATE_EXPIRED:
+                case PAYMENTWORKFLOWSTATE_REJECTED:
                 case PAYMENTWORKFLOWSTATE_ERROR:
                 default: {
-                    FAIL_1("Invalid state")
+                    FAIL_2("Invalid state", __LINE__)
                 }
             }
         } break;
+        case PAYMENTWORKFLOWTYPE_OUTGOINGCASH:
+        case PAYMENTWORKFLOWTYPE_INCOMINGCASH:
+        case PAYMENTWORKFLOWTYPE_ERROR:
         default: {
-            FAIL_1("Invalid type")
+            FAIL_2("Invalid type", __LINE__)
         }
     }
 
@@ -1006,7 +1033,11 @@ bool CheckProto_2(const PaymentWorkflow& input, const bool silent)
         case PAYMENTWORKFLOWTYPE_INTERNALTRANSFER: {
             if (1 != input.unit().size()) { FAIL_1("Missing unit") }
         } break;
+        case PAYMENTWORKFLOWTYPE_OUTGOINGCASH:
+        case PAYMENTWORKFLOWTYPE_INCOMINGCASH:
+        case PAYMENTWORKFLOWTYPE_ERROR:
         default: {
+            FAIL_2("Invalid type", __LINE__)
         }
     }
 

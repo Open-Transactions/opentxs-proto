@@ -1,4 +1,4 @@
-// Copyright (c) 2018 The Open-Transactions developers
+// Copyright (c) 2019 The Open-Transactions developers
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
@@ -41,6 +41,7 @@ bool CheckProto_2(
         case TRANSPORTMETHOD_OOB: {
             CHECK_EXCLUDED(transport)
         } break;
+        case TRANSPORTMETHOD_ERROR:
         default: {
             FAIL_1("Invalid transport method")
         }
@@ -71,6 +72,8 @@ bool CheckProto_2(
         case proto::PAYMENTEVENTTYPE_ACKNOWLEDGE: {
             CHECK_EXCLUDED(nym)
         } break;
+        case proto::PAYMENTEVENTTYPE_EXPIRE:
+        case proto::PAYMENTEVENTTYPE_REJECT:
         case proto::PAYMENTEVENTTYPE_ERROR:
         default: {
             FAIL_1("Invalid event type")
