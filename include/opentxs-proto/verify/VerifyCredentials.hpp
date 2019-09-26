@@ -112,6 +112,7 @@ static const VersionMap MasterParamsAllowedNymIDSource = {
 };
 static const VersionMap MasterParamsAllowedSourceProof = {
     {1, {1, 1}},
+    {2, {1, 1}},
 };
 static const VersionMap NymIDSourceAllowedAsymmetricKey = {
     {1, {1, 1}},
