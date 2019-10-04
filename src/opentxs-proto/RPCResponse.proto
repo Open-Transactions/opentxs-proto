@@ -16,8 +16,8 @@ import public "AddClaim.proto";
 import public "Contact.proto";
 import public "ContactEvent.proto";
 import public "CreateNym.proto";
-import public "CredentialIndex.proto";
 import public "HDSeed.proto";
+import public "Nym.proto";
 import public "PaymentWorkflow.proto";
 import public "RPCEnums.proto";
 import public "RPCStatus.proto";
@@ -36,7 +36,7 @@ message RPCResponse {
     repeated SessionData sessions = 6;
     repeated string identifier = 7;		// ids (defined by RPCCommandType)
     repeated HDSeed seed = 8;
-    repeated CredentialIndex nym = 9;
+    repeated Nym nym = 9;
     repeated AccountData balance = 10;
     repeated Contact contact = 11;
     repeated AccountEvent accountevent = 12;

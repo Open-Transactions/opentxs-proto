@@ -105,7 +105,7 @@ std::uint32_t RequiredVersion(
 std::uint32_t NymRequiredVersion(
     const std::uint32_t contactDataVersion,
     const std::uint32_t hint);
-std::uint32_t RequiredCredentialSetVersion(
+std::uint32_t RequiredAuthorityVersion(
     const std::uint32_t contactDataVersion,
     const std::uint32_t hint);
 }  // namespace proto

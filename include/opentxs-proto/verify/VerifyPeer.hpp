@@ -33,7 +33,7 @@ static const VersionMap PeerObjectAllowedPeerRequest = {
     {6, {4, 6}},
     {7, {4, 6}},
 };
-static const VersionMap PeerObjectAllowedCredentialIndex = {
+static const VersionMap PeerObjectAllowedNym = {
     {1, {1, 3}},
     {2, {1, 3}},
     {3, {1, 3}},

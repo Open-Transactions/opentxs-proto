@@ -10,7 +10,7 @@ option java_package = "org.opentransactions.proto";
 option java_outer_classname = "OTPeerObject";
 option optimize_for = LITE_RUNTIME;
 
-import public "CredentialIndex.proto";
+import public "Nym.proto";
 import public "PeerEnums.proto";
 import public "PeerReply.proto";
 import public "PeerRequest.proto";
@@ -23,7 +23,7 @@ message PeerObject
     optional string otmessage = 3;
     optional PeerRequest otrequest = 4;
     optional PeerReply otreply = 5;
-    optional CredentialIndex nym = 6;
+    optional Nym nym = 6;
     optional string otpayment = 7;
     optional Purse purse = 8;
 }

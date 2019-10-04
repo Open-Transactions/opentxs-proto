@@ -216,7 +216,7 @@ bool CheckProto_1(const RPCResponse& input, const bool silent)
             CHECK_NONE(seed);
 
             if (atLeastOne) {
-                OPTIONAL_SUBOBJECTS(nym, RPCResponseAllowedCredentialIndex);
+                OPTIONAL_SUBOBJECTS(nym, RPCResponseAllowedNym);
             } else {
                 CHECK_NONE(nym);
             }

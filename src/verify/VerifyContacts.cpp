@@ -152,10 +152,9 @@ std::uint32_t NymRequiredVersion(
 {
     for (std::uint32_t n = hint; n <= MAX_CONTACT_VERSION; ++n) {
         try {
-            const auto maxCredentialSet =
-                CredentialIndexAllowedCredentialSet.at(n).second;
+            const auto maxAuthority = NymAllowedAuthority.at(n).second;
             const auto maxCredential =
-                CredentialSetAllowedCredential.at(maxCredentialSet).second;
+                AuthorityAllowedCredential.at(maxAuthority).second;
             const auto maxContactData =
                 CredentialAllowedContactData.at(maxCredential).second;
 
@@ -169,14 +168,13 @@ std::uint32_t NymRequiredVersion(
     return 0;
 }
 
-std::uint32_t RequiredCredentialSetVersion(
+std::uint32_t RequiredAuthorityVersion(
     const std::uint32_t contactDataVersion,
     const std::uint32_t hint)
 {
     for (std::uint32_t n = hint; n <= MAX_CONTACT_VERSION; ++n) {
         try {
-            const auto maxCredential =
-                CredentialSetAllowedCredential.at(n).second;
+            const auto maxCredential = AuthorityAllowedCredential.at(n).second;
             const auto maxContactData =
                 CredentialAllowedContactData.at(maxCredential).second;
 

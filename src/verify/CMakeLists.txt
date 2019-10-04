@@ -13,6 +13,7 @@ set(
   addcontact/AddContact_1.cpp
   apiargument/APIArgument_1.cpp
   asymmetrickey/AsymmetricKey_1.cpp
+  authority/Authority_1.cpp
   bailment/Bailment_1.cpp
   bailmentreply/BailmentReply_1.cpp
   basketitem/BasketItem_1.cpp
@@ -41,14 +42,12 @@ set(
   contactitem/ContactItem_1.cpp
   contactsection/ContactSection_1.cpp
   context/Context_1.cpp
-  currencyparams/CurrencyParams_1.cpp
   createinstrumentdefinition/CreateInstrumentDefinition_1.cpp
   createnym/CreateNym_1.cpp
   credential/Credential_1.cpp
-  credentialindex/CredentialIndex_1.cpp
-  credentialset/CredentialSet_1.cpp
-  equityparams/EquityParams_1.cpp
+  currencyparams/CurrencyParams_1.cpp
   envelope/Envelope_1.cpp
+  equityparams/EquityParams_1.cpp
   faucet/Faucet_1.cpp
   getworkflow/GetWorkflow_1.cpp
   hdaccount/HDAccount_1.cpp
@@ -62,10 +61,11 @@ set(
   mastercredentialparameters/MasterCredentialParameters_1.cpp
   modifyaccount/ModifyAccount_1.cpp
   movefunds/MoveFunds_1.cpp
-  nymidsource/NymIDSource_1.cpp
   noticeacknowledgement/NoticeAcknowledgement_1.cpp
-  outbailment/OutBailment_1.cpp
+  nym/Nym_1.cpp
+  nymidsource/NymIDSource_1.cpp
   otxpush/OTXPush_1.cpp
+  outbailment/OutBailment_1.cpp
   outbailmentreply/OutBailmentReply_1.cpp
   pairevent/PairEvent_1.cpp
   paymentcode/PaymentCode_1.cpp
@@ -129,6 +129,7 @@ set(
   storagecontacts/StorageContacts_2.cpp
   storagecredentials/StorageCredentials_1.cpp
   storageidlist/StorageIDList_1.cpp
+  storageissuers/StorageIssuers_1.cpp
   storageitemhash/StorageItemHash_1.cpp
   storageitemhash/StorageItemHash_2.cpp
   storageitems/StorageItems_1.cpp
@@ -137,7 +138,6 @@ set(
   storageitems/StorageItems_4.cpp
   storageitems/StorageItems_5.cpp
   storageitems/StorageItems_6.cpp
-  storageissuers/StorageIssuers_1.cpp
   storagenotary/StorageNotary_1.cpp
   storagenym/StorageNym_1.cpp
   storagenym/StorageNym_2.cpp
@@ -164,10 +164,10 @@ set(
   storageworkflowtype/StorageWorkflowType_2.cpp
   storageworkflowtype/StorageWorkflowType_3.cpp
   storesecret/StoreSecret_1.cpp
+  symmetrickey/SymmetricKey_1.cpp
   taskcomplete/TaskComplete_1.cpp
   token/Token_1.cpp
   transactiondata/TransactionData_1.cpp
-  symmetrickey/SymmetricKey_1.cpp
   unitaccountmap/UnitAccountMap_1.cpp
   unitdefinition/UnitDefinition_1.cpp
   verification/Verification_1.cpp
