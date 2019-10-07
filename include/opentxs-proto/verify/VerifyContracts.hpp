@@ -12,7 +12,7 @@ namespace opentxs
 {
 namespace proto
 {
-static const VersionMap ServerContractAllowedCredentialIndex = {
+static const VersionMap ServerContractAllowedNym = {
     {1, {1, 5}},
     {2, {1, 6}},
 };
@@ -24,7 +24,7 @@ static const VersionMap ServerContractAllowedSignature = {
     {1, {1, 1}},
     {2, {1, 1}},
 };
-static const VersionMap UnitDefinitionAllowedCredentialIndex = {
+static const VersionMap UnitDefinitionAllowedNym = {
     {1, {1, 6}},
 };
 static const VersionMap UnitDefinitionAllowedCurrencyParams = {

@@ -7,20 +7,21 @@ syntax = "proto2";
 
 package opentxs.proto;
 option java_package = "org.opentransactions.proto";
-option java_outer_classname = "OTCredentialIndex";
+option java_outer_classname = "OTNym";
 option optimize_for = LITE_RUNTIME;
 
+import public "Authority.proto";
 import public "Enums.proto";
 import public "NymIDSource.proto";
-import public "CredentialSet.proto";
 
-message CredentialIndex {
+message Nym
+{
     optional uint32 version = 1;
-    optional string nymID = 2;						// nym id
-    optional CredentialIndexMode mode = 3;			// see Enums.proto	
-    optional uint32 index = 4;						// derivation path
-    optional uint64 revision = 5;					// nym revision
-    optional NymIDSource source = 6;				
-    repeated CredentialSet activeCredentials = 7;
-    repeated CredentialSet revokedCredentials = 8;
+    optional string nymID = 2;
+    optional NymMode mode = 3;
+    optional uint32 index = 4;
+    optional uint64 revision = 5;
+    optional NymIDSource source = 6;
+    repeated Authority activeCredentials = 7;
+    repeated Authority revokedCredentials = 8;
 }

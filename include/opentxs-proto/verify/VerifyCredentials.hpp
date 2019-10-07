@@ -78,7 +78,7 @@ static const VersionMap CredentialAllowedVerification = {
     {5, {1, 1}},
     {6, {1, 1}},
 };
-static const VersionMap CredentialIndexAllowedCredentialSet = {
+static const VersionMap NymAllowedAuthority = {
     {1, {1, 1}},
     {2, {1, 2}},
     {3, {1, 3}},
@@ -86,7 +86,7 @@ static const VersionMap CredentialIndexAllowedCredentialSet = {
     {5, {1, 5}},
     {6, {1, 6}},
 };
-static const VersionMap CredentialIndexAllowedNymIDSource = {
+static const VersionMap NymAllowedNymIDSource = {
     {1, {1, 1}},
     {2, {1, 1}},
     {3, {1, 1}},
@@ -94,7 +94,7 @@ static const VersionMap CredentialIndexAllowedNymIDSource = {
     {5, {1, 1}},
     {6, {1, 2}},
 };
-static const VersionMap CredentialSetAllowedCredential = {
+static const VersionMap AuthorityAllowedCredential = {
     {1, {1, 1}},
     {2, {1, 2}},
     {3, {1, 3}},

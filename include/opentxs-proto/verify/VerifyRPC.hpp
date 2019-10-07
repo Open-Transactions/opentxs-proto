@@ -110,7 +110,7 @@ static const VersionMap RPCResponseAllowedContactEvent = {
     {1, {1, 2}},
     {2, {1, 2}},
 };
-static const VersionMap RPCResponseAllowedCredentialIndex = {
+static const VersionMap RPCResponseAllowedNym = {
     {1, {1, 5}},
     {2, {1, 6}},
 };

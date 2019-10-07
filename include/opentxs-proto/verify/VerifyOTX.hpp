@@ -20,7 +20,7 @@ static const VersionMap ServerReplyAllowedSignature = {
     {1, {3, 3}},
     {2, {3, 3}},
 };
-static const VersionMap ServerRequestAllowedCredentialIndex = {
+static const VersionMap ServerRequestAllowedNym = {
     {1, {1, 5}},
     {2, {1, 6}},
 };

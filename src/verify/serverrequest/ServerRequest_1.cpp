@@ -27,7 +27,7 @@ bool CheckProto_1(const ServerRequest& input, const bool silent)
         }
     }
 
-    OPTIONAL_SUBOBJECT(credentials, ServerRequestAllowedCredentialIndex);
+    OPTIONAL_SUBOBJECT(credentials, ServerRequestAllowedNym);
 
     return true;
 }

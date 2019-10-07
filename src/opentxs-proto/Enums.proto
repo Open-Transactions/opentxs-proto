@@ -97,13 +97,14 @@ enum HashType {
     HASHTYPE_RIMEMD160 = 7;
 }
 
-enum CredentialIndexMode {
-    CREDINDEX_ERROR = 0;
-    CREDINDEX_PRIVATE = 1;
-    CREDINDEX_PUBLIC = 2;
+enum NymMode {
+    NYM_ERROR = 0;
+    NYM_PRIVATE = 1;
+    NYM_PUBLIC = 2;
 }
-enum CredentialSetMode {
-    CREDSETMODE_ERROR = 0;
-    CREDSETMODE_INDEX = 1;
-    CREDSETMODE_FULL = 2;
+
+enum AuthorityMode {
+    AUTHORITYMODE_ERROR = 0;
+    AUTHORITYMODE_INDEX = 1;
+    AUTHORITYMODE_FULL = 2;
 }

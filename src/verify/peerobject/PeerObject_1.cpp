@@ -46,8 +46,8 @@ bool CheckProto_1(const PeerObject& input, const bool silent)
             try {
                 const bool validnym = Check(
                     input.nym(),
-                    PeerObjectAllowedCredentialIndex.at(input.version()).first,
-                    PeerObjectAllowedCredentialIndex.at(input.version()).second,
+                    PeerObjectAllowedNym.at(input.version()).first,
+                    PeerObjectAllowedNym.at(input.version()).second,
                     silent);
 
                 if (!validnym) { FAIL_1("invalid nym") }

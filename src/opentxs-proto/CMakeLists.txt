@@ -5,17 +5,18 @@
 
 set(
   PROTO_SOURCES
+  APIArgument.proto
   AcceptPendingPayment.proto
   AccountData.proto
   AccountEvent.proto
   AddClaim.proto
   AddContact.proto
-  APIArgument.proto
   AsymmetricKey.proto
+  Authority.proto
   Bailment.proto
   BailmentReply.proto
-  BasketParams.proto
   BasketItem.proto
+  BasketParams.proto
   Bip47Address.proto
   Bip47Channel.proto
   Bip47Direction.proto
@@ -48,8 +49,6 @@ set(
   CreateInstrumentDefinition.proto
   CreateNym.proto
   Credential.proto
-  CredentialIndex.proto
-  CredentialSet.proto
   CurrencyParams.proto
   Enums.proto
   Envelope.proto
@@ -68,6 +67,7 @@ set(
   ModifyAccount.proto
   MoveFunds.proto
   NoticeAcknowledgement.proto
+  Nym.proto
   NymIDSource.proto
   OTXEnums.proto
   OTXPush.proto
@@ -89,11 +89,11 @@ set(
   Purse.proto
   PurseExchange.proto
   RPCCommand.proto
+  RPCEnums.proto
   RPCPush.proto
   RPCResponse.proto
   RPCStatus.proto
   RPCTask.proto
-  RPCEnums.proto
   Seed.proto
   SendMessage.proto
   SendPayment.proto
@@ -121,9 +121,9 @@ set(
   StorageCredentials.proto
   StorageEnums.proto
   StorageIDList.proto
+  StorageIssuers.proto
   StorageItemHash.proto
   StorageItems.proto
-  StorageIssuers.proto
   StorageNotary.proto
   StorageNym.proto
   StorageNymList.proto

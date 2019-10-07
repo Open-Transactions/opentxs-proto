@@ -34,8 +34,8 @@ bool CheckProto_1(
         try {
             const bool goodPublicNym = Check(
                 input.publicnym(),
-                UnitDefinitionAllowedCredentialIndex.at(input.version()).first,
-                UnitDefinitionAllowedCredentialIndex.at(input.version()).second,
+                UnitDefinitionAllowedNym.at(input.version()).first,
+                UnitDefinitionAllowedNym.at(input.version()).second,
                 silent);
 
             if (!goodPublicNym) { FAIL_1("invalid nym") }

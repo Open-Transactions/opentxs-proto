@@ -6,14 +6,14 @@
 #include "opentxs-proto/Types.hpp"
 #include "opentxs-proto/Check.hpp"
 
-#define PROTO_NAME "credential index"
+#define PROTO_NAME "nym"
 
 namespace opentxs
 {
 namespace proto
 {
 
-bool CheckProto_1(const CredentialIndex& input, const bool silent)
+bool CheckProto_1(const Nym& input, const bool silent)
 {
     bool validSource = false;
 
@@ -36,8 +36,8 @@ bool CheckProto_1(const CredentialIndex& input, const bool silent)
     try {
         validSource = Check(
             input.source(),
-            CredentialIndexAllowedNymIDSource.at(input.version()).first,
-            CredentialIndexAllowedNymIDSource.at(input.version()).second,
+            NymAllowedNymIDSource.at(input.version()).first,
+            NymAllowedNymIDSource.at(input.version()).second,
             silent);
 
         if (!validSource) { FAIL_1("invalid nym id source") }
@@ -51,13 +51,12 @@ bool CheckProto_1(const CredentialIndex& input, const bool silent)
 
     for (auto& it : input.activecredentials()) {
         try {
-            const KeyMode mode = (CREDINDEX_PRIVATE == actualMode)
-                                     ? KEYMODE_PRIVATE
-                                     : KEYMODE_PUBLIC;
+            const KeyMode mode =
+                (NYM_PRIVATE == actualMode) ? KEYMODE_PRIVATE : KEYMODE_PUBLIC;
             const bool validSet = Check(
                 it,
-                CredentialIndexAllowedCredentialSet.at(input.version()).first,
-                CredentialIndexAllowedCredentialSet.at(input.version()).second,
+                NymAllowedAuthority.at(input.version()).first,
+                NymAllowedAuthority.at(input.version()).second,
                 silent,
                 input.nymid(),
                 mode,
@@ -73,13 +72,12 @@ bool CheckProto_1(const CredentialIndex& input, const bool silent)
 
     for (auto& it : input.revokedcredentials()) {
         try {
-            const KeyMode mode = (CREDINDEX_PRIVATE == actualMode)
-                                     ? KEYMODE_PRIVATE
-                                     : KEYMODE_PUBLIC;
+            const KeyMode mode =
+                (NYM_PRIVATE == actualMode) ? KEYMODE_PRIVATE : KEYMODE_PUBLIC;
             const bool validSet = Check(
                 it,
-                CredentialIndexAllowedCredentialSet.at(input.version()).first,
-                CredentialIndexAllowedCredentialSet.at(input.version()).second,
+                NymAllowedAuthority.at(input.version()).first,
+                NymAllowedAuthority.at(input.version()).second,
                 silent,
                 input.nymid(),
                 mode,
@@ -94,19 +92,19 @@ bool CheckProto_1(const CredentialIndex& input, const bool silent)
     }
 
     switch (actualMode) {
-        case CREDINDEX_PRIVATE: {
+        case NYM_PRIVATE: {
             if (haveHD) {
                 if (1 > input.index()) { FAIL_1("missing index") }
             }
 
             break;
         }
-        case CREDINDEX_PUBLIC: {
+        case NYM_PUBLIC: {
             if (input.has_index()) { FAIL_1("index present in public mode") }
 
             break;
         }
-        case CREDINDEX_ERROR:
+        case NYM_ERROR:
         default: {
             FAIL_2("invalid mode", actualMode)
         }
@@ -115,97 +113,88 @@ bool CheckProto_1(const CredentialIndex& input, const bool silent)
     return true;
 }
 
-bool CheckProto_2(const CredentialIndex& input, const bool silent)
+bool CheckProto_2(const Nym& input, const bool silent)
 {
     return CheckProto_1(input, silent);
 }
 
-bool CheckProto_3(const CredentialIndex& input, const bool silent)
+bool CheckProto_3(const Nym& input, const bool silent)
 {
     return CheckProto_1(input, silent);
 }
 
-bool CheckProto_4(const CredentialIndex& input, const bool silent)
+bool CheckProto_4(const Nym& input, const bool silent)
 {
     return CheckProto_1(input, silent);
 }
 
-bool CheckProto_5(const CredentialIndex& input, const bool silent)
+bool CheckProto_5(const Nym& input, const bool silent)
 {
     return CheckProto_1(input, silent);
 }
 
-bool CheckProto_6(const CredentialIndex& input, const bool silent)
+bool CheckProto_6(const Nym& input, const bool silent)
 {
     return CheckProto_1(input, silent);
 }
 
-bool CheckProto_7(const CredentialIndex& input, const bool silent)
-{
-    UNDEFINED_VERSION(7)
-}
+bool CheckProto_7(const Nym& input, const bool silent) { UNDEFINED_VERSION(7) }
 
-bool CheckProto_8(const CredentialIndex& input, const bool silent)
-{
-    UNDEFINED_VERSION(8)
-}
+bool CheckProto_8(const Nym& input, const bool silent) { UNDEFINED_VERSION(8) }
 
-bool CheckProto_9(const CredentialIndex& input, const bool silent)
-{
-    UNDEFINED_VERSION(9)
-}
+bool CheckProto_9(const Nym& input, const bool silent) { UNDEFINED_VERSION(9) }
 
-bool CheckProto_10(const CredentialIndex& input, const bool silent)
+bool CheckProto_10(const Nym& input, const bool silent)
 {
     UNDEFINED_VERSION(10)
 }
 
-bool CheckProto_11(const CredentialIndex& input, const bool silent)
+bool CheckProto_11(const Nym& input, const bool silent)
 {
     UNDEFINED_VERSION(11)
 }
 
-bool CheckProto_12(const CredentialIndex& input, const bool silent)
+bool CheckProto_12(const Nym& input, const bool silent)
 {
     UNDEFINED_VERSION(12)
 }
 
-bool CheckProto_13(const CredentialIndex& input, const bool silent)
+bool CheckProto_13(const Nym& input, const bool silent)
 {
     UNDEFINED_VERSION(13)
 }
 
-bool CheckProto_14(const CredentialIndex& input, const bool silent)
+bool CheckProto_14(const Nym& input, const bool silent)
 {
     UNDEFINED_VERSION(14)
 }
 
-bool CheckProto_15(const CredentialIndex& input, const bool silent)
+bool CheckProto_15(const Nym& input, const bool silent)
 {
     UNDEFINED_VERSION(15)
 }
 
-bool CheckProto_16(const CredentialIndex& input, const bool silent)
+bool CheckProto_16(const Nym& input, const bool silent)
 {
     UNDEFINED_VERSION(16)
 }
 
-bool CheckProto_17(const CredentialIndex& input, const bool silent)
+bool CheckProto_17(const Nym& input, const bool silent)
 {
     UNDEFINED_VERSION(17)
 }
 
-bool CheckProto_18(const CredentialIndex& input, const bool silent)
+bool CheckProto_18(const Nym& input, const bool silent)
 {
     UNDEFINED_VERSION(18)
 }
 
-bool CheckProto_19(const CredentialIndex& input, const bool silent)
+bool CheckProto_19(const Nym& input, const bool silent)
 {
     UNDEFINED_VERSION(19)
 }
 
-bool CheckProto_20(const CredentialIndex& input, const bool silent)
+bool CheckProto_20(const Nym& input, const bool silent)
 {
     UNDEFINED_VERSION(20)
 }

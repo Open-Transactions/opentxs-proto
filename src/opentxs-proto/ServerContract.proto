@@ -10,9 +10,9 @@ option java_package = "org.opentransactions.proto";
 option java_outer_classname = "OTServerContract";
 option optimize_for = LITE_RUNTIME;
 
-import public "CredentialIndex.proto";
 import public "Enums.proto";
 import public "ListenAddress.proto";
+import public "Nym.proto";
 import public "Signature.proto";
 
 message ServerContract {
@@ -20,7 +20,7 @@ message ServerContract {
     optional string id = 2;
     optional string nymid = 3;
     optional string name = 4;
-    optional CredentialIndex publicNym = 5;
+    optional Nym publicNym = 5;
     repeated ListenAddress address = 6;
     optional string terms = 7;
     optional bytes transportKey = 8;
