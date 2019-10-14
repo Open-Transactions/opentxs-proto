@@ -11,6 +11,7 @@ option java_outer_classname = "OTUnitDefinition";
 option optimize_for = LITE_RUNTIME;
 
 import public "BasketParams.proto";
+import public "ContactEnums.proto";
 import public "ContractEnums.proto";
 import public "CurrencyParams.proto";
 import public "EquityParams.proto";
@@ -30,5 +31,6 @@ message UnitDefinition {
     optional CurrencyParams currency = 10;
     optional EquityParams security = 11;
     optional BasketParams basket = 12;
+    optional ContactItemType unitOfAccount = 13;
     optional Signature signature = 15;
 }

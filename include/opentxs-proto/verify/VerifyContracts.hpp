@@ -26,18 +26,23 @@ static const VersionMap ServerContractAllowedSignature = {
 };
 static const VersionMap UnitDefinitionAllowedNym = {
     {1, {1, 6}},
+    {2, {1, 6}},
 };
 static const VersionMap UnitDefinitionAllowedCurrencyParams = {
     {1, {1, 1}},
+    {2, {1, 1}},
 };
 static const VersionMap UnitDefinitionAllowedBasketParams = {
     {1, {1, 1}},
+    {2, {1, 1}},
 };
 static const VersionMap UnitDefinitionAllowedSecurityParams = {
     {1, {1, 1}},
+    {2, {1, 1}},
 };
 static const VersionMap UnitDefinitionAllowedSignature = {
     {1, {1, 1}},
+    {2, {1, 1}},
 };
 static const VersionMap BasketParamsAllowedBasketItem = {
     {1, {1, 1}},

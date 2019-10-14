@@ -170,6 +170,7 @@ set(
   transactiondata/TransactionData_1.cpp
   unitaccountmap/UnitAccountMap_1.cpp
   unitdefinition/UnitDefinition_1.cpp
+  unitdefinition/UnitDefinition_2.cpp
   verification/Verification_1.cpp
   verificationgroup/VerificationGroup_1.cpp
   verificationidentity/VerificationIdentity_1.cpp
