@@ -1164,7 +1164,7 @@ bool CheckProto_2(const RPCCommand& input, const bool silent)
 
 bool CheckProto_3(const RPCCommand& input, const bool silent)
 {
-    UNDEFINED_VERSION(3)
+    return CheckProto_2(input, silent);
 }
 
 bool CheckProto_4(const RPCCommand& input, const bool silent)
