@@ -12,26 +12,26 @@ namespace opentxs
 {
 namespace proto
 {
-bool CheckProto_1(const OutBailment& request, const bool silent);
-bool CheckProto_2(const OutBailment& request, const bool silent);
-bool CheckProto_3(const OutBailment& request, const bool silent);
-bool CheckProto_4(const OutBailment& request, const bool silent);
-bool CheckProto_5(const OutBailment& request, const bool silent);
-bool CheckProto_6(const OutBailment& request, const bool silent);
-bool CheckProto_7(const OutBailment& request, const bool silent);
-bool CheckProto_8(const OutBailment& request, const bool silent);
-bool CheckProto_9(const OutBailment& request, const bool silent);
-bool CheckProto_10(const OutBailment& request, const bool silent);
-bool CheckProto_11(const OutBailment& request, const bool silent);
-bool CheckProto_12(const OutBailment& request, const bool silent);
-bool CheckProto_13(const OutBailment& request, const bool silent);
-bool CheckProto_14(const OutBailment& request, const bool silent);
-bool CheckProto_15(const OutBailment& request, const bool silent);
-bool CheckProto_16(const OutBailment& request, const bool silent);
-bool CheckProto_17(const OutBailment& request, const bool silent);
-bool CheckProto_18(const OutBailment& request, const bool silent);
-bool CheckProto_19(const OutBailment& request, const bool silent);
-bool CheckProto_20(const OutBailment& request, const bool silent);
+EXPORT bool CheckProto_1(const OutBailment& request, const bool silent);
+EXPORT bool CheckProto_2(const OutBailment& request, const bool silent);
+EXPORT bool CheckProto_3(const OutBailment& request, const bool silent);
+EXPORT bool CheckProto_4(const OutBailment& request, const bool silent);
+EXPORT bool CheckProto_5(const OutBailment& request, const bool silent);
+EXPORT bool CheckProto_6(const OutBailment& request, const bool silent);
+EXPORT bool CheckProto_7(const OutBailment& request, const bool silent);
+EXPORT bool CheckProto_8(const OutBailment& request, const bool silent);
+EXPORT bool CheckProto_9(const OutBailment& request, const bool silent);
+EXPORT bool CheckProto_10(const OutBailment& request, const bool silent);
+EXPORT bool CheckProto_11(const OutBailment& request, const bool silent);
+EXPORT bool CheckProto_12(const OutBailment& request, const bool silent);
+EXPORT bool CheckProto_13(const OutBailment& request, const bool silent);
+EXPORT bool CheckProto_14(const OutBailment& request, const bool silent);
+EXPORT bool CheckProto_15(const OutBailment& request, const bool silent);
+EXPORT bool CheckProto_16(const OutBailment& request, const bool silent);
+EXPORT bool CheckProto_17(const OutBailment& request, const bool silent);
+EXPORT bool CheckProto_18(const OutBailment& request, const bool silent);
+EXPORT bool CheckProto_19(const OutBailment& request, const bool silent);
+EXPORT bool CheckProto_20(const OutBailment& request, const bool silent);
 }  // namespace proto
 }  // namespace opentxs
 

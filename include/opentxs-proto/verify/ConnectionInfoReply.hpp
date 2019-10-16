@@ -12,26 +12,26 @@ namespace opentxs
 {
 namespace proto
 {
-bool CheckProto_1(const ConnectionInfoReply& reply, const bool silent);
-bool CheckProto_2(const ConnectionInfoReply& reply, const bool silent);
-bool CheckProto_3(const ConnectionInfoReply& reply, const bool silent);
-bool CheckProto_4(const ConnectionInfoReply& reply, const bool silent);
-bool CheckProto_5(const ConnectionInfoReply&, const bool);
-bool CheckProto_6(const ConnectionInfoReply&, const bool);
-bool CheckProto_7(const ConnectionInfoReply&, const bool);
-bool CheckProto_8(const ConnectionInfoReply&, const bool);
-bool CheckProto_9(const ConnectionInfoReply&, const bool);
-bool CheckProto_10(const ConnectionInfoReply&, const bool);
-bool CheckProto_11(const ConnectionInfoReply&, const bool);
-bool CheckProto_12(const ConnectionInfoReply&, const bool);
-bool CheckProto_13(const ConnectionInfoReply&, const bool);
-bool CheckProto_14(const ConnectionInfoReply&, const bool);
-bool CheckProto_15(const ConnectionInfoReply&, const bool);
-bool CheckProto_16(const ConnectionInfoReply&, const bool);
-bool CheckProto_17(const ConnectionInfoReply&, const bool);
-bool CheckProto_18(const ConnectionInfoReply&, const bool);
-bool CheckProto_19(const ConnectionInfoReply&, const bool);
-bool CheckProto_20(const ConnectionInfoReply&, const bool);
+EXPORT bool CheckProto_1(const ConnectionInfoReply& reply, const bool silent);
+EXPORT bool CheckProto_2(const ConnectionInfoReply& reply, const bool silent);
+EXPORT bool CheckProto_3(const ConnectionInfoReply& reply, const bool silent);
+EXPORT bool CheckProto_4(const ConnectionInfoReply& reply, const bool silent);
+EXPORT bool CheckProto_5(const ConnectionInfoReply&, const bool);
+EXPORT bool CheckProto_6(const ConnectionInfoReply&, const bool);
+EXPORT bool CheckProto_7(const ConnectionInfoReply&, const bool);
+EXPORT bool CheckProto_8(const ConnectionInfoReply&, const bool);
+EXPORT bool CheckProto_9(const ConnectionInfoReply&, const bool);
+EXPORT bool CheckProto_10(const ConnectionInfoReply&, const bool);
+EXPORT bool CheckProto_11(const ConnectionInfoReply&, const bool);
+EXPORT bool CheckProto_12(const ConnectionInfoReply&, const bool);
+EXPORT bool CheckProto_13(const ConnectionInfoReply&, const bool);
+EXPORT bool CheckProto_14(const ConnectionInfoReply&, const bool);
+EXPORT bool CheckProto_15(const ConnectionInfoReply&, const bool);
+EXPORT bool CheckProto_16(const ConnectionInfoReply&, const bool);
+EXPORT bool CheckProto_17(const ConnectionInfoReply&, const bool);
+EXPORT bool CheckProto_18(const ConnectionInfoReply&, const bool);
+EXPORT bool CheckProto_19(const ConnectionInfoReply&, const bool);
+EXPORT bool CheckProto_20(const ConnectionInfoReply&, const bool);
 }  // namespace proto
 }  // namespace opentxs
 
