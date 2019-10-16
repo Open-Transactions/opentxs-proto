@@ -154,7 +154,7 @@ set(
   ZMQEnums.proto
 )
 
-protobuf_generate_cpp(PROTO_SRC PROTO_HEADER ${PROTO_SOURCES})
+protobuf_generate_cpp(PROTO_SRC PROTO_HEADER ${PROTO_SOURCES} EXPORT_MACRO EXPORT)
 
 add_library(messages OBJECT ${PROTO_SRC} ${PROTO_HEADER})
 add_library(opentxs-proto::messages ALIAS messages)

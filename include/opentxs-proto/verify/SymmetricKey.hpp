@@ -12,26 +12,26 @@ namespace opentxs
 {
 namespace proto
 {
-bool CheckProto_1(const SymmetricKey& key, const bool silent);
-bool CheckProto_2(const SymmetricKey&, const bool);
-bool CheckProto_3(const SymmetricKey&, const bool);
-bool CheckProto_4(const SymmetricKey&, const bool);
-bool CheckProto_5(const SymmetricKey&, const bool);
-bool CheckProto_6(const SymmetricKey&, const bool);
-bool CheckProto_7(const SymmetricKey&, const bool);
-bool CheckProto_8(const SymmetricKey&, const bool);
-bool CheckProto_9(const SymmetricKey&, const bool);
-bool CheckProto_10(const SymmetricKey&, const bool);
-bool CheckProto_11(const SymmetricKey&, const bool);
-bool CheckProto_12(const SymmetricKey&, const bool);
-bool CheckProto_13(const SymmetricKey&, const bool);
-bool CheckProto_14(const SymmetricKey&, const bool);
-bool CheckProto_15(const SymmetricKey&, const bool);
-bool CheckProto_16(const SymmetricKey&, const bool);
-bool CheckProto_17(const SymmetricKey&, const bool);
-bool CheckProto_18(const SymmetricKey&, const bool);
-bool CheckProto_19(const SymmetricKey&, const bool);
-bool CheckProto_20(const SymmetricKey&, const bool);
+EXPORT bool CheckProto_1(const SymmetricKey& key, const bool silent);
+EXPORT bool CheckProto_2(const SymmetricKey&, const bool);
+EXPORT bool CheckProto_3(const SymmetricKey&, const bool);
+EXPORT bool CheckProto_4(const SymmetricKey&, const bool);
+EXPORT bool CheckProto_5(const SymmetricKey&, const bool);
+EXPORT bool CheckProto_6(const SymmetricKey&, const bool);
+EXPORT bool CheckProto_7(const SymmetricKey&, const bool);
+EXPORT bool CheckProto_8(const SymmetricKey&, const bool);
+EXPORT bool CheckProto_9(const SymmetricKey&, const bool);
+EXPORT bool CheckProto_10(const SymmetricKey&, const bool);
+EXPORT bool CheckProto_11(const SymmetricKey&, const bool);
+EXPORT bool CheckProto_12(const SymmetricKey&, const bool);
+EXPORT bool CheckProto_13(const SymmetricKey&, const bool);
+EXPORT bool CheckProto_14(const SymmetricKey&, const bool);
+EXPORT bool CheckProto_15(const SymmetricKey&, const bool);
+EXPORT bool CheckProto_16(const SymmetricKey&, const bool);
+EXPORT bool CheckProto_17(const SymmetricKey&, const bool);
+EXPORT bool CheckProto_18(const SymmetricKey&, const bool);
+EXPORT bool CheckProto_19(const SymmetricKey&, const bool);
+EXPORT bool CheckProto_20(const SymmetricKey&, const bool);
 }  // namespace proto
 }  // namespace opentxs
 

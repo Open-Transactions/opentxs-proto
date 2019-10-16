@@ -12,26 +12,26 @@ namespace opentxs
 {
 namespace proto
 {
-bool CheckProto_1(const StorageWorkflowIndex& input, const bool silent);
-bool CheckProto_2(const StorageWorkflowIndex& input, const bool silent);
-bool CheckProto_3(const StorageWorkflowIndex& input, const bool silent);
-bool CheckProto_4(const StorageWorkflowIndex& input, const bool silent);
-bool CheckProto_5(const StorageWorkflowIndex& input, const bool silent);
-bool CheckProto_6(const StorageWorkflowIndex& input, const bool silent);
-bool CheckProto_7(const StorageWorkflowIndex& input, const bool silent);
-bool CheckProto_8(const StorageWorkflowIndex& input, const bool silent);
-bool CheckProto_9(const StorageWorkflowIndex& input, const bool silent);
-bool CheckProto_10(const StorageWorkflowIndex& input, const bool silent);
-bool CheckProto_11(const StorageWorkflowIndex& input, const bool silent);
-bool CheckProto_12(const StorageWorkflowIndex& input, const bool silent);
-bool CheckProto_13(const StorageWorkflowIndex& input, const bool silent);
-bool CheckProto_14(const StorageWorkflowIndex& input, const bool silent);
-bool CheckProto_15(const StorageWorkflowIndex& input, const bool silent);
-bool CheckProto_16(const StorageWorkflowIndex& input, const bool silent);
-bool CheckProto_17(const StorageWorkflowIndex& input, const bool silent);
-bool CheckProto_18(const StorageWorkflowIndex& input, const bool silent);
-bool CheckProto_19(const StorageWorkflowIndex& input, const bool silent);
-bool CheckProto_20(const StorageWorkflowIndex& input, const bool silent);
+EXPORT bool CheckProto_1(const StorageWorkflowIndex& input, const bool silent);
+EXPORT bool CheckProto_2(const StorageWorkflowIndex& input, const bool silent);
+EXPORT bool CheckProto_3(const StorageWorkflowIndex& input, const bool silent);
+EXPORT bool CheckProto_4(const StorageWorkflowIndex& input, const bool silent);
+EXPORT bool CheckProto_5(const StorageWorkflowIndex& input, const bool silent);
+EXPORT bool CheckProto_6(const StorageWorkflowIndex& input, const bool silent);
+EXPORT bool CheckProto_7(const StorageWorkflowIndex& input, const bool silent);
+EXPORT bool CheckProto_8(const StorageWorkflowIndex& input, const bool silent);
+EXPORT bool CheckProto_9(const StorageWorkflowIndex& input, const bool silent);
+EXPORT bool CheckProto_10(const StorageWorkflowIndex& input, const bool silent);
+EXPORT bool CheckProto_11(const StorageWorkflowIndex& input, const bool silent);
+EXPORT bool CheckProto_12(const StorageWorkflowIndex& input, const bool silent);
+EXPORT bool CheckProto_13(const StorageWorkflowIndex& input, const bool silent);
+EXPORT bool CheckProto_14(const StorageWorkflowIndex& input, const bool silent);
+EXPORT bool CheckProto_15(const StorageWorkflowIndex& input, const bool silent);
+EXPORT bool CheckProto_16(const StorageWorkflowIndex& input, const bool silent);
+EXPORT bool CheckProto_17(const StorageWorkflowIndex& input, const bool silent);
+EXPORT bool CheckProto_18(const StorageWorkflowIndex& input, const bool silent);
+EXPORT bool CheckProto_19(const StorageWorkflowIndex& input, const bool silent);
+EXPORT bool CheckProto_20(const StorageWorkflowIndex& input, const bool silent);
 }  // namespace proto
 }  // namespace opentxs
 

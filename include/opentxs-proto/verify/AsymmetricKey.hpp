@@ -18,121 +18,121 @@ static const std::map<std::uint32_t, std::set<AsymmetricKeyType>>
         {2, {AKEYTYPE_LEGACY, AKEYTYPE_SECP256K1, AKEYTYPE_ED25519}},
     };
 
-bool CheckProto_1(
+EXPORT bool CheckProto_1(
     const AsymmetricKey& key,
     const bool silent,
     const CredentialType type,
     const KeyMode mode,
     const KeyRole role);
-bool CheckProto_2(
+EXPORT bool CheckProto_2(
     const AsymmetricKey&,
     const bool,
     const CredentialType,
     const KeyMode,
     const KeyRole);
-bool CheckProto_3(
+EXPORT bool CheckProto_3(
     const AsymmetricKey&,
     const bool,
     const CredentialType,
     const KeyMode,
     const KeyRole);
-bool CheckProto_4(
+EXPORT bool CheckProto_4(
     const AsymmetricKey&,
     const bool,
     const CredentialType,
     const KeyMode,
     const KeyRole);
-bool CheckProto_5(
+EXPORT bool CheckProto_5(
     const AsymmetricKey&,
     const bool,
     const CredentialType,
     const KeyMode,
     const KeyRole);
-bool CheckProto_6(
+EXPORT bool CheckProto_6(
     const AsymmetricKey&,
     const bool,
     const CredentialType,
     const KeyMode,
     const KeyRole);
-bool CheckProto_7(
+EXPORT bool CheckProto_7(
     const AsymmetricKey&,
     const bool,
     const CredentialType,
     const KeyMode,
     const KeyRole);
-bool CheckProto_8(
+EXPORT bool CheckProto_8(
     const AsymmetricKey&,
     const bool,
     const CredentialType,
     const KeyMode,
     const KeyRole);
-bool CheckProto_9(
+EXPORT bool CheckProto_9(
     const AsymmetricKey&,
     const bool,
     const CredentialType,
     const KeyMode,
     const KeyRole);
-bool CheckProto_10(
+EXPORT bool CheckProto_10(
     const AsymmetricKey&,
     const bool,
     const CredentialType,
     const KeyMode,
     const KeyRole);
-bool CheckProto_11(
+EXPORT bool CheckProto_11(
     const AsymmetricKey& key,
     const bool silent,
     const CredentialType type,
     const KeyMode mode,
     const KeyRole role);
-bool CheckProto_12(
+EXPORT bool CheckProto_12(
     const AsymmetricKey&,
     const bool,
     const CredentialType,
     const KeyMode,
     const KeyRole);
-bool CheckProto_13(
+EXPORT bool CheckProto_13(
     const AsymmetricKey&,
     const bool,
     const CredentialType,
     const KeyMode,
     const KeyRole);
-bool CheckProto_14(
+EXPORT bool CheckProto_14(
     const AsymmetricKey&,
     const bool,
     const CredentialType,
     const KeyMode,
     const KeyRole);
-bool CheckProto_15(
+EXPORT bool CheckProto_15(
     const AsymmetricKey&,
     const bool,
     const CredentialType,
     const KeyMode,
     const KeyRole);
-bool CheckProto_16(
+EXPORT bool CheckProto_16(
     const AsymmetricKey&,
     const bool,
     const CredentialType,
     const KeyMode,
     const KeyRole);
-bool CheckProto_17(
+EXPORT bool CheckProto_17(
     const AsymmetricKey&,
     const bool,
     const CredentialType,
     const KeyMode,
     const KeyRole);
-bool CheckProto_18(
+EXPORT bool CheckProto_18(
     const AsymmetricKey&,
     const bool,
     const CredentialType,
     const KeyMode,
     const KeyRole);
-bool CheckProto_19(
+EXPORT bool CheckProto_19(
     const AsymmetricKey&,
     const bool,
     const CredentialType,
     const KeyMode,
     const KeyRole);
-bool CheckProto_20(
+EXPORT bool CheckProto_20(
     const AsymmetricKey&,
     const bool,
     const CredentialType,

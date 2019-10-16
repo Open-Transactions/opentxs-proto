@@ -12,83 +12,83 @@ namespace opentxs
 {
 namespace proto
 {
-bool CheckProto_1(
+EXPORT bool CheckProto_1(
     const BlindedSeriesList& input,
     const bool silent,
     const std::string& notary);
-bool CheckProto_2(
+EXPORT bool CheckProto_2(
     const BlindedSeriesList& input,
     const bool silent,
     const std::string& notary);
-bool CheckProto_3(
+EXPORT bool CheckProto_3(
     const BlindedSeriesList& input,
     const bool silent,
     const std::string& notary);
-bool CheckProto_4(
+EXPORT bool CheckProto_4(
     const BlindedSeriesList& input,
     const bool silent,
     const std::string& notary);
-bool CheckProto_5(
+EXPORT bool CheckProto_5(
     const BlindedSeriesList& input,
     const bool silent,
     const std::string& notary);
-bool CheckProto_6(
+EXPORT bool CheckProto_6(
     const BlindedSeriesList& input,
     const bool silent,
     const std::string& notary);
-bool CheckProto_7(
+EXPORT bool CheckProto_7(
     const BlindedSeriesList& input,
     const bool silent,
     const std::string& notary);
-bool CheckProto_8(
+EXPORT bool CheckProto_8(
     const BlindedSeriesList& input,
     const bool silent,
     const std::string& notary);
-bool CheckProto_9(
+EXPORT bool CheckProto_9(
     const BlindedSeriesList& input,
     const bool silent,
     const std::string& notary);
-bool CheckProto_10(
+EXPORT bool CheckProto_10(
     const BlindedSeriesList& input,
     const bool silent,
     const std::string& notary);
-bool CheckProto_11(
+EXPORT bool CheckProto_11(
     const BlindedSeriesList& input,
     const bool silent,
     const std::string& notary);
-bool CheckProto_12(
+EXPORT bool CheckProto_12(
     const BlindedSeriesList& input,
     const bool silent,
     const std::string& notary);
-bool CheckProto_13(
+EXPORT bool CheckProto_13(
     const BlindedSeriesList& input,
     const bool silent,
     const std::string& notary);
-bool CheckProto_14(
+EXPORT bool CheckProto_14(
     const BlindedSeriesList& input,
     const bool silent,
     const std::string& notary);
-bool CheckProto_15(
+EXPORT bool CheckProto_15(
     const BlindedSeriesList& input,
     const bool silent,
     const std::string& notary);
-bool CheckProto_16(
+EXPORT bool CheckProto_16(
     const BlindedSeriesList& input,
     const bool silent,
     const std::string& notary);
-bool CheckProto_17(
+EXPORT bool CheckProto_17(
     const BlindedSeriesList& input,
     const bool silent,
     const std::string& notary);
-bool CheckProto_18(
+EXPORT bool CheckProto_18(
     const BlindedSeriesList& input,
     const bool silent,
     const std::string& notary);
-bool CheckProto_19(
+EXPORT bool CheckProto_19(
     const BlindedSeriesList& input,
     const bool silent,
     const std::string& notary);
-bool CheckProto_20(
+EXPORT bool CheckProto_20(
     const BlindedSeriesList& input,
     const bool silent,
     const std::string& notary);

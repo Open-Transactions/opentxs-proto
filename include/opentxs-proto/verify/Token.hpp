@@ -12,7 +12,7 @@ namespace opentxs
 {
 namespace proto
 {
-bool CheckProto_1(
+EXPORT bool CheckProto_1(
     const Token& input,
     const bool silent,
     const CashType expectedType,
@@ -20,7 +20,7 @@ bool CheckProto_1(
     std::int64_t& totalValue,
     std::int64_t& validFrom,
     std::int64_t& validTo);
-bool CheckProto_2(
+EXPORT bool CheckProto_2(
     const Token& input,
     const bool silent,
     const CashType expectedType,
@@ -28,7 +28,7 @@ bool CheckProto_2(
     std::int64_t& totalValue,
     std::int64_t& validFrom,
     std::int64_t& validTo);
-bool CheckProto_3(
+EXPORT bool CheckProto_3(
     const Token& input,
     const bool silent,
     const CashType expectedType,
@@ -36,7 +36,7 @@ bool CheckProto_3(
     std::int64_t& totalValue,
     std::int64_t& validFrom,
     std::int64_t& validTo);
-bool CheckProto_4(
+EXPORT bool CheckProto_4(
     const Token& input,
     const bool silent,
     const CashType expectedType,
@@ -44,7 +44,7 @@ bool CheckProto_4(
     std::int64_t& totalValue,
     std::int64_t& validFrom,
     std::int64_t& validTo);
-bool CheckProto_5(
+EXPORT bool CheckProto_5(
     const Token& input,
     const bool silent,
     const CashType expectedType,
@@ -52,7 +52,7 @@ bool CheckProto_5(
     std::int64_t& totalValue,
     std::int64_t& validFrom,
     std::int64_t& validTo);
-bool CheckProto_6(
+EXPORT bool CheckProto_6(
     const Token& input,
     const bool silent,
     const CashType expectedType,
@@ -60,7 +60,7 @@ bool CheckProto_6(
     std::int64_t& totalValue,
     std::int64_t& validFrom,
     std::int64_t& validTo);
-bool CheckProto_7(
+EXPORT bool CheckProto_7(
     const Token& input,
     const bool silent,
     const CashType expectedType,
@@ -68,7 +68,7 @@ bool CheckProto_7(
     std::int64_t& totalValue,
     std::int64_t& validFrom,
     std::int64_t& validTo);
-bool CheckProto_8(
+EXPORT bool CheckProto_8(
     const Token& input,
     const bool silent,
     const CashType expectedType,
@@ -76,7 +76,7 @@ bool CheckProto_8(
     std::int64_t& totalValue,
     std::int64_t& validFrom,
     std::int64_t& validTo);
-bool CheckProto_9(
+EXPORT bool CheckProto_9(
     const Token& input,
     const bool silent,
     const CashType expectedType,
@@ -84,7 +84,7 @@ bool CheckProto_9(
     std::int64_t& totalValue,
     std::int64_t& validFrom,
     std::int64_t& validTo);
-bool CheckProto_10(
+EXPORT bool CheckProto_10(
     const Token& input,
     const bool silent,
     const CashType expectedType,
@@ -92,7 +92,7 @@ bool CheckProto_10(
     std::int64_t& totalValue,
     std::int64_t& validFrom,
     std::int64_t& validTo);
-bool CheckProto_11(
+EXPORT bool CheckProto_11(
     const Token& input,
     const bool silent,
     const CashType expectedType,
@@ -100,7 +100,7 @@ bool CheckProto_11(
     std::int64_t& totalValue,
     std::int64_t& validFrom,
     std::int64_t& validTo);
-bool CheckProto_12(
+EXPORT bool CheckProto_12(
     const Token& input,
     const bool silent,
     const CashType expectedType,
@@ -108,7 +108,7 @@ bool CheckProto_12(
     std::int64_t& totalValue,
     std::int64_t& validFrom,
     std::int64_t& validTo);
-bool CheckProto_13(
+EXPORT bool CheckProto_13(
     const Token& input,
     const bool silent,
     const CashType expectedType,
@@ -116,7 +116,7 @@ bool CheckProto_13(
     std::int64_t& totalValue,
     std::int64_t& validFrom,
     std::int64_t& validTo);
-bool CheckProto_14(
+EXPORT bool CheckProto_14(
     const Token& input,
     const bool silent,
     const CashType expectedType,
@@ -124,7 +124,7 @@ bool CheckProto_14(
     std::int64_t& totalValue,
     std::int64_t& validFrom,
     std::int64_t& validTo);
-bool CheckProto_15(
+EXPORT bool CheckProto_15(
     const Token& input,
     const bool silent,
     const CashType expectedType,
@@ -132,7 +132,7 @@ bool CheckProto_15(
     std::int64_t& totalValue,
     std::int64_t& validFrom,
     std::int64_t& validTo);
-bool CheckProto_16(
+EXPORT bool CheckProto_16(
     const Token& input,
     const bool silent,
     const CashType expectedType,
@@ -140,7 +140,7 @@ bool CheckProto_16(
     std::int64_t& totalValue,
     std::int64_t& validFrom,
     std::int64_t& validTo);
-bool CheckProto_17(
+EXPORT bool CheckProto_17(
     const Token& input,
     const bool silent,
     const CashType expectedType,
@@ -148,7 +148,7 @@ bool CheckProto_17(
     std::int64_t& totalValue,
     std::int64_t& validFrom,
     std::int64_t& validTo);
-bool CheckProto_18(
+EXPORT bool CheckProto_18(
     const Token& input,
     const bool silent,
     const CashType expectedType,
@@ -156,7 +156,7 @@ bool CheckProto_18(
     std::int64_t& totalValue,
     std::int64_t& validFrom,
     std::int64_t& validTo);
-bool CheckProto_19(
+EXPORT bool CheckProto_19(
     const Token& input,
     const bool silent,
     const CashType expectedType,
@@ -164,7 +164,7 @@ bool CheckProto_19(
     std::int64_t& totalValue,
     std::int64_t& validFrom,
     std::int64_t& validTo);
-bool CheckProto_20(
+EXPORT bool CheckProto_20(
     const Token& input,
     const bool silent,
     const CashType expectedType,

@@ -12,102 +12,102 @@ namespace opentxs
 {
 namespace proto
 {
-bool CheckProto_1(
+EXPORT bool CheckProto_1(
     const KeyCredential& keyCredential,
     const bool silent,
     const CredentialType credType,
     const KeyMode mode);
-bool CheckProto_2(
+EXPORT bool CheckProto_2(
     const KeyCredential&,
     const bool,
     const CredentialType,
     const KeyMode);
-bool CheckProto_3(
+EXPORT bool CheckProto_3(
     const KeyCredential&,
     const bool,
     const CredentialType,
     const KeyMode);
-bool CheckProto_4(
+EXPORT bool CheckProto_4(
     const KeyCredential&,
     const bool,
     const CredentialType,
     const KeyMode);
-bool CheckProto_5(
+EXPORT bool CheckProto_5(
     const KeyCredential&,
     const bool,
     const CredentialType,
     const KeyMode);
-bool CheckProto_6(
+EXPORT bool CheckProto_6(
     const KeyCredential&,
     const bool,
     const CredentialType,
     const KeyMode);
-bool CheckProto_7(
+EXPORT bool CheckProto_7(
     const KeyCredential&,
     const bool,
     const CredentialType,
     const KeyMode);
-bool CheckProto_8(
+EXPORT bool CheckProto_8(
     const KeyCredential&,
     const bool,
     const CredentialType,
     const KeyMode);
-bool CheckProto_9(
+EXPORT bool CheckProto_9(
     const KeyCredential&,
     const bool,
     const CredentialType,
     const KeyMode);
-bool CheckProto_10(
+EXPORT bool CheckProto_10(
     const KeyCredential&,
     const bool,
     const CredentialType,
     const KeyMode);
-bool CheckProto_11(
+EXPORT bool CheckProto_11(
     const KeyCredential&,
     const bool,
     const CredentialType,
     const KeyMode);
-bool CheckProto_12(
+EXPORT bool CheckProto_12(
     const KeyCredential&,
     const bool,
     const CredentialType,
     const KeyMode);
-bool CheckProto_13(
+EXPORT bool CheckProto_13(
     const KeyCredential&,
     const bool,
     const CredentialType,
     const KeyMode);
-bool CheckProto_14(
+EXPORT bool CheckProto_14(
     const KeyCredential&,
     const bool,
     const CredentialType,
     const KeyMode);
-bool CheckProto_15(
+EXPORT bool CheckProto_15(
     const KeyCredential&,
     const bool,
     const CredentialType,
     const KeyMode);
-bool CheckProto_16(
+EXPORT bool CheckProto_16(
     const KeyCredential&,
     const bool,
     const CredentialType,
     const KeyMode);
-bool CheckProto_17(
+EXPORT bool CheckProto_17(
     const KeyCredential&,
     const bool,
     const CredentialType,
     const KeyMode);
-bool CheckProto_18(
+EXPORT bool CheckProto_18(
     const KeyCredential&,
     const bool,
     const CredentialType,
     const KeyMode);
-bool CheckProto_19(
+EXPORT bool CheckProto_19(
     const KeyCredential&,
     const bool,
     const CredentialType,
     const KeyMode);
-bool CheckProto_20(
+EXPORT bool CheckProto_20(
     const KeyCredential&,
     const bool,
     const CredentialType,

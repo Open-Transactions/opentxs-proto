@@ -12,26 +12,26 @@ namespace opentxs
 {
 namespace proto
 {
-bool CheckProto_1(const ServerReply& input, const bool silent);
-bool CheckProto_2(const ServerReply& input, const bool silent);
-bool CheckProto_3(const ServerReply& input, const bool silent);
-bool CheckProto_4(const ServerReply& input, const bool silent);
-bool CheckProto_5(const ServerReply& input, const bool silent);
-bool CheckProto_6(const ServerReply& input, const bool silent);
-bool CheckProto_7(const ServerReply& input, const bool silent);
-bool CheckProto_8(const ServerReply& input, const bool silent);
-bool CheckProto_9(const ServerReply& input, const bool silent);
-bool CheckProto_10(const ServerReply& input, const bool silent);
-bool CheckProto_11(const ServerReply& input, const bool silent);
-bool CheckProto_12(const ServerReply& input, const bool silent);
-bool CheckProto_13(const ServerReply& input, const bool silent);
-bool CheckProto_14(const ServerReply& input, const bool silent);
-bool CheckProto_15(const ServerReply& input, const bool silent);
-bool CheckProto_16(const ServerReply& input, const bool silent);
-bool CheckProto_17(const ServerReply& input, const bool silent);
-bool CheckProto_18(const ServerReply& input, const bool silent);
-bool CheckProto_19(const ServerReply& input, const bool silent);
-bool CheckProto_20(const ServerReply& input, const bool silent);
+EXPORT bool CheckProto_1(const ServerReply& input, const bool silent);
+EXPORT bool CheckProto_2(const ServerReply& input, const bool silent);
+EXPORT bool CheckProto_3(const ServerReply& input, const bool silent);
+EXPORT bool CheckProto_4(const ServerReply& input, const bool silent);
+EXPORT bool CheckProto_5(const ServerReply& input, const bool silent);
+EXPORT bool CheckProto_6(const ServerReply& input, const bool silent);
+EXPORT bool CheckProto_7(const ServerReply& input, const bool silent);
+EXPORT bool CheckProto_8(const ServerReply& input, const bool silent);
+EXPORT bool CheckProto_9(const ServerReply& input, const bool silent);
+EXPORT bool CheckProto_10(const ServerReply& input, const bool silent);
+EXPORT bool CheckProto_11(const ServerReply& input, const bool silent);
+EXPORT bool CheckProto_12(const ServerReply& input, const bool silent);
+EXPORT bool CheckProto_13(const ServerReply& input, const bool silent);
+EXPORT bool CheckProto_14(const ServerReply& input, const bool silent);
+EXPORT bool CheckProto_15(const ServerReply& input, const bool silent);
+EXPORT bool CheckProto_16(const ServerReply& input, const bool silent);
+EXPORT bool CheckProto_17(const ServerReply& input, const bool silent);
+EXPORT bool CheckProto_18(const ServerReply& input, const bool silent);
+EXPORT bool CheckProto_19(const ServerReply& input, const bool silent);
+EXPORT bool CheckProto_20(const ServerReply& input, const bool silent);
 }  // namespace proto
 }  // namespace opentxs
 

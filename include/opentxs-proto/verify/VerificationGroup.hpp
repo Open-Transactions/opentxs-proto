@@ -12,59 +12,83 @@ namespace opentxs
 {
 namespace proto
 {
-bool CheckProto_1(
+EXPORT bool CheckProto_1(
     const VerificationGroup& verificationGroup,
     const bool silent,
     const VerificationType indexed);
-bool CheckProto_2(const VerificationGroup&, const bool, const VerificationType);
-bool CheckProto_3(const VerificationGroup&, const bool, const VerificationType);
-bool CheckProto_4(const VerificationGroup&, const bool, const VerificationType);
-bool CheckProto_5(const VerificationGroup&, const bool, const VerificationType);
-bool CheckProto_6(const VerificationGroup&, const bool, const VerificationType);
-bool CheckProto_7(const VerificationGroup&, const bool, const VerificationType);
-bool CheckProto_8(const VerificationGroup&, const bool, const VerificationType);
-bool CheckProto_9(const VerificationGroup&, const bool, const VerificationType);
-bool CheckProto_10(
+EXPORT bool CheckProto_2(
     const VerificationGroup&,
     const bool,
     const VerificationType);
-bool CheckProto_11(
+EXPORT bool CheckProto_3(
     const VerificationGroup&,
     const bool,
     const VerificationType);
-bool CheckProto_12(
+EXPORT bool CheckProto_4(
     const VerificationGroup&,
     const bool,
     const VerificationType);
-bool CheckProto_13(
+EXPORT bool CheckProto_5(
     const VerificationGroup&,
     const bool,
     const VerificationType);
-bool CheckProto_14(
+EXPORT bool CheckProto_6(
     const VerificationGroup&,
     const bool,
     const VerificationType);
-bool CheckProto_15(
+EXPORT bool CheckProto_7(
     const VerificationGroup&,
     const bool,
     const VerificationType);
-bool CheckProto_16(
+EXPORT bool CheckProto_8(
     const VerificationGroup&,
     const bool,
     const VerificationType);
-bool CheckProto_17(
+EXPORT bool CheckProto_9(
     const VerificationGroup&,
     const bool,
     const VerificationType);
-bool CheckProto_18(
+EXPORT bool CheckProto_10(
     const VerificationGroup&,
     const bool,
     const VerificationType);
-bool CheckProto_19(
+EXPORT bool CheckProto_11(
     const VerificationGroup&,
     const bool,
     const VerificationType);
-bool CheckProto_20(
+EXPORT bool CheckProto_12(
+    const VerificationGroup&,
+    const bool,
+    const VerificationType);
+EXPORT bool CheckProto_13(
+    const VerificationGroup&,
+    const bool,
+    const VerificationType);
+EXPORT bool CheckProto_14(
+    const VerificationGroup&,
+    const bool,
+    const VerificationType);
+EXPORT bool CheckProto_15(
+    const VerificationGroup&,
+    const bool,
+    const VerificationType);
+EXPORT bool CheckProto_16(
+    const VerificationGroup&,
+    const bool,
+    const VerificationType);
+EXPORT bool CheckProto_17(
+    const VerificationGroup&,
+    const bool,
+    const VerificationType);
+EXPORT bool CheckProto_18(
+    const VerificationGroup&,
+    const bool,
+    const VerificationType);
+EXPORT bool CheckProto_19(
+    const VerificationGroup&,
+    const bool,
+    const VerificationType);
+EXPORT bool CheckProto_20(
     const VerificationGroup&,
     const bool,
     const VerificationType);
