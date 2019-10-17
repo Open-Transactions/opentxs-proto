@@ -4,7 +4,7 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 #include "opentxs-proto/Types.hpp"
-#include "opentxs-proto/Check.hpp"
+#include "verify/Check.hpp"
 
 #define BAD_EVENTS(a, b)                                                       \
     {                                                                          \
@@ -124,7 +124,7 @@ bool CheckProto_2(const PaymentWorkflow& input, const bool silent)
         } catch (const std::out_of_range&) {
             const auto fail = std::string("allowed ") + "event" +
                               " version not defined for version";
-            FAIL_2(fail, input.version())
+            FAIL_2(fail.c_str(), input.version())
         }
     }
 
