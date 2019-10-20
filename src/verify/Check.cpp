@@ -66,12 +66,12 @@ void PrintErrorMessage(
     WriteLogMessage(out);
 }
 
-void WriteLogMessage(const std::stringstream& message) noexcept
+void WriteLogMessage(const std::stringstream& out) noexcept
 {
 #ifdef USE_ANDROID_LOG
     __android_log_write(ANDROID_LOG_INFO, "opentxs-proto", out.str().c_str());
 #else
-    std::cerr << message.str();
+    std::cerr << out.str();
 #endif
 }
 }  // namespace opentxs::proto
