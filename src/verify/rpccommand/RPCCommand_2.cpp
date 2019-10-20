@@ -4,7 +4,7 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 #include "opentxs-proto/Types.hpp"
-#include "opentxs-proto/Check.hpp"
+#include "verify/Check.hpp"
 
 #define PROTO_NAME "RPC command"
 
@@ -459,8 +459,7 @@ bool CheckProto_2(const RPCCommand& input, const bool silent)
                 const auto size = input.identifier(0).size();
 
                 if (MAX_VALID_CONTACT_VALUE < size) {
-                    const auto fail = std::string("invalid alias size");
-                    FAIL_2(fail, size);
+                    FAIL_2("invalid alias size", size);
                 }
             }
 
@@ -494,8 +493,7 @@ bool CheckProto_2(const RPCCommand& input, const bool silent)
                 const auto size = input.identifier(0).size();
 
                 if (MAX_VALID_CONTACT_VALUE < size) {
-                    const auto fail = std::string("invalid alias size");
-                    FAIL_2(fail, size);
+                    FAIL_2("invalid alias size", size);
                 }
             }
 

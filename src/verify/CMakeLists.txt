@@ -5,6 +5,8 @@
 
 set(
   cxx-sources
+  Check.cpp
+  Variables.cpp
   VerifyContacts.cpp
   acceptpendingpayment/AcceptPendingPayment_1.cpp
   accountdata/AccountData_1.cpp
@@ -190,6 +192,7 @@ target_include_directories(verify SYSTEM PUBLIC ${Protobuf_INCLUDE_DIR})
 target_include_directories(
   verify
   PUBLIC $<BUILD_INTERFACE:${opentxs-proto_SOURCE_DIR}/include>
+  PRIVATE $<BUILD_INTERFACE:${opentxs-proto_SOURCE_DIR}/src>
 )
 target_include_directories(
   verify SYSTEM

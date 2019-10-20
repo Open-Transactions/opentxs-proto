@@ -4,7 +4,7 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 #include "opentxs-proto/Types.hpp"
-#include "opentxs-proto/Check.hpp"
+#include "verify/Check.hpp"
 
 #define PROTO_NAME "get workflow"
 

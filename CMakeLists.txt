@@ -40,6 +40,7 @@ option(OPENTXS_PROTO_PEDANTIC_BUILD "Treat compiler warnings as errors."
 # Set compiler options
 
 set_compiler_flags(17 ${OPENTXS_PROTO_PEDANTIC_BUILD})
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-sign-conversion")
 
 # temporarily disabled warnings
 if(${CMAKE_CXX_COMPILER_ID} MATCHES Clang)

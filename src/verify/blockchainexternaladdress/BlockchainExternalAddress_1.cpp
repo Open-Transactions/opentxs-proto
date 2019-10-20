@@ -4,7 +4,7 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 #include "opentxs-proto/Types.hpp"
-#include "opentxs-proto/Check.hpp"
+#include "verify/Check.hpp"
 
 #define PROTO_NAME "blockchain external address"
 
@@ -55,7 +55,7 @@ bool CheckProto_1(const BlockchainExternalAddress& input, const bool silent)
     for (const auto& data : input.data()) {
         if ((min > data.size()) || (max < data.size())) {
             const auto fail = std::string{"invalid data size"};
-            FAIL_2(fail, data.size())
+            FAIL_2(fail.c_str(), data.size())
         }
     }
 
