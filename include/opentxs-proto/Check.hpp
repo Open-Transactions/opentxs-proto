@@ -120,6 +120,8 @@ bool Check(
         default: {
             PrintErrorMessage(
                 "protobuf", input.version(), "unsupported version");
+
+            return false;
         }
     }
 
