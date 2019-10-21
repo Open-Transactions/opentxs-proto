@@ -20,9 +20,12 @@ set(
   Bip47Address.proto
   Bip47Channel.proto
   Bip47Direction.proto
+  BitcoinBlockHeaderFields.proto
   BlindedSeriesList.proto
   BlockchainActivity.proto
   BlockchainAddress.proto
+  BlockchainBlockHeader.proto
+  BlockchainBlockLocalData.proto
   BlockchainEnums.proto
   BlockchainExternalAddress.proto
   BlockchainPreviousOutput.proto
@@ -53,7 +56,9 @@ set(
   Enums.proto
   Envelope.proto
   EquityParams.proto
+  EthereumBlockHeaderFields.proto
   Faucet.proto
+  GCS.proto
   GetWorkflow.proto
   HDAccount.proto
   HDPath.proto
@@ -154,7 +159,13 @@ set(
   ZMQEnums.proto
 )
 
-protobuf_generate_cpp(PROTO_SRC PROTO_HEADER ${PROTO_SOURCES} EXPORT_MACRO EXPORT)
+protobuf_generate_cpp(
+  PROTO_SRC
+  PROTO_HEADER
+  ${PROTO_SOURCES}
+  EXPORT_MACRO
+  EXPORT
+)
 
 add_library(messages OBJECT ${PROTO_SRC} ${PROTO_HEADER})
 add_library(opentxs-proto::messages ALIAS messages)

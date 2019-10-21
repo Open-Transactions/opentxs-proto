@@ -26,7 +26,7 @@ set_target_properties(
 
 target_link_libraries(${name} opentxs-proto::libopentxs-proto GTest::GTest)
 
-if (NOT MSVC)
+if(NOT MSVC)
   target_compile_options(${name} PRIVATE -Wno-effc++)
 endif()
 

@@ -27,6 +27,16 @@ static const VersionMap Bip47DirectionAllowedBip47Address = {
 static const VersionMap BlockchainAddressAllowedAsymmetricKey = {
     {1, {2, 2}},
 };
+static const VersionMap BlockchainBlockHeaderAllowedBitcoinBlockHeaderFields = {
+    {1, {1, 1}},
+};
+static const VersionMap BlockchainBlockHeaderAllowedBlockchainBlockLocalData = {
+    {1, {1, 1}},
+};
+static const VersionMap BlockchainBlockHeaderAllowedEthereumBlockHeaderFields =
+    {
+        {1, {1, 1}},
+};
 static const VersionMap BlockchainTransactionAllowedInput = {
     {1, {1, 1}},
 };

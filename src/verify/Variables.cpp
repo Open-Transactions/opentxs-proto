@@ -19,6 +19,7 @@ const std::size_t MAX_LABEL_SIZE{512};
 const std::size_t MAX_TRANSACTION_MEMO_SIZE{512};
 const std::size_t MIN_PLAUSIBLE_SCRIPT{2};
 const std::size_t MAX_PLAUSIBLE_SCRIPT{1048576};
+const std::size_t MAX_PLAUSIBLE_WORK{128};
 
 const ContactSectionMap AllowedSectionNames{
     {1,

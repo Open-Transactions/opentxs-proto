@@ -30,6 +30,7 @@ extern const std::size_t MAX_LABEL_SIZE;
 extern const std::size_t MAX_TRANSACTION_MEMO_SIZE;
 extern const std::size_t MIN_PLAUSIBLE_SCRIPT;
 extern const std::size_t MAX_PLAUSIBLE_SCRIPT;
+extern const std::size_t MAX_PLAUSIBLE_WORK;
 }  // namespace proto
 }  // namespace opentxs
 #endif  // OPENTXS_PROTO_BASIC_HPP
