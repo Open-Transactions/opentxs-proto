@@ -13,13 +13,15 @@
 #endif
 
 // IWYU pragma: begin_exports
+#pragma warning(push)
+#pragma warning(disable : 4251)
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wlanguage-extension-token"
 #pragma GCC diagnostic ignored "-Wundef"
 #pragma GCC diagnostic ignored "-Wdeprecated-dynamic-exception-spec"
 #pragma GCC diagnostic ignored "-Wzero-as-null-pointer-constant"
 #pragma GCC diagnostic ignored "-Wsign-conversion"
-#pragma GCC diagnostic ignored "-Winconsistent-missing-destructor-override¶"
+#pragma GCC diagnostic ignored "-Winconsistent-missing-destructor-override"
 #include <opentxs-proto/APIArgument.pb.h>
 #include <opentxs-proto/AcceptPendingPayment.pb.h>
 #include <opentxs-proto/AccountData.pb.h>
@@ -314,5 +316,6 @@
 #include <opentxs-proto/verify/VerificationSet.hpp>
 #include <opentxs-proto/verify/VerifyClaim.hpp>
 #include <opentxs-proto/verify/VerifyCredentials.hpp>
+#pragma warning(pop)
 // IWYU pragma: end_exports
 #endif  // OPENTXS_PROTO_TYPES_HPP
