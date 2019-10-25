@@ -41,7 +41,9 @@ option(OPENTXS_PROTO_PEDANTIC_BUILD "Treat compiler warnings as errors."
 
 set_compiler_flags(17 ${OPENTXS_PROTO_PEDANTIC_BUILD})
 
-if(NOT MSVC)
+if(MSVC)
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /wd4244 /wd4251")
+else()
   set(
     CMAKE_CXX_FLAGS
     "${CMAKE_CXX_FLAGS} -Wno-sign-conversion -Wno-type-limits"
