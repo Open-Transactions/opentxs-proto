@@ -16,8 +16,8 @@ bool CheckProto_1(const StorageContacts& input, const bool silent)
         try {
             const bool valid = Check(
                 merge,
-                StorageContactsAllowedList.at(input.version()).first,
-                StorageContactsAllowedList.at(input.version()).second,
+                StorageContactsAllowedList().at(input.version()).first,
+                StorageContactsAllowedList().at(input.version()).second,
                 silent);
 
             if (!valid) { FAIL_1("invalid merge") }
@@ -32,8 +32,11 @@ bool CheckProto_1(const StorageContacts& input, const bool silent)
         try {
             const bool valid = Check(
                 hash,
-                StorageContactsAllowedStorageItemHash.at(input.version()).first,
-                StorageContactsAllowedStorageItemHash.at(input.version())
+                StorageContactsAllowedStorageItemHash()
+                    .at(input.version())
+                    .first,
+                StorageContactsAllowedStorageItemHash()
+                    .at(input.version())
                     .second,
                 silent);
 
@@ -49,8 +52,8 @@ bool CheckProto_1(const StorageContacts& input, const bool silent)
         try {
             const bool valid = Check(
                 index,
-                StorageContactsAllowedAddress.at(input.version()).first,
-                StorageContactsAllowedAddress.at(input.version()).second,
+                StorageContactsAllowedAddress().at(input.version()).first,
+                StorageContactsAllowedAddress().at(input.version()).second,
                 silent);
 
             if (!valid) { FAIL_1("invalid address index") }

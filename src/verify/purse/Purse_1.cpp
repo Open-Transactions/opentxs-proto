@@ -42,16 +42,16 @@ bool CheckProto_1(const Purse& input, const bool silent, std::int64_t& value)
         case PURSETYPE_REQUEST: {
             allowedStates.insert(TOKENSTATE_BLINDED);
 
-            CHECK_SUBOBJECT(secondarykey, PurseAllowedSymmetricKey);
+            CHECK_SUBOBJECT(secondarykey, PurseAllowedSymmetricKey());
             CHECK_SUBOBJECT_VA(
-                secondarypassword, PurseAllowedCiphertext, false);
+                secondarypassword, PurseAllowedCiphertext(), false);
         } break;
         case PURSETYPE_ISSUE: {
             allowedStates.insert(TOKENSTATE_SIGNED);
 
-            CHECK_SUBOBJECT(secondarykey, PurseAllowedSymmetricKey);
+            CHECK_SUBOBJECT(secondarykey, PurseAllowedSymmetricKey());
             CHECK_SUBOBJECT_VA(
-                secondarypassword, PurseAllowedCiphertext, false);
+                secondarypassword, PurseAllowedCiphertext(), false);
         } break;
         case PURSETYPE_NORMAL: {
             allowedStates.insert(TOKENSTATE_READY);
@@ -71,7 +71,7 @@ bool CheckProto_1(const Purse& input, const bool silent, std::int64_t& value)
     CHECK_IDENTIFIER(mint);
     OPTIONAL_SUBOBJECTS_VA(
         token,
-        PurseAllowedToken,
+        PurseAllowedToken(),
         input.type(),
         allowedStates,
         value,
@@ -90,8 +90,8 @@ bool CheckProto_1(const Purse& input, const bool silent, std::int64_t& value)
         FAIL_2("Incorrect valid to", std::to_string(input.earliestvalidto()));
     }
 
-    CHECK_SUBOBJECT(primarykey, PurseAllowedSymmetricKey);
-    OPTIONAL_SUBOBJECTS(primarypassword, PurseAllowedSessionKey);
+    CHECK_SUBOBJECT(primarykey, PurseAllowedSymmetricKey());
+    OPTIONAL_SUBOBJECTS(primarypassword, PurseAllowedSessionKey());
 
     return true;
 }

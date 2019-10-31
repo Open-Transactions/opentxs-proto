@@ -12,26 +12,28 @@ namespace opentxs
 {
 namespace proto
 {
-EXPORT bool CheckProto_1(const PeerRequestWorkflow& input, const bool silent);
-EXPORT bool CheckProto_2(const PeerRequestWorkflow&, const bool);
-EXPORT bool CheckProto_3(const PeerRequestWorkflow&, const bool);
-EXPORT bool CheckProto_4(const PeerRequestWorkflow&, const bool);
-EXPORT bool CheckProto_5(const PeerRequestWorkflow&, const bool);
-EXPORT bool CheckProto_6(const PeerRequestWorkflow&, const bool);
-EXPORT bool CheckProto_7(const PeerRequestWorkflow&, const bool);
-EXPORT bool CheckProto_8(const PeerRequestWorkflow&, const bool);
-EXPORT bool CheckProto_9(const PeerRequestWorkflow&, const bool);
-EXPORT bool CheckProto_10(const PeerRequestWorkflow&, const bool);
-EXPORT bool CheckProto_11(const PeerRequestWorkflow&, const bool);
-EXPORT bool CheckProto_12(const PeerRequestWorkflow&, const bool);
-EXPORT bool CheckProto_13(const PeerRequestWorkflow&, const bool);
-EXPORT bool CheckProto_14(const PeerRequestWorkflow&, const bool);
-EXPORT bool CheckProto_15(const PeerRequestWorkflow&, const bool);
-EXPORT bool CheckProto_16(const PeerRequestWorkflow&, const bool);
-EXPORT bool CheckProto_17(const PeerRequestWorkflow&, const bool);
-EXPORT bool CheckProto_18(const PeerRequestWorkflow&, const bool);
-EXPORT bool CheckProto_19(const PeerRequestWorkflow&, const bool);
-EXPORT bool CheckProto_20(const PeerRequestWorkflow&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_1(
+    const PeerRequestWorkflow& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_2(const PeerRequestWorkflow&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_3(const PeerRequestWorkflow&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_4(const PeerRequestWorkflow&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_5(const PeerRequestWorkflow&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_6(const PeerRequestWorkflow&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_7(const PeerRequestWorkflow&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_8(const PeerRequestWorkflow&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_9(const PeerRequestWorkflow&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_10(const PeerRequestWorkflow&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_11(const PeerRequestWorkflow&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_12(const PeerRequestWorkflow&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_13(const PeerRequestWorkflow&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_14(const PeerRequestWorkflow&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_15(const PeerRequestWorkflow&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_16(const PeerRequestWorkflow&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_17(const PeerRequestWorkflow&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_18(const PeerRequestWorkflow&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_19(const PeerRequestWorkflow&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_20(const PeerRequestWorkflow&, const bool);
 }  // namespace proto
 }  // namespace opentxs
 

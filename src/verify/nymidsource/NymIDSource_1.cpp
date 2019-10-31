@@ -31,8 +31,10 @@ bool CheckProto_1(const NymIDSource& input, const bool silent)
             try {
                 validSourcePubkey = Check(
                     input.key(),
-                    NymIDSourceAllowedAsymmetricKey.at(input.version()).first,
-                    NymIDSourceAllowedAsymmetricKey.at(input.version()).second,
+                    NymIDSourceAllowedAsymmetricKey().at(input.version()).first,
+                    NymIDSourceAllowedAsymmetricKey()
+                        .at(input.version())
+                        .second,
                     silent,
                     CREDTYPE_LEGACY,
                     KEYMODE_PUBLIC,
@@ -54,8 +56,8 @@ bool CheckProto_1(const NymIDSource& input, const bool silent)
             try {
                 validPaymentCode = Check(
                     input.paymentcode(),
-                    NymIDSourceAllowedPaymentCode.at(input.version()).first,
-                    NymIDSourceAllowedPaymentCode.at(input.version()).second,
+                    NymIDSourceAllowedPaymentCode().at(input.version()).first,
+                    NymIDSourceAllowedPaymentCode().at(input.version()).second,
                     silent);
 
                 if (!validPaymentCode) { FAIL_1("invalid payment code") }

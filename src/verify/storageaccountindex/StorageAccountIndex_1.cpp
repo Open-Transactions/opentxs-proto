@@ -15,8 +15,8 @@ namespace proto
 
 bool CheckProto_1(const StorageAccountIndex& input, const bool silent)
 {
-    const bool validChain = ValidContactItemType(
-        {CONTACT_VERSION, CONTACTSECTION_CONTRACT}, input.type());
+    const bool validChain =
+        ValidContactItemType({6, CONTACTSECTION_CONTRACT}, input.type());
 
     if (false == validChain) { FAIL_1("invalid type") }
 

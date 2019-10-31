@@ -30,8 +30,8 @@ bool CheckProto_1(const PeerObject& input, const bool silent)
             try {
                 const bool validrequest = Check(
                     input.otrequest(),
-                    PeerObjectAllowedPeerRequest.at(input.version()).first,
-                    PeerObjectAllowedPeerRequest.at(input.version()).second,
+                    PeerObjectAllowedPeerRequest().at(input.version()).first,
+                    PeerObjectAllowedPeerRequest().at(input.version()).second,
                     silent);
 
                 if (!validrequest) { FAIL_1("invalid otrequest") }
@@ -46,8 +46,8 @@ bool CheckProto_1(const PeerObject& input, const bool silent)
             try {
                 const bool validnym = Check(
                     input.nym(),
-                    PeerObjectAllowedNym.at(input.version()).first,
-                    PeerObjectAllowedNym.at(input.version()).second,
+                    PeerObjectAllowedNym().at(input.version()).first,
+                    PeerObjectAllowedNym().at(input.version()).second,
                     silent);
 
                 if (!validnym) { FAIL_1("invalid nym") }
@@ -67,8 +67,8 @@ bool CheckProto_1(const PeerObject& input, const bool silent)
             try {
                 const bool validrequest = Check(
                     input.otrequest(),
-                    PeerObjectAllowedPeerRequest.at(input.version()).first,
-                    PeerObjectAllowedPeerRequest.at(input.version()).second,
+                    PeerObjectAllowedPeerRequest().at(input.version()).first,
+                    PeerObjectAllowedPeerRequest().at(input.version()).second,
                     silent);
 
                 if (!validrequest) { FAIL_1("invalid otrequest") }
@@ -83,8 +83,8 @@ bool CheckProto_1(const PeerObject& input, const bool silent)
             try {
                 const bool validreply = Check(
                     input.otreply(),
-                    PeerObjectAllowedPeerReply.at(input.version()).first,
-                    PeerObjectAllowedPeerReply.at(input.version()).second,
+                    PeerObjectAllowedPeerReply().at(input.version()).first,
+                    PeerObjectAllowedPeerReply().at(input.version()).second,
                     silent);
 
                 if (!validreply) { FAIL_1("invalid otreply") }

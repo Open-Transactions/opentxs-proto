@@ -25,7 +25,7 @@ bool CheckProto_1(
     }
 
     CHECK_IDENTIFIER(unit);
-    CHECK_SUBOBJECTS(series, BlindedSeriesListAllowedStorageItemHash);
+    CHECK_SUBOBJECTS(series, BlindedSeriesListAllowedStorageItemHash());
 
     return true;
 }

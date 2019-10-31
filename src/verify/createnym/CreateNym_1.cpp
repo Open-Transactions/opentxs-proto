@@ -16,13 +16,14 @@ namespace proto
 bool CheckProto_1(const CreateNym& input, const bool silent)
 {
     const auto allowedtype =
-        1 == AllowedItemTypes.at({5, CONTACTSECTION_SCOPE}).count(input.type());
+        1 ==
+        AllowedItemTypes().at({5, CONTACTSECTION_SCOPE}).count(input.type());
 
     if (false == allowedtype) { FAIL_1("Invalid type") }
 
     CHECK_NAME(name)
     OPTIONAL_IDENTIFIER(seedid)
-    OPTIONAL_SUBOBJECTS(claims, CreateNymAllowedAddClaim)
+    OPTIONAL_SUBOBJECTS(claims, CreateNymAllowedAddClaim())
 
     return true;
 }

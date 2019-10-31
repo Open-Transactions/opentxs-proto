@@ -24,8 +24,8 @@ bool CheckProto_1(
         try {
             const bool validIdentity = Check(
                 it,
-                VerificationGroupAllowedIdentity.at(input.version()).first,
-                VerificationGroupAllowedIdentity.at(input.version()).second,
+                VerificationGroupAllowedIdentity().at(input.version()).first,
+                VerificationGroupAllowedIdentity().at(input.version()).second,
                 silent,
                 nymMap,
                 indexed);

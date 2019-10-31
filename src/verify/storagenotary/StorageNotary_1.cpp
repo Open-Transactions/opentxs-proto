@@ -14,7 +14,7 @@ bool CheckProto_1(const StorageNotary& input, const bool silent)
 {
     CHECK_IDENTIFIER(id);
     OPTIONAL_SUBOBJECTS_VA(
-        series, StorageNotaryAllowedBlindedSeriesList, input.id());
+        series, StorageNotaryAllowedBlindedSeriesList(), input.id());
 
     return true;
 }

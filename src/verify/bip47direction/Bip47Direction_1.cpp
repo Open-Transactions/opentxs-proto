@@ -16,7 +16,7 @@ namespace proto
 bool CheckProto_1(const Bip47Direction& input, const bool silent)
 {
     CHECK_IDENTIFIERS(notification)
-    CHECK_SUBOBJECTS(address, Bip47DirectionAllowedBip47Address)
+    CHECK_SUBOBJECTS(address, Bip47DirectionAllowedBip47Address())
     return true;
 }
 

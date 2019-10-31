@@ -24,8 +24,8 @@ bool CheckProto_1(
         try {
             bool validSection = Check(
                 it,
-                ContactDataAllowedContactSection.at(input.version()).first,
-                ContactDataAllowedContactSection.at(input.version()).second,
+                ContactDataAllowedContactSection().at(input.version()).first,
+                ContactDataAllowedContactSection().at(input.version()).second,
                 silent,
                 indexed,
                 input.version());

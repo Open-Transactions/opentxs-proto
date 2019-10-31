@@ -16,7 +16,7 @@ namespace proto
 bool CheckProto_1(const StorageBlockchainTransactions& input, const bool silent)
 {
     OPTIONAL_SUBOBJECTS(
-        transaction, StorageBlockchainTransactionsAllowedStorageItemHash)
+        transaction, StorageBlockchainTransactionsAllowedStorageItemHash())
     CHECK_NONE(nymindex)
 
     return true;
@@ -25,9 +25,9 @@ bool CheckProto_1(const StorageBlockchainTransactions& input, const bool silent)
 bool CheckProto_2(const StorageBlockchainTransactions& input, const bool silent)
 {
     OPTIONAL_SUBOBJECTS(
-        transaction, StorageBlockchainTransactionsAllowedStorageItemHash)
+        transaction, StorageBlockchainTransactionsAllowedStorageItemHash())
     OPTIONAL_SUBOBJECTS(
-        nymindex, StorageBlockchainTransactionsAllowedStorageContactNymIndex)
+        nymindex, StorageBlockchainTransactionsAllowedStorageContactNymIndex())
 
     return true;
 }

@@ -17,8 +17,8 @@ bool CheckProto_1(const Issuer& input, const bool silent)
 {
     CHECK_IDENTIFIER(id)
     OPTIONAL_IDENTIFIER(pairingcode)
-    CHECK_SUBOBJECTS(accounts, IssuerAllowedUnitAccountMap);
-    CHECK_SUBOBJECTS(peerrequests, IssuerAllowedPeerRequestHistory);
+    CHECK_SUBOBJECTS(accounts, IssuerAllowedUnitAccountMap());
+    CHECK_SUBOBJECTS(peerrequests, IssuerAllowedPeerRequestHistory());
 
     return true;
 }

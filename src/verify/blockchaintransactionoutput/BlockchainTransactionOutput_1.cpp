@@ -19,11 +19,11 @@ bool CheckProto_1(const BlockchainTransactionOutput& input, const bool silent)
 
     if (input.has_key()) {
         CHECK_SUBOBJECT(
-            key, BlockchainTransactionOutputAllowedBlockchainWalletKey);
+            key, BlockchainTransactionOutputAllowedBlockchainWalletKey());
     } else if (input.has_external()) {
         CHECK_SUBOBJECT(
             external,
-            BlockchainTransactionOutputAllowedBlockchainExternalAddress);
+            BlockchainTransactionOutputAllowedBlockchainExternalAddress());
     } else {
         FAIL_1("Missing destination");
     }

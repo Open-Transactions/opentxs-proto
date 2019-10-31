@@ -21,11 +21,11 @@ bool CheckProto_1(const Context& input, const bool silent)
     switch (input.type()) {
         case CONSENSUSTYPE_SERVER: {
             CHECK_EXCLUDED(clientcontext)
-            CHECK_SUBOBJECT(servercontext, ContextAllowedServer)
+            CHECK_SUBOBJECT(servercontext, ContextAllowedServer())
         } break;
         case CONSENSUSTYPE_CLIENT: {
             CHECK_EXCLUDED(servercontext)
-            CHECK_SUBOBJECT(clientcontext, ContextAllowedServer)
+            CHECK_SUBOBJECT(clientcontext, ContextAllowedServer())
         } break;
         case CONSENSUSTYPE_PEER:
         case CONSENSUSTYPE_ERROR:
@@ -34,7 +34,7 @@ bool CheckProto_1(const Context& input, const bool silent)
         }
     }
 
-    CHECK_SUBOBJECT_VA(signature, ContextAllowedSignature, SIGROLE_CONTEXT)
+    CHECK_SUBOBJECT_VA(signature, ContextAllowedSignature(), SIGROLE_CONTEXT)
 
     return true;
 }

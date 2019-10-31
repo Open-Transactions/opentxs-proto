@@ -19,8 +19,12 @@ bool CheckProto_1(const StorageServers& input, const bool silent)
         try {
             const bool valid = Check(
                 hash,
-                StorageServersAllowedStorageItemHash.at(input.version()).first,
-                StorageServersAllowedStorageItemHash.at(input.version()).second,
+                StorageServersAllowedStorageItemHash()
+                    .at(input.version())
+                    .first,
+                StorageServersAllowedStorageItemHash()
+                    .at(input.version())
+                    .second,
                 silent);
 
             if (!valid) { FAIL_1("invalid hash") }

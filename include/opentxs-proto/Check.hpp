@@ -13,28 +13,30 @@ namespace opentxs
 {
 namespace proto
 {
-void PrintErrorMessage(const char* proto, const char* error) noexcept;
-void PrintErrorMessage(
+OPENTXS_PROTO_EXPORT void PrintErrorMessage(
+    const char* proto,
+    const char* error) noexcept;
+OPENTXS_PROTO_EXPORT void PrintErrorMessage(
     const char* proto,
     const unsigned int version,
     const char* error) noexcept;
-void PrintErrorMessage(
+OPENTXS_PROTO_EXPORT void PrintErrorMessage(
     const char* proto,
     const unsigned int version,
     const std::string& error) noexcept;
-void PrintErrorMessage(
+OPENTXS_PROTO_EXPORT void PrintErrorMessage(
     const char* proto,
     const unsigned int version,
     const char* error,
     const long long int value) noexcept;
-void PrintErrorMessage(
+OPENTXS_PROTO_EXPORT void PrintErrorMessage(
     const char* proto,
     const unsigned int version,
     const char* error,
     const std::string& value) noexcept;
 
 template <typename T, typename... Args>
-bool Check(
+OPENTXS_PROTO_EXPORT bool Check(
     const T& input,
     const std::uint32_t minVersion,
     const std::uint32_t maxVersion,
@@ -129,7 +131,10 @@ bool Check(
 }
 
 template <typename T, typename... Args>
-bool Validate(const T& input, const bool silent, Args&&... params) noexcept
+OPENTXS_PROTO_EXPORT bool Validate(
+    const T& input,
+    const bool silent,
+    Args&&... params) noexcept
 {
 
     if (!input.has_version()) {

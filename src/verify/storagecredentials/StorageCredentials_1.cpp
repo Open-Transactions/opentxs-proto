@@ -19,9 +19,11 @@ bool CheckProto_1(const StorageCredentials& input, const bool silent)
         try {
             const bool valid = Check(
                 hash,
-                StorageCredentialAllowedStorageItemHash.at(input.version())
+                StorageCredentialAllowedStorageItemHash()
+                    .at(input.version())
                     .first,
-                StorageCredentialAllowedStorageItemHash.at(input.version())
+                StorageCredentialAllowedStorageItemHash()
+                    .at(input.version())
                     .second,
                 silent);
 

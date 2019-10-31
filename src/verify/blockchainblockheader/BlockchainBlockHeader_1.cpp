@@ -34,15 +34,15 @@ bool CheckProto_1(const BlockchainBlockHeader& input, const bool silent)
     }
 
     OPTIONAL_SUBOBJECT(
-        local, BlockchainBlockHeaderAllowedBlockchainBlockLocalData);
+        local, BlockchainBlockHeaderAllowedBlockchainBlockLocalData());
 
     if (bitcoin) {
         CHECK_SUBOBJECT(
-            bitcoin, BlockchainBlockHeaderAllowedBitcoinBlockHeaderFields);
+            bitcoin, BlockchainBlockHeaderAllowedBitcoinBlockHeaderFields());
         CHECK_EXCLUDED(ethereum);
     } else if (ethereum) {
         CHECK_SUBOBJECT(
-            ethereum, BlockchainBlockHeaderAllowedEthereumBlockHeaderFields);
+            ethereum, BlockchainBlockHeaderAllowedEthereumBlockHeaderFields());
         CHECK_EXCLUDED(bitcoin);
     } else {
         FAIL_1("Unknown type");

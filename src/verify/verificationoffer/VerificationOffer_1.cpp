@@ -47,8 +47,8 @@ bool CheckProto_3(const VerificationOffer& input, const bool silent)
     try {
         const bool validClaim = Check(
             input.claim(),
-            VerificationOfferAllowedClaim.at(input.version()).first,
-            VerificationOfferAllowedClaim.at(input.version()).second,
+            VerificationOfferAllowedClaim().at(input.version()).first,
+            VerificationOfferAllowedClaim().at(input.version()).second,
             silent);
 
         if (!validClaim) { FAIL_1("invalid claim") }
@@ -63,10 +63,10 @@ bool CheckProto_3(const VerificationOffer& input, const bool silent)
     try {
         const bool validVerification = Check(
             input.verification(),
-            VerificationOfferAllowedVerification.at(input.version()).first,
-            VerificationOfferAllowedVerification.at(input.version()).second,
+            VerificationOfferAllowedVerification().at(input.version()).first,
+            VerificationOfferAllowedVerification().at(input.version()).second,
             silent,
-            VERIFICATIONS_NORMAL);
+            VerificationType::Normal);
 
         if (!validVerification) { FAIL_1("invalid verification") }
     } catch (const std::out_of_range&) {

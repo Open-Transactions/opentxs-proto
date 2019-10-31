@@ -12,26 +12,66 @@ namespace opentxs
 {
 namespace proto
 {
-EXPORT bool CheckProto_1(const AccountData& input, const bool silent);
-EXPORT bool CheckProto_2(const AccountData& input, const bool silent);
-EXPORT bool CheckProto_3(const AccountData& input, const bool silent);
-EXPORT bool CheckProto_4(const AccountData& input, const bool silent);
-EXPORT bool CheckProto_5(const AccountData& input, const bool silent);
-EXPORT bool CheckProto_6(const AccountData& input, const bool silent);
-EXPORT bool CheckProto_7(const AccountData& input, const bool silent);
-EXPORT bool CheckProto_8(const AccountData& input, const bool silent);
-EXPORT bool CheckProto_9(const AccountData& input, const bool silent);
-EXPORT bool CheckProto_10(const AccountData& input, const bool silent);
-EXPORT bool CheckProto_11(const AccountData& input, const bool silent);
-EXPORT bool CheckProto_12(const AccountData& input, const bool silent);
-EXPORT bool CheckProto_13(const AccountData& input, const bool silent);
-EXPORT bool CheckProto_14(const AccountData& input, const bool silent);
-EXPORT bool CheckProto_15(const AccountData& input, const bool silent);
-EXPORT bool CheckProto_16(const AccountData& input, const bool silent);
-EXPORT bool CheckProto_17(const AccountData& input, const bool silent);
-EXPORT bool CheckProto_18(const AccountData& input, const bool silent);
-EXPORT bool CheckProto_19(const AccountData& input, const bool silent);
-EXPORT bool CheckProto_20(const AccountData& input, const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_1(
+    const AccountData& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_2(
+    const AccountData& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_3(
+    const AccountData& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_4(
+    const AccountData& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_5(
+    const AccountData& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_6(
+    const AccountData& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_7(
+    const AccountData& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_8(
+    const AccountData& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_9(
+    const AccountData& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_10(
+    const AccountData& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_11(
+    const AccountData& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_12(
+    const AccountData& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_13(
+    const AccountData& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_14(
+    const AccountData& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_15(
+    const AccountData& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_16(
+    const AccountData& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_17(
+    const AccountData& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_18(
+    const AccountData& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_19(
+    const AccountData& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_20(
+    const AccountData& input,
+    const bool silent);
 }  // namespace proto
 }  // namespace opentxs
 

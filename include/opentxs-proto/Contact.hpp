@@ -25,30 +25,27 @@ namespace proto
 {
 // A map of allowed section names by ContactData version
 using ContactSectionMap = std::map<uint32_t, std::set<ContactSectionName>>;
-
 // A map of allowed item types by ContactSection version
 using ContactSectionVersion = std::pair<uint32_t, ContactSectionName>;
 using ContactItemMap =
     std::map<ContactSectionVersion, std::set<ContactItemType>>;
-
 // A map of allowed item attributes by ContactItem version
 using ItemAttributeMap = std::map<uint32_t, std::set<ContactItemAttribute>>;
-
 // Maps for converting enum values to human-readable names
 using EnumLang = std::pair<uint32_t, std::string>;
 using EnumTranslation = std::map<EnumLang, std::string>;
-
 // A map for storing relationship reciprocities
 using RelationshipReciprocity = std::map<ContactItemType, ContactItemType>;
 
-extern const ContactSectionMap AllowedSectionNames;
-extern const ContactItemMap AllowedItemTypes;
-extern const ItemAttributeMap AllowedItemAttributes;
-extern const std::set<ContactSectionName> AllowedSubtypes;
-extern const EnumTranslation ContactSectionNames;
-extern const EnumTranslation ContactItemTypes;
-extern const EnumTranslation ContactItemAttributes;
-extern const RelationshipReciprocity RelationshipMap;
+OPENTXS_PROTO_EXPORT const ContactSectionMap& AllowedSectionNames() noexcept;
+OPENTXS_PROTO_EXPORT const ContactItemMap& AllowedItemTypes() noexcept;
+OPENTXS_PROTO_EXPORT const ItemAttributeMap& AllowedItemAttributes() noexcept;
+OPENTXS_PROTO_EXPORT const std::set<ContactSectionName>&
+AllowedSubtypes() noexcept;
+OPENTXS_PROTO_EXPORT const EnumTranslation& ContactSectionNames() noexcept;
+OPENTXS_PROTO_EXPORT const EnumTranslation& ContactItemTypes() noexcept;
+OPENTXS_PROTO_EXPORT const EnumTranslation& ContactItemAttributes() noexcept;
+OPENTXS_PROTO_EXPORT const RelationshipReciprocity& RelationshipMap() noexcept;
 }  // namespace proto
 }  // namespace opentxs
 #endif  // OPENTXS_PROTO_CONTACT

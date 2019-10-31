@@ -41,24 +41,24 @@ bool CheckProto_1(
     try {
         validAuthKey = Check(
             authKey,
-            KeyCredentialAllowedAsymmetricKey.at(input.version()).first,
-            KeyCredentialAllowedAsymmetricKey.at(input.version()).second,
+            KeyCredentialAllowedAsymmetricKey().at(input.version()).first,
+            KeyCredentialAllowedAsymmetricKey().at(input.version()).second,
             silent,
             credType,
             mode,
             KEYROLE_AUTH);
         validEncryptKey = Check(
             encryptKey,
-            KeyCredentialAllowedAsymmetricKey.at(input.version()).first,
-            KeyCredentialAllowedAsymmetricKey.at(input.version()).second,
+            KeyCredentialAllowedAsymmetricKey().at(input.version()).first,
+            KeyCredentialAllowedAsymmetricKey().at(input.version()).second,
             silent,
             credType,
             mode,
             KEYROLE_ENCRYPT);
         validSignKey = Check(
             signKey,
-            KeyCredentialAllowedAsymmetricKey.at(input.version()).first,
-            KeyCredentialAllowedAsymmetricKey.at(input.version()).second,
+            KeyCredentialAllowedAsymmetricKey().at(input.version()).first,
+            KeyCredentialAllowedAsymmetricKey().at(input.version()).second,
             silent,
             credType,
             mode,

@@ -6,15 +6,11 @@
 #ifndef OPENTXS_PROTO_TYPES_HPP
 #define OPENTXS_PROTO_TYPES_HPP
 
-#define CONTACT_VERSION 6
-
 #ifndef PROTOBUF_INLINE_NOT_IN_HEADERS
 #define PROTOBUF_INLINE_NOT_IN_HEADERS 0
 #endif
 
 // IWYU pragma: begin_exports
-#pragma warning(push)
-#pragma warning(disable : 4251)
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wlanguage-extension-token"
 #pragma GCC diagnostic ignored "-Wundef"
@@ -22,6 +18,7 @@
 #pragma GCC diagnostic ignored "-Wzero-as-null-pointer-constant"
 #pragma GCC diagnostic ignored "-Wsign-conversion"
 #pragma GCC diagnostic ignored "-Winconsistent-missing-destructor-override"
+#include <opentxs-proto/opentxs-proto_export.hpp>
 #include <opentxs-proto/APIArgument.pb.h>
 #include <opentxs-proto/AcceptPendingPayment.pb.h>
 #include <opentxs-proto/AccountData.pb.h>
@@ -316,6 +313,5 @@
 #include <opentxs-proto/verify/VerificationSet.hpp>
 #include <opentxs-proto/verify/VerifyClaim.hpp>
 #include <opentxs-proto/verify/VerifyCredentials.hpp>
-#pragma warning(pop)
 // IWYU pragma: end_exports
 #endif  // OPENTXS_PROTO_TYPES_HPP

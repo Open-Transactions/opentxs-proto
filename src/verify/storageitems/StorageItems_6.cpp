@@ -22,7 +22,7 @@ bool CheckProto_6(const StorageItems& input, const bool silent)
     OPTIONAL_IDENTIFIER(accounts);
     OPTIONAL_IDENTIFIER(notary);
     OPTIONAL_SUBOBJECT_VA(
-        master_secret, StorageItemsAllowedSymmetricKey, false);
+        master_secret, StorageItemsAllowedSymmetricKey(), false);
 
     return true;
 }

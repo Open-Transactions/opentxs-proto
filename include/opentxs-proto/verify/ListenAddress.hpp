@@ -12,26 +12,28 @@ namespace opentxs
 {
 namespace proto
 {
-EXPORT bool CheckProto_1(const ListenAddress& address, const bool silent);
-EXPORT bool CheckProto_2(const ListenAddress&, const bool);
-EXPORT bool CheckProto_3(const ListenAddress&, const bool);
-EXPORT bool CheckProto_4(const ListenAddress&, const bool);
-EXPORT bool CheckProto_5(const ListenAddress&, const bool);
-EXPORT bool CheckProto_6(const ListenAddress&, const bool);
-EXPORT bool CheckProto_7(const ListenAddress&, const bool);
-EXPORT bool CheckProto_8(const ListenAddress&, const bool);
-EXPORT bool CheckProto_9(const ListenAddress&, const bool);
-EXPORT bool CheckProto_10(const ListenAddress&, const bool);
-EXPORT bool CheckProto_11(const ListenAddress&, const bool);
-EXPORT bool CheckProto_12(const ListenAddress&, const bool);
-EXPORT bool CheckProto_13(const ListenAddress&, const bool);
-EXPORT bool CheckProto_14(const ListenAddress&, const bool);
-EXPORT bool CheckProto_15(const ListenAddress&, const bool);
-EXPORT bool CheckProto_16(const ListenAddress&, const bool);
-EXPORT bool CheckProto_17(const ListenAddress&, const bool);
-EXPORT bool CheckProto_18(const ListenAddress&, const bool);
-EXPORT bool CheckProto_19(const ListenAddress&, const bool);
-EXPORT bool CheckProto_20(const ListenAddress&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_1(
+    const ListenAddress& address,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_2(const ListenAddress&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_3(const ListenAddress&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_4(const ListenAddress&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_5(const ListenAddress&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_6(const ListenAddress&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_7(const ListenAddress&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_8(const ListenAddress&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_9(const ListenAddress&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_10(const ListenAddress&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_11(const ListenAddress&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_12(const ListenAddress&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_13(const ListenAddress&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_14(const ListenAddress&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_15(const ListenAddress&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_16(const ListenAddress&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_17(const ListenAddress&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_18(const ListenAddress&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_19(const ListenAddress&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_20(const ListenAddress&, const bool);
 }  // namespace proto
 }  // namespace opentxs
 

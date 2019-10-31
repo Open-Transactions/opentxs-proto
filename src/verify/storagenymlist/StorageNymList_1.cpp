@@ -15,7 +15,7 @@ namespace proto
 
 bool CheckProto_1(const StorageNymList& input, const bool silent)
 {
-    CHECK_SUBOBJECTS(nym, StorageNymListAllowedStorageItemHash);
+    CHECK_SUBOBJECTS(nym, StorageNymListAllowedStorageItemHash());
     CHECK_NONE(localnymid)
     CHECK_NONE(address)
     CHECK_NONE(transaction)
@@ -30,7 +30,7 @@ bool CheckProto_2(const StorageNymList& input, const bool silent)
 
 bool CheckProto_3(const StorageNymList& input, const bool silent)
 {
-    CHECK_SUBOBJECTS(nym, StorageNymListAllowedStorageItemHash);
+    CHECK_SUBOBJECTS(nym, StorageNymListAllowedStorageItemHash());
     CHECK_IDENTIFIERS(localnymid)
     CHECK_NONE(address)
     CHECK_NONE(transaction)
@@ -39,12 +39,12 @@ bool CheckProto_3(const StorageNymList& input, const bool silent)
 
 bool CheckProto_4(const StorageNymList& input, const bool silent)
 {
-    CHECK_SUBOBJECTS(nym, StorageNymListAllowedStorageItemHash);
+    CHECK_SUBOBJECTS(nym, StorageNymListAllowedStorageItemHash());
     CHECK_IDENTIFIERS(localnymid)
     OPTIONAL_SUBOBJECTS(
-        address, StorageNymListAllowedStorageBip47NymAddressIndex)
+        address, StorageNymListAllowedStorageBip47NymAddressIndex())
     OPTIONAL_SUBOBJECTS(
-        transaction, StorageNymListAllowedStorageBip47NymAddressIndex)
+        transaction, StorageNymListAllowedStorageBip47NymAddressIndex())
 
     return true;
 }

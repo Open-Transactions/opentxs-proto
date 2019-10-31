@@ -19,7 +19,7 @@ bool CheckProto_1(const BlockchainAddress& input, const bool silent)
     OPTIONAL_IDENTIFIER(contact);
     CHECK_SUBOBJECT_VA(
         key,
-        BlockchainAddressAllowedAsymmetricKey,
+        BlockchainAddressAllowedAsymmetricKey(),
         CREDTYPE_LEGACY,
         KEYMODE_PUBLIC,
         KEYROLE_SIGN);

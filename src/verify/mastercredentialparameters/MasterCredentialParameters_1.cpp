@@ -23,8 +23,8 @@ bool CheckProto_1(
     try {
         const bool validSource = Check(
             input.source(),
-            MasterParamsAllowedNymIDSource.at(input.version()).first,
-            MasterParamsAllowedNymIDSource.at(input.version()).second,
+            MasterParamsAllowedNymIDSource().at(input.version()).first,
+            MasterParamsAllowedNymIDSource().at(input.version()).second,
             silent);
 
         if (!validSource) { FAIL_1("invalid nym id source") }
@@ -39,8 +39,8 @@ bool CheckProto_1(
     try {
         const bool validProof = Check(
             input.sourceproof(),
-            MasterParamsAllowedSourceProof.at(input.version()).first,
-            MasterParamsAllowedSourceProof.at(input.version()).second,
+            MasterParamsAllowedSourceProof().at(input.version()).first,
+            MasterParamsAllowedSourceProof().at(input.version()).second,
             silent,
             expectSourceSignature);
 

@@ -19,7 +19,7 @@ bool CheckProto_1(
     const ClaimType indexed,
     const ContactSectionVersion parentVersion)
 {
-    if (indexed) {
+    if (ClaimType::Indexed == indexed) {
         CHECK_IDENTIFIER(id);
     } else {
         CHECK_EXCLUDED(id);

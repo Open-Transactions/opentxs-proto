@@ -25,8 +25,8 @@ bool CheckProto_1(const StorageContactAddressIndex& input, const bool silent)
         FAIL_2("invalid contact", input.contact())
     }
 
-    const bool validChain = ValidContactItemType(
-        {CONTACT_VERSION, CONTACTSECTION_CONTRACT}, input.chain());
+    const bool validChain =
+        ValidContactItemType({6, CONTACTSECTION_CONTRACT}, input.chain());
 
     if (false == validChain) { FAIL_1("invalid type") }
 

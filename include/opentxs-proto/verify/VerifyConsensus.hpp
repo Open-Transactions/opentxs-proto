@@ -8,36 +8,22 @@
 
 #include "opentxs-proto/Basic.hpp"
 
+#include <map>
+#include <set>
+
 namespace opentxs
 {
 namespace proto
 {
-static const VersionMap ContextAllowedServer = {
-    {1, {1, 1}},
-    {2, {2, 2}},
-    {3, {3, 3}},
-};
-static const VersionMap ContextAllowedClient = {
-    {1, {1, 1}},
-    {2, {1, 2}},
-};
-static const VersionMap ContextAllowedSignature = {
-    {1, {2, 2}},
-    {2, {2, 2}},
-    {3, {2, 2}},
-};
-
-static const VersionMap ServerContextAllowedPendingCommand = {
-    {3, {1, 1}},
-};
-
-static const std::map<std::uint32_t, std::set<int>> ServerContextAllowedState{
-    {3, {1, 2, 3, 4, 5}},
-};
-
-static const std::map<std::uint32_t, std::set<int>> ServerContextAllowedStatus{
-    {3, {1, 2, 3, 4, 5}},
-};
+OPENTXS_PROTO_EXPORT const VersionMap& ContextAllowedServer() noexcept;
+OPENTXS_PROTO_EXPORT const VersionMap& ContextAllowedClient() noexcept;
+OPENTXS_PROTO_EXPORT const VersionMap& ContextAllowedSignature() noexcept;
+OPENTXS_PROTO_EXPORT const VersionMap&
+ServerContextAllowedPendingCommand() noexcept;
+OPENTXS_PROTO_EXPORT const std::map<std::uint32_t, std::set<int>>&
+ServerContextAllowedState() noexcept;
+OPENTXS_PROTO_EXPORT const std::map<std::uint32_t, std::set<int>>&
+ServerContextAllowedStatus() noexcept;
 }  // namespace proto
 }  // namespace opentxs
 #endif  // OPENTXS_PROTO_VERIFYCONSENSUS_HPP

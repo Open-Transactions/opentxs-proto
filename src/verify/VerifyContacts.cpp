@@ -10,11 +10,96 @@ namespace opentxs
 {
 namespace proto
 {
+const VersionMap& ContactAllowedContactData() noexcept
+{
+    static const auto output = VersionMap{
+        {1, {1, 4}},
+        {2, {5, 5}},
+        {3, {6, 6}},
+    };
+
+    return output;
+}
+const VersionMap& ContactDataAllowedContactSection() noexcept
+{
+    static const auto output = VersionMap{
+        {1, {1, 1}},
+        {2, {1, 2}},
+        {3, {1, 3}},
+        {4, {4, 4}},
+        {5, {5, 5}},
+        {6, {6, 6}},
+    };
+
+    return output;
+}
+const VersionMap& ContactSectionAllowedItem() noexcept
+{
+    static const auto output = VersionMap{
+        {1, {1, 1}},
+        {2, {1, 2}},
+        {3, {1, 3}},
+        {4, {4, 4}},
+        {5, {5, 5}},
+        {6, {6, 6}},
+    };
+
+    return output;
+}
+const VersionMap& VerificationAllowedSignature() noexcept
+{
+    static const auto output = VersionMap{
+        {1, {1, 1}},
+    };
+
+    return output;
+}
+const VersionMap& VerificationGroupAllowedIdentity() noexcept
+{
+    static const auto output = VersionMap{
+        {1, {1, 1}},
+    };
+
+    return output;
+}
+const VersionMap& VerificationIdentityAllowedVerification() noexcept
+{
+    static const auto output = VersionMap{
+        {1, {1, 1}},
+    };
+
+    return output;
+}
+const VersionMap& VerificationOfferAllowedClaim() noexcept
+{
+    static const auto output = VersionMap{
+        {1, {1, 1}},
+    };
+
+    return output;
+}
+const VersionMap& VerificationOfferAllowedVerification() noexcept
+{
+    static const auto output = VersionMap{
+        {1, {1, 1}},
+    };
+
+    return output;
+}
+const VersionMap& VerificationSetAllowedGroup() noexcept
+{
+    static const auto output = VersionMap{
+        {1, {1, 1}},
+    };
+
+    return output;
+}
 bool ValidContactSectionName(
     const std::uint32_t version,
     const ContactSectionName name)
 {
-    std::set<ContactSectionName> allowedNames = AllowedSectionNames.at(version);
+    std::set<ContactSectionName> allowedNames =
+        AllowedSectionNames().at(version);
 
     try {
         return (
@@ -29,7 +114,7 @@ bool ValidContactItemType(
     const ContactSectionVersion version,
     const ContactItemType itemType)
 {
-    std::set<ContactItemType> allowedTypes = AllowedItemTypes.at(version);
+    std::set<ContactItemType> allowedTypes = AllowedItemTypes().at(version);
 
     try {
         return (
@@ -43,8 +128,7 @@ bool ValidContactItemAttribute(
     const std::uint32_t version,
     const ContactItemAttribute attribute)
 {
-    std::set<ContactItemAttribute> allowedAttributes =
-        AllowedItemAttributes.at(version);
+    const auto allowedAttributes = AllowedItemAttributes().at(version);
 
     try {
         return (
@@ -63,7 +147,7 @@ std::string TranslateSectionName(
 {
     EnumLang langPair{enumValue, lang};
 
-    for (auto& it : ContactSectionNames) {
+    for (auto& it : ContactSectionNames()) {
         if (langPair == it.first) { return it.second; }
     }
 
@@ -75,7 +159,7 @@ std::string TranslateItemType(
 {
     EnumLang langPair{enumValue, lang};
 
-    for (auto& it : ContactItemTypes) {
+    for (auto& it : ContactItemTypes()) {
         if (langPair == it.first) { return it.second; }
     }
 
@@ -87,7 +171,7 @@ std::string TranslateItemAttributes(
 {
     EnumLang langPair{enumValue, lang};
 
-    for (auto& it : ContactItemAttributes) {
+    for (auto& it : ContactItemAttributes()) {
         if (langPair == it.first) { return it.second; }
     }
 
@@ -98,11 +182,11 @@ std::uint32_t ReciprocalRelationship(const std::uint32_t relationship)
 {
     auto input = static_cast<ContactItemType>(relationship);
 
-    bool found = (RelationshipMap.find(input) != RelationshipMap.end());
+    bool found = (RelationshipMap().find(input) != RelationshipMap().end());
 
     if (found) {
         try {
-            return static_cast<std::uint32_t>(RelationshipMap.at(input));
+            return static_cast<std::uint32_t>(RelationshipMap().at(input));
         } catch (const std::out_of_range&) {
         }
     }
@@ -116,8 +200,8 @@ bool CheckCombination(
     const std::uint32_t version)
 {
     const ContactSectionVersion key{version, section};
-    const auto it = AllowedItemTypes.find(key);
-    const bool keyExists = AllowedItemTypes.end() != it;
+    const auto it = AllowedItemTypes().find(key);
+    const bool keyExists = AllowedItemTypes().end() != it;
 
     if (keyExists) {
         for (const auto& allowedType : it->second) {
@@ -134,9 +218,11 @@ std::uint32_t RequiredVersion(
     const ContactItemType type,
     const std::uint32_t hint)
 {
-    for (std::uint32_t n = hint; n <= MAX_CONTACT_VERSION; ++n) {
+    for (std::uint32_t n = hint;
+         n <= ContactSectionAllowedItem().rbegin()->first;
+         ++n) {
         try {
-            const auto exists = AllowedItemTypes.at({n, section}).count(type);
+            const auto exists = AllowedItemTypes().at({n, section}).count(type);
 
             if (1 == exists) { return n; }
         } catch (const std::out_of_range&) {
@@ -150,13 +236,15 @@ std::uint32_t NymRequiredVersion(
     const std::uint32_t contactDataVersion,
     const std::uint32_t hint)
 {
-    for (std::uint32_t n = hint; n <= MAX_CONTACT_VERSION; ++n) {
+    for (std::uint32_t n = hint;
+         n <= ContactSectionAllowedItem().rbegin()->first;
+         ++n) {
         try {
-            const auto maxAuthority = NymAllowedAuthority.at(n).second;
+            const auto maxAuthority = NymAllowedAuthority().at(n).second;
             const auto maxCredential =
-                AuthorityAllowedCredential.at(maxAuthority).second;
+                AuthorityAllowedCredential().at(maxAuthority).second;
             const auto maxContactData =
-                CredentialAllowedContactData.at(maxCredential).second;
+                CredentialAllowedContactData().at(maxCredential).second;
 
             if (maxContactData >= contactDataVersion) { return n; }
         } catch (const std::out_of_range&) {
@@ -172,11 +260,14 @@ std::uint32_t RequiredAuthorityVersion(
     const std::uint32_t contactDataVersion,
     const std::uint32_t hint)
 {
-    for (std::uint32_t n = hint; n <= MAX_CONTACT_VERSION; ++n) {
+    for (std::uint32_t n = hint;
+         n <= ContactSectionAllowedItem().rbegin()->first;
+         ++n) {
         try {
-            const auto maxCredential = AuthorityAllowedCredential.at(n).second;
+            const auto maxCredential =
+                AuthorityAllowedCredential().at(n).second;
             const auto maxContactData =
-                CredentialAllowedContactData.at(maxCredential).second;
+                CredentialAllowedContactData().at(maxCredential).second;
 
             if (maxContactData >= contactDataVersion) { return n; }
         } catch (const std::out_of_range&) {
@@ -185,6 +276,5 @@ std::uint32_t RequiredAuthorityVersion(
 
     return 0;
 }
-
 }  // namespace proto
 }  // namespace opentxs

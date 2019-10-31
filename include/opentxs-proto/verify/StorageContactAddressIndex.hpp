@@ -12,28 +12,66 @@ namespace opentxs
 {
 namespace proto
 {
-EXPORT bool CheckProto_1(
+OPENTXS_PROTO_EXPORT bool CheckProto_1(
     const StorageContactAddressIndex& list,
     const bool silent);
-EXPORT bool CheckProto_2(const StorageContactAddressIndex&, const bool);
-EXPORT bool CheckProto_3(const StorageContactAddressIndex&, const bool);
-EXPORT bool CheckProto_4(const StorageContactAddressIndex&, const bool);
-EXPORT bool CheckProto_5(const StorageContactAddressIndex&, const bool);
-EXPORT bool CheckProto_6(const StorageContactAddressIndex&, const bool);
-EXPORT bool CheckProto_7(const StorageContactAddressIndex&, const bool);
-EXPORT bool CheckProto_8(const StorageContactAddressIndex&, const bool);
-EXPORT bool CheckProto_9(const StorageContactAddressIndex&, const bool);
-EXPORT bool CheckProto_10(const StorageContactAddressIndex&, const bool);
-EXPORT bool CheckProto_11(const StorageContactAddressIndex&, const bool);
-EXPORT bool CheckProto_12(const StorageContactAddressIndex&, const bool);
-EXPORT bool CheckProto_13(const StorageContactAddressIndex&, const bool);
-EXPORT bool CheckProto_14(const StorageContactAddressIndex&, const bool);
-EXPORT bool CheckProto_15(const StorageContactAddressIndex&, const bool);
-EXPORT bool CheckProto_16(const StorageContactAddressIndex&, const bool);
-EXPORT bool CheckProto_17(const StorageContactAddressIndex&, const bool);
-EXPORT bool CheckProto_18(const StorageContactAddressIndex&, const bool);
-EXPORT bool CheckProto_19(const StorageContactAddressIndex&, const bool);
-EXPORT bool CheckProto_20(const StorageContactAddressIndex&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_2(
+    const StorageContactAddressIndex&,
+    const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_3(
+    const StorageContactAddressIndex&,
+    const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_4(
+    const StorageContactAddressIndex&,
+    const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_5(
+    const StorageContactAddressIndex&,
+    const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_6(
+    const StorageContactAddressIndex&,
+    const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_7(
+    const StorageContactAddressIndex&,
+    const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_8(
+    const StorageContactAddressIndex&,
+    const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_9(
+    const StorageContactAddressIndex&,
+    const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_10(
+    const StorageContactAddressIndex&,
+    const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_11(
+    const StorageContactAddressIndex&,
+    const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_12(
+    const StorageContactAddressIndex&,
+    const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_13(
+    const StorageContactAddressIndex&,
+    const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_14(
+    const StorageContactAddressIndex&,
+    const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_15(
+    const StorageContactAddressIndex&,
+    const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_16(
+    const StorageContactAddressIndex&,
+    const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_17(
+    const StorageContactAddressIndex&,
+    const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_18(
+    const StorageContactAddressIndex&,
+    const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_19(
+    const StorageContactAddressIndex&,
+    const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_20(
+    const StorageContactAddressIndex&,
+    const bool);
 }  // namespace proto
 }  // namespace opentxs
 

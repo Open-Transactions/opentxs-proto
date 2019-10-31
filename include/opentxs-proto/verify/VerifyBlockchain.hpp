@@ -12,58 +12,35 @@ namespace opentxs
 {
 namespace proto
 {
-static const VersionMap Bip47ChainAllowedBip47Channel = {
-    {1, {1, 1}},
-};
-static const VersionMap Bip47ChannelAllowedBip47Direction = {
-    {1, {1, 1}},
-};
-static const VersionMap Bip47ContextAllowedBip47Chain = {
-    {1, {1, 1}},
-};
-static const VersionMap Bip47DirectionAllowedBip47Address = {
-    {1, {1, 1}},
-};
-static const VersionMap BlockchainAddressAllowedAsymmetricKey = {
-    {1, {2, 2}},
-};
-static const VersionMap BlockchainBlockHeaderAllowedBitcoinBlockHeaderFields = {
-    {1, {1, 1}},
-};
-static const VersionMap BlockchainBlockHeaderAllowedBlockchainBlockLocalData = {
-    {1, {1, 1}},
-};
-static const VersionMap BlockchainBlockHeaderAllowedEthereumBlockHeaderFields =
-    {
-        {1, {1, 1}},
-};
-static const VersionMap BlockchainTransactionAllowedInput = {
-    {1, {1, 1}},
-};
-static const VersionMap BlockchainTransactionAllowedOutput = {
-    {1, {1, 1}},
-};
-static const VersionMap
-    BlockchainTransactionInputAllowedBlockchainPreviousOutput = {
-        {1, {1, 1}},
-};
-static const VersionMap BlockchainTransactionOutputAllowedBlockchainWalletKey =
-    {
-        {1, {1, 1}},
-};
-static const VersionMap
-    BlockchainTransactionOutputAllowedBlockchainExternalAddress = {
-        {1, {1, 1}},
-};
-static const VersionMap HDAccountAllowedBlockchainActivity = {
-    {1, {1, 1}},
-};
-static const VersionMap HDAccountAllowedBlockchainAddress = {
-    {1, {1, 1}},
-};
-static const VersionMap HDAccountAllowedHDPath = {
-    {1, {1, 1}},
-};
+OPENTXS_PROTO_EXPORT const VersionMap& Bip47ChainAllowedBip47Channel() noexcept;
+OPENTXS_PROTO_EXPORT const VersionMap&
+Bip47ChannelAllowedBip47Direction() noexcept;
+OPENTXS_PROTO_EXPORT const VersionMap& Bip47ContextAllowedBip47Chain() noexcept;
+OPENTXS_PROTO_EXPORT const VersionMap&
+Bip47DirectionAllowedBip47Address() noexcept;
+OPENTXS_PROTO_EXPORT const VersionMap&
+BlockchainAddressAllowedAsymmetricKey() noexcept;
+OPENTXS_PROTO_EXPORT const VersionMap&
+BlockchainBlockHeaderAllowedBitcoinBlockHeaderFields() noexcept;
+OPENTXS_PROTO_EXPORT const VersionMap&
+BlockchainBlockHeaderAllowedBlockchainBlockLocalData() noexcept;
+OPENTXS_PROTO_EXPORT const VersionMap&
+BlockchainBlockHeaderAllowedEthereumBlockHeaderFields() noexcept;
+OPENTXS_PROTO_EXPORT const VersionMap&
+BlockchainTransactionAllowedInput() noexcept;
+OPENTXS_PROTO_EXPORT const VersionMap&
+BlockchainTransactionAllowedOutput() noexcept;
+OPENTXS_PROTO_EXPORT const VersionMap&
+BlockchainTransactionInputAllowedBlockchainPreviousOutput() noexcept;
+OPENTXS_PROTO_EXPORT const VersionMap&
+BlockchainTransactionOutputAllowedBlockchainExternalAddress() noexcept;
+OPENTXS_PROTO_EXPORT const VersionMap&
+BlockchainTransactionOutputAllowedBlockchainWalletKey() noexcept;
+OPENTXS_PROTO_EXPORT const VersionMap&
+HDAccountAllowedBlockchainActivity() noexcept;
+OPENTXS_PROTO_EXPORT const VersionMap&
+HDAccountAllowedBlockchainAddress() noexcept;
+OPENTXS_PROTO_EXPORT const VersionMap& HDAccountAllowedHDPath() noexcept;
 }  // namespace proto
 }  // namespace opentxs
 #endif  // OPENTXS_PROTO_VERIFYBLOCKCHAIN_HPP

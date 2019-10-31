@@ -18,8 +18,8 @@ bool CheckProto_1(const StorageBlockchainAccountList& input, const bool silent)
 {
     if (false == input.has_id()) { FAIL_1("missing id") }
 
-    const bool validChain = ValidContactItemType(
-        {CONTACT_VERSION, CONTACTSECTION_CONTRACT}, input.id());
+    const bool validChain =
+        ValidContactItemType({6, CONTACTSECTION_CONTRACT}, input.id());
 
     if (false == validChain) { FAIL_1("invalid chain") }
 

@@ -12,121 +12,121 @@ namespace opentxs
 {
 namespace proto
 {
-EXPORT bool CheckProto_1(
+OPENTXS_PROTO_EXPORT bool CheckProto_1(
     const Credential& serializedCred,
     const bool silent,
     const KeyMode& mode = KEYMODE_ERROR,
     const CredentialRole role = CREDROLE_ERROR,
     const bool withSigs = true);
-EXPORT bool CheckProto_2(
+OPENTXS_PROTO_EXPORT bool CheckProto_2(
     const Credential& serializedCred,
     const bool silent,
     const KeyMode& mode = KEYMODE_ERROR,
     const CredentialRole role = CREDROLE_ERROR,
     const bool withSigs = true);
-EXPORT bool CheckProto_3(
+OPENTXS_PROTO_EXPORT bool CheckProto_3(
     const Credential& serializedCred,
     const bool silent,
     const KeyMode& mode = KEYMODE_ERROR,
     const CredentialRole role = CREDROLE_ERROR,
     const bool withSigs = true);
-EXPORT bool CheckProto_4(
+OPENTXS_PROTO_EXPORT bool CheckProto_4(
     const Credential& serializedCred,
     const bool silent,
     const KeyMode& mode = KEYMODE_ERROR,
     const CredentialRole role = CREDROLE_ERROR,
     const bool withSigs = true);
-EXPORT bool CheckProto_5(
+OPENTXS_PROTO_EXPORT bool CheckProto_5(
     const Credential&,
     const bool,
     const KeyMode& mode = KEYMODE_ERROR,
     const CredentialRole role = CREDROLE_ERROR,
     const bool withSigs = true);
-EXPORT bool CheckProto_6(
+OPENTXS_PROTO_EXPORT bool CheckProto_6(
     const Credential&,
     const bool,
     const KeyMode& mode = KEYMODE_ERROR,
     const CredentialRole role = CREDROLE_ERROR,
     const bool withSigs = true);
-EXPORT bool CheckProto_7(
+OPENTXS_PROTO_EXPORT bool CheckProto_7(
     const Credential&,
     const bool,
     const KeyMode& mode = KEYMODE_ERROR,
     const CredentialRole role = CREDROLE_ERROR,
     const bool withSigs = true);
-EXPORT bool CheckProto_8(
+OPENTXS_PROTO_EXPORT bool CheckProto_8(
     const Credential&,
     const bool,
     const KeyMode& mode = KEYMODE_ERROR,
     const CredentialRole role = CREDROLE_ERROR,
     const bool withSigs = true);
-EXPORT bool CheckProto_9(
+OPENTXS_PROTO_EXPORT bool CheckProto_9(
     const Credential&,
     const bool,
     const KeyMode& mode = KEYMODE_ERROR,
     const CredentialRole role = CREDROLE_ERROR,
     const bool withSigs = true);
-EXPORT bool CheckProto_10(
+OPENTXS_PROTO_EXPORT bool CheckProto_10(
     const Credential&,
     const bool,
     const KeyMode& mode = KEYMODE_ERROR,
     const CredentialRole role = CREDROLE_ERROR,
     const bool withSigs = true);
-EXPORT bool CheckProto_11(
+OPENTXS_PROTO_EXPORT bool CheckProto_11(
     const Credential&,
     const bool,
     const KeyMode& mode = KEYMODE_ERROR,
     const CredentialRole role = CREDROLE_ERROR,
     const bool withSigs = true);
-EXPORT bool CheckProto_12(
+OPENTXS_PROTO_EXPORT bool CheckProto_12(
     const Credential&,
     const bool,
     const KeyMode& mode = KEYMODE_ERROR,
     const CredentialRole role = CREDROLE_ERROR,
     const bool withSigs = true);
-EXPORT bool CheckProto_13(
+OPENTXS_PROTO_EXPORT bool CheckProto_13(
     const Credential&,
     const bool,
     const KeyMode& mode = KEYMODE_ERROR,
     const CredentialRole role = CREDROLE_ERROR,
     const bool withSigs = true);
-EXPORT bool CheckProto_14(
+OPENTXS_PROTO_EXPORT bool CheckProto_14(
     const Credential&,
     const bool,
     const KeyMode& mode = KEYMODE_ERROR,
     const CredentialRole role = CREDROLE_ERROR,
     const bool withSigs = true);
-EXPORT bool CheckProto_15(
+OPENTXS_PROTO_EXPORT bool CheckProto_15(
     const Credential&,
     const bool,
     const KeyMode& mode = KEYMODE_ERROR,
     const CredentialRole role = CREDROLE_ERROR,
     const bool withSigs = true);
-EXPORT bool CheckProto_16(
+OPENTXS_PROTO_EXPORT bool CheckProto_16(
     const Credential&,
     const bool,
     const KeyMode& mode = KEYMODE_ERROR,
     const CredentialRole role = CREDROLE_ERROR,
     const bool withSigs = true);
-EXPORT bool CheckProto_17(
+OPENTXS_PROTO_EXPORT bool CheckProto_17(
     const Credential&,
     const bool,
     const KeyMode& mode = KEYMODE_ERROR,
     const CredentialRole role = CREDROLE_ERROR,
     const bool withSigs = true);
-EXPORT bool CheckProto_18(
+OPENTXS_PROTO_EXPORT bool CheckProto_18(
     const Credential&,
     const bool,
     const KeyMode& mode = KEYMODE_ERROR,
     const CredentialRole role = CREDROLE_ERROR,
     const bool withSigs = true);
-EXPORT bool CheckProto_19(
+OPENTXS_PROTO_EXPORT bool CheckProto_19(
     const Credential&,
     const bool,
     const KeyMode& mode = KEYMODE_ERROR,
     const CredentialRole role = CREDROLE_ERROR,
     const bool withSigs = true);
-EXPORT bool CheckProto_20(
+OPENTXS_PROTO_EXPORT bool CheckProto_20(
     const Credential&,
     const bool,
     const KeyMode& mode = KEYMODE_ERROR,

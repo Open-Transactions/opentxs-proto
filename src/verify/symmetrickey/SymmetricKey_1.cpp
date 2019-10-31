@@ -18,8 +18,8 @@ bool CheckProto_1(const SymmetricKey& input, const bool silent)
     try {
         const bool validKey = Check(
             input.key(),
-            SymmetricKeyAllowedCiphertext.at(input.version()).first,
-            SymmetricKeyAllowedCiphertext.at(input.version()).second,
+            SymmetricKeyAllowedCiphertext().at(input.version()).first,
+            SymmetricKeyAllowedCiphertext().at(input.version()).second,
             silent,
             true);
 

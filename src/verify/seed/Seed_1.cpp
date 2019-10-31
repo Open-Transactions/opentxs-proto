@@ -14,8 +14,8 @@ namespace proto
 {
 bool CheckProto_1(const Seed& input, const bool silent)
 {
-    CHECK_SUBOBJECT_VA(words, SeedAllowedCiphertext, false);
-    OPTIONAL_SUBOBJECT_VA(passphrase, SeedAllowedCiphertext, false);
+    CHECK_SUBOBJECT_VA(words, SeedAllowedCiphertext(), false);
+    OPTIONAL_SUBOBJECT_VA(passphrase, SeedAllowedCiphertext(), false);
     CHECK_IDENTIFIER(fingerprint);
     CHECK_EXCLUDED(index);
     CHECK_EXCLUDED(raw);
@@ -25,8 +25,8 @@ bool CheckProto_1(const Seed& input, const bool silent)
 
 bool CheckProto_2(const Seed& input, const bool silent)
 {
-    CHECK_SUBOBJECT_VA(words, SeedAllowedCiphertext, false);
-    OPTIONAL_SUBOBJECT_VA(passphrase, SeedAllowedCiphertext, false);
+    CHECK_SUBOBJECT_VA(words, SeedAllowedCiphertext(), false);
+    OPTIONAL_SUBOBJECT_VA(passphrase, SeedAllowedCiphertext(), false);
     CHECK_IDENTIFIER(fingerprint);
     CHECK_EXISTS(index);
     CHECK_EXCLUDED(raw);
@@ -36,11 +36,11 @@ bool CheckProto_2(const Seed& input, const bool silent)
 
 bool CheckProto_3(const Seed& input, const bool silent)
 {
-    OPTIONAL_SUBOBJECT_VA(words, SeedAllowedCiphertext, false);
-    OPTIONAL_SUBOBJECT_VA(passphrase, SeedAllowedCiphertext, false);
+    OPTIONAL_SUBOBJECT_VA(words, SeedAllowedCiphertext(), false);
+    OPTIONAL_SUBOBJECT_VA(passphrase, SeedAllowedCiphertext(), false);
     CHECK_IDENTIFIER(fingerprint);
     CHECK_EXISTS(index);
-    OPTIONAL_SUBOBJECT_VA(raw, SeedAllowedCiphertext, false);
+    OPTIONAL_SUBOBJECT_VA(raw, SeedAllowedCiphertext(), false);
 
     if (false == input.has_raw() && false == input.has_words()) {
         FAIL_1("No payload");

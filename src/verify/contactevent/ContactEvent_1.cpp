@@ -28,7 +28,7 @@ bool CheckProto_1(const ContactEvent& input, const bool silent)
             CHECK_EXCLUDED(timestamp);
             CHECK_EXCLUDED(message);
             CHECK_IDENTIFIER(account);
-            CHECK_SUBOBJECT(accountevent, ContactEventAllowedAccountEvent);
+            CHECK_SUBOBJECT(accountevent, ContactEventAllowedAccountEvent());
         } break;
         case CONTACTEVENT_ERROR:
         default: {

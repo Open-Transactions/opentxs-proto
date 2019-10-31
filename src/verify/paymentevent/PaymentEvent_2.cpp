@@ -19,7 +19,8 @@ bool CheckProto_2(
 {
     try {
         const bool valid =
-            (1 == PaymentWorkflowAllowedEventTypes.at({parentVersion, parent})
+            (1 == PaymentWorkflowAllowedEventTypes()
+                      .at({parentVersion, parent})
                       .count(input.type()));
 
         if (false == valid) {
@@ -49,7 +50,7 @@ bool CheckProto_2(
 
     try {
         const bool valid =
-            (1 == PaymentEventAllowedTransportMethod
+            (1 == PaymentEventAllowedTransportMethod()
                       .at({input.version(), input.type()})
                       .count(input.method()));
 

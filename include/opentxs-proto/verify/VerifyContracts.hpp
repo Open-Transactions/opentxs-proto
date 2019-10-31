@@ -12,50 +12,26 @@ namespace opentxs
 {
 namespace proto
 {
-static const VersionMap ServerContractAllowedNym = {
-    {1, {1, 5}},
-    {2, {1, 6}},
-};
-static const VersionMap ServerContractAllowedListenAddress = {
-    {1, {1, 1}},
-    {2, {1, 2}},
-};
-static const VersionMap ServerContractAllowedSignature = {
-    {1, {1, 1}},
-    {2, {1, 1}},
-};
-static const VersionMap UnitDefinitionAllowedNym = {
-    {1, {1, 6}},
-    {2, {1, 6}},
-};
-static const VersionMap UnitDefinitionAllowedCurrencyParams = {
-    {1, {1, 1}},
-    {2, {1, 1}},
-};
-static const VersionMap UnitDefinitionAllowedBasketParams = {
-    {1, {1, 1}},
-    {2, {1, 1}},
-};
-static const VersionMap UnitDefinitionAllowedSecurityParams = {
-    {1, {1, 1}},
-    {2, {1, 1}},
-};
-static const VersionMap UnitDefinitionAllowedSignature = {
-    {1, {1, 1}},
-    {2, {1, 1}},
-};
-static const VersionMap BasketParamsAllowedBasketItem = {
-    {1, {1, 1}},
-};
-static const VersionMap IssuerAllowedUnitAccountMap = {
-    {1, {1, 1}},
-};
-static const VersionMap IssuerAllowedPeerRequestHistory = {
-    {1, {1, 1}},
-};
-static const VersionMap PeerRequestHistoryAllowedPeerRequestWorkflow = {
-    {1, {1, 1}},
-};
+OPENTXS_PROTO_EXPORT const VersionMap& BasketParamsAllowedBasketItem() noexcept;
+OPENTXS_PROTO_EXPORT const VersionMap&
+IssuerAllowedPeerRequestHistory() noexcept;
+OPENTXS_PROTO_EXPORT const VersionMap& IssuerAllowedUnitAccountMap() noexcept;
+OPENTXS_PROTO_EXPORT const VersionMap&
+PeerRequestHistoryAllowedPeerRequestWorkflow() noexcept;
+OPENTXS_PROTO_EXPORT const VersionMap&
+ServerContractAllowedListenAddress() noexcept;
+OPENTXS_PROTO_EXPORT const VersionMap& ServerContractAllowedNym() noexcept;
+OPENTXS_PROTO_EXPORT const VersionMap&
+ServerContractAllowedSignature() noexcept;
+OPENTXS_PROTO_EXPORT const VersionMap&
+UnitDefinitionAllowedBasketParams() noexcept;
+OPENTXS_PROTO_EXPORT const VersionMap&
+UnitDefinitionAllowedCurrencyParams() noexcept;
+OPENTXS_PROTO_EXPORT const VersionMap& UnitDefinitionAllowedNym() noexcept;
+OPENTXS_PROTO_EXPORT const VersionMap&
+UnitDefinitionAllowedSecurityParams() noexcept;
+OPENTXS_PROTO_EXPORT const VersionMap&
+UnitDefinitionAllowedSignature() noexcept;
 }  // namespace proto
 }  // namespace opentxs
 #endif  // OPENTXS_PROTO_VERIFYCONTRACTS_HPP

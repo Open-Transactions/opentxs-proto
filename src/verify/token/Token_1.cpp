@@ -60,7 +60,7 @@ bool CheckProto_1(
     switch (input.type()) {
         case CASHTYPE_LUCRE: {
             CHECK_SUBOBJECT_VA(
-                lucre, TokenAllowedLucreTokenData, input.state());
+                lucre, TokenAllowedLucreTokenData(), input.state());
         } break;
         case CASHTYPE_ERROR:
         default: {

@@ -12,123 +12,33 @@ namespace opentxs
 {
 namespace proto
 {
-static const VersionMap AsymmetricKeyAllowedCiphertext = {
-    {1, {1, 1}},
-    {2, {1, 1}},
-};
-static const VersionMap AsymmetricKeyAllowedHDPath = {
-    {1, {1, 1}},
-    {2, {1, 1}},
-};
-static const VersionMap CiphertextAllowedSymmetricKey = {
-    {1, {1, 1}},
-};
-static const VersionMap EnvelopeAllowedAsymmetricKey = {
-    {1, {1, 1}},
-    {2, {1, 2}},
-};
-static const VersionMap EnvelopeAllowedCiphertext = {
-    {1, {1, 1}},
-};
-static const VersionMap CredentialAllowedContactData = {
-    {1, {1, 1}},
-    {2, {2, 2}},
-    {3, {3, 3}},
-    {4, {4, 4}},
-    {5, {5, 5}},
-    {6, {6, 6}},
-};
-static const VersionMap CredentialAllowedChildParams = {
-    {1, {1, 1}},
-    {2, {1, 1}},
-    {3, {1, 1}},
-    {4, {1, 1}},
-    {5, {1, 1}},
-    {6, {1, 1}},
-};
-static const VersionMap CredentialAllowedKeyCredential = {
-    {1, {1, 1}},
-    {2, {1, 1}},
-    {3, {1, 1}},
-    {4, {1, 1}},
-    {5, {1, 1}},
-    {6, {1, 2}},
-};
-static const VersionMap CredentialAllowedMasterParams = {
-    {1, {1, 1}},
-    {2, {1, 1}},
-    {3, {1, 1}},
-    {4, {1, 1}},
-    {5, {1, 1}},
-    {6, {1, 2}},
-};
-static const VersionMap CredentialAllowedSignatures = {
-    {1, {1, 1}},
-    {2, {1, 1}},
-    {3, {1, 1}},
-    {4, {1, 1}},
-    {5, {1, 1}},
-    {6, {1, 1}},
-};
-static const VersionMap CredentialAllowedVerification = {
-    {1, {1, 1}},
-    {2, {1, 1}},
-    {3, {1, 1}},
-    {4, {1, 1}},
-    {5, {1, 1}},
-    {6, {1, 1}},
-};
-static const VersionMap NymAllowedAuthority = {
-    {1, {1, 1}},
-    {2, {1, 2}},
-    {3, {1, 3}},
-    {4, {1, 4}},
-    {5, {1, 5}},
-    {6, {1, 6}},
-};
-static const VersionMap NymAllowedNymIDSource = {
-    {1, {1, 1}},
-    {2, {1, 1}},
-    {3, {1, 1}},
-    {4, {1, 1}},
-    {5, {1, 1}},
-    {6, {1, 2}},
-};
-static const VersionMap AuthorityAllowedCredential = {
-    {1, {1, 1}},
-    {2, {1, 2}},
-    {3, {1, 3}},
-    {4, {1, 4}},
-    {5, {1, 5}},
-    {6, {1, 6}},
-};
-static const VersionMap KeyCredentialAllowedAsymmetricKey = {
-    {1, {1, 1}},
-    {2, {1, 2}},
-};
-static const VersionMap MasterParamsAllowedNymIDSource = {
-    {1, {1, 1}},
-    {2, {1, 2}},
-};
-static const VersionMap MasterParamsAllowedSourceProof = {
-    {1, {1, 1}},
-    {2, {1, 1}},
-};
-static const VersionMap NymIDSourceAllowedAsymmetricKey = {
-    {1, {1, 1}},
-    {2, {1, 2}},
-};
-static const VersionMap NymIDSourceAllowedPaymentCode = {
-    {1, {1, 1}},
-};
-static const VersionMap SeedAllowedCiphertext = {
-    {1, {1, 1}},
-    {2, {1, 1}},
-    {3, {1, 1}},
-};
-static const VersionMap SymmetricKeyAllowedCiphertext = {
-    {1, {1, 1}},
-};
+OPENTXS_PROTO_EXPORT const VersionMap&
+AsymmetricKeyAllowedCiphertext() noexcept;
+OPENTXS_PROTO_EXPORT const VersionMap& AsymmetricKeyAllowedHDPath() noexcept;
+OPENTXS_PROTO_EXPORT const VersionMap& AuthorityAllowedCredential() noexcept;
+OPENTXS_PROTO_EXPORT const VersionMap& CiphertextAllowedSymmetricKey() noexcept;
+OPENTXS_PROTO_EXPORT const VersionMap& CredentialAllowedChildParams() noexcept;
+OPENTXS_PROTO_EXPORT const VersionMap& CredentialAllowedContactData() noexcept;
+OPENTXS_PROTO_EXPORT const VersionMap&
+CredentialAllowedKeyCredential() noexcept;
+OPENTXS_PROTO_EXPORT const VersionMap& CredentialAllowedMasterParams() noexcept;
+OPENTXS_PROTO_EXPORT const VersionMap& CredentialAllowedSignatures() noexcept;
+OPENTXS_PROTO_EXPORT const VersionMap& CredentialAllowedVerification() noexcept;
+OPENTXS_PROTO_EXPORT const VersionMap& EnvelopeAllowedAsymmetricKey() noexcept;
+OPENTXS_PROTO_EXPORT const VersionMap& EnvelopeAllowedCiphertext() noexcept;
+OPENTXS_PROTO_EXPORT const VersionMap&
+KeyCredentialAllowedAsymmetricKey() noexcept;
+OPENTXS_PROTO_EXPORT const VersionMap&
+MasterParamsAllowedNymIDSource() noexcept;
+OPENTXS_PROTO_EXPORT const VersionMap&
+MasterParamsAllowedSourceProof() noexcept;
+OPENTXS_PROTO_EXPORT const VersionMap& NymAllowedAuthority() noexcept;
+OPENTXS_PROTO_EXPORT const VersionMap& NymAllowedNymIDSource() noexcept;
+OPENTXS_PROTO_EXPORT const VersionMap&
+NymIDSourceAllowedAsymmetricKey() noexcept;
+OPENTXS_PROTO_EXPORT const VersionMap& NymIDSourceAllowedPaymentCode() noexcept;
+OPENTXS_PROTO_EXPORT const VersionMap& SeedAllowedCiphertext() noexcept;
+OPENTXS_PROTO_EXPORT const VersionMap& SymmetricKeyAllowedCiphertext() noexcept;
 }  // namespace proto
 }  // namespace opentxs
 #endif  // OPENTXS_PROTO_VERIFYCREDENTIALS_HPP

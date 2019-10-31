@@ -27,9 +27,9 @@ bool CheckProto_3(const PaymentWorkflow& input, const bool silent)
 
     try {
         const bool valid =
-            (1 ==
-             PaymentWorkflowAllowedState.at({input.version(), input.type()})
-                 .count(input.state()));
+            (1 == PaymentWorkflowAllowedState()
+                      .at({input.version(), input.type()})
+                      .count(input.state()));
 
         if (false == valid) { FAIL_2("Invalid state", __LINE__) }
     } catch (const std::out_of_range&) {
@@ -111,7 +111,7 @@ bool CheckProto_3(const PaymentWorkflow& input, const bool silent)
         }
     }
 
-    CHECK_SUBOBJECTS(source, PaymentWorkflowAllowedInstrumentRevision)
+    CHECK_SUBOBJECTS(source, PaymentWorkflowAllowedInstrumentRevision())
     CHECK_IDENTIFIERS(party)
     std::map<PaymentEventType, std::size_t> events{};
 
@@ -119,8 +119,8 @@ bool CheckProto_3(const PaymentWorkflow& input, const bool silent)
         try {
             const bool validevent = Check(
                 it,
-                PaymentWorkflowAllowedPaymentEvent.at(input.version()).first,
-                PaymentWorkflowAllowedPaymentEvent.at(input.version()).second,
+                PaymentWorkflowAllowedPaymentEvent().at(input.version()).first,
+                PaymentWorkflowAllowedPaymentEvent().at(input.version()).second,
                 silent,
                 input.version(),
                 input.type(),

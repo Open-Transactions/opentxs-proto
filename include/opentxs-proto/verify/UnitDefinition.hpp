@@ -12,83 +12,83 @@ namespace opentxs
 {
 namespace proto
 {
-EXPORT bool CheckProto_1(
+OPENTXS_PROTO_EXPORT bool CheckProto_1(
     const UnitDefinition& contract,
     const bool silent,
     const bool checkSig = true);
-EXPORT bool CheckProto_2(
+OPENTXS_PROTO_EXPORT bool CheckProto_2(
     const UnitDefinition&,
     const bool,
     const bool checkSig = true);
-EXPORT bool CheckProto_3(
+OPENTXS_PROTO_EXPORT bool CheckProto_3(
     const UnitDefinition&,
     const bool,
     const bool checkSig = true);
-EXPORT bool CheckProto_4(
+OPENTXS_PROTO_EXPORT bool CheckProto_4(
     const UnitDefinition&,
     const bool,
     const bool checkSig = true);
-EXPORT bool CheckProto_5(
+OPENTXS_PROTO_EXPORT bool CheckProto_5(
     const UnitDefinition&,
     const bool,
     const bool checkSig = true);
-EXPORT bool CheckProto_6(
+OPENTXS_PROTO_EXPORT bool CheckProto_6(
     const UnitDefinition&,
     const bool,
     const bool checkSig = true);
-EXPORT bool CheckProto_7(
+OPENTXS_PROTO_EXPORT bool CheckProto_7(
     const UnitDefinition&,
     const bool,
     const bool checkSig = true);
-EXPORT bool CheckProto_8(
+OPENTXS_PROTO_EXPORT bool CheckProto_8(
     const UnitDefinition&,
     const bool,
     const bool checkSig = true);
-EXPORT bool CheckProto_9(
+OPENTXS_PROTO_EXPORT bool CheckProto_9(
     const UnitDefinition&,
     const bool,
     const bool checkSig = true);
-EXPORT bool CheckProto_10(
+OPENTXS_PROTO_EXPORT bool CheckProto_10(
     const UnitDefinition&,
     const bool,
     const bool checkSig = true);
-EXPORT bool CheckProto_11(
+OPENTXS_PROTO_EXPORT bool CheckProto_11(
     const UnitDefinition&,
     const bool,
     const bool checkSig = true);
-EXPORT bool CheckProto_12(
+OPENTXS_PROTO_EXPORT bool CheckProto_12(
     const UnitDefinition&,
     const bool,
     const bool checkSig = true);
-EXPORT bool CheckProto_13(
+OPENTXS_PROTO_EXPORT bool CheckProto_13(
     const UnitDefinition&,
     const bool,
     const bool checkSig = true);
-EXPORT bool CheckProto_14(
+OPENTXS_PROTO_EXPORT bool CheckProto_14(
     const UnitDefinition&,
     const bool,
     const bool checkSig = true);
-EXPORT bool CheckProto_15(
+OPENTXS_PROTO_EXPORT bool CheckProto_15(
     const UnitDefinition&,
     const bool,
     const bool checkSig = true);
-EXPORT bool CheckProto_16(
+OPENTXS_PROTO_EXPORT bool CheckProto_16(
     const UnitDefinition&,
     const bool,
     const bool checkSig = true);
-EXPORT bool CheckProto_17(
+OPENTXS_PROTO_EXPORT bool CheckProto_17(
     const UnitDefinition&,
     const bool,
     const bool checkSig = true);
-EXPORT bool CheckProto_18(
+OPENTXS_PROTO_EXPORT bool CheckProto_18(
     const UnitDefinition&,
     const bool,
     const bool checkSig = true);
-EXPORT bool CheckProto_19(
+OPENTXS_PROTO_EXPORT bool CheckProto_19(
     const UnitDefinition&,
     const bool,
     const bool checkSig = true);
-EXPORT bool CheckProto_20(
+OPENTXS_PROTO_EXPORT bool CheckProto_20(
     const UnitDefinition&,
     const bool,
     const bool checkSig = true);

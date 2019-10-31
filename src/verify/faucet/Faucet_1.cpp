@@ -29,8 +29,8 @@ bool CheckProto_3(const Faucet& input, const bool silent)
 
 bool CheckProto_4(const Faucet& input, const bool silent)
 {
-    const bool validChain = ValidContactItemType(
-        {CONTACT_VERSION, CONTACTSECTION_CONTRACT}, input.type());
+    const bool validChain =
+        ValidContactItemType({6, CONTACTSECTION_CONTRACT}, input.type());
 
     if (false == validChain) { FAIL_1("invalid chain") }
 

@@ -18,19 +18,19 @@ bool CheckProto_1(const RPCPush& input, const bool silent)
 
     switch (input.type()) {
         case RPCPUSH_ACCOUNT: {
-            CHECK_SUBOBJECT(accountevent, RPCPushAllowedAccountEvent);
+            CHECK_SUBOBJECT(accountevent, RPCPushAllowedAccountEvent());
             CHECK_EXCLUDED(contactevent);
             CHECK_EXCLUDED(taskcomplete);
         } break;
         case RPCPUSH_CONTACT: {
             CHECK_EXCLUDED(accountevent);
-            CHECK_SUBOBJECT(contactevent, RPCPushAllowedContactEvent);
+            CHECK_SUBOBJECT(contactevent, RPCPushAllowedContactEvent());
             CHECK_EXCLUDED(taskcomplete);
         } break;
         case RPCPUSH_TASK: {
             CHECK_EXCLUDED(accountevent);
             CHECK_EXCLUDED(contactevent);
-            CHECK_SUBOBJECT(taskcomplete, RPCPushAllowedTaskComplete);
+            CHECK_SUBOBJECT(taskcomplete, RPCPushAllowedTaskComplete());
         } break;
         case RPCPUSH_ERROR:
         default: {

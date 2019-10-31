@@ -20,7 +20,7 @@ bool CheckProto_1(const AddClaim& input, const bool silent)
     const ContactSectionVersion section{input.sectionversion(),
                                         input.sectiontype()};
     CHECK_SUBOBJECT_VA(
-        item, AddClaimAllowedContactItem, CLAIMS_NORMAL, section);
+        item, AddClaimAllowedContactItem(), ClaimType::Normal, section);
 
     return true;
 }

@@ -16,8 +16,8 @@ namespace proto
 bool CheckProto_1(const StorageBip47ChannelList& input, const bool silent)
 {
     CHECK_IDENTIFIER(localpaymentcode);
-    bool validChain = ValidContactItemType(
-        {CONTACT_VERSION, CONTACTSECTION_CONTRACT}, input.chain());
+    bool validChain =
+        ValidContactItemType({6, CONTACTSECTION_CONTRACT}, input.chain());
 
     if (false == validChain) { FAIL_1("invalid chain"); }
 

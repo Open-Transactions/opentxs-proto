@@ -12,26 +12,66 @@ namespace opentxs
 {
 namespace proto
 {
-EXPORT bool CheckProto_1(const StorageNymList& input, const bool silent);
-EXPORT bool CheckProto_2(const StorageNymList& input, const bool silent);
-EXPORT bool CheckProto_3(const StorageNymList& input, const bool silent);
-EXPORT bool CheckProto_4(const StorageNymList& input, const bool silent);
-EXPORT bool CheckProto_5(const StorageNymList& input, const bool silent);
-EXPORT bool CheckProto_6(const StorageNymList& input, const bool silent);
-EXPORT bool CheckProto_7(const StorageNymList& input, const bool silent);
-EXPORT bool CheckProto_8(const StorageNymList& input, const bool silent);
-EXPORT bool CheckProto_9(const StorageNymList& input, const bool silent);
-EXPORT bool CheckProto_10(const StorageNymList& input, const bool silent);
-EXPORT bool CheckProto_11(const StorageNymList& input, const bool silent);
-EXPORT bool CheckProto_12(const StorageNymList& input, const bool silent);
-EXPORT bool CheckProto_13(const StorageNymList& input, const bool silent);
-EXPORT bool CheckProto_14(const StorageNymList& input, const bool silent);
-EXPORT bool CheckProto_15(const StorageNymList& input, const bool silent);
-EXPORT bool CheckProto_16(const StorageNymList& input, const bool silent);
-EXPORT bool CheckProto_17(const StorageNymList& input, const bool silent);
-EXPORT bool CheckProto_18(const StorageNymList& input, const bool silent);
-EXPORT bool CheckProto_19(const StorageNymList& input, const bool silent);
-EXPORT bool CheckProto_20(const StorageNymList& input, const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_1(
+    const StorageNymList& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_2(
+    const StorageNymList& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_3(
+    const StorageNymList& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_4(
+    const StorageNymList& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_5(
+    const StorageNymList& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_6(
+    const StorageNymList& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_7(
+    const StorageNymList& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_8(
+    const StorageNymList& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_9(
+    const StorageNymList& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_10(
+    const StorageNymList& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_11(
+    const StorageNymList& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_12(
+    const StorageNymList& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_13(
+    const StorageNymList& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_14(
+    const StorageNymList& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_15(
+    const StorageNymList& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_16(
+    const StorageNymList& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_17(
+    const StorageNymList& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_18(
+    const StorageNymList& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_19(
+    const StorageNymList& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_20(
+    const StorageNymList& input,
+    const bool silent);
 }  // namespace proto
 }  // namespace opentxs
 

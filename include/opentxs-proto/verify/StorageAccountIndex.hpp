@@ -12,26 +12,28 @@ namespace opentxs
 {
 namespace proto
 {
-EXPORT bool CheckProto_1(const StorageAccountIndex& input, const bool silent);
-EXPORT bool CheckProto_2(const StorageAccountIndex&, const bool);
-EXPORT bool CheckProto_3(const StorageAccountIndex&, const bool);
-EXPORT bool CheckProto_4(const StorageAccountIndex&, const bool);
-EXPORT bool CheckProto_5(const StorageAccountIndex&, const bool);
-EXPORT bool CheckProto_6(const StorageAccountIndex&, const bool);
-EXPORT bool CheckProto_7(const StorageAccountIndex&, const bool);
-EXPORT bool CheckProto_8(const StorageAccountIndex&, const bool);
-EXPORT bool CheckProto_9(const StorageAccountIndex&, const bool);
-EXPORT bool CheckProto_10(const StorageAccountIndex&, const bool);
-EXPORT bool CheckProto_11(const StorageAccountIndex&, const bool);
-EXPORT bool CheckProto_12(const StorageAccountIndex&, const bool);
-EXPORT bool CheckProto_13(const StorageAccountIndex&, const bool);
-EXPORT bool CheckProto_14(const StorageAccountIndex&, const bool);
-EXPORT bool CheckProto_15(const StorageAccountIndex&, const bool);
-EXPORT bool CheckProto_16(const StorageAccountIndex&, const bool);
-EXPORT bool CheckProto_17(const StorageAccountIndex&, const bool);
-EXPORT bool CheckProto_18(const StorageAccountIndex&, const bool);
-EXPORT bool CheckProto_19(const StorageAccountIndex&, const bool);
-EXPORT bool CheckProto_20(const StorageAccountIndex&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_1(
+    const StorageAccountIndex& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_2(const StorageAccountIndex&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_3(const StorageAccountIndex&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_4(const StorageAccountIndex&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_5(const StorageAccountIndex&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_6(const StorageAccountIndex&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_7(const StorageAccountIndex&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_8(const StorageAccountIndex&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_9(const StorageAccountIndex&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_10(const StorageAccountIndex&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_11(const StorageAccountIndex&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_12(const StorageAccountIndex&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_13(const StorageAccountIndex&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_14(const StorageAccountIndex&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_15(const StorageAccountIndex&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_16(const StorageAccountIndex&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_17(const StorageAccountIndex&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_18(const StorageAccountIndex&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_19(const StorageAccountIndex&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_20(const StorageAccountIndex&, const bool);
 }  // namespace proto
 }  // namespace opentxs
 

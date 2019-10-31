@@ -29,8 +29,8 @@ bool CheckProto_1(
         try {
             bool validItem = Check(
                 it,
-                ContactSectionAllowedItem.at(input.version()).first,
-                ContactSectionAllowedItem.at(input.version()).second,
+                ContactSectionAllowedItem().at(input.version()).first,
+                ContactSectionAllowedItem().at(input.version()).second,
                 silent,
                 indexed,
                 ContactSectionVersion{input.version(), input.name()});
@@ -100,8 +100,8 @@ bool CheckProto_6(
         try {
             bool validItem = Check(
                 it,
-                ContactSectionAllowedItem.at(input.version()).first,
-                ContactSectionAllowedItem.at(input.version()).second,
+                ContactSectionAllowedItem().at(input.version()).first,
+                ContactSectionAllowedItem().at(input.version()).second,
                 silent,
                 indexed,
                 ContactSectionVersion{input.version(), input.name()});

@@ -34,8 +34,8 @@ bool CheckProto_1(const Ciphertext& input, const bool silent, const bool nested)
             try {
                 const bool validKey = Check(
                     input.key(),
-                    CiphertextAllowedSymmetricKey.at(input.version()).first,
-                    CiphertextAllowedSymmetricKey.at(input.version()).second,
+                    CiphertextAllowedSymmetricKey().at(input.version()).first,
+                    CiphertextAllowedSymmetricKey().at(input.version()).second,
                     silent);
 
                 if (!validKey) { FAIL_1("invalid key") }

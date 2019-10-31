@@ -41,8 +41,23 @@ endif()
 
 set_target_properties(libopentxs-proto PROPERTIES OUTPUT_NAME opentxs-proto)
 
+include(GenerateExportHeader)
+generate_export_header(
+  libopentxs-proto
+  EXPORT_FILE_NAME
+  "${${PROJECT_NAME}_BINARY_DIR}/src/opentxs-proto/opentxs-proto_export.hpp"
+  EXPORT_MACRO_NAME
+  OPENTXS_PROTO_EXPORT
+)
+
 install(
   TARGETS libopentxs-proto DESTINATION ${CMAKE_INSTALL_LIBDIR}
   EXPORT opentxs-proto-targets
+  COMPONENT main
+)
+install(
+  FILES
+    "${${PROJECT_NAME}_BINARY_DIR}/src/opentxs-proto/opentxs-proto_export.hpp"
+  DESTINATION include/opentxs-proto
   COMPONENT main
 )
