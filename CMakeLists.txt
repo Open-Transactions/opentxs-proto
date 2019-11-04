@@ -78,6 +78,7 @@ endif()
 # Source Definitions
 
 set_common_defines()
+hide_symbols("OPENTXS_PROTO_EXPORT")
 
 # -----------------------------------------------------------------------------
 # Build source

@@ -17,15 +17,15 @@ bool CheckProto_1(const HDAccount& input, const bool silent)
 {
     CHECK_IDENTIFIER(id)
 
-    const bool validChain = ValidContactItemType(
-        {CONTACT_VERSION, CONTACTSECTION_CONTRACT}, input.type());
+    const bool validChain =
+        ValidContactItemType({6, CONTACTSECTION_CONTRACT}, input.type());
 
     if (false == validChain) { FAIL_1("invalid type") }
 
-    CHECK_SUBOBJECT(path, HDAccountAllowedHDPath)
-    CHECK_SUBOBJECTS(internaladdress, HDAccountAllowedBlockchainAddress)
-    OPTIONAL_SUBOBJECTS(incoming, HDAccountAllowedBlockchainActivity);
-    OPTIONAL_SUBOBJECTS(outgoing, HDAccountAllowedBlockchainActivity);
+    CHECK_SUBOBJECT(path, HDAccountAllowedHDPath())
+    CHECK_SUBOBJECTS(internaladdress, HDAccountAllowedBlockchainAddress())
+    OPTIONAL_SUBOBJECTS(incoming, HDAccountAllowedBlockchainActivity());
+    OPTIONAL_SUBOBJECTS(outgoing, HDAccountAllowedBlockchainActivity());
 
     return true;
 }

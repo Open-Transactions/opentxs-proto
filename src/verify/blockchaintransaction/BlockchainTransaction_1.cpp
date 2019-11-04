@@ -16,8 +16,8 @@ namespace proto
 
 bool CheckProto_1(const BlockchainTransaction& input, const bool silent)
 {
-    const bool validChain = ValidContactItemType(
-        {CONTACT_VERSION, CONTACTSECTION_CONTRACT}, input.chain());
+    const bool validChain =
+        ValidContactItemType({6, CONTACTSECTION_CONTRACT}, input.chain());
 
     if (false == validChain) { FAIL_1("invalid chain") }
 
@@ -43,8 +43,8 @@ bool CheckProto_1(const BlockchainTransaction& input, const bool silent)
         try {
             const bool validInput = Check(
                 txin,
-                BlockchainTransactionAllowedInput.at(txin.version()).first,
-                BlockchainTransactionAllowedInput.at(txin.version()).second,
+                BlockchainTransactionAllowedInput().at(txin.version()).first,
+                BlockchainTransactionAllowedInput().at(txin.version()).second,
                 silent);
 
             if (false == validInput) { FAIL_1("invalid input") }
@@ -58,8 +58,8 @@ bool CheckProto_1(const BlockchainTransaction& input, const bool silent)
         try {
             const bool validOutput = Check(
                 output,
-                BlockchainTransactionAllowedOutput.at(input.version()).first,
-                BlockchainTransactionAllowedOutput.at(input.version()).second,
+                BlockchainTransactionAllowedOutput().at(input.version()).first,
+                BlockchainTransactionAllowedOutput().at(input.version()).second,
                 silent);
 
             if (false == validOutput) { FAIL_1("invalid output") }

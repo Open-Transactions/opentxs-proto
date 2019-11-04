@@ -38,8 +38,8 @@ bool CheckProto_1(const PeerReply& input, const bool silent)
     try {
         const bool validSig = Check(
             input.signature(),
-            PeerReplyAllowedSignature.at(input.version()).first,
-            PeerReplyAllowedSignature.at(input.version()).second,
+            PeerReplyAllowedSignature().at(input.version()).first,
+            PeerReplyAllowedSignature().at(input.version()).second,
             silent,
             SIGROLE_PEERREPLY);
 
@@ -57,8 +57,8 @@ bool CheckProto_1(const PeerReply& input, const bool silent)
             try {
                 const bool validbailment = Check(
                     input.bailment(),
-                    PeerReplyAllowedBailment.at(input.version()).first,
-                    PeerReplyAllowedBailment.at(input.version()).second,
+                    PeerReplyAllowedBailment().at(input.version()).first,
+                    PeerReplyAllowedBailment().at(input.version()).second,
                     silent);
 
                 if (!validbailment) { FAIL_1("invalid bailment") }
@@ -74,8 +74,8 @@ bool CheckProto_1(const PeerReply& input, const bool silent)
             try {
                 const bool validoutbailment = Check(
                     input.outbailment(),
-                    PeerReplyAllowedOutBailment.at(input.version()).first,
-                    PeerReplyAllowedOutBailment.at(input.version()).second,
+                    PeerReplyAllowedOutBailment().at(input.version()).first,
+                    PeerReplyAllowedOutBailment().at(input.version()).second,
                     silent);
 
                 if (!validoutbailment) { FAIL_1("invalid outbailment") }
@@ -92,8 +92,8 @@ bool CheckProto_1(const PeerReply& input, const bool silent)
             try {
                 const bool validnotice = Check(
                     input.notice(),
-                    PeerReplyAllowedNotice.at(input.version()).first,
-                    PeerReplyAllowedNotice.at(input.version()).second,
+                    PeerReplyAllowedNotice().at(input.version()).first,
+                    PeerReplyAllowedNotice().at(input.version()).second,
                     silent);
 
                 if (!validnotice) { FAIL_1("invalid notice") }
@@ -111,8 +111,8 @@ bool CheckProto_1(const PeerReply& input, const bool silent)
             try {
                 const bool validconnectioninfo = Check(
                     input.connectioninfo(),
-                    PeerReplyAllowedConnectionInfo.at(input.version()).first,
-                    PeerReplyAllowedConnectionInfo.at(input.version()).second,
+                    PeerReplyAllowedConnectionInfo().at(input.version()).first,
+                    PeerReplyAllowedConnectionInfo().at(input.version()).second,
                     silent);
 
                 if (!validconnectioninfo) { FAIL_1("invalid connectioninfo") }

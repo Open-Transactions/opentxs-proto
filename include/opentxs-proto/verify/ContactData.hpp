@@ -12,38 +12,86 @@ namespace opentxs
 {
 namespace proto
 {
-EXPORT bool CheckProto_1(
+OPENTXS_PROTO_EXPORT bool CheckProto_1(
     const ContactData& contactData,
     const bool silent,
     const ClaimType indexed);
-EXPORT bool CheckProto_2(
+OPENTXS_PROTO_EXPORT bool CheckProto_2(
     const ContactData& contactData,
     const bool silent,
     const ClaimType indexed);
-EXPORT bool CheckProto_3(
+OPENTXS_PROTO_EXPORT bool CheckProto_3(
     const ContactData& contactData,
     const bool silent,
     const ClaimType indexed);
-EXPORT bool CheckProto_4(
+OPENTXS_PROTO_EXPORT bool CheckProto_4(
     const ContactData& contactData,
     const bool silent,
     const ClaimType indexed);
-EXPORT bool CheckProto_5(const ContactData&, const bool, const ClaimType);
-EXPORT bool CheckProto_6(const ContactData&, const bool, const ClaimType);
-EXPORT bool CheckProto_7(const ContactData&, const bool, const ClaimType);
-EXPORT bool CheckProto_8(const ContactData&, const bool, const ClaimType);
-EXPORT bool CheckProto_9(const ContactData&, const bool, const ClaimType);
-EXPORT bool CheckProto_10(const ContactData&, const bool, const ClaimType);
-EXPORT bool CheckProto_11(const ContactData&, const bool, const ClaimType);
-EXPORT bool CheckProto_12(const ContactData&, const bool, const ClaimType);
-EXPORT bool CheckProto_13(const ContactData&, const bool, const ClaimType);
-EXPORT bool CheckProto_14(const ContactData&, const bool, const ClaimType);
-EXPORT bool CheckProto_15(const ContactData&, const bool, const ClaimType);
-EXPORT bool CheckProto_16(const ContactData&, const bool, const ClaimType);
-EXPORT bool CheckProto_17(const ContactData&, const bool, const ClaimType);
-EXPORT bool CheckProto_18(const ContactData&, const bool, const ClaimType);
-EXPORT bool CheckProto_19(const ContactData&, const bool, const ClaimType);
-EXPORT bool CheckProto_20(const ContactData&, const bool, const ClaimType);
+OPENTXS_PROTO_EXPORT bool CheckProto_5(
+    const ContactData&,
+    const bool,
+    const ClaimType);
+OPENTXS_PROTO_EXPORT bool CheckProto_6(
+    const ContactData&,
+    const bool,
+    const ClaimType);
+OPENTXS_PROTO_EXPORT bool CheckProto_7(
+    const ContactData&,
+    const bool,
+    const ClaimType);
+OPENTXS_PROTO_EXPORT bool CheckProto_8(
+    const ContactData&,
+    const bool,
+    const ClaimType);
+OPENTXS_PROTO_EXPORT bool CheckProto_9(
+    const ContactData&,
+    const bool,
+    const ClaimType);
+OPENTXS_PROTO_EXPORT bool CheckProto_10(
+    const ContactData&,
+    const bool,
+    const ClaimType);
+OPENTXS_PROTO_EXPORT bool CheckProto_11(
+    const ContactData&,
+    const bool,
+    const ClaimType);
+OPENTXS_PROTO_EXPORT bool CheckProto_12(
+    const ContactData&,
+    const bool,
+    const ClaimType);
+OPENTXS_PROTO_EXPORT bool CheckProto_13(
+    const ContactData&,
+    const bool,
+    const ClaimType);
+OPENTXS_PROTO_EXPORT bool CheckProto_14(
+    const ContactData&,
+    const bool,
+    const ClaimType);
+OPENTXS_PROTO_EXPORT bool CheckProto_15(
+    const ContactData&,
+    const bool,
+    const ClaimType);
+OPENTXS_PROTO_EXPORT bool CheckProto_16(
+    const ContactData&,
+    const bool,
+    const ClaimType);
+OPENTXS_PROTO_EXPORT bool CheckProto_17(
+    const ContactData&,
+    const bool,
+    const ClaimType);
+OPENTXS_PROTO_EXPORT bool CheckProto_18(
+    const ContactData&,
+    const bool,
+    const ClaimType);
+OPENTXS_PROTO_EXPORT bool CheckProto_19(
+    const ContactData&,
+    const bool,
+    const ClaimType);
+OPENTXS_PROTO_EXPORT bool CheckProto_20(
+    const ContactData&,
+    const bool,
+    const ClaimType);
 }  // namespace proto
 }  // namespace opentxs
 

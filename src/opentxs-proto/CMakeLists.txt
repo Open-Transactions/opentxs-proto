@@ -162,9 +162,9 @@ set(
 protobuf_generate_cpp(
   PROTO_SRC
   PROTO_HEADER
-  ${PROTO_SOURCES}
   EXPORT_MACRO
-  EXPORT
+  OPENTXS_PROTO_EXPORT
+  ${PROTO_SOURCES}
 )
 
 add_library(messages OBJECT ${PROTO_SRC} ${PROTO_HEADER})

@@ -14,7 +14,7 @@ namespace proto
 {
 bool CheckProto_1(const StorageTxoIndex& input, const bool silent)
 {
-    CHECK_SUBOBJECTS(txo, StorageTxoIndexAllowedStorageBlockchainTxo);
+    CHECK_SUBOBJECTS(txo, StorageTxoIndexAllowedStorageBlockchainTxo());
 
     return true;
 }

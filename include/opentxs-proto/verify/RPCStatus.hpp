@@ -12,26 +12,66 @@ namespace opentxs
 {
 namespace proto
 {
-EXPORT bool CheckProto_1(const RPCStatus& input, const bool silent);
-EXPORT bool CheckProto_2(const RPCStatus& input, const bool silent);
-EXPORT bool CheckProto_3(const RPCStatus& input, const bool silent);
-EXPORT bool CheckProto_4(const RPCStatus& input, const bool silent);
-EXPORT bool CheckProto_5(const RPCStatus& input, const bool silent);
-EXPORT bool CheckProto_6(const RPCStatus& input, const bool silent);
-EXPORT bool CheckProto_7(const RPCStatus& input, const bool silent);
-EXPORT bool CheckProto_8(const RPCStatus& input, const bool silent);
-EXPORT bool CheckProto_9(const RPCStatus& input, const bool silent);
-EXPORT bool CheckProto_10(const RPCStatus& input, const bool silent);
-EXPORT bool CheckProto_11(const RPCStatus& input, const bool silent);
-EXPORT bool CheckProto_12(const RPCStatus& input, const bool silent);
-EXPORT bool CheckProto_13(const RPCStatus& input, const bool silent);
-EXPORT bool CheckProto_14(const RPCStatus& input, const bool silent);
-EXPORT bool CheckProto_15(const RPCStatus& input, const bool silent);
-EXPORT bool CheckProto_16(const RPCStatus& input, const bool silent);
-EXPORT bool CheckProto_17(const RPCStatus& input, const bool silent);
-EXPORT bool CheckProto_18(const RPCStatus& input, const bool silent);
-EXPORT bool CheckProto_19(const RPCStatus& input, const bool silent);
-EXPORT bool CheckProto_20(const RPCStatus& input, const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_1(
+    const RPCStatus& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_2(
+    const RPCStatus& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_3(
+    const RPCStatus& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_4(
+    const RPCStatus& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_5(
+    const RPCStatus& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_6(
+    const RPCStatus& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_7(
+    const RPCStatus& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_8(
+    const RPCStatus& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_9(
+    const RPCStatus& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_10(
+    const RPCStatus& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_11(
+    const RPCStatus& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_12(
+    const RPCStatus& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_13(
+    const RPCStatus& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_14(
+    const RPCStatus& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_15(
+    const RPCStatus& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_16(
+    const RPCStatus& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_17(
+    const RPCStatus& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_18(
+    const RPCStatus& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_19(
+    const RPCStatus& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_20(
+    const RPCStatus& input,
+    const bool silent);
 }  // namespace proto
 }  // namespace opentxs
 

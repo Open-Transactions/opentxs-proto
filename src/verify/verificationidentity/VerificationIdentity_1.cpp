@@ -31,9 +31,11 @@ bool CheckProto_1(
         try {
             const bool verification = Check(
                 it,
-                VerificationIdentityAllowedVerification.at(input.version())
+                VerificationIdentityAllowedVerification()
+                    .at(input.version())
                     .first,
-                VerificationIdentityAllowedVerification.at(input.version())
+                VerificationIdentityAllowedVerification()
+                    .at(input.version())
                     .second,
                 silent,
                 indexed);

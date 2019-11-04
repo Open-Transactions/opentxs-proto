@@ -23,8 +23,8 @@ bool CheckProto_1(const BasketParams& input, const bool silent)
         try {
             bool validItem = Check(
                 item,
-                BasketParamsAllowedBasketItem.at(input.version()).first,
-                BasketParamsAllowedBasketItem.at(input.version()).second,
+                BasketParamsAllowedBasketItem().at(input.version()).first,
+                BasketParamsAllowedBasketItem().at(input.version()).second,
                 silent,
                 itemMap);
 

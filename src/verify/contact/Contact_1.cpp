@@ -35,10 +35,10 @@ bool CheckProto_1(const Contact& input, const bool silent)
         try {
             const auto validContactData = Check(
                 input.contactdata(),
-                ContactAllowedContactData.at(input.version()).first,
-                ContactAllowedContactData.at(input.version()).second,
+                ContactAllowedContactData().at(input.version()).first,
+                ContactAllowedContactData().at(input.version()).second,
                 silent,
-                CLAIMS_NORMAL);
+                ClaimType::Normal);
 
             if (!validContactData) { FAIL_1("invalid contact data") }
         } catch (const std::out_of_range&) {

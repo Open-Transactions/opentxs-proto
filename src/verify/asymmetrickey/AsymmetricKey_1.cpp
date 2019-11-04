@@ -32,7 +32,7 @@ bool CheckProto_1(
             CHECK_EXCLUDED(encryptedkey);
         } else {
             CHECK_SUBOBJECT_VA(
-                encryptedkey, AsymmetricKeyAllowedCiphertext, false);
+                encryptedkey, AsymmetricKeyAllowedCiphertext(), false);
         }
     }
 
@@ -47,8 +47,8 @@ bool CheckProto_1(
                 CHECK_EXCLUDED(path);
             } else {
                 CHECK_SUBOBJECT_VA(
-                    chaincode, AsymmetricKeyAllowedCiphertext, false);
-                CHECK_SUBOBJECT(path, AsymmetricKeyAllowedHDPath);
+                    chaincode, AsymmetricKeyAllowedCiphertext(), false);
+                CHECK_SUBOBJECT(path, AsymmetricKeyAllowedHDPath());
             }
         } break;
         case CREDTYPE_ERROR:
@@ -82,7 +82,7 @@ bool CheckProto_2(
             CHECK_EXCLUDED(encryptedkey);
         } else {
             CHECK_SUBOBJECT_VA(
-                encryptedkey, AsymmetricKeyAllowedCiphertext, false);
+                encryptedkey, AsymmetricKeyAllowedCiphertext(), false);
         }
     }
 
@@ -97,8 +97,8 @@ bool CheckProto_2(
                 CHECK_EXCLUDED(path);
             } else {
                 CHECK_SUBOBJECT_VA(
-                    chaincode, AsymmetricKeyAllowedCiphertext, false);
-                CHECK_SUBOBJECT(path, AsymmetricKeyAllowedHDPath);
+                    chaincode, AsymmetricKeyAllowedCiphertext(), false);
+                CHECK_SUBOBJECT(path, AsymmetricKeyAllowedHDPath());
             }
         } break;
         case CREDTYPE_ERROR:

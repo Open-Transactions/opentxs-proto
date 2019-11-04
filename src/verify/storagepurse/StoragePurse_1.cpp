@@ -18,7 +18,7 @@ bool CheckProto_1(const StoragePurse& input, const bool silent)
 {
     CHECK_IDENTIFIER(notary);
     CHECK_IDENTIFIER(unit);
-    CHECK_SUBOBJECT(purse, StoragePurseAllowedStorageItemHash);
+    CHECK_SUBOBJECT(purse, StoragePurseAllowedStorageItemHash());
 
     return true;
 }

@@ -19,8 +19,8 @@ bool CheckProto_1(const Envelope& input, const bool silent)
         try {
             const bool validDHKey = Check(
                 dhKey,
-                EnvelopeAllowedAsymmetricKey.at(input.version()).first,
-                EnvelopeAllowedAsymmetricKey.at(input.version()).second,
+                EnvelopeAllowedAsymmetricKey().at(input.version()).first,
+                EnvelopeAllowedAsymmetricKey().at(input.version()).second,
                 silent,
                 CREDTYPE_LEGACY,
                 KEYMODE_PUBLIC,
@@ -38,8 +38,8 @@ bool CheckProto_1(const Envelope& input, const bool silent)
         try {
             const bool validSessionKey = Check(
                 sessionKey,
-                EnvelopeAllowedCiphertext.at(input.version()).first,
-                EnvelopeAllowedCiphertext.at(input.version()).second,
+                EnvelopeAllowedCiphertext().at(input.version()).first,
+                EnvelopeAllowedCiphertext().at(input.version()).second,
                 silent);
 
             if (false == validSessionKey) { FAIL_1("invalid session key") }
@@ -53,8 +53,8 @@ bool CheckProto_1(const Envelope& input, const bool silent)
     try {
         const bool validCiphertext = Check(
             input.ciphertext(),
-            EnvelopeAllowedCiphertext.at(input.version()).first,
-            EnvelopeAllowedCiphertext.at(input.version()).second,
+            EnvelopeAllowedCiphertext().at(input.version()).first,
+            EnvelopeAllowedCiphertext().at(input.version()).second,
             silent,
             false);
 

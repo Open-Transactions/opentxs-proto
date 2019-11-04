@@ -14,11 +14,11 @@ bool CheckProto_1(const SessionKey& input, const bool silent)
 {
     CHECK_SUBOBJECT_VA(
         dh,
-        SessionKeyAllowedAsymmetricKey,
+        SessionKeyAllowedAsymmetricKey(),
         CREDTYPE_LEGACY,
         KEYMODE_PUBLIC,
         KEYROLE_ENCRYPT);
-    CHECK_SUBOBJECT_VA(key, SessionKeyAllowedCiphertext, false);
+    CHECK_SUBOBJECT_VA(key, SessionKeyAllowedCiphertext(), false);
 
     return true;
 }

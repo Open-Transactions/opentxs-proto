@@ -12,33 +12,17 @@ namespace opentxs
 {
 namespace proto
 {
-static const VersionMap LucreTokenDataAllowedCiphertext = {
-    {1, {1, 1}},
-};
-static const VersionMap PurseAllowedCiphertext = {
-    {1, {1, 1}},
-};
-static const VersionMap PurseAllowedSessionKey = {
-    {1, {1, 1}},
-};
-static const VersionMap PurseAllowedSymmetricKey = {
-    {1, {1, 1}},
-};
-static const VersionMap PurseAllowedToken = {
-    {1, {1, 1}},
-};
-static const VersionMap PurseExchangeAllowedPurse = {
-    {1, {1, 1}},
-};
-static const VersionMap SessionKeyAllowedAsymmetricKey = {
-    {1, {1, 2}},
-};
-static const VersionMap SessionKeyAllowedCiphertext = {
-    {1, {1, 1}},
-};
-static const VersionMap TokenAllowedLucreTokenData = {
-    {1, {1, 1}},
-};
+OPENTXS_PROTO_EXPORT const VersionMap&
+LucreTokenDataAllowedCiphertext() noexcept;
+OPENTXS_PROTO_EXPORT const VersionMap& PurseAllowedCiphertext() noexcept;
+OPENTXS_PROTO_EXPORT const VersionMap& PurseAllowedSessionKey() noexcept;
+OPENTXS_PROTO_EXPORT const VersionMap& PurseAllowedSymmetricKey() noexcept;
+OPENTXS_PROTO_EXPORT const VersionMap& PurseAllowedToken() noexcept;
+OPENTXS_PROTO_EXPORT const VersionMap& PurseExchangeAllowedPurse() noexcept;
+OPENTXS_PROTO_EXPORT const VersionMap&
+SessionKeyAllowedAsymmetricKey() noexcept;
+OPENTXS_PROTO_EXPORT const VersionMap& SessionKeyAllowedCiphertext() noexcept;
+OPENTXS_PROTO_EXPORT const VersionMap& TokenAllowedLucreTokenData() noexcept;
 }  // namespace proto
 }  // namespace opentxs
 #endif  // OPENTXS_PROTO_VERIFYCASH_HPP

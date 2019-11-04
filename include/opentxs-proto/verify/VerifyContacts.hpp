@@ -15,97 +15,71 @@ namespace opentxs
 {
 namespace proto
 {
-typedef bool ClaimType;
-static const ClaimType CLAIMS_INDEXED = true;
-static const ClaimType CLAIMS_NORMAL = false;
-
-typedef bool VerificationType;
-static const VerificationType VERIFICATIONS_INDEXED = true;
-static const VerificationType VERIFICATIONS_NORMAL = false;
+enum class ClaimType : bool {
+    Indexed = true,
+    Normal = false,
+};
+enum class VerificationType : bool {
+    Indexed = true,
+    Normal = false,
+};
 }  // namespace proto
 }  // namespace opentxs
 
 #include "opentxs-proto/Basic.hpp"
 #include "opentxs-proto/Contact.hpp"
 
-#define MAX_CONTACT_VERSION 6
-
 namespace opentxs
 {
 namespace proto
 {
-static const VersionMap ContactAllowedContactData = {
-    {1, {1, 4}},
-    {2, {5, 5}},
-    {3, {6, 6}},
-};
-static const VersionMap ContactDataAllowedContactSection = {
-    {1, {1, 1}},
-    {2, {1, 2}},
-    {3, {1, 3}},
-    {4, {4, 4}},
-    {5, {5, 5}},
-    {6, {6, 6}},
-};
-static const VersionMap ContactSectionAllowedItem = {
-    {1, {1, 1}},
-    {2, {1, 2}},
-    {3, {1, 3}},
-    {4, {4, 4}},
-    {5, {5, 5}},
-    {6, {6, 6}},
-};
-static const VersionMap VerificationSetAllowedGroup = {
-    {1, {1, 1}},
-};
-static const VersionMap VerificationGroupAllowedIdentity = {
-    {1, {1, 1}},
-};
-static const VersionMap VerificationIdentityAllowedVerification = {
-    {1, {1, 1}},
-};
-static const VersionMap VerificationAllowedSignature = {
-    {1, {1, 1}},
-};
-static const VersionMap VerificationOfferAllowedClaim = {
-    {1, {1, 1}},
-};
-static const VersionMap VerificationOfferAllowedVerification = {
-    {1, {1, 1}},
-};
+OPENTXS_PROTO_EXPORT const VersionMap& ContactAllowedContactData() noexcept;
+OPENTXS_PROTO_EXPORT const VersionMap&
+ContactDataAllowedContactSection() noexcept;
+OPENTXS_PROTO_EXPORT const VersionMap& ContactSectionAllowedItem() noexcept;
+OPENTXS_PROTO_EXPORT const VersionMap& VerificationAllowedSignature() noexcept;
+OPENTXS_PROTO_EXPORT const VersionMap&
+VerificationGroupAllowedIdentity() noexcept;
+OPENTXS_PROTO_EXPORT const VersionMap&
+VerificationIdentityAllowedVerification() noexcept;
+OPENTXS_PROTO_EXPORT const VersionMap& VerificationOfferAllowedClaim() noexcept;
+OPENTXS_PROTO_EXPORT const VersionMap&
+VerificationOfferAllowedVerification() noexcept;
+OPENTXS_PROTO_EXPORT const VersionMap& VerificationSetAllowedGroup() noexcept;
 
-bool ValidContactSectionName(
+OPENTXS_PROTO_EXPORT bool ValidContactSectionName(
     const std::uint32_t version,
     const ContactSectionName name);
-bool ValidContactItemType(
+OPENTXS_PROTO_EXPORT bool ValidContactItemType(
     const ContactSectionVersion version,
     const ContactItemType itemType);
-bool ValidContactItemAttribute(
+OPENTXS_PROTO_EXPORT bool ValidContactItemAttribute(
     const std::uint32_t version,
     const ContactItemAttribute attribute);
 
-std::string TranslateSectionName(
+OPENTXS_PROTO_EXPORT std::string TranslateSectionName(
     const std::uint32_t enumValue,
     const std::string& lang = "en");
-std::string TranslateItemType(
+OPENTXS_PROTO_EXPORT std::string TranslateItemType(
     const std::uint32_t enumValue,
     const std::string& lang = "en");
-std::string TranslateItemAttributes(
+OPENTXS_PROTO_EXPORT std::string TranslateItemAttributes(
     const std::uint32_t enumValue,
     const std::string& lang = "en");
-std::uint32_t ReciprocalRelationship(const std::uint32_t relationship);
-bool CheckCombination(
+OPENTXS_PROTO_EXPORT std::uint32_t ReciprocalRelationship(
+    const std::uint32_t relationship);
+OPENTXS_PROTO_EXPORT bool CheckCombination(
     const ContactSectionName section,
     const ContactItemType type,
     const std::uint32_t version = 1);
-std::uint32_t RequiredVersion(
+OPENTXS_PROTO_EXPORT std::uint32_t RequiredVersion(
     const ContactSectionName section,
     const ContactItemType type,
     const std::uint32_t hint = 1);
-std::uint32_t NymRequiredVersion(
+OPENTXS_PROTO_EXPORT std::uint32_t NymRequiredVersion(
     const std::uint32_t contactDataVersion,
     const std::uint32_t hint);
-std::uint32_t RequiredAuthorityVersion(
+OPENTXS_PROTO_EXPORT std::uint32_t RequiredAuthorityVersion(
     const std::uint32_t contactDataVersion,
     const std::uint32_t hint);
 }  // namespace proto

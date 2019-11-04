@@ -18,8 +18,8 @@ bool CheckProto_1(const PurseExchange& input, const bool silent)
     const auto& incoming = input.exchange();
     const auto& outgoing = input.request();
 
-    CHECK_SUBOBJECT_VA(exchange, PurseExchangeAllowedPurse, inValue);
-    CHECK_SUBOBJECT_VA(request, PurseExchangeAllowedPurse, outValue);
+    CHECK_SUBOBJECT_VA(exchange, PurseExchangeAllowedPurse(), inValue);
+    CHECK_SUBOBJECT_VA(request, PurseExchangeAllowedPurse(), outValue);
 
     if (inValue != outValue) {
         FAIL_4(

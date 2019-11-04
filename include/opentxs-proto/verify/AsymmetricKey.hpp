@@ -12,127 +12,121 @@ namespace opentxs
 {
 namespace proto
 {
-static const std::map<std::uint32_t, std::set<AsymmetricKeyType>>
-    AsymmetricKeyAllowedTypes{
-        {1, {AKEYTYPE_LEGACY, AKEYTYPE_SECP256K1, AKEYTYPE_ED25519}},
-        {2, {AKEYTYPE_LEGACY, AKEYTYPE_SECP256K1, AKEYTYPE_ED25519}},
-    };
-
-EXPORT bool CheckProto_1(
+OPENTXS_PROTO_EXPORT bool CheckProto_1(
     const AsymmetricKey& key,
     const bool silent,
     const CredentialType type,
     const KeyMode mode,
     const KeyRole role);
-EXPORT bool CheckProto_2(
+OPENTXS_PROTO_EXPORT bool CheckProto_2(
     const AsymmetricKey&,
     const bool,
     const CredentialType,
     const KeyMode,
     const KeyRole);
-EXPORT bool CheckProto_3(
+OPENTXS_PROTO_EXPORT bool CheckProto_3(
     const AsymmetricKey&,
     const bool,
     const CredentialType,
     const KeyMode,
     const KeyRole);
-EXPORT bool CheckProto_4(
+OPENTXS_PROTO_EXPORT bool CheckProto_4(
     const AsymmetricKey&,
     const bool,
     const CredentialType,
     const KeyMode,
     const KeyRole);
-EXPORT bool CheckProto_5(
+OPENTXS_PROTO_EXPORT bool CheckProto_5(
     const AsymmetricKey&,
     const bool,
     const CredentialType,
     const KeyMode,
     const KeyRole);
-EXPORT bool CheckProto_6(
+OPENTXS_PROTO_EXPORT bool CheckProto_6(
     const AsymmetricKey&,
     const bool,
     const CredentialType,
     const KeyMode,
     const KeyRole);
-EXPORT bool CheckProto_7(
+OPENTXS_PROTO_EXPORT bool CheckProto_7(
     const AsymmetricKey&,
     const bool,
     const CredentialType,
     const KeyMode,
     const KeyRole);
-EXPORT bool CheckProto_8(
+OPENTXS_PROTO_EXPORT bool CheckProto_8(
     const AsymmetricKey&,
     const bool,
     const CredentialType,
     const KeyMode,
     const KeyRole);
-EXPORT bool CheckProto_9(
+OPENTXS_PROTO_EXPORT bool CheckProto_9(
     const AsymmetricKey&,
     const bool,
     const CredentialType,
     const KeyMode,
     const KeyRole);
-EXPORT bool CheckProto_10(
+OPENTXS_PROTO_EXPORT bool CheckProto_10(
     const AsymmetricKey&,
     const bool,
     const CredentialType,
     const KeyMode,
     const KeyRole);
-EXPORT bool CheckProto_11(
+OPENTXS_PROTO_EXPORT bool CheckProto_11(
     const AsymmetricKey& key,
     const bool silent,
     const CredentialType type,
     const KeyMode mode,
     const KeyRole role);
-EXPORT bool CheckProto_12(
+OPENTXS_PROTO_EXPORT bool CheckProto_12(
     const AsymmetricKey&,
     const bool,
     const CredentialType,
     const KeyMode,
     const KeyRole);
-EXPORT bool CheckProto_13(
+OPENTXS_PROTO_EXPORT bool CheckProto_13(
     const AsymmetricKey&,
     const bool,
     const CredentialType,
     const KeyMode,
     const KeyRole);
-EXPORT bool CheckProto_14(
+OPENTXS_PROTO_EXPORT bool CheckProto_14(
     const AsymmetricKey&,
     const bool,
     const CredentialType,
     const KeyMode,
     const KeyRole);
-EXPORT bool CheckProto_15(
+OPENTXS_PROTO_EXPORT bool CheckProto_15(
     const AsymmetricKey&,
     const bool,
     const CredentialType,
     const KeyMode,
     const KeyRole);
-EXPORT bool CheckProto_16(
+OPENTXS_PROTO_EXPORT bool CheckProto_16(
     const AsymmetricKey&,
     const bool,
     const CredentialType,
     const KeyMode,
     const KeyRole);
-EXPORT bool CheckProto_17(
+OPENTXS_PROTO_EXPORT bool CheckProto_17(
     const AsymmetricKey&,
     const bool,
     const CredentialType,
     const KeyMode,
     const KeyRole);
-EXPORT bool CheckProto_18(
+OPENTXS_PROTO_EXPORT bool CheckProto_18(
     const AsymmetricKey&,
     const bool,
     const CredentialType,
     const KeyMode,
     const KeyRole);
-EXPORT bool CheckProto_19(
+OPENTXS_PROTO_EXPORT bool CheckProto_19(
     const AsymmetricKey&,
     const bool,
     const CredentialType,
     const KeyMode,
     const KeyRole);
-EXPORT bool CheckProto_20(
+OPENTXS_PROTO_EXPORT bool CheckProto_20(
     const AsymmetricKey&,
     const bool,
     const CredentialType,

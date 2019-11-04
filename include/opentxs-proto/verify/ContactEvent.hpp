@@ -12,26 +12,66 @@ namespace opentxs
 {
 namespace proto
 {
-EXPORT bool CheckProto_1(const ContactEvent& input, const bool silent);
-EXPORT bool CheckProto_2(const ContactEvent& input, const bool silent);
-EXPORT bool CheckProto_3(const ContactEvent& input, const bool silent);
-EXPORT bool CheckProto_4(const ContactEvent& input, const bool silent);
-EXPORT bool CheckProto_5(const ContactEvent& input, const bool silent);
-EXPORT bool CheckProto_6(const ContactEvent& input, const bool silent);
-EXPORT bool CheckProto_7(const ContactEvent& input, const bool silent);
-EXPORT bool CheckProto_8(const ContactEvent& input, const bool silent);
-EXPORT bool CheckProto_9(const ContactEvent& input, const bool silent);
-EXPORT bool CheckProto_10(const ContactEvent& input, const bool silent);
-EXPORT bool CheckProto_11(const ContactEvent& input, const bool silent);
-EXPORT bool CheckProto_12(const ContactEvent& input, const bool silent);
-EXPORT bool CheckProto_13(const ContactEvent& input, const bool silent);
-EXPORT bool CheckProto_14(const ContactEvent& input, const bool silent);
-EXPORT bool CheckProto_15(const ContactEvent& input, const bool silent);
-EXPORT bool CheckProto_16(const ContactEvent& input, const bool silent);
-EXPORT bool CheckProto_17(const ContactEvent& input, const bool silent);
-EXPORT bool CheckProto_18(const ContactEvent& input, const bool silent);
-EXPORT bool CheckProto_19(const ContactEvent& input, const bool silent);
-EXPORT bool CheckProto_20(const ContactEvent& input, const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_1(
+    const ContactEvent& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_2(
+    const ContactEvent& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_3(
+    const ContactEvent& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_4(
+    const ContactEvent& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_5(
+    const ContactEvent& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_6(
+    const ContactEvent& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_7(
+    const ContactEvent& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_8(
+    const ContactEvent& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_9(
+    const ContactEvent& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_10(
+    const ContactEvent& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_11(
+    const ContactEvent& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_12(
+    const ContactEvent& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_13(
+    const ContactEvent& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_14(
+    const ContactEvent& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_15(
+    const ContactEvent& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_16(
+    const ContactEvent& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_17(
+    const ContactEvent& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_18(
+    const ContactEvent& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_19(
+    const ContactEvent& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_20(
+    const ContactEvent& input,
+    const bool silent);
 }  // namespace proto
 }  // namespace opentxs
 #endif  // OPENTXS_PROTO_CONTACTEVENT_HPP

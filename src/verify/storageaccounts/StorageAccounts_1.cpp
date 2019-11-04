@@ -12,13 +12,13 @@ namespace opentxs::proto
 {
 bool CheckProto_1(const StorageAccounts& input, const bool silent)
 {
-    CHECK_SUBOBJECTS(account, StorageAccountsAllowedStorageItemHash)
-    OPTIONAL_SUBOBJECTS(index, StorageAccountsAllowedStorageAccountIndex)
-    OPTIONAL_SUBOBJECTS(owner, StorageAccountsAllowedStorageIDList)
-    OPTIONAL_SUBOBJECTS(signer, StorageAccountsAllowedStorageIDList)
-    OPTIONAL_SUBOBJECTS(issuer, StorageAccountsAllowedStorageIDList)
-    OPTIONAL_SUBOBJECTS(server, StorageAccountsAllowedStorageIDList)
-    OPTIONAL_SUBOBJECTS(unit, StorageAccountsAllowedStorageIDList)
+    CHECK_SUBOBJECTS(account, StorageAccountsAllowedStorageItemHash())
+    OPTIONAL_SUBOBJECTS(index, StorageAccountsAllowedStorageAccountIndex())
+    OPTIONAL_SUBOBJECTS(owner, StorageAccountsAllowedStorageIDList())
+    OPTIONAL_SUBOBJECTS(signer, StorageAccountsAllowedStorageIDList())
+    OPTIONAL_SUBOBJECTS(issuer, StorageAccountsAllowedStorageIDList())
+    OPTIONAL_SUBOBJECTS(server, StorageAccountsAllowedStorageIDList())
+    OPTIONAL_SUBOBJECTS(unit, StorageAccountsAllowedStorageIDList())
 
     return true;
 }

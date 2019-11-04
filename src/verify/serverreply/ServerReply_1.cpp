@@ -16,14 +16,14 @@ bool CheckProto_1(const ServerReply& input, const bool silent)
     CHECK_IDENTIFIER(nym);
     CHECK_IDENTIFIER(server);
     CHECK_SUBOBJECT_VA(
-        signature, ServerReplyAllowedSignature, SIGROLE_SERVERREPLY);
+        signature, ServerReplyAllowedSignature(), SIGROLE_SERVERREPLY);
 
     switch (input.type()) {
         case SERVERREPLY_ACTIVATE: {
             CHECK_EXCLUDED(push);
         } break;
         case SERVERREPLY_PUSH: {
-            CHECK_SUBOBJECT(push, ServerReplyAllowedOTXPush);
+            CHECK_SUBOBJECT(push, ServerReplyAllowedOTXPush());
         } break;
         case SERVERREPLY_ERROR:
         default: {

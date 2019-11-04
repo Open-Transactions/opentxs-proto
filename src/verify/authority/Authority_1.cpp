@@ -88,8 +88,8 @@ bool CheckProto_1(
 
             if (!Check(
                     input.mastercredential(),
-                    AuthorityAllowedCredential.at(input.version()).first,
-                    AuthorityAllowedCredential.at(input.version()).second,
+                    AuthorityAllowedCredential().at(input.version()).first,
+                    AuthorityAllowedCredential().at(input.version()).second,
                     silent,
                     key,
                     CREDROLE_MASTERKEY,
@@ -120,8 +120,8 @@ bool CheckProto_1(
             for (auto& it : input.activechildren()) {
                 if (!Check(
                         it,
-                        AuthorityAllowedCredential.at(input.version()).first,
-                        AuthorityAllowedCredential.at(input.version()).second,
+                        AuthorityAllowedCredential().at(input.version()).first,
+                        AuthorityAllowedCredential().at(input.version()).second,
                         silent,
                         key,
                         CREDROLE_ERROR,
@@ -139,8 +139,8 @@ bool CheckProto_1(
             for (auto& it : input.revokedchildren()) {
                 if (!Check(
                         it,
-                        AuthorityAllowedCredential.at(input.version()).first,
-                        AuthorityAllowedCredential.at(input.version()).second,
+                        AuthorityAllowedCredential().at(input.version()).first,
+                        AuthorityAllowedCredential().at(input.version()).second,
                         silent,
                         key,
                         CREDROLE_ERROR,

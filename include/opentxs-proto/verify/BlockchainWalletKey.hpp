@@ -12,26 +12,66 @@ namespace opentxs
 {
 namespace proto
 {
-EXPORT bool CheckProto_1(const BlockchainWalletKey& input, const bool silent);
-EXPORT bool CheckProto_2(const BlockchainWalletKey& input, const bool silent);
-EXPORT bool CheckProto_3(const BlockchainWalletKey& input, const bool silent);
-EXPORT bool CheckProto_4(const BlockchainWalletKey& input, const bool silent);
-EXPORT bool CheckProto_5(const BlockchainWalletKey& input, const bool silent);
-EXPORT bool CheckProto_6(const BlockchainWalletKey& input, const bool silent);
-EXPORT bool CheckProto_7(const BlockchainWalletKey& input, const bool silent);
-EXPORT bool CheckProto_8(const BlockchainWalletKey& input, const bool silent);
-EXPORT bool CheckProto_9(const BlockchainWalletKey& input, const bool silent);
-EXPORT bool CheckProto_10(const BlockchainWalletKey& input, const bool silent);
-EXPORT bool CheckProto_11(const BlockchainWalletKey& input, const bool silent);
-EXPORT bool CheckProto_12(const BlockchainWalletKey& input, const bool silent);
-EXPORT bool CheckProto_13(const BlockchainWalletKey& input, const bool silent);
-EXPORT bool CheckProto_14(const BlockchainWalletKey& input, const bool silent);
-EXPORT bool CheckProto_15(const BlockchainWalletKey& input, const bool silent);
-EXPORT bool CheckProto_16(const BlockchainWalletKey& input, const bool silent);
-EXPORT bool CheckProto_17(const BlockchainWalletKey& input, const bool silent);
-EXPORT bool CheckProto_18(const BlockchainWalletKey& input, const bool silent);
-EXPORT bool CheckProto_19(const BlockchainWalletKey& input, const bool silent);
-EXPORT bool CheckProto_20(const BlockchainWalletKey& input, const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_1(
+    const BlockchainWalletKey& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_2(
+    const BlockchainWalletKey& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_3(
+    const BlockchainWalletKey& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_4(
+    const BlockchainWalletKey& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_5(
+    const BlockchainWalletKey& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_6(
+    const BlockchainWalletKey& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_7(
+    const BlockchainWalletKey& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_8(
+    const BlockchainWalletKey& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_9(
+    const BlockchainWalletKey& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_10(
+    const BlockchainWalletKey& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_11(
+    const BlockchainWalletKey& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_12(
+    const BlockchainWalletKey& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_13(
+    const BlockchainWalletKey& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_14(
+    const BlockchainWalletKey& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_15(
+    const BlockchainWalletKey& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_16(
+    const BlockchainWalletKey& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_17(
+    const BlockchainWalletKey& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_18(
+    const BlockchainWalletKey& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_19(
+    const BlockchainWalletKey& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_20(
+    const BlockchainWalletKey& input,
+    const bool silent);
 }  // namespace proto
 }  // namespace opentxs
 

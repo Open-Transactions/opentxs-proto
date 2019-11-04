@@ -12,26 +12,66 @@ namespace opentxs
 {
 namespace proto
 {
-EXPORT bool CheckProto_1(const BlockchainAddress& input, const bool silent);
-EXPORT bool CheckProto_2(const BlockchainAddress& input, const bool silent);
-EXPORT bool CheckProto_3(const BlockchainAddress& input, const bool silent);
-EXPORT bool CheckProto_4(const BlockchainAddress& input, const bool silent);
-EXPORT bool CheckProto_5(const BlockchainAddress& input, const bool silent);
-EXPORT bool CheckProto_6(const BlockchainAddress& input, const bool silent);
-EXPORT bool CheckProto_7(const BlockchainAddress& input, const bool silent);
-EXPORT bool CheckProto_8(const BlockchainAddress& input, const bool silent);
-EXPORT bool CheckProto_9(const BlockchainAddress& input, const bool silent);
-EXPORT bool CheckProto_10(const BlockchainAddress& input, const bool silent);
-EXPORT bool CheckProto_11(const BlockchainAddress& input, const bool silent);
-EXPORT bool CheckProto_12(const BlockchainAddress& input, const bool silent);
-EXPORT bool CheckProto_13(const BlockchainAddress& input, const bool silent);
-EXPORT bool CheckProto_14(const BlockchainAddress& input, const bool silent);
-EXPORT bool CheckProto_15(const BlockchainAddress& input, const bool silent);
-EXPORT bool CheckProto_16(const BlockchainAddress& input, const bool silent);
-EXPORT bool CheckProto_17(const BlockchainAddress& input, const bool silent);
-EXPORT bool CheckProto_18(const BlockchainAddress& input, const bool silent);
-EXPORT bool CheckProto_19(const BlockchainAddress& input, const bool silent);
-EXPORT bool CheckProto_20(const BlockchainAddress& input, const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_1(
+    const BlockchainAddress& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_2(
+    const BlockchainAddress& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_3(
+    const BlockchainAddress& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_4(
+    const BlockchainAddress& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_5(
+    const BlockchainAddress& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_6(
+    const BlockchainAddress& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_7(
+    const BlockchainAddress& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_8(
+    const BlockchainAddress& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_9(
+    const BlockchainAddress& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_10(
+    const BlockchainAddress& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_11(
+    const BlockchainAddress& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_12(
+    const BlockchainAddress& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_13(
+    const BlockchainAddress& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_14(
+    const BlockchainAddress& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_15(
+    const BlockchainAddress& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_16(
+    const BlockchainAddress& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_17(
+    const BlockchainAddress& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_18(
+    const BlockchainAddress& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_19(
+    const BlockchainAddress& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_20(
+    const BlockchainAddress& input,
+    const bool silent);
 }  // namespace proto
 }  // namespace opentxs
 

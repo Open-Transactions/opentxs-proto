@@ -21,23 +21,23 @@ bool CheckProto_7(const PeerObject& input, const bool silent)
             CHECK_EXCLUDED(otreply);
             CHECK_EXCLUDED(otpayment);
             CHECK_EXCLUDED(purse);
-            OPTIONAL_SUBOBJECT(nym, PeerObjectAllowedNym);
+            OPTIONAL_SUBOBJECT(nym, PeerObjectAllowedNym());
         } break;
         case PEEROBJECT_REQUEST: {
             CHECK_EXCLUDED(otmessage);
-            CHECK_SUBOBJECT(otrequest, PeerObjectAllowedPeerRequest);
+            CHECK_SUBOBJECT(otrequest, PeerObjectAllowedPeerRequest());
             CHECK_EXCLUDED(otreply);
             CHECK_EXCLUDED(otpayment);
             CHECK_EXCLUDED(purse);
-            CHECK_SUBOBJECT(nym, PeerObjectAllowedNym);
+            CHECK_SUBOBJECT(nym, PeerObjectAllowedNym());
         } break;
         case PEEROBJECT_RESPONSE: {
             CHECK_EXCLUDED(otmessage);
-            CHECK_SUBOBJECT(otrequest, PeerObjectAllowedPeerRequest);
-            CHECK_SUBOBJECT(otreply, PeerObjectAllowedPeerReply);
+            CHECK_SUBOBJECT(otrequest, PeerObjectAllowedPeerRequest());
+            CHECK_SUBOBJECT(otreply, PeerObjectAllowedPeerReply());
             CHECK_EXCLUDED(otpayment);
             CHECK_EXCLUDED(purse);
-            OPTIONAL_SUBOBJECT(nym, PeerObjectAllowedNym);
+            OPTIONAL_SUBOBJECT(nym, PeerObjectAllowedNym());
 
             const bool matchingID =
                 (input.otrequest().id() == input.otreply().cookie());
@@ -73,15 +73,15 @@ bool CheckProto_7(const PeerObject& input, const bool silent)
             CHECK_EXCLUDED(otreply);
             CHECK_EXISTS(otpayment);
             CHECK_EXCLUDED(purse);
-            OPTIONAL_SUBOBJECT(nym, PeerObjectAllowedNym);
+            OPTIONAL_SUBOBJECT(nym, PeerObjectAllowedNym());
         } break;
         case PEEROBJECT_CASH: {
             CHECK_EXCLUDED(otmessage);
             CHECK_EXCLUDED(otrequest);
             CHECK_EXCLUDED(otreply);
             CHECK_EXCLUDED(otpayment);
-            CHECK_SUBOBJECT(purse, PeerObjectAllowedPurse);
-            OPTIONAL_SUBOBJECT(nym, PeerObjectAllowedNym);
+            CHECK_SUBOBJECT(purse, PeerObjectAllowedPurse());
+            OPTIONAL_SUBOBJECT(nym, PeerObjectAllowedNym());
         } break;
         case PEEROBJECT_ERROR:
         default: {

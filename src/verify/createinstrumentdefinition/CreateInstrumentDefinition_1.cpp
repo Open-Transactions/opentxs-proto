@@ -21,9 +21,9 @@ bool CheckProto_1(const CreateInstrumentDefinition& input, const bool silent)
     CHECK_NAME(tla);
     CHECK_NAME(name);
 
-    const auto allowedtype =
-        1 == AllowedItemTypes.at({5, CONTACTSECTION_CONTRACT})
-                 .count(input.unitofaccount());
+    const auto allowedtype = 1 == AllowedItemTypes()
+                                      .at({5, CONTACTSECTION_CONTRACT})
+                                      .count(input.unitofaccount());
 
     if (false == allowedtype) { FAIL_1("Invalid unit of account") }
 

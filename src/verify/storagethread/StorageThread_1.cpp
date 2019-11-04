@@ -31,8 +31,8 @@ bool CheckProto_1(const StorageThread& input, const bool silent)
         try {
             const bool valid = Check(
                 item,
-                StorageThreadAllowedItem.at(input.version()).first,
-                StorageThreadAllowedItem.at(input.version()).second,
+                StorageThreadAllowedItem().at(input.version()).first,
+                StorageThreadAllowedItem().at(input.version()).second,
                 silent);
 
             if (false == valid) { FAIL_1("invalid item") }

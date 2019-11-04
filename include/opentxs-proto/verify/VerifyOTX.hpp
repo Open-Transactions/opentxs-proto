@@ -12,22 +12,10 @@ namespace opentxs
 {
 namespace proto
 {
-static const VersionMap ServerReplyAllowedOTXPush = {
-    {1, {1, 1}},
-    {2, {1, 1}},
-};
-static const VersionMap ServerReplyAllowedSignature = {
-    {1, {3, 3}},
-    {2, {3, 3}},
-};
-static const VersionMap ServerRequestAllowedNym = {
-    {1, {1, 5}},
-    {2, {1, 6}},
-};
-static const VersionMap ServerRequestAllowedSignature = {
-    {1, {3, 3}},
-    {2, {3, 3}},
-};
+OPENTXS_PROTO_EXPORT const VersionMap& ServerReplyAllowedOTXPush() noexcept;
+OPENTXS_PROTO_EXPORT const VersionMap& ServerReplyAllowedSignature() noexcept;
+OPENTXS_PROTO_EXPORT const VersionMap& ServerRequestAllowedNym() noexcept;
+OPENTXS_PROTO_EXPORT const VersionMap& ServerRequestAllowedSignature() noexcept;
 }  // namespace proto
 }  // namespace opentxs
 #endif  // OPENTXS_PROTO_VERIFYOTX_HPP

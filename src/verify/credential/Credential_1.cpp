@@ -132,8 +132,8 @@ bool CheckProto_1(
         try {
             validChildData = Check(
                 input.childdata(),
-                CredentialAllowedChildParams.at(input.version()).first,
-                CredentialAllowedChildParams.at(input.version()).second,
+                CredentialAllowedChildParams().at(input.version()).first,
+                CredentialAllowedChildParams().at(input.version()).second,
                 silent);
 
             if (!validChildData) { FAIL_1("invalid child data") }
@@ -150,8 +150,8 @@ bool CheckProto_1(
         try {
             validMasterData = Check(
                 input.masterdata(),
-                CredentialAllowedMasterParams.at(input.version()).first,
-                CredentialAllowedMasterParams.at(input.version()).second,
+                CredentialAllowedMasterParams().at(input.version()).first,
+                CredentialAllowedMasterParams().at(input.version()).second,
                 silent,
                 expectSourceSignature);
 
@@ -211,10 +211,10 @@ bool CheckProto_1(
         try {
             validContactData = Check(
                 input.contactdata(),
-                CredentialAllowedContactData.at(input.version()).first,
-                CredentialAllowedContactData.at(input.version()).second,
+                CredentialAllowedContactData().at(input.version()).first,
+                CredentialAllowedContactData().at(input.version()).second,
                 silent,
-                CLAIMS_NORMAL);
+                ClaimType::Normal);
 
             if (!validContactData) { FAIL_1("invalid contact data") }
         } catch (const std::out_of_range&) {
@@ -234,10 +234,10 @@ bool CheckProto_1(
         try {
             bool validVerificationSet = Check(
                 input.verification(),
-                CredentialAllowedVerification.at(input.version()).first,
-                CredentialAllowedVerification.at(input.version()).second,
+                CredentialAllowedVerification().at(input.version()).first,
+                CredentialAllowedVerification().at(input.version()).second,
                 silent,
-                VERIFICATIONS_NORMAL);
+                VerificationType::Normal);
 
             if (!validVerificationSet) { FAIL_1("invalid verification data") }
         } catch (const std::out_of_range&) {
@@ -251,8 +251,8 @@ bool CheckProto_1(
         try {
             validPublicData = Check(
                 input.publiccredential(),
-                CredentialAllowedKeyCredential.at(input.version()).first,
-                CredentialAllowedKeyCredential.at(input.version()).second,
+                CredentialAllowedKeyCredential().at(input.version()).first,
+                CredentialAllowedKeyCredential().at(input.version()).second,
                 silent,
                 input.type(),
                 KEYMODE_PUBLIC);
@@ -268,8 +268,8 @@ bool CheckProto_1(
             try {
                 validPrivateData = Check(
                     input.privatecredential(),
-                    CredentialAllowedKeyCredential.at(input.version()).first,
-                    CredentialAllowedKeyCredential.at(input.version()).second,
+                    CredentialAllowedKeyCredential().at(input.version()).first,
+                    CredentialAllowedKeyCredential().at(input.version()).second,
                     silent,
                     input.type(),
                     KEYMODE_PRIVATE);
@@ -303,8 +303,8 @@ bool CheckProto_1(
             try {
                 bool validSig = Check(
                     it,
-                    CredentialAllowedSignatures.at(input.version()).first,
-                    CredentialAllowedSignatures.at(input.version()).second,
+                    CredentialAllowedSignatures().at(input.version()).first,
+                    CredentialAllowedSignatures().at(input.version()).second,
                     silent,
                     input.id(),
                     masterID,

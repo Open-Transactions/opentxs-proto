@@ -12,26 +12,66 @@ namespace opentxs
 {
 namespace proto
 {
-EXPORT bool CheckProto_1(const APIArgument& input, const bool silent);
-EXPORT bool CheckProto_2(const APIArgument& input, const bool silent);
-EXPORT bool CheckProto_3(const APIArgument& input, const bool silent);
-EXPORT bool CheckProto_4(const APIArgument& input, const bool silent);
-EXPORT bool CheckProto_5(const APIArgument& input, const bool silent);
-EXPORT bool CheckProto_6(const APIArgument& input, const bool silent);
-EXPORT bool CheckProto_7(const APIArgument& input, const bool silent);
-EXPORT bool CheckProto_8(const APIArgument& input, const bool silent);
-EXPORT bool CheckProto_9(const APIArgument& input, const bool silent);
-EXPORT bool CheckProto_10(const APIArgument& input, const bool silent);
-EXPORT bool CheckProto_11(const APIArgument& input, const bool silent);
-EXPORT bool CheckProto_12(const APIArgument& input, const bool silent);
-EXPORT bool CheckProto_13(const APIArgument& input, const bool silent);
-EXPORT bool CheckProto_14(const APIArgument& input, const bool silent);
-EXPORT bool CheckProto_15(const APIArgument& input, const bool silent);
-EXPORT bool CheckProto_16(const APIArgument& input, const bool silent);
-EXPORT bool CheckProto_17(const APIArgument& input, const bool silent);
-EXPORT bool CheckProto_18(const APIArgument& input, const bool silent);
-EXPORT bool CheckProto_19(const APIArgument& input, const bool silent);
-EXPORT bool CheckProto_20(const APIArgument& input, const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_1(
+    const APIArgument& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_2(
+    const APIArgument& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_3(
+    const APIArgument& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_4(
+    const APIArgument& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_5(
+    const APIArgument& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_6(
+    const APIArgument& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_7(
+    const APIArgument& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_8(
+    const APIArgument& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_9(
+    const APIArgument& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_10(
+    const APIArgument& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_11(
+    const APIArgument& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_12(
+    const APIArgument& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_13(
+    const APIArgument& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_14(
+    const APIArgument& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_15(
+    const APIArgument& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_16(
+    const APIArgument& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_17(
+    const APIArgument& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_18(
+    const APIArgument& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_19(
+    const APIArgument& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_20(
+    const APIArgument& input,
+    const bool silent);
 }  // namespace proto
 }  // namespace opentxs
 

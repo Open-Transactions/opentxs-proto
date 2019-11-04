@@ -24,7 +24,7 @@ bool CheckProto_2(const RPCCommand& input, const bool silent)
             CHECK_EXCLUDED(notary);
             CHECK_EXCLUDED(unit);
             CHECK_NONE(identifier);
-            CHECK_SUBOBJECTS(arg, RPCCommandAllowedAPIArgument);
+            CHECK_SUBOBJECTS(arg, RPCCommandAllowedAPIArgument());
             CHECK_EXCLUDED(hdseed);
             CHECK_EXCLUDED(createnym);
             CHECK_NONE(claim);
@@ -49,7 +49,7 @@ bool CheckProto_2(const RPCCommand& input, const bool silent)
             CHECK_EXCLUDED(notary);
             CHECK_EXCLUDED(unit);
             CHECK_NONE(identifier);
-            CHECK_SUBOBJECTS(arg, RPCCommandAllowedAPIArgument);
+            CHECK_SUBOBJECTS(arg, RPCCommandAllowedAPIArgument());
             CHECK_EXCLUDED(hdseed);
             CHECK_EXCLUDED(createnym);
             CHECK_NONE(claim);
@@ -125,7 +125,7 @@ bool CheckProto_2(const RPCCommand& input, const bool silent)
             CHECK_EXCLUDED(unit);
             CHECK_NONE(identifier);
             CHECK_NONE(arg);
-            CHECK_SUBOBJECT(hdseed, RPCCommandAllowedHDSeed);
+            CHECK_SUBOBJECT(hdseed, RPCCommandAllowedHDSeed());
             CHECK_EXCLUDED(createnym);
             CHECK_NONE(claim);
             CHECK_NONE(server);
@@ -202,7 +202,7 @@ bool CheckProto_2(const RPCCommand& input, const bool silent)
             CHECK_NONE(identifier);
             CHECK_NONE(arg);
             CHECK_EXCLUDED(hdseed);
-            CHECK_SUBOBJECT(createnym, RPCCommandAllowedCreateNym);
+            CHECK_SUBOBJECT(createnym, RPCCommandAllowedCreateNym());
             CHECK_NONE(claim);
             CHECK_NONE(server);
             CHECK_EXCLUDED(createunit);
@@ -279,7 +279,7 @@ bool CheckProto_2(const RPCCommand& input, const bool silent)
             CHECK_NONE(arg);
             CHECK_EXCLUDED(hdseed);
             CHECK_EXCLUDED(createnym);
-            CHECK_SUBOBJECTS(claim, RPCCommandAllowedAddClaim);
+            CHECK_SUBOBJECTS(claim, RPCCommandAllowedAddClaim());
             CHECK_NONE(server);
             CHECK_EXCLUDED(createunit);
             CHECK_EXCLUDED(sendpayment);
@@ -333,7 +333,7 @@ bool CheckProto_2(const RPCCommand& input, const bool silent)
             CHECK_NONE(claim);
             CHECK_HAVE(server);
             CHECK_EXCLUDED(createunit);
-            CHECK_SUBOBJECTS(server, RPCCommandAllowedServerContract);
+            CHECK_SUBOBJECTS(server, RPCCommandAllowedServerContract());
             CHECK_EXCLUDED(sendpayment);
             CHECK_EXCLUDED(movefunds);
             CHECK_NONE(addcontact);
@@ -409,7 +409,7 @@ bool CheckProto_2(const RPCCommand& input, const bool silent)
             CHECK_NONE(claim);
             CHECK_NONE(server);
             CHECK_SUBOBJECT(
-                createunit, RPCCommandAllowedCreateInstrumentDefinition);
+                createunit, RPCCommandAllowedCreateInstrumentDefinition());
             CHECK_EXCLUDED(sendpayment);
             CHECK_EXCLUDED(movefunds);
             CHECK_NONE(addcontact);
@@ -605,7 +605,7 @@ bool CheckProto_2(const RPCCommand& input, const bool silent)
             CHECK_NONE(claim);
             CHECK_NONE(server);
             CHECK_EXCLUDED(createunit);
-            CHECK_SUBOBJECT(sendpayment, RPCCommandAllowedSendPayment);
+            CHECK_SUBOBJECT(sendpayment, RPCCommandAllowedSendPayment());
             CHECK_EXCLUDED(movefunds);
             CHECK_NONE(addcontact);
             CHECK_NONE(verifyclaim);
@@ -631,7 +631,7 @@ bool CheckProto_2(const RPCCommand& input, const bool silent)
             CHECK_NONE(server);
             CHECK_EXCLUDED(createunit);
             CHECK_EXCLUDED(sendpayment);
-            CHECK_SUBOBJECT(movefunds, RPCCommandAllowedSendPayment);
+            CHECK_SUBOBJECT(movefunds, RPCCommandAllowedSendPayment());
             CHECK_NONE(addcontact);
             CHECK_NONE(verifyclaim);
             CHECK_NONE(sendmessage);
@@ -657,7 +657,7 @@ bool CheckProto_2(const RPCCommand& input, const bool silent)
             CHECK_EXCLUDED(createunit);
             CHECK_EXCLUDED(sendpayment);
             CHECK_EXCLUDED(movefunds);
-            CHECK_SUBOBJECTS(addcontact, RPCCommandAllowedAddContact);
+            CHECK_SUBOBJECTS(addcontact, RPCCommandAllowedAddContact());
             CHECK_NONE(verifyclaim);
             CHECK_NONE(sendmessage);
             CHECK_NONE(acceptverification);
@@ -728,7 +728,7 @@ bool CheckProto_2(const RPCCommand& input, const bool silent)
             CHECK_NONE(arg);
             CHECK_EXCLUDED(hdseed);
             CHECK_EXCLUDED(createnym);
-            CHECK_SUBOBJECTS(claim, RPCCommandAllowedAddClaim);
+            CHECK_SUBOBJECTS(claim, RPCCommandAllowedAddClaim());
             CHECK_NONE(server);
             CHECK_EXCLUDED(createunit);
             CHECK_EXCLUDED(sendpayment);
@@ -785,7 +785,7 @@ bool CheckProto_2(const RPCCommand& input, const bool silent)
             CHECK_EXCLUDED(sendpayment);
             CHECK_EXCLUDED(movefunds);
             CHECK_NONE(addcontact);
-            CHECK_SUBOBJECTS(verifyclaim, RPCCommandAllowedVerifyClaim);
+            CHECK_SUBOBJECTS(verifyclaim, RPCCommandAllowedVerifyClaim());
             CHECK_NONE(sendmessage);
             CHECK_NONE(acceptverification);
             CHECK_NONE(acceptpendingpayment);
@@ -813,7 +813,9 @@ bool CheckProto_2(const RPCCommand& input, const bool silent)
             CHECK_NONE(verifyclaim);
             CHECK_NONE(sendmessage);
             CHECK_SUBOBJECTS_VA(
-                acceptverification, RPCCommandAllowedVerification, true);
+                acceptverification,
+                RPCCommandAllowedVerification(),
+                VerificationType::Indexed);
             CHECK_NONE(acceptpendingpayment);
             CHECK_NONE(getworkflow);
             CHECK_EXCLUDED(param);
@@ -837,7 +839,7 @@ bool CheckProto_2(const RPCCommand& input, const bool silent)
             CHECK_EXCLUDED(movefunds);
             CHECK_NONE(addcontact);
             CHECK_NONE(verifyclaim);
-            CHECK_SUBOBJECTS(sendmessage, RPCCommandAllowedSendMessage);
+            CHECK_SUBOBJECTS(sendmessage, RPCCommandAllowedSendMessage());
             CHECK_NONE(acceptverification);
             CHECK_NONE(acceptpendingpayment);
             CHECK_NONE(getworkflow);
@@ -942,7 +944,7 @@ bool CheckProto_2(const RPCCommand& input, const bool silent)
             CHECK_NONE(sendmessage);
             CHECK_NONE(acceptverification);
             CHECK_SUBOBJECTS(
-                acceptpendingpayment, RPCCommandAllowedAcceptPendingPayment);
+                acceptpendingpayment, RPCCommandAllowedAcceptPendingPayment());
             CHECK_NONE(getworkflow);
             CHECK_EXCLUDED(param);
             CHECK_NONE(modifyaccount);
@@ -982,7 +984,7 @@ bool CheckProto_2(const RPCCommand& input, const bool silent)
             CHECK_EXCLUDED(notary);
             CHECK_EXCLUDED(unit);
             CHECK_NONE(identifier);
-            CHECK_SUBOBJECTS(arg, RPCCommandAllowedAPIArgument);
+            CHECK_SUBOBJECTS(arg, RPCCommandAllowedAPIArgument());
             CHECK_EXCLUDED(hdseed);
             CHECK_EXCLUDED(createnym);
             CHECK_NONE(claim);
@@ -995,7 +997,7 @@ bool CheckProto_2(const RPCCommand& input, const bool silent)
             CHECK_NONE(sendmessage);
             CHECK_NONE(acceptverification);
             CHECK_NONE(acceptpendingpayment);
-            CHECK_SUBOBJECTS(getworkflow, RPCCommandAllowedGetWorkflow);
+            CHECK_SUBOBJECTS(getworkflow, RPCCommandAllowedGetWorkflow());
             CHECK_EXCLUDED(param);
             CHECK_NONE(modifyaccount);
         } break;
@@ -1149,7 +1151,7 @@ bool CheckProto_2(const RPCCommand& input, const bool silent)
             CHECK_NONE(acceptpendingpayment);
             CHECK_NONE(getworkflow);
             CHECK_EXCLUDED(param);
-            CHECK_SUBOBJECTS(modifyaccount, RPCCommandAllowedModifyAccount);
+            CHECK_SUBOBJECTS(modifyaccount, RPCCommandAllowedModifyAccount());
         } break;
         case RPCCOMMAND_ERROR:
         default: {

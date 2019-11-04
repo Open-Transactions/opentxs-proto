@@ -12,28 +12,66 @@ namespace opentxs
 {
 namespace proto
 {
-EXPORT bool CheckProto_1(
+OPENTXS_PROTO_EXPORT bool CheckProto_1(
     const StorageBip47ChannelList& input,
     const bool silent);
-EXPORT bool CheckProto_2(const StorageBip47ChannelList&, const bool);
-EXPORT bool CheckProto_3(const StorageBip47ChannelList&, const bool);
-EXPORT bool CheckProto_4(const StorageBip47ChannelList&, const bool);
-EXPORT bool CheckProto_5(const StorageBip47ChannelList&, const bool);
-EXPORT bool CheckProto_6(const StorageBip47ChannelList&, const bool);
-EXPORT bool CheckProto_7(const StorageBip47ChannelList&, const bool);
-EXPORT bool CheckProto_8(const StorageBip47ChannelList&, const bool);
-EXPORT bool CheckProto_9(const StorageBip47ChannelList&, const bool);
-EXPORT bool CheckProto_10(const StorageBip47ChannelList&, const bool);
-EXPORT bool CheckProto_11(const StorageBip47ChannelList&, const bool);
-EXPORT bool CheckProto_12(const StorageBip47ChannelList&, const bool);
-EXPORT bool CheckProto_13(const StorageBip47ChannelList&, const bool);
-EXPORT bool CheckProto_14(const StorageBip47ChannelList&, const bool);
-EXPORT bool CheckProto_15(const StorageBip47ChannelList&, const bool);
-EXPORT bool CheckProto_16(const StorageBip47ChannelList&, const bool);
-EXPORT bool CheckProto_17(const StorageBip47ChannelList&, const bool);
-EXPORT bool CheckProto_18(const StorageBip47ChannelList&, const bool);
-EXPORT bool CheckProto_19(const StorageBip47ChannelList&, const bool);
-EXPORT bool CheckProto_20(const StorageBip47ChannelList&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_2(
+    const StorageBip47ChannelList&,
+    const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_3(
+    const StorageBip47ChannelList&,
+    const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_4(
+    const StorageBip47ChannelList&,
+    const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_5(
+    const StorageBip47ChannelList&,
+    const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_6(
+    const StorageBip47ChannelList&,
+    const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_7(
+    const StorageBip47ChannelList&,
+    const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_8(
+    const StorageBip47ChannelList&,
+    const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_9(
+    const StorageBip47ChannelList&,
+    const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_10(
+    const StorageBip47ChannelList&,
+    const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_11(
+    const StorageBip47ChannelList&,
+    const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_12(
+    const StorageBip47ChannelList&,
+    const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_13(
+    const StorageBip47ChannelList&,
+    const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_14(
+    const StorageBip47ChannelList&,
+    const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_15(
+    const StorageBip47ChannelList&,
+    const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_16(
+    const StorageBip47ChannelList&,
+    const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_17(
+    const StorageBip47ChannelList&,
+    const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_18(
+    const StorageBip47ChannelList&,
+    const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_19(
+    const StorageBip47ChannelList&,
+    const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_20(
+    const StorageBip47ChannelList&,
+    const bool);
 }  // namespace proto
 }  // namespace opentxs
 

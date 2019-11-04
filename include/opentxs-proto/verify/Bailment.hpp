@@ -12,26 +12,34 @@ namespace opentxs
 {
 namespace proto
 {
-EXPORT bool CheckProto_1(const Bailment& request, const bool silent);
-EXPORT bool CheckProto_2(const Bailment& request, const bool silent);
-EXPORT bool CheckProto_3(const Bailment& request, const bool silent);
-EXPORT bool CheckProto_4(const Bailment& request, const bool silent);
-EXPORT bool CheckProto_5(const Bailment&, const bool);
-EXPORT bool CheckProto_6(const Bailment&, const bool);
-EXPORT bool CheckProto_7(const Bailment&, const bool);
-EXPORT bool CheckProto_8(const Bailment&, const bool);
-EXPORT bool CheckProto_9(const Bailment&, const bool);
-EXPORT bool CheckProto_10(const Bailment&, const bool);
-EXPORT bool CheckProto_11(const Bailment&, const bool);
-EXPORT bool CheckProto_12(const Bailment&, const bool);
-EXPORT bool CheckProto_13(const Bailment&, const bool);
-EXPORT bool CheckProto_14(const Bailment&, const bool);
-EXPORT bool CheckProto_15(const Bailment&, const bool);
-EXPORT bool CheckProto_16(const Bailment&, const bool);
-EXPORT bool CheckProto_17(const Bailment&, const bool);
-EXPORT bool CheckProto_18(const Bailment&, const bool);
-EXPORT bool CheckProto_19(const Bailment&, const bool);
-EXPORT bool CheckProto_20(const Bailment&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_1(
+    const Bailment& request,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_2(
+    const Bailment& request,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_3(
+    const Bailment& request,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_4(
+    const Bailment& request,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_5(const Bailment&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_6(const Bailment&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_7(const Bailment&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_8(const Bailment&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_9(const Bailment&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_10(const Bailment&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_11(const Bailment&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_12(const Bailment&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_13(const Bailment&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_14(const Bailment&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_15(const Bailment&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_16(const Bailment&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_17(const Bailment&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_18(const Bailment&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_19(const Bailment&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_20(const Bailment&, const bool);
 }  // namespace proto
 }  // namespace opentxs
 

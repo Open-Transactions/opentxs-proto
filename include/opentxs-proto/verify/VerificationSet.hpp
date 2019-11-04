@@ -12,83 +12,83 @@ namespace opentxs
 {
 namespace proto
 {
-EXPORT bool CheckProto_1(
+OPENTXS_PROTO_EXPORT bool CheckProto_1(
     const VerificationSet& verificationSet,
     const bool silent,
     const VerificationType indexed);
-EXPORT bool CheckProto_2(
+OPENTXS_PROTO_EXPORT bool CheckProto_2(
     const VerificationSet&,
     const bool,
     const VerificationType);
-EXPORT bool CheckProto_3(
+OPENTXS_PROTO_EXPORT bool CheckProto_3(
     const VerificationSet&,
     const bool,
     const VerificationType);
-EXPORT bool CheckProto_4(
+OPENTXS_PROTO_EXPORT bool CheckProto_4(
     const VerificationSet&,
     const bool,
     const VerificationType);
-EXPORT bool CheckProto_5(
+OPENTXS_PROTO_EXPORT bool CheckProto_5(
     const VerificationSet&,
     const bool,
     const VerificationType);
-EXPORT bool CheckProto_6(
+OPENTXS_PROTO_EXPORT bool CheckProto_6(
     const VerificationSet&,
     const bool,
     const VerificationType);
-EXPORT bool CheckProto_7(
+OPENTXS_PROTO_EXPORT bool CheckProto_7(
     const VerificationSet&,
     const bool,
     const VerificationType);
-EXPORT bool CheckProto_8(
+OPENTXS_PROTO_EXPORT bool CheckProto_8(
     const VerificationSet&,
     const bool,
     const VerificationType);
-EXPORT bool CheckProto_9(
+OPENTXS_PROTO_EXPORT bool CheckProto_9(
     const VerificationSet&,
     const bool,
     const VerificationType);
-EXPORT bool CheckProto_10(
+OPENTXS_PROTO_EXPORT bool CheckProto_10(
     const VerificationSet&,
     const bool,
     const VerificationType);
-EXPORT bool CheckProto_11(
+OPENTXS_PROTO_EXPORT bool CheckProto_11(
     const VerificationSet&,
     const bool,
     const VerificationType);
-EXPORT bool CheckProto_12(
+OPENTXS_PROTO_EXPORT bool CheckProto_12(
     const VerificationSet&,
     const bool,
     const VerificationType);
-EXPORT bool CheckProto_13(
+OPENTXS_PROTO_EXPORT bool CheckProto_13(
     const VerificationSet&,
     const bool,
     const VerificationType);
-EXPORT bool CheckProto_14(
+OPENTXS_PROTO_EXPORT bool CheckProto_14(
     const VerificationSet&,
     const bool,
     const VerificationType);
-EXPORT bool CheckProto_15(
+OPENTXS_PROTO_EXPORT bool CheckProto_15(
     const VerificationSet&,
     const bool,
     const VerificationType);
-EXPORT bool CheckProto_16(
+OPENTXS_PROTO_EXPORT bool CheckProto_16(
     const VerificationSet&,
     const bool,
     const VerificationType);
-EXPORT bool CheckProto_17(
+OPENTXS_PROTO_EXPORT bool CheckProto_17(
     const VerificationSet&,
     const bool,
     const VerificationType);
-EXPORT bool CheckProto_18(
+OPENTXS_PROTO_EXPORT bool CheckProto_18(
     const VerificationSet&,
     const bool,
     const VerificationType);
-EXPORT bool CheckProto_19(
+OPENTXS_PROTO_EXPORT bool CheckProto_19(
     const VerificationSet&,
     const bool,
     const VerificationType);
-EXPORT bool CheckProto_20(
+OPENTXS_PROTO_EXPORT bool CheckProto_20(
     const VerificationSet&,
     const bool,
     const VerificationType);

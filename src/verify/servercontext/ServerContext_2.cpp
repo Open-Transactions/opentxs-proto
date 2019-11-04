@@ -25,16 +25,16 @@ bool CheckProto_2(const ServerContext& input, const bool silent)
 bool CheckProto_3(const ServerContext& input, const bool silent)
 {
     CHECK_IDENTIFIER(serverid);
-    CHECK_MEMBERSHIP(state, ServerContextAllowedState);
+    CHECK_MEMBERSHIP(state, ServerContextAllowedState());
 
     switch (input.state()) {
         case DELIVERTYSTATE_PENDINGSEND: {
-            CHECK_SUBOBJECT(pending, ServerContextAllowedPendingCommand);
+            CHECK_SUBOBJECT(pending, ServerContextAllowedPendingCommand());
         } break;
         case DELIVERTYSTATE_NEEDNYMBOX:
         case DELIVERTYSTATE_NEEDBOXITEMS:
         case DELIVERTYSTATE_NEEDPROCESSNYMBOX: {
-            OPTIONAL_SUBOBJECT(pending, ServerContextAllowedPendingCommand);
+            OPTIONAL_SUBOBJECT(pending, ServerContextAllowedPendingCommand());
         } break;
         case DELIVERTYSTATE_IDLE:
         case DELIVERTYSTATE_ERROR:
@@ -43,7 +43,7 @@ bool CheckProto_3(const ServerContext& input, const bool silent)
         }
     }
 
-    CHECK_MEMBERSHIP(laststatus, ServerContextAllowedStatus);
+    CHECK_MEMBERSHIP(laststatus, ServerContextAllowedStatus());
 
     return true;
 }

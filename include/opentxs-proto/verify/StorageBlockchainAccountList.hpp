@@ -12,28 +12,66 @@ namespace opentxs
 {
 namespace proto
 {
-EXPORT bool CheckProto_1(
+OPENTXS_PROTO_EXPORT bool CheckProto_1(
     const StorageBlockchainAccountList& list,
     const bool silent);
-EXPORT bool CheckProto_2(const StorageBlockchainAccountList&, const bool);
-EXPORT bool CheckProto_3(const StorageBlockchainAccountList&, const bool);
-EXPORT bool CheckProto_4(const StorageBlockchainAccountList&, const bool);
-EXPORT bool CheckProto_5(const StorageBlockchainAccountList&, const bool);
-EXPORT bool CheckProto_6(const StorageBlockchainAccountList&, const bool);
-EXPORT bool CheckProto_7(const StorageBlockchainAccountList&, const bool);
-EXPORT bool CheckProto_8(const StorageBlockchainAccountList&, const bool);
-EXPORT bool CheckProto_9(const StorageBlockchainAccountList&, const bool);
-EXPORT bool CheckProto_10(const StorageBlockchainAccountList&, const bool);
-EXPORT bool CheckProto_11(const StorageBlockchainAccountList&, const bool);
-EXPORT bool CheckProto_12(const StorageBlockchainAccountList&, const bool);
-EXPORT bool CheckProto_13(const StorageBlockchainAccountList&, const bool);
-EXPORT bool CheckProto_14(const StorageBlockchainAccountList&, const bool);
-EXPORT bool CheckProto_15(const StorageBlockchainAccountList&, const bool);
-EXPORT bool CheckProto_16(const StorageBlockchainAccountList&, const bool);
-EXPORT bool CheckProto_17(const StorageBlockchainAccountList&, const bool);
-EXPORT bool CheckProto_18(const StorageBlockchainAccountList&, const bool);
-EXPORT bool CheckProto_19(const StorageBlockchainAccountList&, const bool);
-EXPORT bool CheckProto_20(const StorageBlockchainAccountList&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_2(
+    const StorageBlockchainAccountList&,
+    const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_3(
+    const StorageBlockchainAccountList&,
+    const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_4(
+    const StorageBlockchainAccountList&,
+    const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_5(
+    const StorageBlockchainAccountList&,
+    const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_6(
+    const StorageBlockchainAccountList&,
+    const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_7(
+    const StorageBlockchainAccountList&,
+    const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_8(
+    const StorageBlockchainAccountList&,
+    const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_9(
+    const StorageBlockchainAccountList&,
+    const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_10(
+    const StorageBlockchainAccountList&,
+    const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_11(
+    const StorageBlockchainAccountList&,
+    const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_12(
+    const StorageBlockchainAccountList&,
+    const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_13(
+    const StorageBlockchainAccountList&,
+    const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_14(
+    const StorageBlockchainAccountList&,
+    const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_15(
+    const StorageBlockchainAccountList&,
+    const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_16(
+    const StorageBlockchainAccountList&,
+    const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_17(
+    const StorageBlockchainAccountList&,
+    const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_18(
+    const StorageBlockchainAccountList&,
+    const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_19(
+    const StorageBlockchainAccountList&,
+    const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_20(
+    const StorageBlockchainAccountList&,
+    const bool);
 }  // namespace proto
 }  // namespace opentxs
 

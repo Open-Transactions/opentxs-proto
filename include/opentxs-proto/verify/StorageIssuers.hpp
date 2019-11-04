@@ -12,26 +12,28 @@ namespace opentxs
 {
 namespace proto
 {
-EXPORT bool CheckProto_1(const StorageIssuers& input, const bool silent);
-EXPORT bool CheckProto_2(const StorageIssuers&, const bool);
-EXPORT bool CheckProto_3(const StorageIssuers&, const bool);
-EXPORT bool CheckProto_4(const StorageIssuers&, const bool);
-EXPORT bool CheckProto_5(const StorageIssuers&, const bool);
-EXPORT bool CheckProto_6(const StorageIssuers&, const bool);
-EXPORT bool CheckProto_7(const StorageIssuers&, const bool);
-EXPORT bool CheckProto_8(const StorageIssuers&, const bool);
-EXPORT bool CheckProto_9(const StorageIssuers&, const bool);
-EXPORT bool CheckProto_10(const StorageIssuers&, const bool);
-EXPORT bool CheckProto_11(const StorageIssuers&, const bool);
-EXPORT bool CheckProto_12(const StorageIssuers&, const bool);
-EXPORT bool CheckProto_13(const StorageIssuers&, const bool);
-EXPORT bool CheckProto_14(const StorageIssuers&, const bool);
-EXPORT bool CheckProto_15(const StorageIssuers&, const bool);
-EXPORT bool CheckProto_16(const StorageIssuers&, const bool);
-EXPORT bool CheckProto_17(const StorageIssuers&, const bool);
-EXPORT bool CheckProto_18(const StorageIssuers&, const bool);
-EXPORT bool CheckProto_19(const StorageIssuers&, const bool);
-EXPORT bool CheckProto_20(const StorageIssuers&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_1(
+    const StorageIssuers& input,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_2(const StorageIssuers&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_3(const StorageIssuers&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_4(const StorageIssuers&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_5(const StorageIssuers&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_6(const StorageIssuers&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_7(const StorageIssuers&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_8(const StorageIssuers&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_9(const StorageIssuers&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_10(const StorageIssuers&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_11(const StorageIssuers&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_12(const StorageIssuers&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_13(const StorageIssuers&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_14(const StorageIssuers&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_15(const StorageIssuers&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_16(const StorageIssuers&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_17(const StorageIssuers&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_18(const StorageIssuers&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_19(const StorageIssuers&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_20(const StorageIssuers&, const bool);
 }  // namespace proto
 }  // namespace opentxs
 

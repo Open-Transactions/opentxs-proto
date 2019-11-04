@@ -15,7 +15,7 @@ namespace proto
 bool CheckProto_1(const StorageBlockchainTxo& input, const bool silent)
 {
     CHECK_SUBOBJECT(
-        output, StorageBlockchainTxoAllowedBlockchainPreviousOutput);
+        output, StorageBlockchainTxoAllowedBlockchainPreviousOutput());
 
     return true;
 }

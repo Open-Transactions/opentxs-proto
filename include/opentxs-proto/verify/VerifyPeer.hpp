@@ -12,121 +12,27 @@ namespace opentxs
 {
 namespace proto
 {
-static const VersionMap PeerObjectAllowedPurse = {
-    {7, {1, 1}},
-};
-static const VersionMap PeerObjectAllowedPeerReply = {
-    {1, {1, 1}},
-    {2, {2, 2}},
-    {3, {3, 3}},
-    {4, {4, 4}},
-    {5, {4, 5}},
-    {6, {4, 5}},
-    {7, {4, 5}},
-};
-static const VersionMap PeerObjectAllowedPeerRequest = {
-    {1, {1, 2}},
-    {2, {2, 2}},
-    {3, {3, 3}},
-    {4, {4, 4}},
-    {5, {4, 5}},
-    {6, {4, 6}},
-    {7, {4, 6}},
-};
-static const VersionMap PeerObjectAllowedNym = {
-    {1, {1, 3}},
-    {2, {1, 3}},
-    {3, {1, 3}},
-    {4, {1, 4}},
-    {5, {1, 4}},
-    {6, {1, 5}},
-    {7, {1, 6}},
-};
-static const VersionMap PeerReplyAllowedSignature = {
-    {1, {1, 1}},
-    {2, {1, 1}},
-    {3, {1, 1}},
-    {4, {1, 1}},
-    {5, {1, 1}},
-};
-static const VersionMap PeerReplyAllowedBailment = {
-    {1, {1, 1}},
-    {2, {2, 2}},
-    {3, {3, 3}},
-    {4, {4, 4}},
-};
-static const VersionMap PeerReplyAllowedNotice = {
-    {1, {1, 1}},
-    {2, {2, 2}},
-    {3, {3, 3}},
-    {4, {4, 4}},
-    {5, {4, 5}},
-};
-static const VersionMap PeerReplyAllowedOutBailment = {
-    {1, {1, 1}},
-    {2, {2, 2}},
-    {3, {3, 3}},
-    {4, {4, 4}},
-};
-static const VersionMap PeerReplyAllowedConnectionInfo = {
-    {1, {1, 1}},
-    {2, {2, 2}},
-    {3, {3, 3}},
-    {4, {4, 4}},
-};
-static const VersionMap PeerRequestAllowedSignature = {
-    {1, {1, 1}},
-    {2, {1, 1}},
-    {3, {1, 1}},
-    {4, {1, 1}},
-    {5, {1, 1}},
-    {6, {1, 1}},
-};
-static const VersionMap PeerRequestAllowedBailment = {
-    {1, {1, 1}},
-    {2, {2, 2}},
-    {3, {3, 3}},
-    {4, {4, 4}},
-};
-static const VersionMap PeerRequestAllowedOutBailment = {
-    {1, {1, 1}},
-    {2, {2, 2}},
-    {3, {3, 3}},
-    {4, {4, 4}},
-    {5, {5, 5}},
-};
-static const VersionMap PeerRequestAllowedPendingBailment = {
-    {1, {1, 1}},
-    {2, {2, 2}},
-    {3, {3, 3}},
-    {4, {4, 4}},
-    {5, {5, 5}},
-    {6, {6, 6}},
-};
-static const VersionMap PeerRequestAllowedConnectionInfo = {
-    {1, {1, 1}},
-    {2, {2, 2}},
-    {3, {3, 3}},
-    {4, {4, 4}},
-};
-static const VersionMap PeerRequestAllowedStoreSecret = {
-    {1, {1, 1}},
-    {2, {2, 2}},
-    {3, {3, 3}},
-    {4, {4, 4}},
-};
-static const VersionMap PeerRequestAllowedVerificationOffer = {
-    {1, {0, 0}},
-    {2, {0, 0}},
-    {3, {3, 3}},
-    {4, {4, 4}},
-};
-static const VersionMap PeerRequestAllowedFaucet = {
-    {1, {0, 0}},
-    {2, {0, 0}},
-    {3, {0, 0}},
-    {4, {4, 4}},
-};
+OPENTXS_PROTO_EXPORT const VersionMap& PeerObjectAllowedNym() noexcept;
+OPENTXS_PROTO_EXPORT const VersionMap& PeerObjectAllowedPeerReply() noexcept;
+OPENTXS_PROTO_EXPORT const VersionMap& PeerObjectAllowedPeerRequest() noexcept;
+OPENTXS_PROTO_EXPORT const VersionMap& PeerObjectAllowedPurse() noexcept;
+OPENTXS_PROTO_EXPORT const VersionMap& PeerReplyAllowedBailment() noexcept;
+OPENTXS_PROTO_EXPORT const VersionMap&
+PeerReplyAllowedConnectionInfo() noexcept;
+OPENTXS_PROTO_EXPORT const VersionMap& PeerReplyAllowedNotice() noexcept;
+OPENTXS_PROTO_EXPORT const VersionMap& PeerReplyAllowedOutBailment() noexcept;
+OPENTXS_PROTO_EXPORT const VersionMap& PeerReplyAllowedSignature() noexcept;
+OPENTXS_PROTO_EXPORT const VersionMap& PeerRequestAllowedBailment() noexcept;
+OPENTXS_PROTO_EXPORT const VersionMap&
+PeerRequestAllowedConnectionInfo() noexcept;
+OPENTXS_PROTO_EXPORT const VersionMap& PeerRequestAllowedFaucet() noexcept;
+OPENTXS_PROTO_EXPORT const VersionMap& PeerRequestAllowedOutBailment() noexcept;
+OPENTXS_PROTO_EXPORT const VersionMap&
+PeerRequestAllowedPendingBailment() noexcept;
+OPENTXS_PROTO_EXPORT const VersionMap& PeerRequestAllowedSignature() noexcept;
+OPENTXS_PROTO_EXPORT const VersionMap& PeerRequestAllowedStoreSecret() noexcept;
+OPENTXS_PROTO_EXPORT const VersionMap&
+PeerRequestAllowedVerificationOffer() noexcept;
 }  // namespace proto
 }  // namespace opentxs
 #endif  // OPENTXS_PROTO_VERIFYPEER_HPP

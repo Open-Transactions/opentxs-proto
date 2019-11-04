@@ -34,8 +34,8 @@ bool CheckProto_1(
         try {
             const bool goodPublicNym = Check(
                 input.publicnym(),
-                UnitDefinitionAllowedNym.at(input.version()).first,
-                UnitDefinitionAllowedNym.at(input.version()).second,
+                UnitDefinitionAllowedNym().at(input.version()).first,
+                UnitDefinitionAllowedNym().at(input.version()).second,
                 silent);
 
             if (!goodPublicNym) { FAIL_1("invalid nym") }
@@ -77,9 +77,11 @@ bool CheckProto_1(
             try {
                 goodParams = Check(
                     input.currency(),
-                    UnitDefinitionAllowedCurrencyParams.at(input.version())
+                    UnitDefinitionAllowedCurrencyParams()
+                        .at(input.version())
                         .first,
-                    UnitDefinitionAllowedCurrencyParams.at(input.version())
+                    UnitDefinitionAllowedCurrencyParams()
+                        .at(input.version())
                         .second,
                     silent);
             } catch (const std::out_of_range&) {
@@ -96,9 +98,11 @@ bool CheckProto_1(
             try {
                 goodParams = Check(
                     input.security(),
-                    UnitDefinitionAllowedSecurityParams.at(input.version())
+                    UnitDefinitionAllowedSecurityParams()
+                        .at(input.version())
                         .first,
-                    UnitDefinitionAllowedSecurityParams.at(input.version())
+                    UnitDefinitionAllowedSecurityParams()
+                        .at(input.version())
                         .second,
                     silent);
             } catch (const std::out_of_range&) {
@@ -115,8 +119,11 @@ bool CheckProto_1(
             try {
                 goodParams = Check(
                     input.basket(),
-                    UnitDefinitionAllowedBasketParams.at(input.version()).first,
-                    UnitDefinitionAllowedBasketParams.at(input.version())
+                    UnitDefinitionAllowedBasketParams()
+                        .at(input.version())
+                        .first,
+                    UnitDefinitionAllowedBasketParams()
+                        .at(input.version())
                         .second,
                     silent);
             } catch (const std::out_of_range&) {
@@ -139,8 +146,8 @@ bool CheckProto_1(
         try {
             const bool valid = Check(
                 input.signature(),
-                UnitDefinitionAllowedSignature.at(input.version()).first,
-                UnitDefinitionAllowedSignature.at(input.version()).second,
+                UnitDefinitionAllowedSignature().at(input.version()).first,
+                UnitDefinitionAllowedSignature().at(input.version()).second,
                 silent,
                 SIGROLE_UNITDEFINITION);
 

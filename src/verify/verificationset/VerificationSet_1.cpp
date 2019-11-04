@@ -22,8 +22,8 @@ bool CheckProto_1(
         try {
             const bool validInternal = Check(
                 input.internal(),
-                VerificationSetAllowedGroup.at(input.version()).first,
-                VerificationSetAllowedGroup.at(input.version()).second,
+                VerificationSetAllowedGroup().at(input.version()).first,
+                VerificationSetAllowedGroup().at(input.version()).second,
                 silent,
                 indexed);
 
@@ -39,8 +39,8 @@ bool CheckProto_1(
         try {
             const bool validExternal = Check(
                 input.external(),
-                VerificationSetAllowedGroup.at(input.version()).first,
-                VerificationSetAllowedGroup.at(input.version()).second,
+                VerificationSetAllowedGroup().at(input.version()).first,
+                VerificationSetAllowedGroup().at(input.version()).second,
                 silent,
                 indexed);
 

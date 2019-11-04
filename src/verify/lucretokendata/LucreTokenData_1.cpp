@@ -20,17 +20,17 @@ bool CheckProto_1(
     switch (state) {
         case TokenState::TOKENSTATE_BLINDED: {
             CHECK_SUBOBJECT_VA(
-                privateprototoken, LucreTokenDataAllowedCiphertext, true);
+                privateprototoken, LucreTokenDataAllowedCiphertext(), true);
             CHECK_SUBOBJECT_VA(
-                publicprototoken, LucreTokenDataAllowedCiphertext, true);
+                publicprototoken, LucreTokenDataAllowedCiphertext(), true);
             CHECK_EXCLUDED(signature);
             CHECK_EXCLUDED(spendable);
         } break;
         case TokenState::TOKENSTATE_SIGNED: {
             CHECK_SUBOBJECT_VA(
-                privateprototoken, LucreTokenDataAllowedCiphertext, true);
+                privateprototoken, LucreTokenDataAllowedCiphertext(), true);
             CHECK_SUBOBJECT_VA(
-                publicprototoken, LucreTokenDataAllowedCiphertext, true);
+                publicprototoken, LucreTokenDataAllowedCiphertext(), true);
             CHECK_EXISTS(signature);
             CHECK_EXCLUDED(spendable);
         } break;
@@ -39,22 +39,22 @@ bool CheckProto_1(
             CHECK_EXCLUDED(publicprototoken);
             CHECK_EXCLUDED(signature);
             CHECK_SUBOBJECT_VA(
-                spendable, LucreTokenDataAllowedCiphertext, true);
+                spendable, LucreTokenDataAllowedCiphertext(), true);
         } break;
         case TokenState::TOKENSTATE_SPENT: {
             CHECK_EXCLUDED(privateprototoken);
             CHECK_EXCLUDED(publicprototoken);
             CHECK_EXCLUDED(signature);
             CHECK_SUBOBJECT_VA(
-                spendable, LucreTokenDataAllowedCiphertext, true);
+                spendable, LucreTokenDataAllowedCiphertext(), true);
         } break;
         case TokenState::TOKENSTATE_EXPIRED: {
             OPTIONAL_SUBOBJECT_VA(
-                privateprototoken, LucreTokenDataAllowedCiphertext, true);
+                privateprototoken, LucreTokenDataAllowedCiphertext(), true);
             OPTIONAL_SUBOBJECT_VA(
-                publicprototoken, LucreTokenDataAllowedCiphertext, true);
+                publicprototoken, LucreTokenDataAllowedCiphertext(), true);
             OPTIONAL_SUBOBJECT_VA(
-                spendable, LucreTokenDataAllowedCiphertext, true);
+                spendable, LucreTokenDataAllowedCiphertext(), true);
         } break;
         case TokenState::TOKENSTATE_ERROR:
         default: {

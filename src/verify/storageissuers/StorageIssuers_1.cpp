@@ -15,7 +15,7 @@ namespace proto
 
 bool CheckProto_1(const StorageIssuers& input, const bool silent)
 {
-    CHECK_SUBOBJECTS(issuer, StorageIssuerAllowedStorageItemHash);
+    CHECK_SUBOBJECTS(issuer, StorageIssuerAllowedStorageItemHash());
 
     return true;
 }

@@ -18,7 +18,7 @@ bool CheckProto_1(
     const bool silent,
     const VerificationType indexed)
 {
-    if (indexed) {
+    if (VerificationType::Indexed == indexed) {
         if (!input.has_id()) { FAIL_1("missing ID") }
 
         if (MIN_PLAUSIBLE_IDENTIFIER > input.id().size()) {
@@ -47,8 +47,8 @@ bool CheckProto_1(
     try {
         const bool validSignature = Check(
             input.sig(),
-            VerificationAllowedSignature.at(input.version()).first,
-            VerificationAllowedSignature.at(input.version()).second,
+            VerificationAllowedSignature().at(input.version()).first,
+            VerificationAllowedSignature().at(input.version()).second,
             silent,
             proto::SIGROLE_CLAIM);
 

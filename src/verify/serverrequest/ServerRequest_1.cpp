@@ -16,7 +16,7 @@ bool CheckProto_1(const ServerRequest& input, const bool silent)
     CHECK_IDENTIFIER(nym);
     CHECK_IDENTIFIER(server);
     CHECK_SUBOBJECT_VA(
-        signature, ServerRequestAllowedSignature, SIGROLE_SERVERREQUEST);
+        signature, ServerRequestAllowedSignature(), SIGROLE_SERVERREQUEST);
 
     switch (input.type()) {
         case SERVERREQUEST_ACTIVATE: {
@@ -27,7 +27,7 @@ bool CheckProto_1(const ServerRequest& input, const bool silent)
         }
     }
 
-    OPTIONAL_SUBOBJECT(credentials, ServerRequestAllowedNym);
+    OPTIONAL_SUBOBJECT(credentials, ServerRequestAllowedNym());
 
     return true;
 }

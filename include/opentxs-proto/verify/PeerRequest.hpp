@@ -12,26 +12,34 @@ namespace opentxs
 {
 namespace proto
 {
-EXPORT bool CheckProto_1(const PeerRequest& request, const bool silent);
-EXPORT bool CheckProto_2(const PeerRequest& request, const bool silent);
-EXPORT bool CheckProto_3(const PeerRequest& request, const bool silent);
-EXPORT bool CheckProto_4(const PeerRequest& request, const bool silent);
-EXPORT bool CheckProto_5(const PeerRequest&, const bool);
-EXPORT bool CheckProto_6(const PeerRequest&, const bool);
-EXPORT bool CheckProto_7(const PeerRequest&, const bool);
-EXPORT bool CheckProto_8(const PeerRequest&, const bool);
-EXPORT bool CheckProto_9(const PeerRequest&, const bool);
-EXPORT bool CheckProto_10(const PeerRequest&, const bool);
-EXPORT bool CheckProto_11(const PeerRequest&, const bool);
-EXPORT bool CheckProto_12(const PeerRequest&, const bool);
-EXPORT bool CheckProto_13(const PeerRequest&, const bool);
-EXPORT bool CheckProto_14(const PeerRequest&, const bool);
-EXPORT bool CheckProto_15(const PeerRequest&, const bool);
-EXPORT bool CheckProto_16(const PeerRequest&, const bool);
-EXPORT bool CheckProto_17(const PeerRequest&, const bool);
-EXPORT bool CheckProto_18(const PeerRequest&, const bool);
-EXPORT bool CheckProto_19(const PeerRequest&, const bool);
-EXPORT bool CheckProto_20(const PeerRequest&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_1(
+    const PeerRequest& request,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_2(
+    const PeerRequest& request,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_3(
+    const PeerRequest& request,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_4(
+    const PeerRequest& request,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_5(const PeerRequest&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_6(const PeerRequest&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_7(const PeerRequest&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_8(const PeerRequest&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_9(const PeerRequest&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_10(const PeerRequest&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_11(const PeerRequest&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_12(const PeerRequest&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_13(const PeerRequest&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_14(const PeerRequest&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_15(const PeerRequest&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_16(const PeerRequest&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_17(const PeerRequest&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_18(const PeerRequest&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_19(const PeerRequest&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_20(const PeerRequest&, const bool);
 }  // namespace proto
 }  // namespace opentxs
 

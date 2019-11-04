@@ -12,10 +12,11 @@ namespace opentxs::proto
 {
 bool CheckProto_1(const StorageBip47Contexts& input, const bool silent)
 {
-    CHECK_SUBOBJECTS(context, StorageBip47ContextsAllowedStorageItemHash);
-    CHECK_SUBOBJECTS(index, StorageBip47ContextsAllowedStorageBip47ChannelList);
+    CHECK_SUBOBJECTS(context, StorageBip47ContextsAllowedStorageItemHash());
     CHECK_SUBOBJECTS(
-        address, StorageBip47ContextsAllowedStorageBip47AddressIndex);
+        index, StorageBip47ContextsAllowedStorageBip47ChannelList());
+    CHECK_SUBOBJECTS(
+        address, StorageBip47ContextsAllowedStorageBip47AddressIndex());
 
     return true;
 }

@@ -15,11 +15,11 @@ bool CheckProto_1(const ServerContract& input, const bool silent)
     CHECK_IDENTIFIER(id);
     CHECK_IDENTIFIER(nymid);
     CHECK_NAME(name);
-    OPTIONAL_SUBOBJECT(publicnym, ServerContractAllowedNym);
+    OPTIONAL_SUBOBJECT(publicnym, ServerContractAllowedNym());
     CHECK_HAVE(address);
-    CHECK_SUBOBJECTS(address, ServerContractAllowedListenAddress);
+    CHECK_SUBOBJECTS(address, ServerContractAllowedListenAddress());
     CHECK_KEY(transportkey);
-    CHECK_SUBOBJECT(signature, ServerContractAllowedSignature);
+    CHECK_SUBOBJECT(signature, ServerContractAllowedSignature());
 
     return true;
 }

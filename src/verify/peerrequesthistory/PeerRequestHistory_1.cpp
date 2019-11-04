@@ -29,7 +29,7 @@ bool CheckProto_1(const PeerRequestHistory& input, const bool silent)
         }
     }
 
-    CHECK_SUBOBJECTS(workflow, PeerRequestHistoryAllowedPeerRequestWorkflow);
+    CHECK_SUBOBJECTS(workflow, PeerRequestHistoryAllowedPeerRequestWorkflow());
 
     return true;
 }

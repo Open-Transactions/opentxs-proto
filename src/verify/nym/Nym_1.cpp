@@ -36,8 +36,8 @@ bool CheckProto_1(const Nym& input, const bool silent)
     try {
         validSource = Check(
             input.source(),
-            NymAllowedNymIDSource.at(input.version()).first,
-            NymAllowedNymIDSource.at(input.version()).second,
+            NymAllowedNymIDSource().at(input.version()).first,
+            NymAllowedNymIDSource().at(input.version()).second,
             silent);
 
         if (!validSource) { FAIL_1("invalid nym id source") }
@@ -55,8 +55,8 @@ bool CheckProto_1(const Nym& input, const bool silent)
                 (NYM_PRIVATE == actualMode) ? KEYMODE_PRIVATE : KEYMODE_PUBLIC;
             const bool validSet = Check(
                 it,
-                NymAllowedAuthority.at(input.version()).first,
-                NymAllowedAuthority.at(input.version()).second,
+                NymAllowedAuthority().at(input.version()).first,
+                NymAllowedAuthority().at(input.version()).second,
                 silent,
                 input.nymid(),
                 mode,
@@ -76,8 +76,8 @@ bool CheckProto_1(const Nym& input, const bool silent)
                 (NYM_PRIVATE == actualMode) ? KEYMODE_PRIVATE : KEYMODE_PUBLIC;
             const bool validSet = Check(
                 it,
-                NymAllowedAuthority.at(input.version()).first,
-                NymAllowedAuthority.at(input.version()).second,
+                NymAllowedAuthority().at(input.version()).first,
+                NymAllowedAuthority().at(input.version()).second,
                 silent,
                 input.nymid(),
                 mode,

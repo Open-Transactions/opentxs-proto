@@ -12,26 +12,30 @@ namespace opentxs
 {
 namespace proto
 {
-EXPORT bool CheckProto_1(const Contact& contact, const bool silent);
-EXPORT bool CheckProto_2(const Contact& contact, const bool silent);
-EXPORT bool CheckProto_3(const Contact&, const bool);
-EXPORT bool CheckProto_4(const Contact&, const bool);
-EXPORT bool CheckProto_5(const Contact&, const bool);
-EXPORT bool CheckProto_6(const Contact&, const bool);
-EXPORT bool CheckProto_7(const Contact&, const bool);
-EXPORT bool CheckProto_8(const Contact&, const bool);
-EXPORT bool CheckProto_9(const Contact&, const bool);
-EXPORT bool CheckProto_10(const Contact&, const bool);
-EXPORT bool CheckProto_11(const Contact&, const bool);
-EXPORT bool CheckProto_12(const Contact&, const bool);
-EXPORT bool CheckProto_13(const Contact&, const bool);
-EXPORT bool CheckProto_14(const Contact&, const bool);
-EXPORT bool CheckProto_15(const Contact&, const bool);
-EXPORT bool CheckProto_16(const Contact&, const bool);
-EXPORT bool CheckProto_17(const Contact&, const bool);
-EXPORT bool CheckProto_18(const Contact&, const bool);
-EXPORT bool CheckProto_19(const Contact&, const bool);
-EXPORT bool CheckProto_20(const Contact&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_1(
+    const Contact& contact,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_2(
+    const Contact& contact,
+    const bool silent);
+OPENTXS_PROTO_EXPORT bool CheckProto_3(const Contact&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_4(const Contact&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_5(const Contact&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_6(const Contact&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_7(const Contact&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_8(const Contact&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_9(const Contact&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_10(const Contact&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_11(const Contact&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_12(const Contact&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_13(const Contact&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_14(const Contact&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_15(const Contact&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_16(const Contact&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_17(const Contact&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_18(const Contact&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_19(const Contact&, const bool);
+OPENTXS_PROTO_EXPORT bool CheckProto_20(const Contact&, const bool);
 }  // namespace proto
 }  // namespace opentxs
 

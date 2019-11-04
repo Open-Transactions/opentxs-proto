@@ -6,8 +6,18 @@
 set(
   cxx-sources
   Check.cpp
-  Variables.cpp
+  Contact.cpp
+  VerifyBlockchain.cpp
+  VerifyCash.cpp
+  VerifyConsensus.cpp
   VerifyContacts.cpp
+  VerifyContracts.cpp
+  VerifyCredentials.cpp
+  VerifyOTX.cpp
+  VerifyPeer.cpp
+  VerifyRPC.cpp
+  VerifyStorage.cpp
+  VerifyWorkflows.cpp
   acceptpendingpayment/AcceptPendingPayment_1.cpp
   accountdata/AccountData_1.cpp
   accountevent/AccountEvent_1.cpp
