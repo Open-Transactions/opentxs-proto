@@ -15,13 +15,10 @@ namespace proto
 OPENTXS_PROTO_EXPORT const VersionMap&
 LucreTokenDataAllowedCiphertext() noexcept;
 OPENTXS_PROTO_EXPORT const VersionMap& PurseAllowedCiphertext() noexcept;
-OPENTXS_PROTO_EXPORT const VersionMap& PurseAllowedSessionKey() noexcept;
+OPENTXS_PROTO_EXPORT const VersionMap& PurseAllowedEnvelope() noexcept;
 OPENTXS_PROTO_EXPORT const VersionMap& PurseAllowedSymmetricKey() noexcept;
 OPENTXS_PROTO_EXPORT const VersionMap& PurseAllowedToken() noexcept;
 OPENTXS_PROTO_EXPORT const VersionMap& PurseExchangeAllowedPurse() noexcept;
-OPENTXS_PROTO_EXPORT const VersionMap&
-SessionKeyAllowedAsymmetricKey() noexcept;
-OPENTXS_PROTO_EXPORT const VersionMap& SessionKeyAllowedCiphertext() noexcept;
 OPENTXS_PROTO_EXPORT const VersionMap& TokenAllowedLucreTokenData() noexcept;
 }  // namespace proto
 }  // namespace opentxs

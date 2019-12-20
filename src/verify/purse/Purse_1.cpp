@@ -32,10 +32,10 @@ bool CheckProto_1(const Purse& input, const bool silent, std::int64_t& value)
         }
     }
 
-    std::set<TokenState> allowedStates{};
-    std::int64_t validFrom{std::chrono::system_clock::to_time_t(
+    auto allowedStates = std::set<TokenState>{};
+    auto validFrom = std::int64_t{std::chrono::system_clock::to_time_t(
         std::chrono::system_clock::time_point::min())};
-    std::int64_t validTo{std::chrono::system_clock::to_time_t(
+    auto validTo = std::int64_t{std::chrono::system_clock::to_time_t(
         std::chrono::system_clock::time_point::max())};
 
     switch (input.state()) {
@@ -43,15 +43,13 @@ bool CheckProto_1(const Purse& input, const bool silent, std::int64_t& value)
             allowedStates.insert(TOKENSTATE_BLINDED);
 
             CHECK_SUBOBJECT(secondarykey, PurseAllowedSymmetricKey());
-            CHECK_SUBOBJECT_VA(
-                secondarypassword, PurseAllowedCiphertext(), false);
+            CHECK_SUBOBJECT(secondarypassword, PurseAllowedEnvelope());
         } break;
         case PURSETYPE_ISSUE: {
             allowedStates.insert(TOKENSTATE_SIGNED);
 
             CHECK_SUBOBJECT(secondarykey, PurseAllowedSymmetricKey());
-            CHECK_SUBOBJECT_VA(
-                secondarypassword, PurseAllowedCiphertext(), false);
+            CHECK_SUBOBJECT(secondarypassword, PurseAllowedEnvelope());
         } break;
         case PURSETYPE_NORMAL: {
             allowedStates.insert(TOKENSTATE_READY);
@@ -91,7 +89,7 @@ bool CheckProto_1(const Purse& input, const bool silent, std::int64_t& value)
     }
 
     CHECK_SUBOBJECT(primarykey, PurseAllowedSymmetricKey());
-    OPTIONAL_SUBOBJECTS(primarypassword, PurseAllowedSessionKey());
+    OPTIONAL_SUBOBJECTS(primarypassword, PurseAllowedEnvelope());
 
     return true;
 }

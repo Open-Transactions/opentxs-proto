@@ -107,7 +107,6 @@ set(
   ServerReply.proto
   ServerRequest.proto
   SessionData.proto
-  SessionKey.proto
   Signature.proto
   SourceProof.proto
   SpentTokenList.proto
@@ -145,6 +144,7 @@ set(
   StorageWorkflowType.proto
   StoreSecret.proto
   SymmetricKey.proto
+  TaggedKey.proto
   TaskComplete.proto
   Token.proto
   TransactionData.proto
