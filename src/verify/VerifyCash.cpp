@@ -23,10 +23,10 @@ const VersionMap& PurseAllowedCiphertext() noexcept
 
     return output;
 }
-const VersionMap& PurseAllowedSessionKey() noexcept
+const VersionMap& PurseAllowedEnvelope() noexcept
 {
     static const auto output = VersionMap{
-        {1, {1, 1}},
+        {1, {2, 2}},
     };
 
     return output;
@@ -48,22 +48,6 @@ const VersionMap& PurseAllowedToken() noexcept
     return output;
 }
 const VersionMap& PurseExchangeAllowedPurse() noexcept
-{
-    static const auto output = VersionMap{
-        {1, {1, 1}},
-    };
-
-    return output;
-}
-const VersionMap& SessionKeyAllowedAsymmetricKey() noexcept
-{
-    static const auto output = VersionMap{
-        {1, {1, 2}},
-    };
-
-    return output;
-}
-const VersionMap& SessionKeyAllowedCiphertext() noexcept
 {
     static const auto output = VersionMap{
         {1, {1, 1}},

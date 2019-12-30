@@ -120,7 +120,6 @@
 #include <opentxs-proto/ServerReply.pb.h>
 #include <opentxs-proto/ServerRequest.pb.h>
 #include <opentxs-proto/SessionData.pb.h>
-#include <opentxs-proto/SessionKey.pb.h>
 #include <opentxs-proto/Signature.pb.h>
 #include <opentxs-proto/SourceProof.pb.h>
 #include <opentxs-proto/SpentTokenList.pb.h>
@@ -158,6 +157,7 @@
 #include <opentxs-proto/StorageWorkflowType.pb.h>
 #include <opentxs-proto/StoreSecret.pb.h>
 #include <opentxs-proto/SymmetricKey.pb.h>
+#include <opentxs-proto/TaggedKey.pb.h>
 #include <opentxs-proto/TaskComplete.pb.h>
 #include <opentxs-proto/Token.pb.h>
 #include <opentxs-proto/TransactionData.pb.h>
@@ -263,7 +263,6 @@
 #include <opentxs-proto/verify/ServerReply.hpp>
 #include <opentxs-proto/verify/ServerRequest.hpp>
 #include <opentxs-proto/verify/SessionData.hpp>
-#include <opentxs-proto/verify/SessionKey.hpp>
 #include <opentxs-proto/verify/Signature.hpp>
 #include <opentxs-proto/verify/Signature.hpp>
 #include <opentxs-proto/verify/SourceProof.hpp>
@@ -301,6 +300,7 @@
 #include <opentxs-proto/verify/StorageWorkflowType.hpp>
 #include <opentxs-proto/verify/StoreSecret.hpp>
 #include <opentxs-proto/verify/SymmetricKey.hpp>
+#include <opentxs-proto/verify/TaggedKey.hpp>
 #include <opentxs-proto/verify/TaskComplete.hpp>
 #include <opentxs-proto/verify/Token.hpp>
 #include <opentxs-proto/verify/TransactionData.hpp>

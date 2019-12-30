@@ -58,6 +58,7 @@ bool CheckProto_1(
     }
 
     CHECK_EXCLUDED(bip32_parent);
+    CHECK_EXCLUDED(params);
 
     return true;
 }
@@ -72,17 +73,29 @@ bool CheckProto_2(
     CHECK_MEMBERSHIP(type, AsymmetricKeyAllowedTypes);
     CHECK_VALUE(mode, mode);
     CHECK_VALUE(role, role);
+    CHECK_KEY(key);
 
     if (KEYMODE_PUBLIC == mode) {
-        CHECK_KEY(key);
         CHECK_EXCLUDED(encryptedkey);
     } else {
-        if (AKEYTYPE_LEGACY == input.type()) {
-            CHECK_KEY(key);
-            CHECK_EXCLUDED(encryptedkey);
-        } else {
-            CHECK_SUBOBJECT_VA(
-                encryptedkey, AsymmetricKeyAllowedCiphertext(), false);
+        CHECK_SUBOBJECT_VA(
+            encryptedkey, AsymmetricKeyAllowedCiphertext(), false);
+    }
+
+    switch (input.type()) {
+        case AKEYTYPE_LEGACY: {
+            if (KEYROLE_ENCRYPT == input.role()) {
+                CHECK_KEY(params);
+            } else {
+                CHECK_EXCLUDED(params);
+            }
+        } break;
+        case AKEYTYPE_ED25519:
+        case AKEYTYPE_SECP256K1:
+        case AKEYTYPE_NULL:
+        case AKEYTYPE_ERROR:
+        default: {
+            CHECK_EXCLUDED(params);
         }
     }
 

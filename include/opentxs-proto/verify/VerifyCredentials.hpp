@@ -26,6 +26,7 @@ OPENTXS_PROTO_EXPORT const VersionMap& CredentialAllowedSignatures() noexcept;
 OPENTXS_PROTO_EXPORT const VersionMap& CredentialAllowedVerification() noexcept;
 OPENTXS_PROTO_EXPORT const VersionMap& EnvelopeAllowedAsymmetricKey() noexcept;
 OPENTXS_PROTO_EXPORT const VersionMap& EnvelopeAllowedCiphertext() noexcept;
+OPENTXS_PROTO_EXPORT const VersionMap& EnvelopeAllowedTaggedKey() noexcept;
 OPENTXS_PROTO_EXPORT const VersionMap&
 KeyCredentialAllowedAsymmetricKey() noexcept;
 OPENTXS_PROTO_EXPORT const VersionMap&
@@ -39,6 +40,7 @@ NymIDSourceAllowedAsymmetricKey() noexcept;
 OPENTXS_PROTO_EXPORT const VersionMap& NymIDSourceAllowedPaymentCode() noexcept;
 OPENTXS_PROTO_EXPORT const VersionMap& SeedAllowedCiphertext() noexcept;
 OPENTXS_PROTO_EXPORT const VersionMap& SymmetricKeyAllowedCiphertext() noexcept;
+OPENTXS_PROTO_EXPORT const VersionMap& TaggedKeyAllowedSymmetricKey() noexcept;
 }  // namespace proto
 }  // namespace opentxs
 #endif  // OPENTXS_PROTO_VERIFYCREDENTIALS_HPP

@@ -137,6 +137,16 @@ const VersionMap& EnvelopeAllowedCiphertext() noexcept
 {
     static const auto output = VersionMap{
         {1, {1, 1}},
+        {2, {1, 1}},
+    };
+
+    return output;
+}
+const VersionMap& EnvelopeAllowedTaggedKey() noexcept
+{
+    static const auto output = VersionMap{
+        {1, {1, 1}},
+        {2, {1, 1}},
     };
 
     return output;
@@ -222,6 +232,14 @@ const VersionMap& SeedAllowedCiphertext() noexcept
     return output;
 }
 const VersionMap& SymmetricKeyAllowedCiphertext() noexcept
+{
+    static const auto output = VersionMap{
+        {1, {1, 1}},
+    };
+
+    return output;
+}
+const VersionMap& TaggedKeyAllowedSymmetricKey() noexcept
 {
     static const auto output = VersionMap{
         {1, {1, 1}},

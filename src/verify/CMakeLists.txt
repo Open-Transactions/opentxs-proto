@@ -125,7 +125,6 @@ set(
   serverreply/ServerReply_1.cpp
   serverrequest/ServerRequest_1.cpp
   sessiondata/SessionData_1.cpp
-  sessionkey/SessionKey_1.cpp
   signature/Signature_1.cpp
   signature/Signature_2.cpp
   signature/Signature_3.cpp
@@ -182,6 +181,7 @@ set(
   storageworkflowtype/StorageWorkflowType_3.cpp
   storesecret/StoreSecret_1.cpp
   symmetrickey/SymmetricKey_1.cpp
+  taggedkey/TaggedKey_1.cpp
   taskcomplete/TaskComplete_1.cpp
   token/Token_1.cpp
   transactiondata/TransactionData_1.cpp

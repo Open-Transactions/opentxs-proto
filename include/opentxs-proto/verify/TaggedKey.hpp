@@ -3,76 +3,75 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-#ifndef OPENTXS_PROTO_SESSIONKEY_HPP
-#define OPENTXS_PROTO_SESSIONKEY_HPP
+#ifndef OPENTXS_PROTO_TAGGEDKEY_HPP
+#define OPENTXS_PROTO_TAGGEDKEY_HPP
 
-#include "VerifyCash.hpp"
+#include "VerifyCredentials.hpp"
 
 namespace opentxs
 {
 namespace proto
 {
 OPENTXS_PROTO_EXPORT bool CheckProto_1(
-    const SessionKey& input,
+    const TaggedKey& data,
     const bool silent);
 OPENTXS_PROTO_EXPORT bool CheckProto_2(
-    const SessionKey& input,
+    const TaggedKey& data,
     const bool silent);
 OPENTXS_PROTO_EXPORT bool CheckProto_3(
-    const SessionKey& input,
+    const TaggedKey& data,
     const bool silent);
 OPENTXS_PROTO_EXPORT bool CheckProto_4(
-    const SessionKey& input,
+    const TaggedKey& data,
     const bool silent);
 OPENTXS_PROTO_EXPORT bool CheckProto_5(
-    const SessionKey& input,
+    const TaggedKey& data,
     const bool silent);
 OPENTXS_PROTO_EXPORT bool CheckProto_6(
-    const SessionKey& input,
+    const TaggedKey& data,
     const bool silent);
 OPENTXS_PROTO_EXPORT bool CheckProto_7(
-    const SessionKey& input,
+    const TaggedKey& data,
     const bool silent);
 OPENTXS_PROTO_EXPORT bool CheckProto_8(
-    const SessionKey& input,
+    const TaggedKey& data,
     const bool silent);
 OPENTXS_PROTO_EXPORT bool CheckProto_9(
-    const SessionKey& input,
+    const TaggedKey& data,
     const bool silent);
 OPENTXS_PROTO_EXPORT bool CheckProto_10(
-    const SessionKey& input,
+    const TaggedKey& data,
     const bool silent);
 OPENTXS_PROTO_EXPORT bool CheckProto_11(
-    const SessionKey& input,
+    const TaggedKey& data,
     const bool silent);
 OPENTXS_PROTO_EXPORT bool CheckProto_12(
-    const SessionKey& input,
+    const TaggedKey& data,
     const bool silent);
 OPENTXS_PROTO_EXPORT bool CheckProto_13(
-    const SessionKey& input,
+    const TaggedKey& data,
     const bool silent);
 OPENTXS_PROTO_EXPORT bool CheckProto_14(
-    const SessionKey& input,
+    const TaggedKey& data,
     const bool silent);
 OPENTXS_PROTO_EXPORT bool CheckProto_15(
-    const SessionKey& input,
+    const TaggedKey& data,
     const bool silent);
 OPENTXS_PROTO_EXPORT bool CheckProto_16(
-    const SessionKey& input,
+    const TaggedKey& data,
     const bool silent);
 OPENTXS_PROTO_EXPORT bool CheckProto_17(
-    const SessionKey& input,
+    const TaggedKey& data,
     const bool silent);
 OPENTXS_PROTO_EXPORT bool CheckProto_18(
-    const SessionKey& input,
+    const TaggedKey& data,
     const bool silent);
 OPENTXS_PROTO_EXPORT bool CheckProto_19(
-    const SessionKey& input,
+    const TaggedKey& data,
     const bool silent);
 OPENTXS_PROTO_EXPORT bool CheckProto_20(
-    const SessionKey& input,
+    const TaggedKey& data,
     const bool silent);
 }  // namespace proto
 }  // namespace opentxs
-
-#endif  // OPENTXS_PROTO_SESSIONKEY_HPP
+#endif  // OPENTXS_PROTO_TAGGEDKEY_HPP

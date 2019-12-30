@@ -12,57 +12,42 @@ namespace opentxs
 {
 namespace proto
 {
+const std::map<std::uint32_t, std::set<AsymmetricKeyType>> allowed_types_{
+    {1, {AKEYTYPE_LEGACY, AKEYTYPE_SECP256K1, AKEYTYPE_ED25519}},
+    {2, {AKEYTYPE_LEGACY, AKEYTYPE_SECP256K1, AKEYTYPE_ED25519}},
+};
 
 bool CheckProto_1(const Envelope& input, const bool silent)
 {
-    for (const auto& dhKey : input.dhkey()) {
-        try {
-            const bool validDHKey = Check(
-                dhKey,
-                EnvelopeAllowedAsymmetricKey().at(input.version()).first,
-                EnvelopeAllowedAsymmetricKey().at(input.version()).second,
-                silent,
-                CREDTYPE_LEGACY,
-                KEYMODE_PUBLIC,
-                KEYROLE_ENCRYPT);
+    CHECK_SUBOBJECTS_VA(
+        dhkey,
+        EnvelopeAllowedAsymmetricKey(),
+        CREDTYPE_LEGACY,
+        KEYMODE_PUBLIC,
+        KEYROLE_ENCRYPT)
+    CHECK_SUBOBJECTS(sessionkey, EnvelopeAllowedTaggedKey())
+    CHECK_SUBOBJECT_VA(ciphertext, EnvelopeAllowedCiphertext(), false)
 
-            if (false == validDHKey) { FAIL_1("invalid dhkey") }
-        } catch (const std::out_of_range&) {
-            FAIL_2(
-                "allowed asymmetric key version not defined for version",
-                input.version())
+    auto dh = std::map<AsymmetricKeyType, int>{};
+
+    for (const auto& key : input.dhkey()) {
+        const auto type = key.type();
+
+        try {
+            if (0 == allowed_types_.at(input.version()).count(type)) {
+                FAIL_1("Invalid dh key type")
+            }
+        } catch (...) {
+            FAIL_1("Unknown version")
         }
+
+        ++dh[type];
     }
 
-    for (const auto& sessionKey : input.sessionkey()) {
-        try {
-            const bool validSessionKey = Check(
-                sessionKey,
-                EnvelopeAllowedCiphertext().at(input.version()).first,
-                EnvelopeAllowedCiphertext().at(input.version()).second,
-                silent);
-
-            if (false == validSessionKey) { FAIL_1("invalid session key") }
-        } catch (const std::out_of_range&) {
-            FAIL_2(
-                "allowed ciphertext version not defined for version",
-                input.version())
+    for (const auto& [type, count] : dh) {
+        if ((1 != count) && (AKEYTYPE_LEGACY != type)) {
+            FAIL_1("Duplicate dh key type")
         }
-    }
-
-    try {
-        const bool validCiphertext = Check(
-            input.ciphertext(),
-            EnvelopeAllowedCiphertext().at(input.version()).first,
-            EnvelopeAllowedCiphertext().at(input.version()).second,
-            silent,
-            false);
-
-        if (false == validCiphertext) { FAIL_1("invalid ciphertext") }
-    } catch (const std::out_of_range&) {
-        FAIL_2(
-            "allowed ciphertext version not defined for version",
-            input.version())
     }
 
     return true;
