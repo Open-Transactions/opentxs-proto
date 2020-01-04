@@ -33,8 +33,8 @@
 #include <opentxs-proto/BasketParams.pb.h>
 #include <opentxs-proto/Bip47Address.pb.h>
 #include <opentxs-proto/Bip47Channel.pb.h>
-#include <opentxs-proto/BitcoinBlockHeaderFields.pb.h>
 #include <opentxs-proto/Bip47Direction.pb.h>
+#include <opentxs-proto/BitcoinBlockHeaderFields.pb.h>
 #include <opentxs-proto/BlindedSeriesList.pb.h>
 #include <opentxs-proto/BlockchainActivity.pb.h>
 #include <opentxs-proto/BlockchainAddress.pb.h>
@@ -42,6 +42,7 @@
 #include <opentxs-proto/BlockchainBlockLocalData.pb.h>
 #include <opentxs-proto/BlockchainEnums.pb.h>
 #include <opentxs-proto/BlockchainExternalAddress.pb.h>
+#include <opentxs-proto/BlockchainPeerAddress.pb.h>
 #include <opentxs-proto/BlockchainPreviousOutput.pb.h>
 #include <opentxs-proto/BlockchainTransaction.pb.h>
 #include <opentxs-proto/BlockchainTransactionInput.pb.h>
@@ -193,6 +194,7 @@
 #include <opentxs-proto/verify/BlockchainBlockHeader.hpp>
 #include <opentxs-proto/verify/BlockchainBlockLocalData.hpp>
 #include <opentxs-proto/verify/BlockchainExternalAddress.hpp>
+#include <opentxs-proto/verify/BlockchainPeerAddress.hpp>
 #include <opentxs-proto/verify/BlockchainPreviousOutput.hpp>
 #include <opentxs-proto/verify/BlockchainTransaction.hpp>
 #include <opentxs-proto/verify/BlockchainTransactionInput.hpp>
