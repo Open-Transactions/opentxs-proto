@@ -40,6 +40,7 @@ set(
   blockchainblockheader/BlockchainBlockHeader_1.cpp
   blockchainblocklocaldata/BlockchainBlockLocalData_1.cpp
   blockchainexternaladdress/BlockchainExternalAddress_1.cpp
+  blockchainfilterheader/BlockchainFilterHeader_1.cpp
   blockchainpeeraddress/BlockchainPeerAddress_1.cpp
   blockchainpreviousoutput/BlockchainPreviousOutput_1.cpp
   blockchaintransaction/BlockchainTransaction_1.cpp

@@ -7,7 +7,7 @@
 
 namespace opentxs::proto
 {
-const VersionMap& Bip47ChainAllowedBip47Channel() noexcept
+auto Bip47ChainAllowedBip47Channel() noexcept -> const VersionMap&
 {
     static const auto output = VersionMap{
         {1, {1, 1}},
@@ -15,7 +15,7 @@ const VersionMap& Bip47ChainAllowedBip47Channel() noexcept
 
     return output;
 }
-const VersionMap& Bip47ChannelAllowedBip47Direction() noexcept
+auto Bip47ChannelAllowedBip47Direction() noexcept -> const VersionMap&
 {
     static const auto output = VersionMap{
         {1, {1, 1}},
@@ -23,7 +23,7 @@ const VersionMap& Bip47ChannelAllowedBip47Direction() noexcept
 
     return output;
 }
-const VersionMap& Bip47ContextAllowedBip47Chain() noexcept
+auto Bip47ContextAllowedBip47Chain() noexcept -> const VersionMap&
 {
     static const auto output = VersionMap{
         {1, {1, 1}},
@@ -31,7 +31,7 @@ const VersionMap& Bip47ContextAllowedBip47Chain() noexcept
 
     return output;
 }
-const VersionMap& Bip47DirectionAllowedBip47Address() noexcept
+auto Bip47DirectionAllowedBip47Address() noexcept -> const VersionMap&
 {
     static const auto output = VersionMap{
         {1, {1, 1}},
@@ -39,7 +39,7 @@ const VersionMap& Bip47DirectionAllowedBip47Address() noexcept
 
     return output;
 }
-const VersionMap& BlockchainAddressAllowedAsymmetricKey() noexcept
+auto BlockchainAddressAllowedAsymmetricKey() noexcept -> const VersionMap&
 {
     static const auto output = VersionMap{
         {1, {2, 2}},
@@ -47,8 +47,8 @@ const VersionMap& BlockchainAddressAllowedAsymmetricKey() noexcept
 
     return output;
 }
-const VersionMap&
-BlockchainBlockHeaderAllowedBitcoinBlockHeaderFields() noexcept
+auto BlockchainBlockHeaderAllowedBitcoinBlockHeaderFields() noexcept
+    -> const VersionMap&
 {
     static const auto output = VersionMap{
         {1, {1, 1}},
@@ -56,8 +56,8 @@ BlockchainBlockHeaderAllowedBitcoinBlockHeaderFields() noexcept
 
     return output;
 }
-const VersionMap&
-BlockchainBlockHeaderAllowedBlockchainBlockLocalData() noexcept
+auto BlockchainBlockHeaderAllowedBlockchainBlockLocalData() noexcept
+    -> const VersionMap&
 {
     static const auto output = VersionMap{
         {1, {1, 1}},
@@ -65,8 +65,8 @@ BlockchainBlockHeaderAllowedBlockchainBlockLocalData() noexcept
 
     return output;
 }
-const VersionMap&
-BlockchainBlockHeaderAllowedEthereumBlockHeaderFields() noexcept
+auto BlockchainBlockHeaderAllowedEthereumBlockHeaderFields() noexcept
+    -> const VersionMap&
 {
     static const auto output = VersionMap{
         {1, {1, 1}},
@@ -74,7 +74,7 @@ BlockchainBlockHeaderAllowedEthereumBlockHeaderFields() noexcept
 
     return output;
 }
-const VersionMap& BlockchainTransactionAllowedInput() noexcept
+auto BlockchainTransactionAllowedInput() noexcept -> const VersionMap&
 {
     static const auto output = VersionMap{
         {1, {1, 1}},
@@ -82,7 +82,7 @@ const VersionMap& BlockchainTransactionAllowedInput() noexcept
 
     return output;
 }
-const VersionMap& BlockchainTransactionAllowedOutput() noexcept
+auto BlockchainTransactionAllowedOutput() noexcept -> const VersionMap&
 {
     static const auto output = VersionMap{
         {1, {1, 1}},
@@ -90,8 +90,8 @@ const VersionMap& BlockchainTransactionAllowedOutput() noexcept
 
     return output;
 }
-const VersionMap&
-BlockchainTransactionInputAllowedBlockchainPreviousOutput() noexcept
+auto BlockchainTransactionInputAllowedBlockchainPreviousOutput() noexcept
+    -> const VersionMap&
 {
     static const auto output = VersionMap{
         {1, {1, 1}},
@@ -99,8 +99,8 @@ BlockchainTransactionInputAllowedBlockchainPreviousOutput() noexcept
 
     return output;
 }
-const VersionMap&
-BlockchainTransactionOutputAllowedBlockchainExternalAddress() noexcept
+auto BlockchainTransactionOutputAllowedBlockchainExternalAddress() noexcept
+    -> const VersionMap&
 {
     static const auto output = VersionMap{
         {1, {1, 1}},
@@ -108,8 +108,8 @@ BlockchainTransactionOutputAllowedBlockchainExternalAddress() noexcept
 
     return output;
 }
-const VersionMap&
-BlockchainTransactionOutputAllowedBlockchainWalletKey() noexcept
+auto BlockchainTransactionOutputAllowedBlockchainWalletKey() noexcept
+    -> const VersionMap&
 {
     static const auto output = VersionMap{
         {1, {1, 1}},
@@ -117,7 +117,7 @@ BlockchainTransactionOutputAllowedBlockchainWalletKey() noexcept
 
     return output;
 }
-const VersionMap& HDAccountAllowedBlockchainActivity() noexcept
+auto HDAccountAllowedBlockchainActivity() noexcept -> const VersionMap&
 {
     static const auto output = VersionMap{
         {1, {1, 1}},
@@ -125,7 +125,7 @@ const VersionMap& HDAccountAllowedBlockchainActivity() noexcept
 
     return output;
 }
-const VersionMap& HDAccountAllowedBlockchainAddress() noexcept
+auto HDAccountAllowedBlockchainAddress() noexcept -> const VersionMap&
 {
     static const auto output = VersionMap{
         {1, {1, 1}},
@@ -133,7 +133,7 @@ const VersionMap& HDAccountAllowedBlockchainAddress() noexcept
 
     return output;
 }
-const VersionMap& HDAccountAllowedHDPath() noexcept
+auto HDAccountAllowedHDPath() noexcept -> const VersionMap&
 {
     static const auto output = VersionMap{
         {1, {1, 1}},

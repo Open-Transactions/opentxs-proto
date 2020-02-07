@@ -42,6 +42,7 @@
 #include <opentxs-proto/BlockchainBlockLocalData.pb.h>
 #include <opentxs-proto/BlockchainEnums.pb.h>
 #include <opentxs-proto/BlockchainExternalAddress.pb.h>
+#include <opentxs-proto/BlockchainFilterHeader.pb.h>
 #include <opentxs-proto/BlockchainPeerAddress.pb.h>
 #include <opentxs-proto/BlockchainPreviousOutput.pb.h>
 #include <opentxs-proto/BlockchainTransaction.pb.h>
@@ -194,6 +195,7 @@
 #include <opentxs-proto/verify/BlockchainBlockHeader.hpp>
 #include <opentxs-proto/verify/BlockchainBlockLocalData.hpp>
 #include <opentxs-proto/verify/BlockchainExternalAddress.hpp>
+#include <opentxs-proto/verify/BlockchainFilterHeader.hpp>
 #include <opentxs-proto/verify/BlockchainPeerAddress.hpp>
 #include <opentxs-proto/verify/BlockchainPreviousOutput.hpp>
 #include <opentxs-proto/verify/BlockchainTransaction.hpp>
