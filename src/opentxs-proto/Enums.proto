@@ -99,6 +99,7 @@ enum HashType {
     HASHTYPE_SHA256D = 9;
     HASHTYPE_SHA256DC = 10;
     HASHTYPE_BITCOIN = 11;
+    HASHTYPE_SIPHASH24 = 12;
 }
 
 enum NymMode {
