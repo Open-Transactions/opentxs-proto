@@ -187,7 +187,14 @@ if(NOT MSVC)
   )
 endif()
 
-set_target_properties(messages PROPERTIES POSITION_INDEPENDENT_CODE ON)
+set_target_properties(
+  messages
+  PROPERTIES
+    POSITION_INDEPENDENT_CODE
+    ON
+    MSVC_RUNTIME_LIBRARY
+    "${MSVC_RUNTIME_DEFAULT}"
+)
 
 install(
   DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}

@@ -12,14 +12,13 @@ add_library(opentxs-proto::libopentxs-proto ALIAS libopentxs-proto)
 
 target_link_libraries(
   libopentxs-proto
-  PUBLIC protobuf::libprotobuf-lite
-  PRIVATE Threads::Threads
+  PRIVATE protobuf::libprotobuf-lite Threads::Threads
 )
 
 target_include_directories(
   libopentxs-proto SYSTEM
-  PUBLIC ${Protobuf_INCLUDE_DIR}
-  PRIVATE $<BUILD_INTERFACE:${opentxs-proto_BINARY_DIR}/src>
+  PRIVATE
+    ${Protobuf_INCLUDE_DIR} $<BUILD_INTERFACE:${opentxs-proto_BINARY_DIR}/src>
 )
 
 target_include_directories(

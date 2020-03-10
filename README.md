@@ -1,19 +1,16 @@
-## Open-Transactions Canonical Protbuf Definition Library
+## Protobuf definition library for Open-Transactions
 
-[![License](http://img.shields.io/:License-MPLv2-yellow.svg)](LICENSE)
+[![License: MPL 2.0](https://img.shields.io/badge/License-MPL%202.0-brightgreen.svg)](https://opensource.org/licenses/MPL-2.0)
+
+[![Build](https://github.com/Open-Transactions/opentxs-proto/workflows/Release/badge.svg)](https://github.com/Open-Transactions/opentxs-proto/actions)
 
 This library provides the canonical protobuf definitions for opentxs messages, as well as syntax validation functions.
-
-These definitions are under heavy development, and as such no guarantees of API stability should be inferred prior to a 1.0 release.
 
 ### Official Wiki
 
 http://opentransactions.org/
 
 ### Contributing
-
-All development goes in develop branch - please don't submit pull requests to
-master.
 
 Use clang-format and cmake-format.
 

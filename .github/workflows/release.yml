@@ -1,0 +1,66 @@
+name: Release
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        platform: [windows-2019, macos-10.15, ubuntu-18.04]
+        include:
+          - platform: windows-2019
+            vcpkg_triplet: x64-windows-static
+            cmake_platform_args:
+            cpack_generators: 'ZIP'
+          - platform: macos-10.15
+            vcpkg_triplet: x64-osx
+            cmake_platform_args: '-DOPENTXS_PROTO_PEDANTIC_BUILD=ON'
+            cpack_generators: 'TGZ'
+          - platform: ubuntu-18.04
+            vcpkg_triplet: x64-linux
+            cmake_platform_args: '-DOPENTXS_PROTO_PEDANTIC_BUILD=ON'
+            cpack_generators: 'TGZ'
+    runs-on: ${{ matrix.platform }}
+
+    steps:
+    - name: Upgrade to gcc/g++ 8
+      if: matrix.platform == 'ubuntu-18.04'
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y gcc-8 g++-8
+        sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-8 80 --slave /usr/bin/g++ g++ /usr/bin/g++-8 --slave /usr/bin/gcov gcov /usr/bin/gcov-8
+    - name: 'Checkout'
+      uses: actions/checkout@v1
+      with:
+        submodules: 'recursive'
+    - name: Cache vcpkg
+      uses: actions/cache@v1
+      with:
+        path: ${{ github.workspace }}/vcpkg/
+        key: ${{ hashFiles( 'vcpkg.txt' ) }}-${{ hashFiles('.git/modules/vcpkg/HEAD') }}-${{ runner.os }}
+    - name: Run vcpkg
+      uses: lukka/run-vcpkg@v0
+      with:
+        vcpkgArguments: '@${{ github.workspace }}/vcpkg.txt --triplet ${{ matrix.vcpkg_triplet }}'
+        vcpkgDirectory: '${{ github.workspace }}/vcpkg'
+    - name: 'Compile'
+      uses: lukka/run-cmake@v0
+      with:
+        cmakeGenerator: 'Ninja'
+        cmakeBuildType: 'Release'
+        cmakeListsOrSettingsJson: CMakeListsTxtAdvanced
+        cmakeListsTxtPath: '${{ github.workspace }}/CMakeLists.txt'
+        useVcpkgToolchainFile: true
+        vcpkgTriplet: '${{ matrix.vcpkg_triplet }}'
+        buildDirectory: '${{ github.workspace }}/build'
+        cmakeAppendedArgs: ' -GNinja -DCMAKE_BUILD_TYPE=Release -DOPENTXS_PROTO_BUILD_TESTS=ON ${{ matrix.cmake_platform_args }} '
+        buildWithCMake: true
+    - name: Test
+      run: |
+        cd "${{ github.workspace }}/build"
+        ctest
+    - name: Package
+      if: matrix.platform != 'windows-2019'
+      run: |
+        cd "${{ github.workspace }}/build"
+        cpack -G "${{ matrix.cpack_generators }}"

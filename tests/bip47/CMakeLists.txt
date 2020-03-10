@@ -22,9 +22,16 @@ set_target_properties(
     1
     RUNTIME_OUTPUT_DIRECTORY
     ${PROJECT_BINARY_DIR}/tests
+    MSVC_RUNTIME_LIBRARY
+    "${MSVC_RUNTIME_DEFAULT}"
 )
 
-target_link_libraries(${name} opentxs-proto::libopentxs-proto GTest::GTest)
+target_link_libraries(
+  ${name}
+  opentxs-proto::libopentxs-proto
+  GTest::GTest
+  protobuf::libprotobuf-lite
+)
 
 if(NOT MSVC)
   target_compile_options(${name} PRIVATE -Wno-effc++)
