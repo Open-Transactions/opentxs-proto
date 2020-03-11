@@ -221,7 +221,14 @@ if(NOT MSVC)
   target_compile_options(verify PRIVATE -Wno-unused-parameter)
 endif()
 
-set_target_properties(verify PROPERTIES POSITION_INDEPENDENT_CODE ON)
+set_target_properties(
+  verify
+  PROPERTIES
+    POSITION_INDEPENDENT_CODE
+    ON
+    MSVC_RUNTIME_LIBRARY
+    "${MSVC_RUNTIME_DEFAULT}"
+)
 
 install(
   DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/../../include/
