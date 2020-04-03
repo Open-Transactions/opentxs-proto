@@ -30,4 +30,6 @@ message BlockchainTransaction {
     optional int64 time = 13;
     repeated string conflicts = 14;
     optional string memo = 15;
+    optional uint32 segwit_flag = 16;
+    optional string wtxid = 17;
 }

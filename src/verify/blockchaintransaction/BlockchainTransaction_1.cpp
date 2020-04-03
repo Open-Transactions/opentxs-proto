@@ -7,6 +7,8 @@
 #include "verify/Check.hpp"
 #include "opentxs-proto/Contact.hpp"
 
+#include <limits>
+
 #define PROTO_NAME "blockchain transaction"
 
 namespace opentxs
@@ -93,6 +95,12 @@ bool CheckProto_1(const BlockchainTransaction& input, const bool silent)
     if (MAX_TRANSACTION_MEMO_SIZE < input.memo().size()) {
         FAIL_1("invalid memo")
     }
+
+    if (std::numeric_limits<std::uint8_t>::max() < input.segwit_flag()) {
+        FAIL_2("invalid segwit flag", input.segwit_flag())
+    }
+
+    OPTIONAL_IDENTIFIER(wtxid);
 
     return true;
 }

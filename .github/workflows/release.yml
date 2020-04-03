@@ -39,12 +39,12 @@ jobs:
         path: ${{ github.workspace }}/vcpkg/
         key: ${{ hashFiles( 'vcpkg.txt' ) }}-${{ hashFiles('.git/modules/vcpkg/HEAD') }}-${{ runner.os }}
     - name: Run vcpkg
-      uses: lukka/run-vcpkg@v0
+      uses: lukka/run-vcpkg@v1
       with:
         vcpkgArguments: '@${{ github.workspace }}/vcpkg.txt --triplet ${{ matrix.vcpkg_triplet }}'
         vcpkgDirectory: '${{ github.workspace }}/vcpkg'
     - name: 'Compile'
-      uses: lukka/run-cmake@v0
+      uses: lukka/run-cmake@v1
       with:
         cmakeGenerator: 'Ninja'
         cmakeBuildType: 'Release'
