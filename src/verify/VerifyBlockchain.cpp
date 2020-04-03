@@ -90,6 +90,15 @@ auto BlockchainTransactionAllowedOutput() noexcept -> const VersionMap&
 
     return output;
 }
+auto BlockchainTransactionInputAllowedBlockchainInputWitness() noexcept
+    -> const VersionMap&
+{
+    static const auto output = VersionMap{
+        {1, {1, 1}},
+    };
+
+    return output;
+}
 auto BlockchainTransactionInputAllowedBlockchainPreviousOutput() noexcept
     -> const VersionMap&
 {

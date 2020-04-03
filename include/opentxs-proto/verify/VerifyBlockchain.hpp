@@ -31,6 +31,8 @@ BlockchainTransactionAllowedInput() noexcept;
 OPENTXS_PROTO_EXPORT const VersionMap&
 BlockchainTransactionAllowedOutput() noexcept;
 OPENTXS_PROTO_EXPORT const VersionMap&
+BlockchainTransactionInputAllowedBlockchainInputWitness() noexcept;
+OPENTXS_PROTO_EXPORT const VersionMap&
 BlockchainTransactionInputAllowedBlockchainPreviousOutput() noexcept;
 OPENTXS_PROTO_EXPORT const VersionMap&
 BlockchainTransactionOutputAllowedBlockchainExternalAddress() noexcept;

@@ -29,6 +29,7 @@ set(
   BlockchainEnums.proto
   BlockchainExternalAddress.proto
   BlockchainFilterHeader.proto
+  BlockchainInputWitness.proto
   BlockchainPeerAddress.proto
   BlockchainPreviousOutput.proto
   BlockchainTransaction.proto

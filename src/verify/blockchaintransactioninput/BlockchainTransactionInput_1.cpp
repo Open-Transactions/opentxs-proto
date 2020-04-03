@@ -18,6 +18,8 @@ bool CheckProto_1(const BlockchainTransactionInput& input, const bool silent)
     CHECK_SCRIPT(script);
     CHECK_SUBOBJECT(
         previous, BlockchainTransactionInputAllowedBlockchainPreviousOutput());
+    OPTIONAL_SUBOBJECT(
+        witness, BlockchainTransactionInputAllowedBlockchainInputWitness());
 
     return true;
 }
