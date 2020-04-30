@@ -8,6 +8,7 @@
 #include "opentxs-proto/Types.hpp"
 #include "opentxs-proto/Check.hpp"
 
+#include <regex>
 #include <sstream>
 
 namespace opentxs::proto
@@ -204,6 +205,24 @@ void WriteLogMessage(const std::stringstream& message) noexcept;
     {                                                                          \
         CHECK_EXISTS(a);                                                       \
         OPTIONAL_IDENTIFIERS(a);                                               \
+    }
+
+#define CHECK_NUMBER_STRING(a)                                                 \
+    {                                                                          \
+       std::regex rx("[0-9]");                                                 \
+       const bool valid##a =                                                   \
+            std::regex_match(input.a().begin(), input.a().end(), rx);          \
+       if (false == valid##a) {                                                \
+           const auto fail =                                                   \
+             std::string("number string contains non-numeral digits: ") + #a;  \
+            FAIL_1(fail.c_str())                                               \
+        }                                                                      \
+    }
+
+#define CHECK_AMOUNT_MP(a)                                                     \
+    {                                                                          \
+        CHECK_EXISTS_STRING(a);                                                \
+        CHECK_NUMBER_STRING(a);                                                \
     }
 
 #define CHECK_NONE(a)                                                          \

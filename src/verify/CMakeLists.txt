@@ -21,6 +21,7 @@ set(
   acceptpendingpayment/AcceptPendingPayment_1.cpp
   accountdata/AccountData_1.cpp
   accountevent/AccountEvent_1.cpp
+  accountevent/AccountEvent_2.cpp
   addclaim/AddClaim_1.cpp
   addcontact/AddContact_1.cpp
   apiargument/APIArgument_1.cpp
@@ -81,6 +82,7 @@ set(
   mastercredentialparameters/MasterCredentialParameters_1.cpp
   modifyaccount/ModifyAccount_1.cpp
   movefunds/MoveFunds_1.cpp
+  movefunds/MoveFunds_2.cpp
   noticeacknowledgement/NoticeAcknowledgement_1.cpp
   nym/Nym_1.cpp
   nymidsource/NymIDSource_1.cpp
@@ -122,6 +124,7 @@ set(
   seed/Seed_1.cpp
   sendmessage/SendMessage_1.cpp
   sendpayment/SendPayment_1.cpp
+  sendpayment/SendPayment_2.cpp
   servercontext/ServerContext_1.cpp
   servercontext/ServerContext_2.cpp
   servercontract/ServerContract_1.cpp
@@ -188,6 +191,7 @@ set(
   taskcomplete/TaskComplete_1.cpp
   token/Token_1.cpp
   transactiondata/TransactionData_1.cpp
+  transactiondata/TransactionData_2.cpp
   unitaccountmap/UnitAccountMap_1.cpp
   unitdefinition/UnitDefinition_1.cpp
   unitdefinition/UnitDefinition_2.cpp

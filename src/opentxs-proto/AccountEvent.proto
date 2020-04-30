@@ -25,4 +25,6 @@ message AccountEvent {
     optional string memo = 9;
     optional string uuid = 10;
     optional PaymentWorkflowState state = 11;
+    optional string amount_mp = 12;
+    optional string pendingamount_mp = 13;
 }
