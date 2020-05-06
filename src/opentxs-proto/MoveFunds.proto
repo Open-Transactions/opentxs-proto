@@ -19,4 +19,5 @@ message MoveFunds {
     optional string destinationaccount = 4;	// destination account id
     optional string memo = 5;
     optional uint64 amount = 6;
+    optional string amount_mp = 7;
 }

@@ -21,4 +21,5 @@ message TransactionData {
     repeated string destinationaccounts = 5;
     optional int64 amount = 6;
     optional PaymentWorkflowState state = 7;
+    optional string amount_mp = 8;
 }
